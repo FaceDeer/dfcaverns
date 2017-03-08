@@ -1,0 +1,173 @@
+--------------------------------------------------
+-- Fungiwood
+
+-- fine grain
+-- Max trunk height 	8 
+-- depth 1-2
+
+-- internationalization boilerplate
+local MP = minetest.get_modpath(minetest.get_current_modname())
+local S, NS = dofile(MP.."/intllib.lua")
+
+minetest.register_node("dfcaverns:fungiwood", {
+	description = S("Fungiwood Trunk"),
+	tiles = {"dfcaverns_fungiwood.png"},
+	paramtype2 = "facedir",
+	is_ground_content = false,
+	groups = {tree = 1, choppy = 3, oddly_breakable_by_hand = 1, flammable = 3},
+	sounds = default.node_sound_wood_defaults(),
+
+	on_place = minetest.rotate_node
+})
+
+minetest.register_node("dfcaverns:fungiwood_shelf",{
+	description = S("Fungiwood Shelf"),
+	tiles = {"dfcaverns_fungiwood.png", "dfcaverns_fungiwood_shelf_underside.png", "dfcaverns_fungiwood.png"},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, 0.375, -0.5, 0.5, 0.5, 0.5}, -- NodeBox1
+			{-0.5, 0.3125, -0.0625, 0.5, 0.375, 0.0625}, -- NodeBox2
+			{-0.0625, 0.3125, -0.5, 0.0625, 0.375, 0.5}, -- NodeBox3
+		}
+	},
+	is_ground_content = false,
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	drop = {
+		max_items = 1,
+		items = {
+			{items = {"dfcaverns:fungiwood_sapling"}, rarity = 20},
+			{items = {"dfcaverns:fungiwood_shelf"}}
+		}
+	},
+	sounds = default.node_sound_leaves_defaults(),
+
+	after_place_node = default.after_place_leaves,
+})
+
+
+minetest.register_node("dfcaverns:fungiwood_sapling", {
+	description = S("Fungiwood Spawn"),
+	drawtype = "plantlike",
+	visual_scale = 1.0,
+	tiles = {"dfcaverns_fungiwood_sapling.png"},
+	inventory_image = "dfcaverns_fungiwood_sapling.png",
+	wield_image = "dfcaverns_fungiwood_sapling.png",
+	paramtype = "light",
+	sunlight_propagates = true,
+	walkable = false,
+	selection_box = {
+		type = "fixed",
+		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
+	},
+	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
+		attached_node = 1, sapling = 1},
+	sounds = default.node_sound_leaves_defaults(),
+
+	on_construct = function(pos)
+		minetest.get_node_timer(pos):start(math.random(dfcaverns.config.fungiwood_min_growth_delay,dfcaverns.config.fungiwood_max_growth_delay))
+	end,
+	
+	on_timer = function(pos)
+		minetest.set_node(pos, {name="air"})
+		dfcaverns.spawn_fungiwood(pos)
+	end,
+})
+
+function dfcaverns.spawn_fungiwood(pos)
+	local x, y, z = pos.x, pos.y, pos.z
+	local maxy = y + math.random(6, 10) -- Trunk top
+
+	local c_air = minetest.get_content_id("air")
+	local c_ignore = minetest.get_content_id("ignore")
+	local c_fungiwood = minetest.get_content_id("dfcaverns:fungiwood")
+	local c_fungiwood_shelf  = minetest.get_content_id("dfcaverns:fungiwood_shelf")
+
+	local vm = minetest.get_voxel_manip()
+	local minp, maxp = vm:read_from_map(
+		{x = x - 3, y = y, z = z - 3},
+		{x = x + 3, y = maxy + 3, z = z + 3}
+	)
+	local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
+	local data = vm:get_data()
+
+	-- Upper branches layer
+	local dev = 3
+	for yy = maxy - 2, maxy do
+		for zz = z - dev, z + dev do
+			local vi = a:index(x - dev, yy, zz)
+			local via = a:index(x - dev, yy + 1, zz)
+			for xx = x - dev, x + dev do
+				if math.random() < 0.95 - dev * 0.05 then
+					local node_id = data[vi]
+					if node_id == c_air or node_id == c_ignore then
+						data[vi] = c_fungiwood_shelf
+					end
+				end
+				vi  = vi + 1
+				via = via + 1
+			end
+		end
+		dev = dev - 1
+	end
+
+	-- Lower branches layer
+	local my = 0
+	for i = 1, 20 do -- Random 2x2 squares of shelf
+		local xi = x + math.random(-3, 2)
+		local yy = maxy + math.random(-6, -5)
+		local zi = z + math.random(-3, 2)
+		if yy > my then
+			my = yy
+		end
+		for zz = zi, zi+1 do
+			local vi = a:index(xi, yy, zz)
+			local via = a:index(xi, yy + 1, zz)
+			for xx = xi, xi + 1 do
+				local node_id = data[vi]
+				if node_id == c_air or node_id == c_ignore then
+					data[vi] = c_fungiwood_shelf
+				end
+				vi  = vi + 1
+				via = via + 1
+			end
+		end
+	end
+
+	dev = 2
+	for yy = my + 1, my + 2 do
+		for zz = z - dev, z + dev do
+			local vi = a:index(x - dev, yy, zz)
+			local via = a:index(x - dev, yy + 1, zz)
+			for xx = x - dev, x + dev do
+				if math.random() < 0.95 - dev * 0.05 then
+					local node_id = data[vi]
+					if node_id == c_air or node_id == c_ignore then
+						data[vi] = c_fungiwood_shelf
+					end
+				end
+				vi  = vi + 1
+				via = via + 1
+			end
+		end
+		dev = dev - 1
+	end
+
+	-- Trunk
+	for yy = y, maxy do
+		local vi = a:index(x, yy, z)
+		local node_id = data[vi]
+		if node_id == c_air or node_id == c_ignore or
+				node_id == c_fungiwood_shelf then
+			data[vi] = c_fungiwood
+		end
+	end
+
+	vm:set_data(data)
+	vm:write_to_map()
+	vm:update_map()
+end
+

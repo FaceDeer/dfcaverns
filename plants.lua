@@ -6,6 +6,23 @@ local S, NS = dofile(MP.."/intllib.lua")
 -- Plants
 
 
+minetest.register_node("dfcaverns:dead_fungus", {
+	description = S("Dead Fungus"),
+	drawtype = "plantlike",
+	tiles = {"dfcaverns_dead_fungus.png"},
+	inventory_image = "dfcaverns_dead_fungus.png",
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	groups = {flammable=4, oddly_diggable_by_hand=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 0.5},
+	},
+})
+
+
 --------------------------------------------------
 -- Cave wheat
 

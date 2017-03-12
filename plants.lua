@@ -23,6 +23,25 @@ minetest.register_node("dfcaverns:dead_fungus", {
 })
 
 
+
+local register_seed = function(name, description, image)
+	minetest.register_node("dfcaverns:"..name, {
+		description = description,
+		tiles = {image},
+		inventory_image = image,
+		drawtype = "signlike",
+		groups = {flammable=4, oddly_breakable_by_hand=1},
+		paramtype = "light",
+		paramtype2 = "wallmounted",
+		walkable = false,
+		sunlight_propagates = true,
+		selection_box = {
+			type = "fixed",
+			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
+		},
+	})
+end
+
 --------------------------------------------------
 -- Cave wheat
 
@@ -60,6 +79,14 @@ for i = 1,8 do
 	register_cave_wheat(i)
 end
 
+register_seed("cave_wheat_seed", S("Cave Wheat Seed"), "dfcaverns_cave_wheat_seed.png")
+
+minetest.register_craftitem("dfcaverns:cave_wheat", {
+	description = S("Cave Wheat"),
+	inventory_image = "dfcaverns_cave_wheat.png",
+	stack_max = 99,
+})
+
 --------------------------------------------------
 -- Dimple cup
 
@@ -81,6 +108,8 @@ end
 for i = 1,4 do
 	register_dimple_cup(i)
 end
+
+register_seed("dimple_cup_seed", S("Dimple Cup Spores"), "dfcaverns_dimple_cups_seed.png")
 
 
 --------------------------------------------------
@@ -106,6 +135,8 @@ end
 for i = 1,8 do
 	register_pig_tail(i)
 end
+
+register_seed("pig_tail_seed", S("Pig Tail Spore"), "dfcaverns_pigtail_seed.png")
 
 --------------------------------------------------
 -- Plump helmet
@@ -135,7 +166,7 @@ minetest.register_node("dfcaverns:plump_helmet_spawn", {
 
 
 minetest.register_node("dfcaverns:plump_helmet_1", {
-	description = S("Plump Helmet 1"),
+	description = S("Plump Helmet"),
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png",
@@ -156,7 +187,7 @@ minetest.register_node("dfcaverns:plump_helmet_1", {
 
 
 minetest.register_node("dfcaverns:plump_helmet_2", {
-	description = S("Plump Helmet 2"),
+	description = S("Plump Helmet"),
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png",
@@ -176,7 +207,7 @@ minetest.register_node("dfcaverns:plump_helmet_2", {
 })
 
 minetest.register_node("dfcaverns:plump_helmet_3", {
-	description = S("Plump Helmet 3"),
+	description = S("Plump Helmet"),
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png",
@@ -196,7 +227,7 @@ minetest.register_node("dfcaverns:plump_helmet_3", {
 })
 
 minetest.register_node("dfcaverns:plump_helmet_4", {
-	description = S("Plump Helmet 4"),
+	description = S("Plump Helmet"),
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png",
@@ -242,7 +273,35 @@ for i = 1,5 do
 	register_quarry_bush(i)
 end
 
+register_seed("quarry_bush_seed", S("Rock Nuts"), "dfcaverns_rock_nuts.png")
+
+minetest.register_craftitem("dfcaverns:quarry_bush_leaves", {
+	description = S("Quarry Bush Leaves"),
+	inventory_image = "dfcaverns_quarry_bush_leaves.png",
+	stack_max = 99,
+})
+
+
 --------------------------------------------------
 -- Sweet Pod
 
 -- Round shape, red
+
+local register_sweet_pod = function(number)
+	minetest.register_node("dfcaverns:sweet_pods_"..tostring(number), {
+		description = S("Sweet Pods"),
+		drawtype = "plantlike",
+		tiles = {"dfcaverns_sweet_pods_"..tostring(number)..".png"},
+		inventory_image = "dfcaverns_sweet_pods_"..tostring(number)..".png",
+		paramtype = "light",
+		walkable = false,
+		groups = {flammable=4, oddly_breakable_by_hand=1},
+		sounds = default.node_sound_leaves_defaults(),
+	})
+end
+
+for i = 1,6 do
+	register_sweet_pod(i)
+end
+
+register_seed("sweet_pod_seed", S("Sweet Pod Spores"), "dfcaverns_sweet_pod_seed.png")

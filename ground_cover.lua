@@ -53,3 +53,24 @@ minetest.register_abm{
 		minetest.swap_node(pos, {name="dfcaverns:cobble_floor_fungus"})
 	end,
 }
+
+--------------------------------------------------
+-- Generic decorations (not DF canon)
+
+minetest.register_node("dfcaverns:cavern_fungi", {
+	description = S("Cavern Fungi"),
+	drawtype = "plantlike",
+	tiles = {"dfcaverns_fungi.png"},
+	inventory_image = "dfcaverns_fungi.png",
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	groups = {flammable=4, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 0.5},
+	},
+})
+
+

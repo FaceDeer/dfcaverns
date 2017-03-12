@@ -1,9 +1,11 @@
 dftrees_blood_thorn - derived from default cactus
 dftrees_black_cap	- derived from default coal block
 dftrees_goblin_cap 	- derived from default red coral
+dfcaverns_nether_cap_stem - derived from default red coral
 dftrees_cave_moss and floor_fungus 	- derived from caverealms algae
 dftrees_spore_tree	- derived from default aspen bark
 dftrees_tower_cap 	- derived from default dead coral
 dftrees_tower_cap_gills - from caverealms mushroom gills
 dftrees_cave_wheat	- derived from farming wheat
 dftrees_tunnel_tube	- derived from moretrees palm tree bark
+dfcaverns_fungi - copied from caverealms

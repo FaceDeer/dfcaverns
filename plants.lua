@@ -28,27 +28,84 @@ minetest.register_node("dfcaverns:dead_fungus", {
 
 -- stalks. White
 
-farming.register_plant("dfcaverns:cave_wheat", {
-	description = "Cave wheat seed",
-	paramtype2 = "meshoptions",
-	inventory_image = "dfcaverns_cave_wheat_seed.png",
-	steps = 8,
-	minlight = 0,
-	maxlight = 8,
-	fertility = {"grassland", "desert"},
-	groups = {flammable = 4},
-	place_param2 = 3,
-})
+--farming.register_plant("dfcaverns:cave_wheat", {
+--	description = "Cave wheat seed",
+--	paramtype2 = "meshoptions",
+--	inventory_image = "dfcaverns_cave_wheat_seed.png",
+--	steps = 8,
+--	minlight = 0,
+--	maxlight = 8,
+--	fertility = {"grassland", "desert"},
+--	groups = {flammable = 4},
+--	place_param2 = 3,
+--})
+
+
+local register_cave_wheat = function(number)
+	minetest.register_node("dfcaverns:cave_wheat_"..tostring(number), {
+		description = S("Cave Wheat"),
+		drawtype = "plantlike",
+		paramtype2 = "meshoptions",
+		place_param2 = 3,
+		tiles = {"dfcaverns_cave_wheat_"..tostring(number)..".png"},
+		inventory_image = "dfcaverns_cave_wheat_"..tostring(number)..".png",
+		paramtype = "light",
+		walkable = false,
+		groups = {flammable=4, oddly_breakable_by_hand=1},
+		sounds = default.node_sound_leaves_defaults(),
+	})
+end
+
+for i = 1,8 do
+	register_cave_wheat(i)
+end
 
 --------------------------------------------------
 -- Dimple cup
 
 -- royal blue
 
+local register_dimple_cup = function(number)
+	minetest.register_node("dfcaverns:dimple_cups_"..tostring(number), {
+		description = S("Dimple Cups"),
+		drawtype = "plantlike",
+		tiles = {"dfcaverns_dimple_cups_"..tostring(number)..".png"},
+		inventory_image = "dfcaverns_dimple_cups_"..tostring(number)..".png",
+		paramtype = "light",
+		walkable = false,
+		groups = {flammable=4, oddly_breakable_by_hand=1},
+		sounds = default.node_sound_leaves_defaults(),
+	})
+end
+
+for i = 1,4 do
+	register_dimple_cup(i)
+end
+
+
 --------------------------------------------------
 -- Pig tail
 
 -- Twisting stalks. Gray
+
+local register_pig_tail = function(number)
+	minetest.register_node("dfcaverns:pig_tails_"..tostring(number), {
+		description = S("Pig Tails"),
+		drawtype = "plantlike",
+		paramtype2 = "meshoptions",
+		place_param2 = 3,
+		tiles = {"dfcaverns_pigtails_"..tostring(number)..".png"},
+		inventory_image = "dfcaverns_pigtails_"..tostring(number)..".png",
+		paramtype = "light",
+		walkable = false,
+		groups = {flammable=4, oddly_breakable_by_hand=1},
+		sounds = default.node_sound_leaves_defaults(),
+	})
+end
+
+for i = 1,8 do
+	register_pig_tail(i)
+end
 
 --------------------------------------------------
 -- Plump helmet
@@ -160,14 +217,30 @@ minetest.register_node("dfcaverns:plump_helmet_4", {
 })
 
 
-
-
-
 --------------------------------------------------
 -- Quarry Bush
 
 -- Gray leaves
 -- Produces rock nuts
+
+local register_quarry_bush = function(number)
+	minetest.register_node("dfcaverns:quarry_bush_"..tostring(number), {
+		description = S("Quarry Bush"),
+		drawtype = "plantlike",
+		paramtype2 = "meshoptions",
+		place_param2 = 4,
+		tiles = {"dfcaverns_quarry_bush_"..tostring(number)..".png"},
+		inventory_image = "dfcaverns_quarry_bush_"..tostring(number)..".png",
+		paramtype = "light",
+		walkable = false,
+		groups = {flammable=4, oddly_breakable_by_hand=1},
+		sounds = default.node_sound_leaves_defaults(),
+	})
+end
+
+for i = 1,5 do
+	register_quarry_bush(i)
+end
 
 --------------------------------------------------
 -- Sweet Pod

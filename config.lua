@@ -2,7 +2,7 @@ local CONFIG_FILE_PREFIX = "dfcaverns_"
 
 dfcaverns.config = {}
 
-local print_settingtypes = true
+local print_settingtypes = false
 
 local function setting(stype, name, default, description)
 	local value
@@ -41,6 +41,6 @@ for _, tree in pairs(trees) do
 end
 
 setting("int", "blood_thorn_growth_interval", 12, "blood_thorn growth ABM interval")
-setting("int", "blood_thorn_growth_chance", 83, "blood_thorn growth ABM interval")
+setting("int", "blood_thorn_growth_chance", 83, "blood_thorn growth ABM chance")
 setting("int", "blood_thorn_min_depth", -100, "blood_thorn minimum sapling growth depth")
 setting("int", "blood_thorn_max_depth", -31000, "blood_thorn maximum sapling growth depth")

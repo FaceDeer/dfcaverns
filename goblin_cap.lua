@@ -72,16 +72,16 @@ minetest.register_node("dfcaverns:goblin_cap_sapling", {
 	end,
 })
 
+local c_stem = minetest.get_content_id("dfcaverns:goblin_cap_stem")
+local c_cap  = minetest.get_content_id("dfcaverns:goblin_cap")
+local c_gills  = minetest.get_content_id("dfcaverns:goblin_cap_gills")
+
 dfcaverns.spawn_goblin_cap = function(pos)
 	local x, y, z = pos.x, pos.y, pos.z
 	local stem_height = math.random(1,3)
 	local cap_radius = math.random(3,6)
 	local maxy = y + stem_height + 3
 	
-	local c_stem = minetest.get_content_id("dfcaverns:goblin_cap_stem")
-	local c_cap  = minetest.get_content_id("dfcaverns:goblin_cap")
-	local c_gills  = minetest.get_content_id("dfcaverns:goblin_cap_gills")
-
 	local vm = minetest.get_voxel_manip()
 	local minp, maxp = vm:read_from_map(
 		{x = x - cap_radius, y = y, z = z - cap_radius},
@@ -95,4 +95,10 @@ dfcaverns.spawn_goblin_cap = function(pos)
 	vm:set_data(data)
 	vm:write_to_map()
 	vm:update_map()
+end
+
+dfcaverns.spawn_goblin_cap_vm = function(vi, area, data)
+	local stem_height = math.random(1,3)
+	local cap_radius = math.random(3,6)
+	subterrane:giant_shroom(vi, area, data, c_stem, c_cap, c_gills, stem_height, cap_radius)
 end

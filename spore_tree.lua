@@ -114,28 +114,110 @@ minetest.register_node("dfcaverns:spore_tree_sapling", {
 	
 	on_timer = function(pos)
 		minetest.set_node(pos, {name="air"})
-		minetest.spawn_tree(pos, dfcaverns.spore_tree_def)
+		dfcaverns.spawn_spore_tree(pos)
 	end,
 })
 
-dfcaverns.spore_tree_def={
-	axiom="TTdddA",
-	rules_a="[&&&Tdd&&FF][&&&++++Tdd&&FF][&&&----Tdd&&FF]",
-	rules_d="T",
-	trunk="dfcaverns:spore_tree",
-	leaves="dfcaverns:spore_tree_frond",
-	leaves2="dfcaverns:spore_tree_pod",
-	leaves2_chance=30,
-	angle=30,
-	iterations=2,
-	random_level=0,
-	trunk_type="single",
-	thin_branches=true,
-}
+--fcaverns.spore_tree_def={
+--	axiom="TTdddA",
+--	rules_a="[&&&Tdd&&FF][&&&++++Tdd&&FF][&&&----Tdd&&FF]",
+--	rules_d="T",
+--	trunk="dfcaverns:spore_tree",
+--	leaves="dfcaverns:spore_tree_frond",
+--	leaves2="dfcaverns:spore_tree_pod",
+--	leaves2_chance=30,
+--	angle=30,
+--	iterations=2,
+--	random_level=0,
+--	trunk_type="single",
+--	thin_branches=true,
+--}
+
+dfcaverns.spawn_spore_tree_vm = function(vi, data, area, height, size, iters, has_fruiting_bodies)
+	if height == nil then height = math.random(3,6) end
+	if size == nil then size = 2 end
+	if iters == nil then iters = 10 end
+	if has_fruiting_bodies == nil then has_fruiting_bodies = math.random() < 0.5 end
+
+	local pos = area:position(vi)
+	local x, y, z = pos.x, pos.y, pos.z
+	local c_air = minetest.get_content_id("air")
+	local c_ignore = minetest.get_content_id("ignore")
+	local c_spore_pod = minetest.get_content_id("dfcaverns:spore_tree_pod")
+	local c_tree = minetest.get_content_id("dfcaverns:spore_tree")
+	local c_spore_frond = minetest.get_content_id("dfcaverns:spore_tree_frond")
+	
+	local has_fruiting_bodies = true
+
+	-- Trunk
+	data[area:index(x, y, z)] = c_tree -- Force-place lowest trunk node to replace sapling
+	for yy = y + 1, y + height - 1 do
+		local vi = area:index(x, yy, z)
+		local node_id = data[vi]
+		if node_id == c_air or node_id == c_ignore or node_id == c_spore_frond then
+			data[vi] = c_tree
+		end
+	end
+
+	-- Force leaves near the trunk
+	for z_dist = -1, 1 do
+	for y_dist = -size, 1 do
+		local vi = area:index(x - 1, y + height + y_dist, z + z_dist)
+		for x_dist = -1, 1 do
+			if data[vi] == c_air or data[vi] == c_ignore then
+				if has_fruiting_bodies and math.random() < 0.3 then
+					data[vi] = c_spore_pod
+				else
+					data[vi] = c_spore_frond
+				end
+			end
+			vi = vi + 1
+		end
+	end
+	end
+
+	-- Randomly add fronds in 2x2x2 clusters.
+	for i = 1, iters do
+		local clust_x = x + math.random(-size, size - 1)
+		local clust_y = y + height + math.random(-size, 0)
+		local clust_z = z + math.random(-size, size - 1)
+
+		for xi = 0, 1 do
+			for yi = 0, 1 do
+				for zi = 0, 1 do
+					local vi = area:index(clust_x + xi, clust_y + yi, clust_z + zi)
+					if data[vi] == c_air or data[vi] == c_ignore then
+						if has_fruiting_bodies and math.random() < 0.3 then
+							data[vi] = c_spore_pod
+						else
+							data[vi] = c_spore_frond
+						end
+					end
+				end
+			end
+		end
+	end
+end
 
 dfcaverns.spawn_spore_tree = function(pos)
-	minetest.spawn_tree(pos, dfcaverns.spore_tree_def)
+	local x, y, z = pos.x, pos.y, pos.z
+	local height = math.random(4, 5)
+
+	local vm = minetest.get_voxel_manip()
+	local minp, maxp = vm:read_from_map(
+		{x = x - 2, y = y, z = z - 2},
+		{x = x + 2, y = y + height + 1, z = z + 2}
+	)
+	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
+	local data = vm:get_data()
+
+	dfcaverns.spawn_spore_tree_vm(area:indexp(pos), data, area)
+
+	vm:set_data(data)
+	vm:write_to_map()
+	vm:update_map()
 end
+
 
 minetest.register_abm{
 	label = "spore tree raining spores",

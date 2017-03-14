@@ -77,29 +77,45 @@ minetest.register_node("dfcaverns:fungiwood_sapling", {
 	end,
 })
 
+local c_air = minetest.get_content_id("air")
+local c_ignore = minetest.get_content_id("ignore")
+local c_fungiwood = minetest.get_content_id("dfcaverns:fungiwood")
+local c_fungiwood_shelf  = minetest.get_content_id("dfcaverns:fungiwood_shelf")
+
 function dfcaverns.spawn_fungiwood(pos)
 	local x, y, z = pos.x, pos.y, pos.z
-	local maxy = y + math.random(6, 10) -- Trunk top
-
-	local c_air = minetest.get_content_id("air")
-	local c_ignore = minetest.get_content_id("ignore")
-	local c_fungiwood = minetest.get_content_id("dfcaverns:fungiwood")
-	local c_fungiwood_shelf  = minetest.get_content_id("dfcaverns:fungiwood_shelf")
+	local height = math.random(6, 10)
+	local maxy = y + height -- Trunk top
 
 	local vm = minetest.get_voxel_manip()
 	local minp, maxp = vm:read_from_map(
 		{x = x - 3, y = y, z = z - 3},
 		{x = x + 3, y = maxy + 3, z = z + 3}
 	)
-	local a = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
+	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
 
+	dfcaverns.spawn_fungiwood_vm(area:indexp(pos), area, data, height)
+
+	vm:set_data(data)
+	vm:write_to_map()
+	vm:update_map()
+end
+
+dfcaverns.spawn_fungiwood_vm = function(vi, area, data, height)
+	if height == nil then height = math.random(6, 10) end
+	local pos = area:position(vi)
+	local x = pos.x
+	local y = pos.y
+	local z = pos.z
+	local maxy = y + height -- Trunk top
+	
 	-- Upper branches layer
 	local dev = 3
 	for yy = maxy - 2, maxy do
 		for zz = z - dev, z + dev do
-			local vi = a:index(x - dev, yy, zz)
-			local via = a:index(x - dev, yy + 1, zz)
+			local vi = area:index(x - dev, yy, zz)
+			local via = area:index(x - dev, yy + 1, zz)
 			for xx = x - dev, x + dev do
 				if math.random() < 0.95 - dev * 0.05 then
 					local node_id = data[vi]
@@ -124,8 +140,8 @@ function dfcaverns.spawn_fungiwood(pos)
 			my = yy
 		end
 		for zz = zi, zi+1 do
-			local vi = a:index(xi, yy, zz)
-			local via = a:index(xi, yy + 1, zz)
+			local vi = area:index(xi, yy, zz)
+			local via = area:index(xi, yy + 1, zz)
 			for xx = xi, xi + 1 do
 				local node_id = data[vi]
 				if node_id == c_air or node_id == c_ignore then
@@ -140,8 +156,8 @@ function dfcaverns.spawn_fungiwood(pos)
 	dev = 2
 	for yy = my + 1, my + 2 do
 		for zz = z - dev, z + dev do
-			local vi = a:index(x - dev, yy, zz)
-			local via = a:index(x - dev, yy + 1, zz)
+			local vi = area:index(x - dev, yy, zz)
+			local via = area:index(x - dev, yy + 1, zz)
 			for xx = x - dev, x + dev do
 				if math.random() < 0.95 - dev * 0.05 then
 					local node_id = data[vi]
@@ -158,16 +174,11 @@ function dfcaverns.spawn_fungiwood(pos)
 
 	-- Trunk
 	for yy = y, maxy do
-		local vi = a:index(x, yy, z)
+		local vi = area:index(x, yy, z)
 		local node_id = data[vi]
 		if node_id == c_air or node_id == c_ignore or
 				node_id == c_fungiwood_shelf then
 			data[vi] = c_fungiwood
 		end
 	end
-
-	vm:set_data(data)
-	vm:write_to_map()
-	vm:update_map()
 end
-

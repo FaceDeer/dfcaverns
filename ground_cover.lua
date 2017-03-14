@@ -17,7 +17,7 @@ minetest.register_node("dfcaverns:cobble_cave_moss", {
 })
 
 minetest.register_abm{
-	label = "cave moss spread",
+	label = "dfcaverns:cave_moss_spread",
 	nodenames = {"default:cobble"},
 	neighbors = {"dfcaverns:cobble_cave_moss"},
 	interval = 30,
@@ -43,7 +43,7 @@ minetest.register_node("dfcaverns:cobble_floor_fungus", {
 })
 
 minetest.register_abm{
-	label = "floor fungus spread",
+	label = "dfcaverns:floor_fungus_spread",
 	nodenames = {"default:cobble"},
 	neighbors = {"dfcaverns:cobble_floor_fungus"},
 	interval = 30,

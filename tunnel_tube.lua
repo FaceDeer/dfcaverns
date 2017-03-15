@@ -107,7 +107,7 @@ local tunnel_tube_directions = {
 	{x=0,y=0,z=-1},
 }
 
-local tunnel_tube_curvature = {0,0,0,1,1,1,2,2,3,4}
+local tunnel_tube_curvature = {0,0,0,0,1,1,1,2,2,3,4}
 
 dfcaverns.spawn_tunnel_tube = function(pos)
 	local direction = tunnel_tube_directions[math.random(1,4)]
@@ -120,10 +120,12 @@ dfcaverns.spawn_tunnel_tube = function(pos)
 	local minp, maxp = vm:read_from_map(pos, top_pos)
 	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
+	local param2_data = vm:get_param2_data()
 
-	dfcaverns.spawn_tunnel_tube_vm(area:indexp(pos), area, data, height, direction)
+	dfcaverns.spawn_tunnel_tube_vm(area:indexp(pos), area, data, param2_data, height, direction)
 
 	vm:set_data(data)
+	vm:set_param2_data(param2_data)
 	vm:write_to_map()
 	vm:update_map()	
 end
@@ -133,7 +135,7 @@ local c_ignore = minetest.get_content_id("ignore")
 local c_tunnel_tube = minetest.get_content_id("dfcaverns:tunnel_tube")
 local c_tunnel_tube_fruiting_body  = minetest.get_content_id("dfcaverns:tunnel_tube_fruiting_body")
 
-dfcaverns.spawn_tunnel_tube_vm = function(vi, area, data, height, direction)
+dfcaverns.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, height, direction)
 	if not height then height = math.random(6, 10) end
 	if not direction then direction = tunnel_tube_directions[math.random(1,4)] end
 	
@@ -147,6 +149,7 @@ dfcaverns.spawn_tunnel_tube_vm = function(vi, area, data, height, direction)
 			previous_vi = vi
 			if i ~= height then
 				data[vi] = c_tunnel_tube
+				param2_data[vi] = 0
 			else
 				data[vi] = c_tunnel_tube_fruiting_body
 			end

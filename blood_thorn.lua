@@ -16,11 +16,11 @@ minetest.register_node("dfcaverns:blood_thorn", {
 		"dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png"},
 	paramtype2 = "facedir",
 	paramtype = "light",
-	groups = {choppy = 3, flammable = 2},
+	groups = {choppy = 3, flammable = 2, light_sensitive_fungus = 11},
+	_dfcaverns_dead_node = "dfcaverns:blood_thorn_dead",
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,
 })
-
 
 minetest.register_node("dfcaverns:blood_thorn_dead", {
 	description = S("Dead Blood Thorn Trunk"),
@@ -32,7 +32,6 @@ minetest.register_node("dfcaverns:blood_thorn_dead", {
 	on_place = minetest.rotate_node,
 })
 
-
 minetest.register_node("dfcaverns:blood_thorn_spike", {
 	description = S("Blood Thorn Spike"),
 	tiles = {
@@ -43,7 +42,8 @@ minetest.register_node("dfcaverns:blood_thorn_spike", {
 		"dfcaverns_blood_thorn_spike_front.png",
 		"dfcaverns_blood_thorn_spike_front.png"
 		},
-	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100},
+	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100, light_sensitive_fungus = 11},
+	_dfcaverns_dead_node = "dfcaverns:blood_thorn_spike_dead",
 	sounds = default.node_sound_wood_defaults(),
 	drawtype = "nodebox",
 	climbable = true,
@@ -93,6 +93,15 @@ local spike_directions = {
 	{dir={x=-1,y=0,z=0}, facedir=1}
 }
 
+-- This ensures consistent random maximum to bloodthorn growth
+local max_bloodthorn_height = function(pos)
+	local next_seed = math.random(1, 1000000000)
+	math.randomseed(pos.x + pos.z * 2 ^ 8)
+	local output = math.random(3,6)
+	math.randomseed(next_seed)
+	return output
+end
+
 function dfcaverns.grow_blood_thorn(pos, node)
 	if node.param2 >= 4 then
 		return
@@ -103,12 +112,13 @@ function dfcaverns.grow_blood_thorn(pos, node)
 	end
 	pos.y = pos.y + 1
 	local height = 0
-	while node.name == "dfcaverns:blood_thorn" and height < 4 do
+	local max_height = max_bloodthorn_height(pos)
+	while node.name == "dfcaverns:blood_thorn" and height < max_height do
 		height = height + 1
 		pos.y = pos.y + 1
 		node = minetest.get_node(pos)
 	end
-	if height == 6 or node.name ~= "air" then
+	if height == 7 or node.name ~= "air" then
 		return
 	end
 
@@ -134,48 +144,73 @@ minetest.register_abm({
 	interval = dfcaverns.config.blood_thorn_growth_interval,
 	chance = dfcaverns.config.blood_thorn_growth_chance,
 	action = function(pos, node)
-		if minetest.get_node_light(pos) > 11 then --11 and an adjacent torch will kill bloodthorn
-			minetest.swap_node(pos, {name="dfcaverns:blood_thorn_dead", param2 = node.param2})
-		else
-			dfcaverns.grow_blood_thorn(pos, node)
-		end
-	end
-})
-
-minetest.register_abm({
-	label = "dfcaverns:kill_blood_thorn_spikes",
-	nodenames = {"dfcaverns:blood_thorn_spike"},
-	catch_up = true,
-	interval = dfcaverns.config.blood_thorn_growth_interval,
-	chance = dfcaverns.config.blood_thorn_growth_chance,
-	action = function(pos, node)
-		if minetest.get_node_light(pos) > 11 then --11 and an adjacent torch will kill bloodthorn
-			minetest.swap_node(pos, {name="dfcaverns:blood_thorn_spike_dead", param2 = node.param2})
-		end
+		dfcaverns.grow_blood_thorn(pos, node)
 	end
 })
 
 function dfcaverns.spawn_blood_thorn(pos)
-	local height = math.random(3,5)
-	for i = 0, height do
-		if minetest.get_node(pos).name == "air" then
-			minetest.set_node(pos, {name="dfcaverns:blood_thorn"})
+	local height = max_bloodthorn_height(pos)
+	local x, y, z = pos.x, pos.y, pos.z
+	local maxy = y + height -- Trunk top
+
+	local vm = minetest.get_voxel_manip()
+	local minp, maxp = vm:read_from_map(
+		{x = x - 1, y = y, z = z - 1},
+		{x = x + 1, y = maxy, z = z + 1}
+	)
+	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
+	local data = vm:get_data()
+	local data_param2 = vm:get_param2_data()
+
+	dfcaverns.spawn_blood_thorn_vm(area:indexp(pos), area, data, data_param2, height)
+
+	vm:set_data(data)
+	vm:set_param2_data(data_param2)
+	vm:write_to_map()
+	vm:update_map()
+end
+
+local c_air = minetest.get_content_id("air")
+local c_ignore = minetest.get_content_id("ignore")
+local c_blood_thorn = minetest.get_content_id("dfcaverns:blood_thorn")
+local c_blood_thorn_spike = minetest.get_content_id("dfcaverns:blood_thorn_spike")
+
+dfcaverns.spawn_blood_thorn_vm = function(vi, area, data, data_param2, height)
+	local pos = area:position(vi)
+	if height == nil then height = max_bloodthorn_height(pos) end
+	local x = pos.x
+	local y = pos.y
+	local z = pos.z
+	local maxy = y + height -- Trunk top
+
+	for yy = y, maxy do
+		local vi = area:index(x, yy, z)
+		local node_id = data[vi]
+		if node_id == c_air or node_id == c_ignore then
+			data[vi] = c_blood_thorn
 			
 			local dir = spike_directions[math.random(1,4)]
-			local spike_pos = vector.add(pos, dir)
-			if minetest.get_node(spike_pos).name == "air" then
-				local facedir = minetest.dir_to_facedir(vector.multiply(dir, -1))
-				minetest.set_node(spike_pos, {name="dfcaverns:blood_thorn_spike", param2=facedir})
+			local spike_pos = {x = pos.x + dir.dir.x, y = yy, z = pos.z + dir.dir.z}
+			vi = area:indexp(spike_pos)
+			if data[vi] == c_air or data[vi] == c_c_ignore then
+				data[vi] = c_blood_thorn_spike
+				data_param2[vi] = dir.facedir
 			end
+
 			dir = spike_directions[math.random(1,4)]
-			spike_pos = vector.add(pos, dir)
-			if minetest.get_node(spike_pos).name == "air" then
-				local facedir = minetest.dir_to_facedir(vector.multiply(dir, -1))
-				minetest.set_node(spike_pos, {name="dfcaverns:blood_thorn_spike", param2=facedir})
+			spike_pos = {x = pos.x + dir.dir.x, y = yy, z = pos.z + dir.dir.z}
+			vi = area:indexp(spike_pos)
+			if data[vi] == c_air or data[vi] == c_c_ignore then
+				data[vi] = c_blood_thorn_spike
+				data_param2[vi] = dir.facedir
 			end
 		else
 			break
 		end
-		pos.y = pos.y + 1
 	end
 end
+
+
+
+
+	

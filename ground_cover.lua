@@ -12,7 +12,8 @@ minetest.register_node("dfcaverns:cobble_cave_moss", {
 	tiles = {"default_cobble.png^dfcaverns_cave_moss.png", "default_cobble.png", "default_cobble.png^dfcaverns_cave_moss_side.png"},
 	drop = "default:cobble",
 	is_ground_content = false,
-	groups = {cracky = 3, stone = 2},
+	groups = {cracky = 3, stone = 2, light_sensitive_fungus = 11},
+	_dfcaverns_dead_node = "default:cobble",
 	sounds = default.node_sound_stone_defaults(),
 })
 
@@ -36,9 +37,10 @@ minetest.register_abm{
 minetest.register_node("dfcaverns:cobble_floor_fungus", {
 	description = S("Cobblestone With Floor Fungus"),
 	tiles = {"default_cobble.png^dfcaverns_floor_fungus.png", "default_cobble.png", "default_cobble.png^dfcaverns_floor_fungus_side.png"},
-	drops= "default:cobble",
+	drops = "default:cobble",
 	is_ground_content = false,
-	groups = {cracky = 3, stone = 2},
+	groups = {cracky = 3, stone = 2, light_sensitive_fungus = 11},
+	_dfcaverns_dead_node = "default:cobble",
 	sounds = default.node_sound_stone_defaults(),
 })
 

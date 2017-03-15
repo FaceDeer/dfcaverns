@@ -31,7 +31,7 @@ minetest.register_node("dfcaverns:tunnel_tube", {
 	},
 })
 
-minetest.register_node("dfcaverns:tunnel_tube_nodule", {
+minetest.register_node("dfcaverns:tunnel_tube_fruiting_body", {
 	description = S("Tunnel Tube Fruiting Body"),
 	tiles = {"dfcaverns_tunnel_tube.png^[brighten"},
 	paramtype2 = "facedir",
@@ -68,7 +68,7 @@ dfcaverns.tunnel_tube_def = {
 	random_level=0,
 	trunk_type="single",
 	thin_branches=true,
-	fruit="dfcaverns:tunnel_tube_nodule",
+	fruit="dfcaverns:tunnel_tube_fruiting_body",
 	fruit_chance=0
 }
 
@@ -87,7 +87,7 @@ minetest.register_node("dfcaverns:tunnel_tube_sapling", {
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
-		attached_node = 1, sapling = 1},
+		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)

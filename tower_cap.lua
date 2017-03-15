@@ -59,7 +59,7 @@ minetest.register_node("dfcaverns:tower_cap_sapling", {
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
-		attached_node = 1, sapling = 1},
+		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)

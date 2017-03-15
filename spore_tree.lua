@@ -105,7 +105,7 @@ minetest.register_node("dfcaverns:spore_tree_sapling", {
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
-		attached_node = 1, sapling = 1},
+		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
@@ -133,6 +133,12 @@ minetest.register_node("dfcaverns:spore_tree_sapling", {
 --	thin_branches=true,
 --}
 
+local c_air = minetest.get_content_id("air")
+local c_ignore = minetest.get_content_id("ignore")
+local c_spore_pod = minetest.get_content_id("dfcaverns:spore_tree_pod")
+local c_tree = minetest.get_content_id("dfcaverns:spore_tree")
+local c_spore_frond = minetest.get_content_id("dfcaverns:spore_tree_frond")
+
 dfcaverns.spawn_spore_tree_vm = function(vi, data, area, height, size, iters, has_fruiting_bodies)
 	if height == nil then height = math.random(3,6) end
 	if size == nil then size = 2 end
@@ -141,11 +147,6 @@ dfcaverns.spawn_spore_tree_vm = function(vi, data, area, height, size, iters, ha
 
 	local pos = area:position(vi)
 	local x, y, z = pos.x, pos.y, pos.z
-	local c_air = minetest.get_content_id("air")
-	local c_ignore = minetest.get_content_id("ignore")
-	local c_spore_pod = minetest.get_content_id("dfcaverns:spore_tree_pod")
-	local c_tree = minetest.get_content_id("dfcaverns:spore_tree")
-	local c_spore_frond = minetest.get_content_id("dfcaverns:spore_tree_frond")
 	
 	local has_fruiting_bodies = true
 

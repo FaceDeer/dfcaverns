@@ -70,7 +70,7 @@ local register_cave_wheat = function(number)
 		inventory_image = "dfcaverns_cave_wheat_"..tostring(number)..".png",
 		paramtype = "light",
 		walkable = false,
-		groups = {flammable=4, oddly_breakable_by_hand=1},
+		groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
 	})
 end
@@ -100,7 +100,7 @@ local register_dimple_cup = function(number)
 		inventory_image = "dfcaverns_dimple_cups_"..tostring(number)..".png",
 		paramtype = "light",
 		walkable = false,
-		groups = {flammable=4, oddly_breakable_by_hand=1},
+		groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
 	})
 end
@@ -127,7 +127,7 @@ local register_pig_tail = function(number)
 		inventory_image = "dfcaverns_pigtails_"..tostring(number)..".png",
 		paramtype = "light",
 		walkable = false,
-		groups = {flammable=4, oddly_breakable_by_hand=1},
+		groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
 	})
 end
@@ -152,7 +152,7 @@ minetest.register_node("dfcaverns:plump_helmet_spawn", {
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 	},
-	groups = {flammable=4, oddly_breakable_by_hand=1},
+	groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -172,7 +172,7 @@ minetest.register_node("dfcaverns:plump_helmet_1", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:5:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {flammable=4, oddly_breakable_by_hand=1},
+	groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -193,7 +193,7 @@ minetest.register_node("dfcaverns:plump_helmet_2", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:15:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {flammable=4, oddly_breakable_by_hand=1},
+	groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -213,7 +213,7 @@ minetest.register_node("dfcaverns:plump_helmet_3", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:35:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {flammable=4, oddly_breakable_by_hand=1},
+	groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -233,7 +233,7 @@ minetest.register_node("dfcaverns:plump_helmet_4", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:40:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {flammable=4, oddly_breakable_by_hand=1},
+	groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -264,7 +264,7 @@ local register_quarry_bush = function(number)
 		inventory_image = "dfcaverns_quarry_bush_"..tostring(number)..".png",
 		paramtype = "light",
 		walkable = false,
-		groups = {flammable=4, oddly_breakable_by_hand=1},
+		groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
 	})
 end
@@ -295,7 +295,7 @@ local register_sweet_pod = function(number)
 		inventory_image = "dfcaverns_sweet_pods_"..tostring(number)..".png",
 		paramtype = "light",
 		walkable = false,
-		groups = {flammable=4, oddly_breakable_by_hand=1},
+		groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
 	})
 end

@@ -2,6 +2,8 @@ dfcaverns = {}
 
 subterrane.get_param2_data = true
 
+minetest.register_alias_force("mapgen_lava_source", "air")
+
 --grab a shorthand for the filepath of the mod
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 
@@ -36,4 +38,25 @@ minetest.register_abm({
 			minetest.set_node(pos, {name=dead_node, param2 = node.param2})
 		end
 	end
+})
+
+minetest.register_ore({
+	ore_type = "vein",
+	ore = "default:lava_source",
+	wherein = "default:stone",
+	column_height_min = 2,
+	column_height_max = 6,
+	height_min = -31000,
+	height_max = 31000,
+	noise_threshold = 0.9,
+	noise_params = {
+		offset = 0,
+		scale = 3,
+		spread = {x=400, y=800, z=400},
+		seed = 25391,
+		octaves = 4,
+		persist = 0.5,
+		flags = "eased",
+	},
+	random_factor = 0,
 })

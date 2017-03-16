@@ -99,3 +99,22 @@ dfcaverns.register_grow_abm = function(names, interval, chance)
 		end
 	})
 end
+
+if dfcaverns.config.light_kills_fungus then
+	minetest.register_abm({
+		label = "dfcaverns:kill_light_sensitive_fungus",
+		nodenames = {"group:light_sensitive_fungus"},
+		catch_up = true,
+		interval = 30,
+		chance = 5,
+		action = function(pos, node)
+			local node_def = minetest.registered_nodes[node.name]
+			local dead_node = node_def._dfcaverns_dead_node or "dfcaverns:dead_fungus"
+			-- 11 is the value adjacent to a torch
+			local light_level = minetest.get_node_light(pos)
+			if light_level and light_level > node_def.groups.light_sensitive_fungus then
+				minetest.set_node(pos, {name=dead_node, param2 = node.param2})
+			end
+		end
+	})
+end

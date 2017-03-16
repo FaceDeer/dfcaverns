@@ -14,6 +14,24 @@ local register_sweet_pod = function(number)
 		walkable = false,
 		groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
+
+		drop = {
+			max_items = 2,
+			items = {
+				{
+					items = {'dfcaverns:sweet_pod_seed 2', 'dfcaverns:sweet_pods 2'},
+					rarity = 7-number,
+				},
+				{
+					items = {'dfcaverns:sweet_pod_seed', 'dfcaverns:sweet_pods'},
+					rarity = 7-number,
+				},
+				{
+					items = {'dfcaverns:sweet_pod_seed'},
+					rarity = 7-number,
+				},
+			},
+		},
 	}
 	
 	if number < 6 then
@@ -32,3 +50,14 @@ dfcaverns.register_seed("sweet_pod_seed", S("Sweet Pod Spores"), "dfcaverns_swee
 table.insert(sweet_names, "dfcaverns:sweet_pod_seed")
 
 dfcaverns.register_grow_abm(sweet_names, 10, 1)
+
+minetest.register_craftitem("dfcaverns:sweet_pods", {
+	description = S("Sweet Pods"),
+	inventory_image = "dfcaverns_sweet_pods.png",
+	stack_max = 99,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:sweet_pods",
+	burntime = 4
+})

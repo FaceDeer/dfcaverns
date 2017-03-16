@@ -63,7 +63,9 @@ minetest.register_node("dfcaverns:nether_cap_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(dfcaverns.config.nether_cap_min_growth_delay,dfcaverns.config.nether_cap_max_growth_delay))
+		minetest.get_node_timer(pos):start(math.random(
+			dfcaverns.config.nether_cap_delay_multiplier*dfcaverns.config.tree_min_growth_delay,
+			dfcaverns.config.nether_cap_delay_multiplier*dfcaverns.config.tree_max_growth_delay))
 	end,
 	
 	on_timer = function(pos)

@@ -68,7 +68,9 @@ minetest.register_node("dfcaverns:fungiwood_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(dfcaverns.config.fungiwood_min_growth_delay,dfcaverns.config.fungiwood_max_growth_delay))
+		minetest.get_node_timer(pos):start(math.random(
+			dfcaverns.config.fungiwood_delay_multiplier*dfcaverns.config.tree_min_growth_delay,
+			dfcaverns.config.fungiwood_delay_multiplier*dfcaverns.config.tree_max_growth_delay))
 	end,
 	
 	on_timer = function(pos)

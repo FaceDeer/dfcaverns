@@ -2,7 +2,7 @@ local CONFIG_FILE_PREFIX = "dfcaverns_"
 
 dfcaverns.config = {}
 
-local print_settingtypes = true
+local print_settingtypes = false
 
 local function setting(stype, name, default, description)
 	local value
@@ -24,18 +24,20 @@ local function setting(stype, name, default, description)
 end
 
 local trees = {
-	{name="fungiwood", min_delay=2400, max_delay=4800, min_depth=-100, max_depth=-31000},
-	{name="tunnel_tube", min_delay=2400, max_delay=4800, min_depth=-100, max_depth=-31000},
-	{name="spore_tree", min_delay=2400, max_delay=4800, min_depth=-100, max_depth=-31000},
-	{name="black_cap", min_delay=2400, max_delay=4800, min_depth=-100, max_depth=-31000},
-	{name="nether_cap", min_delay=2400, max_delay=4800, min_depth=-100, max_depth=-31000},
-	{name="goblin_cap", min_delay=2400, max_delay=4800, min_depth=-100, max_depth=-31000},
-	{name="tower_cap", min_delay=2400, max_delay=4800, min_depth=-100, max_depth=-31000},
+	{name="fungiwood", min_depth=-100, max_depth=-31000, delay_multiplier = 1},
+	{name="tunnel_tube", min_depth=-100, max_depth=-31000, delay_multiplier = 1},
+	{name="spore_tree", min_depth=-100, max_depth=-31000, delay_multiplier = 1},
+	{name="black_cap", min_depth=-100, max_depth=-31000, delay_multiplier = 1},
+	{name="nether_cap", min_depth=-100, max_depth=-31000, delay_multiplier = 1},
+	{name="goblin_cap", min_depth=-100, max_depth=-31000, delay_multiplier = 1},
+	{name="tower_cap", min_depth=-100, max_depth=-31000, delay_multiplier = 1},
 }
 
+setting("int", "tree_min_growth_delay", 2400, "Minimum sapling growth delay")
+setting("int", "tree_max_growth_delay", 4800, "Maximum sapling growth delay")
+
 for _, tree in pairs(trees) do
-	setting("int", tree.name.."_min_growth_delay", tree.min_delay, tree.name.." minimum sapling growth delay")
-	setting("int", tree.name.."_max_growth_delay", tree.max_delay, tree.name.." maximum sapling growth delay")
+	setting("float", tree.name.."_delay_multiplier", tree.delay_multiplier, tree.name.." growth delay multiplier")
 	setting("int", tree.name.."_min_depth", tree.min_depth, tree.name.." minimum sapling growth depth")
 	setting("int", tree.name.."_max_depth", tree.max_depth, tree.name.." maximum sapling growth depth")
 end

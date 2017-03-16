@@ -24,7 +24,6 @@ minetest.register_node("dfcaverns:spore_tree", {
 		minetest.set_node(pos, {name="air"})
 		minetest.spawn_tree(pos, dfcaverns.spore_tree_model)
 	end,
-	
 })
 
 minetest.register_node("dfcaverns:spore_tree_frond", {
@@ -109,7 +108,9 @@ minetest.register_node("dfcaverns:spore_tree_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(dfcaverns.config.spore_tree_min_growth_delay, dfcaverns.config.spore_tree_max_growth_delay))
+		minetest.get_node_timer(pos):start(math.random(
+			dfcaverns.config.spore_tree_delay_multiplier*dfcaverns.config.tree_min_growth_delay,
+			dfcaverns.config.spore_tree_delay_multiplier*dfcaverns.config.tree_max_growth_delay))
 	end,
 	
 	on_timer = function(pos)

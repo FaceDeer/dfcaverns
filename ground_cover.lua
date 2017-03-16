@@ -41,7 +41,7 @@ minetest.register_abm{
 
 -- white/yellow
 
-minetest.register_node("dfcaverns:cobble_floor_fungus", {
+minetest.register_node("dfcaverns:cobble_with_floor_fungus", {
 	description = S("Cobblestone With Floor Fungus"),
 	tiles = {"default_cobble.png^dfcaverns_floor_fungus.png", "default_cobble.png", "default_cobble.png^dfcaverns_floor_fungus_side.png"},
 	drops = "default:cobble",
@@ -54,12 +54,12 @@ minetest.register_node("dfcaverns:cobble_floor_fungus", {
 minetest.register_abm{
 	label = "dfcaverns:floor_fungus_spread",
 	nodenames = {"default:cobble"},
-	neighbors = {"dfcaverns:cobble_floor_fungus"},
+	neighbors = {"dfcaverns:cobble_with_floor_fungus"},
 	interval = 30,
 	chance = 10,
 	catch_up = true,
 	action = function(pos)
-		minetest.swap_node(pos, {name="dfcaverns:cobble_floor_fungus"})
+		minetest.swap_node(pos, {name="dfcaverns:cobble_with_floor_fungus"})
 	end,
 }
 

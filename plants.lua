@@ -79,22 +79,45 @@ dfcaverns.register_seed = function(name, description, image, stage_one)
 	})
 end
 
+local grow_underground_plant = function(pos, node)
+	local node_def = minetest.registered_nodes[node.name]
+	local next_stage = node_def._dfcaverns_next_stage
+	if next_stage then
+		local next_def = minetest.registered_nodes[next_stage]
+		minetest.swap_node(pos, {name=next_stage, param2 = next_def.place_param2 or node.param2})
+	end
+end
+
 dfcaverns.register_grow_abm = function(names, interval, chance)
 	minetest.register_abm({
 		nodenames = names,
 		interval = interval,
 		chance = chance,
+		catch_up = true,
+		neighbors = {"farming:soil_wet"},
 		action = function(pos, node)
 			pos.y = pos.y-1
 			if minetest.get_node(pos).name ~= "farming:soil_wet" then
 				return
 			end
-			local node_def = minetest.registered_nodes[node.name]
-			local next_stage = node_def._dfcaverns_next_stage
-			if next_stage then
-				local next_def = minetest.registered_nodes[next_stage]
+			pos.y = pos.y+1
+			grow_underground_plant(pos, node)
+		end
+	})
+	
+	minetest.register_abm({
+		nodenames = names,
+		interval = interval * 10,
+		chance = chance,
+		catch_up = true,
+		neighbors = {"default:dirt", "dfcaverns:dirt_with_cave_moss", "dfcaverns:cobble_with_floor_fungus"},
+		action = function(pos, node)
+			pos.y = pos.y-1
+			if minetest.get_node(pos).name == "default:dirt" or
+				minetest.get_node(pos).name == "dfcaverns:dirt_with_cave_moss" or
+				minetest.get_node(pos).name == "dfcaverns:cobble_with_floor_fungus" then
 				pos.y = pos.y+1
-				minetest.swap_node(pos, {name=next_stage, param2 = next_def.place_param2 or node.param2})
+				grow_underground_plant(pos, node)
 			end
 		end
 	})

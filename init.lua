@@ -11,7 +11,15 @@ local modpath = minetest.get_modpath(minetest.get_current_modname())
 dofile(modpath.."/config.lua")
 
 dofile(modpath.."/ground_cover.lua")
-dofile(modpath.."/plants.lua")
+
+-- Plants
+dofile(modpath.."/plants.lua") -- general functions
+dofile(modpath.."/plants/cave_wheat.lua")
+dofile(modpath.."/plants/dimple_cup.lua")
+dofile(modpath.."/plants/pig_tail.lua")
+dofile(modpath.."/plants/plump_helmet.lua")
+dofile(modpath.."/plants/quarry_bush.lua")
+dofile(modpath.."/plants/sweet_pod.lua")
 
 -- Trees
 dofile(modpath.."/trees/blood_thorn.lua")

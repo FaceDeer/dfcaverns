@@ -7,25 +7,32 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 -- cyan/dark cyan
 
-minetest.register_node("dfcaverns:cobble_cave_moss", {
-	description = S("Cobblestone With Cave Moss"),
-	tiles = {"default_cobble.png^dfcaverns_cave_moss.png", "default_cobble.png", "default_cobble.png^dfcaverns_cave_moss_side.png"},
-	drop = "default:cobble",
+minetest.register_node("dfcaverns:dirt_with_cave_moss", {
+	description = S("Dirt With Cave Moss"),
+	tiles = {"default_dirt.png^dfcaverns_cave_moss.png", "default_dirt.png", 
+		{name = "default_dirt.png^dfcaverns_cave_moss_side.png",
+			tileable_vertical = false}},
+	drop = "default:dirt",
 	is_ground_content = false,
-	groups = {cracky = 3, stone = 2, light_sensitive_fungus = 11},
-	_dfcaverns_dead_node = "default:cobble",
-	sounds = default.node_sound_stone_defaults(),
+	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 11},
+	sounds = default.node_sound_dirt_defaults({
+		footstep = {name = "default_grass_footstep", gain = 0.25},
+	}),
+	_dfcaverns_dead_node = "default:dirt",
 })
 
 minetest.register_abm{
 	label = "dfcaverns:cave_moss_spread",
-	nodenames = {"default:cobble"},
-	neighbors = {"dfcaverns:cobble_cave_moss"},
+	nodenames = {"default:dirt"},
+	neighbors = {"dfcaverns:dirt_with_cave_moss"},
 	interval = 30,
 	chance = 10,
 	catch_up = true,
 	action = function(pos)
-		minetest.swap_node(pos, {name="dfcaverns:cobble_cave_moss"})
+		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
+		if above_def.buildable_to == true or above_def.walkable == false then
+			minetest.swap_node(pos, {name="dfcaverns:dirt_with_cave_moss"})
+		end
 	end,
 }
 
@@ -55,24 +62,5 @@ minetest.register_abm{
 		minetest.swap_node(pos, {name="dfcaverns:cobble_floor_fungus"})
 	end,
 }
-
---------------------------------------------------
--- Generic decorations (not DF canon)
-
-minetest.register_node("dfcaverns:cavern_fungi", {
-	description = S("Cavern Fungi"),
-	drawtype = "plantlike",
-	tiles = {"dfcaverns_fungi.png"},
-	inventory_image = "dfcaverns_fungi.png",
-	paramtype = "light",
-	walkable = false,
-	buildable_to = true,
-	groups = {flammable=4, oddly_breakable_by_hand=1},
-	sounds = default.node_sound_leaves_defaults(),
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 0.5},
-	},
-})
 
 

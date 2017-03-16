@@ -28,6 +28,31 @@ minetest.register_craft({
 	burntime = 2
 })
 
+-- not DF canon
+minetest.register_node("dfcaverns:cavern_fungi", {
+	description = S("Cavern Fungi"),
+	drawtype = "plantlike",
+	tiles = {"dfcaverns_fungi.png"},
+	inventory_image = "dfcaverns_fungi.png",
+	paramtype = "light",
+	walkable = false,
+	buildable_to = true,
+	groups = {flammable=4, oddly_breakable_by_hand=1},
+	sounds = default.node_sound_leaves_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 0.5},
+	},
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:cavern_fungi",
+	burntime = 2
+})
+
+-----------------------------------------------------------------------------------------
+
 dfcaverns.register_seed = function(name, description, image, stage_one)
 	local def = {
 		description = description,

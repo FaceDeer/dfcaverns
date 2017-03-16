@@ -14,31 +14,33 @@ dofile(modpath.."/ground_cover.lua")
 dofile(modpath.."/plants.lua")
 
 -- Trees
-dofile(modpath.."/blood_thorn.lua")
-dofile(modpath.."/fungiwood.lua")
-dofile(modpath.."/tunnel_tube.lua")
-dofile(modpath.."/spore_tree.lua")
-dofile(modpath.."/black_cap.lua")
-dofile(modpath.."/nether_cap.lua")
-dofile(modpath.."/goblin_cap.lua")
-dofile(modpath.."/tower_cap.lua")
+dofile(modpath.."/trees/blood_thorn.lua")
+dofile(modpath.."/trees/fungiwood.lua")
+dofile(modpath.."/trees/tunnel_tube.lua")
+dofile(modpath.."/trees/spore_tree.lua")
+dofile(modpath.."/trees/black_cap.lua")
+dofile(modpath.."/trees/nether_cap.lua")
+dofile(modpath.."/trees/goblin_cap.lua")
+dofile(modpath.."/trees/tower_cap.lua")
 
-
-minetest.register_abm({
-	label = "dfcaverns:kill_light_sensitive_fungus",
-	nodenames = {"group:light_sensitive_fungus"},
-	catch_up = true,
-	interval = 30,
-	chance = 5,
-	action = function(pos, node)
-		local node_def = minetest.registered_nodes[node.name]
-		local dead_node = node_def._dfcaverns_dead_node or "dfcaverns:dead_fungus"
-		-- 11 is the value adjacent to a torch		
-		if minetest.get_node_light(pos) > node_def.groups.light_sensitive_fungus then
-			minetest.set_node(pos, {name=dead_node, param2 = node.param2})
+if dfcaverns.config.light_kills_fungus then
+	minetest.register_abm({
+		label = "dfcaverns:kill_light_sensitive_fungus",
+		nodenames = {"group:light_sensitive_fungus"},
+		catch_up = true,
+		interval = 30,
+		chance = 5,
+		action = function(pos, node)
+			local node_def = minetest.registered_nodes[node.name]
+			local dead_node = node_def._dfcaverns_dead_node or "dfcaverns:dead_fungus"
+			-- 11 is the value adjacent to a torch
+			local light_level = minetest.get_node_light(pos)
+			if light_level and light_level > node_def.groups.light_sensitive_fungus then
+				minetest.set_node(pos, {name=dead_node, param2 = node.param2})
+			end
 		end
-	end
-})
+	})
+end
 
 minetest.register_ore({
 	ore_type = "vein",

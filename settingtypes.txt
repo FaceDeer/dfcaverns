@@ -30,3 +30,4 @@ dfcaverns_blood_thorn_growth_interval (blood_thorn growth ABM interval) int 12
 dfcaverns_blood_thorn_growth_chance (blood_thorn growth ABM chance) int 83
 dfcaverns_blood_thorn_min_depth (blood_thorn minimum sapling growth depth) int -100
 dfcaverns_blood_thorn_max_depth (blood_thorn maximum sapling growth depth) int -31000
+dfcaverns_light_kills_fungus (Light kills fungus) bool true

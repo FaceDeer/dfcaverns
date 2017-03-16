@@ -58,20 +58,6 @@ minetest.register_node("dfcaverns:tunnel_tube_fruiting_body", {
 	},
 })
 
---dfcaverns.tunnel_tube_def = {
---	axiom="FFcccccc&FFFFFdddR",
---	rules_c="/",
---	rules_d="F",
---	trunk="dfcaverns:tunnel_tube",
---	angle=20,
---	iterations=2,
---	random_level=0,
---	trunk_type="single",
---	thin_branches=true,
---	fruit="dfcaverns:tunnel_tube_fruiting_body",
---	fruit_chance=0
---}
-
 minetest.register_node("dfcaverns:tunnel_tube_sapling", {
 	description = S("Tunnel Tube Spawn"),
 	drawtype = "plantlike",
@@ -105,6 +91,10 @@ local tunnel_tube_directions = {
 	{x=-1,y=0,z=0},
 	{x=0,y=0,z=1},
 	{x=0,y=0,z=-1},
+--	{x=1,y=0,z=1}, -- diagonals work, but they don't look as nice as orthogonals
+--	{x=-1,y=0,z=1},
+--	{x=1,y=0,z=-1},
+--	{x=-1,y=0,z=-1},
 }
 
 local tunnel_tube_curvature = {0,0,0,0,1,1,1,2,2,3,4}

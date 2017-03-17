@@ -14,7 +14,8 @@ local register_pig_tail = function(number)
 		inventory_image = "dfcaverns_pig_tail_"..tostring(number)..".png",
 		paramtype = "light",
 		walkable = false,
-		groups = {flammable=4, oddly_breakable_by_hand=1, light_sensitive_fungus = 11},
+		buildable_to = true,
+		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
 		drop = {
 			max_items = 1,

@@ -14,7 +14,7 @@ minetest.register_node("dfcaverns:dead_fungus", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	groups = {flammable=4, oddly_breakable_by_hand=1, plant = 1},
+	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -37,7 +37,7 @@ minetest.register_node("dfcaverns:cavern_fungi", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	groups = {flammable=4, oddly_breakable_by_hand=1},
+	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -53,14 +53,63 @@ minetest.register_craft({
 
 -----------------------------------------------------------------------------------------
 
+local place_seed = function(itemstack, placer, pointed_thing, plantname)
+	local pt = pointed_thing
+	-- check if pointing at a node
+	if not pt then
+		return itemstack
+	end
+	if pt.type ~= "node" then
+		return itemstack
+	end
+
+	local under = minetest.get_node(pt.under)
+	local above = minetest.get_node(pt.above)
+
+	if minetest.is_protected(pt.under, placer:get_player_name()) then
+		minetest.record_protection_violation(pt.under, placer:get_player_name())
+		return
+	end
+	if minetest.is_protected(pt.above, placer:get_player_name()) then
+		minetest.record_protection_violation(pt.above, placer:get_player_name())
+		return
+	end
+
+	-- return if any of the nodes is not registered
+	if not minetest.registered_nodes[under.name] then
+		return itemstack
+	end
+	if not minetest.registered_nodes[above.name] then
+		return itemstack
+	end
+
+	-- check if pointing at the top of the node
+	if pt.above.y ~= pt.under.y+1 then
+		return itemstack
+	end
+
+	-- check if you can replace the node above the pointed node
+	if not minetest.registered_nodes[above.name].buildable_to then
+		return itemstack
+	end
+
+	-- add the node and remove 1 item from the itemstack
+	minetest.add_node(pt.above, {name = plantname, param2 = 1})
+	if not minetest.setting_getbool("creative_mode") then
+		itemstack:take_item()
+	end
+	return itemstack
+end
+
 dfcaverns.register_seed = function(name, description, image, stage_one)
 	local def = {
 		description = description,
 		tiles = {image},
 		inventory_image = image,
+		wield_image = image,
 		drawtype = "signlike",
 		paramtype2 = "wallmounted",
-		groups = {flammable=4, oddly_breakable_by_hand=1},
+		groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 2},
 		_dfcaverns_next_stage = stage_one,
 		paramtype = "light",
 		walkable = false,
@@ -69,6 +118,9 @@ dfcaverns.register_seed = function(name, description, image, stage_one)
 			type = "fixed",
 			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
 		},
+		on_place = function(itemstack, placer, pointed_thing)
+			return place_seed(itemstack, placer, pointed_thing, "dfcaverns:"..name)
+		end,
 	}
 	
 	minetest.register_node("dfcaverns:"..name, def)

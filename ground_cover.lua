@@ -18,6 +18,11 @@ minetest.register_node("dfcaverns:dirt_with_cave_moss", {
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_grass_footstep", gain = 0.25},
 	}),
+	soil = {
+		base = "dfcaverns:dirt_with_cave_moss",
+		dry = "farming:soil",
+		wet = "farming:soil_wet"
+	},
 	_dfcaverns_dead_node = "default:dirt",
 })
 
@@ -48,7 +53,9 @@ minetest.register_node("dfcaverns:cobble_with_floor_fungus", {
 	is_ground_content = false,
 	groups = {cracky = 3, stone = 2, light_sensitive_fungus = 11},
 	_dfcaverns_dead_node = "default:cobble",
-	sounds = default.node_sound_stone_defaults(),
+	sounds = default.node_sound_stone_defaults({
+		footstep = {name = "dfcaverns_squish", gain = 0.25},
+	}),
 })
 
 minetest.register_abm{

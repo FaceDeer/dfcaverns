@@ -9,3 +9,4 @@ dftrees_tower_cap_gills - from caverealms mushroom gills
 dftrees_cave_wheat	- derived from farming wheat
 dftrees_tunnel_tube	- derived from moretrees palm tree bark
 dfcaverns_fungi - copied from caverealms
+dfcaverns_glow_worm - copied from caverealms

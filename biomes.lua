@@ -30,6 +30,10 @@ local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fun
 -- Coal Dust
 
 local test_biome_floor = function(area, data, ai, vi, bi, param2_data)
+	if data[bi] ~= c_stone then
+		return
+	end
+	
 	if math.random() < 0.25 then
 		data[bi] = c_dirt
 	else
@@ -48,6 +52,8 @@ end
 local test_biome_ceiling = function(area, data, ai, vi, bi)
 	if subterrane:vertically_consistent_random(vi, area) < 0.002 then
 		subterrane:stalactite(vi, area, data, 6, 20, c_stone, c_stone, c_stone)
+	elseif math.random() < 0.03 then
+		dfcaverns.glow_worm_ceiling(area, data, ai, vi, bi)
 	end
 end
 

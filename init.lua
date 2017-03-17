@@ -11,6 +11,7 @@ local modpath = minetest.get_modpath(minetest.get_current_modname())
 dofile(modpath.."/config.lua")
 
 dofile(modpath.."/ground_cover.lua")
+dofile(modpath.."/glow_worms.lua")
 
 -- Plants
 dofile(modpath.."/plants.lua") -- general functions

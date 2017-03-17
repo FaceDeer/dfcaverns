@@ -31,6 +31,8 @@ dofile(modpath.."/trees/nether_cap.lua")
 dofile(modpath.."/trees/goblin_cap.lua")
 dofile(modpath.."/trees/tower_cap.lua")
 
+dofile(modpath.."/biomes.lua")
+
 minetest.register_ore({
 	ore_type = "vein",
 	ore = "default:lava_source",

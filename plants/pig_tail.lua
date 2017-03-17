@@ -51,7 +51,7 @@ end
 dfcaverns.register_seed("pig_tail_seed", S("Pig Tail Spore"), "dfcaverns_pig_tail_seed.png", "dfcaverns:pig_tail_1")
 table.insert(pig_tail_names, "dfcaverns:pig_tail_seed")
 
-dfcaverns.register_grow_abm(pig_tail_names, 10, 1)
+dfcaverns.register_grow_abm(pig_tail_names, dfcaverns.config.plant_growth_timer * dfcaverns.config.pig_tail_timer_multiplier, dfcaverns.config.plant_growth_chance)
 
 minetest.register_craftitem("dfcaverns:pig_tail_thread", {
 	description = S("Pig tail thread"),

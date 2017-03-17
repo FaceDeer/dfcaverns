@@ -33,6 +33,15 @@ local trees = {
 	{name="tower_cap", min_depth=-100, max_depth=-31000, delay_multiplier = 1},
 }
 
+local plants = {
+	{name="cave_wheat", delay_multiplier=1},
+	{name="dimple_cup", delay_multiplier=3},
+	{name="pig_tail", delay_multiplier=1},
+	{name="plump_helmet", delay_multiplier=3},
+	{name="quarry_bush", delay_multiplier=2},
+	{name="sweet_pod", delay_multiplier=2},
+}
+
 setting("int", "tree_min_growth_delay", 2400, "Minimum sapling growth delay")
 setting("int", "tree_max_growth_delay", 4800, "Maximum sapling growth delay")
 
@@ -46,5 +55,12 @@ setting("int", "blood_thorn_growth_interval", 12, "blood_thorn growth ABM interv
 setting("int", "blood_thorn_growth_chance", 83, "blood_thorn growth ABM chance")
 setting("int", "blood_thorn_min_depth", -100, "blood_thorn minimum sapling growth depth")
 setting("int", "blood_thorn_max_depth", -31000, "blood_thorn maximum sapling growth depth")
+
+setting("int", "plant_growth_timer", 100, "Base plant growth timer interval")
+setting("int", "plant_growth_chance", 4, "Base plant growth chance")
+
+for _, plant in pairs(plants) do
+	setting("float", plant.name.."_timer_multiplier", plant.delay_multiplier, plant.name.." growth delay multiplier")
+end
 
 setting("bool", "light_kills_fungus", true, "Light kills fungus")

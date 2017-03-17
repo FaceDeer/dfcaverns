@@ -50,7 +50,7 @@ end
 dfcaverns.register_seed("sweet_pod_seed", S("Sweet Pod Spores"), "dfcaverns_sweet_pod_seed.png", "dfcaverns:sweet_pod_1")
 table.insert(sweet_names, "dfcaverns:sweet_pod_seed")
 
-dfcaverns.register_grow_abm(sweet_names, 10, 1)
+dfcaverns.register_grow_abm(sweet_names, dfcaverns.config.plant_growth_timer * dfcaverns.config.sweet_pod_timer_multiplier, dfcaverns.config.plant_growth_chance)
 
 minetest.register_craftitem("dfcaverns:sweet_pods", {
 	description = S("Sweet Pods"),

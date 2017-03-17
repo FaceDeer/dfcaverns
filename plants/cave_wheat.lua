@@ -51,7 +51,7 @@ end
 dfcaverns.register_seed("cave_wheat_seed", S("Cave Wheat Seed"), "dfcaverns_cave_wheat_seed.png", "dfcaverns:cave_wheat_1")
 table.insert(wheat_names, "dfcaverns:cave_wheat_seed")
 
-dfcaverns.register_grow_abm(wheat_names, 10, 1)
+dfcaverns.register_grow_abm(wheat_names, dfcaverns.config.plant_growth_timer * dfcaverns.config.cave_wheat_timer_multiplier, dfcaverns.config.plant_growth_chance)
 
 minetest.register_craftitem("dfcaverns:cave_wheat", {
 	description = S("Cave Wheat"),

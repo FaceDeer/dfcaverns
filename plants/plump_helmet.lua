@@ -226,7 +226,8 @@ minetest.register_node("dfcaverns:plump_helmet_4", {
 })
 
 local plump_names = {"dfcaverns:plump_helmet_spawn", "dfcaverns:plump_helmet_1", "dfcaverns:plump_helmet_2", "dfcaverns:plump_helmet_3"}
-dfcaverns.register_grow_abm(plump_names, 10, 1)
+
+dfcaverns.register_grow_abm(plump_names, dfcaverns.config.plant_growth_timer * dfcaverns.config.plump_helmet_timer_multiplier, dfcaverns.config.plant_growth_chance)
 
 minetest.register_craft({
 	type = "fuel",

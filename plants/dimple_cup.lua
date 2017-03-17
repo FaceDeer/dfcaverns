@@ -45,4 +45,4 @@ end
 dfcaverns.register_seed("dimple_cup_seed", S("Dimple Cup Spores"), "dfcaverns_dimple_cup_seed.png", "dfcaverns:dimple_cup_1")
 table.insert(dimple_names, "dfcaverns:dimple_cup_seed")
 
-dfcaverns.register_grow_abm(dimple_names, 10, 1)
+dfcaverns.register_grow_abm(dimple_names, dfcaverns.config.plant_growth_timer * dfcaverns.config.dimple_cup_timer_multiplier, dfcaverns.config.plant_growth_chance)

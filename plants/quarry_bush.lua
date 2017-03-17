@@ -52,7 +52,7 @@ end
 dfcaverns.register_seed("quarry_bush_seed", S("Rock Nuts"), "dfcaverns_rock_nuts.png", "dfcaverns:quarry_bush_1")
 table.insert(quarry_names, "dfcaverns:quarry_bush_seed")
 
-dfcaverns.register_grow_abm(quarry_names, 10, 1)
+dfcaverns.register_grow_abm(quarry_names, dfcaverns.config.plant_growth_timer * dfcaverns.config.quarry_bush_timer_multiplier, dfcaverns.config.plant_growth_chance)
 
 minetest.register_craftitem("dfcaverns:quarry_bush_leaves", {
 	description = S("Quarry Bush Leaves"),

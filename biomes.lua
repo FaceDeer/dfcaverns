@@ -45,13 +45,13 @@ local test_biome_floor = function(area, data, ai, vi, bi, param2_data)
 		--param2_data[vi] = math.random(0,3)
 		data[vi] = c_cavern_fungi
 	elseif subterrane:vertically_consistent_random(vi, area) < 0.002 then
-		subterrane:stalagmite(vi, area, data, 6, 15, c_stone, c_stone, c_stone)
+		subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
 	end
 end
 
 local test_biome_ceiling = function(area, data, ai, vi, bi)
 	if subterrane:vertically_consistent_random(vi, area) < 0.002 then
-		subterrane:stalactite(vi, area, data, 6, 20, c_stone, c_stone, c_stone)
+		subterrane:stalactite(ai, area, data, 6, 20, c_stone, c_stone, c_stone)
 	elseif math.random() < 0.03 then
 		dfcaverns.glow_worm_ceiling(area, data, ai, vi, bi)
 	end

@@ -1,6 +1,8 @@
 local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
 local c_stone = minetest.get_content_id("default:stone")
+local c_dirt = minetest.get_content_id("default:dirt")
+local c_sand = minetest.get_content_id("default:sand")
 
 
 local c_sweet_pod = minetest.get_content_id("dfcaverns:sweet_pod_6") -- param2 = 0
@@ -57,20 +59,21 @@ local test_biome_floor = function(area, data, ai, vi, bi, param2_data)
 end
 
 local test_biome_cave_floor = function(area, data, ai, vi, bi, param2_data)
+	if data[bi] == c_dirt or data[bi] == c_sand then
+		data[bi] = c_dirt_moss
+		if math.random() < 0.5 then
+			if data[vi] == c_air then
+				data[vi] = c_cavern_fungi
+			end
+		end
+		return
+	end
 	if data[bi] ~= c_stone then
 		return
 	end
 	
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-
-	if math.random() < 0.25 then
-		data[bi] = c_dirt_moss
-		if math.random() < 0.25 then
-		--data[vi] = c_plump_helmet
-		--param2_data[vi] = math.random(0,3)
-			data[vi] = c_cavern_fungi
-		end
-	elseif drip_rand < 0.075 then
+	if drip_rand < 0.075 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 4)
 		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height)

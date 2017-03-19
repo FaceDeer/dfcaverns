@@ -40,12 +40,17 @@ local test_biome_floor = function(area, data, ai, vi, bi, param2_data)
 		data[bi] = c_dirt_moss
 	end
 	
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+	
 	if math.random() < 0.1 then
 		--data[vi] = c_plump_helmet
 		--param2_data[vi] = math.random(0,3)
 		data[vi] = c_cavern_fungi
-	elseif subterrane:vertically_consistent_random(vi, area) < 0.002 then
-		subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
+	elseif drip_rand < 0.1 then
+		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.1 * 5)		
+		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height)
 	elseif math.random() < 0.002 then
 		dfcaverns.spawn_tower_cap_vm(bi, area, data)
 	end
@@ -56,22 +61,47 @@ local test_biome_cave_floor = function(area, data, ai, vi, bi, param2_data)
 		return
 	end
 	
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+
 	if math.random() < 0.25 then
-		data[bi] = c_dirt
-	elseif math.random() < 0.25 then
 		data[bi] = c_dirt_moss
-	end
-	
-	if math.random() < 0.1 then
+		if math.random() < 0.25 then
 		--data[vi] = c_plump_helmet
 		--param2_data[vi] = math.random(0,3)
-		data[vi] = c_cavern_fungi
-	end
+			data[vi] = c_cavern_fungi
+		end
+	elseif drip_rand < 0.075 then
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.075 * 4)
+		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height)
+	end	
 end
 
-local test_biome_ceiling = function(area, data, ai, vi, bi)
-	if subterrane:vertically_consistent_random(vi, area) < 0.002 then
-		subterrane:stalactite(ai, area, data, 6, 20, c_stone, c_stone, c_stone)
+local test_biome_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
+	if data[ai] ~= c_stone then
+		return
+	end
+	
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+
+	if drip_rand < 0.1 then
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.1 * 5)		
+		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height)
+	end	
+end
+
+local test_biome_ceiling = function(area, data, ai, vi, bi, param2_data)
+	if data[ai] ~= c_stone then
+		return
+	end
+
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+	if drip_rand < 0.075 then
+		--subterrane:stalactite(ai, area, data, 6, 20, c_stone, c_stone, c_stone)
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.075 * 5)
+		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height)
 	elseif math.random() < 0.03 then
 		dfcaverns.glow_worm_ceiling(area, data, ai, vi, bi)
 	end
@@ -89,4 +119,5 @@ minetest.register_biome({
 	_subterrane_floor_decor = test_biome_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = test_biome_cave_floor,
+	_subterrane_cave_ceiling_decor = test_biome_cave_ceiling,
 })

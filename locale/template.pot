@@ -1,0 +1,222 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-03-19 11:17-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\glow_worms.lua:6
+msgid "Glow Worms"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\ground_cover.lua:11
+msgid "Dirt With Cave Moss"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\ground_cover.lua:50
+msgid "Cobblestone With Floor Fungus"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants.lua:10
+msgid "Dead Fungus"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants.lua:33
+msgid "Cavern Fungi"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cave_wheat.lua:9
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cave_wheat.lua:57
+msgid "Cave Wheat"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cave_wheat.lua:51
+msgid "Cave Wheat Seed"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\dimple_cup.lua:9
+msgid "Dimple Cup"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\dimple_cup.lua:45
+msgid "Dimple Cup Spores"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\pig_tail.lua:9
+msgid "Pig Tail"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\pig_tail.lua:51
+msgid "Pig Tail Spore"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\pig_tail.lua:57
+msgid "Pig tail thread"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:58
+msgid "Plump Helmet Spawn"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:80
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:106
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:145
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:183
+msgid "Plump Helmet"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\quarry_bush.lua:9
+msgid "Quarry Bush"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\quarry_bush.lua:52
+msgid "Rock Nuts"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\quarry_bush.lua:58
+msgid "Quarry Bush Leaves"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:9
+msgid "Sweet Pod"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:50
+msgid "Sweet Pod Spores"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:56
+msgid "Sweet Pods"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\black_cap.lua:7
+msgid "Black Cap Stem"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\black_cap.lua:16
+msgid "Black Cap"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\black_cap.lua:25
+msgid "Black Cap Gills"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\black_cap.lua:48
+msgid "Black Cap Spawn"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:14
+msgid "Blood Thorn Trunk"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:26
+msgid "Dead Blood Thorn Trunk"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:36
+msgid "Blood Thorn Spike"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:64
+msgid "Dead Blood Thorn Spike"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\fungiwood.lua:13
+msgid "Fungiwood Trunk"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\fungiwood.lua:24
+msgid "Fungiwood Shelf"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\fungiwood.lua:53
+msgid "Fungiwood Spawn"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\goblin_cap.lua:7
+msgid "Goblin Cap Stem"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\goblin_cap.lua:16
+msgid "Goblin Cap"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\goblin_cap.lua:25
+msgid "Goblin Cap Gills"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\goblin_cap.lua:48
+msgid "Goblin Cap Spawn"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\nether_cap.lua:7
+msgid "Nether Cap Stem"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\nether_cap.lua:16
+msgid "Nether Cap"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\nether_cap.lua:25
+msgid "Nether Cap Gills"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\nether_cap.lua:48
+msgid "Nether Cap Spawn"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:14
+msgid "Spore Tree"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:30
+msgid "Spore Tree Frond"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:54
+msgid "Spore Tree Fruiting Body"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:93
+msgid "Spore Tree Spawn"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tower_cap.lua:7
+msgid "Tower Cap Stem"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tower_cap.lua:16
+msgid "Tower Cap"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tower_cap.lua:25
+msgid "Tower Cap Gills"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tower_cap.lua:48
+msgid "Tower Cap Spawn"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tunnel_tube.lua:14
+msgid "Tunnel Tube"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tunnel_tube.lua:35
+msgid "Tunnel Tube Fruiting Body"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tunnel_tube.lua:62
+msgid "Tunnel Tube Spawn"
+msgstr ""

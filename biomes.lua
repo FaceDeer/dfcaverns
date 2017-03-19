@@ -46,6 +46,26 @@ local test_biome_floor = function(area, data, ai, vi, bi, param2_data)
 		data[vi] = c_cavern_fungi
 	elseif subterrane:vertically_consistent_random(vi, area) < 0.002 then
 		subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
+	elseif math.random() < 0.002 then
+		dfcaverns.spawn_tower_cap_vm(bi, area, data)
+	end
+end
+
+local test_biome_cave_floor = function(area, data, ai, vi, bi, param2_data)
+	if data[bi] ~= c_stone then
+		return
+	end
+	
+	if math.random() < 0.25 then
+		data[bi] = c_dirt
+	elseif math.random() < 0.25 then
+		data[bi] = c_dirt_moss
+	end
+	
+	if math.random() < 0.1 then
+		--data[vi] = c_plump_helmet
+		--param2_data[vi] = math.random(0,3)
+		data[vi] = c_cavern_fungi
 	end
 end
 
@@ -68,4 +88,5 @@ minetest.register_biome({
 	_subterrane_ceiling_decor = test_biome_ceiling,
 	_subterrane_floor_decor = test_biome_floor,
 	_subterrane_fill_node = c_air,
+	_subterrane_cave_floor_decor = test_biome_cave_floor,
 })

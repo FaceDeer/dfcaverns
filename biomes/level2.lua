@@ -1,0 +1,5 @@
+--dfcaverns.spawn_tower_cap_vm(vi, area, data)
+--dfcaverns.spawn_fungiwood_vm(vi, area, data)
+--dfcaverns.spawn_tunnel_tube_vm(vi, area, data, param2_data)
+--dfcaverns.spawn_spore_tree_vm(vi, data, area)
+--dfcaverns.spawn_goblin_cap_vm(vi, area, data)

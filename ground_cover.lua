@@ -35,7 +35,7 @@ minetest.register_abm{
 	catch_up = true,
 	action = function(pos)
 		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
-		if above_def.buildable_to == true or above_def.walkable == false then
+		if above_def and (above_def.buildable_to == true or above_def.walkable == false) then
 			minetest.swap_node(pos, {name="dfcaverns:dirt_with_cave_moss"})
 		end
 	end,

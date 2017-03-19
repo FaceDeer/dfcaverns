@@ -1,0 +1,5 @@
+--dfcaverns.spawn_tunnel_tube_vm(vi, area, data, param2_data)
+--dfcaverns.spawn_spore_tree_vm(vi, data, area)
+--dfcaverns.spawn_nether_cap_vm(vi, area, data)
+--dfcaverns.spawn_goblin_cap_vm(vi, area, data)
+--dfcaverns.spawn_blood_thorn_vm(vi, area, data, data_param2)

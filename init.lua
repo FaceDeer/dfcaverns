@@ -32,7 +32,13 @@ dofile(modpath.."/trees/nether_cap.lua")
 dofile(modpath.."/trees/goblin_cap.lua")
 dofile(modpath.."/trees/tower_cap.lua")
 
+-- Biomes
 dofile(modpath.."/biomes.lua")
+dofile(modpath.."/biomes/level1.lua")
+dofile(modpath.."/biomes/level2.lua")
+dofile(modpath.."/biomes/level3.lua")
+dofile(modpath.."/biomes/lava_sea.lua")
+dofile(modpath.."/biomes/underworld.lua")
 
 minetest.register_ore({
 	ore_type = "vein",

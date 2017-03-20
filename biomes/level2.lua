@@ -280,7 +280,7 @@ end
 
 
 minetest.register_biome({
-	name = "dfcaverns_level1_flooded_biome_lower",
+	name = "dfcaverns_level2_flooded_biome_lower",
 	y_min = dfcaverns.config.level2_min,
 	y_max = subsea_level,
 	heat_point = 20,
@@ -291,7 +291,7 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_flooded_biome_upper",
+	name = "dfcaverns_level2_flooded_biome_upper",
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 20,
@@ -304,7 +304,7 @@ minetest.register_biome({
 
 
 minetest.register_biome({
-	name = "dfcaverns_level1_tower_cap_biome_lower",
+	name = "dfcaverns_level2_tower_cap_biome_lower",
 	y_min = dfcaverns.config.level2_min,
 	y_max = subsea_level,
 	heat_point = 40,
@@ -317,7 +317,7 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_tower_cap_biome_upper",
+	name = "dfcaverns_level2_tower_cap_biome_upper",
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 40,
@@ -330,7 +330,7 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_fungiwood_biome_lower",
+	name = "dfcaverns_level2_fungiwood_biome_lower",
 	y_min = dfcaverns.config.level2_min,
 	y_max = subsea_level,
 	heat_point = 80,
@@ -343,7 +343,7 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_fungiwood_biome_upper",
+	name = "dfcaverns_level2_fungiwood_biome_upper",
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 80,
@@ -356,7 +356,7 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_goblin_cap_biome_lower",
+	name = "dfcaverns_level2_goblin_cap_biome_lower",
 	y_min = dfcaverns.config.level2_min,
 	y_max = subsea_level,
 	heat_point = 60,
@@ -369,7 +369,7 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_goblin_cap_biome_upper",
+	name = "dfcaverns_level2_goblin_cap_biome_upper",
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 60,
@@ -383,7 +383,7 @@ minetest.register_biome({
 
 
 minetest.register_biome({
-	name = "dfcaverns_level1_spore_tree_biome_lower",
+	name = "dfcaverns_level2_spore_tree_biome_lower",
 	y_min = dfcaverns.config.level2_min,
 	y_max = subsea_level,
 	heat_point = 60,
@@ -396,7 +396,7 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_spore_tree_biome_upper",
+	name = "dfcaverns_level2_spore_tree_biome_upper",
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 60,
@@ -411,7 +411,7 @@ minetest.register_biome({
 
 
 minetest.register_biome({
-	name = "dfcaverns_level1_tunnel_tube_biome_lower",
+	name = "dfcaverns_level2_tunnel_tube_biome_lower",
 	y_min = dfcaverns.config.level2_min,
 	y_max = subsea_level,
 	heat_point = 40,
@@ -424,7 +424,7 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_tunnel_tube_biome_upper",
+	name = "dfcaverns_level2_tunnel_tube_biome_upper",
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 40,
@@ -438,7 +438,7 @@ minetest.register_biome({
 
 
 minetest.register_biome({
-	name = "dfcaverns_level1_dry_biome_lower",
+	name = "dfcaverns_level2_dry_biome_lower",
 	y_min = dfcaverns.config.level2_min,
 	y_max = subsea_level,
 	heat_point = 20,
@@ -449,7 +449,7 @@ minetest.register_biome({
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_dry_biome_upper",
+	name = "dfcaverns_level2_dry_biome_upper",
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 20,

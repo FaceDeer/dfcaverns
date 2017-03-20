@@ -19,11 +19,6 @@ minetest.register_node("dfcaverns:spore_tree", {
 	sounds = default.node_sound_wood_defaults(),
 
 	on_place = minetest.rotate_node,
-	
-	on_rightclick = function(pos, node, player, itemstack, pointed_thing)
-		minetest.set_node(pos, {name="air"})
-		minetest.spawn_tree(pos, dfcaverns.spore_tree_model)
-	end,
 })
 
 minetest.register_node("dfcaverns:spore_tree_frond", {
@@ -140,7 +135,7 @@ local c_spore_pod = minetest.get_content_id("dfcaverns:spore_tree_pod")
 local c_tree = minetest.get_content_id("dfcaverns:spore_tree")
 local c_spore_frond = minetest.get_content_id("dfcaverns:spore_tree_frond")
 
-dfcaverns.spawn_spore_tree_vm = function(vi, data, area, height, size, iters, has_fruiting_bodies)
+dfcaverns.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has_fruiting_bodies)
 	if height == nil then height = math.random(3,6) end
 	if size == nil then size = 2 end
 	if iters == nil then iters = 10 end
@@ -152,11 +147,10 @@ dfcaverns.spawn_spore_tree_vm = function(vi, data, area, height, size, iters, ha
 	local has_fruiting_bodies = true
 
 	-- Trunk
-	data[area:index(x, y, z)] = c_tree -- Force-place lowest trunk node to replace sapling
-	for yy = y + 1, y + height - 1 do
+	for yy = y, y + height - 1 do
 		local vi = area:index(x, yy, z)
 		local node_id = data[vi]
-		if node_id == c_air or node_id == c_ignore or node_id == c_spore_frond then
+		if node_id == c_air or node_id == c_ignore or node_id == c_spore_frond or node_id == c_spore_pod then
 			data[vi] = c_tree
 		end
 	end
@@ -213,7 +207,7 @@ dfcaverns.spawn_spore_tree = function(pos)
 	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
 
-	dfcaverns.spawn_spore_tree_vm(area:indexp(pos), data, area)
+	dfcaverns.spawn_spore_tree_vm(area:indexp(pos), area, data)
 
 	vm:set_data(data)
 	vm:write_to_map()

@@ -32,7 +32,7 @@ local level_1_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
 		local height = math.floor(drip_rand/0.1 * 5)		
 		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
 	elseif math.random() < 0.005 then
-		dfcaverns.spawn_tower_cap_vm(bi, area, data)
+		dfcaverns.spawn_tower_cap_vm(vi, area, data)
 	end
 end
 
@@ -145,7 +145,7 @@ local level_1_fungiwood_floor = function(area, data, ai, vi, bi, param2_data)
 		local height = math.floor(drip_rand/0.1 * 5)		
 		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
 	elseif math.random() < 0.005 then
-		dfcaverns.spawn_fungiwood_vm(bi, area, data)
+		dfcaverns.spawn_fungiwood_vm(vi, area, data)
 	end
 end
 

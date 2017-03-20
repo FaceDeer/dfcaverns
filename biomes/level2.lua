@@ -39,7 +39,7 @@ local level_2_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
 		local height = math.floor(drip_rand/0.1 * 5)		
 		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
 	elseif math.random() < 0.005 then
-		dfcaverns.spawn_tower_cap_vm(bi, area, data)
+		dfcaverns.spawn_tower_cap_vm(vi, area, data)
 	end
 end
 
@@ -152,7 +152,7 @@ local level_2_fungiwood_floor = function(area, data, ai, vi, bi, param2_data)
 		local height = math.floor(drip_rand/0.1 * 5)		
 		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
 	elseif math.random() < 0.005 then
-		dfcaverns.spawn_fungiwood_vm(bi, area, data)
+		dfcaverns.spawn_fungiwood_vm(vi, area, data)
 	end
 end
 
@@ -178,7 +178,7 @@ local level_2_tunnel_tube_floor = function(area, data, ai, vi, bi, param2_data)
 		local height = math.floor(drip_rand/0.1 * 5)		
 		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
 	elseif math.random() < 0.05 then
-		dfcaverns.spawn_tunnel_tube_vm(bi, area, data)
+		dfcaverns.spawn_tunnel_tube_vm(vi, area, data, param2_data)
 	end
 end
 
@@ -204,7 +204,7 @@ local level_2_spore_tree_floor = function(area, data, ai, vi, bi, param2_data)
 		local height = math.floor(drip_rand/0.1 * 5)		
 		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
 	elseif math.random() < 0.05 then
-		dfcaverns.spawn_spore_tree_vm(bi, area, data)
+		dfcaverns.spawn_spore_tree_vm(vi, area, data)
 	end
 end
 
@@ -230,7 +230,7 @@ local level_2_goblin_cap_floor = function(area, data, ai, vi, bi, param2_data)
 		local height = math.floor(drip_rand/0.1 * 5)		
 		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
 	elseif math.random() < 0.025 then
-		dfcaverns.spawn_goblin_cap_vm(bi, area, data)
+		dfcaverns.spawn_goblin_cap_vm(vi, area, data)
 	end
 end
 
@@ -334,7 +334,7 @@ minetest.register_biome({
 	y_min = dfcaverns.config.level2_min,
 	y_max = subsea_level,
 	heat_point = 80,
-	humidity_point = 60,
+	humidity_point = 50,
 	_subterrane_ceiling_decor = level_2_moist_ceiling,
 	_subterrane_floor_decor = level_2_fungiwood_floor,
 	_subterrane_fill_node = c_air,
@@ -347,7 +347,7 @@ minetest.register_biome({
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 80,
-	humidity_point = 60,
+	humidity_point = 50,
 	_subterrane_ceiling_decor = level_2_moist_ceiling,
 	_subterrane_floor_decor = level_2_fungiwood_floor,
 	_subterrane_fill_node = c_air,
@@ -360,7 +360,7 @@ minetest.register_biome({
 	y_min = dfcaverns.config.level2_min,
 	y_max = subsea_level,
 	heat_point = 60,
-	humidity_point = 30,
+	humidity_point = 20,
 	_subterrane_ceiling_decor = level_2_moist_ceiling,
 	_subterrane_floor_decor = level_2_goblin_cap_floor,
 	_subterrane_fill_node = c_air,
@@ -373,7 +373,7 @@ minetest.register_biome({
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 60,
-	humidity_point = 30,
+	humidity_point = 20,
 	_subterrane_ceiling_decor = level_2_moist_ceiling,
 	_subterrane_floor_decor = level_2_goblin_cap_floor,
 	_subterrane_fill_node = c_air,

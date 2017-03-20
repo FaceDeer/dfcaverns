@@ -45,3 +45,14 @@ dfcaverns.glow_worm_ceiling = function(area, data, ai, vi, bi)
 		end
 	end
 end
+
+minetest.register_abm({
+	label = "dfcaverns:water_destroys_glow_worms",
+	nodenames = {"dfcaverns:glow_worm"},
+	neighbors = {"default:water_source"},
+	interval = 1,
+	chance = 10,
+	action = function (pos)
+		minetest.set_node(pos, {name="air"})
+	end,	
+})

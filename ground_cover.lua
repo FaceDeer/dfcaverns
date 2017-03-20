@@ -30,7 +30,7 @@ minetest.register_abm{
 	label = "dfcaverns:cave_moss_spread",
 	nodenames = {"default:dirt"},
 	neighbors = {"dfcaverns:dirt_with_cave_moss"},
-	interval = 30,
+	interval = 60,
 	chance = 10,
 	catch_up = true,
 	action = function(pos)
@@ -62,8 +62,8 @@ minetest.register_abm{
 	label = "dfcaverns:floor_fungus_spread",
 	nodenames = {"default:cobble"},
 	neighbors = {"dfcaverns:cobble_with_floor_fungus"},
-	interval = 30,
-	chance = 10,
+	interval = 60,
+	chance = 30,
 	catch_up = true,
 	action = function(pos)
 		minetest.swap_node(pos, {name="dfcaverns:cobble_with_floor_fungus"})

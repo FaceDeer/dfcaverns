@@ -18,6 +18,17 @@ local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- para
 local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
 
+
+dfcaverns.config.ymax = subterrane.config.ymax
+
+dfcaverns.config.level1_min = -600
+dfcaverns.config.level2_min = -1000
+dfcaverns.config.level3_min = -1400
+dfcaverns.config.lava_sea_min = -1600
+
+dfcaverns.config.ymin = subterrane.config.ymin
+
+
 dfcaverns.can_support_vegetation = {[c_sand] = true, [c_dirt] = true, [c_coal_ore] = true, [c_gravel] = true}
 
 dfcaverns.place_shrub = function(data, vi, param2_data)

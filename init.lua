@@ -2,8 +2,6 @@ dfcaverns = {}
 
 subterrane.get_param2_data = true
 
-minetest.register_alias_force("mapgen_lava_source", "air")
-
 --grab a shorthand for the filepath of the mod
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 
@@ -40,6 +38,7 @@ dofile(modpath.."/biomes/level3.lua")
 dofile(modpath.."/biomes/lava_sea.lua")
 dofile(modpath.."/biomes/underworld.lua")
 
+minetest.register_alias_force("mapgen_lava_source", "air") -- veins of lava are far more realistic
 minetest.register_ore({
 	ore_type = "vein",
 	ore = "default:lava_source",

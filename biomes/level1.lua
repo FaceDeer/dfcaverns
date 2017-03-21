@@ -12,7 +12,6 @@ local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- para
 local subsea_level = (dfcaverns.config.level1_min - dfcaverns.config.ymax) * 0.3 + dfcaverns.config.level1_min
 
 local level_1_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
-	subterrane:obsidian_floor_dam(area, data, ai, vi, bi)
 	if data[bi] ~= c_stone then
 		return
 	end
@@ -37,7 +36,6 @@ local level_1_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
 end
 
 local level_1_moist_ceiling = function(area, data, ai, vi, bi, param2_data)
-	subterrane:obsidian_ceiling_plug(area, data, ai, vi, bi)
 	if data[ai] ~= c_stone then
 		return
 	end
@@ -124,7 +122,6 @@ end
 
 
 local level_1_fungiwood_floor = function(area, data, ai, vi, bi, param2_data)
-	subterrane:obsidian_floor_dam(area, data, ai, vi, bi)
 	if data[bi] ~= c_stone then
 		return
 	end
@@ -204,6 +201,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_water,
 	_subterrane_cave_fill_node = c_water,
 	_subterrane_floor_decor = level_1_underwater_floor,
+	_subterrane_mitigate_lava = false, -- no need to mitigate lava in a flooded cave, problem is self-solving
 })
 
 minetest.register_biome({
@@ -216,8 +214,8 @@ minetest.register_biome({
 	_subterrane_floor_decor = level_1_wet_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_fill_node = c_water,
+	_subterrane_mitigate_lava = true,
 })
-
 
 minetest.register_biome({
 	name = "dfcaverns_level1_tower_cap_biome_lower",
@@ -230,6 +228,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_1_cave_floor,
 	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -243,6 +242,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_1_cave_floor,
 	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -256,6 +256,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_1_cave_floor,
 	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -269,6 +270,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_1_cave_floor,
 	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -280,6 +282,7 @@ minetest.register_biome({
 	_subterrane_ceiling_decor = level_1_dry_ceiling,
 	_subterrane_floor_decor = level_1_dry_floor,
 	_subterrane_fill_node = c_air,
+	_subterrane_mitigate_lava = false, -- let the lava spill in, nothing to protect
 })
 
 minetest.register_biome({
@@ -291,4 +294,5 @@ minetest.register_biome({
 	_subterrane_ceiling_decor = level_1_dry_ceiling,
 	_subterrane_floor_decor = level_1_dry_floor,
 	_subterrane_fill_node = c_air,
+	_subterrane_mitigate_lava = false, -- let the lava spill in, nothing to protect
 })

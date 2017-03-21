@@ -19,7 +19,6 @@ local subsea_level = (dfcaverns.config.level2_min - dfcaverns.config.level1_min)
 
 
 local level_2_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
-	subterrane:obsidian_floor_dam(area, data, ai, vi, bi)
 	if data[bi] ~= c_stone then
 		return
 	end
@@ -44,7 +43,6 @@ local level_2_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
 end
 
 local level_2_moist_ceiling = function(area, data, ai, vi, bi, param2_data)
-	subterrane:obsidian_ceiling_plug(area, data, ai, vi, bi)
 	if data[ai] ~= c_stone then
 		return
 	end
@@ -131,7 +129,6 @@ end
 
 
 local level_2_fungiwood_floor = function(area, data, ai, vi, bi, param2_data)
-	subterrane:obsidian_floor_dam(area, data, ai, vi, bi)
 	if data[bi] ~= c_stone then
 		return
 	end
@@ -157,7 +154,6 @@ local level_2_fungiwood_floor = function(area, data, ai, vi, bi, param2_data)
 end
 
 local level_2_tunnel_tube_floor = function(area, data, ai, vi, bi, param2_data)
-	subterrane:obsidian_floor_dam(area, data, ai, vi, bi)
 	if data[bi] ~= c_stone then
 		return
 	end
@@ -183,7 +179,6 @@ local level_2_tunnel_tube_floor = function(area, data, ai, vi, bi, param2_data)
 end
 
 local level_2_spore_tree_floor = function(area, data, ai, vi, bi, param2_data)
-	subterrane:obsidian_floor_dam(area, data, ai, vi, bi)
 	if data[bi] ~= c_stone then
 		return
 	end
@@ -209,7 +204,6 @@ local level_2_spore_tree_floor = function(area, data, ai, vi, bi, param2_data)
 end
 
 local level_2_goblin_cap_floor = function(area, data, ai, vi, bi, param2_data)
-	subterrane:obsidian_floor_dam(area, data, ai, vi, bi)
 	if data[bi] ~= c_stone then
 		return
 	end
@@ -288,6 +282,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_water,
 	_subterrane_cave_fill_node = c_water,
 	_subterrane_floor_decor = level_2_underwater_floor,
+	_subterrane_mitigate_lava = false,
 })
 
 minetest.register_biome({
@@ -300,6 +295,7 @@ minetest.register_biome({
 	_subterrane_floor_decor = level_2_wet_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_fill_node = c_water,
+	_subterrane_mitigate_lava = true,
 })
 
 
@@ -314,6 +310,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -327,6 +324,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -340,6 +338,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -353,6 +352,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -366,6 +366,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -379,6 +380,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 
@@ -393,6 +395,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -406,9 +409,8 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
-
-
 
 minetest.register_biome({
 	name = "dfcaverns_level2_tunnel_tube_biome_lower",
@@ -421,6 +423,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -434,8 +437,8 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_2_cave_floor,
 	_subterrane_cave_ceiling_decor = level_2_cave_ceiling,
+	_subterrane_mitigate_lava = true,
 })
-
 
 minetest.register_biome({
 	name = "dfcaverns_level2_dry_biome_lower",
@@ -446,6 +449,7 @@ minetest.register_biome({
 	_subterrane_ceiling_decor = level_2_dry_ceiling,
 	_subterrane_floor_decor = level_2_dry_floor,
 	_subterrane_fill_node = c_air,
+	_subterrane_mitigate_lava = false,
 })
 
 minetest.register_biome({
@@ -457,4 +461,5 @@ minetest.register_biome({
 	_subterrane_ceiling_decor = level_2_dry_ceiling,
 	_subterrane_floor_decor = level_2_dry_floor,
 	_subterrane_fill_node = c_air,
+	_subterrane_mitigate_lava = false,
 })

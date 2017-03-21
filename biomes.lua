@@ -18,16 +18,6 @@ local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- para
 local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
 
-
-dfcaverns.config.ymax = subterrane.config.ymax
-
-dfcaverns.config.level1_min = -600
-dfcaverns.config.level2_min = -1000
-dfcaverns.config.level3_min = -1400
-dfcaverns.config.lava_sea_min = -1600
-
-dfcaverns.config.ymin = subterrane.config.ymin
-
 -- default mapgen registers an "underground" biome that gets in the way of everything.
 subterrane:override_biome({
 	name = "underground",
@@ -35,6 +25,30 @@ subterrane:override_biome({
 	y_max = -113,
 	heat_point = 50,
 	humidity_point = 50,
+})
+
+subterrane:set_tcave_array({
+	{dfcaverns.config.ymax, 1.5},
+	{dfcaverns.config.ymax-100, 0.5},
+	
+	{dfcaverns.config.level1_min+100, 0.5},
+	{dfcaverns.config.level1_min, 1.0},
+	{dfcaverns.config.level1_min-100, 0.5},
+	
+	{dfcaverns.config.level2_min+100, 0.5},
+	{dfcaverns.config.level2_min, 1.0},
+	{dfcaverns.config.level2_min-100, 0.5},
+
+	{dfcaverns.config.level3_min+100, 0.5},
+	{dfcaverns.config.level3_min, 1.0},
+	{dfcaverns.config.level3_min-100, 0.5},
+
+	{dfcaverns.config.lava_sea_min+100, 0.5},
+	{dfcaverns.config.lava_sea_min, 1.0},
+	{dfcaverns.config.lava_sea_min-100, 0.5},
+
+	{dfcaverns.config.ymin+100, 0.5},
+	{dfcaverns.config.ymin, 1.5},
 })
 
 dfcaverns.can_support_vegetation = {[c_sand] = true, [c_dirt] = true, [c_coal_ore] = true, [c_gravel] = true}

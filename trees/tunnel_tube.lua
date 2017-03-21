@@ -31,6 +31,41 @@ minetest.register_node("dfcaverns:tunnel_tube", {
 	},
 })
 
+--Wood
+minetest.register_craft({
+	output = 'dfcaverns:tunnel_tube_wood 4',
+	recipe = {
+		{'dfcaverns:tunnel_tube'},
+	}
+})
+
+minetest.register_node("dfcaverns:tunnel_tube_wood", {
+	description = S("Tunnel Tube Plies"),
+	paramtype2 = "facedir",
+	place_param2 = 0,
+	tiles = {"default_wood.png"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:tunnel_tube_wood",
+	burntime = 9,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:tunnel_tube",
+	burntime = 36,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:tunnel_tube_sapling",
+	burntime = 3,
+})
+
+
 minetest.register_node("dfcaverns:tunnel_tube_fruiting_body", {
 	description = S("Tunnel Tube Fruiting Body"),
 	tiles = {"dfcaverns_tunnel_tube.png^[multiply:#b09090"},

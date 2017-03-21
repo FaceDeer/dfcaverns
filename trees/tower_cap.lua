@@ -43,6 +43,58 @@ minetest.register_node("dfcaverns:tower_cap_gills", {
 	},
 })
 
+--Wood
+minetest.register_craft({
+	output = 'dfcaverns:tower_cap_wood 4',
+	recipe = {
+		{'dfcaverns:tower_cap'},
+	}
+})
+
+minetest.register_craft({
+	output = 'dfcaverns:tower_cap_wood 4',
+	recipe = {
+		{'dfcaverns:tower_cap_stem'},
+	}
+})
+
+minetest.register_node("dfcaverns:tower_cap_wood", {
+	description = S("Tower Cap Planks"),
+	paramtype2 = "facedir",
+	place_param2 = 0,
+	tiles = {"default_wood.png"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:tower_cap_wood",
+	burntime = 7,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:tower_cap",
+	burntime = 30,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:tower_cap_stem",
+	burntime = 30,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:tower_cap_gills",
+	burntime = 2,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:tower_cap_sapling",
+	burntime = 2,
+})
+
 -- sapling
 minetest.register_node("dfcaverns:tower_cap_sapling", {
 	description = S("Tower Cap Spawn"),

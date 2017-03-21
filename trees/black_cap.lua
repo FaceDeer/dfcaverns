@@ -43,6 +43,58 @@ minetest.register_node("dfcaverns:black_cap_gills", {
 	},
 })
 
+
+-- Wood
+minetest.register_craft({
+	output = 'dfcaverns:black_cap_wood 4',
+	recipe = {
+		{'dfcaverns:black_cap'},
+	}
+})
+
+minetest.register_craft({
+	output = 'dfcaverns:black_cap_wood 4',
+	recipe = {
+		{'dfcaverns:black_cap_stem'},
+	}
+})
+
+minetest.register_node("dfcaverns:black_cap_wood", {
+	description = S("Black Cap Planks"),
+	paramtype2 = "facedir",
+	place_param2 = 0,
+	tiles = {"default_wood.png"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:black_cap_wood",
+	burntime = 30,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:black_cap",
+	burntime = 120,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:black_cap_stem",
+	burntime = 120,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:black_cap_gills",
+	burntime = 6,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:black_cap_sapling",
+	burntime = 6,
+})
+
 -- sapling
 minetest.register_node("dfcaverns:black_cap_sapling", {
 	description = S("Black Cap Spawn"),

@@ -43,6 +43,32 @@ minetest.register_node("dfcaverns:nether_cap_gills", {
 	},
 })
 
+--Wood
+minetest.register_craft({
+	output = 'dfcaverns:nether_cap_wood 4',
+	recipe = {
+		{'dfcaverns:nether_cap'},
+	}
+})
+
+minetest.register_craft({
+	output = 'dfcaverns:nether_cap_wood 4',
+	recipe = {
+		{'dfcaverns:nether_cap_stem'},
+	}
+})
+
+minetest.register_node("dfcaverns:nether_cap_wood", {
+	description = S("Nether Cap Planks"),
+	paramtype2 = "facedir",
+	place_param2 = 0,
+	tiles = {"default_wood.png"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+
 -- sapling
 minetest.register_node("dfcaverns:nether_cap_sapling", {
 	description = S("Nether Cap Spawn"),
@@ -108,7 +134,7 @@ end
 minetest.register_abm{
 	label = "nether cap water freezing",
 	nodenames = {"default:water_source", "default:river_water_source",},
-	neighbors = {"dfcaverns:nether_cap_stem", "dfcaverns:nether_cap", "dfcaverns:nether_cap_gills"},
+	neighbors = {"dfcaverns:nether_cap_stem", "dfcaverns:nether_cap", "dfcaverns:nether_cap_gills", "dfcaverns:nether_cap_wood"},
 	interval = 1,
 	chance = 5,
 	catch_up = true,
@@ -120,7 +146,7 @@ minetest.register_abm{
 minetest.register_abm{
 	label = "nether cap flowing water freezing",
 	nodenames = {"default:water_flowing",  "default:river_water_flowing"},
-	neighbors = {"dfcaverns:nether_cap_stem", "dfcaverns:nether_cap", "dfcaverns:nether_cap_gills"},
+	neighbors = {"dfcaverns:nether_cap_stem", "dfcaverns:nether_cap", "dfcaverns:nether_cap_gills", "dfcaverns:nether_cap_wood"},
 	interval = 1,
 	chance = 1,
 	catch_up = true,

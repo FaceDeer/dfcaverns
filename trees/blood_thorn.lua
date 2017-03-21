@@ -86,6 +86,27 @@ minetest.register_node("dfcaverns:blood_thorn_spike_dead", {
 	},
 })
 
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:blood_thorn",
+	burntime = 9,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:blood_thorn_dead",
+	burntime = 9,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:blood_thorn_spike",
+	burntime = 5,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:blood_thorn_spike_dead",
+	burntime = 5,
+})
+
 local spike_directions = {
 	{dir={x=0,y=0,z=1}, facedir=2},
 	{dir={x=0,y=0,z=-1}, facedir=0},

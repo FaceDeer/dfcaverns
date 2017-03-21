@@ -20,6 +20,46 @@ minetest.register_node("dfcaverns:fungiwood", {
 	on_place = minetest.rotate_node
 })
 
+--Wood
+minetest.register_craft({
+	output = 'dfcaverns:fungiwood_wood 4',
+	recipe = {
+		{'dfcaverns:fungiwood'},
+	}
+})
+
+minetest.register_node("dfcaverns:fungiwood_wood", {
+	description = S("Fungiwood Planks"),
+	paramtype2 = "facedir",
+	place_param2 = 0,
+	tiles = {"default_wood.png"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:fungiwood_wood",
+	burntime = 7,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:fungiwood",
+	burntime = 30,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:fungiwood_shelf",
+	burntime = 3,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:fungiwood_sapling",
+	burntime = 2,
+})
+
 minetest.register_node("dfcaverns:fungiwood_shelf",{
 	description = S("Fungiwood Shelf"),
 	tiles = {"dfcaverns_fungiwood.png", "dfcaverns_fungiwood_shelf_underside.png", "dfcaverns_fungiwood.png"},

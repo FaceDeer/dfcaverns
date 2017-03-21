@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-19 11:17-0600\n"
+"POT-Creation-Date: 2017-03-21 01:52-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,7 +113,11 @@ msgstr ""
 msgid "Black Cap Gills"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\black_cap.lua:48
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\black_cap.lua:63
+msgid "Black Cap Planks"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\black_cap.lua:100
 msgid "Black Cap Spawn"
 msgstr ""
 
@@ -137,11 +141,15 @@ msgstr ""
 msgid "Fungiwood Trunk"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\fungiwood.lua:24
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\fungiwood.lua:32
+msgid "Fungiwood Planks"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\fungiwood.lua:64
 msgid "Fungiwood Shelf"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\fungiwood.lua:53
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\fungiwood.lua:93
 msgid "Fungiwood Spawn"
 msgstr ""
 
@@ -157,7 +165,11 @@ msgstr ""
 msgid "Goblin Cap Gills"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\goblin_cap.lua:48
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\goblin_cap.lua:62
+msgid "Goblin Cap Planks"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\goblin_cap.lua:100
 msgid "Goblin Cap Spawn"
 msgstr ""
 
@@ -173,7 +185,11 @@ msgstr ""
 msgid "Nether Cap Gills"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\nether_cap.lua:48
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\nether_cap.lua:62
+msgid "Nether Cap Planks"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\nether_cap.lua:74
 msgid "Nether Cap Spawn"
 msgstr ""
 
@@ -181,15 +197,19 @@ msgstr ""
 msgid "Spore Tree"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:30
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:33
+msgid "Spore Tree Planks"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:70
 msgid "Spore Tree Frond"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:54
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:94
 msgid "Spore Tree Fruiting Body"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:93
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\spore_tree.lua:133
 msgid "Spore Tree Spawn"
 msgstr ""
 
@@ -205,7 +225,11 @@ msgstr ""
 msgid "Tower Cap Gills"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tower_cap.lua:48
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tower_cap.lua:62
+msgid "Tower Cap Planks"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tower_cap.lua:100
 msgid "Tower Cap Spawn"
 msgstr ""
 
@@ -213,10 +237,14 @@ msgstr ""
 msgid "Tunnel Tube"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tunnel_tube.lua:35
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tunnel_tube.lua:43
+msgid "Tunnel Tube Plies"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tunnel_tube.lua:70
 msgid "Tunnel Tube Fruiting Body"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tunnel_tube.lua:62
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\tunnel_tube.lua:97
 msgid "Tunnel Tube Spawn"
 msgstr ""

@@ -21,6 +21,51 @@ minetest.register_node("dfcaverns:spore_tree", {
 	on_place = minetest.rotate_node,
 })
 
+--Wood
+minetest.register_craft({
+	output = 'dfcaverns:spore_tree_wood 4',
+	recipe = {
+		{'dfcaverns:spore_tree'},
+	}
+})
+
+minetest.register_node("dfcaverns:spore_tree_wood", {
+	description = S("Spore Tree Planks"),
+	paramtype2 = "facedir",
+	place_param2 = 0,
+	tiles = {"default_wood.png"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:spore_tree_wood",
+	burntime = 6,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:spore_tree",
+	burntime = 20,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:spore_tree_frond",
+	burntime = 1,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:spore_tree_pod",
+	burntime = 1,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:spore_tree_sapling",
+	burntime = 1,
+})
+
 minetest.register_node("dfcaverns:spore_tree_frond", {
 	description = S("Spore Tree Frond"),
 	waving = 1,

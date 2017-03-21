@@ -10,7 +10,7 @@ local c_sweet_pod = minetest.get_content_id("dfcaverns:sweet_pod_6") -- param2 =
 local c_quarry_bush = minetest.get_content_id("dfcaverns:quarry_bush_5") -- param2 = 4
 local c_plump_helmet = minetest.get_content_id("dfcaverns:plump_helmet_4") -- param2 = 0-3
 local c_pig_tail = minetest.get_content_id("dfcaverns:pig_tail_8") -- param2 = 3
-local c_dimple_cup = minetest.get_content_id("dfcaverns_dimple_cup_4") -- param2 = 0
+local c_dimple_cup = minetest.get_content_id("dfcaverns:dimple_cup_4") -- param2 = 0
 local c_cave_wheat = minetest.get_content_id("dfcaverns:cave_wheat_8") -- param2 = 3
 local c_dead_fungus = minetest.get_content_id("dfcaverns:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- param2 = 0
@@ -28,6 +28,14 @@ dfcaverns.config.lava_sea_min = -1600
 
 dfcaverns.config.ymin = subterrane.config.ymin
 
+-- default mapgen registers an "underground" biome that gets in the way of everything.
+subterrane:override_biome({
+	name = "underground",
+	y_min = dfcaverns.config.ymax,
+	y_max = -113,
+	heat_point = 50,
+	humidity_point = 50,
+})
 
 dfcaverns.can_support_vegetation = {[c_sand] = true, [c_dirt] = true, [c_coal_ore] = true, [c_gravel] = true}
 

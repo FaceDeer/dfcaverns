@@ -13,7 +13,7 @@ minetest.register_node("dfcaverns:dirt_with_cave_moss", {
 		{name = "default_dirt.png^dfcaverns_cave_moss_side.png",
 			tileable_vertical = false}},
 	drop = "default:dirt",
-	is_ground_content = false,
+	is_ground_content = true,
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 11},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_grass_footstep", gain = 0.25},
@@ -50,7 +50,7 @@ minetest.register_node("dfcaverns:cobble_with_floor_fungus", {
 	description = S("Cobblestone With Floor Fungus"),
 	tiles = {"default_cobble.png^dfcaverns_floor_fungus.png", "default_cobble.png", "default_cobble.png^dfcaverns_floor_fungus_side.png"},
 	drops = "default:cobble",
-	is_ground_content = false,
+	is_ground_content = true,
 	groups = {cracky = 3, stone = 2, light_sensitive_fungus = 11},
 	_dfcaverns_dead_node = "default:cobble",
 	sounds = default.node_sound_stone_defaults({

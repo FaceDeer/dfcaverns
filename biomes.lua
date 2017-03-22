@@ -27,28 +27,29 @@ subterrane:override_biome({
 	humidity_point = 50,
 })
 
-subterrane:set_tcave_array({
-	{dfcaverns.config.ymax, 1.5},
-	{dfcaverns.config.ymax-100, 0.5},
-	
-	{dfcaverns.config.level1_min+100, 0.5},
-	{dfcaverns.config.level1_min, 1.0},
-	{dfcaverns.config.level1_min-100, 0.5},
-	
-	{dfcaverns.config.level2_min+100, 0.5},
-	{dfcaverns.config.level2_min, 1.0},
-	{dfcaverns.config.level2_min-100, 0.5},
+subterrane:register_cave_layer({
+	minimum_depth = dfcaverns.config.ymax,
+	maximum_depth = dfcaverns.config.level1_min,
+})
 
-	{dfcaverns.config.level3_min+100, 0.5},
-	{dfcaverns.config.level3_min, 1.0},
-	{dfcaverns.config.level3_min-100, 0.5},
+subterrane:register_cave_layer({
+	minimum_depth = dfcaverns.config.level1_min,
+	maximum_depth = dfcaverns.config.level2_min,
+})
 
-	{dfcaverns.config.lava_sea_min+100, 0.5},
-	{dfcaverns.config.lava_sea_min, 1.0},
-	{dfcaverns.config.lava_sea_min-100, 0.5},
+subterrane:register_cave_layer({
+	minimum_depth = dfcaverns.config.level2_min,
+	maximum_depth = dfcaverns.config.level3_min,
+})
 
-	{dfcaverns.config.ymin+100, 0.5},
-	{dfcaverns.config.ymin, 1.5},
+subterrane:register_cave_layer({
+	minimum_depth = dfcaverns.config.level3_min,
+	maximum_depth = dfcaverns.config.lava_sea_min,
+})
+
+subterrane:register_cave_layer({
+	minimum_depth = dfcaverns.config.lava_sea_min,
+	maximum_depth = dfcaverns.config.ymin,
 })
 
 dfcaverns.can_support_vegetation = {[c_sand] = true, [c_dirt] = true, [c_coal_ore] = true, [c_gravel] = true}

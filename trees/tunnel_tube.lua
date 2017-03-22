@@ -43,7 +43,7 @@ minetest.register_node("dfcaverns:tunnel_tube_wood", {
 	description = S("Tunnel Tube Plies"),
 	paramtype2 = "facedir",
 	place_param2 = 0,
-	tiles = {"default_wood.png"},
+	tiles = {"dfcaverns_tunnel_tube_wood_top.png", "dfcaverns_tunnel_tube_wood_top.png", "dfcaverns_tunnel_tube_wood_side.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = default.node_sound_wood_defaults(),

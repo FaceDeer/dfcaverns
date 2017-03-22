@@ -63,7 +63,7 @@ minetest.register_node("dfcaverns:black_cap_wood", {
 	description = S("Black Cap Planks"),
 	paramtype2 = "facedir",
 	place_param2 = 0,
-	tiles = {"default_wood.png"},
+	tiles = {"dfcaverns_black_cap_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = default.node_sound_wood_defaults(),

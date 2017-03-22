@@ -86,15 +86,40 @@ minetest.register_node("dfcaverns:blood_thorn_spike_dead", {
 	},
 })
 
+
+--Wood
+minetest.register_craft({
+	output = 'dfcaverns:blood_thorn_wood 4',
+	recipe = {
+		{'dfcaverns:blood_thorn'},
+	}
+})
+
+minetest.register_node("dfcaverns:blood_thorn_wood", {
+	description = S("Blood Thorn Planks"),
+	paramtype2 = "facedir",
+	place_param2 = 0,
+	tiles = {"dfcaverns_blood_thorn_wood.png"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:blood_thorn_wood",
+	burntime = 40,
+})
+
 minetest.register_craft({
 	type = "fuel",
 	recipe = "dfcaverns:blood_thorn",
-	burntime = 9,
+	burntime = 150,
 })
 minetest.register_craft({
 	type = "fuel",
 	recipe = "dfcaverns:blood_thorn_dead",
-	burntime = 9,
+	burntime = 120,
 })
 minetest.register_craft({
 	type = "fuel",

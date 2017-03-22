@@ -52,7 +52,7 @@ minetest.register_craft({
 })
 
 minetest.register_craft({
-	output = 'dfcaverns:goblin_cap_wood 4',
+	output = 'dfcaverns:goblin_cap_stem_wood 4',
 	recipe = {
 		{'dfcaverns:goblin_cap_stem'},
 	}
@@ -62,17 +62,31 @@ minetest.register_node("dfcaverns:goblin_cap_wood", {
 	description = S("Goblin Cap Planks"),
 	paramtype2 = "facedir",
 	place_param2 = 0,
-	tiles = {"default_wood.png"},
+	tiles = {"dfcaverns_goblin_cap_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
+minetest.register_node("dfcaverns:goblin_cap_stem_wood", {
+	description = S("Goblin Cap Stem Planks"),
+	paramtype2 = "facedir",
+	place_param2 = 0,
+	tiles = {"dfcaverns_goblin_cap_stem_wood.png"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
 
 minetest.register_craft({
 	type = "fuel",
 	recipe = "dfcaverns:goblin_cap_wood",
-	burntime = 10,
+	burntime = 12,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:goblin_cap_stem_wood",
+	burntime = 7,
 })
 minetest.register_craft({
 	type = "fuel",
@@ -82,7 +96,7 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "fuel",
 	recipe = "dfcaverns:goblin_cap_stem",
-	burntime = 40,
+	burntime = 30,
 })
 minetest.register_craft({
 	type = "fuel",

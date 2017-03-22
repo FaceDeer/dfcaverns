@@ -18,6 +18,33 @@ local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- para
 local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
 
+
+local shallow_cave_floor = function(area, data, ai, vi, bi, param2_data)
+	if data[bi] ~= c_stone then
+		return
+	end
+	
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+	if drip_rand < 0.025 then
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.025 * 4)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, false)
+	end	
+end
+
+local shallow_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
+	if data[ai] ~= c_stone then
+		return
+	end
+	
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+	if drip_rand < 0.025 then
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.025 * 5)		
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, false)
+	end	
+end
+
 -- default mapgen registers an "underground" biome that gets in the way of everything.
 subterrane:override_biome({
 	name = "underground",
@@ -25,7 +52,11 @@ subterrane:override_biome({
 	y_max = -113,
 	heat_point = 50,
 	humidity_point = 50,
+	_subterrane_cave_floor_decor = shallow_cave_floor,
+	_subterrane_cave_ceiling_decor = shallow_cave_ceiling,
 })
+
+subterrane:register_cave_decor(-113, dfcaverns.config.ymax)
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.ymax,

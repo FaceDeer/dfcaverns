@@ -1,7 +1,5 @@
 dfcaverns = {}
 
-subterrane.get_param2_data = true
-
 --grab a shorthand for the filepath of the mod
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 

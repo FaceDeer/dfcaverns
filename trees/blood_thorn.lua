@@ -238,7 +238,7 @@ dfcaverns.spawn_blood_thorn_vm = function(vi, area, data, data_param2, height)
 			local dir = spike_directions[math.random(1,4)]
 			local spike_pos = {x = pos.x + dir.dir.x, y = yy, z = pos.z + dir.dir.z}
 			vi = area:indexp(spike_pos)
-			if data[vi] == c_air or data[vi] == c_c_ignore then
+			if data[vi] == c_air or data[vi] == c_ignore then
 				data[vi] = c_blood_thorn_spike
 				data_param2[vi] = dir.facedir
 			end
@@ -246,7 +246,7 @@ dfcaverns.spawn_blood_thorn_vm = function(vi, area, data, data_param2, height)
 			dir = spike_directions[math.random(1,4)]
 			spike_pos = {x = pos.x + dir.dir.x, y = yy, z = pos.z + dir.dir.z}
 			vi = area:indexp(spike_pos)
-			if data[vi] == c_air or data[vi] == c_c_ignore then
+			if data[vi] == c_air or data[vi] == c_ignore then
 				data[vi] = c_blood_thorn_spike
 				data_param2[vi] = dir.facedir
 			end

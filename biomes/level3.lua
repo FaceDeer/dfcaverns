@@ -12,6 +12,10 @@ local c_cobble = minetest.get_content_id("default:cobble")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_sand = minetest.get_content_id("default:sand")
 
+local c_silver_sand = minetest.get_content_id("default:silver_sand")
+local c_snow = minetest.get_content_id("default:snow")
+local c_ice = minetest.get_content_id("default:ice")
+
 local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
 local c_dead_fungus = minetest.get_content_id("dfcaverns:dead_fungus") -- param2 = 0
@@ -34,7 +38,6 @@ local level_3_blood_thorn_floor = function(area, data, ai, vi, bi, param2_data)
 	if math.random() < 0.1 then
 		dfcaverns.place_shrub(data, vi, param2_data)
 	elseif drip_rand < 0.05 then
-		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.05 * 5)		
 		subterrane:stalagmite(vi, area, data, param2_data, param2, height, false)
@@ -49,7 +52,6 @@ local level_3_moist_ceiling = function(area, data, ai, vi, bi, param2_data)
 	end
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 	if drip_rand < 0.075 then
-		--subterrane:stalactite(ai, area, data, 6, 20, c_stone, c_stone, c_stone)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 5)
 		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, true)
@@ -74,7 +76,6 @@ local level_3_dry_floor = function(area, data, ai, vi, bi, param2_data)
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 
 	if drip_rand < 0.05 then
-		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.05 * 5)		
 		subterrane:stalagmite(vi, area, data, param2_data, param2, height, false)
@@ -100,7 +101,6 @@ local level_3_wet_floor = function(area, data, ai, vi, bi, param2_data)
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 
 	if drip_rand < 0.05 then
-		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.05 * 5)		
 		subterrane:stalagmite(vi, area, data, param2_data, param2, height, true)
@@ -121,7 +121,6 @@ local level_3_dry_ceiling = function(area, data, ai, vi, bi, param2_data)
 	end
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 	if drip_rand < 0.075 then
-		--subterrane:stalactite(ai, area, data, 6, 20, c_stone, c_stone, c_stone)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 5)
 		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, false)
@@ -134,21 +133,25 @@ local level_3_nether_cap_floor = function(area, data, ai, vi, bi, param2_data)
 		return
 	end
 	
-	if math.random() < 0.25 then
-		data[bi] = c_dirt
-	else
-		data[bi] = c_dirt_moss
+	local ground = math.random()
+	if ground < 0.25 then
+		data[bi] = c_silver_sand
+	elseif ground < 0.5 then
+		data[bi] = c_ice
+		data[vi] = c_snow
+	elseif ground < 0.75 then
+		data[vi] = c_snow
 	end
 	
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 	
-	if math.random() < 0.1 then
+	if math.random() < 0.01 then
 		dfcaverns.place_shrub(data, vi, param2_data)
 	elseif drip_rand < 0.1 then
 		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, true)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, false)
 	elseif math.random() < 0.005 then
 		dfcaverns.spawn_nether_cap_vm(vi, area, data)
 	end
@@ -334,7 +337,7 @@ minetest.register_biome({
 	y_max = subsea_level,
 	heat_point = 80,
 	humidity_point = 50,
-	_subterrane_ceiling_decor = level_3_moist_ceiling,
+	_subterrane_ceiling_decor = level_3_dry_ceiling,
 	_subterrane_floor_decor = level_3_nether_cap_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_3_cave_floor,
@@ -348,7 +351,7 @@ minetest.register_biome({
 	y_max = dfcaverns.config.level2_min,
 	heat_point = 80,
 	humidity_point = 50,
-	_subterrane_ceiling_decor = level_3_moist_ceiling,
+	_subterrane_ceiling_decor = level_3_dry_ceiling,
 	_subterrane_floor_decor = level_3_nether_cap_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_floor_decor = level_3_cave_floor,

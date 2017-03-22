@@ -66,9 +66,9 @@ end
 setting("bool", "light_kills_fungus", true, "Light kills fungus")
 
 setting("int", "ymax", -300, "Upper limit of level 1")
-setting("int", "level1_min", -600, "Upper limit of level 2")
-setting("int", "level2_min", -1000, "Upper limit of level 3")
-setting("int", "level3_min", -1400, "Upper limit of lava sea")
-setting("int", "lava_sea_min", -1600, "Upper limit of underworld")
-setting("int", "ymin", -2000, "Lower limit of underworld")
+setting("int", "level1_min", -900, "Upper limit of level 2")
+setting("int", "level2_min", -1500, "Upper limit of level 3")
+setting("int", "level3_min", -2100, "Upper limit of lava sea")
+setting("int", "lava_sea_min", -2700, "Upper limit of underworld")
+setting("int", "ymin", -3500, "Lower limit of underworld")
 

@@ -9,6 +9,9 @@ local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fun
 local c_dead_fungus = minetest.get_content_id("dfcaverns:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- param2 = 0
 
+local c_wet_flowstone = minetest.get_content_id("subterrane:wet_flowstone")
+local c_dry_flowstone = minetest.get_content_id("subterrane:dry_flowstone")
+
 local subsea_level = (dfcaverns.config.level1_min - dfcaverns.config.ymax) * 0.3 + dfcaverns.config.level1_min
 
 local level_1_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
@@ -25,11 +28,12 @@ local level_1_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 	if math.random() < 0.1 then
 		dfcaverns.place_shrub(data, vi, param2_data)
+	elseif drip_rand < 0.0025 then
+		
 	elseif drip_rand < 0.1 then
-		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, true)
 	elseif math.random() < 0.005 then
 		dfcaverns.spawn_tower_cap_vm(vi, area, data)
 	end
@@ -40,11 +44,12 @@ local level_1_moist_ceiling = function(area, data, ai, vi, bi, param2_data)
 		return
 	end
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-	if drip_rand < 0.075 then
-		--subterrane:stalactite(ai, area, data, 6, 20, c_stone, c_stone, c_stone)
+	if drip_rand < 0.0025 then
+		subterrane:giant_stalactite(ai, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
+	elseif drip_rand < 0.075 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 5)
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height, true)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, true)
 	elseif math.random() < 0.03 then
 		dfcaverns.glow_worm_ceiling(area, data, ai, vi, bi)
 	end
@@ -65,11 +70,12 @@ local level_1_dry_floor = function(area, data, ai, vi, bi, param2_data)
 	end	
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 
-	if drip_rand < 0.05 then
-		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
+	if drip_rand < 0.001 then
+		subterrane:giant_stalagmite(bi, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
+	elseif drip_rand < 0.05 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.05 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, false)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, false)
 	end
 end
 
@@ -91,14 +97,14 @@ local level_1_wet_floor = function(area, data, ai, vi, bi, param2_data)
 	
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 
-	if drip_rand < 0.05 then
-		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
+	if drip_rand < 0.001 then
+		subterrane:giant_stalagmite(bi, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
+	elseif drip_rand < 0.05 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.05 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, true)
 	end
 end
-
 
 local level_1_underwater_floor = function(area, data, ai, vi, bi, param2_data)
 	if data[bi] ~= c_stone then
@@ -112,11 +118,12 @@ local level_1_dry_ceiling = function(area, data, ai, vi, bi, param2_data)
 		return
 	end
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-	if drip_rand < 0.075 then
-		--subterrane:stalactite(ai, area, data, 6, 20, c_stone, c_stone, c_stone)
+	if drip_rand < 0.001 then
+		subterrane:giant_stalactite(ai, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
+	elseif drip_rand < 0.075 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 5)
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height, false)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, false)
 	end
 end
 
@@ -136,11 +143,13 @@ local level_1_fungiwood_floor = function(area, data, ai, vi, bi, param2_data)
 	
 	if math.random() < 0.1 then
 		dfcaverns.place_shrub(data, vi, param2_data)
+	elseif drip_rand < 0.001 then
+		subterrane:giant_stalagmite(bi, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
 	elseif drip_rand < 0.1 then
 		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, true)
 	elseif math.random() < 0.005 then
 		dfcaverns.spawn_fungiwood_vm(vi, area, data)
 	end
@@ -171,7 +180,7 @@ local level_1_cave_floor = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.075 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 4)
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, true)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, true)
 	end	
 end
 
@@ -185,7 +194,7 @@ local level_1_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height, true)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, true)
 	end	
 end
 

@@ -63,3 +63,33 @@ minetest.register_craft({
 	recipe = "dfcaverns:cave_wheat",
 	burntime = 2
 })
+
+minetest.register_craftitem("dfcaverns:cave_flour", {
+	description = S("Cave Wheat Flour"),
+	inventory_image = "dfcaverns_flour.png",
+	groups = {flammable = 1},
+})
+
+minetest.register_craftitem("dfcaverns:cave_bread", {
+	description = S("Cave Wheat Bread"),
+	inventory_image = "dfcaverns_bread.png",
+	on_use = minetest.item_eat(5),
+	groups = {flammable = 2},
+})
+
+if minetest.get_modpath("cottages") then
+	cottages.handmill_product["dfcaverns:cave_wheat"] = "dfcaverns:cave_flour";
+else
+minetest.register_craft({
+	type = "shapeless",
+	output = "dfcaverns:cave_flour",
+	recipe = {"dfcaverns:cave_wheat", "dfcaverns:cave_wheat", "dfcaverns:cave_wheat", "dfcaverns:cave_wheat"}
+})
+end
+
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 15,
+	output = "dfcaverns:cave_bread",
+	recipe = "dfcaverns:cave_flour"
+})

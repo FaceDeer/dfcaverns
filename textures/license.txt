@@ -10,3 +10,11 @@ dftrees_cave_wheat	- derived from farming wheat
 dftrees_tunnel_tube	- derived from moretrees palm tree bark
 dfcaverns_fungi - copied from caverealms
 dfcaverns_glow_worm - copied from caverealms
+dfcaverns_flour - derived from farming
+dfcaverns_bread - derived from farming
+dfcaverns_pig_tail_thread - copied from farming
+dfcaverns_sugar - derived from farming
+
+dfcaverns_dwarven_syrup_source_animated - derived from default
+dfcaverns_dwarven_syrup - derived from default
+dfcaverns_dwarven_syrup_flowing_animated - derived from default

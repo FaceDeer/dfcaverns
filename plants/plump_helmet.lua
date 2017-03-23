@@ -96,9 +96,12 @@ minetest.register_node("dfcaverns:plump_helmet_1", {
 			{-0.125 + displace_x, -0.4375, -0.1875 + displace_z, 0.1875 + displace_x, -0.3125, 0.125 + displace_z}, -- cap
 		}
 	},
+
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_1")
 	end,
+
+	on_use = minetest.item_eat(1),
 })
 
 
@@ -139,6 +142,8 @@ minetest.register_node("dfcaverns:plump_helmet_2", {
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_2")
 	end,
+	
+	on_use = minetest.item_eat(2),
 })
 
 minetest.register_node("dfcaverns:plump_helmet_3", {
@@ -177,6 +182,8 @@ minetest.register_node("dfcaverns:plump_helmet_3", {
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_3")
 	end,
+	
+	on_use = minetest.item_eat(3),
 })
 
 minetest.register_node("dfcaverns:plump_helmet_4", {
@@ -223,6 +230,8 @@ minetest.register_node("dfcaverns:plump_helmet_4", {
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_4")
 	end,
+	
+	on_use = minetest.item_eat(4),
 })
 
 local plump_names = {"dfcaverns:plump_helmet_spawn", "dfcaverns:plump_helmet_1", "dfcaverns:plump_helmet_2", "dfcaverns:plump_helmet_3"}

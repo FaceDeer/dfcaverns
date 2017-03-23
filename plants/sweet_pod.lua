@@ -62,3 +62,138 @@ minetest.register_craft({
 	recipe = "dfcaverns:sweet_pods",
 	burntime = 4
 })
+
+---------------------------------------------
+-- Sugar
+
+minetest.register_craftitem("dfcaverns:sugar", {
+	description = S("Sweet Pod Sugar"),
+	inventory_image = "dfcaverns_sugar.png",
+})
+
+if minetest.get_modpath("cottages") then
+	cottages.handmill_product["dfcaverns:sweet_pods"] = "dfcaverns:sugar";
+else
+minetest.register_craft({
+	type = "cooking",
+	cooktime = 3,
+	output = "dfcaverns:sugar",
+	recipe = "dfcaverns:sweet_pods",
+})
+end
+
+----------------------------------------------
+-- Syrup
+
+if minetest.get_modpath("bucket") then
+	minetest.register_node("dfcaverns:dwarven_syrup_source", {
+		description = S("Dwarven Syrup Source"),
+		drawtype = "liquid",
+		tiles = {
+			{
+				name = "dfcaverns_dwarven_syrup_source_animated.png",
+				animation = {
+					type = "vertical_frames",
+					aspect_w = 16,
+					aspect_h = 16,
+					length = 2.0,
+				},
+			},
+		},
+		special_tiles = {
+			{
+				name = "dfcaverns_dwarven_syrup_source_animated.png",
+				animation = {
+					type = "vertical_frames",
+					aspect_w = 16,
+					aspect_h = 16,
+					length = 2.0,
+				},
+				backface_culling = false,
+			},
+		},
+		alpha = 160,
+		paramtype = "light",
+		walkable = false,
+		pointable = false,
+		diggable = false,
+		buildable_to = true,
+		is_ground_content = false,
+		drop = "",
+		drowning = 1,
+		liquidtype = "source",
+		liquid_alternative_flowing = "dfcaverns:dwarven_syrup_flowing",
+		liquid_alternative_source = "dfcaverns:dwarven_syrup_source",
+		liquid_viscosity = 7,
+		liquid_renewable = false,
+		liquid_range = 2,
+		post_effect_color = {a = 191, r = 179, g = 131, b = 88},
+		groups = {liquid = 3, flammable = 2},
+		sounds = default.node_sound_water_defaults(),
+	})
+	
+	minetest.register_node("dfcaverns:dwarven_syrup_flowing", {
+		description = S("Flowing Dwarven Syrup"),
+		drawtype = "flowingliquid",
+		tiles = {"dfcaverns_dwarven_syrup.png"},
+		special_tiles = {
+			{
+				name = "dfcaverns_dwarven_syrup_flowing_animated.png",
+				backface_culling = false,
+				animation = {
+					type = "vertical_frames",
+					aspect_w = 16,
+					aspect_h = 16,
+					length = 0.8,
+				},
+			},
+			{
+				name = "dfcaverns_dwarven_syrup_flowing_animated.png",
+				backface_culling = true,
+				animation = {
+					type = "vertical_frames",
+					aspect_w = 16,
+					aspect_h = 16,
+					length = 0.8,
+				},
+			},
+		},
+		alpha = 160,
+		paramtype = "light",
+		paramtype2 = "flowingliquid",
+		walkable = false,
+		pointable = false,
+		diggable = false,
+		buildable_to = true,
+		is_ground_content = false,
+		drop = "",
+		drowning = 1,
+		liquidtype = "flowing",
+		liquid_alternative_flowing = "dfcaverns:dwarven_syrup_flowing",
+		liquid_alternative_source = "dfcaverns:dwarven_syrup_source",
+		liquid_viscosity = 7,
+		liquid_renewable = false,
+		liquid_range = 2,
+		post_effect_color = {a = 191, r = 179, g = 131, b = 88},
+		groups = {liquid = 3, flammable = 2, not_in_creative_inventory = 1},
+		sounds = default.node_sound_water_defaults(),
+	})
+
+	bucket.register_liquid(
+		"dfcaverns:dwarven_syrup_source",
+		"dfcaverns:dwarven_syrup_flowing",
+		"dfcaverns:dwarven_syrup_bucket",
+		"dfcaverns_bucket_dwarven_syrup.png",
+		S("Dwarven Syrup Bucket")
+	)
+	
+	minetest.register_craft({
+		type = "shapeless",
+		output = "dfcaverns:dwarven_syrup_bucket",
+		recipe = {"bucket:bucket_empty", "dfcaverns:sugar", "dfcaverns:sugar", "dfcaverns:sugar"},
+	})
+	
+	if minetest.get_modpath("dynamic_liquid") then
+		dynamic_liquid.liquid_abm("dfcaverns:dwarven_syrup_source", "dfcaverns:dwarven_syrup_flowing", 5)
+	end
+end

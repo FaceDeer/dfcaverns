@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-22 23:29-0600\n"
+"POT-Creation-Date: 2017-03-23 16:58-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,6 +46,14 @@ msgstr ""
 msgid "Cave Wheat Seed"
 msgstr ""
 
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cave_wheat.lua:68
+msgid "Cave Wheat Flour"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cave_wheat.lua:74
+msgid "Dwarven Bread"
+msgstr ""
+
 #: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\dimple_cup.lua:9
 msgid "Dimple Cup"
 msgstr ""
@@ -71,9 +79,9 @@ msgid "Plump Helmet Spawn"
 msgstr ""
 
 #: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:80
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:106
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:145
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:183
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:109
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:150
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:190
 msgid "Plump Helmet"
 msgstr ""
 
@@ -101,6 +109,22 @@ msgstr ""
 msgid "Sweet Pods"
 msgstr ""
 
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:70
+msgid "Sweet Pod Sugar"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:90
+msgid "Dwarven Syrup Source"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:136
+msgid "Flowing Dwarven Syrup"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:187
+msgid "Dwarven Syrup Bucket"
+msgstr ""
+
 #: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\black_cap.lua:7
 msgid "Black Cap Stem"
 msgstr ""
@@ -121,23 +145,23 @@ msgstr ""
 msgid "Black Cap Spawn"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:31
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:32
 msgid "Blood Thorn Stem"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:44
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:45
 msgid "Dead Blood Thorn Stem"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:55
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:56
 msgid "Blood Thorn Spike"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:83
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:84
 msgid "Dead Blood Thorn Spike"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:118
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\trees\blood_thorn.lua:119
 msgid "Blood Thorn Planks"
 msgstr ""
 

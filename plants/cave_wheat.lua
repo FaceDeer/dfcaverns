@@ -71,7 +71,7 @@ minetest.register_craftitem("dfcaverns:cave_flour", {
 })
 
 minetest.register_craftitem("dfcaverns:cave_bread", {
-	description = S("Cave Wheat Bread"),
+	description = S("Dwarven Bread"),
 	inventory_image = "dfcaverns_bread.png",
 	on_use = minetest.item_eat(5),
 	groups = {flammable = 2},

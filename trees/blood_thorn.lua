@@ -10,8 +10,26 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
+local spike_directions = {
+	{dir={x=0,y=0,z=1}, facedir=2},
+	{dir={x=0,y=0,z=-1}, facedir=0},
+	{dir={x=1,y=0,z=0}, facedir=3},
+	{dir={x=-1,y=0,z=0}, facedir=1}
+}
+local spikes = {["dfcaverns:blood_thorn_spike"] = true, ["dfcaverns:blood_thorn_spike_dead"] = true}
+
+local blood_thorn_after_dig = function(pos, oldnode, oldmetadata, digger)
+	for _, spike_dir in pairs(spike_directions) do
+		local loc = vector.add(pos,spike_dir.dir)
+		local node = minetest.get_node(loc)
+		if spikes[node.name] and spike_dir.facedir == node.param2 then
+			minetest.node_dig(loc, node, digger)
+		end
+	end
+end
+
 minetest.register_node("dfcaverns:blood_thorn", {
-	description = S("Blood Thorn Trunk"),
+	description = S("Blood Thorn Stem"),
 	tiles = {"dfcaverns_blood_thorn_top.png", "dfcaverns_blood_thorn_top.png",
 		"dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png"},
 	paramtype2 = "facedir",
@@ -20,16 +38,18 @@ minetest.register_node("dfcaverns:blood_thorn", {
 	_dfcaverns_dead_node = "dfcaverns:blood_thorn_dead",
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,
+	after_dig_node = blood_thorn_after_dig,
 })
 
 minetest.register_node("dfcaverns:blood_thorn_dead", {
-	description = S("Dead Blood Thorn Trunk"),
+	description = S("Dead Blood Thorn Stem"),
 	tiles = {"dfcaverns_blood_thorn_top.png^[multiply:#804000", "dfcaverns_blood_thorn_top.png^[multiply:#804000",
 		"dfcaverns_blood_thorn_side.png^[multiply:#804000"},
 	paramtype2 = "facedir",
 	groups = {choppy = 3, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,
+	after_dig_node = blood_thorn_after_dig,
 })
 
 minetest.register_node("dfcaverns:blood_thorn_spike", {
@@ -131,13 +151,6 @@ minetest.register_craft({
 	recipe = "dfcaverns:blood_thorn_spike_dead",
 	burntime = 5,
 })
-
-local spike_directions = {
-	{dir={x=0,y=0,z=1}, facedir=2},
-	{dir={x=0,y=0,z=-1}, facedir=0},
-	{dir={x=1,y=0,z=0}, facedir=3},
-	{dir={x=-1,y=0,z=0}, facedir=1}
-}
 
 -- This ensures consistent random maximum to bloodthorn growth
 local max_bloodthorn_height = function(pos)

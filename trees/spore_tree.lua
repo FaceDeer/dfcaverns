@@ -11,7 +11,7 @@ local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
 minetest.register_node("dfcaverns:spore_tree", {
-	description = S("Spore Tree"),
+	description = S("Spore Tree Stem"),
 	tiles = {"dfcaverns_spore_tree_top.png", "dfcaverns_spore_tree_top.png", "dfcaverns_spore_tree.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -52,12 +52,12 @@ minetest.register_craft({
 })
 minetest.register_craft({
 	type = "fuel",
-	recipe = "dfcaverns:spore_tree_frond",
+	recipe = "dfcaverns:spore_tree_hyphae",
 	burntime = 1,
 })
 minetest.register_craft({
 	type = "fuel",
-	recipe = "dfcaverns:spore_tree_pod",
+	recipe = "dfcaverns:spore_tree_fruiting_body",
 	burntime = 1,
 })
 minetest.register_craft({
@@ -66,8 +66,8 @@ minetest.register_craft({
 	burntime = 1,
 })
 
-minetest.register_node("dfcaverns:spore_tree_frond", {
-	description = S("Spore Tree Frond"),
+minetest.register_node("dfcaverns:spore_tree_hyphae", {
+	description = S("Spore Tree Hyphae"),
 	waving = 1,
 	tiles = {"dfcaverns_spore_tree.png"},
 	is_ground_content = false,
@@ -90,7 +90,7 @@ minetest.register_node("dfcaverns:spore_tree_frond", {
 	after_place_node = default.after_place_leaves,
 })
 
-minetest.register_node("dfcaverns:spore_tree_pod", {
+minetest.register_node("dfcaverns:spore_tree_fruiting_body", {
 	description = S("Spore Tree Fruiting Body"),
 	waving = 1,
 	tiles = {"dfcaverns_spore_tree.png"},
@@ -119,7 +119,7 @@ minetest.register_node("dfcaverns:spore_tree_pod", {
 				rarity = 10,
 			},
 			{
-				items = {'dfcaverns:spore_tree_frond'},
+				items = {'dfcaverns:spore_tree_hyphae'},
 			}
 		}
 	},
@@ -128,6 +128,13 @@ minetest.register_node("dfcaverns:spore_tree_pod", {
 	after_place_node = default.after_place_leaves,
 })
 
+if default.register_leafdecay then -- default.register_leafdecay is very new, remove this check some time after 0.4.16 is released
+	default.register_leafdecay({
+		trunks = {"dfcaverns:spore_tree"},
+		leaves = {"dfcaverns:spore_tree_hyphae", "dfcaverns:spore_tree_fruiting_body"},
+		radius = 3,	
+	})
+end
 
 minetest.register_node("dfcaverns:spore_tree_sapling", {
 	description = S("Spore Tree Spawn"),
@@ -159,26 +166,11 @@ minetest.register_node("dfcaverns:spore_tree_sapling", {
 	end,
 })
 
---fcaverns.spore_tree_def={
---	axiom="TTdddA",
---	rules_a="[&&&Tdd&&FF][&&&++++Tdd&&FF][&&&----Tdd&&FF]",
---	rules_d="T",
---	trunk="dfcaverns:spore_tree",
---	leaves="dfcaverns:spore_tree_frond",
---	leaves2="dfcaverns:spore_tree_pod",
---	leaves2_chance=30,
---	angle=30,
---	iterations=2,
---	random_level=0,
---	trunk_type="single",
---	thin_branches=true,
---}
-
 local c_air = minetest.get_content_id("air")
 local c_ignore = minetest.get_content_id("ignore")
-local c_spore_pod = minetest.get_content_id("dfcaverns:spore_tree_pod")
+local c_spore_pod = minetest.get_content_id("dfcaverns:spore_tree_fruiting_body")
 local c_tree = minetest.get_content_id("dfcaverns:spore_tree")
-local c_spore_frond = minetest.get_content_id("dfcaverns:spore_tree_frond")
+local c_spore_frond = minetest.get_content_id("dfcaverns:spore_tree_hyphae")
 
 dfcaverns.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has_fruiting_bodies)
 	if height == nil then height = math.random(3,6) end
@@ -262,7 +254,7 @@ end
 
 minetest.register_abm{
 	label = "spore tree raining spores",
-	nodenames = {"dfcaverns:spore_tree_pod"},
+	nodenames = {"dfcaverns:spore_tree_fruiting_body"},
 	interval = 1,
 	chance = 30,
 	catch_up = false,

@@ -41,7 +41,16 @@ minetest.register_node("dfcaverns:goblin_cap_gills", {
 			}
 		}
 	},
+	after_place_node = default.after_place_leaves,
 })
+
+if default.register_leafdecay then -- default.register_leafdecay is very new, remove this check some time after 0.4.16 is released
+	default.register_leafdecay({
+		trunks = {"dfcaverns:goblin_cap"}, -- don't need stem nodes here
+		leaves = {"dfcaverns:goblin_cap_gills"},
+		radius = 1,	
+	})
+end
 
 --Wood
 minetest.register_craft({

@@ -10,7 +10,7 @@ local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
 minetest.register_node("dfcaverns:fungiwood", {
-	description = S("Fungiwood Trunk"),
+	description = S("Fungiwood Stem"),
 	tiles = {"dfcaverns_fungiwood.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -79,7 +79,7 @@ minetest.register_node("dfcaverns:fungiwood_shelf",{
 	drop = {
 		max_items = 1,
 		items = {
-			{items = {"dfcaverns:fungiwood_sapling"}, rarity = 20},
+			{items = {"dfcaverns:fungiwood_sapling"}, rarity = 10},
 			{items = {"dfcaverns:fungiwood_shelf"}}
 		}
 	},
@@ -88,6 +88,13 @@ minetest.register_node("dfcaverns:fungiwood_shelf",{
 	after_place_node = default.after_place_leaves,
 })
 
+if default.register_leafdecay then -- default.register_leafdecay is very new, remove this check some time after 0.4.16 is released
+	default.register_leafdecay({
+		trunks = {"dfcaverns:fungiwood"},
+		leaves = {"dfcaverns:fungiwood_shelf"},
+		radius = 5,
+	})
+end
 
 minetest.register_node("dfcaverns:fungiwood_sapling", {
 	description = S("Fungiwood Spawn"),

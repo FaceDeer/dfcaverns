@@ -145,12 +145,13 @@ local level_3_nether_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 	
-	if math.random() < 0.01 then
+	if math.random() < 0.01 and data[bi] ~= c_ice then
 		dfcaverns.place_shrub(data, vi, param2_data)
 	elseif drip_rand < 0.1 then
 		--subterrane:stalagmite(bi, area, data, 6, 15, c_stone, c_stone, c_stone)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.1 * 5)		
+		local height = math.floor(drip_rand/0.1 * 5)
+		data[vi] = c_air
 		subterrane:stalagmite(vi, area, data, param2_data, param2, height, false)
 	elseif math.random() < 0.005 then
 		dfcaverns.spawn_nether_cap_vm(vi, area, data)

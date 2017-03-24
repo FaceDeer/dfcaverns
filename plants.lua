@@ -110,7 +110,7 @@ dfcaverns.register_seed = function(name, description, image, stage_one)
 		wield_image = image,
 		drawtype = "signlike",
 		paramtype2 = "wallmounted",
-		groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 2},
+		groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 2, dfcaverns_cookable = 1},
 		_dfcaverns_next_stage = stage_one,
 		paramtype = "light",
 		walkable = false,

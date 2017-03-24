@@ -57,6 +57,7 @@ dfcaverns.register_grow_abm(quarry_names, dfcaverns.config.plant_growth_timer * 
 minetest.register_craftitem("dfcaverns:quarry_bush_leaves", {
 	description = S("Quarry Bush Leaves"),
 	inventory_image = "dfcaverns_quarry_bush_leaves.png",
+	groups = {dfcaverns_cookable = 1},
 	stack_max = 99,
 })
 minetest.register_craft({

@@ -69,6 +69,7 @@ minetest.register_craft({
 minetest.register_craftitem("dfcaverns:sugar", {
 	description = S("Sweet Pod Sugar"),
 	inventory_image = "dfcaverns_sugar.png",
+	groups = {dfcaverns_cookable = 1},
 })
 
 if minetest.get_modpath("cottages") then

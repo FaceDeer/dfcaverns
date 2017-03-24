@@ -17,6 +17,7 @@ dofile(modpath.."/plants/pig_tail.lua")
 dofile(modpath.."/plants/plump_helmet.lua")
 dofile(modpath.."/plants/quarry_bush.lua")
 dofile(modpath.."/plants/sweet_pod.lua")
+dofile(modpath.."/plants/cooking.lua")
 
 -- Trees
 dofile(modpath.."/trees/blood_thorn.lua")

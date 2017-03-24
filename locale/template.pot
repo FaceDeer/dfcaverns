@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-23 16:58-0600\n"
+"POT-Creation-Date: 2017-03-24 00:45-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,15 +43,72 @@ msgid "Cave Wheat"
 msgstr ""
 
 #: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cave_wheat.lua:51
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:43
 msgid "Cave Wheat Seed"
 msgstr ""
 
 #: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cave_wheat.lua:68
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:42
 msgid "Cave Wheat Flour"
 msgstr ""
 
 #: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cave_wheat.lua:74
 msgid "Dwarven Bread"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:7
+msgid "@1 Biscuit"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:12
+msgid "@1 Stew"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:17
+msgid "@1 Roast"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:44
+msgid "Sweet Pod Spore"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:45
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:70
+msgid "Sweet Pod Sugar"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:46
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:80
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:109
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:150
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:190
+msgid "Plump Helmet"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:47
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:58
+msgid "Plump Helmet Spawn"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:48
+msgid "Quarry Bush Leaf"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:49
+msgid "Rock Nut"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:50
+msgid "Dimple Cup Spore"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:51
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\pig_tail.lua:51
+msgid "Pig Tail Spore"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\cooking.lua:52
+msgid "Dwarven Syrup"
 msgstr ""
 
 #: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\dimple_cup.lua:9
@@ -66,23 +123,8 @@ msgstr ""
 msgid "Pig Tail"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\pig_tail.lua:51
-msgid "Pig Tail Spore"
-msgstr ""
-
 #: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\pig_tail.lua:57
 msgid "Pig tail thread"
-msgstr ""
-
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:58
-msgid "Plump Helmet Spawn"
-msgstr ""
-
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:80
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:109
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:150
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\plump_helmet.lua:190
-msgid "Plump Helmet"
 msgstr ""
 
 #: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\quarry_bush.lua:9
@@ -109,19 +151,15 @@ msgstr ""
 msgid "Sweet Pods"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:70
-msgid "Sweet Pod Sugar"
-msgstr ""
-
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:90
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:91
 msgid "Dwarven Syrup Source"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:136
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:137
 msgid "Flowing Dwarven Syrup"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:187
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\dfcaverns\plants\sweet_pod.lua:188
 msgid "Dwarven Syrup Bucket"
 msgstr ""
 

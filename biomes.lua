@@ -61,55 +61,52 @@ subterrane:register_cave_decor(-113, dfcaverns.config.ymax)
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.ymax,
 	maximum_depth = dfcaverns.config.level1_min,
+	cave_threshold = 0.3,
 })
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level1_min,
 	maximum_depth = dfcaverns.config.level2_min,
+	cave_threshold = 0.3,
 })
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level2_min,
 	maximum_depth = dfcaverns.config.level3_min,
+	cave_threshold = 0.3,
 })
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level3_min,
 	maximum_depth = dfcaverns.config.lava_sea_min,
+	cave_threshold = 0.3,
 })
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.lava_sea_min,
 	maximum_depth = dfcaverns.config.ymin,
+	cave_threshold = 0.3,
 })
 
 dfcaverns.can_support_vegetation = {[c_sand] = true, [c_dirt] = true, [c_coal_ore] = true, [c_gravel] = true}
 
-dfcaverns.place_shrub = function(data, vi, param2_data)
-	local shrub = math.random(1,8)
-	if shrub == 1 then
-		data[vi] = c_sweet_pod
-		param2_data[vi] = 0
-	elseif shrub == 2 then
+dfcaverns.place_shrub = function(data, vi, param2_data, shrub_list)
+	local shrub = shrub_list[math.random(#shrub_list)]
+	
+	if shrub == c_quarry_bush then
 		data[vi] = c_quarry_bush
 		param2_data[vi] = 4
-	elseif shrub == 3 then
+	elseif shrub == c_plump_helmet then
 		data[vi] = c_plump_helmet
 		param2_data[vi] = math.random(0,3)
-	elseif shrub == 4 then
+	elseif shrub == c_pig_tail then
 		data[vi] = c_pig_tail
 		param2_data[vi] = 3
-	elseif shrub == 5 then
-		data[vi] = c_dimple_cup
-		param2_data[vi] = 0
-	elseif shrub == 6 then
+	elseif shrub == c_cave_wheat then
 		data[vi] = c_cave_wheat
 		param2_data[vi] = 3
-	elseif shrub == 7 then
-		data[vi] = c_dead_fungus
+	else
+		data[vi] = shrub
 		param2_data[vi] = 0
-	elseif shrub == 8 then
-		data[vi] = c_cavern_fungi
-		param2_data[vi] = 0
-	end	
+	end
 end

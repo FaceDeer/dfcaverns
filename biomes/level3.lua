@@ -222,6 +222,32 @@ local level_3_spore_tree_floor = function(area, data, ai, vi, bi, param2_data)
 	end
 end
 
+local level_3_black_cap_floor = function(area, data, ai, vi, bi, param2_data)
+	if data[bi] ~= c_stone then
+		return
+	end
+
+	if math.random() < 0.25 then
+		data[bi] = c_dirt
+	else
+		data[bi] = c_cobble_fungus
+	end
+	
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+	
+	if math.random() < 0.05 then
+		dfcaverns.place_shrub(data, vi, param2_data, {c_quarry_bush, c_dead_fungus, c_dead_fungus})
+	elseif drip_rand < 0.001 then
+		subterrane:giant_stalagmite(bi, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
+	elseif drip_rand < 0.1 then
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.1 * 5)		
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, true)
+	elseif math.random() < 0.025 then
+		dfcaverns.spawn_black_cap_vm(vi, area, data)
+	end
+end
+
 local level_3_goblin_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	if data[bi] ~= c_stone then
 		return
@@ -320,8 +346,8 @@ minetest.register_biome({
 	name = "dfcaverns_level3_blood_thorn_biome_lower",
 	y_min = dfcaverns.config.level3_min,
 	y_max = subsea_level,
-	heat_point = 20,
-	humidity_point = 40,
+	heat_point = 10,
+	humidity_point = 30,
 	_subterrane_ceiling_decor = level_3_dry_ceiling,
 	_subterrane_floor_decor = level_3_blood_thorn_floor,
 	_subterrane_fill_node = c_air,
@@ -334,8 +360,8 @@ minetest.register_biome({
 	name = "dfcaverns_level3_blood_thorn_biome_upper",
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level2_min,
-	heat_point = 20,
-	humidity_point = 40,
+	heat_point = 10,
+	humidity_point = 30,
 	_subterrane_ceiling_decor = level_3_dry_ceiling,
 	_subterrane_floor_decor = level_3_blood_thorn_floor,
 	_subterrane_fill_node = c_air,
@@ -456,13 +482,40 @@ minetest.register_biome({
 	_subterrane_mitigate_lava = true,
 })
 
+minetest.register_biome({
+	name = "dfcaverns_level3_black_cap_biome_lower",
+	y_min = dfcaverns.config.level2_min,
+	y_max = subsea_level,
+	heat_point = 50,
+	humidity_point = 15,
+	_subterrane_ceiling_decor = level_3_dry_ceiling,
+	_subterrane_floor_decor = level_3_black_cap_floor,
+	_subterrane_fill_node = c_air,
+	_subterrane_cave_floor_decor = level_3_cave_floor,
+	_subterrane_cave_ceiling_decor = level_3_cave_ceiling,
+	_subterrane_mitigate_lava = true,
+})
+
+minetest.register_biome({
+	name = "dfcaverns_level3_black_cap_biome_upper",
+	y_min = subsea_level,
+	y_max = dfcaverns.config.level1_min,
+	heat_point = 50,
+	humidity_point = 15,
+	_subterrane_ceiling_decor = level_3_dry_ceiling,
+	_subterrane_floor_decor = level_3_black_cap_floor,
+	_subterrane_fill_node = c_air,
+	_subterrane_cave_floor_decor = level_3_cave_floor,
+	_subterrane_cave_ceiling_decor = level_3_cave_ceiling,
+	_subterrane_mitigate_lava = true,
+})
 
 minetest.register_biome({
 	name = "dfcaverns_level3_dry_biome_lower",
 	y_min = dfcaverns.config.level3_min,
 	y_max = subsea_level,
 	heat_point = 50,
-	humidity_point = 0,
+	humidity_point = 10,
 	_subterrane_ceiling_decor = level_3_dry_ceiling,
 	_subterrane_floor_decor = level_3_dry_floor,
 	_subterrane_fill_node = c_air,
@@ -474,7 +527,7 @@ minetest.register_biome({
 	y_min = subsea_level,
 	y_max = dfcaverns.config.level2_min,
 	heat_point = 50,
-	humidity_point = 0,
+	humidity_point = 10,
 	_subterrane_ceiling_decor = level_3_dry_ceiling,
 	_subterrane_floor_decor = level_3_dry_floor,
 	_subterrane_fill_node = c_air,

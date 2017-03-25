@@ -20,7 +20,7 @@ minetest.register_biome({
 	y_max = dfcaverns.config.level3_min,
 	heat_point = 50,
 	humidity_point = 50,
-	_subterrane_fill_node = c_lava,
-	_subterrane_cave_fill_node = c_lava,
+	_subterrane_fill_node = c_air, -- It's proving tricky to get lava-flooded caves without spilling into forested ones, temporarily disabling until a better solution is found.
+	_subterrane_cave_fill_node = c_air,
 })
 

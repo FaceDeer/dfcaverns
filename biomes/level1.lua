@@ -94,11 +94,11 @@ local level_1_wet_floor = function(area, data, ai, vi, bi, param2_data)
 		return
 	end
 
-	if math.random() < 0.25 then
+	if math.random() < 0.5 then
 		data[bi] = c_mossycobble
-		if math.random() < 0.1 then
+		if math.random() < 0.05 then
 			data[vi] = c_dead_fungus
-		elseif math.random() < 0.1 then
+		elseif math.random() < 0.05 then
 			data[vi] = c_cavern_fungi
 		end
 	end	

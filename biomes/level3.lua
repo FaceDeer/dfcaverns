@@ -9,6 +9,7 @@ local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
 local c_stone = minetest.get_content_id("default:stone")
 local c_cobble = minetest.get_content_id("default:cobble")
+local c_mossycobble = minetest.get_content_id("default:mossycobble")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_sand = minetest.get_content_id("default:sand")
 
@@ -78,20 +79,20 @@ local level_3_wet_floor = function(area, data, ai, vi, bi, param2_data)
 		return
 	end
 
-	if math.random() < 0.25 then
-		data[bi] = c_dirt_moss
-		if math.random() < 0.1 then
+	if math.random() < 0.5 then
+		data[bi] = c_mossycobble
+		if math.random() < 0.05 then
 			data[vi] = c_dead_fungus
-		elseif math.random() < 0.1 then
+		elseif math.random() < 0.05 then
 			data[vi] = c_cavern_fungi
 		end
-	else
-		data[bi] = c_dirt
 	end	
 	
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 
-	if drip_rand < 0.05 then
+	if drip_rand < 0.001 then
+		subterrane:giant_stalagmite(bi, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
+	elseif drip_rand < 0.05 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.05 * 5)		
 		subterrane:stalagmite(vi, area, data, param2_data, param2, height, true)

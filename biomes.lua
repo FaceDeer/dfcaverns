@@ -61,25 +61,24 @@ subterrane:register_cave_decor(-113, dfcaverns.config.ymax)
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.ymax,
 	maximum_depth = dfcaverns.config.level1_min,
-	cave_threshold = 0.3,
+	cave_threshold = 0.5,
 })
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level1_min,
 	maximum_depth = dfcaverns.config.level2_min,
-	cave_threshold = 0.3,
+	cave_threshold = 0.5,
 })
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level2_min,
 	maximum_depth = dfcaverns.config.level3_min,
-	cave_threshold = 0.3,
+	cave_threshold = 0.5,
 })
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level3_min,
 	maximum_depth = dfcaverns.config.lava_sea_min,
-	cave_threshold = 0.3,
 })
 
 subterrane:register_cave_layer({

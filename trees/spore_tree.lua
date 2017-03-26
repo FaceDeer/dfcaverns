@@ -267,7 +267,7 @@ minetest.register_abm{
 			size = 10,
 			collisiondetection = false,
 			vertical = false,
-			texture = "farming_wheat_seed.png",
+			texture = "dfcaverns_spore_tree_spores.png",
 		})
 		
 	end,

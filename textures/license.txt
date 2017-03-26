@@ -20,4 +20,4 @@ dfcaverns_flour - derived from farming
 dfcaverns_bread - derived from farming
 dfcaverns_pig_tail_thread - copied from farming
 dfcaverns_sugar - derived from farming
-
+dfcaverns_spore_tree_spores, dfcaverns_cave_wheat_seed, dfcaverns_pig_tail_seed - all derived from farming wheat seed

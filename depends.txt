@@ -1,7 +1,6 @@
 default
 subterrane
-farming
-harderstone?
+farming?
 cottages?
 bucket?
 dynamic_liquid?

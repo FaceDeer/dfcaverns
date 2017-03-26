@@ -142,21 +142,24 @@ local grow_underground_plant = function(pos, node)
 end
 
 dfcaverns.register_grow_abm = function(names, interval, chance)
-	minetest.register_abm({
-		nodenames = names,
-		interval = interval,
-		chance = chance,
-		catch_up = true,
-		neighbors = {"farming:soil_wet"},
-		action = function(pos, node)
-			pos.y = pos.y-1
-			if minetest.get_node(pos).name ~= "farming:soil_wet" then
-				return
+
+	if minetest.get_modpath("farming") then
+		minetest.register_abm({
+			nodenames = names,
+			interval = interval,
+			chance = chance,
+			catch_up = true,
+			neighbors = {"farming:soil_wet"},
+			action = function(pos, node)
+				pos.y = pos.y-1
+				if minetest.get_node(pos).name ~= "farming:soil_wet" then
+					return
+				end
+				pos.y = pos.y+1
+				grow_underground_plant(pos, node)
 			end
-			pos.y = pos.y+1
-			grow_underground_plant(pos, node)
-		end
-	})
+		})
+	end
 	
 	minetest.register_abm({
 		nodenames = names,

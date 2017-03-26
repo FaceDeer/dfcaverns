@@ -14,7 +14,7 @@ minetest.register_node("dfcaverns:dead_fungus", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1},
+	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, flow_through = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",
@@ -38,7 +38,7 @@ minetest.register_node("dfcaverns:cavern_fungi", {
 	walkable = false,
 	buildable_to = true,
 	light_source = 6,
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
+	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flow_through = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
 		type = "fixed",

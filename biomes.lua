@@ -45,6 +45,25 @@ local shallow_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
 	end	
 end
 
+
+local perlin_cave = {
+	offset = 0,
+	scale = 1,
+	spread = {x=dfcaverns.config.horizontal_cavern_scale, y=dfcaverns.config.vertical_cavern_scale, z=dfcaverns.config.horizontal_cavern_scale},
+	seed = -400000000089,
+	octaves = 3,
+	persist = 0.67
+}
+
+local perlin_wave = {
+	offset = 0,
+	scale = 1,
+	spread = {x=dfcaverns.config.horizontal_cavern_scale * 2, y=dfcaverns.config.vertical_cavern_scale, z=dfcaverns.config.horizontal_cavern_scale * 2}, -- squashed 2:1
+	seed = 59033,
+	octaves = 6,
+	persist = 0.63
+}
+
 -- default mapgen registers an "underground" biome that gets in the way of everything.
 subterrane:override_biome({
 	name = "underground",

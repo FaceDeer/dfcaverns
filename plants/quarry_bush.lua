@@ -2,9 +2,10 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-local quarry_names = {}
+local quarry_grow_time = dfcaverns.config.plant_growth_time * dfcaverns.config.quarry_bush_delay_multiplier / 5
 
 local register_quarry_bush = function(number)
+	local name = "dfcaverns:quarry_bush_"..tostring(number)
 	local def = {
 		description = S("Quarry Bush"),
 		drawtype = "plantlike",
@@ -17,7 +18,11 @@ local register_quarry_bush = function(number)
 		buildable_to = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
-	
+
+		on_timer = function(pos, elapsed)
+			dfcaverns.grow_underground_plant(pos, name, elapsed)
+		end,
+
 		drop = {
 			max_items = 2,
 			items = {
@@ -38,21 +43,18 @@ local register_quarry_bush = function(number)
 	}
 
 	if number < 5 then
+		def._dfcaverns_next_stage_time = quarry_grow_time
 		def._dfcaverns_next_stage = "dfcaverns:quarry_bush_"..tostring(number+1)
-		table.insert(quarry_names, "dfcaverns:quarry_bush_"..tostring(number))
 	end
 
-	minetest.register_node("dfcaverns:quarry_bush_"..tostring(number), def)
+	minetest.register_node(name, def)
 end
 
 for i = 1,5 do
 	register_quarry_bush(i)
 end
 
-dfcaverns.register_seed("quarry_bush_seed", S("Rock Nuts"), "dfcaverns_rock_nuts.png", "dfcaverns:quarry_bush_1")
-table.insert(quarry_names, "dfcaverns:quarry_bush_seed")
-
-dfcaverns.register_grow_abm(quarry_names, dfcaverns.config.plant_growth_timer * dfcaverns.config.quarry_bush_timer_multiplier, dfcaverns.config.plant_growth_chance)
+dfcaverns.register_seed("quarry_bush_seed", S("Rock Nuts"), "dfcaverns_rock_nuts.png", "dfcaverns:quarry_bush_1", quarry_grow_time)
 
 minetest.register_craftitem("dfcaverns:quarry_bush_leaves", {
 	description = S("Quarry Bush Leaves"),

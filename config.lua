@@ -52,11 +52,10 @@ end
 setting("int", "blood_thorn_growth_interval", 12, "blood_thorn growth ABM interval")
 setting("int", "blood_thorn_growth_chance", 83, "blood_thorn growth ABM chance")
 
-setting("int", "plant_growth_timer", 100, "Base plant growth timer interval")
-setting("int", "plant_growth_chance", 4, "Base plant growth chance")
+setting("int", "plant_growth_time", 500, "Base plant growth time")
 
 for _, plant in pairs(plants) do
-	setting("float", plant.name.."_timer_multiplier", plant.delay_multiplier, plant.name.." growth delay multiplier")
+	setting("float", plant.name.."_delay_multiplier", plant.delay_multiplier, plant.name.." growth delay multiplier")
 end
 
 setting("bool", "light_kills_fungus", true, "Light kills fungus")

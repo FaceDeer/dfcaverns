@@ -5,6 +5,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 local displace_x = 0.125
 local displace_z = 0.125
 
+local plump_helmet_grow_time = dfcaverns.config.plant_growth_time * dfcaverns.config.cave_wheat_delay_multiplier / 4
+
 local plump_helmet_on_place =  function(itemstack, placer, pointed_thing, plantname)
 	local pt = pointed_thing
 	-- check if pointing at a node
@@ -47,6 +49,7 @@ local plump_helmet_on_place =  function(itemstack, placer, pointed_thing, plantn
 
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name = plantname, param2 = math.random(0,3)})
+	dfcaverns.plant_timer(pt.above, plantname)
 	if not minetest.setting_getbool("creative_mode") then
 		itemstack:take_item()
 	end
@@ -59,8 +62,9 @@ minetest.register_node("dfcaverns:plump_helmet_spawn", {
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 	},
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1},
+	groups = {snappy = 3, flammable = 2, plant = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1},
 	_dfcaverns_next_stage = "dfcaverns:plump_helmet_1",
+	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -71,8 +75,13 @@ minetest.register_node("dfcaverns:plump_helmet_spawn", {
 			{-0.0625 + displace_x, -0.5, -0.125 + displace_z, 0.125 + displace_x, -0.375, 0.0625 + displace_z},
 		}
 	},
+	
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_spawn")
+	end,
+	
+	on_timer = function(pos, elapsed)
+		dfcaverns.grow_underground_plant(pos, "dfcaverns:plump_helmet_spawn", elapsed)
 	end,
 })
 
@@ -85,6 +94,7 @@ minetest.register_node("dfcaverns:plump_helmet_1", {
 	},
 	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1},
 	_dfcaverns_next_stage = "dfcaverns:plump_helmet_2",
+	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -102,6 +112,10 @@ minetest.register_node("dfcaverns:plump_helmet_1", {
 	end,
 
 	on_use = minetest.item_eat(1),
+
+	on_timer = function(pos, elapsed)
+		dfcaverns.grow_underground_plant(pos, "dfcaverns:plump_helmet_1", elapsed)
+	end,
 })
 
 
@@ -114,6 +128,7 @@ minetest.register_node("dfcaverns:plump_helmet_2", {
 	},
 	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1},
 	_dfcaverns_next_stage = "dfcaverns:plump_helmet_3",
+	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -144,6 +159,10 @@ minetest.register_node("dfcaverns:plump_helmet_2", {
 	end,
 	
 	on_use = minetest.item_eat(2),
+
+	on_timer = function(pos, elapsed)
+		dfcaverns.grow_underground_plant(pos, "dfcaverns:plump_helmet_2", elapsed)
+	end,
 })
 
 minetest.register_node("dfcaverns:plump_helmet_3", {
@@ -155,6 +174,7 @@ minetest.register_node("dfcaverns:plump_helmet_3", {
 	},
 	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1},
 	_dfcaverns_next_stage = "dfcaverns:plump_helmet_4",
+	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -184,6 +204,10 @@ minetest.register_node("dfcaverns:plump_helmet_3", {
 	end,
 	
 	on_use = minetest.item_eat(3),
+
+	on_timer = function(pos, elapsed)
+		dfcaverns.grow_underground_plant(pos, "dfcaverns:plump_helmet_3", elapsed)
+	end,
 })
 
 minetest.register_node("dfcaverns:plump_helmet_4", {
@@ -193,7 +217,7 @@ minetest.register_node("dfcaverns:plump_helmet_4", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:40:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1},
+	groups = {snappy = 3, flammable = 2, plant = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -233,10 +257,6 @@ minetest.register_node("dfcaverns:plump_helmet_4", {
 	
 	on_use = minetest.item_eat(4),
 })
-
-local plump_names = {"dfcaverns:plump_helmet_spawn", "dfcaverns:plump_helmet_1", "dfcaverns:plump_helmet_2", "dfcaverns:plump_helmet_3"}
-
-dfcaverns.register_grow_abm(plump_names, dfcaverns.config.plant_growth_timer * dfcaverns.config.plump_helmet_timer_multiplier, dfcaverns.config.plant_growth_chance)
 
 minetest.register_craft({
 	type = "fuel",

@@ -54,6 +54,25 @@ minetest.register_craft({
 
 -----------------------------------------------------------------------------------------
 
+local marginal = {["default:dirt"] = true, ["dfcaverns:dirt_with_cave_moss"] = true, ["dfcaverns:cobble_with_floor_fungus"] = true}
+local growable = {["farming:soil_wet"] = true, ["default:dirt"] = true, ["dfcaverns:dirt_with_cave_moss"] = true, ["dfcaverns:cobble_with_floor_fungus"] = true}
+
+dfcaverns.plant_timer = function(pos, plantname, elapsed)
+	local next_stage_time = minetest.registered_nodes[plantname]._dfcaverns_next_stage_time
+	if not next_stage_time then return end
+	
+	next_stage_time = next_stage_time + math.random(next_stage_time * -0.1, next_stage_time * 0.1)
+	local below = minetest.get_node(vector.add(pos, {x=0, y=-1, z=0}))
+	if marginal[below.name] then
+		next_stage_time = next_stage_time * 5
+	end
+	if elapsed ~= nil then
+		minetest.get_node_timer(pos):set(next_stage_time, elapsed-next_stage_time)
+	else
+		minetest.get_node_timer(pos):start(next_stage_time)
+	end
+end
+
 local place_seed = function(itemstack, placer, pointed_thing, plantname)
 	local pt = pointed_thing
 	-- check if pointing at a node
@@ -93,16 +112,17 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 	if not minetest.registered_nodes[above.name].buildable_to then
 		return itemstack
 	end
-
+	
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name = plantname, param2 = 1})
+	dfcaverns.plant_timer(pt.above, plantname)
 	if not minetest.setting_getbool("creative_mode") then
 		itemstack:take_item()
 	end
 	return itemstack
 end
 
-dfcaverns.register_seed = function(name, description, image, stage_one)
+dfcaverns.register_seed = function(name, description, image, stage_one, grow_time)
 	local def = {
 		description = description,
 		tiles = {image},
@@ -112,6 +132,7 @@ dfcaverns.register_seed = function(name, description, image, stage_one)
 		paramtype2 = "wallmounted",
 		groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 2, dfcaverns_cookable = 1},
 		_dfcaverns_next_stage = stage_one,
+		_dfcaverns_next_stage_time = grow_time,
 		paramtype = "light",
 		walkable = false,
 		sunlight_propagates = true,
@@ -119,8 +140,13 @@ dfcaverns.register_seed = function(name, description, image, stage_one)
 			type = "fixed",
 			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
 		},
+		
 		on_place = function(itemstack, placer, pointed_thing)
 			return place_seed(itemstack, placer, pointed_thing, "dfcaverns:"..name)
+		end,
+		
+		on_timer = function(pos, elapsed)
+			dfcaverns.grow_underground_plant(pos, "dfcaverns:"..name, elapsed)
 		end,
 	}
 	
@@ -132,51 +158,20 @@ dfcaverns.register_seed = function(name, description, image, stage_one)
 	})
 end
 
-local grow_underground_plant = function(pos, node)
-	local node_def = minetest.registered_nodes[node.name]
+dfcaverns.grow_underground_plant = function(pos, plant_name, elapsed)
+	local node_def = minetest.registered_nodes[plant_name]
 	local next_stage = node_def._dfcaverns_next_stage
 	if next_stage then
-		local next_def = minetest.registered_nodes[next_stage]
-		minetest.swap_node(pos, {name=next_stage, param2 = next_def.place_param2 or node.param2})
-	end
-end
-
-dfcaverns.register_grow_abm = function(names, interval, chance)
-
-	if minetest.get_modpath("farming") then
-		minetest.register_abm({
-			nodenames = names,
-			interval = interval,
-			chance = chance,
-			catch_up = true,
-			neighbors = {"farming:soil_wet"},
-			action = function(pos, node)
-				pos.y = pos.y-1
-				if minetest.get_node(pos).name ~= "farming:soil_wet" then
-					return
-				end
-				pos.y = pos.y+1
-				grow_underground_plant(pos, node)
-			end
-		})
-	end
-	
-	minetest.register_abm({
-		nodenames = names,
-		interval = interval * 10,
-		chance = chance,
-		catch_up = true,
-		neighbors = {"default:dirt", "dfcaverns:dirt_with_cave_moss", "dfcaverns:cobble_with_floor_fungus"},
-		action = function(pos, node)
-			pos.y = pos.y-1
-			if minetest.get_node(pos).name == "default:dirt" or
-				minetest.get_node(pos).name == "dfcaverns:dirt_with_cave_moss" or
-				minetest.get_node(pos).name == "dfcaverns:cobble_with_floor_fungus" then
-				pos.y = pos.y+1
-				grow_underground_plant(pos, node)
-			end
+		local soil = minetest.get_node(vector.add(pos, {x=0, y=-1, z=0})).name
+		if growable[soil] then
+			local next_def = minetest.registered_nodes[next_stage]
+			local node = minetest.get_node(pos)
+			minetest.swap_node(pos, {name=next_stage, param2 = next_def.place_param2 or node.param2})
+			dfcaverns.plant_timer(pos, next_stage, elapsed)
+		else
+			dfcaverns.plant_timer(pos, plant_name) -- reset timer, check again later
 		end
-	})
+	end
 end
 
 if dfcaverns.config.light_kills_fungus then

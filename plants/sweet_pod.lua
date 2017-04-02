@@ -2,9 +2,10 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-local sweet_names = {}
+local sweet_pod_grow_time = dfcaverns.config.plant_growth_time * dfcaverns.config.sweet_pod_delay_multiplier / 6
 
 local register_sweet_pod = function(number)
+	local name = "dfcaverns:sweet_pod_"..tostring(number)
 	local def = {
 		description = S("Sweet Pod"),
 		drawtype = "plantlike",
@@ -15,6 +16,10 @@ local register_sweet_pod = function(number)
 		buildable_to = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
+		
+		on_timer = function(pos, elapsed)
+			dfcaverns.grow_underground_plant(pos, name, elapsed)
+		end,
 
 		drop = {
 			max_items = 2,
@@ -37,20 +42,17 @@ local register_sweet_pod = function(number)
 	
 	if number < 6 then
 		def._dfcaverns_next_stage = "dfcaverns:sweet_pod_"..tostring(number+1)
-		table.insert(sweet_names, "dfcaverns:sweet_pod_"..tostring(number))
+		def._dfcaverns_next_stage_time = sweet_pod_grow_time
 	end
 	
-	minetest.register_node("dfcaverns:sweet_pod_"..tostring(number), def)
+	minetest.register_node(name, def)
 end
 
 for i = 1,6 do
 	register_sweet_pod(i)
 end
 
-dfcaverns.register_seed("sweet_pod_seed", S("Sweet Pod Spores"), "dfcaverns_sweet_pod_seed.png", "dfcaverns:sweet_pod_1")
-table.insert(sweet_names, "dfcaverns:sweet_pod_seed")
-
-dfcaverns.register_grow_abm(sweet_names, dfcaverns.config.plant_growth_timer * dfcaverns.config.sweet_pod_timer_multiplier, dfcaverns.config.plant_growth_chance)
+dfcaverns.register_seed("sweet_pod_seed", S("Sweet Pod Spores"), "dfcaverns_sweet_pod_seed.png", "dfcaverns:sweet_pod_1", sweet_pod_grow_time)
 
 minetest.register_craftitem("dfcaverns:sweet_pods", {
 	description = S("Sweet Pods"),

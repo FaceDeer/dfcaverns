@@ -4,3 +4,4 @@ farming?
 cottages?
 bucket?
 dynamic_liquid?
+wool?

@@ -62,6 +62,16 @@ minetest.register_craftitem("dfcaverns:pig_tail_thread", {
 	groups = {flammable = 1, thread = 1},
 })
 
+if minetest.get_modpath("wool") then
+	minetest.register_craft({
+		output = "wool:white",
+		recipe = {
+			{"group:thread", "group:thread"},
+			{"group:thread", "group:thread"},
+		}
+	})
+end
+
 minetest.register_craft({
 	type = "fuel",
 	recipe = "dfcaverns:pig_tail_thread",

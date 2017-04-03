@@ -457,9 +457,9 @@ minetest.register_biome({
 minetest.register_biome({
 	name = "dfcaverns_level3_tunnel_tube_biome_lower",
 	y_min = dfcaverns.config.level3_min,
+	y_max = subsea_level,
 	heat_point = 60,
 	humidity_point = 40,
-	y_max = subsea_level,
 	_subterrane_ceiling_decor = level_3_moist_ceiling,
 	_subterrane_floor_decor = level_3_tunnel_tube_floor,
 	_subterrane_fill_node = c_air,
@@ -499,7 +499,7 @@ minetest.register_biome({
 minetest.register_biome({
 	name = "dfcaverns_level3_black_cap_biome_upper",
 	y_min = subsea_level,
-	y_max = dfcaverns.config.level1_min,
+	y_max = dfcaverns.config.level3_min,
 	heat_point = 50,
 	humidity_point = 15,
 	_subterrane_ceiling_decor = level_3_dry_ceiling,

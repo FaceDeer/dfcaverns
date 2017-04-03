@@ -13,14 +13,27 @@ local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- para
 
 -------------------------------------------------------------------------------------------
 
+local subsea_level = (dfcaverns.config.lava_sea_min - dfcaverns.config.level3_min) * 0.3 + dfcaverns.config.level3_min
+minetest.debug("level3_min", dfcaverns.config.level3_min)
+minetest.debug("lava subsea", subsea_level)
+minetest.debug("lava_sea_min", dfcaverns.config.lava_sea_min)
 
 minetest.register_biome({
-	name = "dfcaverns_lava_sea",
+	name = "dfcaverns_lava_sea_lower",
 	y_min = dfcaverns.config.lava_sea_min,
+	y_max = subsea_level,
+	heat_point = 50,
+	humidity_point = 50,
+	_subterrane_fill_node = c_lava,
+	_subterrane_cave_fill_node = c_lava,
+})
+
+minetest.register_biome({
+	name = "dfcaverns_lava_sea_upper",
+	y_min = subsea_level,
 	y_max = dfcaverns.config.level3_min,
 	heat_point = 50,
 	humidity_point = 50,
-	_subterrane_fill_node = c_air, -- It's proving tricky to get lava-flooded caves without spilling into forested ones, temporarily disabling until a better solution is found.
-	_subterrane_cave_fill_node = c_air,
+	_subterrane_fill_node = c_air,
+	_subterrane_cave_fill_node = c_lava,
 })
-

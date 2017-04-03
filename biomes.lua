@@ -98,13 +98,14 @@ subterrane:register_cave_layer({
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level3_min,
 	maximum_depth = dfcaverns.config.lava_sea_min,
+	cave_threshold = 0.1
 })
 
-subterrane:register_cave_layer({
-	minimum_depth = dfcaverns.config.lava_sea_min,
-	maximum_depth = dfcaverns.config.ymin,
-	cave_threshold = 0.3,
-})
+--subterrane:register_cave_layer({
+--	minimum_depth = dfcaverns.config.lava_sea_min,
+--	maximum_depth = dfcaverns.config.ymin,
+--	cave_threshold = 0.3,
+--})
 
 dfcaverns.can_support_vegetation = {[c_sand] = true, [c_dirt] = true, [c_coal_ore] = true, [c_gravel] = true}
 

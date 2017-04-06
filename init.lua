@@ -63,7 +63,7 @@ minetest.register_ore({
 	column_height_min = 2,
 	column_height_max = 6,
 	height_min = -31000,
-	height_max = 31000,
+	height_max = 512,
 	noise_threshold = 0.9,
 	noise_params = {
 		offset = 0,
@@ -76,3 +76,76 @@ minetest.register_ore({
 	},
 	random_factor = 0,
 })
+
+
+local c_air = minetest.get_content_id("air")
+local c_snowblock = minetest.get_content_id("default:snowblock")
+local c_obsidian = minetest.get_content_id("default:obsidian")
+local c_lava = minetest.get_content_id("default:lava_source")
+
+local water_level = minetest.get_mapgen_params().water_level
+
+local is_adjacent_to_air = function(area, data, pos)
+	return pos.y > water_level and
+		(data[area:index(pos.x+1, pos.y, pos.z)] == c_air
+		or data[area:index(pos.x-1, pos.y, pos.z)] == c_air
+		or data[area:index(pos.x, pos.y, pos.z+1)] == c_air
+		or data[area:index(pos.x, pos.y, pos.z-1)] == c_air
+		or data[area:index(pos.x, pos.y-1, pos.z)] == c_air)
+end
+
+dfcaverns.remove_unsupported_lava = function(area, data, vi)
+	if data[vi] == c_lava then
+		local pos = area:position(vi)
+		if is_adjacent_to_air(area, data, pos) then
+			data[vi] = c_air
+			dfcaverns.remove_unsupported_lava(area, data, area:index(pos.x+1, pos.y, pos.z))
+			dfcaverns.remove_unsupported_lava(area, data, area:index(pos.x-1, pos.y, pos.z))
+			dfcaverns.remove_unsupported_lava(area, data, area:index(pos.x, pos.y, pos.z+1))
+			dfcaverns.remove_unsupported_lava(area, data, area:index(pos.x, pos.y, pos.z-1))
+			dfcaverns.remove_unsupported_lava(area, data, area:index(pos.x, pos.y+1, pos.z))
+		end
+	end
+end
+
+local data = {}
+
+minetest.register_on_generated(function(minp, maxp, seed)
+	--if too far from water level, abort. Caverns are on their own.
+	if minp.y > 512 or maxp.y < water_level then
+		return
+	end
+		
+	--easy reference to commonly used values
+	local t_start = os.clock()
+	local x_max = maxp.x
+	local y_max = maxp.y
+	local z_max = maxp.z
+	local x_min = minp.x
+	local y_min = minp.y
+	local z_min = minp.z
+		
+	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
+	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
+	vm:get_data(data)
+		
+	for z = z_min, z_max do -- for each xy plane progressing northwards
+		--structure loop, hollows out the cavern
+		for y = y_min, y_max do -- for each x row progressing upwards
+			local vi = area:index(x_min, y, z) --current node index
+			for x = x_min, x_max do -- for each node do
+				dfcaverns.remove_unsupported_lava(area, data, vi)
+				vi = vi + 1
+			end
+		end
+	end
+		
+	--send data back to voxelmanip
+	vm:set_data(data)
+	--calc lighting
+	vm:set_lighting({day = 0, night = 0})
+	vm:calc_lighting()
+	vm:update_liquids()
+	--write it to world
+	vm:write_to_map(data)
+end)

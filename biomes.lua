@@ -81,24 +81,50 @@ subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.ymax,
 	maximum_depth = dfcaverns.config.level1_min,
 	cave_threshold = 0.5,
+	perlin_cave = perlin_cave,
+	perlin_wave = perlin_wave,
 })
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level1_min,
 	maximum_depth = dfcaverns.config.level2_min,
 	cave_threshold = 0.5,
+	perlin_cave = perlin_cave,
+	perlin_wave = perlin_wave,
 })
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level2_min,
 	maximum_depth = dfcaverns.config.level3_min,
 	cave_threshold = 0.5,
+	perlin_cave = perlin_cave,
+	perlin_wave = perlin_wave,
 })
+
+local perlin_cave_lava = {
+	offset = 0,
+	scale = 1,
+	spread = {x=dfcaverns.config.horizontal_cavern_scale * 2, y=dfcaverns.config.vertical_cavern_scale * 0.5, z=dfcaverns.config.horizontal_cavern_scale * 2},
+	seed = -400000000089,
+	octaves = 3,
+	persist = 0.67
+}
+
+local perlin_wave_lava = {
+	offset = 0,
+	scale = 1,
+	spread = {x=dfcaverns.config.horizontal_cavern_scale * 4, y=dfcaverns.config.vertical_cavern_scale * 0.5, z=dfcaverns.config.horizontal_cavern_scale * 4}, -- squashed 2:1
+	seed = 59033,
+	octaves = 6,
+	persist = 0.63
+}
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level3_min,
 	maximum_depth = dfcaverns.config.lava_sea_min,
-	cave_threshold = 0.1
+	cave_threshold = 0.2,
+	perlin_cave = perlin_cave_lava,
+	perlin_wave = perlin_wave_lava,
 })
 
 --subterrane:register_cave_layer({

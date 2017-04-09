@@ -5,3 +5,4 @@ cottages?
 bucket?
 dynamic_liquid?
 wool?
+magma_conduits?

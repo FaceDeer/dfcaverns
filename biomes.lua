@@ -127,12 +127,6 @@ subterrane:register_cave_layer({
 	perlin_wave = perlin_wave_lava,
 })
 
---subterrane:register_cave_layer({
---	minimum_depth = dfcaverns.config.lava_sea_min,
---	maximum_depth = dfcaverns.config.ymin,
---	cave_threshold = 0.3,
---})
-
 dfcaverns.can_support_vegetation = {[c_sand] = true, [c_dirt] = true, [c_coal_ore] = true, [c_gravel] = true}
 
 dfcaverns.place_shrub = function(data, vi, param2_data, shrub_list)

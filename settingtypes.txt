@@ -34,5 +34,4 @@ dfcaverns_ymax (Upper limit of level 1) int -300
 dfcaverns_level1_min (Upper limit of level 2) int -900
 dfcaverns_level2_min (Upper limit of level 3) int -1500
 dfcaverns_level3_min (Upper limit of lava sea) int -2100
-dfcaverns_lava_sea_min (Upper limit of underworld) int -2700
-dfcaverns_ymin (Lower limit of underworld) int -3500
+dfcaverns_lava_sea_min (Lower limit of lava sea) int -2700

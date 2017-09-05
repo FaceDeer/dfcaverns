@@ -36,5 +36,8 @@ dfcaverns_level2_min (Upper limit of level 3) int -1500
 dfcaverns_level3_min (Upper limit of lava sea) int -2100
 dfcaverns_lava_sea_min (Lower limit of lava sea) int -2700
 
+[Lower Sea]
 #Determines threshold for higher number means sparser magma
 dfcaverns_lava_sea_threshold (Cavern threshold for magma sea) float 0.2 0.0 1.0
+#When true, the magma sea contains magma. When false, it's water instead.
+dfcaverns_bottom_sea_contains_lava (Lower sea is lava) bool true

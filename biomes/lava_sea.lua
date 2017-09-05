@@ -13,13 +13,26 @@ local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- para
 
 -------------------------------------------------------------------------------------------
 
-minetest.register_biome({
+local lava_sea_biome_def = {
 	name = "dfcaverns_lava_sea",
 	y_min = dfcaverns.config.lava_sea_min,
 	y_max = dfcaverns.config.level3_min,
 	heat_point = 50,
 	humidity_point = 50,
-})
+}
+
+if not dfcaverns.config.bottom_sea_contains_lava then
+	lava_sea_biome_def._subterrane_mitigate_lava = true
+end
+
+minetest.register_biome(lava_sea_biome_def)
+
+local c_sea
+if dfcaverns.config.bottom_sea_contains_lava then
+	c_sea = c_lava
+else
+	c_sea = c_water
+end
 
 local airspace = 256
 
@@ -45,12 +58,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:get_data(data)
 		
 	for z = z_min, z_max do -- for each xy plane progressing northwards
-		--structure loop, hollows out the cavern
 		for y = y_min, y_max do -- for each x row progressing upwards
 			local vi = area:index(x_min, y, z) --current node index
 			for x = x_min, x_max do -- for each node do
 				if data[vi] == c_air or data[vi] == c_water then
-					data[vi] = c_lava
+					data[vi] = c_sea
 				end
 				vi = vi + 1
 			end

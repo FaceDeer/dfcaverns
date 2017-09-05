@@ -68,4 +68,6 @@ setting("int", "level1_min", -900, "Upper limit of level 2")
 setting("int", "level2_min", -1500, "Upper limit of level 3")
 setting("int", "level3_min", -2100, "Upper limit of lava sea")
 setting("int", "lava_sea_min", -2700, "Lower limit of the lava sea")
+
 setting("float", "lava_sea_threshold", 0.2, "Cavern threshold for magma sea (higher number means sparser magma)")
+setting("bool", "bottom_sea_contains_lava", true, "Lower sea contains lava")

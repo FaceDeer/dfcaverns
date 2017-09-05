@@ -30,6 +30,10 @@ dfcaverns_vertical_cavern_scale (Vertical cavern dimension scale) float 256
 #affects the scale of features in the perlin noise that is used to build caverns.
 #Most caverns will be smaller than this (and a few might be larger)
 dfcaverns_horizontal_cavern_scale (Horizontal cavern dimension scale) float 256
+#Determines threshold for cave generation. Higher number means sparser caverns
+dfcaverns_cavern_threshold (Cavern threshold) float 0.5 0.0 1.0
+
+[Cavern depth borders]
 dfcaverns_ymax (Upper limit of level 1) int -300
 dfcaverns_level1_min (Upper limit of level 2) int -900
 dfcaverns_level2_min (Upper limit of level 3) int -1500

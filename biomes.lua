@@ -80,7 +80,7 @@ subterrane:register_cave_decor(-113, dfcaverns.config.ymax)
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.ymax,
 	maximum_depth = dfcaverns.config.level1_min,
-	cave_threshold = 0.5,
+	cave_threshold = dfcaverns.config.cavern_threshold,
 	perlin_cave = perlin_cave,
 	perlin_wave = perlin_wave,
 })
@@ -88,7 +88,7 @@ subterrane:register_cave_layer({
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level1_min,
 	maximum_depth = dfcaverns.config.level2_min,
-	cave_threshold = 0.5,
+	cave_threshold = dfcaverns.config.cavern_threshold,
 	perlin_cave = perlin_cave,
 	perlin_wave = perlin_wave,
 })
@@ -96,7 +96,7 @@ subterrane:register_cave_layer({
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level2_min,
 	maximum_depth = dfcaverns.config.level3_min,
-	cave_threshold = 0.5,
+	cave_threshold = dfcaverns.config.cavern_threshold,
 	perlin_cave = perlin_cave,
 	perlin_wave = perlin_wave,
 })

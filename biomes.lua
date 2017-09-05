@@ -122,7 +122,7 @@ local perlin_wave_lava = {
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level3_min,
 	maximum_depth = dfcaverns.config.lava_sea_min,
-	cave_threshold = 0.2,
+	cave_threshold = dfcaverns.config.lava_sea_threshold,
 	perlin_cave = perlin_cave_lava,
 	perlin_wave = perlin_wave_lava,
 })

@@ -202,25 +202,6 @@ dfcaverns.spawn_fungiwood_vm = function(vi, area, data, height)
 		end
 	end
 
-	dev = 2
-	for yy = my + 1, my + 2 do
-		for zz = z - dev, z + dev do
-			local vi = area:index(x - dev, yy, zz)
-			local via = area:index(x - dev, yy + 1, zz)
-			for xx = x - dev, x + dev do
-				if math.random() < 0.95 - dev * 0.05 then
-					local node_id = data[vi]
-					if node_id == c_air or node_id == c_ignore then
-						data[vi] = c_fungiwood_shelf
-					end
-				end
-				vi  = vi + 1
-				via = via + 1
-			end
-		end
-		dev = dev - 1
-	end
-
 	-- Trunk
 	for yy = y, maxy do
 		local vi = area:index(x, yy, z)

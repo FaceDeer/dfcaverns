@@ -161,6 +161,12 @@ local level_1_underwater_floor = function(area, data, ai, vi, bi, param2_data)
 	else
 		data[bi] = c_dirt
 	end
+	if data[vi] == c_air then
+		data[vi] = c_water
+	end
+	if data[ai] == c_air then
+		data[ai] = c_water
+	end
 end
 
 
@@ -291,7 +297,7 @@ minetest.register_biome({
 	y_max = dfcaverns.config.ymax,
 	heat_point = 20,
 	humidity_point = 80,
-	_subterrane_fill_node = c_water,
+	_subterrane_fill_node = c_air,
 	_subterrane_cave_fill_node = c_water,
 	_subterrane_floor_decor = level_1_underwater_floor,
 	_subterrane_mitigate_lava = false, -- no need to mitigate lava in a flooded cave, problem is self-solving
@@ -318,7 +324,7 @@ minetest.register_biome({
 	y_max = subsea_level,
 	heat_point = 80,
 	humidity_point = 80,
-	_subterrane_fill_node = c_water,
+	_subterrane_fill_node = c_air,
 	_subterrane_cave_fill_node = c_water,
 	_subterrane_floor_decor = level_1_underwater_floor,
 	_subterrane_mitigate_lava = false, -- no need to mitigate lava in a flooded cave, problem is self-solving

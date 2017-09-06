@@ -140,20 +140,6 @@ minetest.register_node("dfcaverns:plump_helmet_2", {
 			{-0.125 + displace_x, -0.3125, -0.1875 + displace_z, 0.1875 + displace_x, -0.0625, 0.125 + displace_z},  -- cap
 		}
 	},
-
-	drop = {
-		max_items = 2,
-		items = {
-			{
-				items = {'dfcaverns:plump_helmet_2'},
-				rarity = 1,
-			},
-			{
-				items = {'dfcaverns:plump_helmet_spawn'},
-				rarity = 4,
-			},
-		},
-	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_2")
 	end,
@@ -186,19 +172,6 @@ minetest.register_node("dfcaverns:plump_helmet_3", {
 			{-0.1875 + displace_x, -0.125, -0.25 + displace_z, 0.25 + displace_x, 0.1875, 0.1875 + displace_z}, -- cap
 		}
 	},
-	drop = {
-		max_items = 2,
-		items = {
-			{
-				items = {'dfcaverns:plump_helmet_3'},
-				rarity = 1,
-			},
-			{
-				items = {'dfcaverns:plump_helmet_spawn'},
-				rarity = 2,
-			},
-		},
-	},
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_3")
 	end,
@@ -211,6 +184,55 @@ minetest.register_node("dfcaverns:plump_helmet_3", {
 })
 
 minetest.register_node("dfcaverns:plump_helmet_4", {
+	description = S("Plump Helmet"),
+	tiles = {
+		"dfcaverns_plump_helmet_cap.png",
+		"dfcaverns_plump_helmet_cap.png",
+		"dfcaverns_plump_helmet_cap.png^[lowpart:40:dfcaverns_plump_helmet_stem.png",
+	},
+	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1},
+	drawtype = "nodebox",
+	paramtype = "light",
+	paramtype2 = "facedir",
+	walkable = false,
+	node_box = {
+		type = "fixed",
+		fixed = {
+			{-0.125 + displace_x, -0.5, -0.1875 + displace_z, 0.1875 + displace_x, 0.375, 0.125 + displace_z}, -- stalk
+			{-0.25 + displace_x, -0.0625, -0.3125 + displace_z, 0.3125 + displace_x, 0.25, 0.25 + displace_z}, -- cap
+			{-0.1875 + displace_x, 0.25, -0.25 + displace_z, 0.25 + displace_x, 0.3125, 0.1875 + displace_z}, -- cap rounding
+		}
+	},
+	drop = {
+		max_items = 4,
+		items = {
+			{
+				items = {'dfcaverns:plump_helmet_4_picked'},
+				rarity = 1,
+			},
+			{
+				items = {'dfcaverns:plump_helmet_spawn'},
+				rarity = 1,
+			},
+			{
+				items = {'dfcaverns:plump_helmet_spawn'},
+				rarity = 2,
+			},
+			{
+				items = {'dfcaverns:plump_helmet_spawn'},
+				rarity = 2,
+			},
+		},
+	},
+	on_place = function(itemstack, placer, pointed_thing)
+		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_4")
+	end,
+	
+	on_use = minetest.item_eat(4),
+})
+
+
+minetest.register_node("dfcaverns:plump_helmet_4_picked", {
 	description = S("Plump Helmet"),
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
@@ -230,29 +252,8 @@ minetest.register_node("dfcaverns:plump_helmet_4", {
 			{-0.1875 + displace_x, 0.25, -0.25 + displace_z, 0.25 + displace_x, 0.3125, 0.1875 + displace_z}, -- cap rounding
 		}
 	},
-	drop = {
-		max_items = 4,
-		items = {
-			{
-				items = {'dfcaverns:plump_helmet_4'},
-				rarity = 1,
-			},
-			{
-				items = {'dfcaverns:plump_helmet_spawn'},
-				rarity = 1,
-			},
-			{
-				items = {'dfcaverns:plump_helmet_spawn'},
-				rarity = 2,
-			},
-			{
-				items = {'dfcaverns:plump_helmet_spawn'},
-				rarity = 2,
-			},
-		},
-	},
 	on_place = function(itemstack, placer, pointed_thing)
-		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_4")
+		return plump_helmet_on_place(itemstack, placer, pointed_thing, "dfcaverns:plump_helmet_4_picked")
 	end,
 	
 	on_use = minetest.item_eat(4),
@@ -281,5 +282,10 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "fuel",
 	recipe = "dfcaverns:plump_helmet_4",
+	burntime = 4
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:plump_helmet_4_picked",
 	burntime = 4
 })

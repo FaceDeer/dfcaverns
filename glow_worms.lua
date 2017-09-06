@@ -8,17 +8,32 @@ minetest.register_node("dfcaverns:glow_worm", {
 	inventory_image = "dfcaverns_glow_worm.png",
 	wield_image = "dfcaverns_glow_worm.png",
 	is_ground_content = true,
-	groups = {oddly_breakable_by_hand=3},
+	groups = {oddly_breakable_by_hand=3, light_sensitive_fungus = 12},
+	_dfcaverns_dead_node = "air",
 	light_source = 9,
 	paramtype = "light",
 	drawtype = "plantlike",
 	walkable = false,
 	buildable_to = true,
 	visual_scale = 1.0,
-	selection_box = {
-		type = "fixed",
-		fixed = {-0.5, -0.5, -0.5, 0.5, -0.5, 0.5},
-	},
+	after_place_node = function(pos, placer) 
+		if dfcaverns.config.glow_worm_delay_multiplier > 0 then
+			minetest.get_node_timer(pos):start(math.random(
+				dfcaverns.config.glow_worm_delay_multiplier * dfcaverns.config.plant_growth_time * 0.75,
+				dfcaverns.config.glow_worm_delay_multiplier * dfcaverns.config.plant_growth_time * 1.25))
+		end
+	end,
+	on_timer = function(pos, elapsed)
+		local below = {x=pos.x, y=pos.y-1, z=pos.z}
+		if minetest.get_node(below).name == "air" then
+			minetest.set_node(below, {name="dfcaverns:glow_worm"})
+			if math.random() > 0.5 then
+				minetest.get_node_timer(below):start(math.random(
+				dfcaverns.config.glow_worm_delay_multiplier * dfcaverns.config.plant_growth_time * 0.75,
+				dfcaverns.config.glow_worm_delay_multiplier * dfcaverns.config.plant_growth_time * 1.25))			
+			end
+		end
+	end,
 })
 
 local c_air = minetest.get_content_id("air")
@@ -56,3 +71,4 @@ minetest.register_abm({
 		minetest.set_node(pos, {name="air"})
 	end,	
 })
+

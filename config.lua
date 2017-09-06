@@ -42,6 +42,8 @@ local plants = {
 	{name="sweet_pod", delay_multiplier=2},
 }
 
+--Trees
+
 setting("int", "tree_min_growth_delay", 2400, "Minimum sapling growth delay")
 setting("int", "tree_max_growth_delay", 4800, "Maximum sapling growth delay")
 
@@ -52,13 +54,18 @@ end
 setting("int", "blood_thorn_growth_interval", 12, "blood_thorn growth ABM interval")
 setting("int", "blood_thorn_growth_chance", 83, "blood_thorn growth ABM chance")
 
+--Plants
+
 setting("int", "plant_growth_time", 500, "Base plant growth time")
 
 for _, plant in pairs(plants) do
 	setting("float", plant.name.."_delay_multiplier", plant.delay_multiplier, plant.name.." growth delay multiplier")
 end
 
+setting("float", "glow_worm_delay_multiplier", 10.0, "glow worm growth delay multiplier")
 setting("bool", "light_kills_fungus", true, "Light kills fungus")
+
+--Caverns
 
 setting("float", "vertical_cavern_scale", 256, "Vertical cavern dimension scale")
 setting("float", "horizontal_cavern_scale", 256, "Horizontal cavern dimension scale")

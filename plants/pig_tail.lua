@@ -8,6 +8,8 @@ local register_pig_tail = function(number)
 	local name = "dfcaverns:pig_tail_"..tostring(number)
 	local def = {
 		description = S("Pig Tail"),
+		_doc_items_longdesc = dfcaverns.doc.pig_tail_desc,
+		_doc_items_usagehelp = dfcaverns.doc.pig_tail_usage,
 		drawtype = "plantlike",
 		paramtype2 = "meshoptions",
 		place_param2 = 3,
@@ -54,10 +56,19 @@ for i = 1,8 do
 	register_pig_tail(i)
 end
 
-dfcaverns.register_seed("pig_tail_seed", S("Pig Tail Spore"), "dfcaverns_pig_tail_seed.png", "dfcaverns:pig_tail_1", pig_tail_grow_time)
+dfcaverns.register_seed(
+	"pig_tail_seed",
+	S("Pig Tail Spore"),
+	"dfcaverns_pig_tail_seed.png",
+	"dfcaverns:pig_tail_1",
+	pig_tail_grow_time,
+	dfcaverns.doc.pig_tail_desc,
+	dfcaverns.doc.pig_tail_usage)
 
 minetest.register_craftitem("dfcaverns:pig_tail_thread", {
 	description = S("Pig tail thread"),
+	_doc_items_longdesc = dfcaverns.doc.pig_tail_thread_desc,
+	_doc_items_usagehelp = dfcaverns.doc.pig_tail_thread_usage,
 	inventory_image = "dfcaverns_pig_tail_thread.png",
 	groups = {flammable = 1, thread = 1},
 })

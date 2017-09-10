@@ -4,6 +4,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 minetest.register_node("dfcaverns:glow_worm", {
 	description = S("Glow Worms"),
+	_doc_items_longdesc = dfcaverns.doc.glow_worms_desc,
+	_doc_items_usagehelp = dfcaverns.doc.glow_worms_usage,
 	tiles = {"dfcaverns_glow_worm.png"},
 	inventory_image = "dfcaverns_glow_worm.png",
 	wield_image = "dfcaverns_glow_worm.png",

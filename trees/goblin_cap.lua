@@ -5,6 +5,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 --stem
 minetest.register_node("dfcaverns:goblin_cap_stem", {
 	description = S("Goblin Cap Stem"),
+	_doc_items_longdesc = dfcaverns.doc.goblin_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap_stem.png"},
 	is_ground_content = true,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
@@ -14,6 +16,8 @@ minetest.register_node("dfcaverns:goblin_cap_stem", {
 --cap
 minetest.register_node("dfcaverns:goblin_cap", {
 	description = S("Goblin Cap"),
+	_doc_items_longdesc = dfcaverns.doc.goblin_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap.png"},
 	is_ground_content = true,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
@@ -23,6 +27,8 @@ minetest.register_node("dfcaverns:goblin_cap", {
 --gills
 minetest.register_node("dfcaverns:goblin_cap_gills", {
 	description = S("Goblin Cap Gills"),
+	_doc_items_longdesc = dfcaverns.doc.goblin_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap_gills.png"},
 	is_ground_content = true,
 	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
@@ -69,6 +75,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:goblin_cap_wood", {
 	description = S("Goblin Cap Planks"),
+	_doc_items_longdesc = dfcaverns.doc.goblin_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.goblin_cap_usage,
 	paramtype2 = "facedir",
 	place_param2 = 0,
 	tiles = {"dfcaverns_goblin_cap_wood.png"},
@@ -79,6 +87,8 @@ minetest.register_node("dfcaverns:goblin_cap_wood", {
 
 minetest.register_node("dfcaverns:goblin_cap_stem_wood", {
 	description = S("Goblin Cap Stem Planks"),
+	_doc_items_longdesc = dfcaverns.doc.goblin_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.goblin_cap_usage,
 	paramtype2 = "facedir",
 	place_param2 = 0,
 	tiles = {"dfcaverns_goblin_cap_stem_wood.png"},
@@ -121,6 +131,8 @@ minetest.register_craft({
 -- sapling
 minetest.register_node("dfcaverns:goblin_cap_sapling", {
 	description = S("Goblin Cap Spawn"),
+	_doc_items_longdesc = dfcaverns.doc.goblin_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.goblin_cap_usage,
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"dfcaverns_goblin_cap_sapling.png"},

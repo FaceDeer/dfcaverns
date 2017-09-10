@@ -11,6 +11,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 minetest.register_node("dfcaverns:fungiwood", {
 	description = S("Fungiwood Stem"),
+	_doc_items_longdesc = dfcaverns.doc.fungiwood_desc,
+	_doc_items_usagehelp = dfcaverns.doc.fungiwood_usage,
 	tiles = {"dfcaverns_fungiwood.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -30,6 +32,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:fungiwood_wood", {
 	description = S("Fungiwood Planks"),
+	_doc_items_longdesc = dfcaverns.doc.fungiwood_desc,
+	_doc_items_usagehelp = dfcaverns.doc.fungiwood_usage,
 	paramtype2 = "facedir",
 	place_param2 = 0,
 	tiles = {"dfcaverns_fungiwood_wood.png"},
@@ -62,6 +66,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:fungiwood_shelf",{
 	description = S("Fungiwood Shelf"),
+	_doc_items_longdesc = dfcaverns.doc.fungiwood_desc,
+	_doc_items_usagehelp = dfcaverns.doc.fungiwood_usage,
 	tiles = {"dfcaverns_fungiwood.png", "dfcaverns_fungiwood_shelf_underside.png", "dfcaverns_fungiwood.png"},
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -98,6 +104,8 @@ end
 
 minetest.register_node("dfcaverns:fungiwood_sapling", {
 	description = S("Fungiwood Spawn"),
+	_doc_items_longdesc = dfcaverns.doc.fungiwood_desc,
+	_doc_items_usagehelp = dfcaverns.doc.fungiwood_usage,
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"dfcaverns_fungiwood_sapling.png"},

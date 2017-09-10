@@ -12,6 +12,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 minetest.register_node("dfcaverns:spore_tree", {
 	description = S("Spore Tree Stem"),
+	_doc_items_longdesc = dfcaverns.doc.spore_tree_desc,
+	_doc_items_usagehelp = dfcaverns.doc.spore_tree_usage,
 	tiles = {"dfcaverns_spore_tree_top.png", "dfcaverns_spore_tree_top.png", "dfcaverns_spore_tree.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
@@ -31,6 +33,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:spore_tree_wood", {
 	description = S("Spore Tree Planks"),
+	_doc_items_longdesc = dfcaverns.doc.spore_tree_desc,
+	_doc_items_usagehelp = dfcaverns.doc.spore_tree_usage,
 	paramtype2 = "facedir",
 	place_param2 = 0,
 	tiles = {"dfcaverns_spore_tree_wood.png"},
@@ -68,6 +72,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:spore_tree_hyphae", {
 	description = S("Spore Tree Hyphae"),
+	_doc_items_longdesc = dfcaverns.doc.spore_tree_desc,
+	_doc_items_usagehelp = dfcaverns.doc.spore_tree_usage,
 	waving = 1,
 	tiles = {"dfcaverns_spore_tree.png"},
 	is_ground_content = false,
@@ -92,6 +98,8 @@ minetest.register_node("dfcaverns:spore_tree_hyphae", {
 
 minetest.register_node("dfcaverns:spore_tree_fruiting_body", {
 	description = S("Spore Tree Fruiting Body"),
+	_doc_items_longdesc = dfcaverns.doc.spore_tree_desc,
+	_doc_items_usagehelp = dfcaverns.doc.spore_tree_usage,
 	waving = 1,
 	tiles = {"dfcaverns_spore_tree.png"},
 	is_ground_content = false,
@@ -138,6 +146,8 @@ end
 
 minetest.register_node("dfcaverns:spore_tree_sapling", {
 	description = S("Spore Tree Spawn"),
+	_doc_items_longdesc = dfcaverns.doc.spore_tree_desc,
+	_doc_items_usagehelp = dfcaverns.doc.spore_tree_usage,
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"dfcaverns_spore_tree_sapling.png"},

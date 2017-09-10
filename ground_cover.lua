@@ -9,6 +9,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 minetest.register_node("dfcaverns:dirt_with_cave_moss", {
 	description = S("Dirt With Cave Moss"),
+	_doc_items_longdesc = dfcaverns.doc.cave_moss_desc,
+	_doc_items_usagehelp = dfcaverns.doc.cave_moss_usage,
 	tiles = {"default_dirt.png^dfcaverns_cave_moss.png", "default_dirt.png", 
 		{name = "default_dirt.png^dfcaverns_cave_moss_side.png",
 			tileable_vertical = false}},
@@ -31,7 +33,7 @@ minetest.register_abm{
 	nodenames = {"default:dirt"},
 	neighbors = {"dfcaverns:dirt_with_cave_moss"},
 	interval = 60,
-	chance = 10,
+	chance = 15,
 	catch_up = true,
 	action = function(pos)
 		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
@@ -48,6 +50,8 @@ minetest.register_abm{
 
 minetest.register_node("dfcaverns:cobble_with_floor_fungus", {
 	description = S("Cobblestone With Floor Fungus"),
+	_doc_items_longdesc = dfcaverns.doc.floor_fungus_desc,
+	_doc_items_usagehelp = dfcaverns.doc.floor_fungus_usage,
 	tiles = {"default_cobble.png^dfcaverns_floor_fungus.png", "default_cobble.png", "default_cobble.png^dfcaverns_floor_fungus_side.png"},
 	drops = "default:cobble",
 	is_ground_content = true,

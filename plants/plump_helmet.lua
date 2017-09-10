@@ -59,6 +59,8 @@ end
 
 minetest.register_node("dfcaverns:plump_helmet_spawn", {
 	description = S("Plump Helmet Spawn"),
+	_doc_items_longdesc = dfcaverns.doc.plump_helmet_desc,
+	_doc_items_usagehelp = dfcaverns.doc.plump_helmet_usage,
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 	},
@@ -87,6 +89,8 @@ minetest.register_node("dfcaverns:plump_helmet_spawn", {
 
 minetest.register_node("dfcaverns:plump_helmet_1", {
 	description = S("Plump Helmet"),
+	_doc_items_longdesc = dfcaverns.doc.plump_helmet_desc,
+	_doc_items_usagehelp = dfcaverns.doc.plump_helmet_usage,
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png",
@@ -121,6 +125,8 @@ minetest.register_node("dfcaverns:plump_helmet_1", {
 
 minetest.register_node("dfcaverns:plump_helmet_2", {
 	description = S("Plump Helmet"),
+	_doc_items_longdesc = dfcaverns.doc.plump_helmet_desc,
+	_doc_items_usagehelp = dfcaverns.doc.plump_helmet_usage,
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png",
@@ -153,6 +159,8 @@ minetest.register_node("dfcaverns:plump_helmet_2", {
 
 minetest.register_node("dfcaverns:plump_helmet_3", {
 	description = S("Plump Helmet"),
+	_doc_items_longdesc = dfcaverns.doc.plump_helmet_desc,
+	_doc_items_usagehelp = dfcaverns.doc.plump_helmet_usage,
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png",
@@ -185,6 +193,8 @@ minetest.register_node("dfcaverns:plump_helmet_3", {
 
 minetest.register_node("dfcaverns:plump_helmet_4", {
 	description = S("Plump Helmet"),
+	_doc_items_longdesc = dfcaverns.doc.plump_helmet_desc,
+	_doc_items_usagehelp = dfcaverns.doc.plump_helmet_usage,
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png",
@@ -234,6 +244,8 @@ minetest.register_node("dfcaverns:plump_helmet_4", {
 
 minetest.register_node("dfcaverns:plump_helmet_4_picked", {
 	description = S("Plump Helmet"),
+	_doc_items_longdesc = dfcaverns.doc.plump_helmet_desc,
+	_doc_items_usagehelp = dfcaverns.doc.plump_helmet_usage,
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png",

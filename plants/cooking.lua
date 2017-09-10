@@ -5,16 +5,22 @@ local S, NS = dofile(MP.."/intllib.lua")
 local register_cooking_recipes = function(prefix, item, name, returns)
 	minetest.register_craftitem("dfcaverns:"..item.."_biscuit", {
 		description = S("@1 Biscuit", name),
+		_doc_items_longdesc = dfcaverns.doc.biscuit_desc,
+		_doc_items_usagehelp = dfcaverns.doc.biscuit_usage,
 		inventory_image = "dfcaverns_biscuit.png",
 		on_use = minetest.item_eat(4),
 	})
 	minetest.register_craftitem("dfcaverns:"..item.."_stew", {
 		description = S("@1 Stew", name),
+		_doc_items_longdesc = dfcaverns.doc.stew_desc,
+		_doc_items_usagehelp = dfcaverns.doc.stew_usage,
 		inventory_image = "dfcaverns_stew.png",
 		on_use = minetest.item_eat(6),
 	})
 	minetest.register_craftitem("dfcaverns:"..item.."_roast", {
 		description = S("@1 Roast", name),
+		_doc_items_longdesc = dfcaverns.doc.roast_desc,
+		_doc_items_usagehelp = dfcaverns.doc.roast_usage,
 		inventory_image = "dfcaverns_roast.png",
 		on_use = minetest.item_eat(8),
 	})

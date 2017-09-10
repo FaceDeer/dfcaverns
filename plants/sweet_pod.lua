@@ -8,6 +8,8 @@ local register_sweet_pod = function(number)
 	local name = "dfcaverns:sweet_pod_"..tostring(number)
 	local def = {
 		description = S("Sweet Pod"),
+		_doc_items_longdesc = dfcaverns.doc.sweet_pod_desc,
+		_doc_items_usagehelp = dfcaverns.doc.sweet_pod_usage,
 		drawtype = "plantlike",
 		tiles = {"dfcaverns_sweet_pod_"..tostring(number)..".png"},
 		inventory_image = "dfcaverns_sweet_pod_"..tostring(number)..".png",
@@ -52,10 +54,19 @@ for i = 1,6 do
 	register_sweet_pod(i)
 end
 
-dfcaverns.register_seed("sweet_pod_seed", S("Sweet Pod Spores"), "dfcaverns_sweet_pod_seed.png", "dfcaverns:sweet_pod_1", sweet_pod_grow_time)
+dfcaverns.register_seed(
+	"sweet_pod_seed",
+	S("Sweet Pod Spores"),
+	"dfcaverns_sweet_pod_seed.png",
+	"dfcaverns:sweet_pod_1",
+	sweet_pod_grow_time,
+	dfcaverns.doc.sweet_pod_desc,
+	dfcaverns.doc.sweet_pod_usage)
 
 minetest.register_craftitem("dfcaverns:sweet_pods", {
 	description = S("Sweet Pods"),
+	_doc_items_longdesc = dfcaverns.doc.sweet_pod_desc,
+	_doc_items_usagehelp = dfcaverns.doc.sweet_pod_usage,
 	inventory_image = "dfcaverns_sweet_pods.png",
 	stack_max = 99,
 })
@@ -70,6 +81,8 @@ minetest.register_craft({
 
 minetest.register_craftitem("dfcaverns:sugar", {
 	description = S("Sweet Pod Sugar"),
+	_doc_items_longdesc = dfcaverns.doc.sweet_pod_sugar_desc,
+	_doc_items_usagehelp = dfcaverns.doc.sweet_pod_sugar_usage,
 	inventory_image = "dfcaverns_sugar.png",
 	groups = {dfcaverns_cookable = 1},
 })
@@ -91,6 +104,8 @@ end
 if minetest.get_modpath("bucket") then
 	minetest.register_node("dfcaverns:dwarven_syrup_source", {
 		description = S("Dwarven Syrup Source"),
+		_doc_items_longdesc = dfcaverns.doc.sweet_pod_syrup_desc,
+		_doc_items_usagehelp = dfcaverns.doc.sweet_pod_syrup_usage,
 		drawtype = "liquid",
 		tiles = {
 			{
@@ -137,6 +152,8 @@ if minetest.get_modpath("bucket") then
 	
 	minetest.register_node("dfcaverns:dwarven_syrup_flowing", {
 		description = S("Flowing Dwarven Syrup"),
+		_doc_items_longdesc = dfcaverns.doc.sweet_pod_syrup_desc,
+		_doc_items_usagehelp = dfcaverns.doc.sweet_pod_syrup_usage,
 		drawtype = "flowingliquid",
 		tiles = {"dfcaverns_dwarven_syrup.png"},
 		special_tiles = {

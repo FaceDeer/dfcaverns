@@ -8,6 +8,8 @@ local register_cave_wheat = function(number)
 	local name = "dfcaverns:cave_wheat_"..tostring(number)
 	local def = {
 		description = S("Cave Wheat"),
+		_doc_items_longdesc = dfcaverns.doc.cave_wheat_desc,
+		_doc_items_usagehelp = dfcaverns.doc.cave_wheat_usage,
 		drawtype = "plantlike",
 		paramtype2 = "meshoptions",
 		place_param2 = 3,
@@ -54,10 +56,19 @@ for i = 1,8 do
 	register_cave_wheat(i)
 end
 
-dfcaverns.register_seed("cave_wheat_seed", S("Cave Wheat Seed"), "dfcaverns_cave_wheat_seed.png", "dfcaverns:cave_wheat_1", wheat_grow_time)
+dfcaverns.register_seed(
+	"cave_wheat_seed",
+	S("Cave Wheat Seed"),
+	"dfcaverns_cave_wheat_seed.png",
+	"dfcaverns:cave_wheat_1",
+	wheat_grow_time,
+	dfcaverns.doc.cave_wheat_desc,
+	dfcaverns.doc.cave_wheat_usage)
 
 minetest.register_craftitem("dfcaverns:cave_wheat", {
 	description = S("Cave Wheat"),
+	_doc_items_longdesc = dfcaverns.doc.cave_wheat_desc,
+	_doc_items_usagehelp = dfcaverns.doc.cave_wheat_usage,
 	inventory_image = "dfcaverns_cave_wheat.png",
 	stack_max = 99,
 })
@@ -69,12 +80,16 @@ minetest.register_craft({
 
 minetest.register_craftitem("dfcaverns:cave_flour", {
 	description = S("Cave Wheat Flour"),
+	_doc_items_longdesc = dfcaverns.doc.cave_flour_desc,
+	_doc_items_usagehelp = dfcaverns.doc.cave_flour_usage,
 	inventory_image = "dfcaverns_flour.png",
 	groups = {flammable = 1, dfcaverns_cookable = 1},
 })
 
 minetest.register_craftitem("dfcaverns:cave_bread", {
 	description = S("Dwarven Bread"),
+	_doc_items_longdesc = dfcaverns.doc.cave_bread_desc,
+	_doc_items_usagehelp = dfcaverns.doc.cave_bread_usage,
 	inventory_image = "dfcaverns_bread.png",
 	on_use = minetest.item_eat(5),
 	groups = {flammable = 2},

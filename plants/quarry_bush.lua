@@ -8,6 +8,8 @@ local register_quarry_bush = function(number)
 	local name = "dfcaverns:quarry_bush_"..tostring(number)
 	local def = {
 		description = S("Quarry Bush"),
+		_doc_items_longdesc = dfcaverns.doc.quarry_bush_desc,
+		_doc_items_usagehelp = dfcaverns.doc.quarry_bush_usage,
 		drawtype = "plantlike",
 		paramtype2 = "meshoptions",
 		place_param2 = 4,
@@ -54,10 +56,20 @@ for i = 1,5 do
 	register_quarry_bush(i)
 end
 
-dfcaverns.register_seed("quarry_bush_seed", S("Rock Nuts"), "dfcaverns_rock_nuts.png", "dfcaverns:quarry_bush_1", quarry_grow_time)
+dfcaverns.register_seed(
+	"quarry_bush_seed",
+	S("Rock Nuts"),
+	"dfcaverns_rock_nuts.png",
+	"dfcaverns:quarry_bush_1",
+	quarry_grow_time,
+	dfcaverns.doc.quarry_bush_desc,
+	dfcaverns.doc.quarry_bush_usage
+)
 
 minetest.register_craftitem("dfcaverns:quarry_bush_leaves", {
 	description = S("Quarry Bush Leaves"),
+	_doc_items_longdesc = dfcaverns.doc.quarry_bush_leaves_desc,
+	_doc_items_usagehelp = dfcaverns.doc.quarry_bush_leaves_usage,
 	inventory_image = "dfcaverns_quarry_bush_leaves.png",
 	groups = {dfcaverns_cookable = 1},
 	stack_max = 99,

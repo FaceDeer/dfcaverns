@@ -275,7 +275,7 @@ end
 local level_3_cave_floor = function(area, data, ai, vi, bi, param2_data)
 	if dfcaverns.can_support_vegetation[data[bi]] then
 		data[bi] = c_dirt_moss
-		if math.random() < 0.25 then
+		if math.random() < 0.10 then
 			if data[vi] == c_air then
 				dfcaverns.place_shrub(data, vi, param2_data, {c_plump_helmet, c_quarry_bush, c_dead_fungus, c_dead_fungus, c_cavern_fungi})
 			end

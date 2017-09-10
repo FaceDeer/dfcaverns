@@ -175,7 +175,7 @@ local level_1_cave_floor = function(area, data, ai, vi, bi, param2_data)
 		data[bi] = c_cobble_fungus
 		if math.random() < 0.15 then
 			if data[vi] == c_air then
-				dfcaverns.place_shrub(data, vi, param2_data, {c_plump_helmet, c_dead_fungus, c_dead_fungus,  c_dead_fungus, c_cavern_fungi})
+				dfcaverns.place_shrub(data, vi, param2_data, {c_plump_helmet, c_dead_fungus, c_dead_fungus, c_cavern_fungi, c_cavern_fungi})
 			end
 		end
 		return

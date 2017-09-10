@@ -8,6 +8,8 @@ local register_dimple_cup = function(number)
 	local name = "dfcaverns:dimple_cup_"..tostring(number)
 	local def = {
 		description = S("Dimple Cup"),
+		_doc_items_longdesc = dfcaverns.doc.dimple_cup_desc,
+		_doc_items_usagehelp = dfcaverns.doc.dimple_cup_usage,
 		drawtype = "plantlike",
 		tiles = {"dfcaverns_dimple_cup_"..tostring(number)..".png"},
 		inventory_image = "dfcaverns_dimple_cup_"..tostring(number)..".png",
@@ -48,4 +50,11 @@ for i = 1,4 do
 	register_dimple_cup(i)
 end
 
-dfcaverns.register_seed("dimple_cup_seed", S("Dimple Cup Spores"), "dfcaverns_dimple_cup_seed.png", "dfcaverns:dimple_cup_1", dimple_grow_time)
+dfcaverns.register_seed(
+	"dimple_cup_seed",
+	S("Dimple Cup Spores"),
+	"dfcaverns_dimple_cup_seed.png",
+	"dfcaverns:dimple_cup_1",
+	dimple_grow_time,
+	dfcaverns.doc.dimple_cup_desc,
+	dfcaverns.doc.dimple_cup_usage)

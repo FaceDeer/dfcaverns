@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-24 00:45-0600\n"
+"POT-Creation-Date: 2017-09-10 12:21-0600\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -18,6 +18,346 @@ msgstr ""
 "X-Generator: Poedit 1.6.10\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: doc.lua:11
+msgid ""
+"A meal made from the admixture of two ingredients, biscuits keep well but "
+"are not a rich source of nutrients."
+msgstr ""
+
+#: doc.lua:13
+msgid ""
+"Stews mix three ingredients together. They're more wholesome than biscuits, "
+"packing more nutrition into a single serving."
+msgstr ""
+
+#: doc.lua:15
+msgid ""
+"Four finely minced ingredients combine into a roast, which serves as a full "
+"meal."
+msgstr ""
+
+#: doc.lua:18
+msgid ""
+"Cave moss is technically a form of mold, but fortunately a relatively benign "
+"one given its ubiquity. Its fibers form a tough but springy mat over the "
+"surface of any organic-rich soil that accumulates deep underground."
+msgstr ""
+
+#: doc.lua:19
+msgid ""
+"Cave moss has no known uses. It dies when exposed to bright light sources."
+msgstr ""
+
+#: doc.lua:20
+msgid ""
+"Floor fungus produces a thin, slick film that spreads through the cracks of "
+"broken rock. Its ability to subsist on the tiniest traces of nutrients means "
+"it's found in relatively harsh underground environments."
+msgstr ""
+
+#: doc.lua:21
+msgid ""
+"Floor fungus has no known uses. It can penetrate deeply into cobblestone "
+"constructions if an infestation gets hold, but it is difficult to transport "
+"and is inhibited by light so it hasn't spread beyond the deep caverns."
+msgstr ""
+
+#: doc.lua:23
+msgid ""
+"Glistening strings of silk hang from the ceilings of some of the larger "
+"caverns, lit by the millions of tiny bioluminescent worms that spun them. "
+"Glow worms prey on the insects they lure and entangle with their faux starry "
+"sky - and sometimes the occasional bat or other larger flying beast."
+msgstr ""
+
+#: doc.lua:24
+msgid ""
+"Glow worms can be harvested and used as a source of light but they die when "
+"exposed to light significantly brighter than themselves or when immersed in "
+"water. A colony of glow worms hung in a hospitable environment will undergo "
+"a modest amount of growth, allowing it to be divided and propagated."
+msgstr ""
+
+#: doc.lua:28
+msgid "Whatever this fungus was in life, it is now dead."
+msgstr ""
+
+#: doc.lua:29
+msgid ""
+"Dead fungus quickly decays into an unrecognizable mess. It can be used as "
+"weak fuel or terrible decor."
+msgstr ""
+
+#: doc.lua:31
+msgid ""
+"A species of lavender mushroom ubiquitous in caves that is most notable for "
+"the soft bioluminescence it produces."
+msgstr ""
+
+#: doc.lua:32
+msgid ""
+"This mushroom is inedible but continues producing modest levels of light "
+"long after it's picked."
+msgstr ""
+
+#: doc.lua:34
+msgid ""
+"Cave wheat is literally a breed of grain-producing grass that somehow lost "
+"its ability to photosynthesize and adapted to a more fungal style of life."
+msgstr ""
+
+#: doc.lua:35
+msgid ""
+"Like its surface cousin, cave wheat produces grain that can be ground into a "
+"form of flour."
+msgstr ""
+
+#: doc.lua:36
+msgid "Cave wheat seed ground into a powder suitable for cooking."
+msgstr ""
+
+#: doc.lua:37
+msgid ""
+"When baked alone it forms an edible bread, but it combines well with other "
+"more flavorful ingredients."
+msgstr ""
+
+#: doc.lua:38
+msgid ""
+"Bread baked from cave wheat flour is tough and durable. A useful ration for "
+"long expeditions."
+msgstr ""
+
+#: doc.lua:39
+msgid "It's not tasty, but it keeps you going."
+msgstr ""
+
+#: doc.lua:41
+msgid ""
+"The distinctive midnight-blue caps of these mushrooms are inverted, exposing "
+"their gills to any breeze that might pass, and have dimpled edges that give "
+"them their name."
+msgstr ""
+
+#: doc.lua:42
+msgid ""
+"Dimple cups can be dried, ground, and processed to extract a deep blue dye."
+msgstr ""
+
+#: doc.lua:44
+msgid ""
+"Pig tails are a fibrous fungal growth that's most notable for its twisting "
+"stalks. In a mature stand of pig tails the helical stalks intertwine into a "
+"dense mesh."
+msgstr ""
+
+#: doc.lua:45
+msgid "Pig tail stalks can be processed to extract fibers useful as thread."
+msgstr ""
+
+#: doc.lua:46
+msgid "Threads of pig tail fiber."
+msgstr ""
+
+#: doc.lua:47
+msgid ""
+"A crafting item that can be woven into textiles and other similar items."
+msgstr ""
+
+#: doc.lua:49
+msgid ""
+"Plump helmets are a thick, fleshy mushroom that's edible picked straight "
+"from the ground. They form a staple diet for both lost cave explorers and "
+"the fauna that preys on them."
+msgstr ""
+
+#: doc.lua:50
+msgid ""
+"While they can be eaten fresh, they can be monotonous fare and are perhaps "
+"better appreciated as part of a more complex prepared dish."
+msgstr ""
+
+#: doc.lua:52
+msgid ""
+"A rare breed of fungus from deep underground that produces a bushy cluster "
+"of rumpled gray 'blades'. The biological function of these blades is not "
+"known, as quarry bushes reproduce via hard-shelled nodules that grow down at "
+"the blade's base."
+msgstr ""
+
+#: doc.lua:53
+msgid ""
+"Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are "
+"edible with processing."
+msgstr ""
+
+#: doc.lua:54
+msgid ""
+"The dried blades of a quarry bush add a welcome zing to recipes containing "
+"otherwise-bland subterranean foodstuffs, but they're too spicy to be eaten "
+"on their own."
+msgstr ""
+
+#: doc.lua:55
+msgid "Quarry bush leaves can be used as an ingredient in foodstuffs."
+msgstr ""
+
+#: doc.lua:57
+msgid ""
+"Sweet pods grow in rich soil, and once they reach maturity they draw that "
+"supply of nutrients up to concentrate it in their fruiting bodies. They turn "
+"bright red when ripe and can be processed in a variety of ways to extract "
+"the sugars they contain."
+msgstr ""
+
+#: doc.lua:60
+msgid "When milled, sweet pods produce a granular sugary substance."
+msgstr ""
+
+#: doc.lua:62
+msgid "When dried in an oven, sweet pods produce a granular sugary substance."
+msgstr ""
+
+#: doc.lua:64
+msgid "Crushing them in a bucket squeezes out a flavorful syrup."
+msgstr ""
+
+#: doc.lua:66
+msgid "Sweet pod sugar has a pink tint to it."
+msgstr ""
+
+#: doc.lua:67
+msgid ""
+"Too sweet to be eaten directly, it makes an excellent ingredient in food "
+"recipes."
+msgstr ""
+
+#: doc.lua:68
+msgid "Sweet pod syrup is thick and flavorful."
+msgstr ""
+
+#: doc.lua:69
+msgid ""
+"Too strong and thick to drink straight, sweet pod syrup is useful in food "
+"recipes."
+msgstr ""
+
+#: doc.lua:72
+msgid ""
+"The dense black wood of these mushrooms is heavy and hard to work with, and "
+"has few remarkable properties."
+msgstr ""
+
+#: doc.lua:73
+msgid ""
+"Aside from the artistic applications of its particularly dark color, black "
+"cap wood is a long-burning fuel source that's as good as coal for some "
+"applications."
+msgstr ""
+
+#: doc.lua:75
+msgid ""
+"Blood thorns are the most vicious of underground flora, as befits their "
+"harsh environments. Found only in hot, dry caverns with sandy soil far from "
+"the surface world's organic bounty, blood thorns seek to supplement their "
+"nutrient supply with wickedly barbed hollow spines that actively drain "
+"fluids from whatever stray plant or creature they might impale."
+msgstr ""
+
+#: doc.lua:76
+msgid ""
+"When harvested, the central stalk of a blood thorn can be cut into planks "
+"and used as wood. It has a purple-red hue that may or may not appeal, "
+"depending on one's artistic tastes."
+msgstr ""
+
+#: doc.lua:77
+msgid ""
+"The spikes of a blood thorn can actually remain living long after they're "
+"severed from their parent stalk, a testament to their tenacity. As long as "
+"they remain alive they will continue to actively drain anything they "
+"puncture, though they don't grow."
+msgstr ""
+
+#: doc.lua:78
+msgid ""
+"Living blood thorn spikes remain harmful to creatures that touch them. If "
+"killed by bright light, they cause only passive damage to creatures that "
+"fall on them (as one would expect from an enormous spike)."
+msgstr ""
+
+#: doc.lua:80
+msgid ""
+"Thin, irregular layers of spore-producing 'shelves' surround the strong "
+"central stalk of the mighty Fungiwood."
+msgstr ""
+
+#: doc.lua:81
+msgid ""
+"Fungiwood stalk is strong and very fine-grained, making smooth yellow-tinted "
+"lumber when cut. Fungiwood shelf is too fragile to be much use as anything "
+"other than fuel."
+msgstr ""
+
+#: doc.lua:83
+msgid ""
+"Massive but squat, mature goblin cap mushrooms are the size of small "
+"cottages."
+msgstr ""
+
+#: doc.lua:84
+msgid ""
+"Goblin cap stem and cap material can be cut into wood of two different hues, "
+"a subdued cream and a bright orange-red."
+msgstr ""
+
+#: doc.lua:86
+msgid ""
+"Nether caps have an unusual biochemistry that allows them to somehow subsist "
+"on ambient heat, in violation of all known laws of thermodynamics. They grow "
+"deep underground in frigid, icy caverns that should by all rights be "
+"volcanic."
+msgstr ""
+
+#: doc.lua:87
+msgid ""
+"Nether cap wood, in addition to being a beautiful blue hue, retains the odd "
+"heat-draining ability of living nether caps and is able to quickly freeze "
+"nearby water solid."
+msgstr ""
+
+#: doc.lua:89
+msgid ""
+"Spore trees have a sturdy 'trunk' that supports a large spongy mesh of "
+"branching fibers, with embedded fruiting bodies that produce a copious "
+"amount of spores that gently rain down around the spore tree's base."
+msgstr ""
+
+#: doc.lua:90
+msgid ""
+"Spore tree trunks can be cut into pale woody planks. The branching fibers "
+"and fruiting bodies are only useful as fuel."
+msgstr ""
+
+#: doc.lua:92
+msgid "The king of the fungi, tower cap mushrooms grow to immense proportions."
+msgstr ""
+
+#: doc.lua:93
+msgid "Tower caps are an excellent source of wood."
+msgstr ""
+
+#: doc.lua:95
+msgid ""
+"Tunnel tubes are hollow, curved fungal growths that support a fruiting body."
+msgstr ""
+
+#: doc.lua:96
+msgid ""
+"The trunk of a tunnel tube can be cut and processed to produce plywood-like "
+"material."
+msgstr ""
+
 #: glow_worms.lua:6
 msgid "Glow Worms"
 msgstr "Vermi luminosi"
@@ -26,7 +366,7 @@ msgstr "Vermi luminosi"
 msgid "Dirt With Cave Moss"
 msgstr "Terra con muschio di caverna"
 
-#: ground_cover.lua:50
+#: ground_cover.lua:52
 msgid "Cobblestone With Floor Fungus"
 msgstr "Ciottoli con funghi del terreno"
 
@@ -34,23 +374,26 @@ msgstr "Ciottoli con funghi del terreno"
 msgid "Dead Fungus"
 msgstr "Fungo morto"
 
-#: plants.lua:33
+#: plants.lua:35
 msgid "Cavern Fungi"
 msgstr "Funghi di caverna"
 
-#: plants\cave_wheat.lua:9 plants\cave_wheat.lua:57
+#: plants\cave_wheat.lua:10
+#: plants\cave_wheat.lua:69
 msgid "Cave Wheat"
 msgstr "Grano di caverna"
 
-#: plants\cave_wheat.lua:51 plants\cooking.lua:43
+#: plants\cave_wheat.lua:61
+#: plants\cooking.lua:49
 msgid "Cave Wheat Seed"
 msgstr "Seme di grano di caverna"
 
-#: plants\cave_wheat.lua:68 plants\cooking.lua:42
+#: plants\cave_wheat.lua:82
+#: plants\cooking.lua:48
 msgid "Cave Wheat Flour"
 msgstr "Farina di grano di caverna"
 
-#: plants\cave_wheat.lua:74
+#: plants\cave_wheat.lua:90
 msgid "Dwarven Bread"
 msgstr "Pane nanico"
 
@@ -58,101 +401,107 @@ msgstr "Pane nanico"
 msgid "@1 Biscuit"
 msgstr "Biscotto di @1"
 
-#: plants\cooking.lua:12
+#: plants\cooking.lua:14
 msgid "@1 Stew"
 msgstr "Stufato di @1"
 
-#: plants\cooking.lua:17
+#: plants\cooking.lua:21
 msgid "@1 Roast"
 msgstr "Arrosto di @1"
 
-#: plants\cooking.lua:44
+#: plants\cooking.lua:50
 msgid "Sweet Pod Spore"
 msgstr "Spora di baccello dolce"
 
-#: plants\cooking.lua:45 plants\sweet_pod.lua:70
+#: plants\cooking.lua:51
+#: plants\sweet_pod.lua:83
 msgid "Sweet Pod Sugar"
 msgstr "Zucchero di baccello dolce"
 
-#: plants\cooking.lua:46 plants\plump_helmet.lua:80
-#: plants\plump_helmet.lua:109 plants\plump_helmet.lua:150
-#: plants\plump_helmet.lua:190
+#: plants\cooking.lua:52
+#: plants\plump_helmet.lua:91
+#: plants\plump_helmet.lua:127
+#: plants\plump_helmet.lua:161
+#: plants\plump_helmet.lua:195
+#: plants\plump_helmet.lua:246
 msgid "Plump Helmet"
 msgstr "Elmo rotondo"
 
-#: plants\cooking.lua:47 plants\plump_helmet.lua:58
+#: plants\cooking.lua:53
+#: plants\plump_helmet.lua:61
 msgid "Plump Helmet Spawn"
 msgstr "Prole di elmo rotondo"
 
-#: plants\cooking.lua:48
+#: plants\cooking.lua:54
 msgid "Quarry Bush Leaf"
 msgstr "Foglia di cespuglio di cava"
 
-#: plants\cooking.lua:49
+#: plants\cooking.lua:55
 msgid "Rock Nut"
 msgstr "Noce di roccia"
 
-#: plants\cooking.lua:50
+#: plants\cooking.lua:56
 msgid "Dimple Cup Spore"
 msgstr "Spora di coppa increspata"
 
-#: plants\cooking.lua:51 plants\pig_tail.lua:51
+#: plants\cooking.lua:57
+#: plants\pig_tail.lua:61
 msgid "Pig Tail Spore"
 msgstr "Spora di coda di maiale"
 
-#: plants\cooking.lua:52
+#: plants\cooking.lua:58
 msgid "Dwarven Syrup"
 msgstr "Sciroppo nanico"
 
-#: plants\dimple_cup.lua:9
+#: plants\dimple_cup.lua:10
 msgid "Dimple Cup"
 msgstr "Coppa increspata"
 
-#: plants\dimple_cup.lua:45
+#: plants\dimple_cup.lua:55
 msgid "Dimple Cup Spores"
 msgstr "Spore di coppa increspata"
 
-#: plants\pig_tail.lua:9
+#: plants\pig_tail.lua:10
 msgid "Pig Tail"
 msgstr "Coda di maiale"
 
-#: plants\pig_tail.lua:57
+#: plants\pig_tail.lua:69
 msgid "Pig tail thread"
 msgstr "Filo di coda di maiale"
 
-#: plants\quarry_bush.lua:9
+#: plants\quarry_bush.lua:10
 msgid "Quarry Bush"
 msgstr "Cespuglio di cava"
 
-#: plants\quarry_bush.lua:52
+#: plants\quarry_bush.lua:61
 msgid "Rock Nuts"
 msgstr "Noci di roccia"
 
-#: plants\quarry_bush.lua:58
+#: plants\quarry_bush.lua:70
 msgid "Quarry Bush Leaves"
 msgstr "Foglie di cespuglio di cava"
 
-#: plants\sweet_pod.lua:9
+#: plants\sweet_pod.lua:10
 msgid "Sweet Pod"
 msgstr "Baccello dolce"
 
-#: plants\sweet_pod.lua:50
+#: plants\sweet_pod.lua:59
 msgid "Sweet Pod Spores"
 msgstr "Spore di baccello dolce"
 
-#: plants\sweet_pod.lua:56
+#: plants\sweet_pod.lua:67
 msgid "Sweet Pods"
 msgstr "Baccelli dolci"
 
-#: plants\sweet_pod.lua:91
+#: plants\sweet_pod.lua:106
 msgid "Dwarven Syrup Source"
 msgstr "Fonte di sciroppo nanico"
 
-#: plants\sweet_pod.lua:137
+#: plants\sweet_pod.lua:154
 msgid "Flowing Dwarven Syrup"
 msgstr "Sciroppo nanico che scorre"
 
-#: plants\sweet_pod.lua:188
+#: plants\sweet_pod.lua:207
 msgid "Dwarven Syrup Bucket"
 msgstr "Secchio di sciroppo nanico"
 
@@ -160,19 +509,19 @@ msgstr "Secchio di sciroppo nanico"
 msgid "Black Cap Stem"
 msgstr "Gambo di cappello nero"
 
-#: trees\black_cap.lua:16
+#: trees\black_cap.lua:18
 msgid "Black Cap"
 msgstr "Cappello nero"
 
-#: trees\black_cap.lua:25
+#: trees\black_cap.lua:29
 msgid "Black Cap Gills"
 msgstr "Lamelle di cappello nero"
 
-#: trees\black_cap.lua:71
+#: trees\black_cap.lua:77
 msgid "Black Cap Planks"
 msgstr "Assi di cappello nero"
 
-#: trees\black_cap.lua:108
+#: trees\black_cap.lua:116
 msgid "Black Cap Spawn"
 msgstr "Prole di cappello nero"
 
@@ -180,19 +529,19 @@ msgstr "Prole di cappello nero"
 msgid "Blood Thorn Stem"
 msgstr "Gambo di spina del sangue"
 
-#: trees\blood_thorn.lua:45
+#: trees\blood_thorn.lua:47
 msgid "Dead Blood Thorn Stem"
 msgstr "Gambo di spina del sangue morta"
 
-#: trees\blood_thorn.lua:56
+#: trees\blood_thorn.lua:60
 msgid "Blood Thorn Spike"
 msgstr "Spuntone di spina del sangue"
 
-#: trees\blood_thorn.lua:84
+#: trees\blood_thorn.lua:90
 msgid "Dead Blood Thorn Spike"
 msgstr "Spuntone di spina del sangue morta"
 
-#: trees\blood_thorn.lua:119
+#: trees\blood_thorn.lua:127
 msgid "Blood Thorn Planks"
 msgstr "Assi di spina del sangue"
 
@@ -200,15 +549,15 @@ msgstr "Assi di spina del sangue"
 msgid "Fungiwood Stem"
 msgstr "Gambo di fungo di legno"
 
-#: trees\fungiwood.lua:32
+#: trees\fungiwood.lua:34
 msgid "Fungiwood Planks"
 msgstr "Assi di fungo di legno"
 
-#: trees\fungiwood.lua:64
+#: trees\fungiwood.lua:68
 msgid "Fungiwood Shelf"
 msgstr "Mensola di fungo di legno"
 
-#: trees\fungiwood.lua:100
+#: trees\fungiwood.lua:106
 msgid "Fungiwood Spawn"
 msgstr "Prole di fungo di legno"
 
@@ -216,23 +565,23 @@ msgstr "Prole di fungo di legno"
 msgid "Goblin Cap Stem"
 msgstr "Gambo di cappello di folletto"
 
-#: trees\goblin_cap.lua:16
+#: trees\goblin_cap.lua:18
 msgid "Goblin Cap"
 msgstr "Cappello di folletto"
 
-#: trees\goblin_cap.lua:25
+#: trees\goblin_cap.lua:29
 msgid "Goblin Cap Gills"
 msgstr "Lamelle di cappello di folletto"
 
-#: trees\goblin_cap.lua:71
+#: trees\goblin_cap.lua:77
 msgid "Goblin Cap Planks"
 msgstr "Assi di cappello di folletto"
 
-#: trees\goblin_cap.lua:81
+#: trees\goblin_cap.lua:89
 msgid "Goblin Cap Stem Planks"
 msgstr "Assi di gambo di cappello di folletto"
 
-#: trees\goblin_cap.lua:123
+#: trees\goblin_cap.lua:133
 msgid "Goblin Cap Spawn"
 msgstr "Prole di cappello di folletto"
 
@@ -240,19 +589,19 @@ msgstr "Prole di cappello di folletto"
 msgid "Nether Cap Stem"
 msgstr "Gambo di cappello del Nether"
 
-#: trees\nether_cap.lua:16
+#: trees\nether_cap.lua:18
 msgid "Nether Cap"
 msgstr "Cappello del Nether"
 
-#: trees\nether_cap.lua:25
+#: trees\nether_cap.lua:29
 msgid "Nether Cap Gills"
 msgstr "Lamelle di cappello del Nether"
 
-#: trees\nether_cap.lua:71
+#: trees\nether_cap.lua:77
 msgid "Nether Cap Planks"
 msgstr "Assi di cappello del Nether"
 
-#: trees\nether_cap.lua:83
+#: trees\nether_cap.lua:91
 msgid "Nether Cap Spawn"
 msgstr "Prole di cappello del Nether"
 
@@ -260,19 +609,19 @@ msgstr "Prole di cappello del Nether"
 msgid "Spore Tree Stem"
 msgstr "Gambo di albero delle spore"
 
-#: trees\spore_tree.lua:33
+#: trees\spore_tree.lua:35
 msgid "Spore Tree Planks"
 msgstr "Assi di albero delle spore"
 
-#: trees\spore_tree.lua:70
+#: trees\spore_tree.lua:74
 msgid "Spore Tree Hyphae"
 msgstr "Ife di albero delle spore"
 
-#: trees\spore_tree.lua:94
+#: trees\spore_tree.lua:100
 msgid "Spore Tree Fruiting Body"
 msgstr "Corpo fruttifero dell'albero delle spore"
 
-#: trees\spore_tree.lua:140
+#: trees\spore_tree.lua:148
 msgid "Spore Tree Spawn"
 msgstr "Prole di albero delle spore"
 
@@ -280,19 +629,19 @@ msgstr "Prole di albero delle spore"
 msgid "Tower Cap Stem"
 msgstr "Gambo di cappello a torre"
 
-#: trees\tower_cap.lua:16
+#: trees\tower_cap.lua:18
 msgid "Tower Cap"
 msgstr "Cappello a torre"
 
-#: trees\tower_cap.lua:25
+#: trees\tower_cap.lua:29
 msgid "Tower Cap Gills"
 msgstr "Lamelle di cappello a torre"
 
-#: trees\tower_cap.lua:71
+#: trees\tower_cap.lua:77
 msgid "Tower Cap Planks"
 msgstr "Assi di cappello a torre"
 
-#: trees\tower_cap.lua:109
+#: trees\tower_cap.lua:117
 msgid "Tower Cap Spawn"
 msgstr "Prole di cappello a torre"
 
@@ -300,14 +649,14 @@ msgstr "Prole di cappello a torre"
 msgid "Tunnel Tube"
 msgstr "Tubo di galleria"
 
-#: trees\tunnel_tube.lua:43
+#: trees\tunnel_tube.lua:45
 msgid "Tunnel Tube Plies"
 msgstr "Strati di tubo di galleria"
 
-#: trees\tunnel_tube.lua:70
+#: trees\tunnel_tube.lua:74
 msgid "Tunnel Tube Fruiting Body"
 msgstr "Corpo fruttifero del tubo di galleria"
 
-#: trees\tunnel_tube.lua:97
+#: trees\tunnel_tube.lua:103
 msgid "Tunnel Tube Spawn"
 msgstr "Prole di tubo di galleria"

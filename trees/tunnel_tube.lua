@@ -12,6 +12,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 minetest.register_node("dfcaverns:tunnel_tube", {
 	description = S("Tunnel Tube"),
+	_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+	_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
 	tiles = {"dfcaverns_tunnel_tube.png"},
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
@@ -41,6 +43,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:tunnel_tube_wood", {
 	description = S("Tunnel Tube Plies"),
+	_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+	_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
 	paramtype2 = "facedir",
 	place_param2 = 0,
 	tiles = {"dfcaverns_tunnel_tube_wood_top.png", "dfcaverns_tunnel_tube_wood_top.png", "dfcaverns_tunnel_tube_wood_side.png"},
@@ -68,6 +72,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:tunnel_tube_fruiting_body", {
 	description = S("Tunnel Tube Fruiting Body"),
+	_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+	_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
 	tiles = {"dfcaverns_tunnel_tube.png^[multiply:#b09090"},
 	paramtype2 = "facedir",
 	groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2},
@@ -95,6 +101,8 @@ minetest.register_node("dfcaverns:tunnel_tube_fruiting_body", {
 
 minetest.register_node("dfcaverns:tunnel_tube_sapling", {
 	description = S("Tunnel Tube Spawn"),
+	_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+	_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"dfcaverns_tunnel_tube_sapling.png"},

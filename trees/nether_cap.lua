@@ -5,6 +5,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 --stem
 minetest.register_node("dfcaverns:nether_cap_stem", {
 	description = S("Nether Cap Stem"),
+	_doc_items_longdesc = dfcaverns.doc.nether_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_stem.png"},
 	is_ground_content = true,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1},
@@ -14,6 +16,8 @@ minetest.register_node("dfcaverns:nether_cap_stem", {
 --cap
 minetest.register_node("dfcaverns:nether_cap", {
 	description = S("Nether Cap"),
+	_doc_items_longdesc = dfcaverns.doc.nether_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap.png"},
 	is_ground_content = true,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1 },
@@ -23,6 +27,8 @@ minetest.register_node("dfcaverns:nether_cap", {
 --gills
 minetest.register_node("dfcaverns:nether_cap_gills", {
 	description = S("Nether Cap Gills"),
+	_doc_items_longdesc = dfcaverns.doc.nether_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_gills.png"},
 	is_ground_content = true,
 	groups = {snappy = 3, leafdecay = 3, leaves = 1, puts_out_fire = 1, cools_lava = 1},
@@ -69,6 +75,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:nether_cap_wood", {
 	description = S("Nether Cap Planks"),
+	_doc_items_longdesc = dfcaverns.doc.nether_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.nether_cap_usage,
 	paramtype2 = "facedir",
 	place_param2 = 0,
 	tiles = {"dfcaverns_nether_cap_wood.png"},
@@ -81,6 +89,8 @@ minetest.register_node("dfcaverns:nether_cap_wood", {
 -- sapling
 minetest.register_node("dfcaverns:nether_cap_sapling", {
 	description = S("Nether Cap Spawn"),
+	_doc_items_longdesc = dfcaverns.doc.nether_cap_desc,
+	_doc_items_usagehelp = dfcaverns.doc.nether_cap_usage,
 	drawtype = "plantlike",
 	visual_scale = 1.0,
 	tiles = {"dfcaverns_nether_cap_sapling.png"},

@@ -30,6 +30,8 @@ end
 
 minetest.register_node("dfcaverns:blood_thorn", {
 	description = S("Blood Thorn Stem"),
+	_doc_items_longdesc = dfcaverns.doc.blood_thorn_desc,
+	_doc_items_usagehelp = dfcaverns.doc.blood_thorn_usage,
 	tiles = {"dfcaverns_blood_thorn_top.png", "dfcaverns_blood_thorn_top.png",
 		"dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png"},
 	paramtype2 = "facedir",
@@ -43,6 +45,8 @@ minetest.register_node("dfcaverns:blood_thorn", {
 
 minetest.register_node("dfcaverns:blood_thorn_dead", {
 	description = S("Dead Blood Thorn Stem"),
+	_doc_items_longdesc = dfcaverns.doc.blood_thorn_desc,
+	_doc_items_usagehelp = dfcaverns.doc.blood_thorn_usage,
 	tiles = {"dfcaverns_blood_thorn_top.png^[multiply:#804000", "dfcaverns_blood_thorn_top.png^[multiply:#804000",
 		"dfcaverns_blood_thorn_side.png^[multiply:#804000"},
 	paramtype2 = "facedir",
@@ -54,6 +58,8 @@ minetest.register_node("dfcaverns:blood_thorn_dead", {
 
 minetest.register_node("dfcaverns:blood_thorn_spike", {
 	description = S("Blood Thorn Spike"),
+	_doc_items_longdesc = dfcaverns.doc.blood_thorn_spike_desc,
+	_doc_items_usagehelp = dfcaverns.doc.blood_thorn_spike_usage,
 	tiles = {
 		"dfcaverns_blood_thorn_spike_side.png^[transformR90",
 		"dfcaverns_blood_thorn_spike_side.png^[transformR270",
@@ -82,6 +88,8 @@ minetest.register_node("dfcaverns:blood_thorn_spike", {
 
 minetest.register_node("dfcaverns:blood_thorn_spike_dead", {
 	description = S("Dead Blood Thorn Spike"),
+	_doc_items_longdesc = dfcaverns.doc.blood_thorn_spike_desc,
+	_doc_items_usagehelp = dfcaverns.doc.blood_thorn_spike_usage,
 	tiles = {
 		"dfcaverns_blood_thorn_spike_side.png^[transformR90^[multiply:#804000",
 		"dfcaverns_blood_thorn_spike_side.png^[transformR270^[multiply:#804000",
@@ -117,6 +125,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:blood_thorn_wood", {
 	description = S("Blood Thorn Planks"),
+	_doc_items_longdesc = dfcaverns.doc.blood_thorn_desc,
+	_doc_items_usagehelp = dfcaverns.doc.blood_thorn_usage,
 	paramtype2 = "facedir",
 	place_param2 = 0,
 	tiles = {"dfcaverns_blood_thorn_wood.png"},

@@ -8,6 +8,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 minetest.register_node("dfcaverns:dead_fungus", {
 	description = S("Dead Fungus"),
+	_doc_items_longdesc = dfcaverns.doc.dead_fungus_desc,
+	_doc_items_usagehelp = dfcaverns.doc.dead_fungus_usage,
 	drawtype = "plantlike",
 	tiles = {"dfcaverns_dead_fungus.png"},
 	inventory_image = "dfcaverns_dead_fungus.png",
@@ -31,6 +33,8 @@ minetest.register_craft({
 -- not DF canon
 minetest.register_node("dfcaverns:cavern_fungi", {
 	description = S("Cavern Fungi"),
+	_doc_items_longdesc = dfcaverns.doc.cavern_fungi_desc,
+	_doc_items_usagehelp = dfcaverns.doc.cavern_fungi_usage,
 	drawtype = "plantlike",
 	tiles = {"dfcaverns_fungi.png"},
 	inventory_image = "dfcaverns_fungi.png",
@@ -122,9 +126,11 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 	return itemstack
 end
 
-dfcaverns.register_seed = function(name, description, image, stage_one, grow_time)
+dfcaverns.register_seed = function(name, description, image, stage_one, grow_time, desc, usage)
 	local def = {
 		description = description,
+		_doc_items_longdesc = desc,
+		_doc_items_usagehelp = usage,
 		tiles = {image},
 		inventory_image = image,
 		wield_image = image,

@@ -92,7 +92,7 @@ minetest.register_craftitem("dfcaverns:cave_bread", {
 	_doc_items_usagehelp = dfcaverns.doc.cave_bread_usage,
 	inventory_image = "dfcaverns_bread.png",
 	on_use = minetest.item_eat(5),
-	groups = {flammable = 2},
+	groups = {flammable = 2, food = 5},
 })
 
 if minetest.get_modpath("cottages") then

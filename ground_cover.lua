@@ -55,7 +55,7 @@ minetest.register_node("dfcaverns:cobble_with_floor_fungus", {
 	tiles = {"default_cobble.png^dfcaverns_floor_fungus.png", "default_cobble.png", "default_cobble.png^dfcaverns_floor_fungus_side.png"},
 	drops = "default:cobble",
 	is_ground_content = true,
-	groups = {cracky = 3, stone = 2, light_sensitive_fungus = 11},
+	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 11},
 	_dfcaverns_dead_node = "default:cobble",
 	sounds = default.node_sound_stone_defaults({
 		footstep = {name = "dfcaverns_squish", gain = 0.25},

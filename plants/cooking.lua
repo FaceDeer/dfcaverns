@@ -9,6 +9,7 @@ local register_cooking_recipes = function(prefix, item, name, returns)
 		_doc_items_usagehelp = dfcaverns.doc.biscuit_usage,
 		inventory_image = "dfcaverns_biscuit.png",
 		on_use = minetest.item_eat(4),
+		groups = {food = 4},
 	})
 	minetest.register_craftitem("dfcaverns:"..item.."_stew", {
 		description = S("@1 Stew", name),
@@ -16,6 +17,7 @@ local register_cooking_recipes = function(prefix, item, name, returns)
 		_doc_items_usagehelp = dfcaverns.doc.stew_usage,
 		inventory_image = "dfcaverns_stew.png",
 		on_use = minetest.item_eat(6),
+		groups = {food = 6},
 	})
 	minetest.register_craftitem("dfcaverns:"..item.."_roast", {
 		description = S("@1 Roast", name),
@@ -23,6 +25,7 @@ local register_cooking_recipes = function(prefix, item, name, returns)
 		_doc_items_usagehelp = dfcaverns.doc.roast_usage,
 		inventory_image = "dfcaverns_roast.png",
 		on_use = minetest.item_eat(8),
+		groups = {food = 8},
 	})
 
 	minetest.register_craft({
@@ -43,6 +46,39 @@ local register_cooking_recipes = function(prefix, item, name, returns)
 		recipe = {"group:dfcaverns_cookable", "group:dfcaverns_cookable", "group:dfcaverns_cookable", prefix..":"..item},
 		replacements = returns
 	})
+	
+	if minetest.get_modpath("simplecrafting_lib") then
+		simplecrafting_lib.register("cooking", {
+			input = {
+				["group:dfcaverns_cookable"] = 1,
+				[prefix..":"..item] = 1,
+			},
+			output = {
+				["dfcaverns:"..item.."_biscuit"] = 1,
+			},
+			cooktime = 5.0,
+		})
+		simplecrafting_lib.register("cooking", {
+			input = {
+				["group:dfcaverns_cookable"] = 2,
+				[prefix..":"..item] = 1,
+			},
+			output = {
+				["dfcaverns:"..item.."_stew"] = 1,
+			},
+			cooktime = 10.0,
+		})
+		simplecrafting_lib.register("cooking", {
+			input = {
+				["group:dfcaverns_cookable"] = 3,
+				[prefix..":"..item] = 1,
+			},
+			output = {
+				["dfcaverns:"..item.."_roast"] = 1,
+			},
+			cooktime = 15.0,
+		})
+	end
 end
 
 register_cooking_recipes("dfcaverns", "cave_flour", S("Cave Wheat Flour"))

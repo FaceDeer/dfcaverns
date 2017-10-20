@@ -207,11 +207,24 @@ if minetest.get_modpath("bucket") then
 		S("Dwarven Syrup Bucket")
 	)
 	
-	minetest.register_craft({
-		type = "shapeless",
-		output = "dfcaverns:dwarven_syrup_bucket",
-		recipe = {"bucket:bucket_empty", "dfcaverns:sugar", "dfcaverns:sugar", "dfcaverns:sugar"},
-	})
+	if minetest.get_modpath("simplecrafting_lib") then
+		simplecrafting_lib.register("cooking", {
+			input = {
+				["bucket:bucket_empty"] = 1,
+				["dfcaverns:sugar"] = 3,
+			},
+			output = {
+				["dfcaverns:dwarven_syrup_bucket"] = 1,
+			},
+			cooktime = 5.0,
+		})
+	else
+		minetest.register_craft({
+			type = "shapeless",
+			output = "dfcaverns:dwarven_syrup_bucket",
+			recipe = {"bucket:bucket_empty", "dfcaverns:sugar", "dfcaverns:sugar", "dfcaverns:sugar"},
+		})
+	end
 	
 	if minetest.get_modpath("dynamic_liquid") then
 		dynamic_liquid.liquid_abm("dfcaverns:dwarven_syrup_source", "dfcaverns:dwarven_syrup_flowing", 5)

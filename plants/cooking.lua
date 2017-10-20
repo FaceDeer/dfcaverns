@@ -27,25 +27,6 @@ local register_cooking_recipes = function(prefix, item, name, returns)
 		on_use = minetest.item_eat(8),
 		groups = {food = 8},
 	})
-
-	minetest.register_craft({
-		type = "shapeless",
-		output = "dfcaverns:"..item.."_biscuit",
-		recipe = {"group:dfcaverns_cookable", prefix..":"..item},
-		replacements = returns
-	})
-	minetest.register_craft({
-		type = "shapeless",
-		output = "dfcaverns:"..item.."_stew",
-		recipe = {"group:dfcaverns_cookable", "group:dfcaverns_cookable", prefix..":"..item},
-		replacements = returns
-	})
-	minetest.register_craft({
-		type = "shapeless",
-		output = "dfcaverns:"..item.."_roast",
-		recipe = {"group:dfcaverns_cookable", "group:dfcaverns_cookable", "group:dfcaverns_cookable", prefix..":"..item},
-		replacements = returns
-	})
 	
 	if minetest.get_modpath("simplecrafting_lib") then
 		simplecrafting_lib.register("cooking", {
@@ -77,6 +58,25 @@ local register_cooking_recipes = function(prefix, item, name, returns)
 				["dfcaverns:"..item.."_roast"] = 1,
 			},
 			cooktime = 15.0,
+		})
+	else
+		minetest.register_craft({
+			type = "shapeless",
+			output = "dfcaverns:"..item.."_biscuit",
+			recipe = {"group:dfcaverns_cookable", prefix..":"..item},
+			replacements = returns
+		})
+		minetest.register_craft({
+			type = "shapeless",
+			output = "dfcaverns:"..item.."_stew",
+			recipe = {"group:dfcaverns_cookable", "group:dfcaverns_cookable", prefix..":"..item},
+			replacements = returns
+		})
+		minetest.register_craft({
+			type = "shapeless",
+			output = "dfcaverns:"..item.."_roast",
+			recipe = {"group:dfcaverns_cookable", "group:dfcaverns_cookable", "group:dfcaverns_cookable", prefix..":"..item},
+			replacements = returns
 		})
 	end
 end

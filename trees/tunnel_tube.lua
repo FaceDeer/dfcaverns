@@ -18,7 +18,7 @@ minetest.register_node("dfcaverns:tunnel_tube", {
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
 	paramtype = "light",
-	groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2},
+	groups = {choppy = 3, tree = 1, oddly_breakable_by_hand=1, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,
 	

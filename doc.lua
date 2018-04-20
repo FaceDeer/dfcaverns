@@ -93,4 +93,8 @@ dfcaverns.doc.tower_cap_desc = S("The king of the fungi, tower cap mushrooms gro
 dfcaverns.doc.tower_cap_usage = S("Tower caps are an excellent source of wood.")
 
 dfcaverns.doc.tunnel_tube_desc = S("Tunnel tubes are hollow, curved fungal growths that support a fruiting body.")
-dfcaverns.doc.tunnel_tube_usage = S("The trunk of a tunnel tube can be cut and processed to produce plywood-like material.")
+if dfcaverns.config.enable_tnt then
+	dfcaverns.doc.tunnel_tube_usage = S("The trunk of a tunnel tube can be cut and processed to produce plywood-like material. The fruiting body accumulates high-energy compounds that, when ignited, produce a vigorous detonation - a unique adaptation for spreading tunnel tube spawn through the still cavern air.")
+else
+	dfcaverns.doc.tunnel_tube_usage = S("The trunk of a tunnel tube can be cut and processed to produce plywood-like material.")
+end

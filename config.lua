@@ -78,3 +78,11 @@ setting("int", "lava_sea_min", -2700, "Lower limit of the lava sea")
 
 setting("float", "lava_sea_threshold", 0.2, "Cavern threshold for magma sea (higher number means sparser magma)")
 setting("bool", "bottom_sea_contains_lava", true, "Lower sea contains lava")
+
+if minetest.get_modpath("tnt") then
+	dfcaverns.config.enable_tnt = minetest.settings:get_bool("enable_tnt")
+	if dfcaverns.config.enable_tnt == nil then
+		-- Default to enabled when in singleplayer
+		dfcaverns.config.enable_tnt = minetest.is_singleplayer()
+	end
+end

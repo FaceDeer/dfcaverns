@@ -10,6 +10,8 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
+local tunnel_tube_drop = nil
+
 minetest.register_node("dfcaverns:tunnel_tube", {
 	description = S("Tunnel Tube"),
 	_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
@@ -69,35 +71,119 @@ minetest.register_craft({
 	burntime = 3,
 })
 
+-- TNT
+-----------------------------------------------------------------------------------------------------------
+if dfcaverns.config.enable_tnt then
 
-minetest.register_node("dfcaverns:tunnel_tube_fruiting_body", {
-	description = S("Tunnel Tube Fruiting Body"),
-	_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
-	_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
-	tiles = {"dfcaverns_tunnel_tube.png^[multiply:#b09090"},
-	paramtype2 = "facedir",
-	groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node,
+	local tnt_radius = tonumber(minetest.settings:get("tnt_radius") or 3) * 2/3
+	local tnt_def = {radius = tnt_radius, damage_radius = tnt_radius * 2}
 	
-	drop = {
-		max_items = 3,
-		items = {
-			{
-				items = {'dfcaverns:tunnel_tube_sapling'},
-				rarity = 2,
+	minetest.register_node("dfcaverns:tunnel_tube_fruiting_body", {
+		description = S("Tunnel Tube Fruiting Body"),
+		_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+		_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
+		tiles = {"dfcaverns_tunnel_tube.png^[multiply:#b09090"},
+		paramtype2 = "facedir",
+		groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2, tnt = 1,},
+		sounds = default.node_sound_wood_defaults(),
+		on_place = minetest.rotate_node,
+		drop = {
+			max_items = 3,
+			items = {
+				{
+					items = {'dfcaverns:tunnel_tube_sapling'},
+					rarity = 2,
+				},
+				{
+					items = {'dfcaverns:tunnel_tube_sapling', 'tnt:gunpowder'},
+					rarity = 2,
+				},
+				{
+					items = {'dfcaverns:tunnel_tube_sapling', 'tnt:gunpowder 2'},
+					rarity = 2,
+				},
 			},
-			{
-				items = {'dfcaverns:tunnel_tube_sapling'},
-				rarity = 2,
+		},
+		
+		on_punch = function(pos, node, puncher)
+			if puncher:get_wielded_item():get_name() == "default:torch" then
+				minetest.swap_node(pos, {name = "dfcaverns:tunnel_tube_fruiting_body_burning"})
+				minetest.registered_nodes["dfcaverns:tunnel_tube_fruiting_body_burning"].on_construct(pos)
+				minetest.log("action", puncher:get_player_name() .. " ignites " .. node.name .. " at " .. minetest.pos_to_string(pos))
+			end
+		end,
+		on_blast = function(pos, intensity)
+			minetest.after(0.1, function()
+				tnt.boom(pos, tnt_def)
+			end)
+		end,
+		mesecons = {effector =
+			{action_on =
+				function(pos)
+					tnt.boom(pos, tnt_def)
+				end
+			}
+		},
+		on_burn = function(pos)
+			minetest.swap_node(pos, {name = "dfcaverns:tunnel_tube_fruiting_body_burning"})
+			minetest.registered_nodes["dfcaverns:tunnel_tube_fruiting_body_burning"].on_construct(pos)
+		end,
+		on_ignite = function(pos, igniter)
+			minetest.swap_node(pos, {name = "dfcaverns:tunnel_tube_fruiting_body_burning"})
+			minetest.registered_nodes["dfcaverns:tunnel_tube_fruiting_body_burning"].on_construct(pos)
+		end,
+	})
+	
+	minetest.register_node("dfcaverns:tunnel_tube_fruiting_body_burning", {
+		description = S("Tunnel Tube Fruiting Body"),
+		_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+		_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
+		tiles = {"dfcaverns_tunnel_tube.png^[multiply:#b09090"},
+		groups = {not_in_creative_inventory = 1,},
+		light_source = 5,
+		drop = "",
+		sounds = default.node_sound_wood_defaults(),
+		on_timer = function(pos, elapsed)
+			tnt.boom(pos, tnt_def)
+		end,
+		-- unaffected by explosions
+		on_blast = function() end,
+		on_construct = function(pos)
+			minetest.sound_play("tnt_ignite", {pos = pos})
+			minetest.get_node_timer(pos):start(4)
+		end,
+	})
+else
+	minetest.register_node("dfcaverns:tunnel_tube_fruiting_body", {
+		description = S("Tunnel Tube Fruiting Body"),
+		_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+		_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
+		tiles = {"dfcaverns_tunnel_tube.png^[multiply:#b09090"},
+		paramtype2 = "facedir",
+		groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2},
+		sounds = default.node_sound_wood_defaults(),
+		on_place = minetest.rotate_node,
+		
+		drop = {
+			max_items = 3,
+			items = {
+				{
+					items = {'dfcaverns:tunnel_tube_sapling'},
+					rarity = 2,
+				},
+				{
+					items = {'dfcaverns:tunnel_tube_sapling'},
+					rarity = 2,
+				},
+				{
+					items = {'dfcaverns:tunnel_tube_sapling'},
+					rarity = 2,
+				},
 			},
-			{
-				items = {'dfcaverns:tunnel_tube_sapling'},
-				rarity = 2,
-			},
-		}
-	},
-})
+		},
+	})
+end
+-----------------------------------------------------------------------------------------------------------
 
 minetest.register_node("dfcaverns:tunnel_tube_sapling", {
 	description = S("Tunnel Tube Spawn"),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-10 12:21-0600\n"
+"POT-Creation-Date: 2018-04-19 19:58-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -351,7 +351,15 @@ msgid ""
 "Tunnel tubes are hollow, curved fungal growths that support a fruiting body."
 msgstr ""
 
-#: doc.lua:96
+#: doc.lua:97
+msgid ""
+"The trunk of a tunnel tube can be cut and processed to produce plywood-like "
+"material. The fruiting body accumulates high-energy compounds that, when "
+"ignited, produce a vigorous detonation - a unique adaptation for spreading "
+"tunnel tube spawn through the still cavern air."
+msgstr ""
+
+#: doc.lua:99
 msgid ""
 "The trunk of a tunnel tube can be cut and processed to produce plywood-like "
 "material."
@@ -383,12 +391,12 @@ msgid "Cave Wheat"
 msgstr ""
 
 #: plants\cave_wheat.lua:61
-#: plants\cooking.lua:49
+#: plants\cooking.lua:85
 msgid "Cave Wheat Seed"
 msgstr ""
 
 #: plants\cave_wheat.lua:82
-#: plants\cooking.lua:48
+#: plants\cooking.lua:84
 msgid "Cave Wheat Flour"
 msgstr ""
 
@@ -400,24 +408,24 @@ msgstr ""
 msgid "@1 Biscuit"
 msgstr ""
 
-#: plants\cooking.lua:14
+#: plants\cooking.lua:15
 msgid "@1 Stew"
 msgstr ""
 
-#: plants\cooking.lua:21
+#: plants\cooking.lua:23
 msgid "@1 Roast"
 msgstr ""
 
-#: plants\cooking.lua:50
+#: plants\cooking.lua:86
 msgid "Sweet Pod Spore"
 msgstr ""
 
-#: plants\cooking.lua:51
+#: plants\cooking.lua:87
 #: plants\sweet_pod.lua:83
 msgid "Sweet Pod Sugar"
 msgstr ""
 
-#: plants\cooking.lua:52
+#: plants\cooking.lua:88
 #: plants\plump_helmet.lua:91
 #: plants\plump_helmet.lua:127
 #: plants\plump_helmet.lua:161
@@ -426,29 +434,29 @@ msgstr ""
 msgid "Plump Helmet"
 msgstr ""
 
-#: plants\cooking.lua:53
+#: plants\cooking.lua:89
 #: plants\plump_helmet.lua:61
 msgid "Plump Helmet Spawn"
 msgstr ""
 
-#: plants\cooking.lua:54
+#: plants\cooking.lua:90
 msgid "Quarry Bush Leaf"
 msgstr ""
 
-#: plants\cooking.lua:55
+#: plants\cooking.lua:91
 msgid "Rock Nut"
 msgstr ""
 
-#: plants\cooking.lua:56
+#: plants\cooking.lua:92
 msgid "Dimple Cup Spore"
 msgstr ""
 
-#: plants\cooking.lua:57
+#: plants\cooking.lua:93
 #: plants\pig_tail.lua:61
 msgid "Pig Tail Spore"
 msgstr ""
 
-#: plants\cooking.lua:58
+#: plants\cooking.lua:94
 msgid "Dwarven Syrup"
 msgstr ""
 
@@ -596,11 +604,11 @@ msgstr ""
 msgid "Nether Cap Gills"
 msgstr ""
 
-#: trees\nether_cap.lua:77
+#: trees\nether_cap.lua:78
 msgid "Nether Cap Planks"
 msgstr ""
 
-#: trees\nether_cap.lua:91
+#: trees\nether_cap.lua:92
 msgid "Nether Cap Spawn"
 msgstr ""
 
@@ -644,18 +652,20 @@ msgstr ""
 msgid "Tower Cap Spawn"
 msgstr ""
 
-#: trees\tunnel_tube.lua:14
+#: trees\tunnel_tube.lua:16
 msgid "Tunnel Tube"
 msgstr ""
 
-#: trees\tunnel_tube.lua:45
+#: trees\tunnel_tube.lua:47
 msgid "Tunnel Tube Plies"
 msgstr ""
 
-#: trees\tunnel_tube.lua:74
+#: trees\tunnel_tube.lua:79
+#: trees\tunnel_tube.lua:135
+#: trees\tunnel_tube.lua:157
 msgid "Tunnel Tube Fruiting Body"
 msgstr ""
 
-#: trees\tunnel_tube.lua:103
+#: trees\tunnel_tube.lua:187
 msgid "Tunnel Tube Spawn"
 msgstr ""

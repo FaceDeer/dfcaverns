@@ -4,27 +4,43 @@ local c_stone = minetest.get_content_id("default:stone")
 local c_cobble = minetest.get_content_id("default:cobble")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_sand = minetest.get_content_id("default:sand")
-local c_lava = minetest.get_content_id("default:lava_source")
+
+local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
+local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
+local c_dead_fungus = minetest.get_content_id("dfcaverns:dead_fungus") -- param2 = 0
+local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- param2 = 0
 
 -------------------------------------------------------------------------------------------
 
-local lava_sea_biome_def = {
-	name = "dfcaverns_lava_sea",
-	y_min = dfcaverns.config.lava_sea_min,
-	y_max = dfcaverns.config.lava_sea_max,
+minetest.debug(dfcaverns.config.sunless_sea_min)
+minetest.debug(dfcaverns.config.sunless_sea_level)
+
+local sunless_sea_underwater_floor = function(area, data, ai, vi, bi, param2_data)
+	if data[bi] ~= c_stone then
+		return
+	end
+	data[bi] = c_dirt
+end
+
+local sunless_sea_biome_def = {
+	name = "dfcaverns_sunless_sea",
+	y_min = dfcaverns.config.sunless_sea_min,
+	y_max = dfcaverns.config.sunless_sea_level,
 	heat_point = 50,
 	humidity_point = 50,
+	_subterrane_fill_node = c_water,
+	_subterrane_cave_fill_node = c_water,
+	_subterrane_mitigate_lava = true,
+	_subterrane_floor_decor = sunless_sea_underwater_floor,
 }
 
-minetest.register_biome(lava_sea_biome_def)
-
-local airspace = (dfcaverns.config.lava_sea_max - dfcaverns.config.lava_sea_min) / 3
+minetest.register_biome(sunless_sea_biome_def)
 
 local data = {}
 
 minetest.register_on_generated(function(minp, maxp, seed)
 	--if out of range of cave definition limits, abort
-	if minp.y > dfcaverns.config.lava_sea_max - airspace or maxp.y < dfcaverns.config.lava_sea_min then
+	if minp.y > dfcaverns.config.sunless_sea_level or maxp.y < dfcaverns.config.sunless_sea_min then
 		return
 	end
 		
@@ -43,12 +59,14 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		
 	for z = z_min, z_max do -- for each xy plane progressing northwards
 		for y = y_min, y_max do -- for each x row progressing upwards
-			local vi = area:index(x_min, y, z) --current node index
-			for x = x_min, x_max do -- for each node do
-				if data[vi] == c_air or data[vi] == c_water then
-					data[vi] = c_lava
+			if y <= dfcaverns.config.sunless_sea_level then
+				local vi = area:index(x_min, y, z) --current node index
+				for x = x_min, x_max do -- for each node do
+					if data[vi] == c_air then
+						data[vi] = c_water
+					end
+					vi = vi + 1
 				end
-				vi = vi + 1
 			end
 		end
 	end

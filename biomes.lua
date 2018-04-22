@@ -5,6 +5,7 @@ local c_sand = minetest.get_content_id("default:sand")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_coal_ore = minetest.get_content_id("default:stone_with_coal")
 local c_gravel = minetest.get_content_id("default:gravel")
+local c_obsidian = minetest.get_content_id("default:obsidian")
 
 local c_sweet_pod = minetest.get_content_id("dfcaverns:sweet_pod_6") -- param2 = 0
 local c_quarry_bush = minetest.get_content_id("dfcaverns:quarry_bush_5") -- param2 = 4
@@ -18,6 +19,7 @@ local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- para
 local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
 
+local c_wet_flowstone = minetest.get_content_id("subterrane:wet_flowstone")
 
 local shallow_cave_floor = function(area, data, ai, vi, bi, param2_data)
 	if data[bi] ~= c_stone then
@@ -28,7 +30,7 @@ local shallow_cave_floor = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.025 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.025 * 4)
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, false)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.dry_stalagmite_ids)
 	end	
 end
 
@@ -41,7 +43,7 @@ local shallow_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.025 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.025 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, false)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, subterrane.dry_stalagmite_ids)
 	end	
 end
 
@@ -91,6 +93,14 @@ subterrane:register_cave_layer({
 	cave_threshold = dfcaverns.config.cavern_threshold,
 	perlin_cave = perlin_cave,
 	perlin_wave = perlin_wave,
+	columns = {
+		maximum_radius = 10,
+		minimum_radius = 2,
+		node = c_wet_flowstone,
+		weight = 0.25,
+		maximum_count = 30,
+		minimum_count = 5,
+	},
 })
 
 subterrane:register_cave_layer({
@@ -99,6 +109,14 @@ subterrane:register_cave_layer({
 	cave_threshold = dfcaverns.config.cavern_threshold,
 	perlin_cave = perlin_cave,
 	perlin_wave = perlin_wave,
+	columns = {
+		maximum_radius = 15,
+		minimum_radius = 2,
+		node = c_wet_flowstone,
+		weight = 0.25,
+		maximum_count = 50,
+		minimum_count = 10,
+	},
 })
 
 local perlin_cave_lava = {
@@ -121,11 +139,37 @@ local perlin_wave_lava = {
 
 subterrane:register_cave_layer({
 	minimum_depth = dfcaverns.config.level3_min,
-	maximum_depth = dfcaverns.config.lava_sea_min,
+	maximum_depth = dfcaverns.config.sunless_sea_min,
 	cave_threshold = dfcaverns.config.lava_sea_threshold,
 	perlin_cave = perlin_cave_lava,
 	perlin_wave = perlin_wave_lava,
+	columns = {
+		maximum_radius = 25,
+		minimum_radius = 2,
+		node = c_wet_flowstone,
+		weight = 0.25,
+		maximum_count = 100,
+		minimum_count = 25,
+	},
 })
+
+if dfcaverns.config.enable_lava_sea then
+	subterrane:register_cave_layer({
+		minimum_depth = dfcaverns.config.lava_sea_max,
+		maximum_depth = dfcaverns.config.lava_sea_min,
+		cave_threshold = dfcaverns.config.lava_sea_threshold,
+		perlin_cave = perlin_cave_lava,
+		perlin_wave = perlin_wave_lava,
+		columns = {
+			maximum_radius = 30,
+			minimum_radius = 5,
+			node = c_obsidian,
+			weight = 0.5,
+			maximum_count = 100,
+			minimum_count = 25,
+		},
+	})
+end
 
 dfcaverns.can_support_vegetation = {[c_sand] = true, [c_dirt] = true, [c_coal_ore] = true, [c_gravel] = true}
 

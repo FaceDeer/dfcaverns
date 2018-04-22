@@ -69,15 +69,19 @@ setting("bool", "light_kills_fungus", true, "Light kills fungus")
 
 setting("float", "vertical_cavern_scale", 256, "Vertical cavern dimension scale")
 setting("float", "horizontal_cavern_scale", 256, "Horizontal cavern dimension scale")
+setting("float", "cavern_threshold", 0.5, "Cavern threshold")
 
 setting("int", "ymax", -300, "Upper limit of level 1")
 setting("int", "level1_min", -900, "Upper limit of level 2")
 setting("int", "level2_min", -1500, "Upper limit of level 3")
-setting("int", "level3_min", -2100, "Upper limit of lava sea")
-setting("int", "lava_sea_min", -2700, "Lower limit of the lava sea")
+setting("int", "level3_min", -2100, "Upper limit of the sunless sea")
+setting("int", "sunless_sea_min", -2500, "Lower limit of the sunless sea")
 
-setting("float", "lava_sea_threshold", 0.2, "Cavern threshold for magma sea (higher number means sparser magma)")
-setting("bool", "bottom_sea_contains_lava", true, "Lower sea contains lava")
+setting("int", "lava_sea_max", -3000, "Upper limit of the lava sea")
+setting("int", "lava_sea_min", -3500, "Lower limit of the lava sea")
+
+setting("float", "lava_sea_threshold", 0.2, "Cavern threshold for sunless and magma seas (higher number means sparser magma)")
+setting("bool", "enable_lava_sea", true, "Enable magma sea level")
 
 if minetest.get_modpath("tnt") then
 	dfcaverns.config.enable_tnt = minetest.settings:get_bool("enable_tnt")
@@ -86,3 +90,5 @@ if minetest.get_modpath("tnt") then
 		dfcaverns.config.enable_tnt = minetest.is_singleplayer()
 	end
 end
+
+dfcaverns.config.sunless_sea_level = dfcaverns.config.level3_min - (dfcaverns.config.level3_min - dfcaverns.config.sunless_sea_min) * 0.3

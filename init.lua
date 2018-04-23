@@ -9,6 +9,8 @@ dofile(modpath.."/doc.lua")
 
 dofile(modpath.."/ground_cover.lua")
 dofile(modpath.."/glow_worms.lua")
+dofile(modpath.."/flowstone_nodes.lua")
+dofile(modpath.."/glow_water.lua")
 
 -- Plants
 dofile(modpath.."/plants.lua") -- general functions

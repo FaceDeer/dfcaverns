@@ -14,8 +14,8 @@ local c_dirt = minetest.get_content_id("default:dirt")
 local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
 
-local c_wet_flowstone = minetest.get_content_id("subterrane:wet_flowstone")
-local c_dry_flowstone = minetest.get_content_id("subterrane:dry_flowstone")
+local c_wet_flowstone = minetest.get_content_id("dfcaverns:wet_flowstone")
+local c_dry_flowstone = minetest.get_content_id("dfcaverns:dry_flowstone")
 
 
 local c_sweet_pod = minetest.get_content_id("dfcaverns:sweet_pod_6") -- param2 = 0
@@ -49,7 +49,7 @@ local level_2_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	elseif drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.wet_stalagmite_ids)
 	elseif math.random() < 0.005 then
 		dfcaverns.spawn_tower_cap_vm(vi, area, data)
 	end
@@ -73,7 +73,7 @@ local level_2_fungiwood_floor = function(area, data, ai, vi, bi, param2_data)
 	elseif drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.wet_stalagmite_ids)
 	elseif math.random() < 0.005 then
 		dfcaverns.spawn_fungiwood_vm(vi, area, data)
 	end
@@ -97,7 +97,7 @@ local level_2_tunnel_tube_floor = function(area, data, ai, vi, bi, param2_data)
 	elseif drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.wet_stalagmite_ids)
 	elseif math.random() < 0.05 then
 		dfcaverns.spawn_tunnel_tube_vm(vi, area, data, param2_data)
 	end
@@ -123,7 +123,7 @@ local level_2_black_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	elseif drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.wet_stalagmite_ids)
 	elseif math.random() < 0.025 then
 		dfcaverns.spawn_black_cap_vm(vi, area, data)
 	end
@@ -149,7 +149,7 @@ local level_2_spore_tree_floor = function(area, data, ai, vi, bi, param2_data)
 	elseif drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.wet_stalagmite_ids)
 	elseif math.random() < 0.05 then
 		dfcaverns.spawn_spore_tree_vm(vi, area, data)
 	end
@@ -175,7 +175,7 @@ local level_2_goblin_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	elseif drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.wet_stalagmite_ids)
 	elseif math.random() < 0.025 then
 		dfcaverns.spawn_goblin_cap_vm(vi, area, data)
 	end
@@ -192,7 +192,7 @@ local level_2_moist_ceiling = function(area, data, ai, vi, bi, param2_data)
 	elseif drip_rand < 0.07 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.07 * 5)
-		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.wet_stalagmite_ids)
 	elseif math.random() < 0.025 then
 		dfcaverns.glow_worm_ceiling(area, data, ai, vi, bi)
 	end
@@ -219,7 +219,7 @@ local level_2_wet_floor = function(area, data, ai, vi, bi, param2_data)
 	elseif drip_rand < 0.05 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.05 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.wet_stalagmite_ids)
 	end
 end
 
@@ -243,7 +243,7 @@ local level_2_dry_floor = function(area, data, ai, vi, bi, param2_data)
 	elseif drip_rand < 0.05 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.05 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.dry_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.dry_stalagmite_ids)
 	end
 end
 
@@ -255,7 +255,7 @@ local level_2_dry_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.075 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 5)
-		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, subterrane.dry_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.dry_stalagmite_ids)
 	end
 end
 
@@ -285,7 +285,7 @@ local level_2_cave_floor = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.075 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 4)
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.wet_stalagmite_ids)
 	end	
 end
 
@@ -299,7 +299,7 @@ local level_2_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, subterrane.wet_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.wet_stalagmite_ids)
 	end	
 end
 

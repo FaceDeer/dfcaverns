@@ -91,4 +91,4 @@ if minetest.get_modpath("tnt") then
 	end
 end
 
-dfcaverns.config.sunless_sea_level = dfcaverns.config.level3_min - (dfcaverns.config.level3_min - dfcaverns.config.sunless_sea_min) * 0.3
+dfcaverns.config.sunless_sea_level = dfcaverns.config.level3_min - (dfcaverns.config.level3_min - dfcaverns.config.sunless_sea_min) * 0.5

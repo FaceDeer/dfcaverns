@@ -10,6 +10,8 @@ local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fun
 local c_dead_fungus = minetest.get_content_id("dfcaverns:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- param2 = 0
 
+local c_glow_water = minetest.get_content_id("dfcaverns:glow_water_source")
+
 -------------------------------------------------------------------------------------------
 
 minetest.debug(dfcaverns.config.sunless_sea_min)
@@ -20,6 +22,9 @@ local sunless_sea_underwater_floor = function(area, data, ai, vi, bi, param2_dat
 		return
 	end
 	data[bi] = c_dirt
+	if math.random() < 0.001 then
+		data[vi] = c_glow_water
+	end
 end
 
 local sunless_sea_biome_def = {

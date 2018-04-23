@@ -19,7 +19,7 @@ local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- para
 local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
 
-local c_wet_flowstone = minetest.get_content_id("subterrane:wet_flowstone")
+local c_wet_flowstone = minetest.get_content_id("dfcaverns:wet_flowstone")
 
 local shallow_cave_floor = function(area, data, ai, vi, bi, param2_data)
 	if data[bi] ~= c_stone then
@@ -30,7 +30,7 @@ local shallow_cave_floor = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.025 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.025 * 4)
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, subterrane.dry_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.dry_stalagmite_ids)
 	end	
 end
 
@@ -43,7 +43,7 @@ local shallow_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.025 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.025 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, subterrane.dry_stalagmite_ids)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.dry_stalagmite_ids)
 	end	
 end
 
@@ -146,7 +146,7 @@ subterrane:register_cave_layer({
 	columns = {
 		maximum_radius = 25,
 		minimum_radius = 2,
-		node = c_wet_flowstone,
+		node = c_stone,
 		weight = 0.25,
 		maximum_count = 100,
 		minimum_count = 25,

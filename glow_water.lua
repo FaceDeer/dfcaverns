@@ -156,7 +156,7 @@ if minetest.get_modpath("bucket") then
 		"dfcaverns:glow_water_source",
 		"dfcaverns:glow_water_flowing",
 		"dfcaverns:glow_water_bucket",
-		"dfcaverns_bucket_dwarven_syrup.png",
+		"dfcaverns_bucket_glow_water.png",
 		S("Glow Water Bucket")
 	)
 end

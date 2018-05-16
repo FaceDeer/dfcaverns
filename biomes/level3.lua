@@ -104,6 +104,8 @@ local level_3_underwater_floor = function(area, data, ai, vi, bi, param2_data)
 		return
 	end
 	data[bi] = c_dirt
+	if data[vi] == c_air then data[vi] = c_water end
+	if data[ai] == c_air then data[ai] = c_water end
 end
 
 local level_3_dry_ceiling = function(area, data, ai, vi, bi, param2_data)
@@ -322,7 +324,7 @@ minetest.register_biome({
 	y_max = subsea_level,
 	heat_point = 50,
 	humidity_point = 90,
-	_subterrane_fill_node = c_water,
+	_subterrane_fill_node = c_air,
 	_subterrane_cave_fill_node = c_water,
 	_subterrane_floor_decor = level_3_underwater_floor,
 })

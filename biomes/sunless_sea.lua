@@ -14,9 +14,6 @@ local c_glow_water = minetest.get_content_id("dfcaverns:glow_water_source")
 
 -------------------------------------------------------------------------------------------
 
-minetest.debug(dfcaverns.config.sunless_sea_min)
-minetest.debug(dfcaverns.config.sunless_sea_level)
-
 local sunless_sea_underwater_floor = function(area, data, ai, vi, bi, param2_data)
 	if data[bi] ~= c_stone then
 		return

@@ -216,10 +216,10 @@ minetest.register_biome({
 	y_max = subsea_level,
 	heat_point = 50,
 	humidity_point = 100,
-	_subterrane_fill_node = c_water,
+	_subterrane_fill_node = c_air,
 	_subterrane_cave_fill_node = c_water,
 	_subterrane_floor_decor = level_1_underwater_floor,
-	_subterrane_mitigate_lava = false, -- no need to mitigate lava in a flooded cave, problem is self-solving
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
@@ -300,7 +300,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_fill_node = c_water,
 	_subterrane_floor_decor = level_1_underwater_floor,
-	_subterrane_mitigate_lava = false, -- no need to mitigate lava in a flooded cave, problem is self-solving
+	_subterrane_mitigate_lava = true,
 })
 
 
@@ -327,7 +327,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_cave_fill_node = c_water,
 	_subterrane_floor_decor = level_1_underwater_floor,
-	_subterrane_mitigate_lava = false, -- no need to mitigate lava in a flooded cave, problem is self-solving
+	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({

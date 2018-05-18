@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-19 19:58-0600\n"
+"POT-Creation-Date: 2018-05-18 01:34-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -365,24 +365,57 @@ msgid ""
 "material."
 msgstr ""
 
-#: glow_worms.lua:6
-msgid "Glow Worms"
-msgstr ""
-
-#: ground_cover.lua:11
-msgid "Dirt With Cave Moss"
-msgstr ""
-
-#: ground_cover.lua:52
-msgid "Cobblestone With Floor Fungus"
-msgstr ""
-
 #: plants.lua:10
 msgid "Dead Fungus"
 msgstr ""
 
 #: plants.lua:35
 msgid "Cavern Fungi"
+msgstr ""
+
+#: features\flowstone_nodes.lua:19
+#: features\flowstone_nodes.lua:39
+msgid "Dry Dripstone"
+msgstr ""
+
+#: features\flowstone_nodes.lua:28
+msgid "Dry Flowstone"
+msgstr ""
+
+#: features\flowstone_nodes.lua:49
+msgid "Wet Flowstone"
+msgstr ""
+
+#: features\flowstone_nodes.lua:60
+msgid "Icicle"
+msgstr ""
+
+#: features\glow_crystals.lua:7
+msgid "Flawless Mese Block"
+msgstr ""
+
+#: features\glow_water.lua:6
+msgid "Mese Water"
+msgstr ""
+
+#: features\glow_water.lua:55
+msgid "Flowing Mese Water"
+msgstr ""
+
+#: features\glow_water.lua:160
+msgid "Glow Water Bucket"
+msgstr ""
+
+#: features\glow_worms.lua:6
+msgid "Glow Worms"
+msgstr ""
+
+#: features\ground_cover.lua:11
+msgid "Dirt With Cave Moss"
+msgstr ""
+
+#: features\ground_cover.lua:52
+msgid "Cobblestone With Floor Fungus"
 msgstr ""
 
 #: plants\cave_wheat.lua:10
@@ -660,12 +693,12 @@ msgstr ""
 msgid "Tunnel Tube Plies"
 msgstr ""
 
-#: trees\tunnel_tube.lua:79
-#: trees\tunnel_tube.lua:135
-#: trees\tunnel_tube.lua:157
+#: trees\tunnel_tube.lua:82
+#: trees\tunnel_tube.lua:138
+#: trees\tunnel_tube.lua:158
 msgid "Tunnel Tube Fruiting Body"
 msgstr ""
 
-#: trees\tunnel_tube.lua:187
+#: trees\tunnel_tube.lua:189
 msgid "Tunnel Tube Spawn"
 msgstr ""

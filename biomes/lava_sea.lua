@@ -5,8 +5,17 @@ local c_cobble = minetest.get_content_id("default:cobble")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_sand = minetest.get_content_id("default:sand")
 local c_lava = minetest.get_content_id("default:lava_source")
+local c_meseore = minetest.get_content_id("default:stone_with_mese")
+local c_mesecry = minetest.get_content_id("dfcaverns:glow_mese")
 
 -------------------------------------------------------------------------------------------
+
+local lava_ceiling = function(area, data, ai, vi, bi)
+	if math.random() < 0.005 then
+		subterrane:giant_stalactite(ai, area, data, 6, 13, c_meseore, c_meseore, c_mesecry)
+	end
+end
+
 
 local lava_sea_biome_def = {
 	name = "dfcaverns_lava_sea",
@@ -14,6 +23,7 @@ local lava_sea_biome_def = {
 	y_max = dfcaverns.config.lava_sea_max,
 	heat_point = 50,
 	humidity_point = 50,
+	_subterrane_ceiling_decor = lava_ceiling,
 }
 
 minetest.register_biome(lava_sea_biome_def)

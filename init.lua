@@ -7,10 +7,11 @@ local modpath = minetest.get_modpath(minetest.get_current_modname())
 dofile(modpath.."/config.lua")
 dofile(modpath.."/doc.lua")
 
-dofile(modpath.."/ground_cover.lua")
-dofile(modpath.."/glow_worms.lua")
-dofile(modpath.."/flowstone_nodes.lua")
-dofile(modpath.."/glow_water.lua")
+dofile(modpath.."/features/ground_cover.lua")
+dofile(modpath.."/features/glow_worms.lua")
+dofile(modpath.."/features/flowstone_nodes.lua")
+dofile(modpath.."/features/glow_water.lua")
+dofile(modpath.."/features/glow_crystals.lua")
 
 -- Plants
 dofile(modpath.."/plants.lua") -- general functions

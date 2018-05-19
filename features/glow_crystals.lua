@@ -22,3 +22,144 @@ minetest.register_craft({
 		{'dfcaverns:glow_mese'},
 	}
 })
+
+minetest.register_node("dfcaverns:glow_ruby_ore", {
+	description = S("Crystal Vein"),
+	tiles = {"dfcaverns_glow_ruby_ore.png"},
+	is_ground_content = true,
+	groups = {cracky=2},
+	sounds = default.node_sound_glass_defaults(),
+})
+
+
+minetest.register_node("dfcaverns:big_crystal", {
+	description = S("Giant Crystal"),
+	drawtype = "mesh",
+	mesh = "hex_crystal.obj",
+	tiles = {
+		"dfcaverns_glow_ruby4x.png",
+		"dfcaverns_glow_ruby.png",
+	},
+	use_texture_alpha = true,
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	walkable = false,
+	light_source = 12,
+	groups = {cracky=2, dfcaverns_big_crystal = 1},
+	sounds = default.node_sound_glass_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 3, 0.5},
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {-0.5, -0.5, -0.5, 0.5, 3, 0.5},
+	},
+})
+
+
+minetest.register_node("dfcaverns:big_crystal_30", {
+	description = S("Giant Crystal"),
+	drawtype = "mesh",
+	mesh = "hex_crystal_30.obj",
+	tiles = {
+		"dfcaverns_glow_ruby4x.png",
+		"dfcaverns_glow_ruby.png",
+	},
+	use_texture_alpha = true,
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	walkable = false,
+	light_source = 12,
+	groups = {cracky=2, dfcaverns_big_crystal = 1},
+	sounds = default.node_sound_glass_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.625, 0.5, 0.5, 0.375},
+			{-0.5, 0.5, -1.25, 0.5, 1.5, -0.25},
+			{-0.5, 1.5, -1.875, 0.5, 2.5, -0.875},
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.625, 0.5, 0.5, 0.375},
+			{-0.5, 0.5, -1.25, 0.5, 1.5, -0.25},
+			{-0.5, 1.5, -1.875, 0.5, 2.5, -0.875},
+		}
+	},
+})
+
+minetest.register_node("dfcaverns:big_crystal_30_45", {
+	description = S("Giant Crystal"),
+	drawtype = "mesh",
+	mesh = "hex_crystal_30_45.obj",
+	tiles = {
+		"dfcaverns_glow_ruby4x.png",
+		"dfcaverns_glow_ruby.png",
+	},
+	use_texture_alpha = true,
+	paramtype = "light",
+	paramtype2 = "facedir",
+	sunlight_propagates = true,
+	walkable = false,
+	light_source = 12,
+	groups = {cracky=2, dfcaverns_big_crystal = 1},
+	sounds = default.node_sound_glass_defaults(),
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.625, 0.625, 0.5, 0.375},
+			{0.0625, 0.5, -1.0625, 1.0625, 1.5, -0.0625},
+			{0.5, 1.5, -1.5, 1.5, 2.5, -0.5},
+		}
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.375, -0.5, -0.625, 0.625, 0.5, 0.375},
+			{0.0625, 0.5, -1.0625, 1.0625, 1.5, -0.0625},
+			{0.5, 1.5, -1.5, 1.5, 2.5, -0.5},
+		}
+	},
+})
+
+local c_stone = minetest.get_content_id("default:stone")
+local c_air = minetest.get_content_id("air")
+local c_big_crystal = minetest.get_content_id("dfcaverns:big_crystal")
+local c_big_crystal_30 = minetest.get_content_id("dfcaverns:big_crystal_30")
+local c_big_crystal_30_45 = minetest.get_content_id("dfcaverns:big_crystal_30_45")
+local c_glow_ore = minetest.get_content_id("dfcaverns:glow_ruby_ore")
+
+local place_big_crystal = function(data, data_param2, i, ceiling)
+	orientation = math.random()
+	if orientation < 0.33 then
+		data[i] = c_big_crystal
+	elseif orientation < 0.66 then
+		data[i] = c_big_crystal_30
+	else
+		data[i] = c_big_crystal_30_45
+	end
+	if ceiling then
+		data_param2[i] = math.random(20,23)
+	else
+		data_param2[i] = math.random(0,3)
+	end
+
+end
+
+dfcaverns.place_big_crystal_cluster = function(area, data, data_param2, i, radius, ceiling)
+	local y
+	if ceiling then y = -1 else y = 1 end
+	local pos = area:position(i)	
+	for li in area:iterp(vector.add(pos, -radius), vector.add(pos, radius)) do
+		local adjacent = li + y*area.ystride
+		if math.random() > 0.5  and data[li] == c_stone and data[adjacent] == c_air then
+			place_big_crystal(data, data_param2, adjacent, ceiling)
+			data[li] = c_glow_ore
+		end
+	end
+end

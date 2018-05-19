@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-18 01:34-0600\n"
+"POT-Creation-Date: 2018-05-19 15:46-0600\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -393,6 +393,16 @@ msgstr ""
 
 #: features\glow_crystals.lua:7
 msgid "Flawless Mese Block"
+msgstr ""
+
+#: features\glow_crystals.lua:27
+msgid "Crystal Vein"
+msgstr ""
+
+#: features\glow_crystals.lua:36
+#: features\glow_crystals.lua:63
+#: features\glow_crystals.lua:97
+msgid "Giant Crystal"
 msgstr ""
 
 #: features\glow_water.lua:6

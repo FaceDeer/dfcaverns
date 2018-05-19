@@ -74,6 +74,29 @@ local level_3_dry_floor = function(area, data, ai, vi, bi, param2_data)
 	end
 end
 
+local level_3_crystal_floor = function(area, data, ai, vi, bi, param2_data)
+	if data[bi] ~= c_stone then
+		return
+	end
+	
+	floor_item = math.random()
+	if floor_item < 0.005 then
+		dfcaverns.place_big_crystal_cluster(area, data, param2_data, vi,  math.random(0,2), false)
+	elseif floor_item < 0.5 then
+		data[bi] = c_cobble
+	end
+	
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+	if drip_rand < 0.001 then
+		subterrane:giant_stalagmite(bi, area, data, 6, 20, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
+	elseif drip_rand < 0.025 then
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.025 * 5)		
+		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.dry_stalagmite_ids)
+	end
+end
+
+
 local level_3_wet_floor = function(area, data, ai, vi, bi, param2_data)
 	if data[bi] ~= c_stone then
 		return
@@ -116,6 +139,23 @@ local level_3_dry_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.075 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 5)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.dry_stalagmite_ids)
+	end
+end
+
+local level_3_crystal_ceiling = function(area, data, ai, vi, bi, param2_data)
+	if data[ai] ~= c_stone then
+		return
+	end
+	
+	if math.random() < 0.005 then
+		dfcaverns.place_big_crystal_cluster(area, data, param2_data, vi, math.random(0,3), true)
+	end
+	
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+	if drip_rand < 0.025 then
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.025 * 5)
 		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.dry_stalagmite_ids)
 	end
 end
@@ -349,7 +389,7 @@ minetest.register_biome({
 	y_max = subsea_level,
 	heat_point = 10,
 	humidity_point = 30,
-	_subterrane_ceiling_decor = level_3_dry_ceiling,
+	_subterrane_ceiling_decor = level_3_crystal_ceiling,
 	_subterrane_floor_decor = level_3_blood_thorn_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_column_node = c_dry_flowstone,
@@ -366,7 +406,7 @@ minetest.register_biome({
 	y_max = dfcaverns.config.level2_min,
 	heat_point = 10,
 	humidity_point = 30,
-	_subterrane_ceiling_decor = level_3_dry_ceiling,
+	_subterrane_ceiling_decor = level_3_crystal_ceiling,
 	_subterrane_floor_decor = level_3_blood_thorn_floor,
 	_subterrane_column_node = c_dry_flowstone,
 	_subterrane_fill_node = c_air,
@@ -535,8 +575,8 @@ minetest.register_biome({
 	y_max = subsea_level,
 	heat_point = 50,
 	humidity_point = 10,
-	_subterrane_ceiling_decor = level_3_dry_ceiling,
-	_subterrane_floor_decor = level_3_dry_floor,
+	_subterrane_ceiling_decor = level_3_crystal_ceiling,
+	_subterrane_floor_decor = level_3_crystal_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_column_node = c_dry_flowstone,
 	_subterrane_override_sea_level = dfcaverns.config.sunless_sea_level,
@@ -550,8 +590,8 @@ minetest.register_biome({
 	y_max = dfcaverns.config.level2_min,
 	heat_point = 50,
 	humidity_point = 10,
-	_subterrane_ceiling_decor = level_3_dry_ceiling,
-	_subterrane_floor_decor = level_3_dry_floor,
+	_subterrane_ceiling_decor = level_3_crystal_ceiling,
+	_subterrane_floor_decor = level_3_crystal_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_column_node = c_dry_flowstone,
 	_subterrane_mitigate_lava = false,

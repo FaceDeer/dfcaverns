@@ -73,6 +73,7 @@ minetest.register_node("dfcaverns:big_crystal_30", {
 	sunlight_propagates = true,
 	walkable = false,
 	light_source = 12,
+	drop = "dfcaverns:big_crystal",
 	groups = {cracky=2, dfcaverns_big_crystal = 1},
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {
@@ -107,6 +108,7 @@ minetest.register_node("dfcaverns:big_crystal_30_45", {
 	sunlight_propagates = true,
 	walkable = false,
 	light_source = 12,
+	drop = "dfcaverns:big_crystal",
 	groups = {cracky=2, dfcaverns_big_crystal = 1},
 	sounds = default.node_sound_glass_defaults(),
 	selection_box = {

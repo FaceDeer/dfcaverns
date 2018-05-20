@@ -16,6 +16,7 @@ minetest.register_node("dfcaverns:dirt_with_cave_moss", {
 			tileable_vertical = false}},
 	drop = "default:dirt",
 	is_ground_content = true,
+	light_source = 2,
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 11},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_grass_footstep", gain = 0.25},

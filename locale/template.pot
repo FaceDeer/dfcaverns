@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-19 15:46-0600\n"
+"POT-Creation-Date: 2018-05-20 00:42-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -399,9 +399,15 @@ msgid "Crystal Vein"
 msgstr ""
 
 #: features\glow_crystals.lua:36
-#: features\glow_crystals.lua:63
-#: features\glow_crystals.lua:97
+#: features\glow_crystals.lua:89
+#: features\glow_crystals.lua:159
 msgid "Giant Crystal"
+msgstr ""
+
+#: features\glow_crystals.lua:62
+#: features\glow_crystals.lua:124
+#: features\glow_crystals.lua:195
+msgid "Big Crystal"
 msgstr ""
 
 #: features\glow_water.lua:6
@@ -424,7 +430,7 @@ msgstr ""
 msgid "Dirt With Cave Moss"
 msgstr ""
 
-#: features\ground_cover.lua:52
+#: features\ground_cover.lua:53
 msgid "Cobblestone With Floor Fungus"
 msgstr ""
 

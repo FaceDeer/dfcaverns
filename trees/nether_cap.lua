@@ -31,7 +31,7 @@ minetest.register_node("dfcaverns:nether_cap_gills", {
 	_doc_items_usagehelp = dfcaverns.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_gills.png"},
 	is_ground_content = true,
-	light_source = 4,
+	light_source = 6,
 	groups = {snappy = 3, leafdecay = 3, leaves = 1, puts_out_fire = 1, cools_lava = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	drawtype = "plantlike",

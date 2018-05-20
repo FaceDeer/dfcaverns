@@ -85,6 +85,14 @@ subterrane:register_cave_layer({
 	cave_threshold = dfcaverns.config.cavern_threshold,
 	perlin_cave = perlin_cave,
 	perlin_wave = perlin_wave,
+	columns = {
+		maximum_radius = 10,
+		minimum_radius = 4,
+		node = c_wet_flowstone,
+		weight = 0.25,
+		maximum_count = 20,
+		minimum_count = 0,
+	},
 })
 
 subterrane:register_cave_layer({
@@ -94,8 +102,8 @@ subterrane:register_cave_layer({
 	perlin_cave = perlin_cave,
 	perlin_wave = perlin_wave,
 	columns = {
-		maximum_radius = 10,
-		minimum_radius = 2,
+		maximum_radius = 15,
+		minimum_radius = 4,
 		node = c_wet_flowstone,
 		weight = 0.25,
 		maximum_count = 30,
@@ -110,8 +118,8 @@ subterrane:register_cave_layer({
 	perlin_cave = perlin_cave,
 	perlin_wave = perlin_wave,
 	columns = {
-		maximum_radius = 15,
-		minimum_radius = 2,
+		maximum_radius = 20,
+		minimum_radius = 5,
 		node = c_wet_flowstone,
 		weight = 0.25,
 		maximum_count = 50,
@@ -145,7 +153,7 @@ subterrane:register_cave_layer({
 	perlin_wave = perlin_wave_lava,
 	columns = {
 		maximum_radius = 25,
-		minimum_radius = 2,
+		minimum_radius = 5,
 		node = c_stone,
 		weight = 0.25,
 		maximum_count = 100,

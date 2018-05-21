@@ -35,6 +35,94 @@ minetest.register_node("dfcaverns:tunnel_tube", {
 	},
 })
 
+minetest.register_node("dfcaverns:tunnel_tube_slant_bottom", {
+	description = S("Tunnel Tube"),
+	_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+	_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
+	tiles = {"dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png"},
+	paramtype2 = "facedir",
+	drawtype = "mesh",
+	mesh = "tunnel_tube_slant.obj",
+	paramtype = "light",
+	drop = "dfcaverns:tunnel_tube",
+	groups = {choppy = 3, tree = 1, oddly_breakable_by_hand=1, flammable = 2},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node,
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.625, 0.5, 0.0, 0.375},
+			{-0.5, 0.0, -0.875, 0.5, 0.5, 0.125},
+		},
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.625, 0.5, 0.0, 0.375},
+			{-0.5, 0.0, -0.875, 0.5, 0.5, 0.125},
+		},
+	},
+
+})
+
+minetest.register_node("dfcaverns:tunnel_tube_slant_top", {
+	description = S("Tunnel Tube"),
+	_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+	_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
+	tiles = {"dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png"},
+	paramtype2 = "facedir",
+	drawtype = "mesh",
+	mesh = "tunnel_tube_slant_2.obj",
+	paramtype = "light",
+	drop = "dfcaverns:tunnel_tube",
+	groups = {choppy = 3, tree = 1, oddly_breakable_by_hand=1, flammable = 2},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node,
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.125, 0.5, 0.0, 0.875},
+			{-0.5, 0.0, -0.375, 0.5, 0.5, 0.625},
+		},
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.125, 0.5, 0.0, 0.875},
+			{-0.5, 0.0, -0.375, 0.5, 0.5, 0.625},
+		},
+	},
+})
+
+minetest.register_node("dfcaverns:tunnel_tube_slant_full", {
+	description = S("Tunnel Tube"),
+	_doc_items_longdesc = dfcaverns.doc.tunnel_tube_desc,
+	_doc_items_usagehelp = dfcaverns.doc.tunnel_tube_usage,
+	tiles = {"dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png"},
+	paramtype2 = "facedir",
+	drawtype = "mesh",
+	mesh = "tunnel_tube_slant_full.obj",
+	paramtype = "light",
+	drop = "dfcaverns:tunnel_tube",
+	groups = {choppy = 3, tree = 1, oddly_breakable_by_hand=1, flammable = 2},
+	sounds = default.node_sound_wood_defaults(),
+	on_place = minetest.rotate_node,
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.75, 0.5, 0, 0.25},
+			{-0.5, 0, -1.25, 0.5, 0.5, -0.25},
+		},
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.75, 0.5, 0, 0.25},
+			{-0.5, 0, -1.25, 0.5, 0.5, -0.25},
+		},
+	},
+})
+
 --Wood
 minetest.register_craft({
 	output = 'dfcaverns:tunnel_tube_wood 4',
@@ -218,23 +306,27 @@ minetest.register_node("dfcaverns:tunnel_tube_sapling", {
 })
 
 local tunnel_tube_directions = {
-	{x=1,y=0,z=0},
-	{x=-1,y=0,z=0},
-	{x=0,y=0,z=1},
-	{x=0,y=0,z=-1},
---	{x=1,y=0,z=1}, -- diagonals work, but they don't look as nice as orthogonals
---	{x=-1,y=0,z=1},
---	{x=1,y=0,z=-1},
---	{x=-1,y=0,z=-1},
+	[0] = {x=0,y=0,z=-1},
+	[1] = {x=-1,y=0,z=0},
+	[2] = {x=0,y=0,z=1},
+	[3] = {x=1,y=0,z=0},
 }
 
-local tunnel_tube_curvature = {0,0,0,0,1,1,1,2,2,3,4}
+local tunnel_tube_displacement =
+{
+	[4] = 1,
+	[5] = 1,
+	[6] = 2,
+	[7] = 2,
+	[8] = 3,
+	[9] = 3,
+}
 
 dfcaverns.spawn_tunnel_tube = function(pos)
-	local direction = tunnel_tube_directions[math.random(1,4)]
-	local height = math.random(6,10)
+	local direction = math.random(0,3) -- serves as both the facedir and the lookup in the direction table
+	local height = math.random(4,9)
 	local x, y, z = pos.x, pos.y, pos.z
-	local top_pos = vector.add(pos, vector.multiply(direction, tunnel_tube_curvature[height]))
+	local top_pos = vector.add(pos, vector.multiply(tunnel_tube_directions[direction], tunnel_tube_displacement[height]))
 	top_pos.y = y + height - 1
 
 	local vm = minetest.get_voxel_manip()
@@ -254,28 +346,41 @@ end
 local c_air = minetest.get_content_id("air")
 local c_ignore = minetest.get_content_id("ignore")
 local c_tunnel_tube = minetest.get_content_id("dfcaverns:tunnel_tube")
+local c_tunnel_tube_bottom = minetest.get_content_id("dfcaverns:tunnel_tube_slant_bottom")
+local c_tunnel_tube_top = minetest.get_content_id("dfcaverns:tunnel_tube_slant_top")
+local c_tunnel_tube_full = minetest.get_content_id("dfcaverns:tunnel_tube_slant_full")
 local c_tunnel_tube_fruiting_body  = minetest.get_content_id("dfcaverns:tunnel_tube_fruiting_body")
 
+-- was simplest to just hardcode these patterns for each height from 4 to 9
+-- pattern is displacement, node
+local tunnel_tube_patterns =
+{
+	[4] = {{0, c_tunnel_tube}, {0, c_tunnel_tube_bottom}, {1, c_tunnel_tube_top}, {1, c_tunnel_tube_fruiting_body}},
+	[5] = {{0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube_bottom}, {1, c_tunnel_tube_top}, {1, c_tunnel_tube_fruiting_body}},
+	[6] = {{0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube_bottom}, {1, c_tunnel_tube_top}, {1, c_tunnel_tube_full}, {2, c_tunnel_tube_fruiting_body}},
+	[7] = {{0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube_bottom}, {1, c_tunnel_tube_top}, {1, c_tunnel_tube_full}, {2, c_tunnel_tube_fruiting_body}},
+	[8] = {{0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube_bottom}, {1, c_tunnel_tube_top}, {1, c_tunnel_tube_full}, {2, c_tunnel_tube_full}, {3, c_tunnel_tube_fruiting_body}},
+	[9] = {{0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube_bottom}, {1, c_tunnel_tube_top}, {1, c_tunnel_tube_full}, {2, c_tunnel_tube_full}, {3, c_tunnel_tube_fruiting_body}},
+}
+
 dfcaverns.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, height, direction)
-	if not height then height = math.random(6, 10) end
-	if not direction then direction = tunnel_tube_directions[math.random(1,4)] end
+	if not height then height = math.random(4, 9) end
+	if direction == nil then direction = math.random(0,3) end
 	
 	local pos = area:position(vi)
 	local y = pos.y
 	local previous_vi = vi
-	for i = 1, height do
+	local pattern = tunnel_tube_patterns[height]
+	for i, nodepattern in ipairs(pattern) do
 		pos.y = y + i - 1
-		vi = area:indexp(vector.add(pos, vector.multiply(direction, tunnel_tube_curvature[i])))
+		vi = area:indexp(vector.add(pos, vector.multiply(tunnel_tube_directions[direction], nodepattern[1])))
 		if data[vi] == c_air or data[vi] == c_ignore then
 			previous_vi = vi
-			if i ~= height then
-				data[vi] = c_tunnel_tube
-				param2_data[vi] = 0
-			else
-				data[vi] = c_tunnel_tube_fruiting_body
-			end
+			data[vi] = nodepattern[2]
+			param2_data[vi] = direction
 		else
 			data[previous_vi] = c_tunnel_tube_fruiting_body
+			param2_data[vi] = direction
 			break
 		end
 	end

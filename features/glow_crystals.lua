@@ -277,7 +277,7 @@ local c_med_crystal_30_45 = minetest.get_content_id("dfcaverns:med_crystal_30_45
 local c_glow_ore = minetest.get_content_id("dfcaverns:glow_ruby_ore")
 
 local place_big_crystal = function(data, data_param2, i, ceiling)
-	orientation = math.random()
+	local orientation = math.random()
 	if orientation < 0.33 then
 		if math.random() > 0.5 then
 			data[i] = c_big_crystal

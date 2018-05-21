@@ -39,7 +39,7 @@ minetest.register_node("dfcaverns:black_cap_gills", {
 		max_items = 1,
 		items = {
 			{
-				items = {'dfcaverns:black_cap_sapling'},
+				items = {'dfcaverns:black_cap_sapling', 'dfcaverns:black_cap_gills'},
 				rarity = 5,
 			},
 			{
@@ -70,6 +70,14 @@ minetest.register_craft({
 	output = 'dfcaverns:black_cap_wood 4',
 	recipe = {
 		{'dfcaverns:black_cap_stem'},
+	}
+})
+
+minetest.register_craft({
+	output = 'default:torch 8',
+	recipe = {
+		{'dfcaverns:black_cap_gills'},
+		{'group:stick'},
 	}
 })
 

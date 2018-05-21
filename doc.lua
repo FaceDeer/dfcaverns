@@ -16,12 +16,30 @@ dfcaverns.doc.roast_desc = S("Four finely minced ingredients combine into a roas
 dfcaverns.doc.roast_usage = nil
 
 dfcaverns.doc.cave_moss_desc = S("Cave moss is technically a form of mold, but fortunately a relatively benign one given its ubiquity. Its fibers form a tough but springy mat over the surface of any organic-rich soil that accumulates deep underground.")
-dfcaverns.doc.cave_moss_usage = S("Cave moss has no known uses. It dies when exposed to bright light sources.")
+dfcaverns.doc.cave_moss_usage = S("Cave moss has no known uses aside from the faint glow it emits. It dies when exposed to bright light sources such as the Sun.")
 dfcaverns.doc.floor_fungus_desc = S("Floor fungus produces a thin, slick film that spreads through the cracks of broken rock. Its ability to subsist on the tiniest traces of nutrients means it's found in relatively harsh underground environments.")
 dfcaverns.doc.floor_fungus_usage = S("Floor fungus has no known uses. It can penetrate deeply into cobblestone constructions if an infestation gets hold, but it is difficult to transport and is inhibited by light so it hasn't spread beyond the deep caverns.")
 
 dfcaverns.doc.glow_worms_desc = S("Glistening strings of silk hang from the ceilings of some of the larger caverns, lit by the millions of tiny bioluminescent worms that spun them. Glow worms prey on the insects they lure and entangle with their faux starry sky - and sometimes the occasional bat or other larger flying beast.")
 dfcaverns.doc.glow_worms_usage = S("Glow worms can be harvested and used as a source of light but they die when exposed to light significantly brighter than themselves or when immersed in water. A colony of glow worms hung in a hospitable environment will undergo a modest amount of growth, allowing it to be divided and propagated.")
+
+
+dfcaverns.doc.flowstone_desc = S("Flowstone is a carbonate-rich rock formation deposited by flowing water. It consists of minerals that the water dissolved earlier as it widens cracks and fissures into caves.")
+dfcaverns.doc.flowstone_usage = S("Aside from the aesthetic beauty of its formations flowstone has no special properties or uses.")
+dfcaverns.doc.dripstone_desc = S("The iconic stalactites and stalagmites found in caverns are composed of flowstone (or 'dripstone' in the case of these formations). Moist dripstone is still undergoing growth, whereas dry dripstone is found in 'dead' caverns once the source of water that created them ceases.")
+dfcaverns.doc.dripstone_usage = S("Although stalagmites are blunter than the stalactites above them, they can cause extra damage to the unwary caver who falls on them.")
+dfcaverns.doc.icicle_desc = S("Ice formed by water dripping slowly into a cold environment, icicles tend to be exceptionally pure and clear.")
+dfcaverns.doc.icicle_usage = S("Falling onto an icicle is particularly damaging.")
+
+
+dfcaverns.doc.glow_mese_desc = S("Deep in the infernal conditions of the magma sea, over the course of millions of years, mese crystals grow into flawless blocks that glow bright with strange energies.")
+dfcaverns.doc.glow_mese_usage = S("These blocks can be broken down into a large number of mese crystals, but cannot be artificially reassembled.")
+
+dfcaverns.doc.glow_ruby_ore_desc = S("Large, dry caverns deep underground are well suited to aeons-long processes that concentrate crystalline substances in their walls. This rock is riddled with veins of the stuff.")
+dfcaverns.doc.glow_ruby_ore_usage = S("Aside from its aesthetic value this rock has no particular use.")
+
+dfcaverns.doc.big_crystal_desc = S("Monolithic crystals of this size form only over extremely long periods deep underground, in large long-lived cavities that allow them room to grow. Water and the life it hosts tend to disrupt the formation process of these crystals so they're only found in dry environments.")
+dfcaverns.doc.big_crystal_usage = S("Aside from its aesthetic value this crystal has no particular use.")
 
 -- Plants
 
@@ -70,7 +88,7 @@ dfcaverns.doc.sweet_pod_syrup_usage = S("Too strong and thick to drink straight,
 
 -- Trees
 dfcaverns.doc.black_cap_desc = S("The dense black wood of these mushrooms is heavy and hard to work with, and has few remarkable properties.")
-dfcaverns.doc.black_cap_usage = S("Aside from the artistic applications of its particularly dark color, black cap wood is a long-burning fuel source that's as good as coal for some applications.")
+dfcaverns.doc.black_cap_usage = S("Aside from the artistic applications of its particularly dark color, black cap wood is a long-burning fuel source that's as good as coal for some applications. Black cap gills are oily and make for excellent torch fuel.")
 
 dfcaverns.doc.blood_thorn_desc = S("Blood thorns are the most vicious of underground flora, as befits their harsh environments. Found only in hot, dry caverns with sandy soil far from the surface world's organic bounty, blood thorns seek to supplement their nutrient supply with wickedly barbed hollow spines that actively drain fluids from whatever stray plant or creature they might impale.")
 dfcaverns.doc.blood_thorn_usage = S("When harvested, the central stalk of a blood thorn can be cut into planks and used as wood. It has a purple-red hue that may or may not appeal, depending on one's artistic tastes.")

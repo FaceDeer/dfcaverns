@@ -12,6 +12,7 @@ local c_cobble = minetest.get_content_id("default:cobble")
 local c_mossycobble = minetest.get_content_id("default:mossycobble")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_sand = minetest.get_content_id("default:sand")
+local c_stone_with_coal = minetest.get_content_id("default:stone_with_coal")
 
 local c_silver_sand = minetest.get_content_id("default:silver_sand")
 local c_snow = minetest.get_content_id("default:snow")
@@ -143,6 +144,21 @@ local level_3_dry_ceiling = function(area, data, ai, vi, bi, param2_data)
 	end
 end
 
+local level_3_black_cap_ceiling = function(area, data, ai, vi, bi, param2_data)
+	if data[ai] ~= c_stone then
+		return
+	end
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+	if drip_rand < 0.075 then
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.075 * 5)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.dry_stalagmite_ids)
+	elseif math.random() < 0.25 then
+		data[ai] = c_stone_with_coal
+	end
+end
+
+
 local level_3_crystal_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if data[ai] ~= c_stone then
 		return
@@ -173,7 +189,7 @@ local level_3_blood_thorn_floor = function(area, data, ai, vi, bi, param2_data)
 	
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 	if math.random() < 0.1 then
-		dfcaverns.place_shrub(data, vi, param2_data, {c_sweet_pod, c_sweet_pod, c_plump_helmet, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi})
+		dfcaverns.place_shrub(data, vi, param2_data, {c_sweet_pod, c_sweet_pod, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi})
 	elseif drip_rand < 0.05 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.05 * 5)		
@@ -201,7 +217,7 @@ local level_3_nether_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 	
 	if math.random() < 0.01 and data[bi] ~= c_ice then
-		dfcaverns.place_shrub(data, vi, param2_data, {c_dimple_cup, c_plump_helmet, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi})
+		dfcaverns.place_shrub(data, vi, param2_data, {c_dimple_cup, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi})
 	elseif drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)
@@ -269,7 +285,7 @@ local level_3_black_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	end
 
 	if math.random() < 0.25 then
-		data[bi] = c_dirt
+		data[bi] = c_stone_with_coal
 	else
 		data[bi] = c_cobble_fungus
 	end
@@ -303,7 +319,7 @@ local level_3_goblin_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	local drip_rand = subterrane:vertically_consistent_random(vi, area)
 	
 	if math.random() < 0.1 then
-		dfcaverns.place_shrub(data, vi, param2_data, {c_plump_helmet, c_sweet_pod, c_sweet_pod, c_quarry_bush, c_dead_fungus, c_cavern_fungi})
+		dfcaverns.place_shrub(data, vi, param2_data, {c_plump_helmet, c_plump_helmet, c_sweet_pod, c_dead_fungus, c_cavern_fungi})
 	elseif drip_rand < 0.1 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.1 * 5)		
@@ -543,7 +559,7 @@ minetest.register_biome({
 	y_max = subsea_level,
 	heat_point = 50,
 	humidity_point = 15,
-	_subterrane_ceiling_decor = level_3_dry_ceiling,
+	_subterrane_ceiling_decor = level_3_black_cap_ceiling,
 	_subterrane_floor_decor = level_3_black_cap_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_column_node = c_dry_flowstone,
@@ -560,7 +576,7 @@ minetest.register_biome({
 	y_max = dfcaverns.config.level2_min,
 	heat_point = 50,
 	humidity_point = 15,
-	_subterrane_ceiling_decor = level_3_dry_ceiling,
+	_subterrane_ceiling_decor = level_3_black_cap_ceiling,
 	_subterrane_floor_decor = level_3_black_cap_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_column_node = c_dry_flowstone,

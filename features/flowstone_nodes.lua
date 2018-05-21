@@ -17,6 +17,8 @@ minetest.register_alias("subterrane:dry_flowstone", "dfcaverns:dry_flowstone")
 
 subterrane.register_stalagmite_nodes("dfcaverns:dry_stal", {
 	description = S("Dry Dripstone"),
+	_doc_items_longdesc = dfcaverns.doc.dripstone_desc,
+	_doc_items_usagehelp = dfcaverns.doc.dripstone_usage,
 	tiles = {
 		"default_stone.png^[brighten",
 	},
@@ -26,6 +28,8 @@ subterrane.register_stalagmite_nodes("dfcaverns:dry_stal", {
 
 minetest.register_node("dfcaverns:dry_flowstone", {
 	description = S("Dry Flowstone"),
+	_doc_items_longdesc = dfcaverns.doc.flowstone_desc,
+	_doc_items_usagehelp = dfcaverns.doc.flowstone_usage,
 	tiles = {"default_stone.png^[brighten"},
 	groups = {cracky = 3, stone = 1},
 	is_ground_content = true,
@@ -36,7 +40,9 @@ minetest.register_node("dfcaverns:dry_flowstone", {
 -----------------------------------------------
 
 subterrane.register_stalagmite_nodes("dfcaverns:wet_stal", {
-	description = S("Dry Dripstone"),
+	description = S("Wet Dripstone"),
+	_doc_items_longdesc = dfcaverns.doc.dripstone_desc,
+	_doc_items_usagehelp = dfcaverns.doc.dripstone_usage,
 	tiles = {
 		"default_stone.png^[brighten^dfcaverns_dripstone_streaks.png",
 	},
@@ -47,6 +53,8 @@ subterrane.register_stalagmite_nodes("dfcaverns:wet_stal", {
 
 minetest.register_node("dfcaverns:wet_flowstone", {
 	description = S("Wet Flowstone"),
+	_doc_items_longdesc = dfcaverns.doc.flowstone_desc,
+	_doc_items_usagehelp = dfcaverns.doc.flowstone_usage,
 	tiles = {"default_stone.png^[brighten^dfcaverns_dripstone_streaks.png"},
 	groups = {cracky = 3, stone = 1, subterrane_wet_dripstone = 1},
 	is_ground_content = true,
@@ -58,6 +66,8 @@ minetest.register_node("dfcaverns:wet_flowstone", {
 
 subterrane.register_stalagmite_nodes("dfcaverns:icicle", {
 	description = S("Icicle"),
+	_doc_items_longdesc = dfcaverns.doc.icicle_desc,
+	_doc_items_usagehelp = dfcaverns.doc.icicle_usage,
 	tiles = {
 		"default_ice.png",
 	},

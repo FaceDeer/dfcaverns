@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-20 00:42-0600\n"
+"POT-Creation-Date: 2018-05-21 13:21-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,8 @@ msgstr ""
 
 #: doc.lua:19
 msgid ""
-"Cave moss has no known uses. It dies when exposed to bright light sources."
+"Cave moss has no known uses aside from the faint glow it emits. It dies when "
+"exposed to bright light sources such as the Sun."
 msgstr ""
 
 #: doc.lua:20
@@ -77,106 +78,179 @@ msgid ""
 "a modest amount of growth, allowing it to be divided and propagated."
 msgstr ""
 
+#: doc.lua:27
+msgid ""
+"Flowstone is a carbonate-rich rock formation deposited by flowing water. It "
+"consists of minerals that the water dissolved earlier as it widens cracks "
+"and fissures into caves."
+msgstr ""
+
 #: doc.lua:28
-msgid "Whatever this fungus was in life, it is now dead."
+msgid ""
+"Aside from the aesthetic beauty of its formations flowstone has no special "
+"properties or uses."
 msgstr ""
 
 #: doc.lua:29
+msgid ""
+"The iconic stalactites and stalagmites found in caverns are composed of "
+"flowstone (or 'dripstone' in the case of these formations). Moist dripstone "
+"is still undergoing growth, whereas dry dripstone is found in 'dead' caverns "
+"once the source of water that created them ceases."
+msgstr ""
+
+#: doc.lua:30
+msgid ""
+"Although stalagmites are blunter than the stalactites above them, they can "
+"cause extra damage to the unwary caver who falls on them."
+msgstr ""
+
+#: doc.lua:31
+msgid ""
+"Ice formed by water dripping slowly into a cold environment, icicles tend to "
+"be exceptionally pure and clear."
+msgstr ""
+
+#: doc.lua:32
+msgid "Falling onto an icicle is particularly damaging."
+msgstr ""
+
+#: doc.lua:35
+msgid ""
+"Deep in the infernal conditions of the magma sea, over the course of "
+"millions of years, mese crystals grow into flawless blocks that glow bright "
+"with strange energies."
+msgstr ""
+
+#: doc.lua:36
+msgid ""
+"These blocks can be broken down into a large number of mese crystals, but "
+"cannot be artificially reassembled."
+msgstr ""
+
+#: doc.lua:38
+msgid ""
+"Large, dry caverns deep underground are well suited to aeons-long processes "
+"that concentrate crystalline substances in their walls. This rock is riddled "
+"with veins of the stuff."
+msgstr ""
+
+#: doc.lua:39
+msgid "Aside from its aesthetic value this rock has no particular use."
+msgstr ""
+
+#: doc.lua:41
+msgid ""
+"Monolithic crystals of this size form only over extremely long periods deep "
+"underground, in large long-lived cavities that allow them room to grow. "
+"Water and the life it hosts tend to disrupt the formation process of these "
+"crystals so they're only found in dry environments."
+msgstr ""
+
+#: doc.lua:42
+msgid "Aside from its aesthetic value this crystal has no particular use."
+msgstr ""
+
+#: doc.lua:46
+msgid "Whatever this fungus was in life, it is now dead."
+msgstr ""
+
+#: doc.lua:47
 msgid ""
 "Dead fungus quickly decays into an unrecognizable mess. It can be used as "
 "weak fuel or terrible decor."
 msgstr ""
 
-#: doc.lua:31
+#: doc.lua:49
 msgid ""
 "A species of lavender mushroom ubiquitous in caves that is most notable for "
 "the soft bioluminescence it produces."
 msgstr ""
 
-#: doc.lua:32
+#: doc.lua:50
 msgid ""
 "This mushroom is inedible but continues producing modest levels of light "
 "long after it's picked."
 msgstr ""
 
-#: doc.lua:34
+#: doc.lua:52
 msgid ""
 "Cave wheat is literally a breed of grain-producing grass that somehow lost "
 "its ability to photosynthesize and adapted to a more fungal style of life."
 msgstr ""
 
-#: doc.lua:35
+#: doc.lua:53
 msgid ""
 "Like its surface cousin, cave wheat produces grain that can be ground into a "
 "form of flour."
 msgstr ""
 
-#: doc.lua:36
+#: doc.lua:54
 msgid "Cave wheat seed ground into a powder suitable for cooking."
 msgstr ""
 
-#: doc.lua:37
+#: doc.lua:55
 msgid ""
 "When baked alone it forms an edible bread, but it combines well with other "
 "more flavorful ingredients."
 msgstr ""
 
-#: doc.lua:38
+#: doc.lua:56
 msgid ""
 "Bread baked from cave wheat flour is tough and durable. A useful ration for "
 "long expeditions."
 msgstr ""
 
-#: doc.lua:39
+#: doc.lua:57
 msgid "It's not tasty, but it keeps you going."
 msgstr ""
 
-#: doc.lua:41
+#: doc.lua:59
 msgid ""
 "The distinctive midnight-blue caps of these mushrooms are inverted, exposing "
 "their gills to any breeze that might pass, and have dimpled edges that give "
 "them their name."
 msgstr ""
 
-#: doc.lua:42
+#: doc.lua:60
 msgid ""
 "Dimple cups can be dried, ground, and processed to extract a deep blue dye."
 msgstr ""
 
-#: doc.lua:44
+#: doc.lua:62
 msgid ""
 "Pig tails are a fibrous fungal growth that's most notable for its twisting "
 "stalks. In a mature stand of pig tails the helical stalks intertwine into a "
 "dense mesh."
 msgstr ""
 
-#: doc.lua:45
+#: doc.lua:63
 msgid "Pig tail stalks can be processed to extract fibers useful as thread."
 msgstr ""
 
-#: doc.lua:46
+#: doc.lua:64
 msgid "Threads of pig tail fiber."
 msgstr ""
 
-#: doc.lua:47
+#: doc.lua:65
 msgid ""
 "A crafting item that can be woven into textiles and other similar items."
 msgstr ""
 
-#: doc.lua:49
+#: doc.lua:67
 msgid ""
 "Plump helmets are a thick, fleshy mushroom that's edible picked straight "
 "from the ground. They form a staple diet for both lost cave explorers and "
 "the fauna that preys on them."
 msgstr ""
 
-#: doc.lua:50
+#: doc.lua:68
 msgid ""
 "While they can be eaten fresh, they can be monotonous fare and are perhaps "
 "better appreciated as part of a more complex prepared dish."
 msgstr ""
 
-#: doc.lua:52
+#: doc.lua:70
 msgid ""
 "A rare breed of fungus from deep underground that produces a bushy cluster "
 "of rumpled gray 'blades'. The biological function of these blades is not "
@@ -184,24 +258,24 @@ msgid ""
 "the blade's base."
 msgstr ""
 
-#: doc.lua:53
+#: doc.lua:71
 msgid ""
 "Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are "
 "edible with processing."
 msgstr ""
 
-#: doc.lua:54
+#: doc.lua:72
 msgid ""
 "The dried blades of a quarry bush add a welcome zing to recipes containing "
 "otherwise-bland subterranean foodstuffs, but they're too spicy to be eaten "
 "on their own."
 msgstr ""
 
-#: doc.lua:55
+#: doc.lua:73
 msgid "Quarry bush leaves can be used as an ingredient in foodstuffs."
 msgstr ""
 
-#: doc.lua:57
+#: doc.lua:75
 msgid ""
 "Sweet pods grow in rich soil, and once they reach maturity they draw that "
 "supply of nutrients up to concentrate it in their fruiting bodies. They turn "
@@ -209,52 +283,52 @@ msgid ""
 "the sugars they contain."
 msgstr ""
 
-#: doc.lua:60
+#: doc.lua:78
 msgid "When milled, sweet pods produce a granular sugary substance."
 msgstr ""
 
-#: doc.lua:62
+#: doc.lua:80
 msgid "When dried in an oven, sweet pods produce a granular sugary substance."
 msgstr ""
 
-#: doc.lua:64
+#: doc.lua:82
 msgid "Crushing them in a bucket squeezes out a flavorful syrup."
 msgstr ""
 
-#: doc.lua:66
+#: doc.lua:84
 msgid "Sweet pod sugar has a pink tint to it."
 msgstr ""
 
-#: doc.lua:67
+#: doc.lua:85
 msgid ""
 "Too sweet to be eaten directly, it makes an excellent ingredient in food "
 "recipes."
 msgstr ""
 
-#: doc.lua:68
+#: doc.lua:86
 msgid "Sweet pod syrup is thick and flavorful."
 msgstr ""
 
-#: doc.lua:69
+#: doc.lua:87
 msgid ""
 "Too strong and thick to drink straight, sweet pod syrup is useful in food "
 "recipes."
 msgstr ""
 
-#: doc.lua:72
+#: doc.lua:90
 msgid ""
 "The dense black wood of these mushrooms is heavy and hard to work with, and "
 "has few remarkable properties."
 msgstr ""
 
-#: doc.lua:73
+#: doc.lua:91
 msgid ""
 "Aside from the artistic applications of its particularly dark color, black "
 "cap wood is a long-burning fuel source that's as good as coal for some "
-"applications."
+"applications. Black cap gills are oily and make for excellent torch fuel."
 msgstr ""
 
-#: doc.lua:75
+#: doc.lua:93
 msgid ""
 "Blood thorns are the most vicious of underground flora, as befits their "
 "harsh environments. Found only in hot, dry caverns with sandy soil far from "
@@ -263,14 +337,14 @@ msgid ""
 "fluids from whatever stray plant or creature they might impale."
 msgstr ""
 
-#: doc.lua:76
+#: doc.lua:94
 msgid ""
 "When harvested, the central stalk of a blood thorn can be cut into planks "
 "and used as wood. It has a purple-red hue that may or may not appeal, "
 "depending on one's artistic tastes."
 msgstr ""
 
-#: doc.lua:77
+#: doc.lua:95
 msgid ""
 "The spikes of a blood thorn can actually remain living long after they're "
 "severed from their parent stalk, a testament to their tenacity. As long as "
@@ -278,39 +352,39 @@ msgid ""
 "puncture, though they don't grow."
 msgstr ""
 
-#: doc.lua:78
+#: doc.lua:96
 msgid ""
 "Living blood thorn spikes remain harmful to creatures that touch them. If "
 "killed by bright light, they cause only passive damage to creatures that "
 "fall on them (as one would expect from an enormous spike)."
 msgstr ""
 
-#: doc.lua:80
+#: doc.lua:98
 msgid ""
 "Thin, irregular layers of spore-producing 'shelves' surround the strong "
 "central stalk of the mighty Fungiwood."
 msgstr ""
 
-#: doc.lua:81
+#: doc.lua:99
 msgid ""
 "Fungiwood stalk is strong and very fine-grained, making smooth yellow-tinted "
 "lumber when cut. Fungiwood shelf is too fragile to be much use as anything "
 "other than fuel."
 msgstr ""
 
-#: doc.lua:83
+#: doc.lua:101
 msgid ""
 "Massive but squat, mature goblin cap mushrooms are the size of small "
 "cottages."
 msgstr ""
 
-#: doc.lua:84
+#: doc.lua:102
 msgid ""
 "Goblin cap stem and cap material can be cut into wood of two different hues, "
 "a subdued cream and a bright orange-red."
 msgstr ""
 
-#: doc.lua:86
+#: doc.lua:104
 msgid ""
 "Nether caps have an unusual biochemistry that allows them to somehow subsist "
 "on ambient heat, in violation of all known laws of thermodynamics. They grow "
@@ -318,40 +392,40 @@ msgid ""
 "volcanic."
 msgstr ""
 
-#: doc.lua:87
+#: doc.lua:105
 msgid ""
 "Nether cap wood, in addition to being a beautiful blue hue, retains the odd "
 "heat-draining ability of living nether caps and is able to quickly freeze "
 "nearby water solid."
 msgstr ""
 
-#: doc.lua:89
+#: doc.lua:107
 msgid ""
 "Spore trees have a sturdy 'trunk' that supports a large spongy mesh of "
 "branching fibers, with embedded fruiting bodies that produce a copious "
 "amount of spores that gently rain down around the spore tree's base."
 msgstr ""
 
-#: doc.lua:90
+#: doc.lua:108
 msgid ""
 "Spore tree trunks can be cut into pale woody planks. The branching fibers "
 "and fruiting bodies are only useful as fuel."
 msgstr ""
 
-#: doc.lua:92
+#: doc.lua:110
 msgid "The king of the fungi, tower cap mushrooms grow to immense proportions."
 msgstr ""
 
-#: doc.lua:93
+#: doc.lua:111
 msgid "Tower caps are an excellent source of wood."
 msgstr ""
 
-#: doc.lua:95
+#: doc.lua:113
 msgid ""
 "Tunnel tubes are hollow, curved fungal growths that support a fruiting body."
 msgstr ""
 
-#: doc.lua:97
+#: doc.lua:115
 msgid ""
 "The trunk of a tunnel tube can be cut and processed to produce plywood-like "
 "material. The fruiting body accumulates high-energy compounds that, when "
@@ -359,7 +433,7 @@ msgid ""
 "tunnel tube spawn through the still cavern air."
 msgstr ""
 
-#: doc.lua:99
+#: doc.lua:117
 msgid ""
 "The trunk of a tunnel tube can be cut and processed to produce plywood-like "
 "material."
@@ -374,19 +448,22 @@ msgid "Cavern Fungi"
 msgstr ""
 
 #: features\flowstone_nodes.lua:19
-#: features\flowstone_nodes.lua:39
 msgid "Dry Dripstone"
 msgstr ""
 
-#: features\flowstone_nodes.lua:28
+#: features\flowstone_nodes.lua:30
 msgid "Dry Flowstone"
 msgstr ""
 
-#: features\flowstone_nodes.lua:49
+#: features\flowstone_nodes.lua:43
+msgid "Wet Dripstone"
+msgstr ""
+
+#: features\flowstone_nodes.lua:55
 msgid "Wet Flowstone"
 msgstr ""
 
-#: features\flowstone_nodes.lua:60
+#: features\flowstone_nodes.lua:68
 msgid "Icicle"
 msgstr ""
 
@@ -394,19 +471,19 @@ msgstr ""
 msgid "Flawless Mese Block"
 msgstr ""
 
-#: features\glow_crystals.lua:27
+#: features\glow_crystals.lua:29
 msgid "Crystal Vein"
 msgstr ""
 
-#: features\glow_crystals.lua:36
-#: features\glow_crystals.lua:89
-#: features\glow_crystals.lua:159
+#: features\glow_crystals.lua:40
+#: features\glow_crystals.lua:95
+#: features\glow_crystals.lua:182
 msgid "Giant Crystal"
 msgstr ""
 
-#: features\glow_crystals.lua:62
-#: features\glow_crystals.lua:124
-#: features\glow_crystals.lua:195
+#: features\glow_crystals.lua:67
+#: features\glow_crystals.lua:146
+#: features\glow_crystals.lua:219
 msgid "Big Crystal"
 msgstr ""
 
@@ -573,11 +650,11 @@ msgstr ""
 msgid "Black Cap Gills"
 msgstr ""
 
-#: trees\black_cap.lua:77
+#: trees\black_cap.lua:85
 msgid "Black Cap Planks"
 msgstr ""
 
-#: trees\black_cap.lua:116
+#: trees\black_cap.lua:124
 msgid "Black Cap Spawn"
 msgstr ""
 
@@ -702,19 +779,22 @@ msgid "Tower Cap Spawn"
 msgstr ""
 
 #: trees\tunnel_tube.lua:16
+#: trees\tunnel_tube.lua:39
+#: trees\tunnel_tube.lua:69
+#: trees\tunnel_tube.lua:98
 msgid "Tunnel Tube"
 msgstr ""
 
-#: trees\tunnel_tube.lua:47
+#: trees\tunnel_tube.lua:135
 msgid "Tunnel Tube Plies"
 msgstr ""
 
-#: trees\tunnel_tube.lua:82
-#: trees\tunnel_tube.lua:138
-#: trees\tunnel_tube.lua:158
+#: trees\tunnel_tube.lua:170
+#: trees\tunnel_tube.lua:226
+#: trees\tunnel_tube.lua:246
 msgid "Tunnel Tube Fruiting Body"
 msgstr ""
 
-#: trees\tunnel_tube.lua:189
+#: trees\tunnel_tube.lua:277
 msgid "Tunnel Tube Spawn"
 msgstr ""

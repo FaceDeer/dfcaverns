@@ -10,6 +10,7 @@ local c_stone = minetest.get_content_id("default:stone")
 local c_cobble = minetest.get_content_id("default:cobble")
 local c_mossycobble = minetest.get_content_id("default:mossycobble")
 local c_dirt = minetest.get_content_id("default:dirt")
+local c_stone_with_coal = minetest.get_content_id("default:stone_with_coal")
 
 local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
@@ -109,7 +110,7 @@ local level_2_black_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	end
 
 	if math.random() < 0.25 then
-		data[bi] = c_dirt
+		data[bi] = c_stone_with_coal
 	else
 		data[bi] = c_cobble_fungus
 	end
@@ -256,6 +257,20 @@ local level_2_dry_ceiling = function(area, data, ai, vi, bi, param2_data)
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.075 * 5)
 		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.dry_stalagmite_ids)
+	end
+end
+
+local level_2_black_cap_ceiling = function(area, data, ai, vi, bi, param2_data)
+	if data[ai] ~= c_stone then
+		return
+	end
+	local drip_rand = subterrane:vertically_consistent_random(vi, area)
+	if drip_rand < 0.075 then
+		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
+		local height = math.floor(drip_rand/0.075 * 5)
+		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.dry_stalagmite_ids)
+	elseif math.random() < 0.25 then
+		data[ai] = c_stone_with_coal
 	end
 end
 
@@ -498,7 +513,7 @@ minetest.register_biome({
 	y_max = subsea_level,
 	heat_point = 50,
 	humidity_point = 20,
-	_subterrane_ceiling_decor = level_2_dry_ceiling,
+	_subterrane_ceiling_decor = level_2_black_cap_ceiling,
 	_subterrane_floor_decor = level_2_black_cap_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_column_node = c_dry_flowstone,
@@ -513,7 +528,7 @@ minetest.register_biome({
 	y_max = dfcaverns.config.level1_min,
 	heat_point = 50,
 	humidity_point = 20,
-	_subterrane_ceiling_decor = level_2_dry_ceiling,
+	_subterrane_ceiling_decor = level_2_black_cap_ceiling,
 	_subterrane_floor_decor = level_2_black_cap_floor,
 	_subterrane_fill_node = c_air,
 	_subterrane_column_node = c_dry_flowstone,

@@ -5,6 +5,8 @@ local S, NS = dofile(MP.."/intllib.lua")
 --glowing mese crystal blocks
 minetest.register_node("dfcaverns:glow_mese", {
 	description = S("Flawless Mese Block"),
+	_doc_items_longdesc = dfcaverns.doc.glow_mese_desc,
+	_doc_items_usagehelp = dfcaverns.doc.glow_mese_usage,
 	tiles = {"dfcaverns_glow_mese.png"},
 	is_ground_content = true,
 	groups = {cracky=3},
@@ -25,6 +27,8 @@ minetest.register_craft({
 
 minetest.register_node("dfcaverns:glow_ruby_ore", {
 	description = S("Crystal Vein"),
+	_doc_items_longdesc = dfcaverns.doc.glow_ruby_ore_desc,
+	_doc_items_usagehelp = dfcaverns.doc.glow_ruby_ore_usage,
 	tiles = {"dfcaverns_glow_ruby_ore.png"},
 	is_ground_content = true,
 	groups = {cracky=2},
@@ -34,6 +38,8 @@ minetest.register_node("dfcaverns:glow_ruby_ore", {
 
 minetest.register_node("dfcaverns:big_crystal", {
 	description = S("Giant Crystal"),
+	_doc_items_longdesc = dfcaverns.doc.big_crystal_desc,
+	_doc_items_usagehelp = dfcaverns.doc.big_crystal_usage,
 	drawtype = "mesh",
 	mesh = "hex_crystal_big.obj",
 	tiles = {
@@ -59,6 +65,8 @@ minetest.register_node("dfcaverns:big_crystal", {
 
 minetest.register_node("dfcaverns:med_crystal", {
 	description = S("Big Crystal"),
+	_doc_items_longdesc = dfcaverns.doc.big_crystal_desc,
+	_doc_items_usagehelp = dfcaverns.doc.big_crystal_usage,
 	drawtype = "mesh",
 	mesh = "hex_crystal_med.obj",
 	tiles = {
@@ -85,6 +93,8 @@ minetest.register_node("dfcaverns:med_crystal", {
 
 minetest.register_node("dfcaverns:big_crystal_30", {
 	description = S("Giant Crystal"),
+	_doc_items_longdesc = dfcaverns.doc.big_crystal_desc,
+	_doc_items_usagehelp = dfcaverns.doc.big_crystal_usage,
 	drawtype = "mesh",
 	mesh = "hex_crystal_30_big.obj",
 	tiles = {
@@ -134,6 +144,8 @@ minetest.register_node("dfcaverns:big_crystal_30", {
 
 minetest.register_node("dfcaverns:med_crystal_30", {
 	description = S("Big Crystal"),
+	_doc_items_longdesc = dfcaverns.doc.big_crystal_desc,
+	_doc_items_usagehelp = dfcaverns.doc.big_crystal_usage,
 	drawtype = "mesh",
 	mesh = "hex_crystal_30_med.obj",
 	tiles = {
@@ -168,6 +180,8 @@ minetest.register_node("dfcaverns:med_crystal_30", {
 
 minetest.register_node("dfcaverns:big_crystal_30_45", {
 	description = S("Giant Crystal"),
+	_doc_items_longdesc = dfcaverns.doc.big_crystal_desc,
+	_doc_items_usagehelp = dfcaverns.doc.big_crystal_usage,
 	drawtype = "mesh",
 	mesh = "hex_crystal_30_45_big.obj",
 	tiles = {
@@ -203,6 +217,8 @@ minetest.register_node("dfcaverns:big_crystal_30_45", {
 
 minetest.register_node("dfcaverns:med_crystal_30_45", {
 	description = S("Big Crystal"),
+	_doc_items_longdesc = dfcaverns.doc.big_crystal_desc,
+	_doc_items_usagehelp = dfcaverns.doc.big_crystal_usage,
 	drawtype = "mesh",
 	mesh = "hex_crystal_30_45_med.obj",
 	tiles = {

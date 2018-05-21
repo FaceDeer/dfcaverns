@@ -44,7 +44,6 @@ minetest.register_node("dfcaverns:big_crystal", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
-	walkable = false,
 	light_source = 12,
 	groups = {cracky=2, dfcaverns_big_crystal = 1},
 	sounds = default.node_sound_glass_defaults(),
@@ -70,7 +69,6 @@ minetest.register_node("dfcaverns:med_crystal", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
-	walkable = false,
 	light_source = 12,
 	groups = {cracky=2, dfcaverns_big_crystal = 1},
 	sounds = default.node_sound_glass_defaults(),
@@ -97,7 +95,6 @@ minetest.register_node("dfcaverns:big_crystal_30", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
-	walkable = false,
 	light_source = 12,
 	drop = "dfcaverns:big_crystal",
 	groups = {cracky=2, dfcaverns_big_crystal = 1},
@@ -108,6 +105,15 @@ minetest.register_node("dfcaverns:big_crystal_30", {
 			{-0.5, -0.5, -0.625, 0.5, 0.5, 0.375},
 			{-0.5, 0.5, -1.25, 0.5, 1.5, -0.25},
 			{-0.5, 1.5, -1.875, 0.5, 2.5, -0.875},
+			--The following is a more accurate set of collision boxes that theoretically
+			--allows the crystal to be climbed like stairs, but in practice the physics
+			--don't seem to work quite right so I'm leaving it "simple" for now.
+--			{-0.5, -0.5, -0.625, 0.5, 0.0, 0.375},
+--			{-0.5, 0.0, -0.9375, 0.5, 0.5, 0.0625},
+--			{-0.5, 0.5, -1.25, 0.5, 1.0, -0.25},
+--			{-0.5, 1.0, -1.5625, 0.5, 1.5, -0.5625},
+--			{-0.5, 1.5, -1.875, 0.5, 2.0, -0.875},
+--			{-0.25, 2.0, -1.625, 0.25, 2.5, -1.125},
 		},
 	},
 	collision_box = {
@@ -116,6 +122,12 @@ minetest.register_node("dfcaverns:big_crystal_30", {
 			{-0.5, -0.5, -0.625, 0.5, 0.5, 0.375},
 			{-0.5, 0.5, -1.25, 0.5, 1.5, -0.25},
 			{-0.5, 1.5, -1.875, 0.5, 2.5, -0.875},
+--			{-0.5, -0.5, -0.625, 0.5, 0.0, 0.375},
+--			{-0.5, 0.0, -0.9375, 0.5, 0.5, 0.0625},
+--			{-0.5, 0.5, -1.25, 0.5, 1.0, -0.25},
+--			{-0.5, 1.0, -1.5625, 0.5, 1.5, -0.5625},
+--			{-0.5, 1.5, -1.875, 0.5, 2.0, -0.875},
+--			{-0.25, 2.0, -1.625, 0.25, 2.5, -1.125},
 		},
 	},
 })
@@ -132,7 +144,6 @@ minetest.register_node("dfcaverns:med_crystal_30", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
-	walkable = false,
 	light_source = 12,
 	drop = "dfcaverns:med_crystal",
 	groups = {cracky=2, dfcaverns_big_crystal = 1},
@@ -167,7 +178,6 @@ minetest.register_node("dfcaverns:big_crystal_30_45", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
-	walkable = false,
 	light_source = 12,
 	drop = "dfcaverns:big_crystal",
 	groups = {cracky=2, dfcaverns_big_crystal = 1},
@@ -203,7 +213,6 @@ minetest.register_node("dfcaverns:med_crystal_30_45", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	sunlight_propagates = true,
-	walkable = false,
 	light_source = 12,
 	drop = "dfcaverns:med_crystal",
 	groups = {cracky=2, dfcaverns_big_crystal = 1},
@@ -224,6 +233,37 @@ minetest.register_node("dfcaverns:med_crystal_30_45", {
 			{0.25, 0.5, -0.75, 0.75, 1.0, -0.25},
 		},
 	},
+})
+
+minetest.register_craft({
+	type = "shapeless",
+	output = 'dfcaverns:big_crystal_30',
+	recipe = {'dfcaverns:big_crystal'},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = 'dfcaverns:big_crystal_30_45',
+	recipe = {'dfcaverns:big_crystal_30'},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = 'dfcaverns:big_crystal',
+	recipe = {'dfcaverns:big_crystal_30_45'},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = 'dfcaverns:med_crystal_30',
+	recipe = {'dfcaverns:med_crystal'},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = 'dfcaverns:med_crystal_30_45',
+	recipe = {'dfcaverns:med_crystal_30'},
+})
+minetest.register_craft({
+	type = "shapeless",
+	output = 'dfcaverns:med_crystal',
+	recipe = {'dfcaverns:med_crystal_30_45'},
 })
 
 local c_stone = minetest.get_content_id("default:stone")

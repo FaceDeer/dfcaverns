@@ -23,6 +23,11 @@ dfcaverns.doc.floor_fungus_usage = S("Floor fungus has no known uses. It can pen
 dfcaverns.doc.glow_worms_desc = S("Glistening strings of silk hang from the ceilings of some of the larger caverns, lit by the millions of tiny bioluminescent worms that spun them. Glow worms prey on the insects they lure and entangle with their faux starry sky - and sometimes the occasional bat or other larger flying beast.")
 dfcaverns.doc.glow_worms_usage = S("Glow worms can be harvested and used as a source of light but they die when exposed to light significantly brighter than themselves or when immersed in water. A colony of glow worms hung in a hospitable environment will undergo a modest amount of growth, allowing it to be divided and propagated.")
 
+dfcaverns.doc.snareweed_desc = S("A nasty kelp-like plant that grows in patches on the floor of the Sunless Sea. Its reflective patches draw in the unwary and then its prickly barbs catch and hold small creatures.")
+dfcaverns.doc.snareweed_usage = S("Snareweed has no practical use, its fibers disintegrate when they dry.")
+
+dfcaverns.doc.cave_coral_desc = S("A rare form of coral found only deep underground in the Sunless Sea, cave coral grows hanging from the ceilings of flooded caverns.")
+dfcaverns.doc.cave_coral_usage = S("Aside from their aesthetic beauty, cave corals can be harvested for simple building materials.")
 
 dfcaverns.doc.flowstone_desc = S("Flowstone is a carbonate-rich rock formation deposited by flowing water. It consists of minerals that the water dissolved earlier as it widens cracks and fissures into caves.")
 dfcaverns.doc.flowstone_usage = S("Aside from the aesthetic beauty of its formations flowstone has no special properties or uses.")

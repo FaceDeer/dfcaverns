@@ -1,45 +1,91 @@
 local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
 local c_stone = minetest.get_content_id("default:stone")
-local c_cobble = minetest.get_content_id("default:cobble")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_sand = minetest.get_content_id("default:sand")
 
-local c_dirt_moss = minetest.get_content_id("dfcaverns:dirt_with_cave_moss")
-local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fungus")
-local c_dead_fungus = minetest.get_content_id("dfcaverns:dead_fungus") -- param2 = 0
-local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- param2 = 0
-
-local c_glow_water = minetest.get_content_id("dfcaverns:glow_water_source")
-
 -------------------------------------------------------------------------------------------
 
-local sunless_sea_underwater_floor = function(area, data, ai, vi, bi, param2_data)
+local sea_level = dfcaverns.config.sunless_sea_level
+
+local sunless_sea_barren_floor = function(area, data, ai, vi, bi, param2_data)
 	if data[bi] ~= c_stone then
 		return
 	end
-	data[bi] = c_dirt
-	if math.random() < 0.001 then
-		data[vi] = c_glow_water
+	data[bi] = c_sand
+end
+
+local sunless_sea_snareweed_floor = function(area, data, ai, vi, bi, param2_data)
+	if data[bi] ~= c_stone then
+		return
+	end
+	if math.random() < 0.005 then
+		dfcaverns.place_snareweed_patch(area, data, bi, param2_data, 6)
+	else
+		data[bi] = c_dirt
 	end
 end
 
-local sunless_sea_biome_def = {
-	name = "dfcaverns_sunless_sea",
+local sunless_sea_coral_ceiling = function(area, data, ai, vi, bi, param2_data)
+	if data[ai] ~= c_stone then
+		return
+	end
+	local coral_rand = subterrane:vertically_consistent_random(vi, area)
+	if coral_rand < 0.01 then
+		local iterations = math.ceil(coral_rand / 0.01 * 6)
+		dfcaverns.spawn_cave_coral(area, data, vi, iterations)
+	end
+end
+
+local sunless_sea_coral_floor = function(area, data, ai, vi, bi, param2_data)
+	if data[bi] ~= c_stone then
+		return
+	end
+	local coral_rand = subterrane:vertically_consistent_random(vi, area)
+	if coral_rand < 0.01 then
+		local iterations = math.ceil(coral_rand / 0.01 * 6)
+		dfcaverns.spawn_coral_pile(area, data, vi, iterations)
+	end
+end
+
+minetest.register_biome({
+	name = "dfcaverns_sunless_sea_barren",
 	y_min = dfcaverns.config.sunless_sea_min,
 	y_max = dfcaverns.config.sunless_sea_level,
-	heat_point = 50,
+	heat_point = 80,
+	humidity_point = 10,
+	_subterrane_fill_node = c_water,
+	_subterrane_cave_fill_node = c_air,
+	_subterrane_mitigate_lava = true,
+	_subterrane_floor_decor = sunless_sea_barren_floor,
+})
+
+minetest.register_biome({
+	name = "dfcaverns_sunless_sea_snareweed",
+	y_min = dfcaverns.config.sunless_sea_min,
+	y_max = dfcaverns.config.sunless_sea_level,
+	heat_point = 80,
+	humidity_point = 90,
+	_subterrane_fill_node = c_water,
+	_subterrane_cave_fill_node = c_water,
+	_subterrane_mitigate_lava = true,
+	_subterrane_floor_decor = sunless_sea_snareweed_floor,
+})
+
+minetest.register_biome({
+	name = "dfcaverns_sunless_sea_coral",
+	y_min = dfcaverns.config.sunless_sea_min,
+	y_max = dfcaverns.config.sunless_sea_level,
+	heat_point = 0,
 	humidity_point = 50,
 	_subterrane_fill_node = c_water,
 	_subterrane_cave_fill_node = c_water,
 	_subterrane_mitigate_lava = true,
-	_subterrane_floor_decor = sunless_sea_underwater_floor,
-}
-
-minetest.register_biome(sunless_sea_biome_def)
+	_subterrane_floor_decor = sunless_sea_coral_floor,
+	_subterrane_ceiling_decor = sunless_sea_coral_ceiling,
+})
 
 local data = {}
-
 minetest.register_on_generated(function(minp, maxp, seed)
 	--if out of range of cave definition limits, abort
 	if minp.y > dfcaverns.config.sunless_sea_level or maxp.y < dfcaverns.config.sunless_sea_min then

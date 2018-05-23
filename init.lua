@@ -10,10 +10,11 @@ dofile(modpath.."/doc.lua")
 dofile(modpath.."/features/ground_cover.lua")
 dofile(modpath.."/features/glow_worms.lua")
 dofile(modpath.."/features/flowstone_nodes.lua")
-dofile(modpath.."/features/glow_water.lua")
 dofile(modpath.."/features/glow_crystals.lua")
+dofile(modpath.."/features/snareweed.lua")
+dofile(modpath.."/features/cave_coral.lua")
 
--- Plants
+-- Farmable Plants
 dofile(modpath.."/plants.lua") -- general functions
 dofile(modpath.."/plants/cave_wheat.lua")
 dofile(modpath.."/plants/dimple_cup.lua")

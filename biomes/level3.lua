@@ -412,7 +412,7 @@ minetest.register_biome({
 	_subterrane_cave_floor_decor = level_3_cave_floor,
 	_subterrane_cave_ceiling_decor = level_3_cave_ceiling,
 	_subterrane_override_sea_level = dfcaverns.config.sunless_sea_level,
-	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea",
+	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea_coral",
 	_subterrane_mitigate_lava = true,
 })
 
@@ -444,7 +444,7 @@ minetest.register_biome({
 	_subterrane_cave_floor_decor = level_3_cave_floor,
 	_subterrane_cave_ceiling_decor = level_3_cave_ceiling,
 	_subterrane_override_sea_level = dfcaverns.config.sunless_sea_level,
-	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea",
+	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea_snareweed",
 	_subterrane_mitigate_lava = true,
 })
 
@@ -475,7 +475,7 @@ minetest.register_biome({
 	_subterrane_cave_floor_decor = level_3_cave_floor,
 	_subterrane_cave_ceiling_decor = level_3_cave_ceiling,
 	_subterrane_override_sea_level = dfcaverns.config.sunless_sea_level,
-	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea",
+	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea_coral",
 	_subterrane_mitigate_lava = true,
 })
 
@@ -505,7 +505,7 @@ minetest.register_biome({
 	_subterrane_cave_floor_decor = level_3_cave_floor,
 	_subterrane_cave_ceiling_decor = level_3_cave_ceiling,
 	_subterrane_override_sea_level = dfcaverns.config.sunless_sea_level,
-	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea",
+	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea_snareweed",
 	_subterrane_mitigate_lava = true,
 })
 
@@ -535,7 +535,7 @@ minetest.register_biome({
 	_subterrane_cave_floor_decor = level_3_cave_floor,
 	_subterrane_cave_ceiling_decor = level_3_cave_ceiling,
 	_subterrane_override_sea_level = dfcaverns.config.sunless_sea_level,
-	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea",
+	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea_snareweed",
 	_subterrane_mitigate_lava = true,
 })
 
@@ -566,7 +566,7 @@ minetest.register_biome({
 	_subterrane_cave_floor_decor = level_3_cave_floor,
 	_subterrane_cave_ceiling_decor = level_3_cave_ceiling,
 	_subterrane_override_sea_level = dfcaverns.config.sunless_sea_level,
-	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea",
+	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea_barren",
 	_subterrane_mitigate_lava = true,
 })
 
@@ -596,7 +596,7 @@ minetest.register_biome({
 	_subterrane_fill_node = c_air,
 	_subterrane_column_node = c_dry_flowstone,
 	_subterrane_override_sea_level = dfcaverns.config.sunless_sea_level,
-	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea",
+	_subterrane_override_under_sea_biome = "dfcaverns_sunless_sea_barren",
 	_subterrane_mitigate_lava = false,
 })
 

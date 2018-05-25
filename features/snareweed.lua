@@ -8,7 +8,6 @@ minetest.register_node("dfcaverns:snareweed", {
 	_doc_items_usagehelp = dfcaverns.doc.snareweed_usage,
 	tiles = {"default_dirt.png^dfcaverns_snareweed_roots.png", "default_dirt.png"},
 	drawtype="plantlike_rooted",
---	paramtype = "light",
 	paramtype2 = "leveled",
 	special_tiles = {{name = "dfcaverns_snareweed.png", tileable_vertical = true}},
 	is_ground_content = true,
@@ -17,6 +16,21 @@ minetest.register_node("dfcaverns:snareweed", {
 	groups = {crumbly = 3, soil = 1},
 	sounds = default.node_sound_dirt_defaults(),
 })
+
+if minetest.get_modpath("radiant_damage") then
+	radiant_damage.register_radiant_damage({
+		damage_name = "snareweed", -- a string used in logs to identify the type of damage dealt
+		interval = 1, -- number of seconds between each damage check
+		range = 5, -- range of the damage. Can be omitted if inverse_square_falloff is true, in that case it defaults to the range at which 1 point of damage is done.
+		inverse_square_falloff = false, -- if true, damage falls off with the inverse square of the distance. If false, damage is constant within the range.
+		damage = 2, -- number of damage points dealt each interval
+		nodenames = {"dfcaverns:snareweed"}, -- nodes that cause this damage. Same format as the nodenames parameter for minetest.find_nodes_in_area
+		occlusion = false, -- if true, damaging effect only passes through air. Other nodes will cast "shadows".
+		above_only = true, -- if true, damage only propagates directly upward.
+		cumulative = false, -- if true, all nodes within range do damage. If false, only the nearest one does damage.
+	})
+end
+
 
 local c_water = minetest.get_content_id("default:water_source")
 local c_dirt = minetest.get_content_id("default:dirt")

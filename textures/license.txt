@@ -14,6 +14,7 @@ dftrees_tower_cap_gills - from caverealms mushroom gills
 dftrees_cave_moss and floor_fungus 	- derived from caverealms algae
 dfcaverns_fungi - copied from caverealms
 dfcaverns_glow_worm - copied from caverealms
+dfcaverns_glow_worm_animated - glow worm texture overlaid with rippling animation derived from default mod's water texture
 
 dftrees_cave_wheat	- derived from farming wheat
 dfcaverns_flour - derived from farming

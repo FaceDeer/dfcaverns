@@ -83,6 +83,8 @@ setting("int", "lava_sea_min", -3500, "Lower limit of the lava sea")
 setting("float", "lava_sea_threshold", 0.2, "Cavern threshold for sunless and magma seas (higher number means sparser magma)")
 setting("bool", "enable_lava_sea", true, "Enable magma sea level")
 
+setting("bool", "flooded_biomes", true, "Add a lot of water to the most humid cavern biomes")
+
 if minetest.get_modpath("tnt") then
 	dfcaverns.config.enable_tnt = minetest.settings:get_bool("enable_tnt")
 	if dfcaverns.config.enable_tnt == nil then

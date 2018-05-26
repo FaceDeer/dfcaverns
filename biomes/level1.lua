@@ -11,8 +11,6 @@ local c_cobble_fungus = minetest.get_content_id("dfcaverns:cobble_with_floor_fun
 local c_wet_flowstone = minetest.get_content_id("dfcaverns:wet_flowstone")
 local c_dry_flowstone = minetest.get_content_id("dfcaverns:dry_flowstone")
 
-local subsea_level = (dfcaverns.config.ymax - dfcaverns.config.level1_min) * 0.3 + dfcaverns.config.level1_min
-
 local c_sweet_pod = minetest.get_content_id("dfcaverns:sweet_pod_6") -- param2 = 0
 local c_quarry_bush = minetest.get_content_id("dfcaverns:quarry_bush_5") -- param2 = 4
 local c_plump_helmet = minetest.get_content_id("dfcaverns:plump_helmet_4") -- param2 = 0-3
@@ -21,6 +19,9 @@ local c_dimple_cup = minetest.get_content_id("dfcaverns:dimple_cup_4") -- param2
 local c_cave_wheat = minetest.get_content_id("dfcaverns:cave_wheat_8") -- param2 = 3
 local c_dead_fungus = minetest.get_content_id("dfcaverns:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- param2 = 0
+
+local subsea_level = (dfcaverns.config.ymax - dfcaverns.config.level1_min) * 0.3 + dfcaverns.config.level1_min
+local flooded_biomes = dfcaverns.config.flooded_biomes
 
 local level_1_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
 	if data[bi] ~= c_stone then
@@ -161,11 +162,17 @@ local level_1_underwater_floor = function(area, data, ai, vi, bi, param2_data)
 	else
 		data[bi] = c_dirt
 	end
-	if data[vi] == c_air then
-		data[vi] = c_water
-	end
-	if data[ai] == c_air then
-		data[ai] = c_water
+	if flooded_biomes then
+		if data[vi] == c_air then
+			data[vi] = c_water
+		end
+		if data[ai] == c_air then
+			data[ai] = c_water
+		end
+	elseif math.random() < 0.01 then
+		if data[vi] == c_air then
+			data[vi] = c_water
+		end
 	end
 end
 
@@ -209,6 +216,12 @@ end
 
 -------------------------------------------------------------------------------------------
 
+local c_flood_fill
+if flooded_biomes then
+	c_flood_fill = c_water
+else
+	c_flood_fill = c_air
+end
 
 minetest.register_biome({
 	name = "dfcaverns_level1_flooded_biome_lower",
@@ -217,7 +230,7 @@ minetest.register_biome({
 	heat_point = 50,
 	humidity_point = 100,
 	_subterrane_fill_node = c_air,
-	_subterrane_cave_fill_node = c_water,
+	_subterrane_cave_fill_node = c_flood_fill,
 	_subterrane_floor_decor = level_1_underwater_floor,
 	_subterrane_mitigate_lava = true,
 })
@@ -231,7 +244,7 @@ minetest.register_biome({
 	_subterrane_ceiling_decor = level_1_moist_ceiling,
 	_subterrane_floor_decor = level_1_wet_floor,
 	_subterrane_fill_node = c_air,
-	_subterrane_cave_fill_node = c_water,
+	_subterrane_cave_fill_node = c_flood_fill,
 	_subterrane_mitigate_lava = true,
 })
 
@@ -298,7 +311,7 @@ minetest.register_biome({
 	heat_point = 20,
 	humidity_point = 80,
 	_subterrane_fill_node = c_air,
-	_subterrane_cave_fill_node = c_water,
+	_subterrane_cave_fill_node = c_flood_fill,
 	_subterrane_floor_decor = level_1_underwater_floor,
 	_subterrane_mitigate_lava = true,
 })
@@ -325,7 +338,7 @@ minetest.register_biome({
 	heat_point = 80,
 	humidity_point = 80,
 	_subterrane_fill_node = c_air,
-	_subterrane_cave_fill_node = c_water,
+	_subterrane_cave_fill_node = c_flood_fill,
 	_subterrane_floor_decor = level_1_underwater_floor,
 	_subterrane_mitigate_lava = true,
 })

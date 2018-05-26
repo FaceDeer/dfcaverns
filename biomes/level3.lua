@@ -34,6 +34,7 @@ local c_dead_fungus = minetest.get_content_id("dfcaverns:dead_fungus") -- param2
 local c_cavern_fungi = minetest.get_content_id("dfcaverns:cavern_fungi") -- param2 = 0
 
 local subsea_level = (dfcaverns.config.level2_min - dfcaverns.config.level3_min) * 0.3 + dfcaverns.config.level3_min
+local flooded_biomes = dfcaverns.config.flooded_biomes
 
 local level_3_moist_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if data[ai] ~= c_stone then
@@ -128,8 +129,19 @@ local level_3_underwater_floor = function(area, data, ai, vi, bi, param2_data)
 		return
 	end
 	data[bi] = c_dirt
-	if data[vi] == c_air then data[vi] = c_water end
-	if data[ai] == c_air then data[ai] = c_water end
+
+	if flooded_biomes then
+		if data[vi] == c_air then
+			data[vi] = c_water
+		end
+		if data[ai] == c_air then
+			data[ai] = c_water
+		end
+	elseif math.random() < 0.01 then
+		if data[vi] == c_air then
+			data[vi] = c_water
+		end
+	end
 end
 
 local level_3_dry_ceiling = function(area, data, ai, vi, bi, param2_data)
@@ -373,6 +385,12 @@ end
 
 -------------------------------------------------------------------------------------------
 
+local c_flood_fill
+if flooded_biomes then
+	c_flood_fill = c_water
+else
+	c_flood_fill = c_air
+end
 
 minetest.register_biome({
 	name = "dfcaverns_level3_flooded_biome_lower",
@@ -394,7 +412,7 @@ minetest.register_biome({
 	_subterrane_ceiling_decor = level_3_moist_ceiling,
 	_subterrane_floor_decor = level_3_wet_floor,
 	_subterrane_fill_node = c_air,
-	_subterrane_cave_fill_node = c_water,
+	_subterrane_cave_fill_node = c_flood_fill,
 	_subterrane_mitigate_lava = true,
 })
 

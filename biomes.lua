@@ -30,7 +30,7 @@ local shallow_cave_floor = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.025 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.025 * 4)
-		subterrane:stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.dry_stalagmite_ids)
+		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, dfcaverns.dry_stalagmite_ids)
 	end	
 end
 
@@ -43,7 +43,7 @@ local shallow_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.025 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.025 * 5)		
-		subterrane:stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.dry_stalagmite_ids)
+		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height, dfcaverns.dry_stalagmite_ids)
 	end	
 end
 

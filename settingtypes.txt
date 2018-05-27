@@ -49,7 +49,7 @@ dfcaverns_lava_sea_min (Lower limit of the lava sea) int -3500
 #Determines threshold for lower sea cave generation. Higher number means sparser cavern
 dfcaverns_lava_sea_threshold (Cavern threshold for magma sea) float 0.2 0.0 1.0
 #When true, the lava sea level is generated
-dfcaverns_enable_lava_sea (Lower sea is lava) bool true
+dfcaverns_enable_lava_sea (Generate magma sea) bool true
 #When true cavern biomes at the most extreme humidity range will be flooded
 #with water, providing significant challenges in those areas.
 dfcaverns_flooded_biomes (Add a lot of water to the most humid cavern biomes) bool true

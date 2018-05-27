@@ -32,7 +32,7 @@ if dfcaverns.config.snareweed_damage then
 					local node = minetest.get_node(node_pos)
 					local distance = player_pos.y - node_pos.y
 					if distance <= node.param2/16 then
-						minetest.log("action", player:get_player_name() .. " takes 2 damage from snareweed")
+						minetest.log("action", player:get_player_name() .. " takes 2 damage from snareweed at " .. minetest.pos_to_string(node_pos))
 						player:set_hp(player:get_hp() - 2)
 						break
 					end

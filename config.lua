@@ -65,6 +65,8 @@ end
 setting("float", "glow_worm_delay_multiplier", 10.0, "glow worm growth delay multiplier")
 setting("bool", "light_kills_fungus", true, "Light kills fungus")
 
+setting("bool", "snareweed_damage", true, "Snareweed causes damage to players")
+
 --Caverns
 
 setting("float", "vertical_cavern_scale", 256, "Vertical cavern dimension scale")

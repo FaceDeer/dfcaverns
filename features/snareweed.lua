@@ -17,18 +17,29 @@ minetest.register_node("dfcaverns:snareweed", {
 	sounds = default.node_sound_dirt_defaults(),
 })
 
-if minetest.get_modpath("radiant_damage") then
-	radiant_damage.register_radiant_damage({
-		damage_name = "snareweed", -- a string used in logs to identify the type of damage dealt
-		interval = 1, -- number of seconds between each damage check
-		range = 5, -- range of the damage. Can be omitted if inverse_square_falloff is true, in that case it defaults to the range at which 1 point of damage is done.
-		inverse_square_falloff = false, -- if true, damage falls off with the inverse square of the distance. If false, damage is constant within the range.
-		damage = 2, -- number of damage points dealt each interval
-		nodenames = {"dfcaverns:snareweed"}, -- nodes that cause this damage. Same format as the nodenames parameter for minetest.find_nodes_in_area
-		occlusion = false, -- if true, damaging effect only passes through air. Other nodes will cast "shadows".
-		above_only = true, -- if true, damage only propagates directly upward.
-		cumulative = false, -- if true, all nodes within range do damage. If false, only the nearest one does damage.
-	})
+if dfcaverns.config.snareweed_damage then
+	local timer = 0
+	
+	minetest.register_globalstep(function(dtime)
+		timer = timer + dtime
+		if timer >= 1 then
+			timer = timer - 1
+			for _, player in pairs(minetest.get_connected_players()) do
+				local player_pos = player:getpos() -- node player's feet are in this location.
+				local rounded_pos = vector.round(player_pos)
+				nearby_nodes = minetest.find_nodes_in_area(vector.add(rounded_pos, {x=0, y= -8, z=0}), rounded_pos, {"dfcaverns:snareweed"})
+				for _, node_pos in ipairs(nearby_nodes) do
+					local node = minetest.get_node(node_pos)
+					local distance = player_pos.y - node_pos.y
+					if distance <= node.param2/16 then
+						minetest.log("action", player:get_player_name() .. " takes 2 damage from snareweed")
+						player:set_hp(player:get_hp() - 2)
+						break
+					end
+				end
+			end
+		end
+	end)	
 end
 
 

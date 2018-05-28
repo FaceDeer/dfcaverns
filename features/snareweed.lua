@@ -27,7 +27,7 @@ if dfcaverns.config.snareweed_damage then
 			for _, player in pairs(minetest.get_connected_players()) do
 				local player_pos = player:getpos() -- node player's feet are in this location.
 				local rounded_pos = vector.round(player_pos)
-				nearby_nodes = minetest.find_nodes_in_area(vector.add(rounded_pos, {x=0, y= -8, z=0}), rounded_pos, {"dfcaverns:snareweed"})
+				local nearby_nodes = minetest.find_nodes_in_area(vector.add(rounded_pos, {x=0, y= -8, z=0}), rounded_pos, {"dfcaverns:snareweed"})
 				for _, node_pos in ipairs(nearby_nodes) do
 					local node = minetest.get_node(node_pos)
 					local distance = player_pos.y - node_pos.y

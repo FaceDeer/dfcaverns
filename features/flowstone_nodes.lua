@@ -75,7 +75,3 @@ dfcaverns.icicle_ids = subterrane.register_stalagmite_nodes("dfcaverns:icicle", 
 	sounds = default.node_sound_glass_defaults(),
 })
 
-if minetest.get_modpath("handholds") and handholds ~= nil and handholds.register_handholds_node ~= nil then
-	handholds.register_handholds_node("dfcaverns:dry_flowstone", "dfcaverns:dry_flowstone_handholds", {description = S("Dry Flowstone Handholds")})
-	handholds.register_handholds_node("dfcaverns:wet_flowstone", "dfcaverns:wet_flowstone_handholds", {description = S("Wet Flowstone Handholds")})
-end

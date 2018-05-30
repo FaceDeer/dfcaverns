@@ -9,4 +9,3 @@ magma_conduits?
 intllib?
 doc?
 simplecrafting_lib?
-handholds?

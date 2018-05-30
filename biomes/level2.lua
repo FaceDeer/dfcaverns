@@ -303,7 +303,7 @@ local level_2_underwater_floor = function(area, data, ai, vi, bi, param2_data)
 		if data[ai] == c_air then
 			data[ai] = c_water
 		end
-	elseif math.random() < 0.01 then
+	elseif math.random() < 0.001 then
 		if data[vi] == c_air then
 			data[vi] = c_water
 		end

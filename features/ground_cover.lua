@@ -53,7 +53,7 @@ minetest.register_node("dfcaverns:cobble_with_floor_fungus", {
 	description = S("Cobblestone With Floor Fungus"),
 	_doc_items_longdesc = dfcaverns.doc.floor_fungus_desc,
 	_doc_items_usagehelp = dfcaverns.doc.floor_fungus_usage,
-	tiles = {"default_cobble.png^dfcaverns_floor_fungus.png", "default_cobble.png", "default_cobble.png^dfcaverns_floor_fungus_side.png"},
+	tiles = {"default_cobble.png^dfcaverns_floor_fungus.png"},
 	drops = "default:cobble",
 	is_ground_content = true,
 	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 11},

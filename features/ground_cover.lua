@@ -63,11 +63,35 @@ minetest.register_node("dfcaverns:cobble_with_floor_fungus", {
 	}),
 })
 
+minetest.register_node("dfcaverns:cobble_with_floor_fungus_fine", {
+	description = S("Cobblestone With Floor Fungus"),
+	_doc_items_longdesc = dfcaverns.doc.floor_fungus_desc,
+	_doc_items_usagehelp = dfcaverns.doc.floor_fungus_usage,
+	tiles = {"default_cobble.png^dfcaverns_floor_fungus_fine.png"},
+	drops = "default:cobble",
+	is_ground_content = true,
+	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 11},
+	_dfcaverns_dead_node = "default:cobble",
+	sounds = default.node_sound_stone_defaults({
+		footstep = {name = "dfcaverns_squish", gain = 0.25},
+	}),
+})
+
 minetest.register_abm{
 	label = "dfcaverns:floor_fungus_spread",
 	nodenames = {"default:cobble"},
 	neighbors = {"dfcaverns:cobble_with_floor_fungus"},
 	interval = 60,
+	chance = 5,
+	catch_up = true,
+	action = function(pos)
+		minetest.swap_node(pos, {name="dfcaverns:cobble_with_floor_fungus_fine"})
+	end,
+}
+minetest.register_abm{
+	label = "dfcaverns:floor_fungus_thickening",
+	nodenames = {"default:cobble_with_floor_fungus_fine"},
+	interval = 59,
 	chance = 30,
 	catch_up = true,
 	action = function(pos)

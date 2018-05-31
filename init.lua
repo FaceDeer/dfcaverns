@@ -6,6 +6,7 @@ local modpath = minetest.get_modpath(minetest.get_current_modname())
 --load companion lua files
 dofile(modpath.."/config.lua")
 dofile(modpath.."/doc.lua")
+dofile(modpath.."/voxelarea_iterator.lua")
 
 dofile(modpath.."/features/ground_cover.lua")
 dofile(modpath.."/features/glow_worms.lua")

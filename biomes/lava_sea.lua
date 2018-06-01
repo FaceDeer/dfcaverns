@@ -46,8 +46,8 @@ local lava_sea_crystal_biome_def = {
 	name = "dfcaverns_lava_sea_with_mese_crystal",
 	y_min = dfcaverns.config.lava_sea_min,
 	y_max = dfcaverns.config.lava_sea_max,
-	heat_point = 80,
-	humidity_point = 20,
+	heat_point = 60,
+	humidity_point = 30,
 	_subterrane_ceiling_decor = mese_crystal_ceiling,
 	_subterrane_floor_decor = mese_ore_floor,
 }
@@ -56,7 +56,7 @@ local lava_sea_mese_biome_def = {
 	name = "dfcaverns_lava_sea_with_mese",
 	y_min = dfcaverns.config.lava_sea_min,
 	y_max = dfcaverns.config.lava_sea_max,
-	heat_point = 60,
+	heat_point = 50,
 	humidity_point = 40,
 	_subterrane_ceiling_decor = mese_ore_ceiling,
 }
@@ -65,7 +65,7 @@ local lava_sea_barren_biome_def = {
 	name = "dfcaverns_lava_sea",
 	y_min = dfcaverns.config.lava_sea_min,
 	y_max = dfcaverns.config.lava_sea_max,
-	heat_point = 40,
+	heat_point = 30,
 	humidity_point = 50,
 }
 
@@ -78,6 +78,18 @@ local airspace = (dfcaverns.config.lava_sea_max - dfcaverns.config.lava_sea_min)
 local lava_sea_level = dfcaverns.config.lava_sea_max - airspace
 
 local data = {}
+local lavasurface_buffer = {}
+
+local lavasurface_noise
+
+local lavasurface_noise_params = {
+	offset = 0,
+	scale = 2,
+	spread = {x=20, y=20, z=20},
+	seed = 5033,
+	octaves = 3,
+	persist = 0.6
+}
 
 minetest.register_on_generated(function(minp, maxp, seed)
 	--if out of range of cave definition limits, abort
@@ -85,12 +97,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		return
 	end
 	
+	if not lavasurface_noise then
+		local sidelen = maxp.x - minp.x + 1 --length of a mapblock
+		local chunk_lengths = {x = sidelen, y = sidelen, z = sidelen} --table of chunk edges
+		lavasurface_noise = minetest.get_perlin_map(lavasurface_noise_params, chunk_lengths)
+	end
+	local nvals_lavasurface = lavasurface_noise:get2dMap({x=minp.x, y=minp.z}, lavasurface_buffer)
+
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	vm:get_data(data)
 	
+	local minx = minp.x-1
+	local minz = minp.z-1
+	
 	for vi, x, y, z in area:iterp_xyz(minp, maxp) do
-		if y < lava_sea_level + math.random(0,3) then
+		local lavaheight = nvals_lavasurface[x-minx][z-minz]
+		if y < lava_sea_level + lavaheight then
 			if data[vi] == c_air or data[vi] == c_water then
 				data[vi] = c_lava
 			end

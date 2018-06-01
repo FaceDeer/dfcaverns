@@ -6,11 +6,16 @@ local modpath = minetest.get_modpath(minetest.get_current_modname())
 --load companion lua files
 dofile(modpath.."/config.lua")
 dofile(modpath.."/doc.lua")
+dofile(modpath.."/voxelarea_iterator.lua")
 
-dofile(modpath.."/ground_cover.lua")
-dofile(modpath.."/glow_worms.lua")
+dofile(modpath.."/features/ground_cover.lua")
+dofile(modpath.."/features/glow_worms.lua")
+dofile(modpath.."/features/flowstone_nodes.lua")
+dofile(modpath.."/features/glow_crystals.lua")
+dofile(modpath.."/features/snareweed.lua")
+dofile(modpath.."/features/cave_coral.lua")
 
--- Plants
+-- Farmable Plants
 dofile(modpath.."/plants.lua") -- general functions
 dofile(modpath.."/plants/cave_wheat.lua")
 dofile(modpath.."/plants/dimple_cup.lua")
@@ -35,4 +40,5 @@ dofile(modpath.."/biomes.lua")
 dofile(modpath.."/biomes/level1.lua")
 dofile(modpath.."/biomes/level2.lua")
 dofile(modpath.."/biomes/level3.lua")
+dofile(modpath.."/biomes/sunless_sea.lua")
 dofile(modpath.."/biomes/lava_sea.lua")

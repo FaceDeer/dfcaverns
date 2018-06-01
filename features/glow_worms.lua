@@ -6,7 +6,17 @@ minetest.register_node("dfcaverns:glow_worm", {
 	description = S("Glow Worms"),
 	_doc_items_longdesc = dfcaverns.doc.glow_worms_desc,
 	_doc_items_usagehelp = dfcaverns.doc.glow_worms_usage,
-	tiles = {"dfcaverns_glow_worm.png"},
+	tiles = {
+		{
+			name = "dfcaverns_glow_worm_animated.png",
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 4.0,
+			},
+		},
+	},
 	inventory_image = "dfcaverns_glow_worm.png",
 	wield_image = "dfcaverns_glow_worm.png",
 	is_ground_content = true,

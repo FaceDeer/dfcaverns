@@ -25,6 +25,11 @@ minetest.register_craft({
 	}
 })
 
+if minetest.get_modpath("radiant_damage") and radiant_damage.override_radiant_damage and radiant_damage.config.enable_mese_damage then
+	radiant_damage.override_radiant_damage("mese", {emitted_by={["dfcaverns:glow_mese"] = radiant_damage.config.mese_damage*12}})
+end
+
+
 minetest.register_node("dfcaverns:glow_ruby_ore", {
 	description = S("Crystal Vein"),
 	_doc_items_longdesc = dfcaverns.doc.glow_ruby_ore_desc,

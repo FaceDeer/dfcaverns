@@ -57,12 +57,12 @@ minetest.register_craft({
 minetest.register_craft({
 	type = "fuel",
 	recipe = "dfcaverns:spore_tree_hyphae",
-	burntime = 1,
+	burntime = 2,
 })
 minetest.register_craft({
 	type = "fuel",
 	recipe = "dfcaverns:spore_tree_fruiting_body",
-	burntime = 1,
+	burntime = 2,
 })
 minetest.register_craft({
 	type = "fuel",
@@ -77,7 +77,7 @@ minetest.register_node("dfcaverns:spore_tree_hyphae", {
 	waving = 1,
 	tiles = {"dfcaverns_spore_tree.png"},
 	is_ground_content = false,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, spore_tree_hyphae = 1},
 	walkable = false,
 	climbable = true,
 	
@@ -103,7 +103,7 @@ minetest.register_node("dfcaverns:spore_tree_fruiting_body", {
 	waving = 1,
 	tiles = {"dfcaverns_spore_tree.png"},
 	is_ground_content = false,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, spore_tree_hyphae = 1},
 	walkable = false,
 	climbable = true,
 	
@@ -282,3 +282,41 @@ minetest.register_abm{
 		
 	end,
 }
+
+
+minetest.register_craft({
+	output = 'dfcaverns:spore_tree_ladder 2',
+	recipe = {
+		{'group:spore_tree_hyphae'},
+	}
+})
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "dfcaverns:spore_tree_ladder",
+	burntime = 1,
+})
+
+minetest.register_node("dfcaverns:spore_tree_ladder", {
+	description = S("Spore Tree Ladder"),
+	drawtype = "signlike",
+	tiles = {"dfcaverns_spore_tree_ladder.png"},
+	inventory_image = "dfcaverns_spore_tree_ladder.png",
+	wield_image = "dfcaverns_spore_tree_ladder.png",
+	paramtype = "light",
+	paramtype2 = "wallmounted",
+	sunlight_propagates = true,
+	walkable = false,
+	climbable = true,
+	is_ground_content = false,
+	selection_box = {
+		type = "wallmounted",
+		--wall_top = = <default>
+		--wall_bottom = = <default>
+		--wall_side = = <default>
+	},
+	groups = {choppy = 2, oddly_breakable_by_hand = 3, flammable = 2},
+	legacy_wallmounted = true,
+	sounds = default.node_sound_wood_defaults(),
+})
+

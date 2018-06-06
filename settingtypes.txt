@@ -44,6 +44,10 @@ dfcaverns_level3_min (Upper limit of the sunless sea) int -2100
 dfcaverns_sunless_sea_min (Lower limit of the sunless sea) int -2500
 dfcaverns_lava_sea_max (Upper limit of the lava sea) int -3000
 dfcaverns_lava_sea_min (Lower limit of the lava sea) int -3500
+#If this is true then there will never be a direct connection between caverns
+#of the first three cavern layers. If false, it's possible for caverns to
+#extend vertically through the boundary.
+dfcaverns_stone_between_layers (Ensure there's stone between layers) bool true
 
 [Lower Seas]
 #Determines threshold for lower sea cave generation. Higher number means sparser cavern

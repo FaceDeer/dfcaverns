@@ -86,6 +86,7 @@ setting("float", "lava_sea_threshold", 0.2, "Cavern threshold for sunless and ma
 setting("bool", "enable_lava_sea", true, "Enable magma sea level")
 
 setting("bool", "flooded_biomes", true, "Add a lot of water to the most humid cavern biomes")
+setting("bool", "stone_between_layers", true, "Ensures that there's a solid stone floor/ceiling between cavern layers")
 
 if minetest.get_modpath("tnt") then
 	dfcaverns.config.enable_tnt = minetest.settings:get_bool("enable_tnt")

@@ -55,6 +55,7 @@ local c_coral_3 = minetest.get_content_id("dfcaverns:cave_coral_3")
 local c_coral_skeleton = minetest.get_content_id("default:coral_skeleton")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_stone = minetest.get_content_id("default:stone")
+local c_water = minetest.get_content_id("default:water_source")
 
 local corals = {c_coral_1, c_coral_2, c_coral_3}
 local get_coral = function()

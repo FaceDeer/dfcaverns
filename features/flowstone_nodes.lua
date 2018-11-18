@@ -2,16 +2,19 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-minetest.register_alias("subterrane:dry_stal_1", "dfcaverns:dry_stal_1")
-minetest.register_alias("subterrane:dry_stal_2", "dfcaverns:dry_stal_2")
-minetest.register_alias("subterrane:dry_stal_3", "dfcaverns:dry_stal_3")
-minetest.register_alias("subterrane:dry_stal_4", "dfcaverns:dry_stal_4")
-minetest.register_alias("subterrane:wet_stal_1", "dfcaverns:wet_stal_1")
-minetest.register_alias("subterrane:wet_stal_2", "dfcaverns:wet_stal_2")
-minetest.register_alias("subterrane:wet_stal_3", "dfcaverns:wet_stal_3")
-minetest.register_alias("subterrane:wet_stal_4", "dfcaverns:wet_stal_4")
-minetest.register_alias("subterrane:wet_flowstone", "dfcaverns:wet_flowstone")
-minetest.register_alias("subterrane:dry_flowstone", "dfcaverns:dry_flowstone")
+-- These used to be defined in subterrane, but now dfcaverns handles it.
+if not minetest.registered_nodes["subterrane:wet_flowstone"] then
+	minetest.register_alias("subterrane:dry_stal_1", "dfcaverns:dry_stal_1")
+	minetest.register_alias("subterrane:dry_stal_2", "dfcaverns:dry_stal_2")
+	minetest.register_alias("subterrane:dry_stal_3", "dfcaverns:dry_stal_3")
+	minetest.register_alias("subterrane:dry_stal_4", "dfcaverns:dry_stal_4")
+	minetest.register_alias("subterrane:wet_stal_1", "dfcaverns:wet_stal_1")
+	minetest.register_alias("subterrane:wet_stal_2", "dfcaverns:wet_stal_2")
+	minetest.register_alias("subterrane:wet_stal_3", "dfcaverns:wet_stal_3")
+	minetest.register_alias("subterrane:wet_stal_4", "dfcaverns:wet_stal_4")
+	minetest.register_alias("subterrane:wet_flowstone", "dfcaverns:wet_flowstone")
+	minetest.register_alias("subterrane:dry_flowstone", "dfcaverns:dry_flowstone")
+end
 
 -----------------------------------------------
 

@@ -1,0 +1,10 @@
+dfcaverns_dwarven_syrup_source_animated - derived from default
+dfcaverns_dwarven_syrup - derived from default
+dfcaverns_dwarven_syrup_flowing_animated - derived from default
+dfcaverns_fungi - copied from caverealms
+dfcaverns_cave_wheat	- derived from farming wheat
+dfcaverns_flour - derived from farming
+dfcaverns_bread - derived from farming
+dfcaverns_pig_tail_thread - copied from farming
+dfcaverns_sugar - derived from farming
+dfcaverns_cave_wheat_seed, dfcaverns_pig_tail_seed - all derived from farming wheat seed

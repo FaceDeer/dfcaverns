@@ -1,0 +1,33 @@
+[Cavern dimensions]
+#Note that this doesn't guarantee caverns of this setting's size. This setting
+#affects the scale of features in the perlin noise that is used to build caverns.
+#Most caverns will be smaller than this (and a few might be larger)
+dfcaverns_vertical_cavern_scale (Vertical cavern dimension scale) float 256
+#Note that this doesn't guarantee caverns of this setting's size. This setting
+#affects the scale of features in the perlin noise that is used to build caverns.
+#Most caverns will be smaller than this (and a few might be larger)
+dfcaverns_horizontal_cavern_scale (Horizontal cavern dimension scale) float 256
+#Determines threshold for cave generation. Higher number means sparser caverns
+dfcaverns_cavern_threshold (Cavern threshold) float 0.5 0.0 1.0
+
+[Cavern depth borders]
+dfcaverns_ymax (Upper limit of level 1) int -300
+dfcaverns_level1_min (Upper limit of level 2) int -900
+dfcaverns_level2_min (Upper limit of level 3) int -1500
+dfcaverns_level3_min (Upper limit of the sunless sea) int -2100
+dfcaverns_sunless_sea_min (Lower limit of the sunless sea) int -2500
+dfcaverns_lava_sea_max (Upper limit of the lava sea) int -3000
+dfcaverns_lava_sea_min (Lower limit of the lava sea) int -3500
+#If this is true then there will never be a direct connection between caverns
+#of the first three cavern layers. If false, it's possible for caverns to
+#extend vertically through the boundary.
+dfcaverns_stone_between_layers (Ensure there's stone between layers) bool true
+
+[Lower Seas]
+#Determines threshold for lower sea cave generation. Higher number means sparser cavern
+dfcaverns_lava_sea_threshold (Cavern threshold for magma sea) float 0.2 0.0 1.0
+#When true, the lava sea level is generated
+dfcaverns_enable_lava_sea (Generate magma sea) bool true
+#When true cavern biomes at the most extreme humidity range will be flooded
+#with water, providing significant challenges in those areas.
+dfcaverns_flooded_biomes (Add a lot of water to the most humid cavern biomes) bool true

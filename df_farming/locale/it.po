@@ -1,0 +1,336 @@
+# ITALIAN LOCALE FOR THE DFCAVERNS MODULE
+# Copyright (C) 2017 FaceDeer <derksenmobile@gmail.com>
+# This file is distributed under the same license as the DFCAVERNS package.
+# Hamlet <h4mlet@riseup.net>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dfcaverns module's Italian locale\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-02 12:51-0700\n"
+"PO-Revision-Date: 2017-08-17 23:01+0100\n"
+"Last-Translator: H4mlet <h4mlet@riseup.net>\n"
+"Language-Team: ITALIANO\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: cave_wheat.lua:10
+#: cave_wheat.lua:69
+msgid "Cave Wheat"
+msgstr "Grano di caverna"
+
+#: cave_wheat.lua:61
+#: cooking.lua:89
+msgid "Cave Wheat Seed"
+msgstr "Seme di grano di caverna"
+
+#: cave_wheat.lua:82
+#: cooking.lua:88
+msgid "Cave Wheat Flour"
+msgstr "Farina di grano di caverna"
+
+#: cave_wheat.lua:90
+msgid "Dwarven Bread"
+msgstr "Pane nanico"
+
+#: cooking.lua:7
+msgid "@1 Biscuit"
+msgstr "Biscotto di @1"
+
+#: cooking.lua:15
+msgid "@1 Stew"
+msgstr "Stufato di @1"
+
+#: cooking.lua:23
+msgid "@1 Roast"
+msgstr "Arrosto di @1"
+
+#: cooking.lua:90
+msgid "Sweet Pod Spore"
+msgstr "Spora di baccello dolce"
+
+#: cooking.lua:91
+#: sweet_pod.lua:83
+msgid "Sweet Pod Sugar"
+msgstr "Zucchero di baccello dolce"
+
+#: cooking.lua:92
+#: plump_helmet.lua:91
+#: plump_helmet.lua:127
+#: plump_helmet.lua:161
+#: plump_helmet.lua:195
+#: plump_helmet.lua:246
+msgid "Plump Helmet"
+msgstr "Elmo rotondo"
+
+#: cooking.lua:93
+#: plump_helmet.lua:61
+msgid "Plump Helmet Spawn"
+msgstr "Prole di elmo rotondo"
+
+#: cooking.lua:94
+msgid "Quarry Bush Leaf"
+msgstr "Foglia di cespuglio di cava"
+
+#: cooking.lua:95
+msgid "Rock Nut"
+msgstr "Noce di roccia"
+
+#: cooking.lua:96
+msgid "Dimple Cup Spore"
+msgstr "Spora di coppa increspata"
+
+#: cooking.lua:97
+#: pig_tail.lua:61
+msgid "Pig Tail Spore"
+msgstr "Spora di coda di maiale"
+
+#: cooking.lua:98
+msgid "Dwarven Syrup"
+msgstr "Sciroppo nanico"
+
+#: dimple_cup.lua:10
+msgid "Dimple Cup"
+msgstr "Coppa increspata"
+
+#: dimple_cup.lua:55
+msgid "Dimple Cup Spores"
+msgstr "Spore di coppa increspata"
+
+#: doc.lua:11
+msgid ""
+"A meal made from the admixture of two ingredients, biscuits keep well but "
+"are not a rich source of nutrients."
+msgstr ""
+
+#: doc.lua:13
+msgid ""
+"Stews mix three ingredients together. They're more wholesome than biscuits, "
+"packing more nutrition into a single serving."
+msgstr ""
+
+#: doc.lua:15
+msgid ""
+"Four finely minced ingredients combine into a roast, which serves as a full "
+"meal."
+msgstr ""
+
+#: doc.lua:21
+msgid "Whatever this fungus was in life, it is now dead."
+msgstr ""
+
+#: doc.lua:22
+msgid ""
+"Dead fungus quickly decays into an unrecognizable mess. It can be used as "
+"weak fuel or terrible decor."
+msgstr ""
+
+#: doc.lua:24
+msgid ""
+"A species of lavender mushroom ubiquitous in caves that is most notable for "
+"the soft bioluminescence it produces."
+msgstr ""
+
+#: doc.lua:25
+msgid ""
+"This mushroom is inedible but continues producing modest levels of light "
+"long after it's picked."
+msgstr ""
+
+#: doc.lua:27
+msgid ""
+"Cave wheat is literally a breed of grain-producing grass that somehow lost "
+"its ability to photosynthesize and adapted to a more fungal style of life."
+msgstr ""
+
+#: doc.lua:28
+msgid ""
+"Like its surface cousin, cave wheat produces grain that can be ground into a "
+"form of flour."
+msgstr ""
+
+#: doc.lua:29
+msgid "Cave wheat seed ground into a powder suitable for cooking."
+msgstr ""
+
+#: doc.lua:30
+msgid ""
+"When baked alone it forms an edible bread, but it combines well with other "
+"more flavorful ingredients."
+msgstr ""
+
+#: doc.lua:31
+msgid ""
+"Bread baked from cave wheat flour is tough and durable. A useful ration for "
+"long expeditions."
+msgstr ""
+
+#: doc.lua:32
+msgid "It's not tasty, but it keeps you going."
+msgstr ""
+
+#: doc.lua:34
+msgid ""
+"The distinctive midnight-blue caps of these mushrooms are inverted, exposing "
+"their gills to any breeze that might pass, and have dimpled edges that give "
+"them their name."
+msgstr ""
+
+#: doc.lua:35
+msgid ""
+"Dimple cups can be dried, ground, and processed to extract a deep blue dye."
+msgstr ""
+
+#: doc.lua:37
+msgid ""
+"Pig tails are a fibrous fungal growth that's most notable for its twisting "
+"stalks. In a mature stand of pig tails the helical stalks intertwine into a "
+"dense mesh."
+msgstr ""
+
+#: doc.lua:38
+msgid "Pig tail stalks can be processed to extract fibers useful as thread."
+msgstr ""
+
+#: doc.lua:39
+msgid "Threads of pig tail fiber."
+msgstr ""
+
+#: doc.lua:40
+msgid ""
+"A crafting item that can be woven into textiles and other similar items."
+msgstr ""
+
+#: doc.lua:42
+msgid ""
+"Plump helmets are a thick, fleshy mushroom that's edible picked straight "
+"from the ground. They form a staple diet for both lost cave explorers and "
+"the fauna that preys on them."
+msgstr ""
+
+#: doc.lua:43
+msgid ""
+"While they can be eaten fresh, they can be monotonous fare and are perhaps "
+"better appreciated as part of a more complex prepared dish."
+msgstr ""
+
+#: doc.lua:45
+msgid ""
+"A rare breed of fungus from deep underground that produces a bushy cluster "
+"of rumpled gray 'blades'. The biological function of these blades is not "
+"known, as quarry bushes reproduce via hard-shelled nodules that grow down at "
+"the blade's base."
+msgstr ""
+
+#: doc.lua:46
+msgid ""
+"Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are "
+"edible with processing."
+msgstr ""
+
+#: doc.lua:47
+msgid ""
+"The dried blades of a quarry bush add a welcome zing to recipes containing "
+"otherwise-bland subterranean foodstuffs, but they're too spicy to be eaten "
+"on their own."
+msgstr ""
+
+#: doc.lua:48
+msgid "Quarry bush leaves can be used as an ingredient in foodstuffs."
+msgstr ""
+
+#: doc.lua:50
+msgid ""
+"Sweet pods grow in rich soil, and once they reach maturity they draw that "
+"supply of nutrients up to concentrate it in their fruiting bodies. They turn "
+"bright red when ripe and can be processed in a variety of ways to extract "
+"the sugars they contain."
+msgstr ""
+
+#: doc.lua:53
+msgid "When milled, sweet pods produce a granular sugary substance."
+msgstr ""
+
+#: doc.lua:55
+msgid "When dried in an oven, sweet pods produce a granular sugary substance."
+msgstr ""
+
+#: doc.lua:57
+msgid "Crushing them in a bucket squeezes out a flavorful syrup."
+msgstr ""
+
+#: doc.lua:59
+msgid "Sweet pod sugar has a pink tint to it."
+msgstr ""
+
+#: doc.lua:60
+msgid ""
+"Too sweet to be eaten directly, it makes an excellent ingredient in food "
+"recipes."
+msgstr ""
+
+#: doc.lua:61
+msgid "Sweet pod syrup is thick and flavorful."
+msgstr ""
+
+#: doc.lua:62
+msgid ""
+"Too strong and thick to drink straight, sweet pod syrup is useful in food "
+"recipes."
+msgstr ""
+
+#: pig_tail.lua:10
+msgid "Pig Tail"
+msgstr "Coda di maiale"
+
+#: pig_tail.lua:69
+msgid "Pig tail thread"
+msgstr "Filo di coda di maiale"
+
+#: plants.lua:10
+msgid "Dead Fungus"
+msgstr "Fungo morto"
+
+#: plants.lua:35
+msgid "Cavern Fungi"
+msgstr "Funghi di caverna"
+
+#: quarry_bush.lua:10
+msgid "Quarry Bush"
+msgstr "Cespuglio di cava"
+
+#: quarry_bush.lua:61
+msgid "Rock Nuts"
+msgstr "Noci di roccia"
+
+#: quarry_bush.lua:70
+msgid "Quarry Bush Leaves"
+msgstr "Foglie di cespuglio di cava"
+
+#: sweet_pod.lua:10
+msgid "Sweet Pod"
+msgstr "Baccello dolce"
+
+#: sweet_pod.lua:59
+msgid "Sweet Pod Spores"
+msgstr "Spore di baccello dolce"
+
+#: sweet_pod.lua:67
+msgid "Sweet Pods"
+msgstr "Baccelli dolci"
+
+#: sweet_pod.lua:106
+msgid "Dwarven Syrup Source"
+msgstr "Fonte di sciroppo nanico"
+
+#: sweet_pod.lua:154
+msgid "Flowing Dwarven Syrup"
+msgstr "Sciroppo nanico che scorre"
+
+#: sweet_pod.lua:207
+msgid "Dwarven Syrup Bucket"
+msgstr "Secchio di sciroppo nanico"

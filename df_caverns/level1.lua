@@ -1,6 +1,5 @@
 local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
-local c_stone = minetest.get_content_id("default:stone")
 local c_cobble = minetest.get_content_id("default:cobble")
 local c_mossycobble = minetest.get_content_id("default:mossycobble")
 local c_dirt = minetest.get_content_id("default:dirt")
@@ -22,9 +21,10 @@ local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param
 local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
-local subsea_level = (df_caverns.config.ymax - df_caverns.config.level1_min) * 0.3 + df_caverns.config.level1_min
+--local subsea_level = (df_caverns.config.ymax - df_caverns.config.level1_min) * 0.3 + df_caverns.config.level1_min
 local flooded_biomes = df_caverns.config.flooded_biomes
 
+-- Used for making lines of dripstone
 local np_cracks = {
 	offset = 0,
 	scale = 1,
@@ -47,7 +47,7 @@ local data_param2 = {}
 local tower_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_pig_tail, c_dead_fungus, c_cavern_fungi}
 local fungiwood_shrublist = {c_plump_helmet, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
 
-local c_mese = minetest.get_content_id("default:mese")
+--local c_mese = minetest.get_content_id("default:mese")
 
 local stalagmites = function(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, wet, reverse_sign)
 	local flowstone
@@ -77,7 +77,7 @@ local stalagmites = function(abs_cracks, vert_rand, ystride, vi, area, data, dat
 		local height = math.floor(abs_cracks * 50)
 		subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height*height_mult, stalagmite_ids)
 	end
-	data[vi] = c_wet_flowstone
+	data[vi] = flowstone
 end
 
 local stalactites = function(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, wet)
@@ -91,6 +91,61 @@ local deep_water = function(cracks, vi, ystride, data)
 		data[vi] = c_water
 		vi = vi + ystride
 		depth = depth - 1
+	end
+end
+
+local tunnel_ceiling = function(minp, maxp, area, vi, ystride, biomemap, nvals_cracks, data, data_param2)
+	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+	local biome = mapgen_helper.get_biome_def(biomemap[index2d])
+	local abs_cracks = math.abs(nvals_cracks[index2d])
+	
+	if biome == nil then
+		--data[vi] = c_mese
+	elseif biome.name == "dfcaverns_level1_flooded_biome" then
+	
+	elseif biome.name == "dfcaverns_level1_dry_biome" then
+		if abs_cracks < 0.025 then
+			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+			local height = math.floor(abs_cracks * 100)
+			subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height, df_mapitems.dry_stalagmite_ids)
+		end
+	else
+		if abs_cracks < 0.05 then
+			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+			local height = math.floor(abs_cracks * 100)
+			subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height, df_mapitems.wet_stalagmite_ids)
+			data[vi] = c_wet_flowstone
+		end
+	end
+end
+
+local tunnel_floor = function(minp, maxp, area, vi, ystride, biomemap, nvals_cracks, data, data_param2)
+	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+	local biome = mapgen_helper.get_biome_def(biomemap[index2d])
+	local cracks = nvals_cracks[index2d]
+	local abs_cracks = math.abs(nvals_cracks[index2d])
+	
+	if biome == nil then
+		--data[vi] = c_mese
+	elseif biome.name == "dfcaverns_level1_flooded_biome" then
+		if flooded_biomes then
+			deep_water(cracks, vi, ystride, data)
+		end
+	elseif biome.name == "dfcaverns_level1_dry_biome" then
+		if abs_cracks < 0.025 then
+			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+			local height = math.floor(abs_cracks * 100)
+			subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
+		elseif cracks > 0.5 and data[vi-ystride] ~= c_air then
+			data[vi] = c_gravel
+		end
+	else
+		if abs_cracks < 0.05 then
+			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+			local height = math.floor(abs_cracks * 100)
+			subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
+			data[vi] = c_wet_flowstone
+		end
 	end
 end
 
@@ -110,7 +165,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
 		
 		if biome == nil then
-			data[vi] = c_mese
+			--data[vi] = c_mese
 		elseif biome.name == "dfcaverns_level1_tower_cap_biome" or
 			biome.name == "dfcaverns_level1_tower_cap_flooded_biome" then
 
@@ -178,15 +233,15 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 					stalagmites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, true)
 				elseif math.random() < 0.001 then
 					data[vi+ystride] = c_water
-				else
+				end
 			end
 			
 		elseif biome.name == "dfcaverns_level1_dry_biome" then
 			if abs_cracks < 0.1 then
 				stalagmites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, false)
-			elseif abs_cracks < 0.2 then
+			elseif abs_cracks < 0.4 then
 				data[vi] = c_cobble
-			elseif abs_cracks < 0.3 then
+			elseif abs_cracks < 0.6 then
 				data[vi] = c_cobble_fungus_fine
 			else
 				data[vi] = c_cobble_fungus
@@ -207,7 +262,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
 		
 		if biome == nil then
-			data[vi] = c_mese
+			--data[vi] = c_mese
 		elseif biome.name == "dfcaverns_level1_tower_cap_biome" or
 			biome.name == "dfcaverns_level1_tower_cap_flooded_biome" or
 			biome.name == "dfcaverns_level1_fungiwood_biome" or
@@ -235,64 +290,41 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	-- Tunnel floors
 	
 	for _, vi in pairs(node_arrays.tunnel_floor_nodes) do
-		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
-		local cracks = nvals_cracks[index2d]
-		local abs_cracks = math.abs(nvals_cracks[index2d])
-		
-		if biome == nil then
-			data[vi] = c_mese
-		elseif biome.name == "dfcaverns_level1_flooded_biome" then
-			if flooded_biomes then
-				deep_water(cracks, vi, ystride, data)
-			end
-		elseif biome.name == "dfcaverns_level1_dry_biome" then
-			if abs_cracks < 0.025 then
-				local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
-				local height = math.floor(abs_cracks * 100)
-				subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
-			elseif cracks > 0.5 and data[vi-ystride] ~= c_air then
-				data[vi] = c_gravel
-			end
-		else
-			if abs_cracks < 0.05 then
-				local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
-				local height = math.floor(abs_cracks * 100)
-				subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
-				data[vi] = c_wet_flowstone
-			end
-		end
+		tunnel_floor(minp, maxp, area, vi, ystride, biomemap, nvals_cracks, data, data_param2)
 	end
 	
 	------------------------------------------------------
 	-- Tunnel ceiling
 	
 	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
-		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
-		local abs_cracks = math.abs(nvals_cracks[index2d])
-		
-		if biome == nil then
-			data[vi] = c_mese
-		elseif biome.name == "dfcaverns_level1_flooded_biome" then
-		
-		elseif biome.name == "dfcaverns_level1_dry_biome" then
-			if abs_cracks < 0.025 then
-				local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
-				local height = math.floor(abs_cracks * 100)
-				subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height, df_mapitems.dry_stalagmite_ids)
-			end
-		else
-			if abs_cracks < 0.05 then
-				local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
-				local height = math.floor(abs_cracks * 100)
-				subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height, df_mapitems.wet_stalagmite_ids)
-				data[vi] = c_wet_flowstone
-			end
-		end
-
+		tunnel_ceiling(minp, maxp, area, vi, ystride, biomemap, nvals_cracks, data, data_param2)
 	end
 	
+	------------------------------------------------------
+	-- Warren ceiling
+
+	for _, vi in pairs(node_arrays.warren_ceiling_nodes) do
+		tunnel_ceiling(minp, maxp, area, vi, ystride, biomemap, nvals_cracks, data, data_param2)
+	end
+
+	----------------------------------------------
+	-- Tunnel floors
+	
+	for _, vi in pairs(node_arrays.warren_floor_nodes) do
+		tunnel_floor(minp, maxp, area, vi, ystride, biomemap, nvals_cracks, data, data_param2)
+	end
+	
+	----------------------------------------------
+	-- Column material override for dry biome
+	
+	for _, vi in pairs(node_arrays.column_nodes) do
+		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
+		if biome and biome.name == "dfcaverns_level1_dry_biome" then
+			data[vi] = c_dry_flowstone
+		end
+	end
+
 	vm:set_param2_data(data_param2)
 end
 

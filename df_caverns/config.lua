@@ -42,6 +42,5 @@ setting("float", "lava_sea_threshold", 0.2, "Cavern threshold for sunless and ma
 setting("bool", "enable_lava_sea", true, "Enable magma sea level")
 
 setting("bool", "flooded_biomes", true, "Add a lot of water to the most humid cavern biomes")
-setting("bool", "stone_between_layers", true, "Ensures that there's a solid stone floor/ceiling between cavern layers")
 
 df_caverns.config.sunless_sea_level = df_caverns.config.level3_min - (df_caverns.config.level3_min - df_caverns.config.sunless_sea_min) * 0.5

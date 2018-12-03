@@ -79,71 +79,37 @@ subterrane:override_biome({
 
 subterrane:register_cave_decor(-113, df_caverns.config.ymax)
 
-if df_caverns.config.stone_between_layers then
-	subterrane:register_cave_layer({
-		minimum_depth = df_caverns.config.ymax,
-		maximum_depth = df_caverns.config.level1_min,
-		cave_threshold = df_caverns.config.cavern_threshold,
-		perlin_cave = perlin_cave,
-		perlin_wave = perlin_wave,
-		columns = {
-			maximum_radius = 10,
-			minimum_radius = 4,
-			node = c_wet_flowstone,
-			weight = 0.25,
-			maximum_count = 20,
-			minimum_count = 0,
-		},
-	})
-	
-	subterrane:register_cave_layer({
-		minimum_depth = df_caverns.config.level1_min,
-		maximum_depth = df_caverns.config.level2_min,
-		cave_threshold = df_caverns.config.cavern_threshold,
-		perlin_cave = perlin_cave,
-		perlin_wave = perlin_wave,
-		columns = {
-			maximum_radius = 15,
-			minimum_radius = 4,
-			node = c_wet_flowstone,
-			weight = 0.25,
-			maximum_count = 30,
-			minimum_count = 5,
-		},
-	})
-	
-	subterrane:register_cave_layer({
-		minimum_depth = df_caverns.config.level2_min,
-		maximum_depth = df_caverns.config.level3_min,
-		cave_threshold = df_caverns.config.cavern_threshold,
-		perlin_cave = perlin_cave,
-		perlin_wave = perlin_wave,
-		columns = {
-			maximum_radius = 20,
-			minimum_radius = 5,
-			node = c_wet_flowstone,
-			weight = 0.25,
-			maximum_count = 50,
-			minimum_count = 10,
-		},
-	})
-else
-	subterrane:register_cave_layer({
-		minimum_depth = df_caverns.config.ymax,
-		maximum_depth = df_caverns.config.level3_min,
-		cave_threshold = df_caverns.config.cavern_threshold,
-		perlin_cave = perlin_cave,
-		perlin_wave = perlin_wave,
-		columns = {
-			maximum_radius = 20,
-			minimum_radius = 4,
-			node = c_wet_flowstone,
-			weight = 0.25,
-			maximum_count = 50,
-			minimum_count = 0,
-		},
-	})
-end
+subterrane:register_cave_layer({
+	minimum_depth = df_caverns.config.level1_min,
+	maximum_depth = df_caverns.config.level2_min,
+	cave_threshold = df_caverns.config.cavern_threshold,
+	perlin_cave = perlin_cave,
+	perlin_wave = perlin_wave,
+	columns = {
+		maximum_radius = 15,
+		minimum_radius = 4,
+		node = c_wet_flowstone,
+		weight = 0.25,
+		maximum_count = 30,
+		minimum_count = 5,
+	},
+})
+
+subterrane:register_cave_layer({
+	minimum_depth = df_caverns.config.level2_min,
+	maximum_depth = df_caverns.config.level3_min,
+	cave_threshold = df_caverns.config.cavern_threshold,
+	perlin_cave = perlin_cave,
+	perlin_wave = perlin_wave,
+	columns = {
+		maximum_radius = 20,
+		minimum_radius = 5,
+		node = c_wet_flowstone,
+		weight = 0.25,
+		maximum_count = 50,
+		minimum_count = 10,
+	},
+})
 
 local perlin_cave_lava = {
 	offset = 0,

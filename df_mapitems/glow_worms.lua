@@ -56,18 +56,20 @@ minetest.register_node("df_mapitems:glow_worm", {
 local c_air = minetest.get_content_id("air")
 local c_worm = minetest.get_content_id("df_mapitems:glow_worm")
 
-df_mapitems.glow_worm_ceiling = function(area, data, ai, vi, bi)
+df_mapitems.glow_worm_ceiling = function(area, data, vi)
+	local ystride = area.ystride
+	local bi = vi - ystride
 	if data[vi] == c_air and data[bi] == c_air then
 		data[vi] = c_worm
 		data[bi] = c_worm
 		if math.random(2) == 1 then
-			local bbi = bi - area.ystride
-			if data[bbi] == c_air then
-				data[bbi] = c_worm
+			bi = bi - ystride
+			if data[bi] == c_air then
+				data[bi] = c_worm
 				if math.random(2) == 1 then
-					local bbbi = bbi - area.ystride
-					if data[bbbi] == c_air then
-						data[bbbi] = c_worm
+					bi = bi - ystride
+					if data[bi] == c_air then
+						data[bi] = c_worm
 					end
 				end
 			end

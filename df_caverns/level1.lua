@@ -4,8 +4,10 @@ local c_stone = minetest.get_content_id("default:stone")
 local c_cobble = minetest.get_content_id("default:cobble")
 local c_mossycobble = minetest.get_content_id("default:mossycobble")
 local c_dirt = minetest.get_content_id("default:dirt")
+local c_gravel = minetest.get_content_id("default:gravel")
 
 local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
+local c_cobble_fungus_fine = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus_fine")
 local c_cobble_fungus = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus")
 
 local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
@@ -23,360 +25,359 @@ local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- par
 local subsea_level = (df_caverns.config.ymax - df_caverns.config.level1_min) * 0.3 + df_caverns.config.level1_min
 local flooded_biomes = df_caverns.config.flooded_biomes
 
-local level_1_tower_cap_floor = function(area, data, ai, vi, bi, param2_data)
-	if data[bi] ~= c_stone then
-		return
-	end
-	
-	if math.random() < 0.25 then
-		data[bi] = c_dirt
+local np_cracks = {
+	offset = 0,
+	scale = 1,
+	spread = {x = 20, y = 20, z = 20},
+	seed = 5717,
+	octaves = 3,
+	persist = 0.63,
+	lacunarity = 2.0,
+}
+
+-- name = "dfcaverns_level1_dry_biome",
+-- name = "dfcaverns_level1_flooded_biome",
+-- name = "dfcaverns_level1_fungiwood_biome",
+-- name = "dfcaverns_level1_fungiwood_flooded_biome",
+-- name = "dfcaverns_level1_tower_cap_biome",
+-- name = "dfcaverns_level1_tower_cap_flooded_biome",
+
+local data_param2 = {}
+
+local tower_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_pig_tail, c_dead_fungus, c_cavern_fungi}
+local fungiwood_shrublist = {c_plump_helmet, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
+
+local c_mese = minetest.get_content_id("default:mese")
+
+local stalagmites = function(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, wet, reverse_sign)
+	local flowstone
+	local stalagmite_ids
+	if wet then
+		flowstone = c_wet_flowstone
+		stalagmite_ids = df_mapitems.wet_stalagmite_ids
 	else
-		data[bi] = c_dirt_moss
+		flowstone = c_dry_flowstone
+		stalagmite_ids = df_mapitems.dry_stalagmite_ids	
 	end
 	
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-	if math.random() < 0.1 then
-		df_caverns.place_shrub(data, vi, param2_data, {c_plump_helmet, c_plump_helmet, c_pig_tail, c_dead_fungus, c_cavern_fungi})
-	elseif drip_rand < 0.0025 then
+	local height_mult = 1
+	if reverse_sign then
+		ystride = - ystride
+		height_mult = -1
+	end		
+
+	if vert_rand < 0.002 then
+		if reverse_sign then
+			subterrane:giant_stalactite(vi+ystride, area, data, 6, 15, flowstone, flowstone, flowstone)
+		else
+			subterrane:giant_stalagmite(vi+ystride, area, data, 6, 15, flowstone, flowstone, flowstone)
+		end
+	else
+		local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+		local height = math.floor(abs_cracks * 50)
+		subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height*height_mult, stalagmite_ids)
+	end
+	data[vi] = c_wet_flowstone
+end
+
+local stalactites = function(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, wet)
+	stalagmites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, wet, true)
+end
+
+local deep_water = function(cracks, vi, ystride, data)
+	local depth = cracks + 1
+	vi = vi + ystride
+	while depth > 0 and data[vi] == c_air do
+		data[vi] = c_water
+		vi = vi + ystride
+		depth = depth - 1
+	end
+end
+
+local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
+	local biomemap = minetest.get_mapgen_object("biomemap")
+	local ystride = area.ystride
+	vm:get_param2_data(data_param2)
+	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, np_cracks)
+	
+	---------------------------------------------------------
+	-- Cavern floors
+	
+	for _, vi in pairs(node_arrays.cavern_floor_nodes) do
+		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
+		local abs_cracks = math.abs(nvals_cracks[index2d])
+		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
 		
-	elseif drip_rand < 0.1 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, df_mapitems.wet_stalagmite_ids)
-	elseif math.random() < 0.005 then
-		df_trees.spawn_tower_cap_vm(vi, area, data)
-	end
-end
+		if biome == nil then
+			data[vi] = c_mese
+		elseif biome.name == "dfcaverns_level1_tower_cap_biome" or
+			biome.name == "dfcaverns_level1_tower_cap_flooded_biome" then
 
-local level_1_fungiwood_floor = function(area, data, ai, vi, bi, param2_data)
-	if data[bi] ~= c_stone then
-		return
-	end
+			if abs_cracks < 0.1 then
+				stalagmites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, true)
+			elseif data[vi-ystride] ~= c_air then -- leave the ground as rock if it's only one node thick
+				if math.random() < 0.25 then
+					data[vi] = c_dirt
+				else
+					data[vi] = c_dirt_moss
+				end
+				
+				if math.random() < 0.1 then
+					df_caverns.place_shrub(data, vi+ystride, data_param2, tower_cap_shrublist)
+				elseif math.random() < 0.01 and abs_cracks > 0.25 then
+					df_trees.spawn_tower_cap_vm(vi, area, data)
+				end
+			end			
+			
+		elseif biome.name == "dfcaverns_level1_fungiwood_biome" or
+			biome.name == "dfcaverns_level1_fungiwood_flooded_biome" then
+
+			if abs_cracks < 0.1 then
+				stalagmites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, true)
+			elseif data[vi-ystride] ~= c_air then -- leave the ground as rock if it's only one node thick
+				if math.random() < 0.25 then
+					data[vi] = c_dirt
+				else
+					data[vi] = c_dirt_moss
+				end
+				if math.random() < 0.1 then
+					df_caverns.place_shrub(data, vi, data_param2, fungiwood_shrublist)
+				elseif math.random() < 0.03 and abs_cracks > 0.35 then
+					df_trees.spawn_fungiwood_vm(vi, area, data)
+				end
+			end
 	
-	if math.random() < 0.25 then
-		data[bi] = c_dirt
-	else
-		data[bi] = c_dirt_moss
+		elseif biome.name == "dfcaverns_level1_flooded_biome" then
+			if abs_cracks < 0.25 then
+				data[vi] = c_mossycobble
+			elseif data[vi-ystride] ~= c_air then
+				data[vi] = c_dirt
+				
+				if not flooded_biomes then -- don't put vegetation if the floor's going to be covered in water
+					if math.random() < 0.05 then
+						data[vi+ystride] = c_dead_fungus
+					elseif math.random() < 0.05 then
+						data[vi+ystride] = c_cavern_fungi
+					end
+				end
+			end
+			
+			if flooded_biomes then
+				-- put in only the large stalagmites that won't get in the way of the water
+				if abs_cracks < 0.1 then
+					if vert_rand < 0.002 then
+						subterrane:giant_stalagmite(vi+ystride, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
+					end
+				end
+				--Cover the floor with a thick layer of water
+				deep_water(cracks, vi, ystride, data)
+			else
+				-- Put in stalagmites and the occasional isolated blob of water.
+				if abs_cracks < 0.1 then
+					stalagmites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, true)
+				elseif math.random() < 0.001 then
+					data[vi+ystride] = c_water
+				else
+			end
+			
+		elseif biome.name == "dfcaverns_level1_dry_biome" then
+			if abs_cracks < 0.1 then
+				stalagmites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, false)
+			elseif abs_cracks < 0.2 then
+				data[vi] = c_cobble
+			elseif abs_cracks < 0.3 then
+				data[vi] = c_cobble_fungus_fine
+			else
+				data[vi] = c_cobble_fungus
+				if math.random() < 0.05 then
+					data[vi+ystride] = c_dead_fungus
+				end
+			end
+		end		
 	end
+
+	--------------------------------------
+	-- Cavern ceilings
 	
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-	
-	if math.random() < 0.1 then
-		df_caverns.place_shrub(data, vi, param2_data, {c_plump_helmet, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi})
-	elseif drip_rand < 0.001 then
-		subterrane:giant_stalagmite(bi, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
-	elseif drip_rand < 0.1 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, df_mapitems.wet_stalagmite_ids)
-	elseif math.random() < 0.005 then
-		df_trees.spawn_fungiwood_vm(vi, area, data)
-	end
-end
+	for _, vi in pairs(node_arrays.cavern_ceiling_nodes) do
+		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
+		local abs_cracks = math.abs(nvals_cracks[index2d])
+		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
+		
+		if biome == nil then
+			data[vi] = c_mese
+		elseif biome.name == "dfcaverns_level1_tower_cap_biome" or
+			biome.name == "dfcaverns_level1_tower_cap_flooded_biome" or
+			biome.name == "dfcaverns_level1_fungiwood_biome" or
+			biome.name == "dfcaverns_level1_fungiwood_flooded_biome" then
 
-local level_1_moist_ceiling = function(area, data, ai, vi, bi, param2_data)
-	if data[ai] ~= c_stone then
-		return
-	end
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-	if drip_rand < 0.0025 then
-		subterrane:giant_stalactite(ai, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
-	elseif drip_rand < 0.075 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.075 * 5)
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height, df_mapitems.wet_stalagmite_ids)
-	elseif math.random() < 0.03 then
-		df_mapitems.glow_worm_ceiling(area, data, ai, vi, bi)
-	end
-end
+			if abs_cracks < 0.1 then
+				stalactites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, true)
+			elseif abs_cracks < 0.5 and abs_cracks > 0.3 and math.random() < 0.3 then
+				df_mapitems.glow_worm_ceiling(area, data, vi-ystride)
+			end
 
-local level_1_wet_floor = function(area, data, ai, vi, bi, param2_data)
-	if data[bi] ~= c_stone then
-		return
-	end
+		elseif biome.name == "dfcaverns_level1_flooded_biome" then
+			if abs_cracks < 0.1 then
+				stalactites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, true)
+			end
 
-	if math.random() < 0.5 then
-		data[bi] = c_mossycobble
-		if math.random() < 0.05 then
-			data[vi] = c_dead_fungus
-		elseif math.random() < 0.05 then
-			data[vi] = c_cavern_fungi
-		end
-	end	
-	
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-
-	if drip_rand < 0.001 then
-		subterrane:giant_stalagmite(bi, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
-	elseif drip_rand < 0.025 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.025 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, df_mapitems.wet_stalagmite_ids)
-	end
-end
-
-local level_1_dry_floor = function(area, data, ai, vi, bi, param2_data)
-	if data[bi] ~= c_stone then
-		return
-	end
-	
-	if math.random() < 0.25 then
-		data[bi] = c_cobble_fungus
-		if math.random() < 0.1 then
-			data[vi] = c_dead_fungus
-		end
-	elseif math.random() < 0.5 then
-		data[bi] = c_cobble
-	end	
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-
-	if drip_rand < 0.001 then
-		subterrane:giant_stalagmite(bi, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
-	elseif drip_rand < 0.05 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.05 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, df_mapitems.dry_stalagmite_ids)
-	end
-end
-
-local level_1_dry_ceiling = function(area, data, ai, vi, bi, param2_data)
-	if data[ai] ~= c_stone then
-		return
-	end
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-	if drip_rand < 0.001 then
-		subterrane:giant_stalactite(ai, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
-	elseif drip_rand < 0.075 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.075 * 5)
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height, df_mapitems.dry_stalagmite_ids)
-	end
-end
-
-local level_1_underwater_floor = function(area, data, ai, vi, bi, param2_data)
-	if data[bi] ~= c_stone then
-		return
-	end
-	if math.random() < 0.25 then
-		data[bi] = c_mossycobble
-	else
-		data[bi] = c_dirt
-	end
-	if flooded_biomes then
-		if data[vi] == c_air then
-			data[vi] = c_water
-		end
-		if data[ai] == c_air then
-			data[ai] = c_water
-		end
-	elseif math.random() < 0.001 then
-		if data[vi] == c_air then
-			data[vi] = c_water
+		elseif biome.name == "dfcaverns_level1_dry_biome" then
+			if abs_cracks < 0.1 then
+				stalactites(abs_cracks, vert_rand, ystride, vi, area, data, data_param2, false)
+			end	
 		end
 	end
-end
-
-
-local level_1_cave_floor = function(area, data, ai, vi, bi, param2_data)
-	if df_caverns.can_support_vegetation[data[bi]] then
-		data[bi] = c_cobble_fungus
-		if math.random() < 0.15 then
-			if data[vi] == c_air then
-				df_caverns.place_shrub(data, vi, param2_data, {c_plump_helmet, c_dead_fungus, c_dead_fungus, c_cavern_fungi, c_cavern_fungi})
+	
+	----------------------------------------------
+	-- Tunnel floors
+	
+	for _, vi in pairs(node_arrays.tunnel_floor_nodes) do
+		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
+		local cracks = nvals_cracks[index2d]
+		local abs_cracks = math.abs(nvals_cracks[index2d])
+		
+		if biome == nil then
+			data[vi] = c_mese
+		elseif biome.name == "dfcaverns_level1_flooded_biome" then
+			if flooded_biomes then
+				deep_water(cracks, vi, ystride, data)
+			end
+		elseif biome.name == "dfcaverns_level1_dry_biome" then
+			if abs_cracks < 0.025 then
+				local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+				local height = math.floor(abs_cracks * 100)
+				subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
+			elseif cracks > 0.5 and data[vi-ystride] ~= c_air then
+				data[vi] = c_gravel
+			end
+		else
+			if abs_cracks < 0.05 then
+				local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+				local height = math.floor(abs_cracks * 100)
+				subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
+				data[vi] = c_wet_flowstone
 			end
 		end
-		return
 	end
 	
-	if data[bi] ~= c_stone then
-		return
-	end
+	------------------------------------------------------
+	-- Tunnel ceiling
 	
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-	if drip_rand < 0.075 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.075 * 4)
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, df_mapitems.wet_stalagmite_ids)
-	end	
-end
+	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
+		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
+		local abs_cracks = math.abs(nvals_cracks[index2d])
+		
+		if biome == nil then
+			data[vi] = c_mese
+		elseif biome.name == "dfcaverns_level1_flooded_biome" then
+		
+		elseif biome.name == "dfcaverns_level1_dry_biome" then
+			if abs_cracks < 0.025 then
+				local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+				local height = math.floor(abs_cracks * 100)
+				subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height, df_mapitems.dry_stalagmite_ids)
+			end
+		else
+			if abs_cracks < 0.05 then
+				local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+				local height = math.floor(abs_cracks * 100)
+				subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height, df_mapitems.wet_stalagmite_ids)
+				data[vi] = c_wet_flowstone
+			end
+		end
 
-local level_1_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
-	if data[ai] ~= c_stone then
-		return
 	end
 	
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-
-	if drip_rand < 0.1 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.1 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height, df_mapitems.wet_stalagmite_ids)
-	end	
+	vm:set_param2_data(data_param2)
 end
 
 -------------------------------------------------------------------------------------------
 
-local c_flood_fill
-if flooded_biomes then
-	c_flood_fill = c_water
-else
-	c_flood_fill = c_air
-end
-
 minetest.register_biome({
-	name = "dfcaverns_level1_flooded_biome_lower",
+	name = "dfcaverns_level1_flooded_biome",
 	y_min = df_caverns.config.level1_min,
-	y_max = subsea_level,
-	heat_point = 50,
-	humidity_point = 100,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_fill_node = c_flood_fill,
-	_subterrane_floor_decor = level_1_underwater_floor,
-	_subterrane_mitigate_lava = true,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_flooded_biome_upper",
-	y_min = subsea_level,
 	y_max = df_caverns.config.ymax,
 	heat_point = 50,
 	humidity_point = 100,
-	_subterrane_ceiling_decor = level_1_moist_ceiling,
-	_subterrane_floor_decor = level_1_wet_floor,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_fill_node = c_flood_fill,
-	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_tower_cap_biome_lower",
+	name = "dfcaverns_level1_tower_cap_biome",
 	y_min = df_caverns.config.level1_min,
-	y_max = subsea_level,
-	heat_point = 30,
-	humidity_point = 40,
-	_subterrane_ceiling_decor = level_1_moist_ceiling,
-	_subterrane_floor_decor = level_1_tower_cap_floor,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_floor_decor = level_1_cave_floor,
-	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
-	_subterrane_mitigate_lava = true,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_tower_cap_biome_upper",
-	y_min = subsea_level,
 	y_max = df_caverns.config.ymax,
 	heat_point = 30,
 	humidity_point = 40,
-	_subterrane_ceiling_decor = level_1_moist_ceiling,
-	_subterrane_floor_decor = level_1_tower_cap_floor,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_floor_decor = level_1_cave_floor,
-	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
-	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_fungiwood_biome_lower",
+	name = "dfcaverns_level1_fungiwood_biome",
 	y_min = df_caverns.config.level1_min,
-	y_max = subsea_level,
+	y_max = df_caverns.config.ymax,
 	heat_point = 70,
 	humidity_point = 40,
-	_subterrane_ceiling_decor = level_1_moist_ceiling,
-	_subterrane_floor_decor = level_1_fungiwood_floor,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_floor_decor = level_1_cave_floor,
-	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
-	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_fungiwood_biome_upper",
+	name = "dfcaverns_level1_tower_cap_flooded_biome",
 	y_min = df_caverns.config.level1_min,
-	y_max = subsea_level,
-	heat_point = 70,
-	humidity_point = 40,
-	_subterrane_ceiling_decor = level_1_moist_ceiling,
-	_subterrane_floor_decor = level_1_fungiwood_floor,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_floor_decor = level_1_cave_floor,
-	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
-	_subterrane_mitigate_lava = true,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_tower_cap_flooded_biome_lower",
-	y_min = subsea_level,
 	y_max = df_caverns.config.ymax,
 	heat_point = 20,
 	humidity_point = 80,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_fill_node = c_flood_fill,
-	_subterrane_floor_decor = level_1_underwater_floor,
-	_subterrane_mitigate_lava = true,
-})
-
-
-minetest.register_biome({
-	name = "dfcaverns_level1_tower_cap_flooded_biome_upper",
-	y_min = subsea_level,
-	y_max = df_caverns.config.ymax,
-	heat_point = 20,
-	humidity_point = 80,
-	_subterrane_ceiling_decor = level_1_moist_ceiling,
-	_subterrane_floor_decor = level_1_tower_cap_floor,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_floor_decor = level_1_cave_floor,
-	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
-	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_fungiwood_flooded_biome_lower",
+	name = "dfcaverns_level1_fungiwood_flooded_biome",
 	y_min = df_caverns.config.level1_min,
-	y_max = subsea_level,
-	heat_point = 80,
-	humidity_point = 80,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_fill_node = c_flood_fill,
-	_subterrane_floor_decor = level_1_underwater_floor,
-	_subterrane_mitigate_lava = true,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_fungiwood_flooded_biome_upper",
-	y_min = subsea_level,
 	y_max = df_caverns.config.ymax,
 	heat_point = 80,
 	humidity_point = 80,
-	_subterrane_ceiling_decor = level_1_moist_ceiling,
-	_subterrane_floor_decor = level_1_fungiwood_floor,
-	_subterrane_fill_node = c_air,
-	_subterrane_cave_floor_decor = level_1_cave_floor,
-	_subterrane_cave_ceiling_decor = level_1_cave_ceiling,
-	_subterrane_mitigate_lava = true,
 })
 
 minetest.register_biome({
-	name = "dfcaverns_level1_dry_biome_lower",
+	name = "dfcaverns_level1_dry_biome",
 	y_min = df_caverns.config.level1_min,
-	y_max = subsea_level,
-	heat_point = 50,
-	humidity_point = 0,
-	_subterrane_ceiling_decor = level_1_dry_ceiling,
-	_subterrane_floor_decor = level_1_dry_floor,
-	_subterrane_fill_node = c_air,
-	_subterrane_mitigate_lava = false, -- let the lava spill in, nothing to protect
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_dry_biome_upper",
-	y_min = subsea_level,
 	y_max = df_caverns.config.ymax,
 	heat_point = 50,
 	humidity_point = 0,
-	_subterrane_ceiling_decor = level_1_dry_ceiling,
-	_subterrane_floor_decor = level_1_dry_floor,
-	_subterrane_fill_node = c_air,
-	_subterrane_mitigate_lava = false, -- let the lava spill in, nothing to protect
+})
+
+local perlin_cave = {
+	offset = 0,
+	scale = 1,
+	spread = {x=df_caverns.config.horizontal_cavern_scale, y=df_caverns.config.vertical_cavern_scale, z=df_caverns.config.horizontal_cavern_scale},
+	seed = -400000000089,
+	octaves = 3,
+	persist = 0.67
+}
+
+local perlin_wave = {
+	offset = 0,
+	scale = 1,
+	spread = {x=df_caverns.config.horizontal_cavern_scale * 2, y=df_caverns.config.vertical_cavern_scale, z=df_caverns.config.horizontal_cavern_scale * 2}, -- squashed 2:1
+	seed = 59033,
+	octaves = 6,
+	persist = 0.63
+}
+
+subterrane.register_layer({
+	y_max = df_caverns.config.ymax,
+	y_min = df_caverns.config.level1_min,
+	cave_threshold = df_caverns.config.cavern_threshold,
+	perlin_cave = perlin_cave,
+	perlin_wave = perlin_wave,
+	solidify_lava = true,
+	columns = {
+		maximum_radius = 10,
+		minimum_radius = 4,
+		node = c_wet_flowstone,
+		weight = 0.25,
+		maximum_count = 20,
+		minimum_count = 0,
+	},
+	decorate = decorate_level_1,
 })

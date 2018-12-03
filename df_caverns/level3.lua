@@ -48,7 +48,7 @@ local level_3_moist_ceiling = function(area, data, ai, vi, bi, param2_data)
 		local height = math.floor(drip_rand/0.075 * 5)
 		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height, df_mapitems.wet_stalagmite_ids)
 	elseif math.random() < 0.03 then
-		df_mapitems.glow_worm_ceiling(area, data, ai, vi, bi)
+		df_mapitems.glow_worm_ceiling(area, data, vi)
 	end
 end
 

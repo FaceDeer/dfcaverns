@@ -94,7 +94,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
 			else
 				if math.random() < 0.05 then
-					df_caverns.place_shrub(data, vi+ystride, data_param2, df_caverns.black_cap_shrublist)
+					df_caverns.place_shrub(data, vi+area.ystride, data_param2, df_caverns.black_cap_shrublist)
 				elseif math.random() < 0.01 and abs_cracks > 0.25 then
 					df_trees.spawn_black_cap_vm(vi, area, data)
 				end
@@ -115,7 +115,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 
 			if math.random() < 0.1 then
 				df_caverns.place_shrub(data, vi+ystride, data_param2, df_caverns.goblin_cap_shrublist)
-			elseif math.random() < 0.025 then
+			elseif math.random() < 0.015 then
 				df_trees.spawn_goblin_cap_vm(vi, area, data)
 			end
 			

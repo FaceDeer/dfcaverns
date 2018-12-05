@@ -28,10 +28,12 @@ local flooded_biomes = df_caverns.config.flooded_biomes
 
 local tower_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_pig_tail, c_dead_fungus, c_cavern_fungi}
 local fungiwood_shrublist = {c_plump_helmet, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
-df_caverns.black_cap_shrublist = {c_quarry_bush, c_dead_fungus, c_dead_fungus}
-df_caverns.goblin_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_dimple_cup, c_pig_tail, c_dead_fungus, c_cavern_fungi}
-df_caverns.tunnel_tube_shrublist = {c_pig_tail, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
-df_caverns.spore_tree_shrublist = {c_pig_tail, c_dimple_cup, c_dimple_cup, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
+local black_cap_shrublist = {c_quarry_bush, c_dead_fungus, c_dead_fungus}
+local goblin_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_dimple_cup, c_pig_tail, c_dead_fungus, c_cavern_fungi}
+local tunnel_tube_shrublist = {c_pig_tail, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
+local spore_tree_shrublist = {c_pig_tail, c_dimple_cup, c_dimple_cup, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
+df_caverns.nether_cap_shrublist = {c_dimple_cup, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
+df_caverns.blood_thorn_shrublist = {c_sweet_pod, c_sweet_pod, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
 
 
 df_caverns.data_param2 = {}
@@ -56,7 +58,7 @@ df_caverns.stalagmites = function(abs_cracks, vert_rand, vi, area, data, data_pa
 		height_mult = -1
 	end		
 
-	if vert_rand < 0.002 then
+	if vert_rand < 0.004 then
 		if reverse_sign then
 			subterrane:giant_stalactite(vi+ystride, area, data, 6, 15, flowstone, flowstone, flowstone)
 		else
@@ -132,7 +134,7 @@ df_caverns.flooded_cavern_floor = function(abs_cracks, vert_rand, vi, area, data
 	if flooded_biomes then
 		-- put in only the large stalagmites that won't get in the way of the water
 		if abs_cracks < 0.1 then
-			if vert_rand < 0.002 then
+			if vert_rand < 0.004 then
 				subterrane:giant_stalagmite(vi+ystride, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
 			end
 		end
@@ -161,6 +163,83 @@ df_caverns.dry_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, da
 		if math.random() < 0.05 then
 			data[vi+area.ystride] = c_dead_fungus
 		end
+	end
+end
+
+df_caverns.black_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	if math.random() < 0.25 then
+		data[vi] = c_stone_with_coal
+	else
+		data[vi] = c_cobble_fungus
+	end
+	
+	if abs_cracks < 0.1 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
+	else
+		if math.random() < 0.05 then
+			df_caverns.place_shrub(data, vi+area.ystride, data_param2, black_cap_shrublist)
+		elseif math.random() < 0.01 and abs_cracks > 0.25 then
+			df_trees.spawn_black_cap_vm(vi, area, data)
+		end
+	end
+end
+
+
+df_caverns.goblin_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.1 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+	elseif data[vi-ystride] ~= c_air then -- leave the ground as rock if it's only one node thick
+		if math.random() < 0.25 then
+			data[vi] = c_dirt
+		else
+			data[vi] = c_dirt_moss
+		end
+	end
+
+	if math.random() < 0.1 then
+		df_caverns.place_shrub(data, vi+ystride, data_param2, goblin_cap_shrublist)
+	elseif math.random() < 0.015 then
+		df_trees.spawn_goblin_cap_vm(vi, area, data)
+	end
+end
+
+df_caverns.spore_tree_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)			
+	local ystride = area.ystride
+	if abs_cracks < 0.1 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+	elseif data[vi-ystride] ~= c_air then -- leave the ground as rock if it's only one node thick
+		if math.random() < 0.25 then
+			data[vi] = c_dirt
+		else
+			data[vi] = c_dirt_moss
+		end
+	end
+
+	if math.random() < 0.1 then
+		df_caverns.place_shrub(data, vi+ystride, data_param2, spore_tree_shrublist)
+	elseif math.random() < 0.05 then
+		df_trees.spawn_spore_tree_vm(vi+ystride, area, data)
+	end
+end
+
+
+df_caverns.tunnel_tube_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.1 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+	elseif data[vi-ystride] ~= c_air then -- leave the ground as rock if it's only one node thick
+		if math.random() < 0.25 then
+			data[vi] = c_dirt
+		else
+			data[vi] = c_dirt_moss
+		end
+	end
+
+	if math.random() < 0.1 then
+		df_caverns.place_shrub(data, vi+ystride, data_param2, tunnel_tube_shrublist)
+	elseif math.random() < 0.05 then
+		df_trees.spawn_tunnel_tube_vm(vi+ystride, area, data, data_param2)
 	end
 end
 
@@ -323,23 +402,6 @@ subterrane:override_biome({
 
 -- surface tunnels
 subterrane:register_cave_decor(-113, df_caverns.config.ymax)
-
--- Layer 3
-subterrane:register_cave_layer({
-	minimum_depth = df_caverns.config.level2_min,
-	maximum_depth = df_caverns.config.level3_min,
-	cave_threshold = df_caverns.config.cavern_threshold,
-	perlin_cave = df_caverns.perlin_cave,
-	perlin_wave = df_caverns.perlin_wave,
-	columns = {
-		maximum_radius = 20,
-		minimum_radius = 5,
-		node = c_wet_flowstone,
-		weight = 0.25,
-		maximum_count = 50,
-		minimum_count = 10,
-	},
-})
 
 local perlin_cave_lava = {
 	offset = 0,

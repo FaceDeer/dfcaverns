@@ -1,3 +1,5 @@
 default
 intllib?
 doc?
+moreblocks?
+stairs?

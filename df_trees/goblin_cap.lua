@@ -97,6 +97,9 @@ minetest.register_node("df_trees:goblin_cap_stem_wood", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
+df_trees.register_all_stairs("goblin_cap_wood")
+df_trees.register_all_stairs("goblin_cap_stem_wood")
+
 minetest.register_craft({
 	type = "fuel",
 	recipe = "df_trees:goblin_cap_wood",

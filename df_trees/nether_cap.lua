@@ -9,7 +9,7 @@ minetest.register_node("df_trees:nether_cap_stem", {
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_stem.png"},
 	is_ground_content = true,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, nethercap = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -20,7 +20,7 @@ minetest.register_node("df_trees:nether_cap", {
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap.png"},
 	is_ground_content = true,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1 },
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, nethercap = 1 },
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -32,7 +32,7 @@ minetest.register_node("df_trees:nether_cap_gills", {
 	tiles = {"dfcaverns_nether_cap_gills.png"},
 	is_ground_content = true,
 	light_source = 6,
-	groups = {snappy = 3, leafdecay = 3, leaves = 1, puts_out_fire = 1, cools_lava = 1},
+	groups = {snappy = 3, leafdecay = 3, leaves = 1, puts_out_fire = 1, cools_lava = 1, nethercap = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	drawtype = "plantlike",
 	paramtype = "light",
@@ -82,10 +82,11 @@ minetest.register_node("df_trees:nether_cap_wood", {
 	place_param2 = 0,
 	tiles = {"dfcaverns_nether_cap_wood.png"},
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, wood = 1},
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, wood = 1, nethercap = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
+df_trees.register_all_stairs("nether_cap_wood")
 
 -- sapling
 minetest.register_node("df_trees:nether_cap_sapling", {
@@ -104,7 +105,7 @@ minetest.register_node("df_trees:nether_cap_sapling", {
 		type = "fixed",
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
 	},
-	groups = {snappy = 2, dig_immediate = 3, 
+	groups = {snappy = 2, dig_immediate = 3,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
 	sounds = default.node_sound_leaves_defaults(),
 
@@ -154,7 +155,7 @@ end
 minetest.register_abm{
 	label = "nether cap water freezing",
 	nodenames = {"default:water_source", "default:river_water_source",},
-	neighbors = {"df_trees:nether_cap_stem", "df_trees:nether_cap", "df_trees:nether_cap_gills", "df_trees:nether_cap_wood"},
+	neighbors = {"group:nethercap"},
 	interval = 1,
 	chance = 5,
 	catch_up = true,
@@ -166,7 +167,7 @@ minetest.register_abm{
 minetest.register_abm{
 	label = "nether cap flowing water freezing",
 	nodenames = {"default:water_flowing",  "default:river_water_flowing"},
-	neighbors = {"df_trees:nether_cap_stem", "df_trees:nether_cap", "df_trees:nether_cap_gills", "df_trees:nether_cap_wood"},
+	neighbors = {"group:nethercap"},
 	interval = 1,
 	chance = 1,
 	catch_up = true,

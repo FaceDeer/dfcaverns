@@ -10,7 +10,7 @@ dofile(modpath.."/aliases.lua")
 
 dofile(modpath.."/ground_cover.lua")
 dofile(modpath.."/glow_worms.lua")
-dofile(modpath.."/flowstone_nodes.lua")
+dofile(modpath.."/flowstone.lua")
 dofile(modpath.."/glow_crystals.lua")
 dofile(modpath.."/snareweed.lua")
 dofile(modpath.."/cave_coral.lua")

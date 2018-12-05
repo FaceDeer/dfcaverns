@@ -85,6 +85,7 @@ minetest.register_node("df_trees:tower_cap_wood", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
+df_trees.register_all_stairs("tower_cap_wood")
 
 minetest.register_craft({
 	type = "fuel",

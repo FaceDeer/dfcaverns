@@ -43,6 +43,7 @@ minetest.register_node("df_trees:spore_tree_wood", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
+df_trees.register_all_stairs("spore_tree_wood")
 
 minetest.register_craft({
 	type = "fuel",

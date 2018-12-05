@@ -64,23 +64,26 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks)
 		local abs_cracks = math.abs(cracks)
 		
-		if biome == nil then
-			--data[vi] = c_mese
-		elseif biome.name == "dfcaverns_level1_tower_cap_biome" or
-			biome.name == "dfcaverns_level1_tower_cap_flooded_biome" then
+		local biome_name
+		if biome then
+			biome_name = biome.name
+		end
+		
+		if biome_name == "dfcaverns_level1_tower_cap_biome" or
+			biome_name == "dfcaverns_level1_tower_cap_flooded_biome" then
 
 			df_caverns.tower_cap_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 			
-		elseif biome.name == "dfcaverns_level1_fungiwood_biome" or
-			biome.name == "dfcaverns_level1_fungiwood_flooded_biome" then
+		elseif biome_name == "dfcaverns_level1_fungiwood_biome" or
+			biome_name == "dfcaverns_level1_fungiwood_flooded_biome" then
 
 			df_caverns.fungiwood_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 	
-		elseif biome.name == "dfcaverns_level1_flooded_biome" then
+		elseif biome_name == "dfcaverns_level1_flooded_biome" then
 
 			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 			
-		elseif biome.name == "dfcaverns_level1_dry_biome" then
+		elseif biome_name == "dfcaverns_level1_dry_biome" then
 			df_caverns.dry_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 		end		
 	end
@@ -92,21 +95,24 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks)
 		local abs_cracks = math.abs(cracks)
 		
-		if biome == nil then
-			--data[vi] = c_mese
-		elseif biome.name == "dfcaverns_level1_tower_cap_biome" or
-			biome.name == "dfcaverns_level1_tower_cap_flooded_biome" or
-			biome.name == "dfcaverns_level1_fungiwood_biome" or
-			biome.name == "dfcaverns_level1_fungiwood_flooded_biome" then
+		local biome_name
+		if biome then
+			biome_name = biome.name
+		end
+
+		if biome_name == "dfcaverns_level1_tower_cap_biome" or
+			biome_name == "dfcaverns_level1_tower_cap_flooded_biome" or
+			biome_name == "dfcaverns_level1_fungiwood_biome" or
+			biome_name == "dfcaverns_level1_fungiwood_flooded_biome" then
 			
 			df_caverns.glow_worm_cavern_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
 			
-		elseif biome.name == "dfcaverns_level1_flooded_biome" then
+		elseif biome_name == "dfcaverns_level1_flooded_biome" then
 			if abs_cracks < 0.1 then
 				df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
 			end
 
-		elseif biome.name == "dfcaverns_level1_dry_biome" then
+		elseif biome_name == "dfcaverns_level1_dry_biome" then
 			if abs_cracks < 0.075 then
 				df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
 			end	
@@ -235,7 +241,7 @@ subterrane.register_layer({
 		minimum_radius = 4,
 		node = c_wet_flowstone,
 		weight = 0.25,
-		maximum_count = 20,
+		maximum_count = 50,
 		minimum_count = 0,
 	},
 	decorate = decorate_level_1,

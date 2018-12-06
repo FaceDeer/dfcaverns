@@ -168,13 +168,15 @@ end
 
 df_caverns.black_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	if math.random() < 0.25 then
-		data[vi] = c_stone_with_coal
+		data[vi] = c_coal_ore
 	else
 		data[vi] = c_cobble_fungus
 	end
 	
 	if abs_cracks < 0.1 then
 		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
+	elseif abs_cracks < 0.15 and math.random() < 0.3 then
+		df_trees.spawn_torchspine_vm(vi+area.ystride, area, data, data_param2)
 	else
 		if math.random() < 0.05 then
 			df_caverns.place_shrub(data, vi+area.ystride, data_param2, black_cap_shrublist)

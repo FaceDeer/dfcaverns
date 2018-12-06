@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-02 12:46-0700\n"
+"POT-Creation-Date: 2018-12-06 08:35-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Black Cap Planks"
 msgstr ""
 
-#: black_cap.lua:124
+#: black_cap.lua:126
 msgid "Black Cap Spawn"
 msgstr ""
 
@@ -189,11 +189,11 @@ msgstr ""
 msgid "Fungiwood Planks"
 msgstr ""
 
-#: fungiwood.lua:68
+#: fungiwood.lua:69
 msgid "Fungiwood Shelf"
 msgstr ""
 
-#: fungiwood.lua:106
+#: fungiwood.lua:107
 msgid "Fungiwood Spawn"
 msgstr ""
 
@@ -217,8 +217,16 @@ msgstr ""
 msgid "Goblin Cap Stem Planks"
 msgstr ""
 
-#: goblin_cap.lua:133
+#: goblin_cap.lua:136
 msgid "Goblin Cap Spawn"
+msgstr ""
+
+#: init.lua:45
+msgid "@1 Stair"
+msgstr ""
+
+#: init.lua:46
+msgid "@1 Slab"
 msgstr ""
 
 #: nether_cap.lua:7
@@ -237,7 +245,7 @@ msgstr ""
 msgid "Nether Cap Planks"
 msgstr ""
 
-#: nether_cap.lua:92
+#: nether_cap.lua:93
 msgid "Nether Cap Spawn"
 msgstr ""
 
@@ -249,20 +257,35 @@ msgstr ""
 msgid "Spore Tree Planks"
 msgstr ""
 
-#: spore_tree.lua:74
+#: spore_tree.lua:75
 msgid "Spore Tree Hyphae"
 msgstr ""
 
-#: spore_tree.lua:100
+#: spore_tree.lua:101
 msgid "Spore Tree Fruiting Body"
 msgstr ""
 
-#: spore_tree.lua:148
+#: spore_tree.lua:149
 msgid "Spore Tree Spawn"
 msgstr ""
 
-#: spore_tree.lua:301
+#: spore_tree.lua:302
 msgid "Spore Tree Ladder"
+msgstr ""
+
+#: torchspine.lua:58
+#: torchspine.lua:74
+msgid "Torchspine Tip"
+msgstr ""
+
+#: torchspine.lua:91
+#: torchspine.lua:115
+#: torchspine.lua:143
+msgid "Torchspine"
+msgstr ""
+
+#: torchspine.lua:170
+msgid "Torchspine Ember"
 msgstr ""
 
 #: tower_cap.lua:7
@@ -281,7 +304,7 @@ msgstr ""
 msgid "Tower Cap Planks"
 msgstr ""
 
-#: tower_cap.lua:117
+#: tower_cap.lua:118
 msgid "Tower Cap Spawn"
 msgstr ""
 
@@ -296,12 +319,12 @@ msgstr ""
 msgid "Tunnel Tube Plies"
 msgstr ""
 
-#: tunnel_tube.lua:170
-#: tunnel_tube.lua:226
-#: tunnel_tube.lua:246
+#: tunnel_tube.lua:172
+#: tunnel_tube.lua:228
+#: tunnel_tube.lua:248
 msgid "Tunnel Tube Fruiting Body"
 msgstr ""
 
-#: tunnel_tube.lua:277
+#: tunnel_tube.lua:279
 msgid "Tunnel Tube Spawn"
 msgstr ""

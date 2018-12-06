@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-02 12:46-0700\n"
+"POT-Creation-Date: 2018-12-06 08:35-0700\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -34,7 +34,7 @@ msgstr "Lamelle di cappello nero"
 msgid "Black Cap Planks"
 msgstr "Assi di cappello nero"
 
-#: black_cap.lua:124
+#: black_cap.lua:126
 msgid "Black Cap Spawn"
 msgstr "Prole di cappello nero"
 
@@ -190,11 +190,11 @@ msgstr "Gambo di fungo di legno"
 msgid "Fungiwood Planks"
 msgstr "Assi di fungo di legno"
 
-#: fungiwood.lua:68
+#: fungiwood.lua:69
 msgid "Fungiwood Shelf"
 msgstr "Mensola di fungo di legno"
 
-#: fungiwood.lua:106
+#: fungiwood.lua:107
 msgid "Fungiwood Spawn"
 msgstr "Prole di fungo di legno"
 
@@ -218,9 +218,17 @@ msgstr "Assi di cappello di folletto"
 msgid "Goblin Cap Stem Planks"
 msgstr "Assi di gambo di cappello di folletto"
 
-#: goblin_cap.lua:133
+#: goblin_cap.lua:136
 msgid "Goblin Cap Spawn"
 msgstr "Prole di cappello di folletto"
+
+#: init.lua:45
+msgid "@1 Stair"
+msgstr ""
+
+#: init.lua:46
+msgid "@1 Slab"
+msgstr ""
 
 #: nether_cap.lua:7
 msgid "Nether Cap Stem"
@@ -238,7 +246,7 @@ msgstr "Lamelle di cappello del Nether"
 msgid "Nether Cap Planks"
 msgstr "Assi di cappello del Nether"
 
-#: nether_cap.lua:92
+#: nether_cap.lua:93
 msgid "Nether Cap Spawn"
 msgstr "Prole di cappello del Nether"
 
@@ -250,22 +258,37 @@ msgstr "Gambo di albero delle spore"
 msgid "Spore Tree Planks"
 msgstr "Assi di albero delle spore"
 
-#: spore_tree.lua:74
+#: spore_tree.lua:75
 msgid "Spore Tree Hyphae"
 msgstr "Ife di albero delle spore"
 
-#: spore_tree.lua:100
+#: spore_tree.lua:101
 msgid "Spore Tree Fruiting Body"
 msgstr "Corpo fruttifero dell'albero delle spore"
 
-#: spore_tree.lua:148
+#: spore_tree.lua:149
 msgid "Spore Tree Spawn"
 msgstr "Prole di albero delle spore"
 
-#: spore_tree.lua:301
+#: spore_tree.lua:302
 #, fuzzy
 msgid "Spore Tree Ladder"
 msgstr "Ife di albero delle spore"
+
+#: torchspine.lua:58
+#: torchspine.lua:74
+msgid "Torchspine Tip"
+msgstr ""
+
+#: torchspine.lua:91
+#: torchspine.lua:115
+#: torchspine.lua:143
+msgid "Torchspine"
+msgstr ""
+
+#: torchspine.lua:170
+msgid "Torchspine Ember"
+msgstr ""
 
 #: tower_cap.lua:7
 msgid "Tower Cap Stem"
@@ -283,7 +306,7 @@ msgstr "Lamelle di cappello a torre"
 msgid "Tower Cap Planks"
 msgstr "Assi di cappello a torre"
 
-#: tower_cap.lua:117
+#: tower_cap.lua:118
 msgid "Tower Cap Spawn"
 msgstr "Prole di cappello a torre"
 
@@ -298,12 +321,12 @@ msgstr "Tubo di galleria"
 msgid "Tunnel Tube Plies"
 msgstr "Strati di tubo di galleria"
 
-#: tunnel_tube.lua:170
-#: tunnel_tube.lua:226
-#: tunnel_tube.lua:246
+#: tunnel_tube.lua:172
+#: tunnel_tube.lua:228
+#: tunnel_tube.lua:248
 msgid "Tunnel Tube Fruiting Body"
 msgstr "Corpo fruttifero del tubo di galleria"
 
-#: tunnel_tube.lua:277
+#: tunnel_tube.lua:279
 msgid "Tunnel Tube Spawn"
 msgstr "Prole di tubo di galleria"

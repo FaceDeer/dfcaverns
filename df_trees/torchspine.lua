@@ -72,12 +72,12 @@ minetest.register_node("df_trees:torchspine_1", {
 
 minetest.register_node("df_trees:torchspine_1_lit", {
 	description = S("Torchspine Tip"),
-	tiles = {"default_lava.png", "dfcaverns_torchspine_1.5.png", "dfcaverns_torchspine_1_lit.png"},
+	tiles = {"default_gold_block.png", "dfcaverns_torchspine_1.5.png", "dfcaverns_torchspine_1_lit.png"},
 	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, fall_damage_add_percent = 150},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 12,
+	light_source = 6,
 	is_ground_content = true,
 	drops = "default:torch 2",
 	node_box = {
@@ -112,7 +112,7 @@ minetest.register_node("df_trees:torchspine_2", {
 })
 
 minetest.register_node("df_trees:torchspine_3", {
-	description = S("Torchspine Tip"),
+	description = S("Torchspine"),
 	tiles = {"dfcaverns_torchspine_2.5.png", "dfcaverns_torchspine_3.5.png", "dfcaverns_torchspine_3.png"},
 	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1},
 	drawtype = "nodebox",
@@ -140,7 +140,7 @@ minetest.register_node("df_trees:torchspine_3", {
 })
 
 minetest.register_node("df_trees:torchspine_4", {
-	description = S("Torchspine Tip"),
+	description = S("Torchspine"),
 	tiles = {"dfcaverns_torchspine_3.5.png", "dfcaverns_torchspine_4.5.png", "dfcaverns_torchspine_4.png"},
 	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1},
 	drawtype = "nodebox",
@@ -183,6 +183,62 @@ minetest.register_node("df_trees:torchspine_ember", {
 	on_place = stal_on_place,
 })
 
+df_trees.spawn_torchspine = function(pos)
+	local x, y, z = pos.x, pos.y, pos.z
+	local stem_height = math.random(1,4)
+
+	local vm = minetest.get_voxel_manip()
+	local minp, maxp = vm:read_from_map(
+		{x = x, y = y, z = z},
+		{x = x, y = y+height-1, z = z}
+	)
+	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
+	local data = vm:get_data()
+	local data_param2 = vm:get_param2_data()
+
+	df_trees.spawn_torchspine_vm(vi, area, data, data_param2, height)
+	
+	vm:set_data(data)
+	vm:write_to_map()
+	vm:update_map()
+end
+
+local torchspine_c =
+{
+	minetest.get_content_id("df_trees:torchspine_1"),
+	minetest.get_content_id("df_trees:torchspine_2"),
+	minetest.get_content_id("df_trees:torchspine_3"),
+	minetest.get_content_id("df_trees:torchspine_4")
+}
+local torchspine_lit_c =
+{
+	minetest.get_content_id("df_trees:torchspine_1_lit"),
+	minetest.get_content_id("df_trees:torchspine_2"),
+	minetest.get_content_id("df_trees:torchspine_3"),
+	minetest.get_content_id("df_trees:torchspine_4")
+}
+
+df_trees.spawn_torchspine_vm = function(vi, area, data, data_param2, height, lit)
+	if height == nil then height = math.random(1,4) end
+	if lit == nil then lit = math.random() < 0.3 end
+	local param2 = math.random(0,3)
+	local list
+	if lit then list = torchspine_lit_c else list = torchspine_c end
+	
+	for i = 0, height-1 do
+		if not minetest.registered_nodes[minetest.get_name_from_content_id(data[vi + area.ystride*i])].buildable_to then
+			height = i
+			break
+		end
+	end
+	
+	for i = 0, height-1 do
+		local index = vi + area.ystride*i
+		data[index] = list[height-i]
+		data_param2[index] = param2
+	end	
+end
+
 -- overriding node groups using override_item doesn't appear to work with ABMs:
 -- https://github.com/minetest/minetest/issues/5518
 local coal_def = minetest.registered_nodes["default:stone_with_coal"]
@@ -211,11 +267,14 @@ minetest.register_abm{
 minetest.register_abm{
 	label = "torchspine lighting",
 	nodenames = {"df_trees:torchspine_1"},
-	interval = 30,
+	interval = 57,
 	chance = 10,
 	catch_up = true,
 	action = function(pos)
-		minetest.swap_node(pos, {name="df_trees:torchspine_1_lit", param2=minetest.get_node(pos).param2})
+		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})]
+		if above_def and above_def.buildable_to then
+			minetest.swap_node(pos, {name="df_trees:torchspine_1_lit", param2=minetest.get_node(pos).param2})
+		end
 	end,
 }
 local torchspine_list = {"df_trees:torchspine_1","df_trees:torchspine_2","df_trees:torchspine_3","df_trees:torchspine_4"}
@@ -236,7 +295,8 @@ minetest.register_abm{
 			minetest.get_node(dest_list[4]).name,
 			minetest.get_node(dest_list[5]).name
 		}
-		if minetest.registered_nodes[source_list[1]].buildable_to then
+		local target_def = minetest.registered_nodes[source_list[1]]
+		if target_def and target_def.buildable_to then
 			for i = 2,4 do
 				if minetest.get_item_group(source_list[i+1], "flammable") > 0 or minetest.get_item_group(source_list[i+1], "coal") > 0 then
 					height = i

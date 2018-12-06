@@ -23,16 +23,6 @@ local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- par
 
 --local subsea_level = (df_caverns.config.ymax - df_caverns.config.level1_min) * 0.3 + df_caverns.config.level1_min
 
--- Used for making lines of dripstone
-local np_cracks = {
-	offset = 0,
-	scale = 1,
-	spread = {x = 20, y = 20, z = 20},
-	seed = 5717,
-	octaves = 3,
-	persist = 0.63,
-	lacunarity = 2.0,
-}
 
 -- name = "dfcaverns_level1_dry_biome",
 -- name = "dfcaverns_level1_flooded_biome",
@@ -55,7 +45,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	local biomemap = minetest.get_mapgen_object("biomemap")
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)
-	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, np_cracks)
+	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	
 	---------------------------------------------------------
 	-- Cavern floors

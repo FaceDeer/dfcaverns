@@ -60,14 +60,14 @@ df_caverns.stalagmites = function(abs_cracks, vert_rand, vi, area, data, data_pa
 
 	if vert_rand < 0.004 then
 		if reverse_sign then
-			subterrane:giant_stalactite(vi+ystride, area, data, 6, 15, flowstone, flowstone, flowstone)
+			subterrane.big_stalactite(vi+ystride, area, data, 6, 15, flowstone, flowstone, flowstone)
 		else
-			subterrane:giant_stalagmite(vi+ystride, area, data, 6, 15, flowstone, flowstone, flowstone)
+			subterrane.big_stalagmite(vi+ystride, area, data, 6, 15, flowstone, flowstone, flowstone)
 		end
 	else
 		local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 		local height = math.floor(abs_cracks * 50)
-		subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height*height_mult, stalagmite_ids)
+		subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height*height_mult, stalagmite_ids)
 	end
 	data[vi] = flowstone
 end
@@ -135,7 +135,7 @@ df_caverns.flooded_cavern_floor = function(abs_cracks, vert_rand, vi, area, data
 		-- put in only the large stalagmites that won't get in the way of the water
 		if abs_cracks < 0.1 then
 			if vert_rand < 0.004 then
-				subterrane:giant_stalagmite(vi+ystride, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
+				subterrane.big_stalagmite(vi+ystride, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
 			end
 		end
 		--Cover the floor with a thick layer of water
@@ -195,13 +195,13 @@ df_caverns.goblin_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, d
 		else
 			data[vi] = c_dirt_moss
 		end
+		if math.random() < 0.1 then
+			df_caverns.place_shrub(data, vi+ystride, data_param2, goblin_cap_shrublist)
+		elseif math.random() < 0.015 then
+			df_trees.spawn_goblin_cap_vm(vi, area, data)
+		end
 	end
 
-	if math.random() < 0.1 then
-		df_caverns.place_shrub(data, vi+ystride, data_param2, goblin_cap_shrublist)
-	elseif math.random() < 0.015 then
-		df_trees.spawn_goblin_cap_vm(vi, area, data)
-	end
 end
 
 df_caverns.spore_tree_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)			
@@ -214,12 +214,11 @@ df_caverns.spore_tree_cavern_floor = function(abs_cracks, vert_rand, vi, area, d
 		else
 			data[vi] = c_dirt_moss
 		end
-	end
-
-	if math.random() < 0.1 then
-		df_caverns.place_shrub(data, vi+ystride, data_param2, spore_tree_shrublist)
-	elseif math.random() < 0.05 then
-		df_trees.spawn_spore_tree_vm(vi+ystride, area, data)
+		if math.random() < 0.1 then
+			df_caverns.place_shrub(data, vi+ystride, data_param2, spore_tree_shrublist)
+		elseif math.random() < 0.05 then
+			df_trees.spawn_spore_tree_vm(vi+ystride, area, data)
+		end
 	end
 end
 
@@ -234,12 +233,11 @@ df_caverns.tunnel_tube_cavern_floor = function(abs_cracks, vert_rand, vi, area, 
 		else
 			data[vi] = c_dirt_moss
 		end
-	end
-
-	if math.random() < 0.1 then
-		df_caverns.place_shrub(data, vi+ystride, data_param2, tunnel_tube_shrublist)
-	elseif math.random() < 0.05 then
-		df_trees.spawn_tunnel_tube_vm(vi+ystride, area, data, data_param2)
+		if math.random() < 0.1 then
+			df_caverns.place_shrub(data, vi+ystride, data_param2, tunnel_tube_shrublist)
+		elseif math.random() < 0.05 then
+			df_trees.spawn_tunnel_tube_vm(vi+ystride, area, data, data_param2)
+		end
 	end
 end
 
@@ -263,14 +261,14 @@ local tunnel_floor = function(minp, maxp, area, vi, cracks, abs_cracks, data, da
 		if abs_cracks < 0.05 and data[vi+ystride] == c_air then -- TODO: further test, make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
-			subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
+			subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
 			data[vi] = c_wet_flowstone
 		end
 	else
 		if abs_cracks < 0.025 and data[vi+ystride] == c_air then -- TODO: further test, make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
-			subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
+			subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
 		elseif cracks > 0.5 and data[vi-ystride] ~= c_air then
 			data[vi] = c_gravel
 		end
@@ -285,14 +283,14 @@ local tunnel_ceiling = function(minp, maxp, area, vi, cracks, abs_cracks, data, 
 		if abs_cracks < 0.05 and data[vi-ystride] == c_air then -- TODO: further test, make sure data[vi] is not already flowstone. Stalactites from upper levels are acting as base for further stalactites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
-			subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height, df_mapitems.wet_stalagmite_ids)
+			subterrane.stalactite(vi-ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
 			data[vi] = c_wet_flowstone
 		end
 	else
 		if abs_cracks < 0.025 and data[vi-ystride] == c_air then -- TODO: further test, make sure data[vi] is not already flowstone. Stalactites from upper levels are acting as base for further stalactites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
-			subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height, df_mapitems.dry_stalagmite_ids)
+			subterrane.stalactite(vi-ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
 		end
 	end
 end
@@ -360,6 +358,17 @@ df_caverns.perlin_wave = {
 	persist = 0.63
 }
 
+-- Used for making lines of dripstone
+df_caverns.np_cracks = {
+	offset = 0,
+	scale = 1,
+	spread = {x = 20, y = 20, z = 20},
+	seed = 5717,
+	octaves = 3,
+	persist = 0.63,
+	lacunarity = 2.0,
+}
+
 ---------------------------------------------------------------------------------
 
 local shallow_cave_floor = function(area, data, ai, vi, bi, param2_data)
@@ -371,7 +380,7 @@ local shallow_cave_floor = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.025 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.025 * 4)
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, height, df_mapitems.dry_stalagmite_ids)
+		subterrane.stalagmite(vi, area, data, param2_data, param2, height, df_mapitems.dry_stalagmite_ids)
 	end	
 end
 
@@ -384,7 +393,7 @@ local shallow_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
 	if drip_rand < 0.025 then
 		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
 		local height = math.floor(drip_rand/0.025 * 5)		
-		subterrane:small_stalagmite(vi, area, data, param2_data, param2, -height, df_mapitems.dry_stalagmite_ids)
+		subterrane.stalactite(vi, area, data, param2_data, param2, height, df_mapitems.dry_stalagmite_ids)
 	end	
 end
 
@@ -403,7 +412,7 @@ subterrane:override_biome({
 -- surface tunnels
 subterrane:register_cave_decor(-113, df_caverns.config.ymax)
 
-local perlin_cave_lava = {
+df_caverns.perlin_cave_lava = {
 	offset = 0,
 	scale = 1,
 	spread = {x=df_caverns.config.horizontal_cavern_scale * 2, y=df_caverns.config.vertical_cavern_scale * 0.5, z=df_caverns.config.horizontal_cavern_scale * 2},
@@ -412,7 +421,7 @@ local perlin_cave_lava = {
 	persist = 0.67
 }
 
-local perlin_wave_lava = {
+df_caverns.perlin_wave_lava = {
 	offset = 0,
 	scale = 1,
 	spread = {x=df_caverns.config.horizontal_cavern_scale * 4, y=df_caverns.config.vertical_cavern_scale * 0.5, z=df_caverns.config.horizontal_cavern_scale * 4}, -- squashed 2:1
@@ -421,30 +430,13 @@ local perlin_wave_lava = {
 	persist = 0.63
 }
 
---Sunless Sea
-subterrane:register_cave_layer({
-	minimum_depth = df_caverns.config.level3_min,
-	maximum_depth = df_caverns.config.sunless_sea_min,
-	cave_threshold = df_caverns.config.lava_sea_threshold,
-	perlin_cave = perlin_cave_lava,
-	perlin_wave = perlin_wave_lava,
-	columns = {
-		maximum_radius = 25,
-		minimum_radius = 5,
-		node = c_stone,
-		weight = 0.25,
-		maximum_count = 100,
-		minimum_count = 25,
-	},
-})
-
 if df_caverns.config.enable_lava_sea then
 	subterrane:register_cave_layer({
 		minimum_depth = df_caverns.config.lava_sea_max,
 		maximum_depth = df_caverns.config.lava_sea_min,
 		cave_threshold = df_caverns.config.lava_sea_threshold,
-		perlin_cave = perlin_cave_lava,
-		perlin_wave = perlin_wave_lava,
+		perlin_cave = df_caverns.perlin_cave_lava,
+		perlin_wave = df_caverns.perlin_wave_lava,
 		columns = {
 			maximum_radius = 30,
 			minimum_radius = 5,

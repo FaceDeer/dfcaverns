@@ -39,16 +39,6 @@ local flooded_biomes = df_caverns.config.flooded_biomes
 -- name = "dfcaverns_level2_tower_cap_biome",
 -- name = "dfcaverns_level2_tunnel_tube_biome",
 
--- Used for making lines of dripstone
-local np_cracks = {
-	offset = 0,
-	scale = 1,
-	spread = {x = 20, y = 20, z = 20},
-	seed = 5717,
-	octaves = 3,
-	persist = 0.63,
-	lacunarity = 2.0,
-}
 
 local Set = function(list)
 	local set = {}
@@ -61,7 +51,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	local biomemap = minetest.get_mapgen_object("biomemap")
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)
-	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, np_cracks)
+	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	
 	---------------------------------------------------------
 	-- Cavern floors

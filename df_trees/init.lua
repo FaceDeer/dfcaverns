@@ -61,5 +61,6 @@ dofile(modpath.."/nether_cap.lua")
 dofile(modpath.."/goblin_cap.lua")
 dofile(modpath.."/tower_cap.lua")
 
+dofile(modpath.."/torchspine.lua")
 
 

@@ -45,16 +45,7 @@ local flooded_biomes = df_caverns.config.flooded_biomes
 -- name = "dfcaverns_level3_blood_thorn_biome",
 -- name = "dfcaverns_level3_nether_cap_biome",
 
--- Used for making lines of dripstone
-local np_cracks = {
-	offset = 0,
-	scale = 1,
-	spread = {x = 20, y = 20, z = 20},
-	seed = 5717,
-	octaves = 3,
-	persist = 0.63,
-	lacunarity = 2.0,
-}
+
 
 local Set = function(list)
 	local set = {}
@@ -67,7 +58,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	local biomemap = minetest.get_mapgen_object("biomemap")
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)
-	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, np_cracks)
+	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	
 	---------------------------------------------------------
 	-- Cavern floors
@@ -106,11 +97,11 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		
 			if abs_cracks < 0.075 then
 				if vert_rand < 0.004 then
-					subterrane:giant_stalagmite(vi+area.ystride, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
+					subterrane.big_stalagmite(vi+area.ystride, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
 				else
 					local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 					local height = math.floor(abs_cracks * 66)
-					subterrane:small_stalagmite(vi+area.ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
+					subterrane.stalagmite(vi+area.ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
 				end
 			elseif math.random() > abs_cracks + 0.66 then
 				df_trees.spawn_blood_thorn_vm(vi+area.ystride, area, data, data_param2)
@@ -130,14 +121,14 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			local ystride = area.ystride
 			if abs_cracks < 0.1 then
 				if vert_rand < 0.004 then
-					subterrane:giant_stalagmite(vi+ystride, area, data, 6, 15, c_ice, c_ice, c_ice)
+					subterrane.big_stalagmite(vi+ystride, area, data, 6, 15, c_ice, c_ice, c_ice)
 				else
 					local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 					local height =abs_cracks * 50
 					if vert_rand > 0.5 then
-						subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, math.floor(height), df_mapitems.icicle_ids)
+						subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, math.floor(height), df_mapitems.icicle_ids)
 					else
-						subterrane:small_stalagmite(vi+ystride, area, data, data_param2, param2, math.floor(height*0.5), df_mapitems.dry_stalagmite_ids)
+						subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, math.floor(height*0.5), df_mapitems.dry_stalagmite_ids)
 					end
 				end
 			end
@@ -217,14 +208,14 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			local ystride = area.ystride
 			if abs_cracks < 0.1 then
 				if vert_rand < 0.004 then
-					subterrane:giant_stalactite(vi-ystride, area, data, 6, 15, c_ice, c_ice, c_ice)
+					subterrane.big_stalactite(vi-ystride, area, data, 6, 15, c_ice, c_ice, c_ice)
 				else
 					local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 					local height = math.floor(abs_cracks * 50)
 					if vert_rand > 0.5 then
-						subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height, df_mapitems.icicle_ids)
+						subterrane.stalactite(vi-ystride, area, data, data_param2, param2, height, df_mapitems.icicle_ids)
 					else
-						subterrane:small_stalagmite(vi-ystride, area, data, data_param2, param2, -height*0.5, df_mapitems.dry_stalagmite_ids)
+						subterrane.stalactite(vi-ystride, area, data, data_param2, param2, height*0.5, df_mapitems.dry_stalagmite_ids)
 					end
 				end
 			end

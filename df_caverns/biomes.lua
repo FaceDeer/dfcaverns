@@ -186,6 +186,69 @@ df_caverns.black_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, da
 	end
 end
 
+df_caverns.nether_cap_cavern_floor = function(cracks, abs_cracks, vert_rand, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.1 then
+		if vert_rand < 0.004 then
+			subterrane.big_stalagmite(vi+ystride, area, data, 6, 15, c_ice, c_ice, c_ice)
+		else
+			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+			local height =abs_cracks * 50
+			if vert_rand > 0.5 then
+				subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, math.floor(height), df_mapitems.icicle_ids)
+			else
+				subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, math.floor(height*0.5), df_mapitems.dry_stalagmite_ids)
+			end
+		end
+	end
+	
+	if cracks < -0.3 then
+		data[vi] = c_silver_sand
+		if  math.random() < 0.025 then
+			df_trees.spawn_nether_cap_vm(vi+ystride, area, data)
+		elseif math.random() < 0.05 then
+			df_caverns.place_shrub(data, vi+ystride, data_param2, df_caverns.nether_cap_shrublist)
+		elseif cracks < -0.4 and cracks > -0.6 then
+			data[vi + ystride] = c_snow
+		end
+	elseif cracks > 0.1 then
+		if math.random() < 0.002 then
+			df_trees.spawn_nether_cap_vm(vi+ystride, area, data)
+		else
+			data[vi] = c_ice
+		end
+		if cracks > 0.4 then
+			data[vi + ystride] = c_ice
+			if cracks > 0.6 then
+				data[vi + 2*ystride] = c_ice
+			end
+		end
+	end	
+end
+
+df_caverns.blood_thorn_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	if abs_cracks < 0.075 then
+		if vert_rand < 0.004 then
+			subterrane.big_stalagmite(vi+area.ystride, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
+		else
+			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
+			local height = math.floor(abs_cracks * 66)
+			subterrane.stalagmite(vi+area.ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
+		end
+	elseif math.random() > abs_cracks + 0.66 then
+		df_trees.spawn_blood_thorn_vm(vi+area.ystride, area, data, data_param2)
+		data[vi] = c_sand
+	else
+		if math.random() < 0.1 then
+			df_caverns.place_shrub(data, vi+area.ystride, data_param2, df_caverns.blood_thorn_shrublist)
+			data[vi] = c_desert_sand
+		elseif math.random() > 0.25 then
+			data[vi] = c_desert_sand
+		else
+			data[vi] = c_cobble_fungus_fine
+		end
+	end
+end
 
 df_caverns.goblin_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	local ystride = area.ystride

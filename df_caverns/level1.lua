@@ -21,31 +21,62 @@ local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param
 local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
---local subsea_level = (df_caverns.config.ymax - df_caverns.config.level1_min) * 0.3 + df_caverns.config.level1_min
+local subsea_level = df_caverns.config.level1_min - (df_caverns.config.level1_min - df_caverns.config.ymax) * 0.5
 
+local tower_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_pig_tail, c_dead_fungus, c_cavern_fungi}
+local fungiwood_shrublist = {c_plump_helmet, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
 
--- name = "dfcaverns_level1_dry_biome",
--- name = "dfcaverns_level1_flooded_biome",
--- name = "dfcaverns_level1_fungiwood_biome",
--- name = "dfcaverns_level1_fungiwood_flooded_biome",
--- name = "dfcaverns_level1_tower_cap_biome",
--- name = "dfcaverns_level1_tower_cap_flooded_biome",
+local tower_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.1 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+	elseif data[vi-ystride] ~= c_air and data[vi-ystride] ~= c_water then -- leave the ground as rock if it's only one node thick
+		if math.random() < 0.25 then
+			data[vi] = c_dirt
+		else
+			data[vi] = c_dirt_moss
+		end
 
---local c_mese = minetest.get_content_id("default:mese")
-
-local Set = function(list)
-	local set = {}
-    for _, l in ipairs(list) do set[l] = true end
-	return set
+		if math.random() < 0.1 then
+			df_caverns.place_shrub(data, vi+ystride, data_param2, tower_cap_shrublist)
+		elseif math.random() < 0.01 and abs_cracks > 0.25 then
+			df_trees.spawn_tower_cap_vm(vi, area, data)
+		end
+	end
 end
 
-local dry_biomes = {"dfcaverns_level1_dry_biome"}
+local fungiwood_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.1 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+	elseif data[vi-ystride] ~= c_air and data[vi-ystride] ~= c_water then -- leave the ground as rock if it's only one node thick
+		if math.random() < 0.25 then
+			data[vi] = c_dirt
+		else
+			data[vi] = c_dirt_moss
+		end
+		if math.random() < 0.1 then
+			df_caverns.place_shrub(data, vi+ystride, data_param2, fungiwood_shrublist)
+		elseif math.random() < 0.03 and abs_cracks > 0.35 then
+			df_trees.spawn_fungiwood_vm(vi+ystride, area, data)
+		end
+	end
+end
 
 local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	local biomemap = minetest.get_mapgen_object("biomemap")
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)
 	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
+	
+	-- Partly fill flooded caverns and warrens
+	if node_arrays.contains_negative_zone and minp.y <= subsea_level then
+		for vi in area:iterp(minp, maxp) do
+			if data[vi] == c_air and area:get_y(vi) <= subsea_level then
+				data[vi] = c_water
+			end
+		end
+	end
 	
 	---------------------------------------------------------
 	-- Cavern floors
@@ -59,21 +90,14 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			biome_name = biome.name
 		end
 		
-		if biome_name == "dfcaverns_level1_tower_cap_biome" or
-			biome_name == "dfcaverns_level1_tower_cap_flooded_biome" then
-
-			df_caverns.tower_cap_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
-			
-		elseif biome_name == "dfcaverns_level1_fungiwood_biome" or
-			biome_name == "dfcaverns_level1_fungiwood_flooded_biome" then
-
-			df_caverns.fungiwood_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
-	
-		elseif biome_name == "dfcaverns_level1_flooded_biome" then
-
-			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
-			
-		elseif biome_name == "dfcaverns_level1_dry_biome" then
+		if node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
+			-- underwater floor
+			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data)
+		elseif biome_name == "dfcaverns_level1_tower_cap_biome" then
+			tower_cap_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+		elseif biome_name == "dfcaverns_level1_fungiwood_biome"  then
+			fungiwood_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+		elseif biome_name == "dfcaverns_level1_barren_biome" then
 			df_caverns.dry_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 		end		
 	end
@@ -90,60 +114,101 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			biome_name = biome.name
 		end
 
-		if biome_name == "dfcaverns_level1_tower_cap_biome" or
-			biome_name == "dfcaverns_level1_tower_cap_flooded_biome" or
-			biome_name == "dfcaverns_level1_fungiwood_biome" or
-			biome_name == "dfcaverns_level1_fungiwood_flooded_biome" then
-			
+		if node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
+			-- underwater ceiling, do nothing
+		elseif biome_name == "dfcaverns_level1_tower_cap_biome" or biome_name == "dfcaverns_level1_fungiwood_biome" then
 			df_caverns.glow_worm_cavern_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
-			
-		elseif biome_name == "dfcaverns_level1_flooded_biome" then
-			if abs_cracks < 0.1 then
-				df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+		elseif biome_name == "dfcaverns_level1_barren_biome" then
+			if node_arrays.contains_negative_zone then
+				-- wet barren
+				if abs_cracks < 0.1 then
+					df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+				end
+			else
+				-- dry barren
+				if abs_cracks < 0.075 then
+					df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
+				end
 			end
-
-		elseif biome_name == "dfcaverns_level1_dry_biome" then
-			if abs_cracks < 0.075 then
-				df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
-			end	
 		end
 	end
 	
 	----------------------------------------------
 	-- Tunnel floors
-	
+
 	for _, vi in pairs(node_arrays.tunnel_floor_nodes) do
-		df_caverns.basic_tunnel_floor(minp, maxp, area, vi, data, data_param2, biomemap, nvals_cracks, "dfcaverns_level1_flooded_biome", dry_biomes)
+		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
+		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
+			if node_arrays.contains_negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
+				-- we're in flooded areas or are not barren
+				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
+			else
+				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
+			end
+		end
 	end
 	
 	------------------------------------------------------
 	-- Tunnel ceiling
 	
 	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
-		df_caverns.basic_tunnel_ceiling(minp, maxp, area, vi, data, data_param2, biomemap, nvals_cracks, "dfcaverns_level1_flooded_biome", dry_biomes)
+		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
+		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
+			if node_arrays.contains_negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
+				-- we're in flooded areas or are not barren
+				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
+			else
+				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
+			end
+		else
+			-- air pockets
+			local ystride = area.ystride
+			if cracks > 0.6 and data[vi-ystride] == c_water then
+				data[vi-ystride] = c_air
+				if cracks > 0.8 and data[vi-ystride*2] == c_water then
+					data[vi-ystride*2] = c_air
+				end
+			end			
+		end
+	end
+	
+	----------------------------------------------
+	-- Warren floors
+	
+	for _, vi in pairs(node_arrays.warren_floor_nodes) do
+		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
+		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
+			if node_arrays.contains_negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
+				-- we're in flooded areas or are not barren
+				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
+			else
+				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
+			end
+		end
 	end
 	
 	------------------------------------------------------
 	-- Warren ceiling
 
 	for _, vi in pairs(node_arrays.warren_ceiling_nodes) do
-		df_caverns.basic_tunnel_ceiling(minp, maxp, area, vi, data, data_param2, biomemap, nvals_cracks, "dfcaverns_level1_flooded_biome", dry_biomes)
+		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
+		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
+			if node_arrays.contains_negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
+				-- we're in flooded areas or are not barren
+				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
+			else
+				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
+			end
+		end
+		-- else air pockets?
 	end
 
-	----------------------------------------------
-	-- Warren floors
-	
-	for _, vi in pairs(node_arrays.warren_floor_nodes) do
-		df_caverns.basic_tunnel_floor(minp, maxp, area, vi, data, data_param2, biomemap, nvals_cracks, "dfcaverns_level1_flooded_biome", dry_biomes)
-	end
-	
 	----------------------------------------------
 	-- Column material override for dry biome
 	
 	for _, vi in pairs(node_arrays.column_nodes) do
-		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
-		if biome and biome.name == "dfcaverns_level1_dry_biome" then
+		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
+		if not node_arrays.contains_negative_zone and biome.name == "dfcaverns_level1_barren_biome" then
 			data[vi] = c_dry_flowstone
 		end
 	end
@@ -154,77 +219,35 @@ end
 -------------------------------------------------------------------------------------------
 
 minetest.register_biome({
-	name = "dfcaverns_level1_flooded_biome",
-	y_min = df_caverns.config.level1_min,
-	y_max = df_caverns.config.ymax,
-	heat_point = 50,
-	humidity_point = 100,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_tower_cap_biome",
-	y_min = df_caverns.config.level1_min,
-	y_max = df_caverns.config.ymax,
-	heat_point = 30,
-	humidity_point = 40,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_fungiwood_biome",
-	y_min = df_caverns.config.level1_min,
-	y_max = df_caverns.config.ymax,
-	heat_point = 70,
-	humidity_point = 40,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_tower_cap_flooded_biome",
-	y_min = df_caverns.config.level1_min,
-	y_max = df_caverns.config.ymax,
-	heat_point = 20,
-	humidity_point = 80,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_fungiwood_flooded_biome",
-	y_min = df_caverns.config.level1_min,
-	y_max = df_caverns.config.ymax,
-	heat_point = 80,
-	humidity_point = 80,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_level1_dry_biome",
+	name = "dfcaverns_level1_barren_biome",
 	y_min = df_caverns.config.level1_min,
 	y_max = df_caverns.config.ymax,
 	heat_point = 50,
 	humidity_point = 0,
 })
 
-local perlin_cave = {
-	offset = 0,
-	scale = 1,
-	spread = {x=df_caverns.config.horizontal_cavern_scale, y=df_caverns.config.vertical_cavern_scale, z=df_caverns.config.horizontal_cavern_scale},
-	seed = -400000000089,
-	octaves = 3,
-	persist = 0.67
-}
+minetest.register_biome({
+	name = "dfcaverns_level1_tower_cap_biome",
+	y_min = df_caverns.config.level1_min,
+	y_max = df_caverns.config.ymax,
+	heat_point = 20,
+	humidity_point = 50,
+})
 
-local perlin_wave = {
-	offset = 0,
-	scale = 1,
-	spread = {x=df_caverns.config.horizontal_cavern_scale * 2, y=df_caverns.config.vertical_cavern_scale, z=df_caverns.config.horizontal_cavern_scale * 2}, -- squashed 2:1
-	seed = 59033,
-	octaves = 6,
-	persist = 0.63
-}
+minetest.register_biome({
+	name = "dfcaverns_level1_fungiwood_biome",
+	y_min = df_caverns.config.level1_min,
+	y_max = df_caverns.config.ymax,
+	heat_point = 80,
+	humidity_point = 50,
+})
 
 subterrane.register_layer({
 	y_max = df_caverns.config.ymax,
 	y_min = df_caverns.config.level1_min,
 	cave_threshold = df_caverns.config.cavern_threshold,
-	perlin_cave = perlin_cave,
-	perlin_wave = perlin_wave,
+	perlin_cave = df_caverns.perlin_cave,
+	perlin_wave = df_caverns.perlin_wave,
 	solidify_lava = true,
 	columns = {
 		maximum_radius = 10,
@@ -235,4 +258,6 @@ subterrane.register_layer({
 		minimum_count = 0,
 	},
 	decorate = decorate_level_1,
+	warren_region_variability_threshold = 0.33,
+	double_frequency = true,
 })

@@ -3,4 +3,5 @@ subterrane
 df_farming
 df_trees
 df_mapitems
+oil
 magma_conduits?

@@ -14,3 +14,5 @@ dofile(modpath.."/flowstone.lua")
 dofile(modpath.."/glow_crystals.lua")
 dofile(modpath.."/snareweed.lua")
 dofile(modpath.."/cave_coral.lua")
+
+dofile(modpath.."/slade.lua")

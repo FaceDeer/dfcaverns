@@ -12,3 +12,5 @@ dofile(modpath.."/level2.lua")
 dofile(modpath.."/level3.lua")
 dofile(modpath.."/sunless_sea.lua")
 dofile(modpath.."/lava_sea.lua")
+
+dofile(modpath.."/underworld.lua")

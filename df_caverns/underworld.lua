@@ -2,6 +2,8 @@
 local c_slade = minetest.get_content_id("df_mapitems:slade")
 local c_air = minetest.get_content_id("air")
 
+local c_glowstone = minetest.get_content_id("df_mapitems:glowstone")
+
 local perlin_cave = {
 	offset = 0,
 	scale = 1,
@@ -22,12 +24,13 @@ local perlin_wave = {
 }
 
 local median = -4500
-local floor_mult = 10
-local ceiling_mult = 40
-local ceiling_displace = -20
+local floor_mult = 20
+local floor_displace = -10
+local ceiling_mult = -40
+local ceiling_displace = 20
 local wave_mult = 50
 
-local y_max = median + 2*wave_mult + ceiling_displace + 2*ceiling_mult
+local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
 local y_min = median - 2*wave_mult - 2*floor_mult
 
 minetest.register_on_generated(function(minp, maxp, seed)
@@ -48,7 +51,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		
 		local wave = nvals_wave[index2d] * wave_mult
 		
-		local floor_height = abs_cave * -floor_mult + median + wave
+		local floor_height = abs_cave * floor_mult + median + floor_displace + wave 
 		local ceiling_height = abs_cave * ceiling_mult + median + ceiling_displace + wave
 		if y < floor_height then
 			data[vi] = c_slade
@@ -56,7 +59,27 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			data[vi] = c_air
 		end
 	end
+
+	for vi, x, y, z in area:iterp_yxz(vector.add(minp,1), vector.subtract(maxp, 1)) do
+		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
+		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+		
+		local wave = nvals_wave[index2d] * wave_mult
+		
+		local floor_height = abs_cave * floor_mult + median + floor_displace + wave 
+		local ceiling_height = abs_cave * ceiling_mult + median + ceiling_displace + wave
 	
+		if y == math.floor(ceiling_height) and y > floor_height + 5 and 
+			(
+				(data[vi-area.ystride + 1] ~= c_air and data[vi-area.ystride - 1] ~= c_air) or
+				(data[vi-area.ystride + area.zstride] ~= c_air and data[vi-area.ystride - area.zstride] ~= c_air) or
+				(data[vi-area.ystride + 1 + area.zstride] ~= c_air and data[vi-area.ystride - 1 - area.zstride] ~= c_air) or
+				(data[vi-area.ystride - 1 + area.zstride] ~= c_air and data[vi-area.ystride + 1 - area.zstride] ~= c_air)
+			)
+			then
+			data[vi] = c_glowstone
+		end
+	end
 
 	--send data back to voxelmanip
 	vm:set_data(data)

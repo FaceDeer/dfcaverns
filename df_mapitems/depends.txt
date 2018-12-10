@@ -5,3 +5,4 @@ intllib?
 doc?
 radiant_damage?
 mesecons_mvps?
+tnt?

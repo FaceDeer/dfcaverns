@@ -152,7 +152,8 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	-- Tunnel ceiling
 	
 	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
-		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
+		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks)
+		local abs_cracks = math.abs(cracks)
 		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
 			if node_arrays.contains_negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
 				-- we're in flooded areas or are not barren

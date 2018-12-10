@@ -60,6 +60,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 
+	-- TODO don't need to iterate the whole thing for this, just the ceiling nodes.
 	for vi, x, y, z in area:iterp_yxz(vector.add(minp,1), vector.subtract(maxp, 1)) do
 		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands

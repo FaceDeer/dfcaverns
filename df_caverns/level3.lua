@@ -283,7 +283,8 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	-- Tunnel ceiling
 	
 	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
-		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
+		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks) -- TODO: don't need all of these
+		local abs_cracks = math.abs(cracks)
 		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
 			if node_arrays.contains_negative_zone then		
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)

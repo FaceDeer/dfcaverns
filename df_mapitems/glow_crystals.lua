@@ -358,5 +358,4 @@ if minetest.get_modpath("tnt") then
 		tnt.boom(pos, {radius=3})
 	end
 end
-
 minetest.register_node("df_mapitems:glowstone", glowstone_def)

@@ -166,29 +166,31 @@ end
 local perlin_cave = {
 	offset = 0,
 	scale = 1,
-	spread = {x=200, y=200, z=200},
+	spread = {x=400, y=400, z=400},
 	seed = -400000000089,
-	octaves = 6,
-	persist = 0.67
+	octaves = 3,
+	persist = 0.67,
+	eased = false,
 }
 
--- large-scale rise and fall to make the seam between stone and slade less razor-flat
+-- large-scale rise and fall to make the seam between roof and floor less razor-flat
 local perlin_wave = {
 	offset = 0,
 	scale = 1,
-	spread = {x=1000, y=1000, z=1000},
+	spread = {x=1600, y=1600, z=1600},
 	seed = -4000089,
 	octaves = 3,
-	persist = 0.67
+	persist = 0.67,
 }
 
 local median = sea_level
-local floor_mult = 10
-local ceiling_mult = 40
-local ceiling_displace = -20
-local wave_mult = 50
+local floor_mult = 40
+local floor_displace = -20
+local ceiling_mult = -100
+local ceiling_displace = 50
+local wave_mult = 10
 
-local y_max = median + 2*wave_mult + ceiling_displace + 2*ceiling_mult
+local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
 local y_min = median - 2*wave_mult - 2*floor_mult
 
 local column_def = {
@@ -210,18 +212,18 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 	local vm, data, area = mapgen_helper.mapgen_vm_data()
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:sunless_sea", minp, maxp, perlin_cave) --cave noise for structure
-	--local nvals_wave = mapgen_helper.perlin2d("df_caverns:sunless_sea_wave", minp, maxp, perlin_wave) --cave noise for structure
+	local nvals_wave = mapgen_helper.perlin2d("df_caverns:sunless_sea_wave", minp, maxp, perlin_wave) --cave noise for structure
 	
 	local column_points = subterrane.get_column_points(minp, maxp, column_def)
 	
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
-		local index2d = mapgen_helper.index2(minp, maxp, x, z)
-		local abs_cave = -(math.abs(nvals_cave[index2d]) - 2)
-		
-		local wave = 0--nvals_wave[index2d] * wave_mult
+		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
+		local abs_cave = math.abs(nvals_cave[index2d])
+				
+		local wave = nvals_wave[index2d] * wave_mult
 		
 		-- above floor and below ceiling
-		local floor_height = abs_cave * -floor_mult + median + wave
+		local floor_height = abs_cave * floor_mult + median + floor_displace + wave 
 		local ceiling_height = abs_cave * ceiling_mult + median + ceiling_displace + wave
 		if y > floor_height and y < ceiling_height then
 			if y > sea_level then

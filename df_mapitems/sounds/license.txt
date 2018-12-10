@@ -1,3 +1,7 @@
 dfcaverns_squish.1.ogg - from https://freesound.org/people/DrMinky/sounds/167074/ by DrMinky under Creative Commons BY 3.0
 dfcaverns_squish.2.ogg - from https://freesound.org/people/DrMinky/sounds/167075/ by DrMinky under Creative Commons BY 3.0
 dfcaverns_squish.3.ogg - from https://freesound.org/people/DrMinky/sounds/167073/ by DrMinky under Creative Commons BY 3.0
+
+bedrock2_step.1.ogg - from the Bedrock mod by Wuzzy, https://repo.or.cz/w/minetest_bedrock2.git, under the WTFPL, relicenced to MIT for this mod.
+bedrock2_step.2.ogg
+bedrock2_step.3.ogg

@@ -25,3 +25,4 @@ end
 
 setting("float", "glow_worm_delay_multiplier", 10.0, "glow worm growth delay multiplier")
 setting("bool", "snareweed_damage", true, "Snareweed causes damage to players")
+setting("bool", "invulnerable_slade", true, "Slade is invulnerable to players")

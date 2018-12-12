@@ -2,10 +2,43 @@ local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
 local c_stone = minetest.get_content_id("default:stone")
 local c_dirt = minetest.get_content_id("default:dirt")
+local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_sand = minetest.get_content_id("default:sand")
+local c_gravel = minetest.get_content_id("default:gravel")
 local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
+local c_lava = minetest.get_content_id("default:lava_source")
+local c_obsidian = minetest.get_content_id("default:obsidian")
+
+
+local c_sweet_pod = minetest.get_content_id("df_farming:sweet_pod_6") -- param2 = 0
+local c_quarry_bush = minetest.get_content_id("df_farming:quarry_bush_5") -- param2 = 4
+local c_plump_helmet = minetest.get_content_id("df_farming:plump_helmet_4") -- param2 = 0-3
+local c_pig_tail = minetest.get_content_id("df_farming:pig_tail_8") -- param2 = 3
+local c_dimple_cup = minetest.get_content_id("df_farming:dimple_cup_4") -- param2 = 0
+local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param2 = 3
+local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
+local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
 ------------------------------------------------------------------------------------------
+
+
+local perlin_cave_sunless_sea = {
+	offset = 0,
+	scale = 1,
+	spread = {x=df_caverns.config.horizontal_cavern_scale * 2, y=df_caverns.config.vertical_cavern_scale * 0.5, z=df_caverns.config.horizontal_cavern_scale * 2},
+	seed = -400000000089,
+	octaves = 3,
+	persist = 0.67
+}
+
+local perlin_wave_sunless_sea = {
+	offset = 0,
+	scale = 1,
+	spread = {x=df_caverns.config.horizontal_cavern_scale * 4, y=df_caverns.config.vertical_cavern_scale * 0.5, z=df_caverns.config.horizontal_cavern_scale * 4}, -- squashed 2:1
+	seed = 59033,
+	octaves = 6,
+	persist = 0.63
+}
 
 local perlin_cave_rivers = {
 	offset = 0,
@@ -14,10 +47,10 @@ local perlin_cave_rivers = {
 	seed = -400000000089,
 	octaves = 3,
 	persist = 0.67,
-	eased = false,
+	flags = "", -- remove "eased" flag, makes the paths of rivers a bit jaggedier and more interesting that curvy smooth paths
 }
 
--- large-scale rise and fall to make the seam between roof and floor less razor-flat
+-- large-scale rise and fall to make the seam between roof and floor less razor-flat and make the rivers shallower and deeper in various places
 local perlin_wave_rivers = {
 	offset = 0,
 	scale = 1,
@@ -33,16 +66,59 @@ local floor_mult = 100
 local floor_displace = -10
 local ceiling_mult = -200
 local ceiling_displace = 20
-local wave_mult = 10
+local wave_mult = 7
 local ripple_mult = 15
 local y_max_river = sea_level + 2*wave_mult + ceiling_displace 
 local y_min_river = sea_level - 2*wave_mult + floor_displace
 
-minetest.debug(y_max_river)
-minetest.debug(y_min_river)
 
---y_max_river = df_caverns.config.level3_min
---y_min_river = df_caverns.config.sunless_sea_min
+local mushroom_shrublist = {c_plump_helmet, c_plump_helmet, c_pig_tail, c_dead_fungus, c_cavern_fungi, c_plump_helmet, c_plump_helmet, c_dimple_cup, c_pig_tail, c_dead_fungus, c_cavern_fungi}
+
+local fungispore_shrublist = {c_plump_helmet, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi, c_pig_tail, c_dimple_cup, c_dimple_cup, c_cave_wheat, c_dead_fungus, c_cavern_fungi} 
+
+local mushroom_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.1 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+	elseif data[vi-ystride] ~= c_air and data[vi-ystride] ~= c_water then -- leave the ground as rock if it's only one node thick
+		if math.random() < 0.25 then
+			data[vi] = c_dirt
+		else
+			data[vi] = c_dirt_moss
+		end
+		if math.random() < 0.1 then
+			df_caverns.place_shrub(data, vi+ystride, data_param2, mushroom_shrublist)
+		elseif abs_cracks > 0.25 then
+			if math.random() < 0.01 then
+				df_trees.spawn_tower_cap_vm(vi, area, data)
+			elseif math.random() < 0.01 then
+				df_trees.spawn_goblin_cap_vm(vi, area, data)
+			end
+		end
+	end
+end
+
+local fungispore_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.1 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+	elseif data[vi-ystride] ~= c_air and data[vi-ystride] ~= c_water then -- leave the ground as rock if it's only one node thick
+		if math.random() < 0.25 then
+			data[vi] = c_dirt
+		else
+			data[vi] = c_dirt_moss
+		end
+		if math.random() < 0.1 then
+			df_caverns.place_shrub(data, vi+ystride, data_param2, fungispore_shrublist)
+		elseif abs_cracks > 0.35 then
+			if math.random() < 0.015 then
+				df_trees.spawn_fungiwood_vm(vi+ystride, area, data)
+			elseif math.random < 0.015 then
+				df_trees.spawn_spore_tree_vm(vi+ystride, area, data)
+			end
+		end
+	end
+end
 
 local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, data)
 	local heatmap = minetest.get_mapgen_object("heatmap")
@@ -56,27 +132,57 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:sunless_sea", minp, maxp, perlin_cave_rivers) --cave noise for structure
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:sunless_sea_wave", minp, maxp, perlin_wave_rivers) --cave noise for structure
 	
+	local skip_next = false -- mapgen is proceeding upward on the y axis,
+		--if this is true it skips a step to allow for things to be placed above the floor
+	
 	-- creates "river" caverns
-	for vi, x, y, z in area:iterp_xyz(minp, maxp) do
-		if mapgen_helper.is_ground_content(data[vi]) then		
+	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
+		if not skip_next then		
 			if y < y_max_river and y > y_min_river then
 				local index2d = mapgen_helper.index2d(minp, maxp, x, z)
 				local abs_cave = math.abs(nvals_cave[index2d])
 				local wave = nvals_wave[index2d] * wave_mult
+				local cracks = nvals_cracks[index2d]
 				
-				local ripple = nvals_cracks[index2d] * ((y - sea_level) / (y_max_river - sea_level)) * ripple_mult
+				local ripple = cracks * ((y - y_min_river) / (y_max_river - y_min_river)) * ripple_mult
 
 				-- above floor and below ceiling
 				local floor_height = math.floor(abs_cave * floor_mult + sea_level + floor_displace + wave)
 				local ceiling_height = math.floor(abs_cave * ceiling_mult + sea_level + ceiling_displace + wave + ripple)
-				if y > floor_height and y < ceiling_height and data[vi] ~= c_wet_flowstone then
+
+				-- deal with lava
+				if y <= floor_height and y > floor_height - 3 and data[vi] == c_lava then
+					data[vi] = c_obsidian
+				end
+				
+				if y == floor_height and y < sea_level and not mapgen_helper.buildable_to(data[vi]) then
+					if cracks > 0.2 then
+						data[vi] = c_sand
+						if cracks > 0.5 then
+							data[vi+area.ystride] = c_sand
+							skip_next = true
+						end
+					else
+						data[vi] = c_gravel
+					end
+				elseif y > floor_height and y < ceiling_height and data[vi] ~= c_wet_flowstone then
 					data[vi] = c_air
+				elseif y == ceiling_height and not mapgen_helper.buildable_to(data[vi]) then
+					df_caverns.glow_worm_cavern_ceiling(math.abs(cracks),
+						mapgen_helper.xz_consistent_randomi(area, vi), vi, area, data, data_param2)
+				end
+				
+				-- Deal with lava
+				if y >= ceiling_height and y < ceiling_height + 5 and data[vi] == c_lava then
+					data[vi] = c_obsidian
 				end
 			end
 			-- convert all air below sea level into water
 			if y <= sea_level and data[vi] == c_air then
 				data[vi] = c_water
 			end
+		else
+			skip_next = false
 		end
 	end
 	
@@ -92,7 +198,20 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
 		local y = area:position(vi).y
 		
-		-- TODO
+		
+		-- The vertically squished aspect of these caverns produces too many very thin shelves, this blunts them
+		if mapgen_helper.buildable_to(data[vi-area.ystride]) then
+			if y <= sea_level then
+				data[vi] = c_water
+			else
+				data[vi] = c_air
+			end
+		end	
+		
+		-- extra test is needed because the rivers can remove nodes that Subterrane marked as floor.
+		if y > sea_level and not mapgen_helper.buildable_to(data[vi]) then
+			mushroom_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+		end
 
 	end
 	
@@ -107,7 +226,9 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
 		local y = area:position(vi).y
 		
-		-- TODO
+		if y > sea_level and not mapgen_helper.buildable_to(data[vi]) then
+			df_caverns.glow_worm_cavern_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
+		end
 
 	end
 	
@@ -142,16 +263,16 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 	----------------------------------------------
 	-- Column material override for dry biome
 	
-	for _, vi in pairs(node_arrays.column_nodes) do
-		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-		local heat = heatmap[index2d]
-		local cracks = nvals_cracks[index2d]
-		local abs_cracks = math.abs(cracks)
-		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
-		
-
-		-- TODO
-	end
+--	for _, vi in pairs(node_arrays.column_nodes) do
+--		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+--		local heat = heatmap[index2d]
+--		local cracks = nvals_cracks[index2d]
+--		local abs_cracks = math.abs(cracks)
+--		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
+--		
+--
+--		-- TODO
+--	end
 	
 	vm:set_param2_data(data_param2)
 end
@@ -201,20 +322,20 @@ subterrane.register_layer({
 	y_max = df_caverns.config.level3_min,
 	y_min = df_caverns.config.sunless_sea_min,
 	cave_threshold = df_caverns.config.lava_sea_threshold,
-	perlin_cave = df_caverns.perlin_cave_lava,
-	perlin_wave = df_caverns.perlin_wave_lava,
+	perlin_cave = perlin_cave_sunless_sea,
+	perlin_wave = perlin_wave_sunless_sea,
+	solidify_lava = true,
 	columns = {
 		maximum_radius = 20,
 		minimum_radius = 5,
 		node = c_wet_flowstone,
 		weight = 0.5,
 		maximum_count = 100,
-		minimum_count = 25,
+		minimum_count = 0,
 	},
 	decorate = decorate_sunless_sea,
+--	double_frequency = true,
 })
-
-
 
 minetest.register_biome({
 	name = "dfcaverns_sunless_sea_barren",

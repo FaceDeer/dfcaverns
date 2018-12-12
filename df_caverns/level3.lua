@@ -35,7 +35,7 @@ local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param
 local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
-local subsea_level = df_caverns.config.level2_min - (df_caverns.config.level2_min - df_caverns.config.level3_min) * 0.5
+local subsea_level = df_caverns.config.level2_min - (df_caverns.config.level2_min - df_caverns.config.level3_min) * 0.66
 
 local black_cap_shrublist = {c_quarry_bush, c_dead_fungus, c_dead_fungus}
 local nether_cap_shrublist = {c_dimple_cup, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}

@@ -303,7 +303,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 	-- Tunnel ceiling
 	
 	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
-		if area:get_y(vi) > sea_level then
+		if area:get_y(vi) > sea_level and not mapgen_helper.buildable_to(data[vi]) then
 			df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 		else
 			-- air pockets
@@ -323,7 +323,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 	-- Warren ceiling
 
 	for _, vi in pairs(node_arrays.warren_ceiling_nodes) do
-		if area:get_y(vi) > sea_level then
+		if area:get_y(vi) > sea_level and not mapgen_helper.buildable_to(data[vi]) then
 			df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 		else
 			-- air pockets
@@ -343,7 +343,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 	-- Warren floors
 	
 	for _, vi in pairs(node_arrays.warren_floor_nodes) do
-		if area:get_y(vi) > sea_level then
+		if area:get_y(vi) > sea_level and not mapgen_helper.buildable_to(data[vi]) then
 			df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 		end
 	end

@@ -71,10 +71,14 @@ local ripple_mult = 15
 local y_max_river = sea_level + 2*wave_mult + ceiling_displace + ripple_mult
 local y_min_river = sea_level - 2*wave_mult + floor_displace
 
+local hot_zone_boundary = 70
+local middle_zone_boundary = 50
+local cool_zone_boundary = 30
 
-local mushroom_shrublist = {c_plump_helmet, c_plump_helmet, c_pig_tail, c_dead_fungus, c_cavern_fungi, c_plump_helmet, c_plump_helmet, c_dimple_cup, c_pig_tail, c_dead_fungus, c_cavern_fungi}
 
-local fungispore_shrublist = {c_plump_helmet, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi, c_pig_tail, c_dimple_cup, c_dimple_cup, c_cave_wheat, c_dead_fungus, c_cavern_fungi} 
+local mushroom_shrublist = {c_plump_helmet, c_plump_helmet, c_dimple_cup, c_dead_fungus, c_cavern_fungi,}
+
+local fungispore_shrublist = {c_pig_tail, c_cave_wheat, c_cave_wheat, c_sweet_pod, c_dead_fungus, c_cavern_fungi} 
 
 local mushroom_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	local ystride = area.ystride
@@ -119,6 +123,33 @@ local fungispore_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, 
 		end
 	end
 end
+
+local cool_zone_ceiling = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	if abs_cracks < 0.1 then
+		df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+	end
+end
+
+local hot_zone_ceiling = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	-- dry zone ceiling, add crystals
+	if abs_cracks < 0.1 then
+		df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
+	end
+	if abs_cracks > 0.3 and math.random() < 0.005 then
+		df_mapitems.place_big_crystal_cluster(area, data, data_param2, vi, math.random(0,3), true)
+	end
+end
+
+local cool_zone_floor = df_caverns.dry_cavern_floor
+
+local hot_zone_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	if abs_cracks < 0.075 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
+	elseif abs_cracks > 0.3 and math.random() < 0.005 then
+		df_mapitems.place_big_crystal_cluster(area, data, data_param2, vi+area.ystride,  math.random(0,2), false)
+	end
+end
+
 
 local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, data)
 	local heatmap = minetest.get_mapgen_object("heatmap")
@@ -196,8 +227,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
 		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
-		local y = area:position(vi).y
-		
+		local y = area:get_y(vi)
 		
 		-- The vertically squished aspect of these caverns produces too many very thin shelves, this blunts them
 		if mapgen_helper.buildable_to(data[vi-area.ystride]) then
@@ -211,10 +241,14 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		-- extra test is needed because the rivers can remove nodes that Subterrane marked as floor.
 		if not mapgen_helper.buildable_to(data[vi]) then
 			if y > sea_level  then
-				if heat > 50 then
+				if heat > hot_zone_boundary then
+					hot_zone_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+				elseif heat > middle_zone_boundary then
 					fungispore_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
-				else
+				elseif heat > cool_zone_boundary then
 					mushroom_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+				else
+					cool_zone_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 				end
 			elseif y > sea_level - 30 then
 				if math.random() < 0.005 then
@@ -242,10 +276,16 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
 		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
-		local y = area:position(vi).y
+		local y = area:get_y(vi)
 		
 		if y > sea_level and not mapgen_helper.buildable_to(data[vi]) then
-			df_caverns.glow_worm_cavern_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
+			if heat > hot_zone_boundary then
+				hot_zone_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
+			elseif heat > cool_zone_boundary then
+				df_caverns.glow_worm_cavern_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
+			else
+				cool_zone_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
+			end
 		end
 
 	end

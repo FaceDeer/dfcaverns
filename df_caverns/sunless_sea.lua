@@ -68,7 +68,7 @@ local ceiling_mult = -200
 local ceiling_displace = 20
 local wave_mult = 7
 local ripple_mult = 15
-local y_max_river = sea_level + 2*wave_mult + ceiling_displace 
+local y_max_river = sea_level + 2*wave_mult + ceiling_displace + ripple_mult
 local y_min_river = sea_level - 2*wave_mult + floor_displace
 
 
@@ -111,9 +111,9 @@ local fungispore_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, 
 		if math.random() < 0.1 then
 			df_caverns.place_shrub(data, vi+ystride, data_param2, fungispore_shrublist)
 		elseif abs_cracks > 0.35 then
-			if math.random() < 0.015 then
+			if math.random() < 0.025 then
 				df_trees.spawn_fungiwood_vm(vi+ystride, area, data)
-			elseif math.random < 0.015 then
+			elseif math.random() < 0.025 then
 				df_trees.spawn_spore_tree_vm(vi+ystride, area, data)
 			end
 		end
@@ -209,10 +209,28 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		end	
 		
 		-- extra test is needed because the rivers can remove nodes that Subterrane marked as floor.
-		if y > sea_level and not mapgen_helper.buildable_to(data[vi]) then
-			mushroom_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+		if not mapgen_helper.buildable_to(data[vi]) then
+			if y > sea_level  then
+				if heat > 50 then
+					fungispore_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+				else
+					mushroom_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+				end
+			elseif y > sea_level - 30 then
+				if math.random() < 0.005 then
+					df_mapitems.place_snareweed_patch(area, data, vi, data_param2, 6)
+				else
+					data[vi] = c_dirt
+				end
+			else
+				data[vi] = c_sand
+				if math.random() < 0.001 then
+					local iterations = math.random(1, 6)
+					df_mapitems.spawn_coral_pile(area, data, vi, iterations)
+					df_mapitems.spawn_cave_coral(area, data, vi+area.ystride, iterations)
+				end
+			end
 		end
-
 	end
 	
 	--------------------------------------
@@ -236,85 +254,61 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 	-- Tunnel floors
 	
 	for _, vi in pairs(node_arrays.tunnel_floor_nodes) do
-		--df_caverns.basic_tunnel_floor(minp, maxp, area, vi, data, data_param2, biomemap, nvals_cracks, "dfcaverns_level3_flooded_biome", dry_biomes)
+		if area:get_y(vi) > sea_level then
+			df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
+		end
 	end
 	
 	------------------------------------------------------
 	-- Tunnel ceiling
 	
 	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
-		--df_caverns.basic_tunnel_ceiling(minp, maxp, area, vi, data, data_param2, biomemap, nvals_cracks, "dfcaverns_level3_flooded_biome", dry_biomes)
+		if area:get_y(vi) > sea_level then
+			df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
+		else
+			-- air pockets
+			local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+			local cracks = nvals_cracks[index2d]
+			local ystride = area.ystride
+			if cracks > 0.6 and data[vi-ystride] == c_water then
+				data[vi-ystride] = c_air
+				if cracks > 0.8 and data[vi-ystride*2] == c_water then
+					data[vi-ystride*2] = c_air
+				end
+			end	
+		end
 	end
 	
 	------------------------------------------------------
 	-- Warren ceiling
 
 	for _, vi in pairs(node_arrays.warren_ceiling_nodes) do
-		--df_caverns.basic_tunnel_ceiling(minp, maxp, area, vi, data, data_param2, biomemap, nvals_cracks, "dfcaverns_level3_flooded_biome", dry_biomes)
+		if area:get_y(vi) > sea_level then
+			df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
+		else
+			-- air pockets
+			local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+			local cracks = nvals_cracks[index2d]
+			local ystride = area.ystride
+			if cracks > 0.6 and data[vi-ystride] == c_water then
+				data[vi-ystride] = c_air
+				if cracks > 0.8 and data[vi-ystride*2] == c_water then
+					data[vi-ystride*2] = c_air
+				end
+			end	
+		end
 	end
 
 	----------------------------------------------
 	-- Warren floors
 	
 	for _, vi in pairs(node_arrays.warren_floor_nodes) do
-		--df_caverns.basic_tunnel_floor(minp, maxp, area, vi, data, data_param2, biomemap, nvals_cracks, "dfcaverns_level3_flooded_biome", dry_biomes)
+		if area:get_y(vi) > sea_level then
+			df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
+		end
 	end
-	
-	----------------------------------------------
-	-- Column material override for dry biome
-	
---	for _, vi in pairs(node_arrays.column_nodes) do
---		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
---		local heat = heatmap[index2d]
---		local cracks = nvals_cracks[index2d]
---		local abs_cracks = math.abs(cracks)
---		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
---		
---
---		-- TODO
---	end
 	
 	vm:set_param2_data(data_param2)
-end
-
-local sunless_sea_barren_floor = function(area, data, ai, vi, bi, param2_data)
-	if data[bi] ~= c_stone then
-		return
-	end
-	data[bi] = c_sand
-end
-
-local sunless_sea_snareweed_floor = function(area, data, ai, vi, bi, param2_data)
-	if data[bi] ~= c_stone then
-		return
-	end
-	if math.random() < 0.005 then
-		df_mapitems.place_snareweed_patch(area, data, bi, param2_data, 6)
-	else
-		data[bi] = c_dirt
-	end
-end
-
-local sunless_sea_coral_ceiling = function(area, data, ai, vi, bi, param2_data)
-	if data[ai] ~= c_stone then
-		return
-	end
-	local coral_rand = subterrane:vertically_consistent_random(vi, area)
-	if coral_rand < 0.01 then
-		local iterations = math.ceil(coral_rand / 0.01 * 6)
-		df_mapitems.spawn_cave_coral(area, data, vi, iterations)
-	end
-end
-
-local sunless_sea_coral_floor = function(area, data, ai, vi, bi, param2_data)
-	if data[bi] ~= c_stone then
-		return
-	end
-	local coral_rand = subterrane:vertically_consistent_random(vi, area)
-	if coral_rand < 0.01 then
-		local iterations = math.ceil(coral_rand / 0.01 * 6)
-		df_mapitems.spawn_coral_pile(area, data, vi, iterations)
-	end
 end
 
 --Sunless Sea
@@ -335,28 +329,4 @@ subterrane.register_layer({
 	},
 	decorate = decorate_sunless_sea,
 --	double_frequency = true,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_sunless_sea_barren",
-	y_min = df_caverns.config.sunless_sea_min,
-	y_max = df_caverns.config.sunless_sea_level,
-	heat_point = 80,
-	humidity_point = 10,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_sunless_sea_snareweed",
-	y_min = df_caverns.config.sunless_sea_min,
-	y_max = df_caverns.config.sunless_sea_level,
-	heat_point = 80,
-	humidity_point = 90,
-})
-
-minetest.register_biome({
-	name = "dfcaverns_sunless_sea_coral",
-	y_min = df_caverns.config.sunless_sea_min,
-	y_max = df_caverns.config.sunless_sea_level,
-	heat_point = 0,
-	humidity_point = 50,
 })

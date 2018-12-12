@@ -86,7 +86,7 @@ df_mapitems.spawn_cave_coral = function(area, data, vi, iterations)
 			data[index + 1 - zstride] = get_coral()
 			data[index - 1 - zstride] = get_coral()
 		end
-		index = index - ystride
+		index = index + ystride
 		run = run - 1
 	end
 
@@ -94,11 +94,11 @@ df_mapitems.spawn_cave_coral = function(area, data, vi, iterations)
 	if newiterations == 0 then return end
 	
 	if math.random() > 0.5 then
-		df_mapitems.spawn_cave_coral(area, data, index + 1 + ystride, newiterations)
-		df_mapitems.spawn_cave_coral(area, data, index - 1 + ystride, newiterations)
+		df_mapitems.spawn_cave_coral(area, data, index + 1 - ystride, newiterations)
+		df_mapitems.spawn_cave_coral(area, data, index - 1 - ystride, newiterations)
 	else
-		df_mapitems.spawn_cave_coral(area, data, index + zstride + ystride, newiterations)
-		df_mapitems.spawn_cave_coral(area, data, index - zstride + ystride, newiterations)
+		df_mapitems.spawn_cave_coral(area, data, index + zstride - ystride, newiterations)
+		df_mapitems.spawn_cave_coral(area, data, index - zstride - ystride, newiterations)
 	end
 end
 
@@ -107,7 +107,7 @@ df_mapitems.spawn_coral_pile = function(area, data, vi, radius)
 	for li in area:iterp(vector.add(pos, -radius), vector.add(pos, radius)) do
 		local adjacent = li + area.ystride
 		local node_type = data[li]
-		if math.random() < 0.2  and (node_type == c_stone or node_type == c_dirt) and data[adjacent] == c_water then
+		if math.random() < 0.2  and not mapgen_helper.buildable_to(node_type) and data[adjacent] == c_water then
 			data[adjacent] = c_coral_skeleton
 		end
 	end

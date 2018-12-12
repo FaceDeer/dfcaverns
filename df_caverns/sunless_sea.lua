@@ -294,7 +294,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 	-- Tunnel floors
 	
 	for _, vi in pairs(node_arrays.tunnel_floor_nodes) do
-		if area:get_y(vi) > sea_level then
+		if area:get_y(vi) > sea_level and not mapgen_helper.buildable_to(data[vi]) then
 			df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 		end
 	end

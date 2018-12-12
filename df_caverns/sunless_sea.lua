@@ -126,7 +126,7 @@ end
 
 local cool_zone_ceiling = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	if abs_cracks < 0.1 then
-		df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+		df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
 	end
 end
 
@@ -136,7 +136,7 @@ local hot_zone_ceiling = function(abs_cracks, vert_rand, vi, area, data, data_pa
 		df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
 	end
 	if abs_cracks > 0.3 and math.random() < 0.005 then
-		df_mapitems.place_big_crystal_cluster(area, data, data_param2, vi, math.random(0,3), true)
+		df_mapitems.place_big_crystal_cluster(area, data, data_param2, vi, math.random(0,3), false)
 	end
 end
 

@@ -362,7 +362,7 @@ subterrane.register_layer({
 	columns = {
 		maximum_radius = 20,
 		minimum_radius = 5,
-		node = c_wet_flowstone,
+		node = "df_mapitems:wet_flowstone",
 		weight = 0.5,
 		maximum_count = 100,
 		minimum_count = 0,

@@ -21,7 +21,7 @@ local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param
 local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
-local subsea_level = df_caverns.config.level1_min - (df_caverns.config.level1_min - df_caverns.config.ymax) * 0.66
+local subsea_level = df_caverns.config.level1_min - (df_caverns.config.level1_min - df_caverns.config.ymax) * 0.33
 
 local tower_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_pig_tail, c_dead_fungus, c_cavern_fungi}
 local fungiwood_shrublist = {c_plump_helmet, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
@@ -68,11 +68,13 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)
 	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
+	local nvals_cave = node_arrays.nvals_cave
+	local cave_area = node_arrays.cave_area
 	
 	-- Partly fill flooded caverns and warrens
-	if node_arrays.contains_negative_zone and minp.y <= subsea_level then
+	if minp.y <= subsea_level then
 		for vi in area:iterp(minp, maxp) do
-			if data[vi] == c_air and area:get_y(vi) <= subsea_level then
+			if data[vi] == c_air and area:get_y(vi) <= subsea_level and nvals_cave[cave_area:transform(area, vi)] < 0 then
 				data[vi] = c_water
 			end
 		end
@@ -90,7 +92,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			biome_name = biome.name
 		end
 		
-		if node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
+		if minp.y < subsea_level and area:get_y(vi) < subsea_level and nvals_cave[cave_area:transform(area, vi)] < 0 then
 			-- underwater floor
 			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data)
 		elseif biome_name == "dfcaverns_level1_tower_cap_biome" then
@@ -113,13 +115,15 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		if biome then
 			biome_name = biome.name
 		end
+		
+		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
 
-		if node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
+		if negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
 			-- underwater ceiling, do nothing
 		elseif biome_name == "dfcaverns_level1_tower_cap_biome" or biome_name == "dfcaverns_level1_fungiwood_biome" then
 			df_caverns.glow_worm_cavern_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
 		elseif biome_name == "dfcaverns_level1_barren_biome" then
-			if node_arrays.contains_negative_zone then
+			if negative_zone then
 				-- wet barren
 				if abs_cracks < 0.1 then
 					df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
@@ -138,8 +142,9 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 
 	for _, vi in pairs(node_arrays.tunnel_floor_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
-		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
-			if node_arrays.contains_negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
+		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
+		if not (negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
+			if negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
 				-- we're in flooded areas or are not barren
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
@@ -154,8 +159,9 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
 		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks)
 		local abs_cracks = math.abs(cracks)
-		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
-			if node_arrays.contains_negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
+		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
+		if not (negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
+			if negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
 				-- we're in flooded areas or are not barren
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
@@ -178,8 +184,9 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	
 	for _, vi in pairs(node_arrays.warren_floor_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
-		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
-			if node_arrays.contains_negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
+		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
+		if not (negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
+			if negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
 				-- we're in flooded areas or are not barren
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
@@ -193,8 +200,9 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 
 	for _, vi in pairs(node_arrays.warren_ceiling_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
-		if not (node_arrays.contains_negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
-			if node_arrays.contains_negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
+		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
+		if not (negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
+			if negative_zone or biome.name ~= "dfcaverns_level1_barren_biome" then		
 				-- we're in flooded areas or are not barren
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
@@ -209,7 +217,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	
 	for _, vi in pairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
-		if not node_arrays.contains_negative_zone and biome.name == "dfcaverns_level1_barren_biome" then
+		if biome.name == "dfcaverns_level1_barren_biome" and not nvals_cave[cave_area:transform(area, vi)] < 0 then
 			data[vi] = c_dry_flowstone
 		end
 	end
@@ -253,7 +261,7 @@ subterrane.register_layer({
 	columns = {
 		maximum_radius = 10,
 		minimum_radius = 4,
-		node = c_wet_flowstone,
+		node = "df_mapitems:wet_flowstone",
 		weight = 0.25,
 		maximum_count = 50,
 		minimum_count = 0,

@@ -22,6 +22,7 @@ local c_oil = minetest.get_content_id("oil:oil")
 
 local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_cobble_fungus_fine = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus_fine")
+local c_cobble_fungus = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus")
 
 local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
 local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
@@ -43,7 +44,7 @@ local blood_thorn_shrublist = {c_sweet_pod, c_sweet_pod, c_dead_fungus, c_dead_f
 
 local black_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	if math.random() < 0.25 then
-		data[vi] = c_coal_ore
+		data[vi] = c_stone_with_coal
 	else
 		data[vi] = c_cobble_fungus
 	end
@@ -321,6 +322,11 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
 		
+		local biome_name
+		if biome then
+			biome_name = biome.name
+		end
+		
 		if negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
 			-- underwater ceiling, do nothing
 		elseif biome_name == "dfcaverns_level3_bloodnether_biome" and node_arrays.contains_negative_zone then
@@ -343,7 +349,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				end
 			end
 		else
-			if negagive_zone then
+			if negative_zone then
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
@@ -396,10 +402,11 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	
 	for _, vi in pairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
-		if biome.name == "dfcaverns_level3_bloodnether_biome" and nvals_cave[cave_area:transform(area, vi)] < 0 then
-			data[vi] = c_ice
-		else
+		local dry = (biome.name == "dfcaverns_level3_bloodnether_biome") and (nvals_cave[cave_area:transform(area, vi)] > 0)
+		if dry then
 			data[vi] = c_dry_flowstone
+		else
+			data[vi] = c_ice
 		end
 	end
 

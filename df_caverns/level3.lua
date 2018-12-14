@@ -18,7 +18,7 @@ local c_silver_sand = minetest.get_content_id("default:silver_sand")
 local c_snow = minetest.get_content_id("default:snow")
 local c_ice = minetest.get_content_id("default:ice")
 
-local c_oil = minetest.get_content_id("oil:oil")
+local c_oil = minetest.get_content_id("oil:oil_source")
 
 local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_cobble_fungus_fine = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus_fine")
@@ -139,7 +139,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	if minp.y <= subsea_level then
 		for vi in area:iterp(minp, maxp) do
 			local y = area:get_y(vi)
-			if y <= subsea_level and nvals_cave[cave_area:transform(area, vi)] < 0 then
+			if y <= subsea_level and nvals_cave[cave_area:transform(area, vi)] < -0.15 then
 				if data[vi] == c_air and y <= subsea_level then
 					data[vi] = c_water
 				end
@@ -168,7 +168,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	---------------------------------------------------------
 	-- Cavern floors
 	
-	for _, vi in pairs(node_arrays.cavern_floor_nodes) do
+	for _, vi in ipairs(node_arrays.cavern_floor_nodes) do
 		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks)
 		local abs_cracks = math.abs(cracks)
 		
@@ -207,7 +207,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	--------------------------------------
 	-- Cavern ceilings
 
-	for _, vi in pairs(node_arrays.cavern_ceiling_nodes) do
+	for _, vi in ipairs(node_arrays.cavern_ceiling_nodes) do
 		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks)
 		local abs_cracks = math.abs(cracks)
 		
@@ -274,7 +274,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	----------------------------------------------
 	-- Tunnel floors
 
-	for _, vi in pairs(node_arrays.tunnel_floor_nodes) do
+	for _, vi in ipairs(node_arrays.tunnel_floor_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
 		if not (negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
@@ -290,7 +290,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	------------------------------------------------------
 	-- Tunnel ceiling
 	
-	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
+	for _, vi in ipairs(node_arrays.tunnel_ceiling_nodes) do
 		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks) -- TODO: don't need all of these
 		local abs_cracks = math.abs(cracks)
 		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
@@ -318,7 +318,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	------------------------------------------------------
 	-- Warren ceiling
 
-	for _, vi in pairs(node_arrays.warren_ceiling_nodes) do
+	for _, vi in ipairs(node_arrays.warren_ceiling_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
 		
@@ -360,7 +360,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	----------------------------------------------
 	-- Warren floors
 	
-	for _, vi in pairs(node_arrays.warren_floor_nodes) do
+	for _, vi in ipairs(node_arrays.warren_floor_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}		
 		local biome_name
 		if biome then
@@ -400,7 +400,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	----------------------------------------------
 	-- Column material override for dry biome
 	
-	for _, vi in pairs(node_arrays.column_nodes) do
+	for _, vi in ipairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local dry = (biome.name == "dfcaverns_level3_bloodnether_biome") and (nvals_cave[cave_area:transform(area, vi)] > 0)
 		if dry then

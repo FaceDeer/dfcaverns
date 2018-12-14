@@ -101,7 +101,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	-- Partly fill flooded caverns and warrens
 	if minp.y <= subsea_level then
 		for vi in area:iterp(minp, maxp) do
-			if data[vi] == c_air and area:get_y(vi) <= subsea_level and nvals_cave[cave_area:transform(area, vi)] < 0 then
+			if data[vi] == c_air and area:get_y(vi) <= subsea_level and nvals_cave[cave_area:transform(area, vi)] < -0.2 then
 				data[vi] = c_water
 			end
 		end
@@ -110,7 +110,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	---------------------------------------------------------
 	-- Cavern floors
 	
-	for _, vi in pairs(node_arrays.cavern_floor_nodes) do
+	for _, vi in ipairs(node_arrays.cavern_floor_nodes) do
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
 		local abs_cracks = math.abs(nvals_cracks[index2d])
@@ -138,7 +138,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	--------------------------------------
 	-- Cavern ceilings
 	
-	for _, vi in pairs(node_arrays.cavern_ceiling_nodes) do
+	for _, vi in ipairs(node_arrays.cavern_ceiling_nodes) do
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome = mapgen_helper.get_biome_def(biomemap[index2d])
 		local abs_cracks = math.abs(nvals_cracks[index2d])
@@ -178,7 +178,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	----------------------------------------------
 	-- Tunnel floors
 	
-	for _, vi in pairs(node_arrays.tunnel_floor_nodes) do
+	for _, vi in ipairs(node_arrays.tunnel_floor_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
 		if not (negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
@@ -194,7 +194,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	------------------------------------------------------
 	-- Tunnel ceiling
 	
-	for _, vi in pairs(node_arrays.tunnel_ceiling_nodes) do
+	for _, vi in ipairs(node_arrays.tunnel_ceiling_nodes) do
 		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks)
 		local abs_cracks = math.abs(cracks)
 		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
@@ -220,7 +220,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	----------------------------------------------
 	-- Warren floors
 	
-	for _, vi in pairs(node_arrays.warren_floor_nodes) do
+	for _, vi in ipairs(node_arrays.warren_floor_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
 		if not (negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
@@ -236,7 +236,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	------------------------------------------------------
 	-- Warren ceiling
 
-	for _, vi in pairs(node_arrays.warren_ceiling_nodes) do
+	for _, vi in ipairs(node_arrays.warren_ceiling_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
 		if not (negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
@@ -253,7 +253,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	----------------------------------------------
 	-- Column material override for dry biome
 	
-	for _, vi in pairs(node_arrays.column_nodes) do
+	for _, vi in ipairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local dry = (biome.name == "dfcaverns_level2_barren_biome") and (nvals_cave[cave_area:transform(area, vi)] > 0)
 		if dry then

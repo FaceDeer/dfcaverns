@@ -101,8 +101,6 @@ df_caverns.dry_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, da
 	end
 end
 
-
-
 --------------------------------------
 
 df_caverns.glow_worm_cavern_ceiling = function(abs_cracks, vert_rand, vi, area, data, data_param2)
@@ -257,27 +255,6 @@ df_caverns.perlin_wave_lava = {
 	octaves = 6,
 	persist = 0.63
 }
-
-if df_caverns.config.enable_lava_sea then
-	subterrane:register_cave_layer({
-		minimum_depth = df_caverns.config.lava_sea_max,
-		maximum_depth = df_caverns.config.lava_sea_min,
-		cave_threshold = df_caverns.config.lava_sea_threshold,
-		perlin_cave = df_caverns.perlin_cave_lava,
-		perlin_wave = df_caverns.perlin_wave_lava,
-		columns = {
-			maximum_radius = 30,
-			minimum_radius = 5,
-			node = c_obsidian,
-			weight = 0.5,
-			maximum_count = 100,
-			minimum_count = 25,
-		},
-	})
-end
-
-df_caverns.can_support_vegetation = {[c_sand] = true, [c_dirt] = true, [c_coal_ore] = true, [c_gravel] = true} -- Likely to be deprecated
-
 
 df_caverns.place_shrub = function(data, vi, param2_data, shrub_list)
 	local shrub = shrub_list[math.random(#shrub_list)]

@@ -45,6 +45,7 @@ end
 
 local c_water = minetest.get_content_id("default:water_source")
 local c_dirt = minetest.get_content_id("default:dirt")
+local c_stone = minetest.get_content_id("default:stone")
 local c_snareweed = minetest.get_content_id("df_mapitems:snareweed")
 
 df_mapitems.place_snareweed = function(area, data, bi, param2_data)

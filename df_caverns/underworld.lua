@@ -31,7 +31,7 @@ local ceiling_displace = 20
 local wave_mult = 50
 
 local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
-local y_min = median - 2*wave_mult - 2*floor_mult
+local y_min = median - 2*wave_mult + floor_displace - 2*floor_mult
 
 minetest.register_on_generated(function(minp, maxp, seed)
 
@@ -48,7 +48,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
 		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
-		
 		local wave = nvals_wave[index2d] * wave_mult
 		
 		local floor_height = abs_cave * floor_mult + median + floor_displace + wave 

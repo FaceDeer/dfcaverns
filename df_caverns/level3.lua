@@ -180,7 +180,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 
 		if negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
 			-- underwater floor
-			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data)
+			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data) -- TODO maybe something with gravel instead of dirt?
 		elseif biome_name == "dfcaverns_level3_barren_biome" then
 			if negative_zone then
 				-- wet zone floor
@@ -402,11 +402,13 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
-		local dry = (biome.name == "dfcaverns_level3_bloodnether_biome") and (nvals_cave[cave_area:transform(area, vi)] > 0)
-		if dry then
-			data[vi] = c_dry_flowstone
-		else
-			data[vi] = c_ice
+		if biome.name == "dfcaverns_level3_bloodnether_biome" then
+			local dry = nvals_cave[cave_area:transform(area, vi)] > 0
+			if dry then
+				data[vi] = c_dry_flowstone
+			else
+				data[vi] = c_ice
+			end
 		end
 	end
 

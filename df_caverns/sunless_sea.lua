@@ -355,7 +355,7 @@ end
 subterrane.register_layer({
 	y_max = df_caverns.config.level3_min,
 	y_min = df_caverns.config.sunless_sea_min,
-	cave_threshold = df_caverns.config.lava_sea_threshold,
+	cave_threshold = df_caverns.config.sunless_sea_threshold,
 	perlin_cave = perlin_cave_sunless_sea,
 	perlin_wave = perlin_wave_sunless_sea,
 	solidify_lava = true,

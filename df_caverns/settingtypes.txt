@@ -9,6 +9,8 @@ dfcaverns_vertical_cavern_scale (Vertical cavern dimension scale) float 256
 dfcaverns_horizontal_cavern_scale (Horizontal cavern dimension scale) float 256
 #Determines threshold for cave generation. Higher number means sparser caverns
 dfcaverns_cavern_threshold (Cavern threshold) float 0.5 0.0 1.0
+#Determines threshold for lower sea cave generation. Higher number means sparser cavern
+dfcaverns_sunless_sea_threshold (Cavern threshold for lava sea) float 0.2 0.0 1.0
 
 [Cavern depth borders]
 dfcaverns_ymax (Upper limit of level 1) int -300
@@ -16,11 +18,11 @@ dfcaverns_level1_min (Upper limit of level 2) int -900
 dfcaverns_level2_min (Upper limit of level 3) int -1500
 dfcaverns_level3_min (Upper limit of the sunless sea) int -2100
 dfcaverns_sunless_sea_min (Lower limit of the sunless sea) int -2500
-dfcaverns_lava_sea_max (Upper limit of the lava sea) int -3000
-dfcaverns_lava_sea_min (Lower limit of the lava sea) int -3500
 
-[Lower Seas]
-#Determines threshold for lower sea cave generation. Higher number means sparser cavern
-dfcaverns_lava_sea_threshold (Cavern threshold for magma sea) float 0.2 0.0 1.0
+[Lower Levels]
 #When true, the lava sea level is generated
 dfcaverns_enable_lava_sea (Generate magma sea) bool true
+dfcaverns_lava_sea_level (Lava sea level) int -3000
+
+dfcaverns_enable_underworld (Generate underworld) bool true
+dfcaverns_underworld_level (Underworld level) int -3500

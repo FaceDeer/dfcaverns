@@ -28,15 +28,16 @@ end
 setting("float", "vertical_cavern_scale", 256, "Vertical cavern dimension scale")
 setting("float", "horizontal_cavern_scale", 256, "Horizontal cavern dimension scale")
 setting("float", "cavern_threshold", 0.5, "Cavern threshold")
+setting("float", "sunless_sea_threshold", 0.2, "Cavern threshold for sunless seas (higher number means sparser caverns)")
 
-setting("int", "ymax", -300, "Upper limit of level 1")
-setting("int", "level1_min", -900, "Upper limit of level 2")
-setting("int", "level2_min", -1500, "Upper limit of level 3")
-setting("int", "level3_min", -2100, "Upper limit of the sunless sea")
-setting("int", "sunless_sea_min", -2500, "Lower limit of the sunless sea")
+setting("int", "ymax", -200, "Upper limit of level 1")
+setting("int", "level1_min", -800, "Upper limit of level 2")
+setting("int", "level2_min", -1400, "Upper limit of level 3")
+setting("int", "level3_min", -2000, "Upper limit of the sunless seas")
+setting("int", "sunless_sea_min", -2400, "Lower limit of the sunless seas")
 
-setting("int", "lava_sea_max", -3000, "Upper limit of the lava sea")
-setting("int", "lava_sea_min", -3500, "Lower limit of the lava sea")
-
-setting("float", "lava_sea_threshold", 0.2, "Cavern threshold for sunless and magma seas (higher number means sparser magma)")
+setting("int", "lava_sea_level", -2800, "Lava sea level")
 setting("bool", "enable_lava_sea", true, "Enable magma sea level")
+
+setting("int", "underworld_level", -3000, "Underworld level")
+setting("bool", "enable_underworld", true, "Enable underworld")

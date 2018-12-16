@@ -269,6 +269,7 @@ subterrane.register_layer({
 	y_max = df_caverns.config.level1_min,
 	y_min = df_caverns.config.level2_min,
 	cave_threshold = df_caverns.config.cavern_threshold,
+	boundary_blend_range = 64, -- range near ymin and ymax over which caves diminish to nothing
 	perlin_cave = df_caverns.perlin_cave,
 	perlin_wave = df_caverns.perlin_wave,
 	solidify_lava = true,

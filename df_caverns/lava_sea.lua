@@ -38,7 +38,7 @@ local perlin_wave = {
 	persist = 0.67
 }
 
-local median = (df_caverns.config.lava_sea_max + df_caverns.config.lava_sea_min) / 2
+local median = df_caverns.config.lava_sea_level
 local floor_mult = 60
 local floor_displace = -30
 local ceiling_mult = -40

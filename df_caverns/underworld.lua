@@ -1,3 +1,6 @@
+if not df_caverns.config.enable_underworld then
+	return
+end
 
 local c_slade = minetest.get_content_id("df_mapitems:slade")
 local c_air = minetest.get_content_id("air")
@@ -23,7 +26,7 @@ local perlin_wave = {
 	persist = 0.67
 }
 
-local median = -4500
+local median = df_caverns.config.underworld_level
 local floor_mult = 20
 local floor_displace = -10
 local ceiling_mult = -40

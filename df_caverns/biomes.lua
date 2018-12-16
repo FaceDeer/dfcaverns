@@ -235,9 +235,6 @@ subterrane:override_biome({
 	_subterrane_cave_ceiling_decor = shallow_cave_ceiling,
 })
 
--- surface tunnels
-subterrane:register_cave_decor(-113, df_caverns.config.ymax)
-
 df_caverns.perlin_cave_lava = {
 	offset = 0,
 	scale = 1,

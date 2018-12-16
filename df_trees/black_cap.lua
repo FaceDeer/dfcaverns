@@ -172,7 +172,7 @@ df_trees.spawn_black_cap = function(pos)
 	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
 
-	subterrane:giant_shroom(area:indexp(pos), area, data, c_stem, c_cap, c_gills, stem_height, cap_radius)
+	subterrane.giant_mushroom(area:indexp(pos), area, data, c_stem, c_cap, c_gills, stem_height, cap_radius)
 	
 	vm:set_data(data)
 	vm:write_to_map()
@@ -183,6 +183,6 @@ df_trees.spawn_black_cap_vm = function(vi, area, data)
 	local stem_height = math.random(1,5)
 	local cap_radius = math.random(2,3)
 	
-	subterrane:giant_shroom(vi, area, data, c_stem, c_cap, c_gills, stem_height, cap_radius)
+	subterrane.giant_mushroom(vi, area, data, c_stem, c_cap, c_gills, stem_height, cap_radius)
 end
 

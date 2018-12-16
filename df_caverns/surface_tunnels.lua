@@ -27,20 +27,22 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 		previous_y = y
 		
-		if mapgen_helper.buildable_to(data[vi]) then
-			if previous_state == "in_rock" and data[vi-area.ystride] == c_stone then
-				local index2d = mapgen_helper.index2d(minp, maxp, x, z)
-				local humidity = humiditymap[index2d]
-				df_caverns.tunnel_floor(minp, maxp, area, vi-area.ystride, nvals_cracks, data, data_param2, humidity > 30)
+		if y < y_max then
+			if mapgen_helper.buildable_to(data[vi]) then
+				if previous_state == "in_rock" and data[vi-area.ystride] == c_stone then
+					local index2d = mapgen_helper.index2d(minp, maxp, x, z)
+					local humidity = humiditymap[index2d]
+					df_caverns.tunnel_floor(minp, maxp, area, vi-area.ystride, nvals_cracks, data, data_param2, humidity > 30)
+				end
+				previous_state = "in_tunnel"
+			else
+				if previous_state == "in_tunnel" and data[vi] == c_stone then
+					local index2d = mapgen_helper.index2d(minp, maxp, x, z)
+					local humidity = humiditymap[index2d]
+					df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, humidity > 30)
+				end
+				previous_state = "in_rock"
 			end
-			previous_state = "in_tunnel"
-		else
-			if previous_state == "in_tunnel" and data[vi] == c_stone then
-				local index2d = mapgen_helper.index2d(minp, maxp, x, z)
-				local humidity = humiditymap[index2d]
-				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, humidity > 30)
-			end
-			previous_state = "in_rock"
 		end
 	end
 	

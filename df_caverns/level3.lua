@@ -368,7 +368,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		end
 		
 		if minp.y < subsea_level and area:get_y(vi) < subsea_level and nvals_cave[cave_area:transform(area, vi)] < 0 then
-			-- underwater ceiling, do nothing
+			-- underwater floor, do nothing
 		elseif biome_name == "dfcaverns_level3_bloodnether_cap_biome" then
 			local cracks = nvals_cracks[index2d]
 			local abs_cracks = math.abs(cracks)
@@ -403,11 +403,17 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		if biome.name == "dfcaverns_level3_bloodnether_biome" then
-			local dry = nvals_cave[cave_area:transform(area, vi)] > 0
-			if dry then
-				data[vi] = c_dry_flowstone
-			else
-				data[vi] = c_ice
+			if data[vi] == c_wet_flowstone then
+				local dry = nvals_cave[cave_area:transform(area, vi)] > 0
+				if dry then
+					data[vi] = c_dry_flowstone -- bloodthorn
+				else
+					if area:get_y(vi) >= subsea_level then
+						data[vi] = c_ice
+					else
+						data[vi] = c_water -- ice columns shouldn't extend below the surface of the water. There should probably be a bulge below, though. Not sure best way to implement that.
+					end
+				end
 			end
 		end
 	end

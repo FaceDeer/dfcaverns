@@ -16,6 +16,8 @@ end
 
 local slade_def = {
 	description = S("Slade"),
+	_doc_items_longdesc = df_mapitems.doc.slade_desc,
+	_doc_items_usagehelp = df_mapitems.doc.slade_usage,
 	tiles = {"dfcaverns_slade.png"},
 	groups = {cracky=3, stone=1, level=3},
 	sounds = { footstep = { name = "bedrock2_step", gain = 1 } },
@@ -34,6 +36,8 @@ minetest.register_node("df_mapitems:slade", slade_def)
 
 local slade_brick_def = {
 	description = S("Slade Brick"),
+	_doc_items_longdesc = df_mapitems.doc.slade_desc,
+	_doc_items_usagehelp = df_mapitems.doc.slade_usage,
 	tiles = {"dfcaverns_slade_brick.png"},
 	groups = {immortal=1, stone=1, },
 	sounds = { footstep = { name = "bedrock2_step", gain = 1 } },
@@ -83,6 +87,8 @@ minetest.register_node("df_mapitems:slade_wall", slade_wall_def)
 
 minetest.register_node("df_mapitems:slade_sand", {
 	description = S("Slade Sand"),
+	_doc_items_longdesc = df_mapitems.doc.slade_desc,
+	_doc_items_usagehelp = df_mapitems.doc.slade_usage,
 	tiles = {"dfcaverns_slade_sand.png"},
 	is_ground_content = true,
 	groups = {crumbly = 3, level = 2, falling_node = 1},
@@ -123,6 +129,7 @@ minetest.register_node("df_mapitems:slade_sand", {
 --	})
 --end
 
-if minetest.get_modpath("mesecons_mvps") ~= nil then
-	mesecon.register_mvps_stopper("bedrock2:bedrock")
+if minetest.get_modpath("mesecons_mvps") and df_mapitems.config.invulnerable_slade then
+	mesecon.register_mvps_stopper("df_mapitems:slade")
+	mesecon.register_mvps_stopper("df_mapitems:slade_brick")
 end

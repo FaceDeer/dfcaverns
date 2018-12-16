@@ -13,16 +13,18 @@ dfcaverns_cavern_threshold (Cavern threshold) float 0.5 0.0 1.0
 dfcaverns_sunless_sea_threshold (Cavern threshold for lava sea) float 0.2 0.0 1.0
 
 [Cavern depth borders]
-dfcaverns_ymax (Upper limit of level 1) int -300
-dfcaverns_level1_min (Upper limit of level 2) int -900
-dfcaverns_level2_min (Upper limit of level 3) int -1500
-dfcaverns_level3_min (Upper limit of the sunless sea) int -2100
-dfcaverns_sunless_sea_min (Lower limit of the sunless sea) int -2500
+dfcaverns_ymax (Upper limit of level 1) int -200
+dfcaverns_level1_min (Upper limit of level 2) int -800
+dfcaverns_level2_min (Upper limit of level 3) int -1400
+dfcaverns_level3_min (Upper limit of the sunless sea) int -2000
+dfcaverns_sunless_sea_min (Lower limit of the sunless sea) int -2400
 
 [Lower Levels]
-#When true, the lava sea level is generated
+dfcaverns_enable_oil_sea (Generate oil sea) bool true
+dfcaverns_oil_sea_level (Oil sea level) int -2600
+
 dfcaverns_enable_lava_sea (Generate magma sea) bool true
-dfcaverns_lava_sea_level (Lava sea level) int -3000
+dfcaverns_lava_sea_level (Lava sea level) int -2800
 
 dfcaverns_enable_underworld (Generate underworld) bool true
-dfcaverns_underworld_level (Underworld level) int -3500
+dfcaverns_underworld_level (Underworld level) int -3100

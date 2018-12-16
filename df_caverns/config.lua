@@ -36,8 +36,11 @@ setting("int", "level2_min", -1400, "Upper limit of level 3")
 setting("int", "level3_min", -2000, "Upper limit of the sunless seas")
 setting("int", "sunless_sea_min", -2400, "Lower limit of the sunless seas")
 
-setting("int", "lava_sea_level", -2800, "Lava sea level")
-setting("bool", "enable_lava_sea", true, "Enable magma sea level")
+setting("bool", "enable_oil_sea", true, "Enable oil sea")
+setting("int", "oil_sea_level", -2600, "Oil sea level")
 
-setting("int", "underworld_level", -3000, "Underworld level")
+setting("bool", "enable_lava_sea", true, "Enable magma sea")
+setting("int", "lava_sea_level", -2800, "Lava sea level")
+
 setting("bool", "enable_underworld", true, "Enable underworld")
+setting("int", "underworld_level", -3100, "Underworld level")

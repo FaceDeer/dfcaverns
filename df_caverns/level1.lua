@@ -218,7 +218,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local dry = (biome.name == "dfcaverns_level1_barren_biome") and (nvals_cave[cave_area:transform(area, vi)] > 0)
-		if dry then
+		if dry and data[vi] == c_wet_flowstone then
 			data[vi] = c_dry_flowstone
 		end
 	end

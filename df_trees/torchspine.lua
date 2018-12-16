@@ -56,6 +56,8 @@ local stal_box_4 = {{-0.375+x_disp, -0.5, -0.375+z_disp, 0.375+x_disp, 0.5, 0.37
 
 minetest.register_node("df_trees:torchspine_1", {
 	description = S("Torchspine Tip"),
+	_doc_items_longdesc = df_trees.doc.torchspine_desc,
+	_doc_items_usagehelp = df_trees.doc.torchspine_usage,
 	tiles = {"dfcaverns_torchspine_0.5.png", "dfcaverns_torchspine_1.5.png", "dfcaverns_torchspine_1.png"},
 	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, fall_damage_add_percent = 100},
 	drawtype = "nodebox",
@@ -72,8 +74,10 @@ minetest.register_node("df_trees:torchspine_1", {
 
 minetest.register_node("df_trees:torchspine_1_lit", {
 	description = S("Torchspine Tip"),
+	_doc_items_longdesc = df_trees.doc.torchspine_desc,
+	_doc_items_usagehelp = df_trees.doc.torchspine_usage,
 	tiles = {"default_gold_block.png", "dfcaverns_torchspine_1.5.png", "dfcaverns_torchspine_1_lit.png"},
-	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, fall_damage_add_percent = 150},
+	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, torch = 1, fall_damage_add_percent = 150},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -89,6 +93,8 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 
 minetest.register_node("df_trees:torchspine_2", {
 	description = S("Torchspine"),
+	_doc_items_longdesc = df_trees.doc.torchspine_desc,
+	_doc_items_usagehelp = df_trees.doc.torchspine_usage,
 	tiles = {"dfcaverns_torchspine_1.5.png", "dfcaverns_torchspine_2.5.png", "dfcaverns_torchspine_2.png"},
 	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, fall_damage_add_percent = 50},
 	drawtype = "nodebox",
@@ -113,6 +119,8 @@ minetest.register_node("df_trees:torchspine_2", {
 
 minetest.register_node("df_trees:torchspine_3", {
 	description = S("Torchspine"),
+	_doc_items_longdesc = df_trees.doc.torchspine_desc,
+	_doc_items_usagehelp = df_trees.doc.torchspine_usage,
 	tiles = {"dfcaverns_torchspine_2.5.png", "dfcaverns_torchspine_3.5.png", "dfcaverns_torchspine_3.png"},
 	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1},
 	drawtype = "nodebox",
@@ -141,6 +149,8 @@ minetest.register_node("df_trees:torchspine_3", {
 
 minetest.register_node("df_trees:torchspine_4", {
 	description = S("Torchspine"),
+	_doc_items_longdesc = df_trees.doc.torchspine_desc,
+	_doc_items_usagehelp = df_trees.doc.torchspine_usage,
 	tiles = {"dfcaverns_torchspine_3.5.png", "dfcaverns_torchspine_4.5.png", "dfcaverns_torchspine_4.png"},
 	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1},
 	drawtype = "nodebox",
@@ -168,6 +178,8 @@ minetest.register_node("df_trees:torchspine_4", {
 
 minetest.register_node("df_trees:torchspine_ember", {
 	description = S("Torchspine Ember"),
+	_doc_items_longdesc = df_trees.doc.torchspine_desc,
+	_doc_items_usagehelp = df_trees.doc.torchspine_usage,
 	tiles = {"dfcaverns_torchspine_0.5.png",},
 	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1},
 	drawtype = "nodebox",

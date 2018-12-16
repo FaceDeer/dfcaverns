@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-02 12:48-0700\n"
+"POT-Creation-Date: 2018-12-16 12:31-0700\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -164,23 +164,37 @@ msgstr ""
 msgid "Aside from its aesthetic value this crystal has no particular use."
 msgstr ""
 
-#: flowstone_nodes.lua:8
+#: doc.lua:42
+msgid ""
+"The very foundation of the world, Slade is a mysterious ultra-dense "
+"substance."
+msgstr ""
+
+#: doc.lua:43
+msgid "Slade is extremely hard to work with so it has little use."
+msgstr ""
+
+#: doc.lua:45
+msgid "In fact, Slade is impervious to conventional mining entirely."
+msgstr ""
+
+#: flowstone.lua:8
 msgid "Dry Dripstone"
 msgstr ""
 
-#: flowstone_nodes.lua:19
+#: flowstone.lua:19
 msgid "Dry Flowstone"
 msgstr ""
 
-#: flowstone_nodes.lua:32
+#: flowstone.lua:32
 msgid "Wet Dripstone"
 msgstr ""
 
-#: flowstone_nodes.lua:44
+#: flowstone.lua:44
 msgid "Wet Flowstone"
 msgstr ""
 
-#: flowstone_nodes.lua:57
+#: flowstone.lua:57
 msgid "Icicle"
 msgstr ""
 
@@ -204,6 +218,22 @@ msgstr ""
 msgid "Big Crystal"
 msgstr ""
 
+#: glow_crystals.lua:345
+msgid "Lightseam"
+msgstr ""
+
+#: glow_pit.lua:2
+msgid "Glowing Spire Block"
+msgstr ""
+
+#: glow_pit.lua:19
+msgid "Glowing Pit Vein"
+msgstr ""
+
+#: glow_pit.lua:27
+msgid "Glowing Pit Wall Block"
+msgstr ""
+
 #: glow_worms.lua:11
 msgid "Glow Worms"
 msgstr "Vermi luminosi"
@@ -216,6 +246,22 @@ msgstr "Terra con muschio di caverna"
 #: ground_cover.lua:67
 msgid "Cobblestone With Floor Fungus"
 msgstr "Ciottoli con funghi del terreno"
+
+#: slade.lua:18
+msgid "Slade"
+msgstr ""
+
+#: slade.lua:38
+msgid "Slade Brick"
+msgstr ""
+
+#: slade.lua:58
+msgid "Slade Wall"
+msgstr ""
+
+#: slade.lua:89
+msgid "Slade Sand"
+msgstr ""
 
 #: snareweed.lua:6
 msgid "Snareweed"

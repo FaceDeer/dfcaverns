@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-06 08:35-0700\n"
+"POT-Creation-Date: 2018-12-16 12:30-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -181,6 +181,21 @@ msgid ""
 "material."
 msgstr ""
 
+#: doc.lua:42
+msgid ""
+"Torchspines are strange organic formations that are alive only in a "
+"technical sense. They \"feed\" on volatile flammable vapors vented up "
+"through their structure, growing from combustion residue deposited at their "
+"tips."
+msgstr ""
+
+#: doc.lua:43
+msgid ""
+"A torchspine alternates between active and quiescent phases and emits dim "
+"light when active. They can be harvested for torches, and their embers "
+"sprout into new torchspines when placed on flammable surfaces."
+msgstr ""
+
 #: fungiwood.lua:13
 msgid "Fungiwood Stem"
 msgstr ""
@@ -274,17 +289,17 @@ msgid "Spore Tree Ladder"
 msgstr ""
 
 #: torchspine.lua:58
-#: torchspine.lua:74
+#: torchspine.lua:76
 msgid "Torchspine Tip"
 msgstr ""
 
-#: torchspine.lua:91
-#: torchspine.lua:115
-#: torchspine.lua:143
+#: torchspine.lua:95
+#: torchspine.lua:121
+#: torchspine.lua:151
 msgid "Torchspine"
 msgstr ""
 
-#: torchspine.lua:170
+#: torchspine.lua:180
 msgid "Torchspine Ember"
 msgstr ""
 

@@ -38,3 +38,6 @@ if df_trees.config.enable_tnt then
 else
 	df_trees.doc.tunnel_tube_usage = S("The trunk of a tunnel tube can be cut and processed to produce plywood-like material.")
 end
+
+df_trees.doc.torchspine_desc = S("Torchspines are strange organic formations that are alive only in a technical sense. They \"feed\" on volatile flammable vapors vented up through their structure, growing from combustion residue deposited at their tips.")
+df_trees.doc.torchspine_usage = S("A torchspine alternates between active and quiescent phases and emits dim light when active. They can be harvested for torches, and their embers sprout into new torchspines when placed on flammable surfaces.")

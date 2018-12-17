@@ -19,15 +19,6 @@ local perlin_cave = {
 	persist = 0.67
 }
 
-local perlin_cave2 = {
-	offset = 0,
-	scale = 1,
-	spread = {x=300, y=300, z=300},
-	seed = -400000000089,
-	octaves = 3,
-	persist = 0.67
-}
-
 -- large-scale rise and fall
 local perlin_wave = {
 	offset = 0,
@@ -40,9 +31,9 @@ local perlin_wave = {
 
 local median = df_caverns.config.lava_sea_level
 local floor_mult = 60
-local floor_displace = -30
+local floor_displace = -25
 local ceiling_mult = -40
-local ceiling_displace = 20
+local ceiling_displace = 15
 local wave_mult = 10
 
 local y_max = median + 2*wave_mult + -2*ceiling_mult + ceiling_displace
@@ -60,7 +51,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local heatmap = minetest.get_mapgen_object("heatmap")
 	
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld", minp, maxp, perlin_cave)
-	local nvals_cave2 = mapgen_helper.perlin2d("df_caverns:underworld", minp, maxp, perlin_cave2)
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", minp, maxp, perlin_wave)
 	local nvals_lavasurface = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	
@@ -68,12 +58,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
 
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
-		local abs_cave2 =  math.abs(nvals_cave2[index2d])
 		local wave = nvals_wave[index2d] * wave_mult
 		local lava = nvals_lavasurface[index2d]
 		
-		local floor_height = math.floor(math.min(abs_cave, abs_cave2) * floor_mult + floor_displace + median + wave)
-		local ceiling_height = math.floor(math.max(abs_cave, abs_cave2) * ceiling_mult + median + ceiling_displace + wave)
+		local floor_height = math.floor(abs_cave * floor_mult + floor_displace + median + wave)
+		local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 		local lava_height = math.floor(median + lava * 2)
 		
 		if y >= floor_height - 2 and y >= ceiling_height and y < ceiling_height + 2 and y <= lava_height + 2 and not mapgen_helper.buildable_to(data[vi]) then
@@ -98,12 +87,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local mese_intensity = heatmap[index2d] * rand * rand
 		
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
-		local abs_cave2 =  math.abs(nvals_cave2[index2d])
 		local wave = nvals_wave[index2d] * wave_mult
 		local lava = nvals_lavasurface[index2d]
 		
-		local floor_height = math.floor(math.min(abs_cave, abs_cave2) * floor_mult + floor_displace + median + wave)
-		local ceiling_height = math.floor(math.max(abs_cave, abs_cave2) * ceiling_mult + median + ceiling_displace + wave)
+		local floor_height = math.floor(abs_cave * floor_mult + floor_displace + median + wave)
+		local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 		local lava_height = math.floor(median + lava * 2)
 		
 		if mese_intensity > 80 and y > lava_height + 1 and y == ceiling_height and y > floor_height + 1 and not mapgen_helper.buildable_to(data[vi]) then

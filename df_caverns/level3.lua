@@ -38,6 +38,8 @@ local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- par
 
 local subsea_level = df_caverns.config.level3_min - (df_caverns.config.level3_min - df_caverns.config.level2_min) * 0.33
 
+local ice_thickness = 3
+
 local black_cap_shrublist = {c_quarry_bush, c_dead_fungus, c_dead_fungus}
 local nether_cap_shrublist = {c_dimple_cup, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
 local blood_thorn_shrublist = {c_sweet_pod, c_sweet_pod, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
@@ -157,7 +159,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 					end
 				elseif biome_name == "dfcaverns_level3_bloodnether_biome" then
 					-- floating ice
-					if y <= subsea_level and y > subsea_level - 3 and data[vi] == c_water then
+					if y <= subsea_level and y > subsea_level - ice_thickness and data[vi] == c_water then
 						data[vi] = c_ice
 					end				
 				end
@@ -408,7 +410,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				if dry then
 					data[vi] = c_dry_flowstone -- bloodthorn
 				else
-					if area:get_y(vi) >= subsea_level then
+					if area:get_y(vi) > subsea_level - ice_thickness then
 						data[vi] = c_ice
 					else
 						data[vi] = c_water -- ice columns shouldn't extend below the surface of the water. There should probably be a bulge below, though. Not sure best way to implement that.

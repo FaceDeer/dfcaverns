@@ -182,7 +182,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				local ceiling_height = math.floor(abs_cave * ceiling_mult + sea_level + ceiling_displace + wave + ripple)
 
 				-- deal with lava
-				if y <= floor_height and y > floor_height - 3 and data[vi] == c_lava then
+				if y <= floor_height and y > floor_height - 3 and y < sea_level + 5 and data[vi] == c_lava then
 					data[vi] = c_obsidian
 				end
 				
@@ -204,7 +204,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				end
 				
 				-- Deal with lava
-				if y >= ceiling_height and y < ceiling_height + 5 and data[vi] == c_lava then
+				if y >= ceiling_height and y < ceiling_height + 5 and y > sea_level - 5 and data[vi] == c_lava then
 					data[vi] = c_obsidian
 				end
 			end

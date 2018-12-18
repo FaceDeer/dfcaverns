@@ -16,6 +16,7 @@ minetest.register_node("df_farming:dead_fungus", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
+	floodable = true,
 	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, flow_through = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	selection_box = {
@@ -41,6 +42,7 @@ minetest.register_node("df_farming:cavern_fungi", {
 	paramtype = "light",
 	walkable = false,
 	buildable_to = true,
+	floodable = true,
 	light_source = 6,
 	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flow_through = 1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -141,6 +143,7 @@ df_farming.register_seed = function(name, description, image, stage_one, grow_ti
 		_dfcaverns_next_stage_time = grow_time,
 		paramtype = "light",
 		walkable = false,
+		floodable = true,
 		sunlight_propagates = true,
 		selection_box = {
 			type = "fixed",

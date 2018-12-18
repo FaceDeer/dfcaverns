@@ -130,12 +130,15 @@ end
 
 
 local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
+	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
+
 	local biomemap = minetest.get_mapgen_object("biomemap")
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)
 	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	local nvals_cave = node_arrays.nvals_cave
 	local cave_area = node_arrays.cave_area
+	local cavern_def = node_arrays.cavern_def
 	
 	-- Partly fill flooded caverns and warrens
 	if minp.y <= subsea_level then
@@ -154,7 +157,9 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				
 				if biome_name == "dfcaverns_level3_black_cap_biome" then
 					-- oil slick
-					if y == subsea_level and data[vi] == c_water then
+					local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+					local cave = math.abs(nvals_cave[cave_area:transform(area, vi)])
+					if y == subsea_level and data[vi] == c_water and cave + nvals_cracks[index2d]*0.025 < cavern_def.cave_threshold + 0.1 then
 						data[vi] = c_oil
 					end
 				elseif biome_name == "dfcaverns_level3_bloodnether_biome" then

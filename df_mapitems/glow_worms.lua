@@ -32,6 +32,7 @@ minetest.register_node("df_mapitems:glow_worm", {
 	drawtype = "plantlike",
 	walkable = false,
 	buildable_to = true,
+	floodable = true,
 	visual_scale = 1.0,
 	after_place_node = function(pos, placer) 
 		if df_mapitems.config.glow_worm_delay_multiplier > 0 then
@@ -77,14 +78,4 @@ df_mapitems.glow_worm_ceiling = function(area, data, vi)
 	end
 end
 
-minetest.register_abm({
-	label = "df_mapitems:water_destroys_glow_worms",
-	nodenames = {"df_mapitems:glow_worm"},
-	neighbors = {"default:water_source"},
-	interval = 1,
-	chance = 10,
-	action = function (pos)
-		minetest.set_node(pos, {name="air"})
-	end,	
-})
 

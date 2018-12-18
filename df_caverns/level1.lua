@@ -64,6 +64,8 @@ local fungiwood_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, d
 end
 
 local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
+	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
+
 	local biomemap = minetest.get_mapgen_object("biomemap")
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)

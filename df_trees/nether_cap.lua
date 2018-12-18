@@ -101,6 +101,7 @@ minetest.register_node("df_trees:nether_cap_sapling", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
+	floodable = true, -- nether cap spawn aren't tough enough to freeze water yet
 	selection_box = {
 		type = "fixed",
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}

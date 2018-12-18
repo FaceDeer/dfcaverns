@@ -186,6 +186,8 @@ minetest.register_node("df_trees:torchspine_ember", {
 	paramtype = "light",
 	light_source = 2,
 	paramtype2 = "facedir",
+	walkable = false,
+	floodable = true,
 	node_box = {
 		type = "fixed",
 		fixed = {

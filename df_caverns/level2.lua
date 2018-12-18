@@ -84,13 +84,15 @@ local tunnel_tube_cavern_floor = function(abs_cracks, vert_rand, vi, area, data,
 		if math.random() < 0.1 then
 			df_caverns.place_shrub(data, vi+ystride, data_param2, tunnel_tube_shrublist)
 		elseif math.random() < 0.05 then
-			df_trees.spawn_tunnel_tube_vm(vi+ystride, area, data, data_param2)
+			df_trees.spawn_tunnel_tube_vm(vi+ystride, area, data, data_param2, nil, nil) -- not sure why those nils are needed, but without them this method call occasionally spontaneously passes garbage values in for those parameters
 		end
 	end
 end
 
 
 local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
+	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
+
 	local biomemap = minetest.get_mapgen_object("biomemap")
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)

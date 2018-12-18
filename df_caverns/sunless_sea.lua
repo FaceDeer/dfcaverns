@@ -152,6 +152,8 @@ end
 
 
 local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, data)
+	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
+
 	local heatmap = minetest.get_mapgen_object("heatmap")
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)

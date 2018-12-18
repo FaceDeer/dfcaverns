@@ -42,7 +42,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	if minp.y > y_max or maxp.y < y_min then
 		return
 	end
+
 	local t_start = os.clock()
+	
+	--math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
 
 	local vm, data, area = mapgen_helper.mapgen_vm_data()
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld", minp, maxp, perlin_cave) --cave noise for structure
@@ -74,6 +77,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 		if y == math.floor(ceiling_height) and y > floor_height + 5 and 
 			(
+				--test if we're nestled in a crevice
 				(data[vi-area.ystride + 1] ~= c_air and data[vi-area.ystride - 1] ~= c_air) or
 				(data[vi-area.ystride + area.zstride] ~= c_air and data[vi-area.ystride - area.zstride] ~= c_air) or
 				(data[vi-area.ystride + 1 + area.zstride] ~= c_air and data[vi-area.ystride - 1 - area.zstride] ~= c_air) or

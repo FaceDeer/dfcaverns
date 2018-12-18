@@ -134,6 +134,7 @@ minetest.register_node("df_trees:black_cap_sapling", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
+	floodable = true,
 	selection_box = {
 		type = "fixed",
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}

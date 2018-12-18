@@ -71,6 +71,7 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	floodable = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -103,6 +104,7 @@ minetest.register_node("df_farming:plump_helmet_1", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	floodable = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -139,6 +141,7 @@ minetest.register_node("df_farming:plump_helmet_2", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	floodable = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -173,6 +176,7 @@ minetest.register_node("df_farming:plump_helmet_3", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	floodable = true,
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -205,6 +209,7 @@ minetest.register_node("df_farming:plump_helmet_4", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	floodable = false, -- I figure full grown plump helmets are sturdy enough to survive inundation
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -241,7 +246,7 @@ minetest.register_node("df_farming:plump_helmet_4", {
 	on_use = minetest.item_eat(4),
 })
 
-
+-- Need a separate picked type to prevent it from giving infinite spawn by just placing and re-harvesting
 minetest.register_node("df_farming:plump_helmet_4_picked", {
 	description = S("Plump Helmet"),
 	_doc_items_longdesc = df_farming.doc.plump_helmet_desc,
@@ -256,6 +261,7 @@ minetest.register_node("df_farming:plump_helmet_4_picked", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	floodable = false,
 	node_box = {
 		type = "fixed",
 		fixed = {

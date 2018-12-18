@@ -15,6 +15,7 @@ local register_dimple_cup = function(number)
 		inventory_image = "dfcaverns_dimple_cup_"..tostring(number)..".png",
 		paramtype = "light",
 		walkable = false,
+		floodable = true,
 		buildable_to = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, color_blue = 1, light_sensitive_fungus = 11, flower = 1},
 		sounds = default.node_sound_leaves_defaults(),

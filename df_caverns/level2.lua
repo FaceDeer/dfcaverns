@@ -29,9 +29,9 @@ local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- par
 
 local subsea_level = df_caverns.config.level2_min - (df_caverns.config.level2_min - df_caverns.config.level1_min) * 0.33
 
-local goblin_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_dimple_cup, c_pig_tail, c_dead_fungus, c_cavern_fungi}
-local tunnel_tube_shrublist = {c_pig_tail, c_pig_tail, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
-local spore_tree_shrublist = {c_pig_tail, c_dimple_cup, c_dimple_cup, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
+local goblin_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_dead_fungus, c_cavern_fungi}
+local tunnel_tube_shrublist = {c_sweet_pod, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
+local spore_tree_shrublist = {c_pig_tail, c_pig_tail, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
 
 local goblin_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	local ystride = area.ystride

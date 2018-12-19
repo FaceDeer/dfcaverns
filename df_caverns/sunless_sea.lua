@@ -75,10 +75,8 @@ local hot_zone_boundary = 70
 local middle_zone_boundary = 50
 local cool_zone_boundary = 30
 
-
 local mushroom_shrublist = {c_plump_helmet, c_plump_helmet, c_dimple_cup, c_dead_fungus, c_cavern_fungi,}
-
-local fungispore_shrublist = {c_pig_tail, c_cave_wheat, c_cave_wheat, c_sweet_pod, c_dead_fungus, c_cavern_fungi} 
+local fungispore_shrublist = {c_pig_tail, c_cave_wheat, c_cave_wheat, c_sweet_pod, c_quarry_bush, c_dead_fungus, c_cavern_fungi} 
 
 local mushroom_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	local ystride = area.ystride

@@ -11,6 +11,8 @@ end
 
 dofile(MP.."/gas.lua")
 
+local oil_sounds = {footstep = {name = "oil_oil_footstep", gain = 0.2}}
+
 minetest.register_node("oil:oil_source", {
 	description = S("Oil"),
 	_doc_items_longdesc = oil_desc,
@@ -58,7 +60,7 @@ minetest.register_node("oil:oil_source", {
 	liquid_viscosity = 1,
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
 	groups = {liquid = 3},
-	sounds = default.node_sound_water_defaults(),
+	sounds = oil_sounds,
 })
 
 minetest.register_node("oil:oil_flowing", {
@@ -108,7 +110,7 @@ minetest.register_node("oil:oil_flowing", {
 	liquid_viscosity = 1,
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
 	groups = {liquid = 3, not_in_creative_inventory = 1},
-	sounds = default.node_sound_water_defaults(),
+	sounds = oil_sounds,
 })
 
 minetest.register_craft({

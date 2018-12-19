@@ -287,6 +287,7 @@ minetest.register_node("df_trees:tunnel_tube_sapling", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
+	floodable = true,
 	selection_box = {
 		type = "fixed",
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
@@ -365,9 +366,26 @@ local tunnel_tube_patterns =
 	[9] = {{0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube_bottom}, {1, c_tunnel_tube_top}, {1, c_tunnel_tube_full}, {2, c_tunnel_tube_full}, {3, c_tunnel_tube_fruiting_body}},
 }
 
-df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, height, direction)
-	if not height then height = math.random(4, 9) end
-	if direction == nil then direction = math.random(0,3) end
+df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, param_height, param_direction)
+
+	local height = param_height
+	local direction = param_direction
+
+	if height == nil then
+		height = math.random(4, 9)
+	end
+	if direction == nil then
+		direction = math.random(0,3)
+	end
+	
+	if height > 9 or height < 4 then
+		minetest.log("error", "spawn_tunnel_tube_vm given bad height: " .. tostring(height) .. " location: " ..minetest.pos_to_string(area:position(vi)))
+		height = math.random(4,9)
+	end
+	if direction > 3 or direction < 0 then
+		minetest.log("error", "spawn_tunnel_tube_vm bad direction: " .. tostring(direction) .. " location: " ..minetest.pos_to_string(area:position(vi)))
+		direction = math.random(0,3)
+	end
 	
 	local pos = area:position(vi)
 	local y = pos.y

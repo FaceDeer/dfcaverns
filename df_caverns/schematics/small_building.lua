@@ -13,6 +13,7 @@ local n15 = { name = "stairs:stair_outer_slade_brick", param2 = 2, force_place=t
 local n16 = { name = "stairs:stair_slade_brick", param2 = 2, force_place=true }
 local n17 = { name = "stairs:stair_outer_slade_brick", param2 = 3, force_place=true }
 
+-- foundation nodes
 local n2 = { name = "df_mapitems:slade_brick", force_place=false, place_on_condition=mapgen_helper.buildable_to }
 local n8 = { name = "stairs:stair_slade_brick", param2 = 2, force_place=false, place_on_condition=mapgen_helper.buildable_to }
 local n9 = { name = "stairs:stair_slade_brick", force_place=false, place_on_condition=mapgen_helper.buildable_to }

@@ -20,7 +20,8 @@ local n14 = { name = "stairs:stair_slade_brick", param2 = 1, force_place=false, 
 
 return {
 	name = "df_caverns:small_building",
-	size = {y = 9, x = 11, z = 7},
+	size = {x = 11, y = 9, z = 7},
+	center_pos = {x = 7, y = 5, z = 3},
 	data = {
 		n1, n1, n2, n2, n2, n2, n2, n2, n2, n2, n2, n1, n1, n2, n2, n2, n2, 
 		n2, n2, n2, n2, n2, n1, n1, n2, n2, n2, n2, n2, n2, n2, n2, n2, n1, 

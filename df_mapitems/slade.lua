@@ -118,7 +118,7 @@ minetest.register_node("df_mapitems:slade_block", slade_block_def)
 
 local slade_seal_def = {
 	description = S("Slade Seal"),
-	_doc_items_longdesc = df_mapitems.doc.slade_desc,
+	_doc_items_longdesc = df_mapitems.doc.slade_seal_desc,
 	_doc_items_usagehelp = df_mapitems.doc.slade_usage,
 	tiles = {"dfcaverns_slade_block.png^dfcaverns_seal.png", "dfcaverns_slade_block.png"},
 	groups = {cracky=3, stone=1, level=3},

@@ -4,8 +4,16 @@ end
 
 local c_slade = minetest.get_content_id("df_mapitems:slade")
 local c_air = minetest.get_content_id("air")
+local c_stone = minetest.get_content_id("default:stone")
 
 local c_glowstone = minetest.get_content_id("df_mapitems:glowstone")
+
+local MP = minetest.get_modpath(minetest.get_current_modname())
+local oubliette_schematic = dofile(MP.."/schematics/oubliette.lua")
+local lamppost_schematic = dofile(MP.."/schematics/lamppost.lua")
+local small_slab_schematic = dofile(MP.."/schematics/small_slab.lua")
+local small_building_schematic = dofile(MP.."/schematics/small_building.lua")
+local medium_building_schematic = dofile(MP.."/schematics/medium_building.lua")
 
 local perlin_cave = {
 	offset = 0,
@@ -26,6 +34,16 @@ local perlin_wave = {
 	persist = 0.67
 }
 
+-- building zones
+local perlin_zone = {
+	offset = 0,
+	scale = 1,
+	spread = {x=500, y=500, z=500},
+	seed = 199422,
+	octaves = 3,
+	persist = 0.67
+}
+
 local median = df_caverns.config.underworld_level
 local floor_mult = 20
 local floor_displace = -10
@@ -33,8 +51,17 @@ local ceiling_mult = -40
 local ceiling_displace = 20
 local wave_mult = 50
 
+local oubliette_threshold = 0.8
+local town_threshold = 1.1
+
+
 local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
 local y_min = median - 2*wave_mult + floor_displace - 2*floor_mult
+
+local local_random = function(x, z)
+	math.randomseed(x + z*2^16)
+	return math.random()
+end
 
 minetest.register_on_generated(function(minp, maxp, seed)
 
@@ -44,15 +71,117 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 
 	local t_start = os.clock()
-	
-	--math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
 
-	local vm, data, area = mapgen_helper.mapgen_vm_data()
-	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld", minp, maxp, perlin_cave) --cave noise for structure
-	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", minp, maxp, perlin_wave) --cave noise for structure
+	local vm, data, data_param2, area = mapgen_helper.mapgen_vm_data_param2()
+	local emin = area.MinEdge
+	local emax = area.MaxEdge
+	
+	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld", emin, emax, perlin_cave) --cave noise for structure
+	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", emin, emax, perlin_wave) --cave noise for structure
+	local nvals_zone = mapgen_helper.perlin2d("df_caverns:underworld_zone", emin, emax, perlin_zone) --building zones
+	
+	-- create a deterministic list of buildings
+	local buildings = {}
+	for x = emin.x, emax.x do
+		for z = emin.z, emax.z do
+			local index2d = mapgen_helper.index2d(emin, emax, x, z)
+			local zone = nvals_zone[index2d]
+			
+			if zone > oubliette_threshold and zone < town_threshold then
+				-- oubliette zone
+				--zone = (zone - oubliette_threshold)/(town_threshold-oubliette_threshold) -- turn this into a 0-1 spread
+				local building_val = local_random(x, z)
+				if building_val > 0.98 then
+					building_val = (building_val - 0.98)/0.02
+					local building_type
+					if building_val < 0.8 then
+						building_type = "oubliette"
+					elseif building_val < 0.9 then
+						building_type = "open oubliette"
+					else
+						building_type = "lamppost"
+					end
+					table.insert(buildings,
+						{
+							pos = {x=x, z=z}, -- y to be determined later
+							building_type = building_type,
+							bounding_box = {minpos={x=x-2, z=z-2}, maxpos={x=x+2, z=z+2}},
+							priority = math.floor(building_val * 10000000) % 1000, -- indended to allow for deterministic removal of overlapping buildings
+						}						
+					)
+				end
+			elseif zone > town_threshold then
+				-- town zone
+				local building_val = local_random(x, z)
+				if building_val > 0.9925 then
+					building_val = (building_val - 0.9925)/0.0075
+
+					local building_type
+					local bounding_box
+					local priority = math.floor(building_val * 10000000) % 1000
+					local rotation = (priority % 4) * 90
+
+					if building_val < 0.75 then
+						building_type = "small building"
+						local boundmin, boundmax = mapgen_helper.get_schematic_bounding_box({x=x, y=0, z=z}, small_building_schematic, rotation)
+						bounding_box = {minpos=boundmin, maxpos=boundmax}
+					elseif building_val < 0.85 then
+						building_type = "medium building"
+						local boundmin, boundmax = mapgen_helper.get_schematic_bounding_box({x=x, y=0, z=z}, medium_building_schematic, rotation)
+						bounding_box = {minpos=boundmin, maxpos=boundmax}					
+					else
+						building_type = "small slab"
+						local boundmin, boundmax = mapgen_helper.get_schematic_bounding_box({x=x, y=0, z=z}, small_slab_schematic, rotation)
+						bounding_box = {minpos=boundmin, maxpos=boundmax}						
+					end
+					
+					table.insert(buildings,
+						{
+							pos = {x=x, z=z}, -- y to be determined later
+							building_type = building_type,
+							bounding_box = bounding_box,
+							rotation = rotation,
+							priority = priority, -- indended to allow for deterministic removal of overlapping buildings
+						}
+					)
+				end
+			end			
+		end
+	end
+	
+	-- eliminate overlapping buildings
+	local building_count = table.getn(buildings)
+	local overlap_count = 0
+	for i = 1, building_count-1 do
+		local curr_building = buildings[i]
+		for j = i+1, building_count do
+			local test_building = buildings[j]
+			if test_building ~= nil and curr_building ~= nil and mapgen_helper.intersect_exists_xz(
+				curr_building.bounding_box.minpos,
+				curr_building.bounding_box.maxpos,
+				test_building.bounding_box.minpos,
+				test_building.bounding_box.maxpos) then
+				
+				if curr_building.priority < test_building.priority then -- this makes elimination of overlapping buildings deterministic
+					buildings[i] = nil
+					j=building_count+1
+				else
+					buildings[j] = nil
+				end
+				overlap_count = overlap_count + 1
+			end
+		end
+	end
+	
+	if overlap_count > building_count * 2/3 then
+		minetest.log("warning", "[df_caverns] underworld mapgen generated " ..
+			tostring(building_count) .. " buildings and " .. tostring(overlap_count) ..
+			" were eliminated as overlapping, consider reducing building generation probability" ..
+			" to improve efficiency.")
+	end
 	
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
-		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
+		local index2d = mapgen_helper.index2d(emin, emax, x, z)
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 		local wave = nvals_wave[index2d] * wave_mult
 		
@@ -65,31 +194,71 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 
-	-- TODO don't need to iterate the whole thing for this, just the ceiling nodes.
-	for vi, x, y, z in area:iterp_yxz(vector.add(minp,1), vector.subtract(maxp, 1)) do
-		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
-		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
-		
-		local wave = nvals_wave[index2d] * wave_mult
-		
-		local floor_height = abs_cave * floor_mult + median + floor_displace + wave 
-		local ceiling_height = abs_cave * ceiling_mult + median + ceiling_displace + wave
+	-- Ceiling decoration
+	for x = minp.x + 1, maxp.x-1 do
+		for z = minp.z + 1, maxp.z -1 do
+			local index2d = mapgen_helper.index2d(emin, emax, x, z)
+			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+			local wave = nvals_wave[index2d] * wave_mult
+			local floor_height = math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 	
-		if y == math.floor(ceiling_height) and y > floor_height + 5 and 
-			(
-				--test if we're nestled in a crevice
-				(data[vi-area.ystride + 1] ~= c_air and data[vi-area.ystride - 1] ~= c_air) or
-				(data[vi-area.ystride + area.zstride] ~= c_air and data[vi-area.ystride - area.zstride] ~= c_air) or
-				(data[vi-area.ystride + 1 + area.zstride] ~= c_air and data[vi-area.ystride - 1 - area.zstride] ~= c_air) or
-				(data[vi-area.ystride - 1 + area.zstride] ~= c_air and data[vi-area.ystride + 1 - area.zstride] ~= c_air)
-			)
-			then
-			data[vi] = c_glowstone
+			if ceiling_height > floor_height + 5 and ceiling_height < maxp.y and ceiling_height > minp.y then
+				local vi = area:index(x, ceiling_height, z)
+				if (
+					--test if we're nestled in a crevice
+					(data[vi-area.ystride + 1] == c_stone and data[vi-area.ystride - 1] == c_stone) or
+					(data[vi-area.ystride + area.zstride] == c_stone and data[vi-area.ystride - area.zstride] == c_stone) or
+					(data[vi-area.ystride + 1 + area.zstride] == c_stone and data[vi-area.ystride - 1 - area.zstride] == c_stone) or
+					(data[vi-area.ystride - 1 + area.zstride] == c_stone and data[vi-area.ystride + 1 - area.zstride] == c_stone)
+				)
+				then
+					data[vi] = c_glowstone
+				end
+			end
+		end
+	end
+
+	-- buildings
+	for x = emin.x + 5, emax.x - 5 do
+		for z = emin.z + 5, emax.z - 5 do
+			local index2d = mapgen_helper.index2d(emin, emax, x, z)
+			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+			local wave = nvals_wave[index2d] * wave_mult
+			local floor_height = math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
+		
+			if ceiling_height > floor_height then
+				for i = 1, building_count do
+					local building = buildings[i]
+					if building ~= nil and building.pos.x == x and building.pos.z == z then
+						building.pos.y = floor_height
+						--minetest.chat_send_all("placing " .. building.building_type .. " at " .. minetest.pos_to_string(building.pos))
+						if building.building_type == "oubliette" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic)						
+						elseif building.building_type == "open oubliette" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic, 0, {["df_mapitems:slade_seal"] = "air"})
+						elseif building.building_type == "lamppost" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, lamppost_schematic)
+						elseif building.building_type == "small building" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_building_schematic, building.rotation)
+						elseif building.building_type == "medium building" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, medium_building_schematic, building.rotation)
+						elseif building.building_type == "small slab" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_slab_schematic, building.rotation)
+						else
+							minetest.log("error", "unrecognized underworld building type: " .. tostring(building.building_type))
+						end
+						buildings[i] = nil -- done with this building
+					end
+				end
+			end			
 		end
 	end
 
 	--send data back to voxelmanip
 	vm:set_data(data)
+	vm:set_param2_data(data_param2)
 	--calc lighting
 	vm:set_lighting({day = 0, night = 0})
 	vm:calc_lighting()

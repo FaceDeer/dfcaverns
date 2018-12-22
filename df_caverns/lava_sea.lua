@@ -52,8 +52,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local vm, data, area = mapgen_helper.mapgen_vm_data()
 	local heatmap = minetest.get_mapgen_object("heatmap")
 	
-	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld", minp, maxp, perlin_cave)
-	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", minp, maxp, perlin_wave)
+	local nvals_cave = mapgen_helper.perlin2d("df_caverns:lava_cave", minp, maxp, perlin_cave)
+	local nvals_wave = mapgen_helper.perlin2d("df_caverns:lava_wave", minp, maxp, perlin_wave)
 	local nvals_lavasurface = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
@@ -82,27 +82,32 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 
-	-- decoration loop. TODO: only need to do a 2-dimensional run
-	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
-		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
-		local rand = math.random()
-		local mese_intensity = heatmap[index2d] * rand
+	-- decoration loop.
+	for x = minp.x + 1, maxp.x-1 do
+		for z = minp.z + 1, maxp.z -1 do
+			local index2d = mapgen_helper.index2d(minp, maxp, x, z)
+			local rand = math.random()
+			local mese_intensity = heatmap[index2d] * rand
+					
+			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+			local wave = nvals_wave[index2d] * wave_mult
+			local floor_height = math.floor(abs_cave * floor_mult + floor_displace + median + wave)
+			local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
+
+			local lava = nvals_lavasurface[index2d]
+			local lava_height = math.floor(median + lava * 2)
 		
-		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
-		local wave = nvals_wave[index2d] * wave_mult
-		local lava = nvals_lavasurface[index2d]
-		
-		local floor_height = math.floor(abs_cave * floor_mult + floor_displace + median + wave)
-		local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-		local lava_height = math.floor(median + lava * 2)
-		
-		if mese_intensity > 90 and y > lava_height + 1 and y == ceiling_height and y > floor_height + 1 and not mapgen_helper.buildable_to(data[vi]) then
-			-- decorate ceiling
-			data[vi] = c_meseore
-			if mese_intensity > 95 and mese_intensity < 105 then
-				data[vi-area.ystride] = c_mesecry
-			elseif mese_intensity >= 105 then
-				subterrane.big_stalactite(vi, area, data, 6, 13, c_meseore, c_meseore, c_mesecry)
+			if mese_intensity > 90 and ceiling_height > lava_height + 1 and ceiling_height > floor_height + 1 then
+				local vi = area:index(x, ceiling_height, z)
+				if not mapgen_helper.buildable_to(data[vi]) then
+					-- decorate ceiling
+					data[vi] = c_meseore
+					if mese_intensity > 94 and mese_intensity < 104 then
+						data[vi-area.ystride] = c_mesecry
+					elseif mese_intensity >= 104 then
+						subterrane.big_stalactite(vi, area, data, 6, 13, c_meseore, c_meseore, c_mesecry)
+					end
+				end
 			end
 		end
 	end

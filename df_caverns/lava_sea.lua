@@ -14,7 +14,7 @@ local perlin_cave = {
 	offset = 0,
 	scale = 1,
 	spread = {x=100, y=100, z=100},
-	seed = -400000000089,
+	seed = -787324,
 	octaves = 3,
 	persist = 0.67
 }
@@ -24,7 +24,7 @@ local perlin_wave = {
 	offset = 0,
 	scale = 1,
 	spread = {x=1000, y=1000, z=1000},
-	seed = -4000089,
+	seed = 256664,
 	octaves = 3,
 	persist = 0.67
 }
@@ -52,8 +52,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local vm, data, area = mapgen_helper.mapgen_vm_data()
 	local heatmap = minetest.get_mapgen_object("heatmap")
 	
-	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld", minp, maxp, perlin_cave)
-	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", minp, maxp, perlin_wave)
+	local nvals_cave = mapgen_helper.perlin2d("df_caverns:lava_cave", minp, maxp, perlin_cave)
+	local nvals_wave = mapgen_helper.perlin2d("df_caverns:lava_wave", minp, maxp, perlin_wave)
 	local nvals_lavasurface = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do

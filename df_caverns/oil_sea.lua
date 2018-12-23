@@ -49,8 +49,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local vm, data, area = mapgen_helper.mapgen_vm_data()
 	local heatmap = minetest.get_mapgen_object("heatmap")
 	
-	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld", minp, maxp, perlin_cave)
-	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", minp, maxp, perlin_wave)
+	local nvals_cave = mapgen_helper.perlin2d("df_caverns:oil_cave", minp, maxp, perlin_cave)
+	local nvals_wave = mapgen_helper.perlin2d("df_caverns:oil_wave", minp, maxp, perlin_wave)
 	
 	local debugged = false
 	

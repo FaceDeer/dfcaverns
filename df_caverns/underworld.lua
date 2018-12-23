@@ -21,7 +21,7 @@ local perlin_cave = {
 	offset = 0,
 	scale = 1,
 	spread = {x=200, y=200, z=200},
-	seed = -400000000089,
+	seed = 88233498,
 	octaves = 6,
 	persist = 0.67
 }
@@ -31,7 +31,7 @@ local perlin_wave = {
 	offset = 0,
 	scale = 1,
 	spread = {x=1000, y=1000, z=1000},
-	seed = -4000089,
+	seed = 993455,
 	octaves = 3,
 	persist = 0.67
 }
@@ -166,7 +166,7 @@ local get_buildings = function(emin, emax, pit, nvals_zone)
 	if overlap_count > building_count * 2/3 then
 		minetest.log("warning", "[df_caverns] underworld mapgen generated " ..
 			tostring(building_count) .. " buildings and " .. tostring(overlap_count) ..
-			" were eliminated as overlapping, if this happens a lot consider reducing building " ..
+			" were eliminated as overlapping, if this happens a lot consider reducing building" ..
 			" generation probability to improve efficiency.")
 	end
 	
@@ -242,7 +242,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local emin = area.MinEdge
 	local emax = area.MaxEdge
 	
-	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld", emin, emax, perlin_cave) --cave noise for structure
+	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld_cave", emin, emax, perlin_cave) --cave noise for structure
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", emin, emax, perlin_wave) --cave noise for structure
 	local nvals_zone = mapgen_helper.perlin2d("df_caverns:underworld_zone", emin, emax, perlin_zone) --building zones
 	

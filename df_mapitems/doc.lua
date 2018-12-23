@@ -47,5 +47,5 @@ end
 
 df_mapitems.doc.slade_seal_desc = S("This block of Slade, carved by an unknown hand, is engraved with mysterious symbols. Most of the engraving's meaning is lost to the mists of time but one frament in the oldest known language can be translated: \"This place is not a place of honor.\"")
 
-df_mapitems.doc.glow_amethyst_desc = S("Glowing purple crystals that grow on the fringes of reality.")
+df_mapitems.doc.glow_amethyst_desc = S("Glowing purple crystals that grow through holes in the foundation of the world.")
 df_mapitems.doc.glow_amethyst_usage = S("These crystals have no known use.")

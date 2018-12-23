@@ -1,3 +1,5 @@
+-- This file contains code that is used by multiple different cavern layers.
+
 local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
 local c_stone = minetest.get_content_id("default:stone")
@@ -190,13 +192,19 @@ df_caverns.np_cracks = {
 ---------------------------------------------------------------------------------
 
 -- default mapgen registers an "underground" biome that gets in the way of everything.
-subterrane:override_biome({
+local new_underground_biome = {
 	name = "underground",
 	y_min = df_caverns.config.ymax,
 	y_max = -113,
 	heat_point = 50,
 	humidity_point = 50,
-})
+}
+if minetest.unregister_biome then
+	minetest.unregister_biome("underground")
+	minetest.register_biome(new_underground_biome)
+else
+	subterrane:override_biome(new_underground_biome)
+end
 
 df_caverns.perlin_cave_lava = {
 	offset = 0,

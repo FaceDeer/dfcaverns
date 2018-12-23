@@ -12,6 +12,7 @@ local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param
 local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
 local subsea_level = df_caverns.config.level1_min - (df_caverns.config.level1_min - df_caverns.config.ymax) * 0.33
+local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold, df_caverns.config.cavern_threshold)
 
 local tower_cap_shrublist = {c_plump_helmet, c_plump_helmet, c_dead_fungus, c_cavern_fungi}
 local fungiwood_shrublist = {c_plump_helmet, c_cave_wheat, c_cave_wheat, c_dead_fungus, c_cavern_fungi}
@@ -66,7 +67,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	-- Partly fill flooded caverns and warrens
 	if minp.y <= subsea_level then
 		for vi in area:iterp(minp, maxp) do
-			if data[vi] == c_air and area:get_y(vi) <= subsea_level and nvals_cave[cave_area:transform(area, vi)] < -0.25 then
+			if data[vi] == c_air and area:get_y(vi) <= subsea_level and nvals_cave[cave_area:transform(area, vi)] < -flooding_threshold then
 				data[vi] = c_water
 			end
 		end

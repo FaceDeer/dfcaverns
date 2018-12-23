@@ -166,8 +166,8 @@ local get_buildings = function(emin, emax, pit, nvals_zone)
 	if overlap_count > building_count * 2/3 then
 		minetest.log("warning", "[df_caverns] underworld mapgen generated " ..
 			tostring(building_count) .. " buildings and " .. tostring(overlap_count) ..
-			" were eliminated as overlapping, consider reducing building generation probability" ..
-			" to improve efficiency.")
+			" were eliminated as overlapping, if this happens a lot consider reducing building " ..
+			" generation probability to improve efficiency.")
 	end
 	
 	local compacted_buildings = {}
@@ -183,6 +183,8 @@ end
 
 local radius_pit_max = 40 -- won't actually be this wide, there'll be crystal spires around it
 local radius_pit_variance = 10
+local plasma_depth_min = 5
+local plasma_depth_max = 75
 
 local region_mapblocks = 8 -- One glowing pit in each region this size
 local mapgen_chunksize = tonumber(minetest.get_mapgen_setting("chunksize"))
@@ -209,9 +211,10 @@ local get_pit = function(pos, mapgen_seed)
 	local location = scatter_2d(corner_xz, pit_region_size, radius_pit_max + radius_pit_variance)
 	local variance_multiplier = math.random()
 	local radius = variance_multiplier * (radius_pit_max - 15) + 15
-	local variance = radius_pit_variance/2 + radius_pit_variance*variance_multiplier/2 
+	local variance = radius_pit_variance/2 + radius_pit_variance*variance_multiplier/2
+	local depth = math.random(plasma_depth_min, plasma_depth_max)
 	math.randomseed(next_seed)
-	return {location = location, radius = radius, variance = variance}
+	return {location = location, radius = radius, variance = variance, depth = depth}
 end
 
 local perlin_pit = {
@@ -267,15 +270,17 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			then
 				-- there's a pit nearby
 				if pit_uninitialized then
-					nvals_pit, area_pit = mapgen_helper.perlin3d("subterrane:perlin_cave", minp, maxp, perlin_pit) -- determine which areas are spongey with warrens
+					nvals_pit, area_pit = mapgen_helper.perlin3d("df_cavern:perlin_cave", minp, maxp, perlin_pit) -- determine which areas are spongey with warrens
 					pit_uninitialized = false
 				end
 				local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
 				local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
-				if y <  median + floor_displace + wave - 50 and distance < pit.radius then
-					data[vi] = c_pit_plasma				
-				elseif distance < pit.radius -3 then
-					data[vi] = c_air
+				if distance < pit.radius -3 then
+					if y <  median + floor_displace + wave - pit.depth then
+						data[vi] = c_pit_plasma
+					else
+						data[vi] = c_air
+					end
 				elseif distance < pit.radius then
 					data[vi] = c_amethyst
 				elseif distance < radius_pit_max and y == floor_height - 4 then
@@ -326,39 +331,39 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			then
 				if vector.distance(pit.location, {x=x, y=0, z=z}) < radius_pit_max + radius_pit_variance then
 					-- there's a pit nearby
-					skip = true -- TODO
+					skip = true
 				end
 			end
-
-		
-			local index2d = mapgen_helper.index2d(emin, emax, x, z)
-			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
-			local wave = nvals_wave[index2d] * wave_mult
-			local floor_height = math.floor(abs_cave * floor_mult + median + floor_displace + wave)
-			local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-		
-			if ceiling_height > floor_height and floor_height <= maxp.y and floor_height >= minp.y  then
-				local building = buildings[minetest.hash_node_position({x=x,y=0,z=z})]
-				if building ~= nil then
-					building.pos.y = floor_height
-					--minetest.chat_send_all("placing " .. building.building_type .. " at " .. minetest.pos_to_string(building.pos))
-					if building.building_type == "oubliette" then
-						mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic)						
-					elseif building.building_type == "open oubliette" then
-						mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic, 0, {["df_mapitems:slade_seal"] = "air"})
-					elseif building.building_type == "lamppost" then
-						mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, lamppost_schematic)
-					elseif building.building_type == "small building" then
-						mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_building_schematic, building.rotation)
-					elseif building.building_type == "medium building" then
-						mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, medium_building_schematic, building.rotation)
-					elseif building.building_type == "small slab" then
-						mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_slab_schematic, building.rotation)
-					else
-						minetest.log("error", "unrecognized underworld building type: " .. tostring(building.building_type))
+			if not skip then
+				local index2d = mapgen_helper.index2d(emin, emax, x, z)
+				local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+				local wave = nvals_wave[index2d] * wave_mult
+				local floor_height = math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+				local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
+				
+				if ceiling_height > floor_height and floor_height <= maxp.y and floor_height >= minp.y  then
+					local building = buildings[minetest.hash_node_position({x=x,y=0,z=z})]
+					if building ~= nil then
+						building.pos.y = floor_height
+						--minetest.chat_send_all("placing " .. building.building_type .. " at " .. minetest.pos_to_string(building.pos))
+						if building.building_type == "oubliette" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic)						
+						elseif building.building_type == "open oubliette" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic, 0, {["df_mapitems:slade_seal"] = "air"})
+						elseif building.building_type == "lamppost" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, lamppost_schematic)
+						elseif building.building_type == "small building" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_building_schematic, building.rotation)
+						elseif building.building_type == "medium building" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, medium_building_schematic, building.rotation)
+						elseif building.building_type == "small slab" then
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_slab_schematic, building.rotation)
+						else
+							minetest.log("error", "unrecognized underworld building type: " .. tostring(building.building_type))
+						end
 					end
-				end
-			end			
+				end	
+			end
 		end
 	end
 

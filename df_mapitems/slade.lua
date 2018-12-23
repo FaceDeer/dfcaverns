@@ -19,7 +19,7 @@ local slade_def = {
 	_doc_items_longdesc = df_mapitems.doc.slade_desc,
 	_doc_items_usagehelp = df_mapitems.doc.slade_usage,
 	tiles = {"dfcaverns_slade.png"},
-	groups = {cracky=3, stone=1, level=3},
+	groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
 	on_blast = function(pos, intensity)
@@ -39,15 +39,9 @@ local slade_brick_def = {
 	_doc_items_longdesc = df_mapitems.doc.slade_desc,
 	_doc_items_usagehelp = df_mapitems.doc.slade_usage,
 	tiles = {"dfcaverns_slade_brick.png"},
-	groups = { cracky=3, stone=1, level=3 },
+	groups = { cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
-	on_blast = function(pos, intensity)
-		if intensity > 4.0 then
-			minetest.set_node(pos, {name="df_mapitems:slade_sand"})
-			minetest.check_for_falling(pos)
-		end
-	end,
 }
 if invulnerable then
 	add_immortality(slade_brick_def)
@@ -70,14 +64,8 @@ local slade_wall_def = {
 	paramtype = "light",
 	tiles = {"dfcaverns_slade_brick.png"},
 	walkable = true,
-	groups = { cracky=3, stone=1, level=3 },
+	groups = { cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
-	on_blast = function(pos, intensity)
-		if intensity > 3.0 then
-			minetest.set_node(pos, {name="df_mapitems:slade_sand"})
-			minetest.check_for_falling(pos)
-		end
-	end,
 }
 if invulnerable then
 	add_immortality(slade_wall_def)
@@ -91,13 +79,10 @@ minetest.register_node("df_mapitems:slade_sand", {
 	_doc_items_usagehelp = df_mapitems.doc.slade_usage,
 	tiles = {"dfcaverns_slade_sand.png"},
 	is_ground_content = true,
-	groups = {crumbly = 3, level = 2, falling_node = 1},
+	groups = {crumbly = 3, level = 2, falling_node = 1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = default.node_sound_gravel_defaults({
 		footstep = {name = "default_gravel_footstep", gain = 0.45},
 	}),
-	can_dig = function(pos, player)
-		return minetest.settings:get_bool("creative_mode")
-	end,
 })
 
 local slade_block_def = {
@@ -105,7 +90,7 @@ local slade_block_def = {
 	_doc_items_longdesc = df_mapitems.doc.slade_desc,
 	_doc_items_usagehelp = df_mapitems.doc.slade_usage,
 	tiles = {"dfcaverns_slade_block.png"},
-	groups = {cracky=3, stone=1, level=3},
+	groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
 }
@@ -121,7 +106,7 @@ local slade_seal_def = {
 	_doc_items_longdesc = df_mapitems.doc.slade_seal_desc,
 	_doc_items_usagehelp = df_mapitems.doc.slade_usage,
 	tiles = {"dfcaverns_slade_block.png^dfcaverns_seal.png", "dfcaverns_slade_block.png"},
-	groups = {cracky=3, stone=1, level=3},
+	groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
 }
@@ -154,7 +139,7 @@ minetest.register_abm{
 -- Register stair and slab
 
 if minetest.get_modpath("stairs") then
-	local stair_groups = {level = 3}
+	local stair_groups = {level = 3, mese_radiation_shield=1, pit_plasma_resistant=1, slade=1}
 	if invulnerable then
 		stair_groups.immortal = 1
 	else

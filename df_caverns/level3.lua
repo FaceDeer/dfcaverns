@@ -22,6 +22,7 @@ local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param
 local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
 local subsea_level = df_caverns.config.level3_min - (df_caverns.config.level3_min - df_caverns.config.level2_min) * 0.33
+local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold, df_caverns.config.cavern_threshold)
 
 local ice_thickness = 3
 
@@ -129,7 +130,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	if minp.y <= subsea_level then
 		for vi in area:iterp(minp, maxp) do
 			local y = area:get_y(vi)
-			if y <= subsea_level and nvals_cave[cave_area:transform(area, vi)] < -0.15 then
+			if y <= subsea_level and nvals_cave[cave_area:transform(area, vi)] < -flooding_threshold then
 				if data[vi] == c_air and y <= subsea_level then
 					data[vi] = c_water
 				end

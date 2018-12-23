@@ -85,7 +85,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	for x = emin.x, emax.x do
 		for z = emin.z, emax.z do
 			local index2d = mapgen_helper.index2d(emin, emax, x, z)
-			local zone = nvals_zone[index2d]
+			local zone = math.abs(nvals_zone[index2d])
 			
 			if zone > oubliette_threshold and zone < town_threshold then
 				-- oubliette zone
@@ -228,7 +228,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local floor_height = math.floor(abs_cave * floor_mult + median + floor_displace + wave)
 			local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 		
-			if ceiling_height > floor_height then
+			if ceiling_height > floor_height and floor_height <= maxp.y and floor_height >= minp.y  then
 				for i = 1, building_count do
 					local building = buildings[i]
 					if building ~= nil and building.pos.x == x and building.pos.z == z then

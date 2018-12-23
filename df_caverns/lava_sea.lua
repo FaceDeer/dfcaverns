@@ -52,8 +52,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local vm, data, area = mapgen_helper.mapgen_vm_data()
 	local heatmap = minetest.get_mapgen_object("heatmap")
 	
-	local nvals_cave = mapgen_helper.perlin2d("df_caverns:lava_cave", minp, maxp, perlin_cave)
-	local nvals_wave = mapgen_helper.perlin2d("df_caverns:lava_wave", minp, maxp, perlin_wave)
+	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld", minp, maxp, perlin_cave)
+	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", minp, maxp, perlin_wave)
 	local nvals_lavasurface = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
@@ -97,7 +97,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local lava = nvals_lavasurface[index2d]
 			local lava_height = math.floor(median + lava * 2)
 		
-			if mese_intensity > 90 and ceiling_height > lava_height + 1 and ceiling_height > floor_height + 1 then
+			if mese_intensity > 90 and ceiling_height > lava_height + 1 and ceiling_height > floor_height + 1 and ceiling_height <= maxp.y and ceiling_height >= minp.y then
 				local vi = area:index(x, ceiling_height, z)
 				if not mapgen_helper.buildable_to(data[vi]) then
 					-- decorate ceiling

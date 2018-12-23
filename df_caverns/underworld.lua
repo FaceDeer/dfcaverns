@@ -8,6 +8,7 @@ local c_stone = minetest.get_content_id("default:stone")
 
 local c_glowstone = minetest.get_content_id("df_mapitems:glowstone")
 local c_amethyst = minetest.get_content_id("df_mapitems:glow_amethyst")
+local c_pit_plasma = minetest.get_content_id("df_mapitems:pit_plasma")
 
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local oubliette_schematic = dofile(MP.."/schematics/oubliette.lua")
@@ -52,14 +53,15 @@ local ceiling_mult = -40
 local ceiling_displace = 20
 local wave_mult = 50
 
+local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
+local y_min = median - 2*wave_mult + floor_displace - 2*floor_mult
+
+
 ---------------------------------------------------------
 -- Buildings
 
 local oubliette_threshold = 0.8
 local town_threshold = 1.1
-
-local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
-local y_min = median - 2*wave_mult + floor_displace - 2*floor_mult
 
 local local_random = function(x, z)
 	math.randomseed(x + z*2^16)
@@ -268,7 +270,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end
 				local pit_value = nvals_pit[area_pit:index(x,y,z)] * radius_pit_variance
 				local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
-				if distance < pit.radius -3 then
+				if y <  median + floor_displace + wave - 50 and distance < pit.radius then
+					data[vi] = c_pit_plasma				
+				elseif distance < pit.radius -3 then
 					data[vi] = c_air
 				elseif distance < pit.radius then
 					data[vi] = c_amethyst

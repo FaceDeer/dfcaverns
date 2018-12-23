@@ -17,4 +17,4 @@ dofile(modpath.."/cave_coral.lua")
 
 dofile(modpath.."/slade.lua")
 dofile(modpath.."/underworld_shard.lua")
-
+dofile(modpath.."/glow_pit.lua")

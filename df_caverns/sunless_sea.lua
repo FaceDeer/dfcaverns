@@ -1,6 +1,5 @@
 local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
-local c_stone = minetest.get_content_id("default:stone")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_sand = minetest.get_content_id("default:sand")
@@ -19,8 +18,10 @@ local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param
 local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
-------------------------------------------------------------------------------------------
+local mushroom_shrublist = {c_plump_helmet, c_plump_helmet, c_dimple_cup, c_dead_fungus, c_cavern_fungi,}
+local fungispore_shrublist = {c_pig_tail, c_cave_wheat, c_cave_wheat, c_sweet_pod, c_quarry_bush, c_dead_fungus, c_cavern_fungi} 
 
+------------------------------------------------------------------------------------------
 
 local perlin_cave_sunless_sea = {
 	offset = 0,
@@ -74,9 +75,6 @@ local y_min_river = sea_level - 2*wave_mult + floor_displace
 local hot_zone_boundary = 70
 local middle_zone_boundary = 50
 local cool_zone_boundary = 30
-
-local mushroom_shrublist = {c_plump_helmet, c_plump_helmet, c_dimple_cup, c_dead_fungus, c_cavern_fungi,}
-local fungispore_shrublist = {c_pig_tail, c_cave_wheat, c_cave_wheat, c_sweet_pod, c_quarry_bush, c_dead_fungus, c_cavern_fungi} 
 
 local mushroom_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	local ystride = area.ystride

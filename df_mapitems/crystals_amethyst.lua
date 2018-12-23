@@ -3,7 +3,9 @@ local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
 minetest.register_node("df_mapitems:glow_amethyst", {
-	description = S("Glowing Spire Block"),
+	description = S("Glowing Amethyst Block"),
+	_doc_items_longdesc = df_mapitems.doc.glow_amethyst_desc,
+	_doc_items_usagehelp = df_mapitems.doc.glow_amethyst_usage,
 	tiles = {"dfcaverns_glow_amethyst.png"},
 	is_ground_content = true,
 	groups = {cracky=3},
@@ -16,7 +18,7 @@ minetest.register_node("df_mapitems:glow_amethyst", {
 })
 
 if minetest.get_modpath("radiant_damage") and radiant_damage.override_radiant_damage and radiant_damage.config.enable_mese_damage then
-	radiant_damage.override_radiant_damage("mese", {emitted_by={["df_mapitems:glow_amethyst"] = radiant_damage.config.mese_damage*4}})
+	radiant_damage.override_radiant_damage("mese", {emitted_by={["df_mapitems:glow_amethyst"] = radiant_damage.config.mese_damage}})
 end
 
 local c_amethyst = minetest.get_content_id("df_mapitems:glow_amethyst")

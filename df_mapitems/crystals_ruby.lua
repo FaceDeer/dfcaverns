@@ -2,36 +2,8 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
---glowing mese crystal blocks
-minetest.register_node("df_mapitems:glow_mese", {
-	description = S("Flawless Mese Block"),
-	_doc_items_longdesc = df_mapitems.doc.glow_mese_desc,
-	_doc_items_usagehelp = df_mapitems.doc.glow_mese_usage,
-	tiles = {"dfcaverns_glow_mese.png"},
-	is_ground_content = true,
-	groups = {cracky=3},
-	sounds = default.node_sound_glass_defaults(),
-	light_source = 13,
-	paramtype = "light",
-	use_texture_alpha = true,
-	drawtype = "glasslike",
-	sunlight_propagates = true,
-})
-
-minetest.register_craft({
-	output = 'default:mese_crystal 12',
-	recipe = {
-		{'df_mapitems:glow_mese'},
-	}
-})
-
-if minetest.get_modpath("radiant_damage") and radiant_damage.override_radiant_damage and radiant_damage.config.enable_mese_damage then
-	radiant_damage.override_radiant_damage("mese", {emitted_by={["df_mapitems:glow_mese"] = radiant_damage.config.mese_damage*12}})
-end
-
-
 minetest.register_node("df_mapitems:glow_ruby_ore", {
-	description = S("Crystal Vein"),
+	description = S("Red Crystal Vein"),
 	_doc_items_longdesc = df_mapitems.doc.glow_ruby_ore_desc,
 	_doc_items_usagehelp = df_mapitems.doc.glow_ruby_ore_usage,
 	tiles = {"dfcaverns_glow_ruby_ore.png"},
@@ -42,7 +14,7 @@ minetest.register_node("df_mapitems:glow_ruby_ore", {
 
 
 minetest.register_node("df_mapitems:big_crystal", {
-	description = S("Giant Crystal"),
+	description = S("Giant Red Crystal"),
 	_doc_items_longdesc = df_mapitems.doc.big_crystal_desc,
 	_doc_items_usagehelp = df_mapitems.doc.big_crystal_usage,
 	drawtype = "mesh",
@@ -69,7 +41,7 @@ minetest.register_node("df_mapitems:big_crystal", {
 })
 
 minetest.register_node("df_mapitems:med_crystal", {
-	description = S("Big Crystal"),
+	description = S("Big Red Crystal"),
 	_doc_items_longdesc = df_mapitems.doc.big_crystal_desc,
 	_doc_items_usagehelp = df_mapitems.doc.big_crystal_usage,
 	drawtype = "mesh",
@@ -97,7 +69,7 @@ minetest.register_node("df_mapitems:med_crystal", {
 
 
 minetest.register_node("df_mapitems:big_crystal_30", {
-	description = S("Giant Crystal"),
+	description = S("Giant Red Crystal"),
 	_doc_items_longdesc = df_mapitems.doc.big_crystal_desc,
 	_doc_items_usagehelp = df_mapitems.doc.big_crystal_usage,
 	drawtype = "mesh",
@@ -148,7 +120,7 @@ minetest.register_node("df_mapitems:big_crystal_30", {
 })
 
 minetest.register_node("df_mapitems:med_crystal_30", {
-	description = S("Big Crystal"),
+	description = S("Big Red Crystal"),
 	_doc_items_longdesc = df_mapitems.doc.big_crystal_desc,
 	_doc_items_usagehelp = df_mapitems.doc.big_crystal_usage,
 	drawtype = "mesh",
@@ -184,7 +156,7 @@ minetest.register_node("df_mapitems:med_crystal_30", {
 })
 
 minetest.register_node("df_mapitems:big_crystal_30_45", {
-	description = S("Giant Crystal"),
+	description = S("Giant Red Crystal"),
 	_doc_items_longdesc = df_mapitems.doc.big_crystal_desc,
 	_doc_items_usagehelp = df_mapitems.doc.big_crystal_usage,
 	drawtype = "mesh",
@@ -221,7 +193,7 @@ minetest.register_node("df_mapitems:big_crystal_30_45", {
 
 
 minetest.register_node("df_mapitems:med_crystal_30_45", {
-	description = S("Big Crystal"),
+	description = S("Big Red Crystal"),
 	_doc_items_longdesc = df_mapitems.doc.big_crystal_desc,
 	_doc_items_usagehelp = df_mapitems.doc.big_crystal_usage,
 	drawtype = "mesh",
@@ -338,24 +310,3 @@ df_mapitems.place_big_crystal_cluster = function(area, data, data_param2, vi, ra
 		end
 	end
 end
-
-
-local glowstone_def = {
-	light_source = minetest.LIGHT_MAX,
-	description = S("Lightseam"),
-	tiles = {"dfcaverns_glowstone.png"},
-	is_ground_content = true,
-	groups = {cracky=3},
-	sounds = default.node_sound_glass_defaults(),
-	paramtype = "light",
-	--use_texture_alpha = true,
-	drawtype = "glasslike",
-	drop = "",
-	sunlight_propagates = true,
-}
-if minetest.get_modpath("tnt") then
-	glowstone_def.on_dig = function(pos, node, digger)
-		tnt.boom(pos, {radius=3})
-	end
-end
-minetest.register_node("df_mapitems:glowstone", glowstone_def)

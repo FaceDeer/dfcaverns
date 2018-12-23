@@ -184,7 +184,7 @@ end
 local radius_pit_max = 40 -- won't actually be this wide, there'll be crystal spires around it
 local radius_pit_variance = 10
 
-local region_mapblocks = 16 -- One glowing pit in each region this size
+local region_mapblocks = 8 -- One glowing pit in each region this size
 local mapgen_chunksize = tonumber(minetest.get_mapgen_setting("chunksize"))
 local pit_region_size = region_mapblocks * mapgen_chunksize * 16
 
@@ -207,9 +207,11 @@ local get_pit = function(pos, mapgen_seed)
 	local next_seed = math.random(1, 1000000000)
 	math.randomseed(corner_xz.x + corner_xz.z * 2 ^ 8)
 	local location = scatter_2d(corner_xz, pit_region_size, radius_pit_max + radius_pit_variance)
-	local radius = math.random(8, radius_pit_max/2)
+	local variance_multiplier = math.random()
+	local radius = variance_multiplier * (radius_pit_max - 15) + 15
+	local variance = radius_pit_variance/2 + radius_pit_variance*variance_multiplier/2 
 	math.randomseed(next_seed)
-	return {location = location, radius = radius}
+	return {location = location, radius = radius, variance = variance}
 end
 
 local perlin_pit = {
@@ -268,7 +270,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					nvals_pit, area_pit = mapgen_helper.perlin3d("subterrane:perlin_cave", minp, maxp, perlin_pit) -- determine which areas are spongey with warrens
 					pit_uninitialized = false
 				end
-				local pit_value = nvals_pit[area_pit:index(x,y,z)] * radius_pit_variance
+				local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
 				local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
 				if y <  median + floor_displace + wave - 50 and distance < pit.radius then
 					data[vi] = c_pit_plasma				

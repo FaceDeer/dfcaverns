@@ -83,6 +83,14 @@ minetest.register_node("df_mapitems:pit_plasma_flowing", {
 	paramtype = "light",
 })
 
+if minetest.get_modpath("radiant_damage") and radiant_damage.override_radiant_damage then
+	if radiant_damage.config.enable_mese_damage then
+		radiant_damage.override_radiant_damage("mese", {emitted_by={["group:pit_plasma"] = radiant_damage.config.mese_damage*4}})
+	end
+	if radiant_damage.config.enable_heat_damage then
+		radiant_damage.override_radiant_damage("heat", {emitted_by={["group:pit_plasma"] = radiant_damage.config.lava_damage*2}})
+	end
+end
 
 minetest.register_abm{
 	label = "glowing pit sparkling",

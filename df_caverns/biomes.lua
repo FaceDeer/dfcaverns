@@ -1,21 +1,14 @@
 local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
 local c_stone = minetest.get_content_id("default:stone")
-local c_sand = minetest.get_content_id("default:sand")
-local c_desert_sand = minetest.get_content_id("default:desert_sand")
 local c_dirt = minetest.get_content_id("default:dirt")
-local c_coal_ore = minetest.get_content_id("default:stone_with_coal")
 local c_gravel = minetest.get_content_id("default:gravel")
-local c_obsidian = minetest.get_content_id("default:obsidian")
 
-local c_sweet_pod = minetest.get_content_id("df_farming:sweet_pod_6") -- param2 = 0
 local c_quarry_bush = minetest.get_content_id("df_farming:quarry_bush_5") -- param2 = 4
 local c_plump_helmet = minetest.get_content_id("df_farming:plump_helmet_4") -- param2 = 0-3
 local c_pig_tail = minetest.get_content_id("df_farming:pig_tail_8") -- param2 = 3
-local c_dimple_cup = minetest.get_content_id("df_farming:dimple_cup_4") -- param2 = 0
 local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param2 = 3
 local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
-local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
 local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus")
@@ -157,7 +150,6 @@ df_caverns.tunnel_ceiling = function(minp, maxp, area, vi, nvals_cracks, data, d
 	end
 end
 
-
 df_caverns.get_decoration_node_data = function(minp, maxp, area, vi, biomemap, nvals_cracks)
 	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 	local biome = mapgen_helper.get_biome_def(biomemap[index2d]) or {}
@@ -184,7 +176,7 @@ df_caverns.perlin_wave = {
 	persist = 0.63
 }
 
--- Used for making lines of dripstone
+-- Used for making lines of dripstone, and in various other places where small-scale patterns are needed
 df_caverns.np_cracks = {
 	offset = 0,
 	scale = 1,
@@ -197,33 +189,6 @@ df_caverns.np_cracks = {
 
 ---------------------------------------------------------------------------------
 
-local shallow_cave_floor = function(area, data, ai, vi, bi, param2_data)
-	if data[bi] ~= c_stone then
-		return
-	end
-	
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-	if drip_rand < 0.025 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.025 * 4)
-		subterrane.stalagmite(vi, area, data, param2_data, param2, height, df_mapitems.dry_stalagmite_ids)
-	end	
-end
-
-local shallow_cave_ceiling = function(area, data, ai, vi, bi, param2_data)
-	if data[ai] ~= c_stone then
-		return
-	end
-	
-	local drip_rand = subterrane:vertically_consistent_random(vi, area)
-	if drip_rand < 0.025 then
-		local param2 = drip_rand*1000000 - math.floor(drip_rand*1000000/4)*4
-		local height = math.floor(drip_rand/0.025 * 5)		
-		subterrane.stalactite(vi, area, data, param2_data, param2, height, df_mapitems.dry_stalagmite_ids)
-	end	
-end
-
-
 -- default mapgen registers an "underground" biome that gets in the way of everything.
 subterrane:override_biome({
 	name = "underground",
@@ -231,8 +196,6 @@ subterrane:override_biome({
 	y_max = -113,
 	heat_point = 50,
 	humidity_point = 50,
-	_subterrane_cave_floor_decor = shallow_cave_floor,
-	_subterrane_cave_ceiling_decor = shallow_cave_ceiling,
 })
 
 df_caverns.perlin_cave_lava = {

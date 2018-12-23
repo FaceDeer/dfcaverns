@@ -1,16 +1,5 @@
---df_trees.spawn_tunnel_tube_vm(vi, area, data, param2_data)
---df_trees.spawn_spore_tree_vm(vi, data, area)
---df_trees.spawn_nether_cap_vm(vi, area, data)
---df_trees.spawn_goblin_cap_vm(vi, area, data)
---df_trees.spawn_blood_thorn_vm(vi, area, data, data_param2)
-
-
 local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
-local c_stone = minetest.get_content_id("default:stone")
-local c_cobble = minetest.get_content_id("default:cobble")
-local c_mossycobble = minetest.get_content_id("default:mossycobble")
-local c_dirt = minetest.get_content_id("default:dirt")
 local c_desert_sand = minetest.get_content_id("default:desert_sand")
 local c_stone_with_coal = minetest.get_content_id("default:stone_with_coal")
 
@@ -20,7 +9,6 @@ local c_ice = minetest.get_content_id("default:ice")
 
 local c_oil = minetest.get_content_id("oil:oil_source")
 
-local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_cobble_fungus_fine = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus_fine")
 local c_cobble_fungus = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus")
 
@@ -29,10 +17,7 @@ local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
 
 local c_sweet_pod = minetest.get_content_id("df_farming:sweet_pod_6") -- param2 = 0
 local c_quarry_bush = minetest.get_content_id("df_farming:quarry_bush_5") -- param2 = 4
-local c_plump_helmet = minetest.get_content_id("df_farming:plump_helmet_4") -- param2 = 0-3
-local c_pig_tail = minetest.get_content_id("df_farming:pig_tail_8") -- param2 = 3
 local c_dimple_cup = minetest.get_content_id("df_farming:dimple_cup_4") -- param2 = 0
-local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param2 = 3
 local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 

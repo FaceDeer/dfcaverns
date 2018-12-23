@@ -2,7 +2,6 @@ if not (df_caverns.config.enable_oil_sea and minetest.get_modpath("oil")) then
 	return
 end
 
-local c_air = minetest.get_content_id("air")
 local c_oil = minetest.get_content_id("oil:oil_source")
 local c_gas = minetest.get_content_id("oil:gas")
 local c_lava = minetest.get_content_id("default:lava_source")
@@ -106,6 +105,6 @@ minetest.register_ore({
 	clust_scarcity = 48 * 48 * 48,
 	clust_num_ores = 27,
 	clust_size     = 6,
-	y_max          = y_max,
+	y_max          = df_caverns.config.sunless_sea_min,
 	y_min          = y_min,
 })

@@ -33,7 +33,7 @@ minetest.register_node("df_mapitems:pit_plasma", {
 	liquid_alternative_source = "df_mapitems:pit_plasma",
 	liquid_renewable = false,
 	is_ground_content = true,
-	light_source = 15,
+	light_source = minetest.LIGHT_MAX,
 	paramtype = "light",
 })
 
@@ -79,7 +79,7 @@ minetest.register_node("df_mapitems:pit_plasma_flowing", {
 	liquid_alternative_source = "df_mapitems:pit_plasma",
 	liquid_renewable = false,
 	is_ground_content = true,
-	light_source = 15,
+	light_source = minetest.LIGHT_MAX,
 	paramtype = "light",
 })
 
@@ -110,7 +110,7 @@ minetest.register_abm{
 				collisiondetection = true,
 				collision_removal = true,
 				vertical = false,
-				glow = 15,
+				glow = minetest.LIGHT_MAX,
 				texture = "dfcaverns_glowpit_particle.png",
 			})
 		end		

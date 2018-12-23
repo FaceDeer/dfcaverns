@@ -29,6 +29,11 @@ end
 -- rotated is true or false
 -- length is 1 or more
 df_mapitems.underworld_shard = function(data, area, vi, x_slant, z_slant, rotated, length)
+	if x_slant == nil then x_slant = math.random(-1,1) end
+	if z_slant == nil then z_slant = math.random(-1,1) end
+	if rotated == nil then rotated = math.random() > 0.5 end
+	if length == nil then length = math.random(4, 12) end
+	
 	length = math.ceil(length/2) * 2 -- make it an even multiple of 2
 
 	local xstride, ystride, zstride

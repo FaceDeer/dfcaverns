@@ -104,7 +104,7 @@ Also found in Black Cap caverns are torchspines, stalagmite-like growths that so
 
 ## Nethercap caverns
 
-Nethercaps break the known laws of thermodynamics by somehow "feeding" directly on heat. As a result Nethercap caverns are frigid and icy, with icicles mixed with stalactites and giant columns of frozen water. Nethercap caverns have little other life in them as a result, and are lit only by the faint blue glow of the Nethercap's gills.
+Nethercaps break the known laws of thermodynamics by somehow "feeding" directly on heat. As a result Nethercap caverns are frigid and icy, with icicles mixed with stalactites and giant columns of frozen water. Nethercap caverns have little other life in them as a result. They are lit by thet blue glow of the Nethercap's gills, as well as by the mysterious "ice sprites" that hover and sparkle near the ceilings and by the streaks of hoar moss that grow on the surfaces of ice columns.
 
 Any liquid water that touches Nethercap wood will freeze, even if the Nethercap has been harvested and crafted into other forms. Nethercap will not burn and indeed will snuff out fires and even solidify lava it touches. If a Nethercap cavern has a lake its surface will be covered in a solid sheet of ice.
 
@@ -112,11 +112,11 @@ Any liquid water that touches Nethercap wood will freeze, even if the Nethercap 
 
 Bloodthorns are cactus-like in appearance and habitat, growing in dry sandy caverns, but they are far more agressive about seeking moisture than their surface kin. Bloodthorns have thick spines projecting randomly from their trunks that are coated in smaller barbs that greedily drain fluids from any creature that touches them. You can climb a bloodthorn quite easily, using its spines like rungs on a ladder, but it will hurt to do so. Bloodthorn caverns are dimly lit so take care not to blunder into the rows of bloodthorns that grow like living fences.
 
-Dimple cups grow in the sandy soil here. Lakes are never found in Bloodthorn caverns.
+Lakes are never found in Bloodthorn caverns.
 
 ## Barren crystal caverns
 
-On the third cavern layer the dry barren caverns will sprout clusters of enormous hexagonal red crystals from their floors and ceilings, providing light. These crystals have no particular use but are quite rare and beautiful to look at.
+On the third cavern layer the dry barren caverns will sprout clusters of enormous hexagonal red crystals from their floors and ceilings, providing light. These crystals have no particular use but are rare and beautiful to look at.
 
 # Sunless Sea
 

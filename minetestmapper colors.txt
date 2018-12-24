@@ -96,6 +96,7 @@ df_mapitems:pit_plasma_flowing 226 183 232
 df_mapitems:pit_plasma 226 183 232
 df_mapitems:snareweed 49 71 74
 df_mapitems:wet_flowstone 173 167 166
+df_mapitems:hoar_moss 99 171 190
 df_mapitems:wet_stal_1 173 167 166
 df_mapitems:wet_stal_2 173 167 166
 df_mapitems:wet_stal_3 173 167 166
@@ -117,6 +118,9 @@ stairs:slab_slade_brick 65 35 35
 oil:oil_flowing 57 57 57
 oil:oil_source 57 57 57
 oil:gas_seep  97 94 93
+
+ice_sprites:ice_sprite 150 214 255
+ice_sprites:ice_sprite_bottle 150 214 255
 
 #magma_conduits
 magma_conduits:glow_obsidian 108 11 11

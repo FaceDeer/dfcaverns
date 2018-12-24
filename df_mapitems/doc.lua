@@ -13,6 +13,9 @@ df_mapitems.doc.cave_moss_usage = S("Cave moss has no known uses aside from the 
 df_mapitems.doc.floor_fungus_desc = S("Floor fungus produces a thin, slick film that spreads through the cracks of broken rock. Its ability to subsist on the tiniest traces of nutrients means it's found in relatively harsh underground environments.")
 df_mapitems.doc.floor_fungus_usage = S("Floor fungus has no known uses. It can penetrate deeply into cobblestone constructions if an infestation gets hold, but it is difficult to transport and is inhibited by light so it hasn't spread beyond the deep caverns.")
 
+df_mapitems.doc.hoar_moss_desc = S("Hoar moss is a strange glowing crust that sometimes forms on the surface of water flowing over ice.")
+df_mapitems.doc.hoar_moss_usage = S("Hoar moss has no known use aside from providing a faint source of light.")
+
 df_mapitems.doc.glow_worms_desc = S("Glistening strings of silk hang from the ceilings of some of the larger caverns, lit by the millions of tiny bioluminescent worms that spun them. Glow worms prey on the insects they lure and entangle with their faux starry sky - and sometimes the occasional bat or other larger flying beast.")
 df_mapitems.doc.glow_worms_usage = S("Glow worms can be harvested and used as a source of light but they die when exposed to light significantly brighter than themselves or when immersed in water. A colony of glow worms hung in a hospitable environment will undergo a modest amount of growth, allowing it to be divided and propagated.")
 

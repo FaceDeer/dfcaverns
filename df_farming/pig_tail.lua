@@ -83,6 +83,15 @@ if minetest.get_modpath("wool") then
 		}
 	})
 end
+if minetest.get_modpath("farming") then
+	minetest.register_craft({
+		output = "farming:string 2",
+		recipe = {
+			{"group:thread"},
+			{"group:thread"},
+		}
+	})
+end
 
 minetest.register_craft({
 	type = "fuel",

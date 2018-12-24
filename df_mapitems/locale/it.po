@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-23 00:27-0700\n"
+"POT-Creation-Date: 2018-12-24 16:50-0700\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -78,13 +78,24 @@ msgstr ""
 
 #: df_mapitems\doc.lua:16
 msgid ""
+"Hoar moss is a strange glowing crust that sometimes forms on the surface of "
+"water flowing over ice."
+msgstr ""
+
+#: df_mapitems\doc.lua:17
+msgid ""
+"Hoar moss has no known use aside from providing a faint source of light."
+msgstr ""
+
+#: df_mapitems\doc.lua:19
+msgid ""
 "Glistening strings of silk hang from the ceilings of some of the larger "
 "caverns, lit by the millions of tiny bioluminescent worms that spun them. "
 "Glow worms prey on the insects they lure and entangle with their faux starry "
 "sky - and sometimes the occasional bat or other larger flying beast."
 msgstr ""
 
-#: df_mapitems\doc.lua:17
+#: df_mapitems\doc.lua:20
 msgid ""
 "Glow worms can be harvested and used as a source of light but they die when "
 "exposed to light significantly brighter than themselves or when immersed in "
@@ -92,43 +103,43 @@ msgid ""
 "a modest amount of growth, allowing it to be divided and propagated."
 msgstr ""
 
-#: df_mapitems\doc.lua:19
+#: df_mapitems\doc.lua:22
 msgid ""
 "A nasty kelp-like plant that grows in patches on the floor of the Sunless "
 "Sea. Its reflective patches draw in the unwary and then its prickly barbs "
 "catch and hold small creatures."
 msgstr ""
 
-#: df_mapitems\doc.lua:20
+#: df_mapitems\doc.lua:23
 msgid "Snareweed has no practical use, its fibers disintegrate when they dry."
 msgstr ""
 
-#: df_mapitems\doc.lua:22
+#: df_mapitems\doc.lua:25
 msgid ""
 "A rare form of coral found only deep underground in the Sunless Sea, cave "
 "coral grows hanging from the ceilings of flooded caverns."
 msgstr ""
 
-#: df_mapitems\doc.lua:23
+#: df_mapitems\doc.lua:26
 msgid ""
 "Aside from their aesthetic beauty, cave corals can be harvested for simple "
 "building materials."
 msgstr ""
 
-#: df_mapitems\doc.lua:25
+#: df_mapitems\doc.lua:28
 msgid ""
 "Flowstone is a carbonate-rich rock formation deposited by flowing water. It "
 "consists of minerals that the water dissolved earlier as it widens cracks "
 "and fissures into caves."
 msgstr ""
 
-#: df_mapitems\doc.lua:26
+#: df_mapitems\doc.lua:29
 msgid ""
 "Aside from the aesthetic beauty of its formations flowstone has no special "
 "properties or uses."
 msgstr ""
 
-#: df_mapitems\doc.lua:27
+#: df_mapitems\doc.lua:30
 msgid ""
 "The iconic stalactites and stalagmites found in caverns are composed of "
 "flowstone (or 'dripstone' in the case of these formations). Moist dripstone "
@@ -136,47 +147,47 @@ msgid ""
 "once the source of water that created them ceases."
 msgstr ""
 
-#: df_mapitems\doc.lua:28
+#: df_mapitems\doc.lua:31
 msgid ""
 "Although stalagmites are blunter than the stalactites above them, they can "
 "cause extra damage to the unwary caver who falls on them."
 msgstr ""
 
-#: df_mapitems\doc.lua:29
+#: df_mapitems\doc.lua:32
 msgid ""
 "Ice formed by water dripping slowly into a cold environment, icicles tend to "
 "be exceptionally pure and clear."
 msgstr ""
 
-#: df_mapitems\doc.lua:30
+#: df_mapitems\doc.lua:33
 msgid "Falling onto an icicle is particularly damaging."
 msgstr ""
 
-#: df_mapitems\doc.lua:33
+#: df_mapitems\doc.lua:36
 msgid ""
 "Deep in the infernal conditions of the magma sea, over the course of "
 "millions of years, mese crystals grow into flawless blocks that glow bright "
 "with strange energies."
 msgstr ""
 
-#: df_mapitems\doc.lua:34
+#: df_mapitems\doc.lua:37
 msgid ""
 "These blocks can be broken down into a large number of mese crystals, but "
 "cannot be artificially reassembled."
 msgstr ""
 
-#: df_mapitems\doc.lua:36
+#: df_mapitems\doc.lua:39
 msgid ""
 "Large, dry caverns deep underground are well suited to aeons-long processes "
 "that concentrate crystalline substances in their walls. This rock is riddled "
 "with veins of the stuff."
 msgstr ""
 
-#: df_mapitems\doc.lua:37
+#: df_mapitems\doc.lua:40
 msgid "Aside from its aesthetic value this rock has no particular use."
 msgstr ""
 
-#: df_mapitems\doc.lua:39
+#: df_mapitems\doc.lua:42
 msgid ""
 "Monolithic crystals of this size form only over extremely long periods deep "
 "underground, in large long-lived cavities that allow them room to grow. "
@@ -184,25 +195,25 @@ msgid ""
 "crystals so they're only found in dry environments."
 msgstr ""
 
-#: df_mapitems\doc.lua:40
+#: df_mapitems\doc.lua:43
 msgid "Aside from its aesthetic value this crystal has no particular use."
 msgstr ""
 
-#: df_mapitems\doc.lua:42
+#: df_mapitems\doc.lua:45
 msgid ""
 "The very foundation of the world, Slade is a mysterious ultra-dense "
 "substance."
 msgstr ""
 
-#: df_mapitems\doc.lua:43
+#: df_mapitems\doc.lua:46
 msgid "Slade is extremely hard to work with so it has little use."
 msgstr ""
 
-#: df_mapitems\doc.lua:45
+#: df_mapitems\doc.lua:48
 msgid "In fact, Slade is impervious to conventional mining entirely."
 msgstr ""
 
-#: df_mapitems\doc.lua:48
+#: df_mapitems\doc.lua:51
 msgid ""
 "This block of Slade, carved by an unknown hand, is engraved with mysterious "
 "symbols. Most of the engraving's meaning is lost to the mists of time but "
@@ -210,11 +221,13 @@ msgid ""
 "not a place of honor.\""
 msgstr ""
 
-#: df_mapitems\doc.lua:50
-msgid "Glowing purple crystals that grow on the fringes of reality."
+#: df_mapitems\doc.lua:53
+msgid ""
+"Glowing purple crystals that grow through holes in the foundation of the "
+"world."
 msgstr ""
 
-#: df_mapitems\doc.lua:51
+#: df_mapitems\doc.lua:54
 msgid "These crystals have no known use."
 msgstr ""
 
@@ -239,7 +252,7 @@ msgid "Icicle"
 msgstr ""
 
 #: df_mapitems\glowing_pit_plasma.lua:6
-#: df_mapitems\glowing_pit_plasma.lua:41
+#: df_mapitems\glowing_pit_plasma.lua:42
 msgid "Glowing Pit Plasma"
 msgstr ""
 
@@ -260,6 +273,10 @@ msgstr "Terra con muschio di caverna"
 msgid "Cobblestone With Floor Fungus"
 msgstr "Ciottoli con funghi del terreno"
 
+#: df_mapitems\ground_cover.lua:106
+msgid "Ice With Hoar Moss"
+msgstr ""
+
 #: df_mapitems\slade.lua:18
 msgid "Slade"
 msgstr ""
@@ -268,27 +285,27 @@ msgstr ""
 msgid "Slade Brick"
 msgstr ""
 
-#: df_mapitems\slade.lua:58
+#: df_mapitems\slade.lua:52
 msgid "Slade Wall"
 msgstr ""
 
-#: df_mapitems\slade.lua:89
+#: df_mapitems\slade.lua:77
 msgid "Slade Sand"
 msgstr ""
 
-#: df_mapitems\slade.lua:104
+#: df_mapitems\slade.lua:89
 msgid "Slade Block"
 msgstr ""
 
-#: df_mapitems\slade.lua:120
+#: df_mapitems\slade.lua:105
 msgid "Slade Seal"
 msgstr ""
 
-#: df_mapitems\slade.lua:169
+#: df_mapitems\slade.lua:154
 msgid "Slade Stair"
 msgstr ""
 
-#: df_mapitems\slade.lua:170
+#: df_mapitems\slade.lua:155
 msgid "Slade Slab"
 msgstr ""
 

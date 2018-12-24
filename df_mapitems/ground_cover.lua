@@ -99,4 +99,18 @@ minetest.register_abm{
 	end,
 }
 
+------------------------------------------------------
+-- Hoar moss
 
+minetest.register_node("df_mapitems:ice_with_hoar_moss", {
+	description = S("Ice With Hoar Moss"),
+	_doc_items_longdesc = df_mapitems.doc.hoar_moss_desc,
+	_doc_items_usagehelp = df_mapitems.doc.hoar_moss_usage,
+	tiles = {"default_ice.png^dfcaverns_hoar_moss.png"},
+	drops = "default:ice",
+	paramtype = "light",
+	light_source = 2,
+	groups = {cracky = 3, puts_out_fire = 1, cools_lava = 1, slippery = 2, light_sensitive_fungus = 8},
+	sounds = default.node_sound_glass_defaults(),
+	_dfcaverns_dead_node = "default:ice",
+})

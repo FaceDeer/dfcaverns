@@ -6,6 +6,7 @@ local c_stone_with_coal = minetest.get_content_id("default:stone_with_coal")
 local c_silver_sand = minetest.get_content_id("default:silver_sand")
 local c_snow = minetest.get_content_id("default:snow")
 local c_ice = minetest.get_content_id("default:ice")
+local c_hoar_moss = minetest.get_content_id("df_mapitems:ice_with_hoar_moss")
 
 local c_oil = minetest.get_content_id("oil:oil_source")
 
@@ -21,6 +22,11 @@ local c_dimple_cup = minetest.get_content_id("df_farming:dimple_cup_4") -- param
 local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
 local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
 
+local c_sprite
+if minetest.get_modpath("ice_sprites") then
+	c_sprite = minetest.get_content_id("ice_sprites:ice_sprite")
+end
+
 local subsea_level = df_caverns.config.level3_min - (df_caverns.config.level3_min - df_caverns.config.level2_min) * 0.33
 local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold, df_caverns.config.cavern_threshold)
 
@@ -29,6 +35,17 @@ local ice_thickness = 3
 local black_cap_shrublist = {c_quarry_bush, c_dead_fungus, c_dead_fungus}
 local nether_cap_shrublist = {c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
 local blood_thorn_shrublist = {c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
+
+local hoar_moss_perlin_params = {
+	offset = 0,
+	scale = 1,
+	spread = {x = 3, y = 30, z = 3},
+	seed = 345421,
+	octaves = 3,
+	persist = 0.63,
+	lacunarity = 2.0,
+	flags = "eased",
+}
 
 local black_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	if math.random() < 0.25 then
@@ -253,7 +270,14 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 							subterrane.stalactite(vi-ystride, area, data, data_param2, param2, math.floor(height*0.5), df_mapitems.dry_stalagmite_ids)
 						end
 					end
-				end		
+				end	
+				if c_sprite and abs_cracks < 0.5 and math.random() < 0.02 then
+					sprite_vi = vi-ystride*math.random(1,5)
+					if data[sprite_vi] == c_air and area:containsi(sprite_vi) then
+						data[sprite_vi] = c_sprite
+						minetest.get_node_timer(area:position(sprite_vi)):start(1)
+					end
+				end
 			else
 				-- bloodthorn ceiling
 				if abs_cracks < 0.075 then
@@ -393,6 +417,8 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	----------------------------------------------
 	-- Column material override for dry biome
 	
+	local hoar_moss_generator
+	
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		if biome.name == "dfcaverns_level3_bloodnether_biome" then
@@ -402,7 +428,18 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 					data[vi] = c_dry_flowstone -- bloodthorn
 				else
 					if area:get_y(vi) > subsea_level - ice_thickness then
-						data[vi] = c_ice
+						if data[vi + 1] == c_air or data[vi - 1] == c_air or data[vi + area.zstride] == c_air or data[vi - area.zstride] == c_air then
+							--surface node, potential hoar moss streak
+							hoar_moss_generator = hoar_moss_generator or minetest.get_perlin(hoar_moss_perlin_params)
+							local pos = area:position(vi)
+							if hoar_moss_generator:get_3d({x=pos.z, y=pos.y, z=pos.x}) > 0.5 then
+								data[vi] = c_hoar_moss
+							else
+								data[vi] = c_ice
+							end
+						else
+							data[vi] = c_ice
+						end
 					else
 						data[vi] = c_water -- ice columns shouldn't extend below the surface of the water. There should probably be a bulge below, though. Not sure best way to implement that.
 					end

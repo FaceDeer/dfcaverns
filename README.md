@@ -24,6 +24,8 @@ The trees and plants mentioned above are all farmable, but in contrast to the us
 
 Some of the other cave decorations provide dim bioluminescent lighting in some caverns. Cave moss and hanging glow-worms are most common. There is also non-glowing floor fungus found coating the stone in less hospitable biomes, capable of spreading to adjacent cobblestone structures like a slow-creeping infection.
 
+[A more comprehensive guide can be found here.](guide.md)
+
 ## Synergies with other mods
 
 "[dynamic liquid](https://github.com/minetest-mods/dynamic_liquid)" is recommended to provide Dwarf Fortress-like fluid dynamics and to deal with water that might spill into caverns.
@@ -33,3 +35,5 @@ Some of the other cave decorations provide dim bioluminescent lighting in some c
 The "[doc](https://forum.minetest.net/viewtopic.php?f=9&t=15912&p=240152)" mod is supported to provide in-game documentation for all of the new items and nodes this mod adds.
 
 "[ropes](https://github.com/minetest-mods/ropes)" are very useful for navigating some of the large open spaces this mod provides.
+
+"[radiant damage](https://github.com/FaceDeer/radiant_damage)" greatly increases the danger of the Magma Sea if heat radiance is enabled, as well as several of the rare crystals in the deeper layers that emit Mese radiation if that damage type is enabled.

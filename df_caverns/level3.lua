@@ -27,8 +27,8 @@ local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold,
 local ice_thickness = 3
 
 local black_cap_shrublist = {c_quarry_bush, c_dead_fungus, c_dead_fungus}
-local nether_cap_shrublist = {c_dimple_cup, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
-local blood_thorn_shrublist = {c_sweet_pod, c_sweet_pod, c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
+local nether_cap_shrublist = {c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
+local blood_thorn_shrublist = {c_dead_fungus, c_dead_fungus, c_dead_fungus, c_cavern_fungi}
 
 local black_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	if math.random() < 0.25 then

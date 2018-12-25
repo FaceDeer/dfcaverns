@@ -191,39 +191,6 @@ df_caverns.np_cracks = {
 
 ---------------------------------------------------------------------------------
 
--- default mapgen registers an "underground" biome that gets in the way of everything.
-local new_underground_biome = {
-	name = "underground",
-	y_min = df_caverns.config.ymax,
-	y_max = -113,
-	heat_point = 50,
-	humidity_point = 50,
-}
-if minetest.unregister_biome then
-	minetest.unregister_biome("underground")
-	minetest.register_biome(new_underground_biome)
-else
-	subterrane:override_biome(new_underground_biome)
-end
-
-df_caverns.perlin_cave_lava = {
-	offset = 0,
-	scale = 1,
-	spread = {x=df_caverns.config.horizontal_cavern_scale * 2, y=df_caverns.config.vertical_cavern_scale * 0.5, z=df_caverns.config.horizontal_cavern_scale * 2},
-	seed = -400000000089,
-	octaves = 3,
-	persist = 0.67
-}
-
-df_caverns.perlin_wave_lava = {
-	offset = 0,
-	scale = 1,
-	spread = {x=df_caverns.config.horizontal_cavern_scale * 4, y=df_caverns.config.vertical_cavern_scale * 0.5, z=df_caverns.config.horizontal_cavern_scale * 4}, -- squashed 2:1
-	seed = 59033,
-	octaves = 6,
-	persist = 0.63
-}
-
 df_caverns.place_shrub = function(data, vi, param2_data, shrub_list)
 	local shrub = shrub_list[math.random(#shrub_list)]
 	

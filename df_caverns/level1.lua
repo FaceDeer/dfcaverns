@@ -113,7 +113,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 
 		if negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
 			-- underwater ceiling, do nothing
-		elseif biome_name == "dfcaverns_level1_tower_cap_biome" or biome_name == "dfcaverns_level1_fungiwood_biome" then
+		elseif biome_name == "dfcaverns_level1_tower_cap_biome" or biome_name == "dfcaverns_level1_fungiwood_biome" or biome_name == "underground" then -- check for underground biome in case the cavern's upper ceiling gets close enough to hit that
 			df_caverns.glow_worm_cavern_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
 		elseif biome_name == "dfcaverns_level1_barren_biome" then
 			if negative_zone then

@@ -5,6 +5,22 @@ local y_min = df_caverns.config.ymax
 
 local c_stone = minetest.get_content_id("default:stone")
 
+-- default mapgen registers an "underground" biome that gets in the way of everything.
+local new_underground_biome = {
+	name = "underground",
+	y_min = df_caverns.config.ymax,
+	y_max = -113,
+	heat_point = 50,
+	humidity_point = 50,
+}
+if minetest.unregister_biome then
+	minetest.unregister_biome("underground")
+	minetest.register_biome(new_underground_biome)
+else
+	subterrane:override_biome(new_underground_biome)
+end
+
+
 minetest.register_on_generated(function(minp, maxp, seed)
 	--if out of range of cave definition limits, abort
 	if minp.y > y_max or maxp.y < y_min then

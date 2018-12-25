@@ -1,4 +1,4 @@
-if not (df_caverns.config.enable_oil_sea and minetest.get_modpath("oil")) then
+if not df_caverns.config.enable_oil_sea then
 	return
 end
 

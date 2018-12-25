@@ -2,13 +2,13 @@ if not df_caverns.config.enable_underworld then
 	return
 end
 
-local c_slade = minetest.get_content_id("df_mapitems:slade")
+local c_slade = minetest.get_content_id("df_underworld_items:slade")
 local c_air = minetest.get_content_id("air")
 local c_stone = minetest.get_content_id("default:stone")
 
-local c_glowstone = minetest.get_content_id("df_mapitems:glowstone")
-local c_amethyst = minetest.get_content_id("df_mapitems:glow_amethyst")
-local c_pit_plasma = minetest.get_content_id("df_mapitems:pit_plasma")
+local c_glowstone = minetest.get_content_id("df_underworld_items:glowstone")
+local c_amethyst = minetest.get_content_id("df_underworld_items:glow_amethyst")
+local c_pit_plasma = minetest.get_content_id("df_underworld_items:pit_plasma")
 
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local oubliette_schematic = dofile(MP.."/schematics/oubliette.lua")
@@ -285,7 +285,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					data[vi] = c_amethyst
 				elseif distance < radius_pit_max and y == floor_height - 4 then
 					if math.random() > 0.95 then
-						df_mapitems.underworld_shard(data, area, vi)
+						df_underworld_items.underworld_shard(data, area, vi)
 					end
 				end
 			end			
@@ -308,9 +308,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				if (
 					--test if we're nestled in a crevice
 					(data[vi-area.ystride + 1] == c_stone and data[vi-area.ystride - 1] == c_stone) or
-					(data[vi-area.ystride + area.zstride] == c_stone and data[vi-area.ystride - area.zstride] == c_stone) or
-					(data[vi-area.ystride + 1 + area.zstride] == c_stone and data[vi-area.ystride - 1 - area.zstride] == c_stone) or
-					(data[vi-area.ystride - 1 + area.zstride] == c_stone and data[vi-area.ystride + 1 - area.zstride] == c_stone)
+					(data[vi-area.ystride + area.zstride] == c_stone and data[vi-area.ystride - area.zstride] == c_stone)
 				)
 				then
 					data[vi] = c_glowstone
@@ -349,7 +347,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						if building.building_type == "oubliette" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic)						
 						elseif building.building_type == "open oubliette" then
-							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic, 0, {["df_mapitems:slade_seal"] = "air"})
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic, 0, {["df_underworld_items:slade_seal"] = "air"})
 						elseif building.building_type == "lamppost" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, lamppost_schematic)
 						elseif building.building_type == "small building" then

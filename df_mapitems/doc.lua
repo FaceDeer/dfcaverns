@@ -41,14 +41,3 @@ df_mapitems.doc.glow_ruby_ore_usage = S("Aside from its aesthetic value this roc
 
 df_mapitems.doc.big_crystal_desc = S("Monolithic crystals of this size form only over extremely long periods deep underground, in large long-lived cavities that allow them room to grow. Water and the life it hosts tend to disrupt the formation process of these crystals so they're only found in dry environments.")
 df_mapitems.doc.big_crystal_usage = S("Aside from its aesthetic value this crystal has no particular use.")
-
-df_mapitems.doc.slade_desc = S("The very foundation of the world, Slade is a mysterious ultra-dense substance.")
-df_mapitems.doc.slade_usage = S("Slade is extremely hard to work with so it has little use.")
-if df_mapitems.config.invulnerable_slade then
-	df_mapitems.doc.slade_usage = df_mapitems.doc.slade_usage .. " " .. S("In fact, Slade is impervious to conventional mining entirely.")
-end
-
-df_mapitems.doc.slade_seal_desc = S("This block of Slade, carved by an unknown hand, is engraved with mysterious symbols. Most of the engraving's meaning is lost to the mists of time but one frament in the oldest known language can be translated: \"This place is not a place of honor.\"")
-
-df_mapitems.doc.glow_amethyst_desc = S("Glowing purple crystals that grow through holes in the foundation of the world.")
-df_mapitems.doc.glow_amethyst_usage = S("These crystals have no known use.")

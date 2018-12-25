@@ -3,7 +3,3 @@ dfcaverns_glow_worm_animated - glow worm texture overlaid with rippling animatio
 dfcaverns_glow_mese - from caverealms glow_mese
 dfcaverns_glow_ruby, dfcaverns_glow_ruby4x, dfcaverns_glow_ruby_quarter - from caverealms glow_ruby
 dfcaverns_glow_ruby_ore - from caverealms glow_ruby_ore
-
-dfcaverns_glow_amethyst, dfcaverns_glow_amethist_ore - from caverealms glow_amethyst
-
-dfcaverns_slade, dfcaverns_slade_sand, dfcaverns_slade_brick, dfcaverns_glowstone, are all from the Nether mod by PilzAdam: Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) http://creativecommons.org/licenses/by-sa/3.0/

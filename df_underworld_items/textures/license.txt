@@ -1,0 +1,3 @@
+dfcaverns_glow_amethyst, dfcaverns_glow_amethist_ore - from caverealms glow_amethyst
+
+dfcaverns_slade, dfcaverns_slade_sand, dfcaverns_slade_brick, dfcaverns_glowstone, are all from the Nether mod by PilzAdam: Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) http://creativecommons.org/licenses/by-sa/3.0/

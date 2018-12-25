@@ -38,10 +38,12 @@ setting("int", "level3_min", -2000, "Upper limit of the sunless seas")
 setting("int", "sunless_sea_min", -2400, "Lower limit of the sunless seas")
 
 setting("bool", "enable_oil_sea", true, "Enable oil sea")
+df_caverns.config.enable_oil_sea = df_caverns.config.enable_oil_sea and minetest.get_modpath("oil") ~= nil
 setting("int", "oil_sea_level", -2600, "Oil sea level")
 
 setting("bool", "enable_lava_sea", true, "Enable magma sea")
 setting("int", "lava_sea_level", -2800, "Lava sea level")
 
 setting("bool", "enable_underworld", true, "Enable underworld")
+df_caverns.config.enable_underworld = df_caverns.config.enable_underworld and minetest.get_modpath("df_underworld_items") ~= nil
 setting("int", "underworld_level", -3100, "Underworld level")

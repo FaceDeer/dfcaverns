@@ -3,6 +3,8 @@ local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
 local glowstone_def = {
+	_doc_items_longdesc = df_underworld_items.doc.glowstone_desc,
+	_doc_items_usagehelp = df_underworld_items.doc.glowstone_usage,
 	light_source = minetest.LIGHT_MAX,
 	description = S("Lightseam"),
 	tiles = {"dfcaverns_glowstone.png"},
@@ -20,4 +22,4 @@ if minetest.get_modpath("tnt") then
 		tnt.boom(pos, {radius=3})
 	end
 end
-minetest.register_node("df_mapitems:glowstone", glowstone_def)
+minetest.register_node("df_underworld_items:glowstone", glowstone_def)

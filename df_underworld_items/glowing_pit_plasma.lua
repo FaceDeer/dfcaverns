@@ -2,8 +2,10 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-minetest.register_node("df_mapitems:pit_plasma", {
+minetest.register_node("df_underworld_items:pit_plasma", {
 	description = S("Glowing Pit Plasma"),
+	_doc_items_longdesc = df_underworld_items.doc.pit_plasma_desc,
+	_doc_items_usagehelp = df_underworld_items.doc.pit_plasma_usage,
 	tiles = {
 		{
 			name = "dfcaverns_pit_plasma.png",
@@ -30,16 +32,18 @@ minetest.register_node("df_mapitems:pit_plasma", {
 	post_effect_color = {a = 200, r = 245, g = 211, b = 251},
 	drawtype="liquid",
 	liquidtype="source",
-	liquid_alternative_flowing = "df_mapitems:pit_plasma_flowing",
-	liquid_alternative_source = "df_mapitems:pit_plasma",
+	liquid_alternative_flowing = "df_underworld_items:pit_plasma_flowing",
+	liquid_alternative_source = "df_underworld_items:pit_plasma",
 	liquid_renewable = false,
 	is_ground_content = true,
 	light_source = minetest.LIGHT_MAX,
 	paramtype = "light",
 })
 
-minetest.register_node("df_mapitems:pit_plasma_flowing", {
+minetest.register_node("df_underworld_items:pit_plasma_flowing", {
 	description = S("Glowing Pit Plasma"),
+	_doc_items_longdesc = df_underworld_items.doc.pit_plasma_desc,
+	_doc_items_usagehelp = df_underworld_items.doc.pit_plasma_usage,
 	tiles = {"dfcaverns_pit_plasma_static.png"},
 	special_tiles = {
 		{
@@ -77,8 +81,8 @@ minetest.register_node("df_mapitems:pit_plasma_flowing", {
 	liquidtype = "flowing",
 	drawtype = "flowingliquid",
 	paramtype2 = "flowingliquid",
-	liquid_alternative_flowing = "df_mapitems:pit_plasma_flowing",
-	liquid_alternative_source = "df_mapitems:pit_plasma",
+	liquid_alternative_flowing = "df_underworld_items:pit_plasma_flowing",
+	liquid_alternative_source = "df_underworld_items:pit_plasma",
 	liquid_renewable = false,
 	is_ground_content = true,
 	light_source = minetest.LIGHT_MAX,
@@ -121,7 +125,7 @@ local sparkle = function(sparkle_pos)
 	})
 end
 
-if df_mapitems.config.destructive_pit_plasma then
+if df_underworld_items.config.destructive_pit_plasma then
 	minetest.register_abm({
 		label = "glowing pit matter degradation",
 		nodenames = {"group:pit_plasma"},

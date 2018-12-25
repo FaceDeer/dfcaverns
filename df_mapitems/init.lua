@@ -14,10 +14,5 @@ dofile(modpath.."/flowstone.lua")
 dofile(modpath.."/snareweed.lua")
 dofile(modpath.."/cave_coral.lua")
 
-dofile(modpath.."/crystals_amethyst.lua")
 dofile(modpath.."/crystals_mese.lua")
 dofile(modpath.."/crystals_ruby.lua")
-
-dofile(modpath.."/glow_stone.lua")
-dofile(modpath.."/slade.lua")
-dofile(modpath.."/glowing_pit_plasma.lua")

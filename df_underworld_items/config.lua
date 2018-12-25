@@ -1,6 +1,6 @@
 local CONFIG_FILE_PREFIX = "dfcaverns_"
 
-df_mapitems.config = {}
+df_underworld_items.config = {}
 
 local print_settingtypes = false
 
@@ -16,12 +16,12 @@ local function setting(stype, name, default, description)
 	if value == nil then
 		value = default
 	end
-	df_mapitems.config[name] = value
+	df_underworld_items.config[name] = value
 	
 	if print_settingtypes then
 		minetest.debug(CONFIG_FILE_PREFIX..name.." ("..description..") "..stype.." "..tostring(default))
 	end	
 end
 
-setting("float", "glow_worm_delay_multiplier", 10.0, "glow worm growth delay multiplier")
-setting("bool", "snareweed_damage", true, "Snareweed causes damage to players")
+setting("bool", "invulnerable_slade", true, "Slade is invulnerable to players")
+setting("bool", "destructive_pit_plasma", false, "Pit plasma destroys adjacent nodes")

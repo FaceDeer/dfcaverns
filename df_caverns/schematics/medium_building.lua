@@ -1,8 +1,8 @@
 local n1 = { name = "ignore"}
 local n8 = { name = "air", force_place=true }
 
-local n3 = { name = "df_mapitems:slade_brick", force_place=true }
-local n4 = { name = "df_mapitems:slade_wall", force_place=true }
+local n3 = { name = "df_underworld_items:slade_brick", force_place=true }
+local n4 = { name = "df_underworld_items:slade_wall", force_place=true }
 local n5 = { name = "stairs:stair_outer_slade_brick", param2 = 1, force_place=true }
 local n6 = { name = "stairs:stair_slade_brick", force_place=true }
 local n7 = { name = "stairs:stair_outer_slade_brick", force_place=true }
@@ -15,8 +15,8 @@ local n16 = { name = "stairs:stair_slade_brick", param2 = 2, force_place=true }
 local n17 = { name = "stairs:stair_outer_slade_brick", param2 = 3, force_place=true }
 
 -- foundation nodes
-local n2 = { name = "df_mapitems:slade_brick", force_place=false, place_on_condition=mapgen_helper.buildable_to  }
-local n12 = { name = "df_mapitems:slade_wall", force_place=false, place_on_condition=mapgen_helper.buildable_to  }
+local n2 = { name = "df_underworld_items:slade_brick", force_place=false, place_on_condition=mapgen_helper.buildable_to  }
+local n12 = { name = "df_underworld_items:slade_wall", force_place=false, place_on_condition=mapgen_helper.buildable_to  }
 local n13 = { name = "stairs:stair_slade_brick", param2 = 1, force_place=false, place_on_condition=mapgen_helper.buildable_to  }
 
 

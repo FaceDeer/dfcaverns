@@ -272,7 +272,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 					end
 				end	
 				if c_sprite and abs_cracks < 0.5 and math.random() < 0.02 then
-					sprite_vi = vi-ystride*math.random(1,5)
+					local sprite_vi = vi-ystride*math.random(1,5)
 					if data[sprite_vi] == c_air and area:containsi(sprite_vi) then
 						data[sprite_vi] = c_sprite
 						minetest.get_node_timer(area:position(sprite_vi)):start(1)

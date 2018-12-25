@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-24 16:50-0700\n"
+"POT-Creation-Date: 2018-12-24 21:24-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,10 +21,6 @@ msgstr ""
 #: df_mapitems\cave_coral.lua:18
 #: df_mapitems\cave_coral.lua:30
 msgid "Cave Coral"
-msgstr ""
-
-#: df_mapitems\crystals_amethyst.lua:6
-msgid "Glowing Amethyst Block"
 msgstr ""
 
 #: df_mapitems\crystals_mese.lua:7
@@ -197,38 +193,6 @@ msgstr ""
 msgid "Aside from its aesthetic value this crystal has no particular use."
 msgstr ""
 
-#: df_mapitems\doc.lua:45
-msgid ""
-"The very foundation of the world, Slade is a mysterious ultra-dense "
-"substance."
-msgstr ""
-
-#: df_mapitems\doc.lua:46
-msgid "Slade is extremely hard to work with so it has little use."
-msgstr ""
-
-#: df_mapitems\doc.lua:48
-msgid "In fact, Slade is impervious to conventional mining entirely."
-msgstr ""
-
-#: df_mapitems\doc.lua:51
-msgid ""
-"This block of Slade, carved by an unknown hand, is engraved with mysterious "
-"symbols. Most of the engraving's meaning is lost to the mists of time but "
-"one frament in the oldest known language can be translated: \"This place is "
-"not a place of honor.\""
-msgstr ""
-
-#: df_mapitems\doc.lua:53
-msgid ""
-"Glowing purple crystals that grow through holes in the foundation of the "
-"world."
-msgstr ""
-
-#: df_mapitems\doc.lua:54
-msgid "These crystals have no known use."
-msgstr ""
-
 #: df_mapitems\flowstone.lua:8
 msgid "Dry Dripstone"
 msgstr ""
@@ -249,15 +213,6 @@ msgstr ""
 msgid "Icicle"
 msgstr ""
 
-#: df_mapitems\glowing_pit_plasma.lua:6
-#: df_mapitems\glowing_pit_plasma.lua:42
-msgid "Glowing Pit Plasma"
-msgstr ""
-
-#: df_mapitems\glow_stone.lua:7
-msgid "Lightseam"
-msgstr ""
-
 #: df_mapitems\glow_worms.lua:11
 msgid "Glow Worms"
 msgstr ""
@@ -273,38 +228,6 @@ msgstr ""
 
 #: df_mapitems\ground_cover.lua:106
 msgid "Ice With Hoar Moss"
-msgstr ""
-
-#: df_mapitems\slade.lua:18
-msgid "Slade"
-msgstr ""
-
-#: df_mapitems\slade.lua:38
-msgid "Slade Brick"
-msgstr ""
-
-#: df_mapitems\slade.lua:52
-msgid "Slade Wall"
-msgstr ""
-
-#: df_mapitems\slade.lua:77
-msgid "Slade Sand"
-msgstr ""
-
-#: df_mapitems\slade.lua:89
-msgid "Slade Block"
-msgstr ""
-
-#: df_mapitems\slade.lua:105
-msgid "Slade Seal"
-msgstr ""
-
-#: df_mapitems\slade.lua:154
-msgid "Slade Stair"
-msgstr ""
-
-#: df_mapitems\slade.lua:155
-msgid "Slade Slab"
 msgstr ""
 
 #: df_mapitems\snareweed.lua:6

@@ -7,6 +7,7 @@ local c_silver_sand = minetest.get_content_id("default:silver_sand")
 local c_snow = minetest.get_content_id("default:snow")
 local c_ice = minetest.get_content_id("default:ice")
 local c_hoar_moss = minetest.get_content_id("df_mapitems:ice_with_hoar_moss")
+local c_gravel = minetest.get_content_id("default:gravel")
 
 local c_oil = minetest.get_content_id("oil:oil_source")
 
@@ -131,6 +132,7 @@ local blood_thorn_cavern_floor = function(abs_cracks, vert_rand, vi, area, data,
 	end
 end
 
+local hoar_moss_generator
 
 local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
@@ -190,7 +192,16 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 
 		if negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
 			-- underwater floor
-			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data) -- TODO maybe something with gravel instead of dirt?
+			local ystride = area.ystride
+			if abs_cracks > 0.25 and data[vi-ystride] ~= c_water then
+				data[vi] = c_gravel
+			end
+			-- put in only the large stalagmites that won't get in the way of the water
+			if abs_cracks < 0.1 then
+				if vert_rand < 0.004 then
+					subterrane.big_stalagmite(vi+ystride, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
+				end
+			end
 		elseif biome_name == "dfcaverns_level3_barren_biome" then
 			if negative_zone then
 				-- wet zone floor
@@ -308,9 +319,10 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	-- Tunnel ceiling
 	
 	for _, vi in ipairs(node_arrays.tunnel_ceiling_nodes) do
-		local biome, cracks, vert_rand = df_caverns.get_decoration_node_data(minp, maxp, area, vi, biomemap, nvals_cracks) -- TODO: don't need all of these
-		local abs_cracks = math.abs(cracks)
+		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+		local cracks = nvals_cracks[index2d]
 		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
+		
 		if not (negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
 			if negative_zone then		
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
@@ -319,8 +331,6 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			end
 		else
 			-- air pockets
-			local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-			local cracks = nvals_cracks[index2d]
 			local ystride = area.ystride
 			if cracks > 0.6 and data[vi-ystride] == c_water then
 				data[vi-ystride] = c_air
@@ -416,9 +426,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	
 	----------------------------------------------
 	-- Column material override for dry biome
-	
-	local hoar_moss_generator
-	
+
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		if biome.name == "dfcaverns_level3_bloodnether_biome" then
@@ -430,6 +438,8 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 					if area:get_y(vi) > subsea_level - ice_thickness then
 						if data[vi + 1] == c_air or data[vi - 1] == c_air or data[vi + area.zstride] == c_air or data[vi - area.zstride] == c_air then
 							--surface node, potential hoar moss streak
+							-- This particular Perlin noise is only called in small amounts on rare occasions, so don't bother
+							-- with the full blown generated array rigamarole.
 							hoar_moss_generator = hoar_moss_generator or minetest.get_perlin(hoar_moss_perlin_params)
 							local pos = area:position(vi)
 							if hoar_moss_generator:get_3d({x=pos.z, y=pos.y, z=pos.x}) > 0.5 then

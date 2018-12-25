@@ -106,6 +106,13 @@ df_caverns.glow_worm_cavern_ceiling = function(abs_cracks, vert_rand, vi, area, 
 	end
 end
 
+local content_in_list=function(content, list)
+	for i, v in ipairs(list) do
+		if content == v then return true end
+	end
+	return false
+end
+
 df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, data_param2, wet)
 	local ystride = area.ystride
 	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
@@ -113,14 +120,14 @@ df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, dat
 	local abs_cracks = math.abs(cracks)
 
 	if wet then
-		if abs_cracks < 0.05 and data[vi+ystride] == c_air then -- TODO: further test, make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
+		if abs_cracks < 0.05 and data[vi+ystride] == c_air and not content_in_list(data[vi], df_mapitems.wet_stalagmite_ids) then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
 			data[vi] = c_wet_flowstone
 		end
 	else
-		if abs_cracks < 0.025 and data[vi+ystride] == c_air then -- TODO: further test, make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
+		if abs_cracks < 0.025 and data[vi+ystride] == c_air and not content_in_list(data[vi], df_mapitems.dry_stalagmite_ids) then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
@@ -135,16 +142,16 @@ df_caverns.tunnel_ceiling = function(minp, maxp, area, vi, nvals_cracks, data, d
 	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 	local cracks = nvals_cracks[index2d]
 	local abs_cracks = math.abs(cracks)
-	
+	 
 	if wet then
-		if abs_cracks < 0.05 and data[vi-ystride] == c_air then -- TODO: further test, make sure data[vi] is not already flowstone. Stalactites from upper levels are acting as base for further stalactites
+		if abs_cracks < 0.05 and data[vi-ystride] == c_air and not content_in_list(data[vi], df_mapitems.wet_stalagmite_ids) then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalactite(vi-ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
 			data[vi] = c_wet_flowstone
 		end
 	else
-		if abs_cracks < 0.025 and data[vi-ystride] == c_air then -- TODO: further test, make sure data[vi] is not already flowstone. Stalactites from upper levels are acting as base for further stalactites
+		if abs_cracks < 0.025 and data[vi-ystride] == c_air and not content_in_list(data[vi], df_mapitems.dry_stalagmite_ids) then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalactite(vi-ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)

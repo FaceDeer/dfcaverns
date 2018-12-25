@@ -63,7 +63,7 @@ minetest.register_node("ice_sprites:ice_sprite", {
 		if minetest.get_node_light(pos) > 11 or math.random() > 0.5 then
 			minetest.set_node(pos, {name = "ice_sprites:hidden_ice_sprite"})
 		end
-		minetest.get_node_timer(pos):start(math.random(30,60))
+		minetest.get_node_timer(pos):start(math.random(20,40))
 	end
 })
 
@@ -98,7 +98,7 @@ minetest.register_node("ice_sprites:hidden_ice_sprite", {
 		if minetest.get_node_light(pos) <= 11 then
 			minetest.set_node(pos, {name = "ice_sprites:ice_sprite"})
 		end
-		minetest.get_node_timer(pos):start(math.random(30,60))
+		minetest.get_node_timer(pos):start(math.random(20,40))
 	end
 })
 

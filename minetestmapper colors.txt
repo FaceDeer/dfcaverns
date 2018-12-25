@@ -93,12 +93,12 @@ df_mapitems:med_crystal_30 206 44 39
 df_mapitems:med_crystal_30_45 206 44 39
 df_mapitems:snareweed 49 71 74
 df_mapitems:wet_flowstone 173 167 166
-df_mapitems:hoar_moss 99 171 190
 df_mapitems:wet_stal_1 173 167 166
 df_mapitems:wet_stal_2 173 167 166
 df_mapitems:wet_stal_3 173 167 166
 df_mapitems:wet_stal_4 173 167 166
 df_mapitems:glow_worm 135 206 235
+df_mapitems:ice_with_hoar_moss 99 171 190
 
 df_underworld_items:glow_amethyst 170 26 191
 df_underworld_items:pit_plasma_flowing 226 183 232

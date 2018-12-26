@@ -1,4 +1,4 @@
-Dwarf Fortress is copyright 2018 by Tarn Adams. This mod uses no assets from Dwarf Fortress.
+Dwarf Fortress is copyright 2018 by Tarn Adams. This mod uses no assets or other copyrighted materials from Dwarf Fortress.
 
 Sounds and textures are under various licenses, see the license.txt file in the /sounds and /textures directories for details.
 

@@ -1,3 +1,5 @@
+All textures not specifically listed here are created by FaceDeer and released under both the MIT license and under the Creative Commons CC0 license.
+
 dfcaverns_glow_worm - copied from caverealms
 dfcaverns_glow_worm_animated - glow worm texture overlaid with rippling animation derived from default mod's water texture
 dfcaverns_glow_mese - from caverealms glow_mese

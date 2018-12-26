@@ -1,3 +1,5 @@
+All textures not specifically listed here are created by FaceDeer and released under both the MIT license and under the Creative Commons CC0 license.
+
 dfcaverns_dwarven_syrup_source_animated - derived from default
 dfcaverns_dwarven_syrup - derived from default
 dfcaverns_dwarven_syrup_flowing_animated - derived from default

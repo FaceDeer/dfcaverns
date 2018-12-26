@@ -1,3 +1,5 @@
+All textures not specifically listed here are created by FaceDeer and released under both the MIT license and under the Creative Commons CC0 license.
+
 dfcaverns_blood_thorn - derived from default cactus
 dfcaverns_black_cap	- derived from default coal block
 dfcaverns_goblin_cap 	- derived from default red coral

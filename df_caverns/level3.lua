@@ -356,8 +356,9 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		
 		if negative_zone and minp.y < subsea_level and area:get_y(vi) < subsea_level then
 			-- underwater ceiling, do nothing
-		elseif biome_name == "dfcaverns_level3_bloodnether_biome" and node_arrays.contains_negative_zone then
+		elseif biome_name == "dfcaverns_level3_bloodnether_biome" and negative_zone then
 			-- Nethercap warrens
+			local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 			local cracks = nvals_cracks[index2d]
 			local abs_cracks = math.abs(cracks)
 			local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
@@ -388,15 +389,17 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	-- Warren floors
 	
 	for _, vi in ipairs(node_arrays.warren_floor_nodes) do
+		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}		
 		local biome_name
 		if biome then
 			biome_name = biome.name
 		end
 		
-		if minp.y < subsea_level and area:get_y(vi) < subsea_level and nvals_cave[cave_area:transform(area, vi)] < 0 then
+		if minp.y < subsea_level and area:get_y(vi) < subsea_level and negative_zone then
 			-- underwater floor, do nothing
-		elseif biome_name == "dfcaverns_level3_bloodnether_biome" then
+		elseif biome_name == "dfcaverns_level3_bloodnether_biome" and negative_zone then
+			local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 			local cracks = nvals_cracks[index2d]
 			local abs_cracks = math.abs(cracks)
 			local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)

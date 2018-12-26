@@ -204,10 +204,12 @@ local get_corner = function(pos)
 	return {x = math.floor((pos.x+32) / pit_region_size) * pit_region_size - 32, z = math.floor((pos.z+32) / pit_region_size) * pit_region_size - 32}
 end
 
-local get_pit = function(pos, mapgen_seed)
+local mapgen_seed = tonumber(minetest.get_mapgen_setting("seed"))
+
+local get_pit = function(pos)
 	local corner_xz = get_corner(pos)
 	local next_seed = math.random(1, 1000000000)
-	math.randomseed(corner_xz.x + corner_xz.z * 2 ^ 8)
+	math.randomseed(corner_xz.x + corner_xz.z * 2 ^ 8 + mapgen_seed)
 	local location = scatter_2d(corner_xz, pit_region_size, radius_pit_max + radius_pit_variance)
 	local variance_multiplier = math.random()
 	local radius = variance_multiplier * (radius_pit_max - 15) + 15

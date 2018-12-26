@@ -396,7 +396,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		
 		if minp.y < subsea_level and area:get_y(vi) < subsea_level and nvals_cave[cave_area:transform(area, vi)] < 0 then
 			-- underwater floor, do nothing
-		elseif biome_name == "dfcaverns_level3_bloodnether_cap_biome" then
+		elseif biome_name == "dfcaverns_level3_bloodnether_biome" then
 			local cracks = nvals_cracks[index2d]
 			local abs_cracks = math.abs(cracks)
 			local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)

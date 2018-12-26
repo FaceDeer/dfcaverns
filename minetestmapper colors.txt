@@ -127,6 +127,7 @@ magma_conduits:glow_obsidian 108 11 11
 magma_conduits:hot_cobble 121 27 27
 magma_conduits:lava_flowing 255 100 0
 magma_conduits:lava_source 255 100 0
+magma_conduits:stone 97 94 93
 
 #dynamic_liquid
 dynamic_liquid:clay 182 182 182

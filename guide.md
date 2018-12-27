@@ -28,7 +28,7 @@ Glow worms can be harvested and used as a source of light but they die when expo
 
 # Farmable organisms
 
-![Farmable plants, except Torchspines (see Black Cap cavern)](./screenshots/farmable_plants.jpg)
+![Farmable plants, except Torchspines (see Black Cap cavern)](./df_caverns/screenshots/farmable_plants.jpg)
 
 ## Plump helmet
 
@@ -66,13 +66,13 @@ By default, the first cavern layer can be found between -200 and -800 meters ele
 
 ## Tower Cap caverns
 
-![Two Tower Caps](./screenshots/tower_cap.jpg)
+![Two Tower Caps](./df_caverns/screenshots/tower_cap.jpg)
 
 Tower Caps are enormous pale mushrooms with woody stems and caps. Aside from their sheer size there's not much unusual about them; they are useful as a substitute for surface wood and can be used for most wood-requiring crafting recipes. Plump helmets also grow here.
 
 ## Fungiwood caverns
 
-![Fungiwood, with stalagmites in foreground](./screenshots/fungiwood.jpg)
+![Fungiwood, with stalagmites in foreground](./df_caverns/screenshots/fungiwood.jpg)
 
 Fungiwoods have thinner stalks that sprout numerous thin irregular "shelves" branching out along its height. The shelves are useless except as fuel, but the main stem of a fungiwood is another wood substitute.
 
@@ -84,13 +84,13 @@ By default, the second cavern layer can be found between -800 and -1400 meters e
 
 ## Goblin Cap caverns
 
-![Goblin Caps](./screenshots/goblin_cap.jpg)
+![Goblin Caps](./df_caverns/screenshots/goblin_cap.jpg)
 
 Goblin caps are the broader, squatter cousins of the Tower Cap fungus. Like Tower Caps they have no particular special properties, but their wood comes in two different colours - the reddish orange of their caps and the cream coloured stem wood. Plump helmets grow here.
 
 ## Spore Tree caverns
 
-![Spore Trees](./screenshots/spore_tree.jpg)
+![Spore Trees](./df_caverns/screenshots/spore_tree.jpg)
 
 Spore trees are the smallest of the underground fungal "tree" types, with a simple stem supporting a sponge-like three-dimensional mesh of hyphae. The mesh can be easily climbed, so navigating a spore tree forest is quite easy, and when harvested can be crafted into ladders quite quickly and easily. Fruiting bodies are embedded in the mesh that produce a copious amount of spores that gently rain down around the spore tree's base.
 
@@ -98,7 +98,7 @@ Cave wheat and pig tails can be found growing here.
 
 ## Tunnel Tube caverns
 
-![Tunnel Tubes](./screenshots/tunnel_tube.jpg)
+![Tunnel Tubes](./df_caverns/screenshots/tunnel_tube.jpg)
 
 Tunnel tubes are hollow, curved fungal growths that support a fruiting body at their tip. The trunk of a tunnel tube can be cut and processed to produce plywood-like material. The fruiting body accumulates high-energy compounds that, when ignited, produce a vigorous detonation - a unique adaptation for spreading tunnel tube spawn through the still cavern air. If the TNT mod is enabled tunnel tube fruiting bodies can be detonated like weak TNT blocks and can be harvested for gunpowder.
 
@@ -110,7 +110,7 @@ The third cavern layer is where things start to get really exotic. Black Caps, N
 
 ## Black Cap caverns
 
-![Black Caps, with two Torchspines in foreground](./screenshots/black_cap.jpg)
+![Black Caps, with two Torchspines in foreground](./df_caverns/screenshots/black_cap.jpg)
 
 Black Cap caverns are dark, sooty, carbon-rich places. The Black Caps themselves are fairly mundane as underground flora goes, giant black mushrooms whose tarry gills can be used to craft torches and whose wood burns as strongly as coal blocks.
 
@@ -118,7 +118,7 @@ Also found in Black Cap caverns are torchspines, stalagmite-like growths that so
 
 ## Nethercap caverns
 
-![Nethercaps, with ice sprites hovering near icicles above](./screenshots/nethercap.jpg)
+![Nethercaps, with ice sprites hovering near icicles above](./df_caverns/screenshots/nethercap.jpg)
 
 Nethercaps break the known laws of thermodynamics by somehow "feeding" directly on heat. As a result Nethercap caverns are frigid and icy, with icicles mixed with stalactites and giant columns of frozen water. Nethercap caverns have little other life in them as a result. They are lit by thet blue glow of the Nethercap's gills, as well as by the mysterious "ice sprites" that hover and sparkle near the ceilings and by the streaks of hoar moss that grow on the surfaces of ice columns.
 
@@ -128,7 +128,7 @@ Ice sprites, mysterious glowing insect-like creatures that appear to be made par
 
 ## Bloodthorn caverns
 
-![Bloodthorns](./screenshots/bloodthorn.jpg)
+![Bloodthorns](./df_caverns/screenshots/bloodthorn.jpg)
 
 Bloodthorns are cactus-like in appearance and habitat, growing in dry sandy caverns, but they are far more agressive about seeking moisture than their surface kin. Bloodthorns have thick spines projecting randomly from their trunks that are coated in smaller barbs that greedily drain fluids from any creature that touches them. You can climb a bloodthorn quite easily, using its spines like rungs on a ladder, but it will hurt to do so. Bloodthorn caverns are dimly lit so take care not to blunder into the rows of bloodthorns that grow like living fences.
 
@@ -136,13 +136,13 @@ Lakes are never found in Bloodthorn caverns.
 
 ## Barren crystal caverns
 
-![Crystals](./screenshots/crystals.jpg)
+![Crystals](./df_caverns/screenshots/crystals.jpg)
 
 On the third cavern layer the dry barren caverns will sprout clusters of enormous hexagonal red crystals from their floors and ceilings, providing light. These crystals have no particular use but are rare and beautiful to look at.
 
 # Sunless Sea
 
-![Sunless river](./screenshots/sunless_river.jpg)
+![Sunless river](./df_caverns/screenshots/sunless_river.jpg)
 
 The Sunless Sea is the final destination of all water that flows down through the cracks in the Earth. By default the caverns of the Sunless Sea begin at -2000 and go down to -2400 meters, with the lower sea level of the world being halfway between at -2200.
 
@@ -150,7 +150,7 @@ Compared to the previous layer the Sunless Sea is actually a much richer and mor
 
 The distinguishing feature of the Sunless Sea is the vast expanse of water to be found here. The caverns themselves are broader in extent than those found higher up, heavily eroded by the steady flow of water, and a network of rivers spider-web the cracks between the larger caverns and allow for an intrepid sailor to travel great distances.
 
-![Cave Coral in the foreground, Snareweed in background](./screenshots/cave_coral_snareweed.jpg)
+![Cave Coral in the foreground, Snareweed in background](./df_caverns/screenshots/cave_coral_snareweed.jpg)
 
 Below the surface of the water Snareweed can be found, a dangerous kelp-like growth that uses bioluminescence and reflective patches to lure cave fish close enough to snag with their barbs. Swimming through Snareweed is a painful experience. Deeper down are craggy towers of softly glowing Cave Coral.
 
@@ -158,7 +158,7 @@ This is the last stop for the living world, however. Caverns continue to stretch
 
 # Lakes of Oil
 
-![Mine gas seeping into a tunnel](./screenshots/mine_gas.jpg)
+![Mine gas seeping into a tunnel](./df_caverns/screenshots/mine_gas.jpg)
 
 Venturing below the Sunless Sea will require either a great deal of digging through solid rock or a lengthy SCUBA swim through flooded tunnels. Getting past the water doesn't guarantee that you'll be able to breathe, however.
 
@@ -168,7 +168,7 @@ Buckets of oil serve as an excellent fuel source, powering a furnace as well as 
 
 # Magma Sea
 
-![Mese crystals growing above the magma sea](./screenshots/magma_sea_mese.jpg)
+![Mese crystals growing above the magma sea](./df_caverns/screenshots/magma_sea_mese.jpg)
 
 Below the lakes of oil, around -2800 meters elevation, is the Magma Sea. A dense network of cracks filled with liquid rock, the only way through is by digging a passage of your own through whatever remains solid.
 
@@ -176,12 +176,12 @@ The Magma Sea is not without its treasures, however. In the most infernal region
 
 # Underworld
 
-![There are older and fouler things than orcs in the deep places of the world](./screenshots/underworld.jpg)
+![There are older and fouler things than orcs in the deep places of the world](./df_caverns/screenshots/underworld.jpg)
 
 The foundations of the world lie at -3100 meters, under a default configuration. The diggable rock of the world ends at a rippling layer of invulnerable Slade, a material of unparalleled density. There is a cavern layer at the seam between rock and Slade, however, as if the earth itself was reluctant to touch the strange matter below. The crevices of the ceiling have strange glowing rocks in them, producing a surprisingly bright ambience. Don't attempt to disturb those rocks.
 
 There is no native life in the Underworld. It appears there once _was_, however. Occasional clusters of vacant buildings can be found, impossibly crafted from bricks of Slade and empty of any furnishings. Around those clusters of vacant buildings are fields filled with sealed pits lined with flawless Slade blocks. It is unclear whether these pits are as vacant as the buildings, though. The seals capping them are engraved with ancient words in lost tongues, but one phrase can be translated from the oldest known languages: "This Place is Not a Place of Honor."
 
-![Glowing pit](./screenshots/glowing_pit.jpg)
+![Glowing pit](./df_caverns/screenshots/glowing_pit.jpg)
 
 Also scattered around the Underworld are the occasional twisting shaft leading down into the Slade. The edges of these shafts are encrusted with glowing purple crystals and the bottoms of these shafts are filled with some form of shimmering liquid that destroys whatever tries to penetrate it.

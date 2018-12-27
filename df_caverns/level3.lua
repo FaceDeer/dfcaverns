@@ -432,9 +432,9 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
 		local biome_name = biome.name
+		local negative_zone = nvals_cave[cave_area:transform(area, vi)] < 0
 		if biome_name == "dfcaverns_level3_bloodnether_biome" and data[vi] == c_wet_flowstone then
-			local dry = nvals_cave[cave_area:transform(area, vi)] > 0
-			if dry then
+			if not negative_zone then
 				data[vi] = c_dry_flowstone -- bloodthorn
 			else
 				if area:get_y(vi) > subsea_level - ice_thickness then

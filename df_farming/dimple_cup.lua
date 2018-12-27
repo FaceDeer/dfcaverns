@@ -28,11 +28,11 @@ local register_dimple_cup = function(number)
 			max_items = 1,
 			items = {
 				{
-					items = {'df_farming::dimple_cup_seed 2', 'df_farming::dimple_cup_4'},
+					items = {'df_farming:dimple_cup_seed 2', 'df_farming:dimple_cup_4'},
 					rarity = 7-number,
 				},
 				{
-					items = {'df_farming::dimple_cup_seed 1', 'df_farming::dimple_cup_4'},
+					items = {'df_farming:dimple_cup_seed 1', 'df_farming:dimple_cup_4'},
 					rarity = 5-number,
 				},
 			},

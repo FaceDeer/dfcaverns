@@ -30,15 +30,15 @@ local register_pig_tail = function(number)
 			max_items = 1,
 			items = {
 				{
-					items = {'df_farming::pig_tail_seed 2', 'df_farming::pig_tail_thread 2'},
+					items = {'df_farming:pig_tail_seed 2', 'df_farming:pig_tail_thread 2'},
 					rarity = 9-number,
 				},
 				{
-					items = {'df_farming::pig_tail_seed 1', 'df_farming::pig_tail_thread'},
+					items = {'df_farming:pig_tail_seed 1', 'df_farming:pig_tail_thread'},
 					rarity = 9-number,
 				},
 				{
-					items = {'df_farming::pig_tail_seed'},
+					items = {'df_farming:pig_tail_seed'},
 					rarity = 9-number,
 				},
 			},

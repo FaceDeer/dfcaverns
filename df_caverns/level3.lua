@@ -63,7 +63,7 @@ local black_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, d
 		if math.random() < 0.05 then
 			df_caverns.place_shrub(data, vi+area.ystride, data_param2, black_cap_shrublist)
 		elseif math.random() < 0.01 and abs_cracks > 0.25 then
-			df_trees.spawn_black_cap_vm(vi, area, data)
+			df_trees.spawn_black_cap_vm(vi+area.ystride, area, data)
 		end
 	end
 end
@@ -428,36 +428,36 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	end
 	
 	----------------------------------------------
-	-- Column material override for dry biome
-
+	-- Column material override for dry biome	
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local biome = mapgen_helper.get_biome_def_i(biomemap, minp, maxp, area, vi) or {}
-		if biome.name == "dfcaverns_level3_bloodnether_biome" then
-			if data[vi] == c_wet_flowstone then
-				local dry = nvals_cave[cave_area:transform(area, vi)] > 0
-				if dry then
-					data[vi] = c_dry_flowstone -- bloodthorn
-				else
-					if area:get_y(vi) > subsea_level - ice_thickness then
-						if data[vi + 1] == c_air or data[vi - 1] == c_air or data[vi + area.zstride] == c_air or data[vi - area.zstride] == c_air then
-							--surface node, potential hoar moss streak
-							-- This particular Perlin noise is only called in small amounts on rare occasions, so don't bother
-							-- with the full blown generated array rigamarole.
-							hoar_moss_generator = hoar_moss_generator or minetest.get_perlin(hoar_moss_perlin_params)
-							local pos = area:position(vi)
-							if hoar_moss_generator:get_3d({x=pos.z, y=pos.y, z=pos.x}) > 0.5 then
-								data[vi] = c_hoar_moss
-							else
-								data[vi] = c_ice
-							end
+		local biome_name = biome.name
+		if biome_name == "dfcaverns_level3_bloodnether_biome" and data[vi] == c_wet_flowstone then
+			local dry = nvals_cave[cave_area:transform(area, vi)] > 0
+			if dry then
+				data[vi] = c_dry_flowstone -- bloodthorn
+			else
+				if area:get_y(vi) > subsea_level - ice_thickness then
+					if data[vi + 1] == c_air or data[vi - 1] == c_air or data[vi + area.zstride] == c_air or data[vi - area.zstride] == c_air then
+						--surface node, potential hoar moss streak
+						-- This particular Perlin noise is only called in small amounts on rare occasions, so don't bother
+						-- with the full blown generated array rigamarole.
+						hoar_moss_generator = hoar_moss_generator or minetest.get_perlin(hoar_moss_perlin_params)
+						local pos = area:position(vi)
+						if hoar_moss_generator:get_3d({x=pos.z, y=pos.y, z=pos.x}) > 0.5 then
+							data[vi] = c_hoar_moss
 						else
 							data[vi] = c_ice
 						end
 					else
-						data[vi] = c_water -- ice columns shouldn't extend below the surface of the water. There should probably be a bulge below, though. Not sure best way to implement that.
+						data[vi] = c_ice
 					end
+				else
+					data[vi] = c_water -- ice columns shouldn't extend below the surface of the water. There should probably be a bulge below, though. Not sure best way to implement that.
 				end
 			end
+		elseif biome_name == "dfcaverns_level3_barren_biome" and not negative_zone and data[vi] == c_wet_flowstone then
+			data[vi] = c_dry_flowstone
 		end
 	end
 

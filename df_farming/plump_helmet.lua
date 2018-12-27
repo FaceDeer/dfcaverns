@@ -222,19 +222,19 @@ minetest.register_node("df_farming:plump_helmet_4", {
 		max_items = 4,
 		items = {
 			{
-				items = {'df_farming::plump_helmet_4_picked'},
+				items = {'df_farming:plump_helmet_4_picked'},
 				rarity = 1,
 			},
 			{
-				items = {'df_farming::plump_helmet_spawn'},
+				items = {'df_farming:plump_helmet_spawn'},
 				rarity = 1,
 			},
 			{
-				items = {'df_farming::plump_helmet_spawn'},
+				items = {'df_farming:plump_helmet_spawn'},
 				rarity = 2,
 			},
 			{
-				items = {'df_farming::plump_helmet_spawn'},
+				items = {'df_farming:plump_helmet_spawn'},
 				rarity = 2,
 			},
 		},

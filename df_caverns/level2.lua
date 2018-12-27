@@ -33,7 +33,7 @@ local goblin_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, 
 		if math.random() < 0.1 then
 			df_caverns.place_shrub(data, vi+ystride, data_param2, goblin_cap_shrublist)
 		elseif math.random() < 0.015 then
-			df_trees.spawn_goblin_cap_vm(vi, area, data)
+			df_trees.spawn_goblin_cap_vm(vi+ystride, area, data)
 		end
 	end
 

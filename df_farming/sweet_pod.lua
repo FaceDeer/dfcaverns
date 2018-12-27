@@ -28,15 +28,15 @@ local register_sweet_pod = function(number)
 			max_items = 2,
 			items = {
 				{
-					items = {'df_farming::sweet_pod_seed 2', 'df_farming::sweet_pods 2'},
+					items = {'df_farming:sweet_pod_seed 2', 'df_farming:sweet_pods 2'},
 					rarity = 7-number,
 				},
 				{
-					items = {'df_farming::sweet_pod_seed', 'df_farming::sweet_pods'},
+					items = {'df_farming:sweet_pod_seed', 'df_farming:sweet_pods'},
 					rarity = 7-number,
 				},
 				{
-					items = {'df_farming::sweet_pod_seed'},
+					items = {'df_farming:sweet_pod_seed'},
 					rarity = 7-number,
 				},
 			},

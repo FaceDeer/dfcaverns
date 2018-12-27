@@ -42,7 +42,7 @@ minetest.register_node("oil:gas_seep", {
 	description = S("Gas Seep"),
 	_doc_items_longdesc = seep_desc,
 	_doc_items_usagehelp = seep_usage,
-	tiles = {"default_stone.png^default_mineral_coal.png^[combine:16x80:0,-48=crack_anylength.png"},
+	tiles = {"default_stone.png^default_mineral_coal.png^[combine:16x80:0,-16=crack_anylength.png"},
 	groups = {cracky = 3},
 	drop = 'default:coal_lump',
 	sounds = default.node_sound_stone_defaults(),
@@ -170,10 +170,12 @@ minetest.register_abm({
 		local target_pos = vector.add(pos,orthogonal[math.random(1,6)])
 		if minetest.get_node(target_pos).name == "air" then
 			minetest.swap_node(target_pos, {name="oil:gas"})
-			minetest.sound_play(
-				"default_cool_lava",
-				{pos = pos, max_hear_distance = 8, gain = 0.1}
-			)
+			if math.random() < 0.5 then
+				minetest.sound_play(
+					"oil_gas_seep_hiss",
+					{pos = pos, max_hear_distance = 8, gain = 0.05}
+				)
+			end
 		end	
 	end,
 })

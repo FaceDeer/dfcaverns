@@ -102,7 +102,7 @@ minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "oil:gas_seep",
 	wherein        = "default:stone",
-	clust_scarcity = 48 * 48 * 48,
+	clust_scarcity = 32 * 32 * 32,
 	clust_num_ores = 27,
 	clust_size     = 6,
 	y_max          = df_caverns.config.sunless_sea_min,

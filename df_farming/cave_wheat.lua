@@ -30,15 +30,15 @@ local register_cave_wheat = function(number)
 			max_items = 1,
 			items = {
 				{
-					items = {'df_farming::cave_wheat_seed 2', 'df_farming::cave_wheat'},
+					items = {'df_farming:cave_wheat_seed 2', 'df_farming:cave_wheat'},
 					rarity = 9-number,
 				},
 				{
-					items = {'df_farming::cave_wheat_seed 1', 'df_farming::cave_wheat'},
+					items = {'df_farming:cave_wheat_seed 1', 'df_farming:cave_wheat'},
 					rarity = 9-number,
 				},
 				{
-					items = {'df_farming::cave_wheat_seed'},
+					items = {'df_farming:cave_wheat_seed'},
 					rarity = 9-number,
 				},
 			},

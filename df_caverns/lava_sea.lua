@@ -87,7 +87,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		for z = minp.z + 1, maxp.z -1 do
 			local index2d = mapgen_helper.index2d(minp, maxp, x, z)
 			local rand = math.random()
-			local mese_intensity = heatmap[index2d] * rand
+			local mese_intensity = math.min(heatmap[index2d], 100) * rand
 					
 			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 			local wave = nvals_wave[index2d] * wave_mult
@@ -97,14 +97,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local lava = nvals_lavasurface[index2d]
 			local lava_height = math.floor(median + lava * 2)
 		
-			if mese_intensity > 90 and ceiling_height > lava_height + 1 and ceiling_height > floor_height + 1 and ceiling_height <= maxp.y and ceiling_height >= minp.y then
+			if mese_intensity > 60 and ceiling_height > lava_height + 1 and ceiling_height > floor_height + 1 and ceiling_height <= maxp.y and ceiling_height >= minp.y then
 				local vi = area:index(x, ceiling_height, z)
 				if not mapgen_helper.buildable_to(data[vi]) then
 					-- decorate ceiling
-					data[vi] = c_meseore
-					if mese_intensity > 94 and mese_intensity < 104 then
+					if math.random() > 0.25 then
+						data[vi] = c_meseore
+					elseif mese_intensity > 70 and math.random() > 0.25 then
 						data[vi-area.ystride] = c_mesecry
-					elseif mese_intensity >= 104 then
+					elseif mese_intensity > 80 and math.random() > 0.25 then
 						subterrane.big_stalactite(vi, area, data, 6, 13, c_meseore, c_meseore, c_mesecry)
 					end
 				end

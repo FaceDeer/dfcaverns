@@ -30,15 +30,15 @@ local register_quarry_bush = function(number)
 			max_items = 2,
 			items = {
 				{
-					items = {'df_farming::quarry_bush_seed 2', 'df_farming::quarry_bush_leaves 2'},
+					items = {'df_farming:quarry_bush_seed 2', 'df_farming:quarry_bush_leaves 2'},
 					rarity = 6-number,
 				},
 				{
-					items = {'df_farming::quarry_bush_seed 1', 'df_farming::quarry_bush_leaves'},
+					items = {'df_farming:quarry_bush_seed 1', 'df_farming:quarry_bush_leaves'},
 					rarity = 6-number,
 				},
 				{
-					items = {'df_farming::quarry_bush_seed'},
+					items = {'df_farming:quarry_bush_seed'},
 					rarity = 6-number,
 				},
 			},

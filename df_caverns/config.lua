@@ -28,7 +28,7 @@ end
 setting("float", "vertical_cavern_scale", 256, "Vertical cavern dimension scale")
 setting("float", "horizontal_cavern_scale", 256, "Horizontal cavern dimension scale")
 setting("float", "cavern_threshold", 0.5, "Cavern threshold")
-setting("float", "sunless_sea_threshold", 0.25, "Cavern threshold for sunless seas (higher number means sparser caverns)")
+setting("float", "sunless_sea_threshold", 0.4, "Cavern threshold for sunless seas (higher number means sparser caverns)")
 setting("float", "tunnel_flooding_threshold", 0.25, "Threshold for flooding tunnels around flooded caverns")
 
 setting("int", "ymax", -200, "Upper limit of level 1")

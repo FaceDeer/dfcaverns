@@ -5,6 +5,7 @@ local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_sand = minetest.get_content_id("default:sand")
 local c_gravel = minetest.get_content_id("default:gravel")
 local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
+local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
 local c_lava = minetest.get_content_id("default:lava_source")
 local c_obsidian = minetest.get_content_id("default:obsidian")
 
@@ -345,6 +346,17 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 			df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 		end
 	end
+
+	-- columns
+	for _, vi in ipairs(node_arrays.column_nodes) do
+		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+		local heat = heatmap[index2d]
+
+		if area:get_y(vi) > sea_level and heat > hot_zone_boundary and data[vi] == c_wet_flowstone then
+			data[vi] = c_dry_flowstone
+		end
+	end
+
 	
 	vm:set_param2_data(data_param2)
 end

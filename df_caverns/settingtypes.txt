@@ -10,7 +10,7 @@ dfcaverns_horizontal_cavern_scale (Horizontal cavern dimension scale) float 256
 #Determines threshold for cave generation. Higher number means sparser, smaller caverns
 dfcaverns_cavern_threshold (Cavern threshold) float 0.5 0.0 1.0
 #Determines threshold for lower sea cave generation. Higher number means sparser, smaller caverns
-dfcaverns_sunless_sea_threshold (Cavern threshold for lava sea) float 0.25 0.0 1.0
+dfcaverns_sunless_sea_threshold (Cavern threshold for sunless sea) float 0.4 0.0 1.0
 #Determines how far out water extends into tunnels below the 'sea level' of from flooded
 #caverns. Lower numbers give more flooded tunnel. If this number equals the cavern
 #threshold tunnels will not be flooded at all, if it is 0 then half the tunnels will be flooded.

@@ -6,12 +6,6 @@ local c_stone = minetest.get_content_id("default:stone")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_gravel = minetest.get_content_id("default:gravel")
 
-local c_quarry_bush = minetest.get_content_id("df_farming:quarry_bush_5") -- param2 = 4
-local c_plump_helmet = minetest.get_content_id("df_farming:plump_helmet_4") -- param2 = 0-3
-local c_pig_tail = minetest.get_content_id("df_farming:pig_tail_8") -- param2 = 3
-local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param2 = 3
-local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
-
 local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus")
 local c_cobble_fungus_fine = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus_fine")
@@ -80,6 +74,10 @@ df_caverns.flooded_cavern_floor = function(abs_cracks, vert_rand, vi, area, data
 	end
 end
 
+local c_dead_fungus
+if minetest.get_modpath("df_farming") then
+	c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus")
+end
 
 df_caverns.dry_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	if abs_cracks < 0.075 then
@@ -90,7 +88,20 @@ df_caverns.dry_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, da
 		data[vi] = c_cobble_fungus_fine
 	else
 		data[vi] = c_cobble_fungus
-		if math.random() < 0.05 then
+		if c_dead_fungus and math.random() < 0.05 then
+			data[vi+area.ystride] = c_dead_fungus
+		end
+	end
+end
+
+df_caverns.wet_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	if abs_cracks < 0.1 then
+		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
+	elseif abs_cracks < 0.6 then
+		data[vi] = c_cobble
+	else
+		data[vi] = c_mossycobble
+		if c_dead_fungus and math.random() < 0.05 then
 			data[vi+area.ystride] = c_dead_fungus
 		end
 	end
@@ -198,23 +209,11 @@ df_caverns.np_cracks = {
 
 ---------------------------------------------------------------------------------
 
-df_caverns.place_shrub = function(data, vi, param2_data, shrub_list)
-	local shrub = shrub_list[math.random(#shrub_list)]
-	
-	if shrub == c_quarry_bush then
-		data[vi] = c_quarry_bush
-		param2_data[vi] = 4
-	elseif shrub == c_plump_helmet then
-		data[vi] = c_plump_helmet
-		param2_data[vi] = math.random(0,3)
-	elseif shrub == c_pig_tail then
-		data[vi] = c_pig_tail
-		param2_data[vi] = 3
-	elseif shrub == c_cave_wheat then
-		data[vi] = c_cave_wheat
-		param2_data[vi] = 3
-	else
-		data[vi] = shrub
-		param2_data[vi] = 0
+df_caverns.place_shrub = function(vi, area, data, param2_data, shrub_list)
+	if shrub_list == nil then
+		return
 	end
+	
+	local shrub = shrub_list[math.random(#shrub_list)]
+	shrub(vi, area, data, param2_data)
 end

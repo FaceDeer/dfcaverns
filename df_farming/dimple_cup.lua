@@ -51,6 +51,18 @@ for i = 1,4 do
 	register_dimple_cup(i)
 end
 
+local place_list = {
+	minetest.get_content_id("df_farming:dimple_cup_1"),
+	minetest.get_content_id("df_farming:dimple_cup_2"),
+	minetest.get_content_id("df_farming:dimple_cup_3"),
+	minetest.get_content_id("df_farming:dimple_cup_4"),
+}
+-- doesn't set the timer running, so plants placed by this method won't grow
+df_farming.spawn_dimple_cup_vm = function(vi, area, data, param2_data)
+	data[vi] = place_list[math.random(1,4)]
+	param2_data[vi] = 0
+end
+
 df_farming.register_seed(
 	"dimple_cup_seed",
 	S("Dimple Cup Spores"),

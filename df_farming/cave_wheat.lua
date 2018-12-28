@@ -57,6 +57,23 @@ for i = 1,8 do
 	register_cave_wheat(i)
 end
 
+local place_list = {
+	minetest.get_content_id("df_farming:cave_wheat_1"),
+	minetest.get_content_id("df_farming:cave_wheat_2"),
+	minetest.get_content_id("df_farming:cave_wheat_3"),
+	minetest.get_content_id("df_farming:cave_wheat_4"),
+	minetest.get_content_id("df_farming:cave_wheat_5"),
+	minetest.get_content_id("df_farming:cave_wheat_6"),
+	minetest.get_content_id("df_farming:cave_wheat_7"),
+	minetest.get_content_id("df_farming:cave_wheat_8"),
+}
+-- doesn't set the timer running, so plants placed by this method won't grow
+df_farming.spawn_cave_wheat_vm = function(vi, area, data, param2_data)
+	data[vi] = place_list[math.random(1,8)]
+	param2_data[vi] = 3
+end
+
+
 df_farming.register_seed(
 	"cave_wheat_seed",
 	S("Cave Wheat Seed"),

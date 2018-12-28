@@ -114,7 +114,7 @@ The third cavern layer is where things start to get really exotic. Black Caps, N
 
 Black Cap caverns are dark, sooty, carbon-rich places. The Black Caps themselves are fairly mundane as underground flora goes, giant black mushrooms whose tarry gills can be used to craft torches and whose wood burns as strongly as coal blocks.
 
-Also found in Black Cap caverns are torchspines, stalagmite-like growths that sometimes burn volatile gasses at their tips and produce a dim, irregular light. When water lakes are found in Black Cap caverns the water has an oily sheen on the surface, collecting into thick black slicks that cling to the shores. Quarry bushes can be found here.
+Also found in Black Cap caverns are torchspines, stalagmite-like growths that sometimes burn volatile gasses at their tips and produce a dim, irregular light. When water lakes are found in Black Cap caverns the water has an oily sheen on the surface, collecting into thick black slicks that cling to the shores.
 
 ## Nethercap caverns
 
@@ -132,7 +132,7 @@ Ice sprites, mysterious glowing insect-like creatures that appear to be made par
 
 Bloodthorns are cactus-like in appearance and habitat, growing in dry sandy caverns, but they are far more agressive about seeking moisture than their surface kin. Bloodthorns have thick spines projecting randomly from their trunks that are coated in smaller barbs that greedily drain fluids from any creature that touches them. You can climb a bloodthorn quite easily, using its spines like rungs on a ladder, but it will hurt to do so. Bloodthorn caverns are dimly lit so take care not to blunder into the rows of bloodthorns that grow like living fences.
 
-Lakes are never found in Bloodthorn caverns.
+Lakes are never found in Bloodthorn caverns. Quarry bushes can be found here.
 
 ## Barren crystal caverns
 

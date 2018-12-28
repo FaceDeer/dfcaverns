@@ -57,6 +57,19 @@ for i = 1,5 do
 	register_quarry_bush(i)
 end
 
+local place_list = {
+	minetest.get_content_id("df_farming:quarry_bush_1"),
+	minetest.get_content_id("df_farming:quarry_bush_2"),
+	minetest.get_content_id("df_farming:quarry_bush_3"),
+	minetest.get_content_id("df_farming:quarry_bush_4"),
+	minetest.get_content_id("df_farming:quarry_bush_5"),
+}
+-- doesn't set the timer running, so plants placed by this method won't grow
+df_farming.spawn_quarry_bush_vm = function(vi, area, data, param2_data)
+	data[vi] = place_list[math.random(1,5)]
+	param2_data[vi] = 4
+end
+
 df_farming.register_seed(
 	"quarry_bush_seed",
 	S("Rock Nuts"),

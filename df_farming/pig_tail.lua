@@ -57,6 +57,22 @@ for i = 1,8 do
 	register_pig_tail(i)
 end
 
+local place_list = {
+	minetest.get_content_id("df_farming:pig_tail_1"),
+	minetest.get_content_id("df_farming:pig_tail_2"),
+	minetest.get_content_id("df_farming:pig_tail_3"),
+	minetest.get_content_id("df_farming:pig_tail_4"),
+	minetest.get_content_id("df_farming:pig_tail_5"),
+	minetest.get_content_id("df_farming:pig_tail_6"),
+	minetest.get_content_id("df_farming:pig_tail_7"),
+	minetest.get_content_id("df_farming:pig_tail_8"),
+}
+-- doesn't set the timer running, so plants placed by this method won't grow
+df_farming.spawn_pig_tail_vm = function(vi, area, data, param2_data)
+	data[vi] = place_list[math.random(1,8)]
+	param2_data[vi] = 3
+end
+
 df_farming.register_seed(
 	"pig_tail_seed",
 	S("Pig Tail Spore"),

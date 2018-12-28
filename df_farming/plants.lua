@@ -31,6 +31,12 @@ minetest.register_craft({
 	burntime = 2
 })
 
+local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus")
+df_farming.spawn_dead_fungus_vm = function(vi, area, data, param2_data)
+	data[vi] = c_dead_fungus
+	param2_data[vi] = 0
+end
+
 -- not DF canon
 minetest.register_node("df_farming:cavern_fungi", {
 	description = S("Cavern Fungi"),
@@ -57,6 +63,12 @@ minetest.register_craft({
 	recipe = "df_farming:cavern_fungi",
 	burntime = 2
 })
+
+local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi")
+df_farming.spawn_cavern_fungi_vm = function(vi, area, data, param2_data)
+	data[vi] = c_cavern_fungi
+	param2_data[vi] = 0
+end
 
 -----------------------------------------------------------------------------------------
 

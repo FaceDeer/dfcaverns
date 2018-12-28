@@ -55,6 +55,20 @@ for i = 1,6 do
 	register_sweet_pod(i)
 end
 
+local place_list = {
+	minetest.get_content_id("df_farming:sweet_pod_1"),
+	minetest.get_content_id("df_farming:sweet_pod_2"),
+	minetest.get_content_id("df_farming:sweet_pod_3"),
+	minetest.get_content_id("df_farming:sweet_pod_4"),
+	minetest.get_content_id("df_farming:sweet_pod_5"),
+	minetest.get_content_id("df_farming:sweet_pod_6"),
+}
+-- doesn't set the timer running, so plants placed by this method won't grow
+df_farming.spawn_sweet_pod_vm = function(vi, area, data, param2_data)
+	data[vi] = place_list[math.random(1,8)]
+	param2_data[vi] = 0
+end
+
 df_farming.register_seed(
 	"sweet_pod_seed",
 	S("Sweet Pod Spores"),

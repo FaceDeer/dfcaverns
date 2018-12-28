@@ -277,6 +277,19 @@ minetest.register_node("df_farming:plump_helmet_4_picked", {
 	on_use = minetest.item_eat(4),
 })
 
+local place_list = {
+	minetest.get_content_id("df_farming:plump_helmet_spawn"),
+	minetest.get_content_id("df_farming:plump_helmet_1"),
+	minetest.get_content_id("df_farming:plump_helmet_2"),
+	minetest.get_content_id("df_farming:plump_helmet_3"),
+	minetest.get_content_id("df_farming:plump_helmet_4"),
+}
+-- doesn't set the timer running, so plants placed by this method won't grow
+df_farming.spawn_plump_helmet_vm = function(vi, area, data, param2_data)
+	data[vi] = place_list[math.random(1,5)]
+	param2_data[vi] = math.random(1,4)-1
+end
+
 minetest.register_craft({
 	type = "fuel",
 	recipe = "df_farming:plump_helmet_spawn",

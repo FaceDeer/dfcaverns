@@ -9,18 +9,26 @@ local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
 local c_lava = minetest.get_content_id("default:lava_source")
 local c_obsidian = minetest.get_content_id("default:obsidian")
 
+local mushroom_shrublist
+local fungispore_shrublist
 
-local c_sweet_pod = minetest.get_content_id("df_farming:sweet_pod_6") -- param2 = 0
-local c_quarry_bush = minetest.get_content_id("df_farming:quarry_bush_5") -- param2 = 4
-local c_plump_helmet = minetest.get_content_id("df_farming:plump_helmet_4") -- param2 = 0-3
-local c_pig_tail = minetest.get_content_id("df_farming:pig_tail_8") -- param2 = 3
-local c_dimple_cup = minetest.get_content_id("df_farming:dimple_cup_4") -- param2 = 0
-local c_cave_wheat = minetest.get_content_id("df_farming:cave_wheat_8") -- param2 = 3
-local c_dead_fungus = minetest.get_content_id("df_farming:dead_fungus") -- param2 = 0
-local c_cavern_fungi = minetest.get_content_id("df_farming:cavern_fungi") -- param2 = 0
-
-local mushroom_shrublist = {c_plump_helmet, c_plump_helmet, c_dimple_cup, c_dead_fungus, c_cavern_fungi,}
-local fungispore_shrublist = {c_pig_tail, c_cave_wheat, c_cave_wheat, c_sweet_pod, c_quarry_bush, c_dead_fungus, c_cavern_fungi} 
+if minetest.get_modpath("df_farming") then
+	mushroom_shrublist = {
+		df_farming.spawn_plump_helmet_vm,
+		df_farming.spawn_plump_helmet_vm,
+		df_farming.spawn_dimple_cup_vm,
+		df_farming.spawn_dead_fungus_vm,
+		df_farming.spawn_cavern_fungi_vm,
+	}
+	fungispore_shrublist = 	{
+		df_farming.spawn_pig_tail_vm,
+		df_farming.spawn_sweet_pod_vm,
+		df_farming.spawn_cave_wheat_vm,
+		df_farming.spawn_cave_wheat_vm,
+		df_farming.spawn_dead_fungus_vm,
+		df_farming.spawn_cavern_fungi_vm,
+	}
+end
 
 ------------------------------------------------------------------------------------------
 
@@ -88,7 +96,7 @@ local mushroom_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, da
 			data[vi] = c_dirt_moss
 		end
 		if math.random() < 0.1 then
-			df_caverns.place_shrub(data, vi+ystride, data_param2, mushroom_shrublist)
+			df_caverns.place_shrub(vi+ystride, area, data, data_param2, mushroom_shrublist)
 		elseif abs_cracks > 0.25 then
 			if math.random() < 0.01 then
 				df_trees.spawn_tower_cap_vm(vi+ystride, area, data)
@@ -110,7 +118,7 @@ local fungispore_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, 
 			data[vi] = c_dirt_moss
 		end
 		if math.random() < 0.1 then
-			df_caverns.place_shrub(data, vi+ystride, data_param2, fungispore_shrublist)
+			df_caverns.place_shrub(vi+ystride, area, data, data_param2, fungispore_shrublist)
 		elseif abs_cracks > 0.35 then
 			if math.random() < 0.025 then
 				df_trees.spawn_fungiwood_vm(vi+ystride, area, data)

@@ -35,6 +35,8 @@ local ceiling_mult = 40
 local ceiling_displace = -30
 local wave_mult = 10
 
+local c_lava_set
+
 local y_max = median + 2*wave_mult + 2*ceiling_mult + ceiling_displace
 local y_min = median - 2*wave_mult + 2*floor_mult + floor_displace
 
@@ -47,12 +49,18 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local t_start = os.clock()
 
 	local vm, data, area = mapgen_helper.mapgen_vm_data()
-	local heatmap = minetest.get_mapgen_object("heatmap")
 	
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:oil_cave", minp, maxp, perlin_cave)
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:oil_wave", minp, maxp, perlin_wave)
 	
-	local debugged = false
+	if c_lava_set == nil then
+		c_lava_set = {}
+		for name, def in pairs(minetest.registered_nodes) do
+			if def.groups ~= nil and def.groups.lava ~= nil then
+				c_lava_set[minetest.get_content_id(name)] = true
+			end
+		end
+	end
 	
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
 		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
@@ -64,7 +72,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 	
 		if y > floor_height - 5 and y < ceiling_height + 5 then
-			if data[vi] == c_lava then
+			if c_lava_set[data[vi]] then
 				data[vi] = c_obsidian
 			end
 		end

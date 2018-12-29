@@ -371,7 +371,8 @@ end
 
 --Sunless Sea
 subterrane.register_layer({
-	y_max = df_caverns.config.level3_min,
+	name = "sunless sea",
+	y_max = df_caverns.config.level3_min-1,
 	y_min = df_caverns.config.sunless_sea_min,
 	cave_threshold = df_caverns.config.sunless_sea_threshold,
 	perlin_cave = perlin_cave_sunless_sea,
@@ -386,5 +387,5 @@ subterrane.register_layer({
 		minimum_count = 10,
 	},
 	decorate = decorate_sunless_sea,
---	double_frequency = true,
+	double_frequency = false,
 })

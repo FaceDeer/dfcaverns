@@ -4,7 +4,6 @@ end
 
 local c_slade = minetest.get_content_id("df_underworld_items:slade")
 local c_air = minetest.get_content_id("air")
-local c_stone = minetest.get_content_id("default:stone")
 
 local c_glowstone = minetest.get_content_id("df_underworld_items:glowstone")
 local c_amethyst = minetest.get_content_id("df_underworld_items:glow_amethyst")
@@ -309,8 +308,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local vi = area:index(x, ceiling_height, z)
 				if (
 					--test if we're nestled in a crevice
-					(data[vi-area.ystride + 1] == c_stone and data[vi-area.ystride - 1] == c_stone) or
-					(data[vi-area.ystride + area.zstride] == c_stone and data[vi-area.ystride - area.zstride] == c_stone)
+					(not mapgen_helper.buildable_to(data[vi-area.ystride + 1]) and not mapgen_helper.buildable_to(data[vi-area.ystride - 1])) or
+					(not mapgen_helper.buildable_to(data[vi-area.ystride + area.zstride]) and not mapgen_helper.buildable_to(data[vi-area.ystride - area.zstride]))
 				)
 				then
 					data[vi] = c_glowstone

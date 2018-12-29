@@ -31,19 +31,19 @@ setting("float", "cavern_threshold", 0.5, "Cavern threshold")
 setting("float", "sunless_sea_threshold", 0.4, "Cavern threshold for sunless seas (higher number means sparser caverns)")
 setting("float", "tunnel_flooding_threshold", 0.25, "Threshold for flooding tunnels around flooded caverns")
 
-setting("int", "ymax", -200, "Upper limit of level 1")
-setting("int", "level1_min", -800, "Upper limit of level 2")
-setting("int", "level2_min", -1400, "Upper limit of level 3")
-setting("int", "level3_min", -2000, "Upper limit of the sunless seas")
-setting("int", "sunless_sea_min", -2400, "Lower limit of the sunless seas")
+setting("int", "ymax", -193, "Upper limit of level 1")
+setting("int", "level1_min", -832, "Upper limit of level 2")
+setting("int", "level2_min", -1472, "Upper limit of level 3")
+setting("int", "level3_min", -2112, "Upper limit of the sunless seas")
+setting("int", "sunless_sea_min", -2512, "Lower limit of the sunless seas")
 
 setting("bool", "enable_oil_sea", true, "Enable oil sea")
 df_caverns.config.enable_oil_sea = df_caverns.config.enable_oil_sea and minetest.get_modpath("oil") ~= nil
-setting("int", "oil_sea_level", -2600, "Oil sea level")
+setting("int", "oil_sea_level", -2700, "Oil sea level")
 
 setting("bool", "enable_lava_sea", true, "Enable magma sea")
-setting("int", "lava_sea_level", -2800, "Lava sea level")
+setting("int", "lava_sea_level", -2900, "Lava sea level")
 
 setting("bool", "enable_underworld", true, "Enable underworld")
 df_caverns.config.enable_underworld = df_caverns.config.enable_underworld and minetest.get_modpath("df_underworld_items") ~= nil
-setting("int", "underworld_level", -3100, "Underworld level")
+setting("int", "underworld_level", -3200, "Underworld level")

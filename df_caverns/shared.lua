@@ -170,14 +170,6 @@ df_caverns.tunnel_ceiling = function(minp, maxp, area, vi, nvals_cracks, data, d
 	end
 end
 
-df_caverns.get_decoration_node_data = function(minp, maxp, area, vi, biomemap, nvals_cracks)
-	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-	local biome = mapgen_helper.get_biome_def(biomemap[index2d]) or {}
-	local cracks = nvals_cracks[index2d]
-	local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
-	return biome, cracks, vert_rand, index2d
-end
-
 df_caverns.perlin_cave = {
 	offset = 0,
 	scale = 1,

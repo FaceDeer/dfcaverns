@@ -246,38 +246,39 @@ local c_ignore = minetest.get_content_id("ignore")
 local c_blood_thorn = minetest.get_content_id("df_trees:blood_thorn")
 local c_blood_thorn_spike = minetest.get_content_id("df_trees:blood_thorn_spike")
 
+local facedir_to_increment = function(direction, area)
+	if direction == 0 then
+		return -area.zstride
+	elseif direction == 1 then
+		return -1
+	elseif direction == 2 then
+		return area.zstride
+	elseif direction == 3 then
+		return 1
+	end
+end
+
 df_trees.spawn_blood_thorn_vm = function(vi, area, data, data_param2, height)
 	local pos = area:position(vi)
 	if height == nil then height = max_bloodthorn_height(pos) end
-	local x = pos.x
-	local y = pos.y
-	local z = pos.z
-	local maxy = y + height -- Trunk top
 
-	for yy = y, maxy do
-		local vi = area:index(x, yy, z)
+	for i = 1, height do
 		local node_id = data[vi]
 		if node_id == c_air or node_id == c_ignore then
 			data[vi] = c_blood_thorn
 			
-			local dir = spike_directions[math.random(1,4)]
-			local spike_pos = {x = pos.x + dir.dir.x, y = yy, z = pos.z + dir.dir.z}
-			vi = area:indexp(spike_pos)
-			if data[vi] == c_air or data[vi] == c_ignore then
-				data[vi] = c_blood_thorn_spike
-				data_param2[vi] = dir.facedir
-			end
-
-			dir = spike_directions[math.random(1,4)]
-			spike_pos = {x = pos.x + dir.dir.x, y = yy, z = pos.z + dir.dir.z}
-			vi = area:indexp(spike_pos)
-			if data[vi] == c_air or data[vi] == c_ignore then
-				data[vi] = c_blood_thorn_spike
-				data_param2[vi] = dir.facedir
+			for i = 1, 2 do
+				local facedir = math.random(1,4)-1
+				local spike_vi = vi + facedir_to_increment(facedir, area)
+				if data[spike_vi] == c_air or data[spike_vi] == c_ignore then
+					data[spike_vi] = c_blood_thorn_spike
+					data_param2[spike_vi] = facedir
+				end
 			end
 		else
 			break
 		end
+		vi = vi + area.ystride
 	end
 end
 

@@ -47,3 +47,4 @@ setting("int", "lava_sea_level", -2900, "Lava sea level")
 setting("bool", "enable_underworld", true, "Enable underworld")
 df_caverns.config.enable_underworld = df_caverns.config.enable_underworld and minetest.get_modpath("df_underworld_items") ~= nil
 setting("int", "underworld_level", -3200, "Underworld level")
+setting("int", "underworld_glowing_pit_mapblocks", 8, "Average pit spacing measured in mapblocks")

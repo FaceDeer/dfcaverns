@@ -10,8 +10,6 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-local tunnel_tube_drop = nil
-
 minetest.register_node("df_trees:tunnel_tube", {
 	description = S("Tunnel Tube"),
 	_doc_items_longdesc = df_trees.doc.tunnel_tube_desc,
@@ -326,11 +324,10 @@ local tunnel_tube_displacement =
 }
 
 df_trees.spawn_tunnel_tube = function(pos)
-	local direction = math.random(0,3) -- serves as both the facedir and the lookup in the direction table
+	local direction = math.random(1,4)-1 -- serves as both the facedir and the lookup in the direction table
 	local height = math.random(4,9)
-	local x, y, z = pos.x, pos.y, pos.z
 	local top_pos = vector.add(pos, vector.multiply(tunnel_tube_directions[direction], tunnel_tube_displacement[height]))
-	top_pos.y = y + height - 1
+	top_pos.y = pos.y + height - 1
 
 	local vm = minetest.get_voxel_manip()
 	local minp, maxp = vm:read_from_map(pos, top_pos)
@@ -391,7 +388,7 @@ df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, param_heig
 		height = math.random(4, 9)
 	end
 	if direction == nil or direction > 3 or direction < 0 then
-		direction = math.random(0,3)
+		direction = math.random(1,4)-1
 	end
 	
 	if height > 9 or height < 4 then
@@ -403,22 +400,34 @@ df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, param_heig
 		direction = get_next_direction() -- Somehow, for this specific use case, the random number generator is on rare occasions failing. Fabbling!
 	end
 	
-	local pos = area:position(vi)
-	local y = pos.y
+	local increment
+	if direction == 0 then
+		increment = -area.zstride
+	elseif direction == 1 then
+		increment = -1
+	elseif direction == 2 then
+		increment = area.zstride
+	elseif direction == 3 then
+		increment = 1
+	else
+		minetest.log("error", "I give up, spawn_tunnel_tube_vm bad direction: " .. tostring(direction) .. " location: " ..minetest.pos_to_string(area:position(vi)))
+		return
+	end
+
 	local previous_vi = vi
 	local pattern = tunnel_tube_patterns[height]
 	for i, nodepattern in ipairs(pattern) do
-		pos.y = y + i - 1
-		vi = area:indexp(vector.add(pos, vector.multiply(tunnel_tube_directions[direction], nodepattern[1])))
-		if data[vi] == c_air or data[vi] == c_ignore then
-			previous_vi = vi
-			data[vi] = nodepattern[2]
-			param2_data[vi] = direction
+		local current_vi = vi + nodepattern[1] * increment
+		if data[current_vi] == c_air or data[current_vi] == c_ignore then
+			previous_vi = current_vi
+			data[current_vi] = nodepattern[2]
+			param2_data[current_vi] = direction
 		else
 			data[previous_vi] = c_tunnel_tube_fruiting_body
 			param2_data[previous_vi] = direction
 			break
 		end
+		vi = vi + area.ystride
 	end
 end
 

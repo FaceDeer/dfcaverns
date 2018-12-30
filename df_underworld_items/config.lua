@@ -24,4 +24,4 @@ local function setting(stype, name, default, description)
 end
 
 setting("bool", "invulnerable_slade", true, "Slade is invulnerable to players")
-setting("bool", "destructive_pit_plasma", false, "Pit plasma destroys adjacent nodes")
+setting("bool", "destructive_pit_plasma", true, "Pit plasma destroys adjacent nodes")

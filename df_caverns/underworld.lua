@@ -68,7 +68,7 @@ local local_random = function(x, z)
 end
 
 -- create a deterministic list of buildings
-local get_buildings = function(emin, emax, pit, nvals_zone)
+local get_buildings = function(emin, emax, nvals_zone)
 	local buildings = {}
 	for x = emin.x, emax.x do
 		for z = emin.z, emax.z do
@@ -185,7 +185,7 @@ local radius_pit_variance = 10
 local plasma_depth_min = 5
 local plasma_depth_max = 75
 
-local region_mapblocks = 8 -- One glowing pit in each region this size
+local region_mapblocks = df_caverns.config.underworld_glowing_pit_mapblocks -- One glowing pit in each region this size
 local mapgen_chunksize = tonumber(minetest.get_mapgen_setting("chunksize"))
 local pit_region_size = region_mapblocks * mapgen_chunksize * 16
 
@@ -206,6 +206,8 @@ end
 local mapgen_seed = tonumber(minetest.get_mapgen_setting("seed"))
 
 local get_pit = function(pos)
+	if region_mapblocks < 1 then return nil end
+
 	local corner_xz = get_corner(pos)
 	local next_seed = math.random(1, 1000000000)
 	math.randomseed(corner_xz.x + corner_xz.z * 2 ^ 8 + mapgen_seed)
@@ -250,7 +252,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local pit = get_pit(minp)
 	--minetest.chat_send_all(minetest.pos_to_string(pit.location))
 	
-	local buildings = get_buildings(emin, emax, pit, nvals_zone)
+	local buildings = get_buildings(emin, emax, nvals_zone)
 	
 	local pit_uninitialized = true
 	local nvals_pit, area_pit
@@ -264,7 +266,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 		if y <= floor_height then
 			data[vi] = c_slade
-			if	pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and
+			if	pit and
+				pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and
 				pit.location.x + radius_pit_max + radius_pit_variance > minp.x and
 				pit.location.z - radius_pit_max - radius_pit_variance < maxp.z and
 				pit.location.z + radius_pit_max + radius_pit_variance > minp.z
@@ -323,7 +326,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		for z = emin.z + 5, emax.z - 5 do
 		
 			local skip = false
-			if	pit.location.x - radius_pit_max - radius_pit_variance < x and
+			if	pit and
+				pit.location.x - radius_pit_max - radius_pit_variance < x and
 				pit.location.x + radius_pit_max + radius_pit_variance > x and
 				pit.location.z - radius_pit_max - radius_pit_variance < z and
 				pit.location.z + radius_pit_max + radius_pit_variance > z
@@ -378,9 +382,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 	local chunk_generation_time = math.ceil((os.clock() - t_start) * 1000) --grab how long it took
 	if chunk_generation_time < 1000 then
-		minetest.log("info", "[df_caverns underworld] "..chunk_generation_time.." ms") --tell people how long
+		minetest.log("info", "[df_caverns] underworld mapblock generation took "..chunk_generation_time.." ms") --tell people how long
 	else
-		minetest.log("warning", "[df_caverns underworld] took "..chunk_generation_time.." ms to generate map block "
+		minetest.log("warning", "[df_caverns] underworld took "..chunk_generation_time.." ms to generate map block "
 			.. minetest.pos_to_string(minp) .. minetest.pos_to_string(maxp))
 	end
 end)

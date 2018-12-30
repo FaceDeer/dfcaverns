@@ -99,9 +99,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 	local chunk_generation_time = math.ceil((os.clock() - t_start) * 1000) --grab how long it took
 	if chunk_generation_time < 1000 then
-		minetest.log("info", "[df_caverns oil sea] "..chunk_generation_time.." ms") --tell people how long
+		minetest.log("info", "[df_caverns] oil sea mapblock generation took "..chunk_generation_time.." ms") --tell people how long
 	else
-		minetest.log("warning", "[df_caverns oil sea] took "..chunk_generation_time.." ms to generate map block "
+		minetest.log("warning", "[df_caverns] oil sea took "..chunk_generation_time.." ms to generate map block "
 			.. minetest.pos_to_string(minp) .. minetest.pos_to_string(maxp))
 	end
 end)

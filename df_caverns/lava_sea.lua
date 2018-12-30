@@ -5,10 +5,13 @@ end
 local c_air = minetest.get_content_id("air")
 local c_lava = minetest.get_content_id("default:lava_source")
 local c_meseore = minetest.get_content_id("default:stone_with_mese")
-local c_mesecry = minetest.get_content_id("df_mapitems:glow_mese")
+local c_mese_crystal = minetest.get_content_id("df_mapitems:mese_crystal")
+local c_mese_crystal_block = minetest.get_content_id("df_mapitems:glow_mese")
 local c_obsidian = minetest.get_content_id("default:obsidian")
 
 -------------------------------------------------------------------------------------------
+
+local stats = df_caverns.stats
 
 local perlin_cave = {
 	offset = 0,
@@ -39,17 +42,23 @@ local wave_mult = 10
 local y_max = median + 2*wave_mult + -2*ceiling_mult + ceiling_displace
 local y_min = median - 2*wave_mult - 2*floor_mult + floor_displace
 
+stats.lava_sea_blocks = 0
+stats.lava_sea_ceiling_ore = 0
+stats.lava_sea_ceiling_crystal = 0
+stats.lava_sea_ceiling_mese_stalactite = 0
+
 minetest.register_on_generated(function(minp, maxp, seed)
 	--if out of range of cave definition limits, abort
 	if minp.y > y_max or maxp.y < y_min then
 		return
 	end
-
+	
 	local t_start = os.clock()
 
 	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
+	stats.lava_sea_blocks = stats.lava_sea_blocks + 1
 	
-	local vm, data, area = mapgen_helper.mapgen_vm_data()
+	local vm, data, data_param2, area = mapgen_helper.mapgen_vm_data_param2()
 	local heatmap = minetest.get_mapgen_object("heatmap")
 	
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:lava_cave", minp, maxp, perlin_cave)
@@ -102,11 +111,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				if not mapgen_helper.buildable_to(data[vi]) then
 					-- decorate ceiling
 					if math.random() > 0.25 then
+						stats.lava_sea_ceiling_ore = stats.lava_sea_ceiling_ore + 1
 						data[vi] = c_meseore
 					elseif mese_intensity > 70 and math.random() > 0.25 then
-						data[vi-area.ystride] = c_mesecry
+						stats.lava_sea_ceiling_crystal = stats.lava_sea_ceiling_crystal + 1
+						local bi = vi-area.ystride
+						data[bi] = c_mese_crystal
+						data_param2[bi] = math.random(1,4) + 19
 					elseif mese_intensity > 80 and math.random() > 0.25 then
-						subterrane.big_stalactite(vi, area, data, 6, 13, c_meseore, c_meseore, c_mesecry)
+						stats.lava_sea_ceiling_mese_stalactite = stats.lava_sea_ceiling_mese_stalactite + 1
+						subterrane.big_stalactite(vi, area, data, 6, 13, c_meseore, c_meseore, c_mese_crystal_block)
 					end
 				end
 			end
@@ -116,6 +130,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		
 	--send data back to voxelmanip
 	vm:set_data(data)
+	vm:set_param2_data(data_param2)
 	--calc lighting
 	vm:set_lighting({day = 0, night = 0})
 	vm:calc_lighting()
@@ -126,9 +141,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 	local chunk_generation_time = math.ceil((os.clock() - t_start) * 1000) --grab how long it took
 	if chunk_generation_time < 1000 then
-		minetest.log("info", "[df_caverns lava sea] "..chunk_generation_time.." ms") --tell people how long
+		minetest.log("info", "[df_caverns] lava sea mapblock generation took "..chunk_generation_time.." ms") --tell people how long
 	else
-		minetest.log("warning", "[df_caverns lava sea] took "..chunk_generation_time.." ms to generate map block "
+		minetest.log("warning", "[df_caverns] lava sea took "..chunk_generation_time.." ms to generate map block "
 			.. minetest.pos_to_string(minp) .. minetest.pos_to_string(maxp))
 	end
 end)

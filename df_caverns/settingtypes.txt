@@ -36,3 +36,5 @@ dfcaverns_lava_sea_level (Lava sea level) int -2900
 
 dfcaverns_enable_underworld (Generate underworld) bool true
 dfcaverns_underworld_level (Underworld level) int -3200
+#Set this to 0 to disable glowing pit generation entirely.
+dfcaverns_underworld_glowing_pit_mapblocks(Average pit spacing measured in mapblocks) int 8

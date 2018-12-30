@@ -68,6 +68,7 @@ df_mapitems:icicle_4 167 206 247
 df_mapitems:med_crystal 206 44 39
 df_mapitems:med_crystal_30 206 44 39
 df_mapitems:med_crystal_30_45 206 44 39
+df_mapitems:mese_crystal 220 220 0
 df_mapitems:snareweed 49 71 74
 df_mapitems:veinstone 78 28 36
 df_mapitems:wet_flowstone 173 167 166

@@ -12,7 +12,6 @@ minetest.register_node("df_mapitems:glow_ruby_ore", {
 	sounds = default.node_sound_glass_defaults(),
 })
 
-
 minetest.register_node("df_mapitems:big_crystal", {
 	description = S("Giant Red Crystal"),
 	_doc_items_longdesc = df_mapitems.doc.big_crystal_desc,

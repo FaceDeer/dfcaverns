@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-24 21:24-0700\n"
+"POT-Creation-Date: 2018-12-29 19:30-0700\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -29,19 +29,23 @@ msgstr "Grano di caverna"
 msgid "Flawless Mese Block"
 msgstr ""
 
+#: df_mapitems\crystals_mese.lua:29
+msgid "Flawless Mese Crystal"
+msgstr ""
+
 #: df_mapitems\crystals_ruby.lua:6
 msgid "Red Crystal Vein"
 msgstr ""
 
-#: df_mapitems\crystals_ruby.lua:17
-#: df_mapitems\crystals_ruby.lua:72
-#: df_mapitems\crystals_ruby.lua:159
+#: df_mapitems\crystals_ruby.lua:16
+#: df_mapitems\crystals_ruby.lua:71
+#: df_mapitems\crystals_ruby.lua:158
 msgid "Giant Red Crystal"
 msgstr ""
 
-#: df_mapitems\crystals_ruby.lua:44
-#: df_mapitems\crystals_ruby.lua:123
-#: df_mapitems\crystals_ruby.lua:196
+#: df_mapitems\crystals_ruby.lua:43
+#: df_mapitems\crystals_ruby.lua:122
+#: df_mapitems\crystals_ruby.lua:195
 msgid "Big Red Crystal"
 msgstr ""
 
@@ -234,4 +238,8 @@ msgstr ""
 
 #: df_mapitems\snareweed.lua:6
 msgid "Snareweed"
+msgstr ""
+
+#: df_mapitems\veinstone.lua:6
+msgid "Veinstone"
 msgstr ""

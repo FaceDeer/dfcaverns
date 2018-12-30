@@ -29,8 +29,8 @@ minetest.register_node("oil:gas", {
 	drawtype = "glasslike",
 	drowning = 1,
 	post_effect_color = {a = 20, r = 20, g = 20, b = 250},
-	tiles = {"oil_gas.png^[colorize:#E0E0E033"},
-	alpha = 0.1,
+	tiles = {"oil_gas.png^[opacity:20"},
+	use_texture_alpha = true,
 	groups = {not_in_creative_inventory=1},
 	paramtype = "light",
 	drop = {},
@@ -69,6 +69,7 @@ local directions = {
 	{x=0, y=0, z=-1},
 }
 
+local gas_node = {name="oil:gas"}
 minetest.register_abm({
     label = "oil:gas movement",
     nodenames = {"oil:gas"},
@@ -80,13 +81,13 @@ minetest.register_abm({
 		local next_pos = {x=pos.x, y=pos.y+1, z=pos.z}
 		local next_node = minetest.get_node(next_pos)
 		if minetest.get_item_group(next_node.name, "liquid") > 0 then
-			minetest.swap_node(next_pos, {name="oil:gas"})
+			minetest.swap_node(next_pos, gas_node)
 			minetest.swap_node(pos, next_node)
 		else
-			next_pos = {x=pos.x, y=pos.y-1, z=pos.z}
+			next_pos.y = pos.y-1
 			next_node = minetest.get_node(next_pos)
 			if next_node.name == "air" then
-				minetest.swap_node(next_pos, {name="oil:gas"})
+				minetest.swap_node(next_pos, gas_node)
 				minetest.swap_node(pos, next_node)			
 			else
 				local dir = directions[math.random(1,4)]
@@ -94,14 +95,14 @@ minetest.register_abm({
 				local next_node = minetest.get_node(next_pos)
 				if next_node.name == "air" or  minetest.get_item_group(next_node.name, "liquid") > 0 then
 					if next_node.name == "air" or math.random() < 0.5 then -- gas never "climbs" above air.
-						minetest.swap_node(next_pos, {name="oil:gas"})
+						minetest.swap_node(next_pos, gas_node)
 						minetest.swap_node(pos, next_node)
 					else
 						-- this can get gas to rise up out of the surface of liquid, preventing it from forming a permanent hole.
 						next_pos.y = next_pos.y + 1
 						next_node = minetest.get_node(next_pos)
 						if next_node.name == "air" then
-							minetest.swap_node(next_pos, {name="oil:gas"})
+							minetest.swap_node(next_pos, gas_node)
 							minetest.swap_node(pos, next_node)
 						end
 					end

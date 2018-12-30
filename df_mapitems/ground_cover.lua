@@ -17,6 +17,7 @@ minetest.register_node("df_mapitems:dirt_with_cave_moss", {
 	drop = "default:dirt",
 	is_ground_content = true,
 	light_source = 2,
+	paramtype = "light",
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},
 	sounds = default.node_sound_dirt_defaults({
 		footstep = {name = "default_grass_footstep", gain = 0.25},
@@ -56,6 +57,7 @@ minetest.register_node("df_mapitems:cobble_with_floor_fungus", {
 	tiles = {"default_cobble.png^dfcaverns_floor_fungus.png"},
 	drops = "default:cobble",
 	is_ground_content = true,
+	paramtype = "light",
 	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8},
 	_dfcaverns_dead_node = "default:cobble",
 	sounds = default.node_sound_stone_defaults({
@@ -70,6 +72,7 @@ minetest.register_node("df_mapitems:cobble_with_floor_fungus_fine", {
 	tiles = {"default_cobble.png^dfcaverns_floor_fungus_fine.png"},
 	drops = "default:cobble",
 	is_ground_content = true,
+	paramtype = "light",
 	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8},
 	_dfcaverns_dead_node = "default:cobble",
 	sounds = default.node_sound_stone_defaults({
@@ -82,7 +85,7 @@ minetest.register_abm{
 	nodenames = {"default:cobble"},
 	neighbors = {"df_mapitems:cobble_with_floor_fungus"},
 	interval = 60,
-	chance = 5,
+	chance = 10,
 	catch_up = true,
 	action = function(pos)
 		minetest.swap_node(pos, {name="df_mapitems:cobble_with_floor_fungus_fine"})
@@ -92,7 +95,7 @@ minetest.register_abm{
 	label = "df_mapitems:floor_fungus_thickening",
 	nodenames = {"default:cobble_with_floor_fungus_fine"},
 	interval = 59,
-	chance = 30,
+	chance = 10,
 	catch_up = true,
 	action = function(pos)
 		minetest.swap_node(pos, {name="df_mapitems:cobble_with_floor_fungus"})

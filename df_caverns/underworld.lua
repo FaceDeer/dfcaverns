@@ -162,7 +162,7 @@ local get_buildings = function(emin, emax, nvals_zone)
 		end
 	end
 	
-	if overlap_count > building_count * 2/3 then
+	if building_count > 50 and overlap_count > building_count * 2/3 then
 		minetest.log("warning", "[df_caverns] underworld mapgen generated " ..
 			tostring(building_count) .. " buildings and " .. tostring(overlap_count) ..
 			" were eliminated as overlapping, if this happens a lot consider reducing building" ..

@@ -50,6 +50,7 @@ minetest.register_node("df_trees:blood_thorn_dead", {
 	tiles = {"dfcaverns_blood_thorn_top.png^[multiply:#804000", "dfcaverns_blood_thorn_top.png^[multiply:#804000",
 		"dfcaverns_blood_thorn_side.png^[multiply:#804000"},
 	paramtype2 = "facedir",
+	paramtype = "light",
 	groups = {choppy = 3, tree = 1, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node,

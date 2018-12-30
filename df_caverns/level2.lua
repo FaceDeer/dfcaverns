@@ -18,18 +18,16 @@ local wall_vein_perlin_params = {
 	flags = "eased",
 }
 
-local stats = df_caverns.stats
-
 local subsea_level = df_caverns.config.level2_min - (df_caverns.config.level2_min - df_caverns.config.level1_min) * 0.33 -- "sea level" for the flooded caverns.
 local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold, df_caverns.config.cavern_threshold) -- cavern value out to which we're flooding tunnels and warrens
 
 local get_biome = function(heat, humidity)
-	if humidity < 25 then
+	if humidity < 23 then  -- about 20% of locations fall below this threshold
 		return "barren"
 	elseif heat < 40 then
-		return "goblincap"
+		return "goblincap" -- about 33% are below this threshold
 	elseif heat < 60 then
-		return "sporetree"
+		return "sporetree" -- another 33%
 	else
 		return "tunneltube"
 	end
@@ -118,13 +116,7 @@ local tunnel_tube_cavern_floor = function(abs_cracks, vert_rand, vi, area, data,
 	end
 end
 
-stats.level_2_spore_tree_cavern_floor = 0
-stats.level_2_goblin_cap_cavern_floor = 0
-stats.level_2_tunnel_tube_cavern_floor = 0
-stats.level_2_barren_cavern_floor = 0
-stats.level_2_decorate = 0
 local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
-	stats.level_2_decorate = stats.level_2_decorate + 1
 	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
 
 	local heatmap = minetest.get_mapgen_object("heatmap")
@@ -178,20 +170,16 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			-- underwater floor
 			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data)
 		elseif biome_name == "barren" then
-			stats.level_2_barren_cavern_floor = stats.level_2_barren_cavern_floor + 1
 			if flooded_caverns then
 				df_caverns.wet_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 			else
 				df_caverns.dry_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 			end
 		elseif biome_name == "goblincap" then
-			stats.level_2_goblin_cap_cavern_floor = stats.level_2_goblin_cap_cavern_floor + 1
 			goblin_cap_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)			
 		elseif biome_name == "sporetree" then
-			stats.level_2_spore_tree_cavern_floor = stats.level_2_spore_tree_cavern_floor + 1
 			spore_tree_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)			
 		elseif biome_name == "tunneltube" then
-			stats.level_2_tunnel_tube_cavern_floor = stats.level_2_tunnel_tube_cavern_floor + 1
 			tunnel_tube_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 		end
 	end

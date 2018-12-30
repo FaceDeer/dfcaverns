@@ -6,8 +6,6 @@ local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
 local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
 
-local stats = df_caverns.stats
-
 local tower_cap_shrublist
 local fungiwood_shrublist
 
@@ -31,7 +29,7 @@ local subsea_level = df_caverns.config.level1_min - (df_caverns.config.level1_mi
 local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold, df_caverns.config.cavern_threshold)
 
 local get_biome = function(heat, humidity)
-	if humidity < 30 then
+	if humidity < 23 then -- about 20% of locations fall below this threshold
 		return "barren"
 	elseif heat < 50 then
 		return "towercap"
@@ -77,12 +75,7 @@ local fungiwood_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, d
 	end
 end
 
-stats.level_1_tower_cap_cavern_floor = 0
-stats.level_1_fungiwood_cavern_floor = 0
-stats.level_1_barren_cavern_floor = 0
-stats.level_1_decorate = 0
 local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
-	stats.level_1_decorate = stats.level_1_decorate + 1
 	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
 
 	local heatmap = minetest.get_mapgen_object("heatmap")
@@ -117,12 +110,9 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data)
 		elseif biome_name == "towercap" then
 			tower_cap_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
-			stats.level_1_tower_cap_cavern_floor = stats.level_1_tower_cap_cavern_floor + 1
 		elseif biome_name == "fungiwood"  then
 			fungiwood_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
-			stats.level_1_fungiwood_cavern_floor = stats.level_1_fungiwood_cavern_floor + 1
 		elseif biome_name == "barren" then
-			stats.level_1_barren_cavern_floor = stats.level_1_barren_cavern_floor + 1
 			if flooded_caverns then
 				df_caverns.wet_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 			else

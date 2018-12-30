@@ -11,8 +11,6 @@ local c_obsidian = minetest.get_content_id("default:obsidian")
 
 -------------------------------------------------------------------------------------------
 
-local stats = df_caverns.stats
-
 local perlin_cave = {
 	offset = 0,
 	scale = 1,
@@ -42,11 +40,6 @@ local wave_mult = 10
 local y_max = median + 2*wave_mult + -2*ceiling_mult + ceiling_displace
 local y_min = median - 2*wave_mult - 2*floor_mult + floor_displace
 
-stats.lava_sea_blocks = 0
-stats.lava_sea_ceiling_ore = 0
-stats.lava_sea_ceiling_crystal = 0
-stats.lava_sea_ceiling_mese_stalactite = 0
-
 minetest.register_on_generated(function(minp, maxp, seed)
 	--if out of range of cave definition limits, abort
 	if minp.y > y_max or maxp.y < y_min then
@@ -56,7 +49,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local t_start = os.clock()
 
 	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
-	stats.lava_sea_blocks = stats.lava_sea_blocks + 1
 	
 	local vm, data, data_param2, area = mapgen_helper.mapgen_vm_data_param2()
 	local heatmap = minetest.get_mapgen_object("heatmap")
@@ -95,8 +87,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	for x = minp.x + 1, maxp.x-1 do
 		for z = minp.z + 1, maxp.z -1 do
 			local index2d = mapgen_helper.index2d(minp, maxp, x, z)
-			local rand = math.random()
-			local mese_intensity = math.min(heatmap[index2d], 100) * rand
+			local mese_intensity = heatmap[index2d]
 					
 			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 			local wave = nvals_wave[index2d] * wave_mult
@@ -106,20 +97,20 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local lava = nvals_lavasurface[index2d]
 			local lava_height = math.floor(median + lava * 2)
 		
-			if mese_intensity > 60 and ceiling_height > lava_height + 1 and ceiling_height > floor_height + 1 and ceiling_height <= maxp.y and ceiling_height >= minp.y then
+			if mese_intensity > 70 and ceiling_height > lava_height + 1 and ceiling_height > floor_height + 1 and ceiling_height <= maxp.y and ceiling_height >= minp.y then
+				-- about 25% chance an area is this hot
 				local vi = area:index(x, ceiling_height, z)
 				if not mapgen_helper.buildable_to(data[vi]) then
 					-- decorate ceiling
 					if math.random() > 0.25 then
-						stats.lava_sea_ceiling_ore = stats.lava_sea_ceiling_ore + 1
 						data[vi] = c_meseore
-					elseif mese_intensity > 70 and math.random() > 0.25 then
-						stats.lava_sea_ceiling_crystal = stats.lava_sea_ceiling_crystal + 1
+					elseif mese_intensity > 80 and math.random() > 0.25 then
+						-- about 10% chance an area is this hot
 						local bi = vi-area.ystride
 						data[bi] = c_mese_crystal
 						data_param2[bi] = math.random(1,4) + 19
-					elseif mese_intensity > 80 and math.random() > 0.25 then
-						stats.lava_sea_ceiling_mese_stalactite = stats.lava_sea_ceiling_mese_stalactite + 1
+					elseif mese_intensity > 90 and math.random() > 0.1 then
+						-- about 5% chance an area is this hot
 						subterrane.big_stalactite(vi, area, data, 6, 13, c_meseore, c_meseore, c_mese_crystal_block)
 					end
 				end

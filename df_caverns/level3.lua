@@ -28,10 +28,8 @@ local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold,
 
 local ice_thickness = 3
 
-local stats = df_caverns.stats
-
 local get_biome = function(heat, humidity)
-	if humidity < 30 then
+	if humidity < 23 then -- about 20% of locations fall below this threshold
 		return "barren"
 	elseif heat < 50 then
 		return "blackcap"
@@ -182,14 +180,7 @@ end
 
 local hoar_moss_generator
 
-
-stats.level_3_decorate = 0
-stats.level_3_barren_cavern_floor = 0
-stats.level_3_black_cap_cavern_floor = 0
-stats.level_3_nether_cap_cavern_floor = 0
-stats.level_3_blood_thorn_cavern_floor = 0
 local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
-	stats.level_3_decorate = stats.level_3_decorate + 1
 	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
 
 	local heatmap = minetest.get_mapgen_object("heatmap")
@@ -251,7 +242,6 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				end
 			end
 		elseif biome_name == "barren" then
-			stats.level_3_barren_cavern_floor = stats.level_3_barren_cavern_floor + 1
 			if flooded_caverns then
 				-- wet zone floor
 				df_caverns.dry_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
@@ -264,14 +254,11 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				end
 			end
 		elseif biome_name == "blackcap" then
-			stats.level_3_black_cap_cavern_floor = stats.level_3_black_cap_cavern_floor + 1
 			black_cap_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)			
 		elseif biome_name == "bloodnether" then
 			if flooded_caverns then
-				stats.level_3_nether_cap_cavern_floor = stats.level_3_nether_cap_cavern_floor + 1
 				nether_cap_cavern_floor(cracks, abs_cracks, vert_rand, vi, area, data, data_param2)				
 			else
-				stats.level_3_blood_thorn_cavern_floor = stats.level_3_blood_thorn_cavern_floor + 1
 				blood_thorn_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)		
 			end
 		end

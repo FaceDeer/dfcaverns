@@ -123,6 +123,12 @@ minetest.register_craft({
 		{'df_trees:blood_thorn'},
 	}
 })
+minetest.register_craft({
+	output = 'df_trees:blood_thorn_wood 4',
+	recipe = {
+		{'df_trees:blood_thorn_dead'},
+	}
+})
 
 minetest.register_node("df_trees:blood_thorn_wood", {
 	description = S("Blood Thorn Planks"),

@@ -195,11 +195,11 @@ if minetest.get_modpath("bucket") then
 		"oil_bucket.png",
 		S("Oil Bucket")
 	)
-	
+
 	minetest.register_craft({
 		type = "fuel",
-		recipe = "bucket:oil_bucket",
+		recipe = "oil:oil_bucket",
 		burntime = 370, -- same as coalblock
-		replacements = {{"bucket:oil_bucket", "bucket:bucket_empty"}},
+		replacements = {{"oil:oil_bucket", "bucket:bucket_empty"}},
 	})
 end

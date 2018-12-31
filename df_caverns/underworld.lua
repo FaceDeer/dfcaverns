@@ -55,7 +55,6 @@ local wave_mult = 50
 local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
 local y_min = median - 2*wave_mult + floor_displace - 2*floor_mult
 
-
 ---------------------------------------------------------
 -- Buildings
 
@@ -258,44 +257,48 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local nvals_pit, area_pit
 	
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
-		local index2d = mapgen_helper.index2d(emin, emax, x, z)
-		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
-		local wave = nvals_wave[index2d] * wave_mult
-		
-		local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
-		local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-		if y <= floor_height then
-			data[vi] = c_slade
-			if	pit and
-				pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and
-				pit.location.x + radius_pit_max + radius_pit_variance > minp.x and
-				pit.location.z - radius_pit_max - radius_pit_variance < maxp.z and
-				pit.location.z + radius_pit_max + radius_pit_variance > minp.z
-			then
-				-- there's a pit nearby
-				if pit_uninitialized then
-					nvals_pit, area_pit = mapgen_helper.perlin3d("df_cavern:perlin_cave", minp, maxp, perlin_pit) -- determine which areas are spongey with warrens
-					pit_uninitialized = false
-				end
-				local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
-				local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
-				if distance < pit.radius -3 then
-					if y <  median + floor_displace + wave - pit.depth then
-						data[vi] = c_pit_plasma
-					else
-						data[vi] = c_air
+		if y > y_min then
+			local index2d = mapgen_helper.index2d(emin, emax, x, z)
+			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+			local wave = nvals_wave[index2d] * wave_mult
+			
+			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
+			if y <= floor_height then
+				data[vi] = c_slade
+				if	pit and
+					pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and
+					pit.location.x + radius_pit_max + radius_pit_variance > minp.x and
+					pit.location.z - radius_pit_max - radius_pit_variance < maxp.z and
+					pit.location.z + radius_pit_max + radius_pit_variance > minp.z
+				then
+					-- there's a pit nearby
+					if pit_uninitialized then
+						nvals_pit, area_pit = mapgen_helper.perlin3d("df_cavern:perlin_cave", minp, maxp, perlin_pit) -- determine which areas are spongey with warrens
+						pit_uninitialized = false
 					end
-				elseif distance < pit.radius then
-					data[vi] = c_amethyst
-				elseif distance < radius_pit_max and y == floor_height - 4 then
-					if math.random() > 0.95 then
-						df_underworld_items.underworld_shard(data, area, vi)
+					local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
+					local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
+					if distance < pit.radius -3 then
+						if y < y_min + 4 then -- make a layer of amethyst at the bottom of the pit to keep the plasma from digging infinitely downward.
+							data[vi] = c_amethyst
+						elseif y < median + floor_displace + wave - pit.depth then
+							data[vi] = c_pit_plasma
+						else
+							data[vi] = c_air
+						end
+					elseif distance < pit.radius then
+						data[vi] = c_amethyst
+					elseif distance < radius_pit_max and y == floor_height - 4 then
+						if math.random() > 0.95 then
+							df_underworld_items.underworld_shard(data, area, vi)
+						end
 					end
-				end
-			end			
-		elseif y < ceiling_height and data[vi] ~= c_amethyst then
-			data[vi] = c_air
-		end		
+				end			
+			elseif y < ceiling_height and data[vi] ~= c_amethyst then
+				data[vi] = c_air
+			end
+		end
 	end
 
 	-- Ceiling decoration

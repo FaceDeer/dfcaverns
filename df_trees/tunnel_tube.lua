@@ -364,6 +364,9 @@ local tunnel_tube_patterns =
 }
 
 df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, height, direction)
+	if height == nil then height = math.random(4,9) end
+	if direction == nil then direction = math.random(1,4)-1 end
+
 	local increment
 	if direction == 0 then
 		increment = -area.zstride

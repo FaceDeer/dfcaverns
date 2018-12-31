@@ -111,7 +111,7 @@ local tunnel_tube_cavern_floor = function(abs_cracks, vert_rand, vi, area, data,
 		if math.random() < 0.1 then
 			df_caverns.place_shrub(vi+ystride, area, data, data_param2, tunnel_tube_shrublist)
 		elseif math.random() < 0.05 then
-			df_trees.spawn_tunnel_tube_vm(vi+ystride, area, data, data_param2, nil, nil) -- not sure why those nils are needed, but without them this method call occasionally spontaneously passes garbage values in for those parameters
+			df_trees.spawn_tunnel_tube_vm(vi+ystride, area, data, data_param2)
 		end
 	end
 end

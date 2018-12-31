@@ -102,16 +102,17 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local vi = area:index(x, ceiling_height, z)
 				if not mapgen_helper.buildable_to(data[vi]) then
 					-- decorate ceiling
-					if math.random() > 0.25 then
+					if math.random() < 0.25 then
 						data[vi] = c_meseore
-					elseif mese_intensity > 80 and math.random() > 0.25 then
+					elseif mese_intensity > 80 and math.random() < 0.1 then
 						-- about 10% chance an area is this hot
+						data[vi] = c_meseore
 						local bi = vi-area.ystride
 						data[bi] = c_mese_crystal
 						data_param2[bi] = math.random(1,4) + 19
-					elseif mese_intensity > 90 and math.random() > 0.1 then
+					elseif mese_intensity > 90 and math.random() < 0.025 then
 						-- about 5% chance an area is this hot
-						subterrane.big_stalactite(vi, area, data, 6, 13, c_meseore, c_meseore, c_mese_crystal_block)
+						subterrane.big_stalactite(vi-area.ystride, area, data, 6, 13, c_meseore, c_meseore, c_mese_crystal_block)
 					end
 				end
 			end

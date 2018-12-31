@@ -29,7 +29,7 @@ minetest.register_node("oil:gas", {
 	drawtype = "glasslike",
 	drowning = 1,
 	post_effect_color = {a = 20, r = 20, g = 20, b = 250},
-	tiles = {"oil_gas.png^[opacity:20"},
+	tiles = {"oil_gas.png^[opacity:28"},
 	use_texture_alpha = true,
 	groups = {not_in_creative_inventory=1},
 	paramtype = "light",
@@ -145,7 +145,7 @@ if minetest.get_modpath("tnt") then
 		catch_up = true,
 		action = function(pos, node)
 			if minetest.find_node_near(pos, 1, "air") then
-				tnt.boom(pos, {radius=1, damage_radius=10})
+				tnt.boom(pos, {radius=1, damage_radius=6})
 			end	
 		end,
 	})

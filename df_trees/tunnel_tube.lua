@@ -363,43 +363,7 @@ local tunnel_tube_patterns =
 	[9] = {{0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube}, {0, c_tunnel_tube_bottom}, {1, c_tunnel_tube_top}, {1, c_tunnel_tube_full}, {2, c_tunnel_tube_full}, {3, c_tunnel_tube_fruiting_body}},
 }
 
--- Workarounds for occasional bizarre failure of the RNG, see call sites.
-local current_height_index = 1
-local random_heights ={8,4,6,8,4,9,5,7,5,5,5,5,9,5,5,4,6,7,8,8,6,7,6,4,6,4,8,7,4,4,6,9,5,5,5,8}
-local get_next_height = function()
-	current_height_index = current_height_index + 1
-	if current_height_index > 36 then current_height_index = 1 end
-	return random_heights[current_height_index]
-end
-local current_direction_index = 1
-local random_directions={0,3,2,1,1,0,3,3,0,2,2,2,0,1,3,0,1,1,3,2}
-local get_next_direction = function()
-	current_direction_index = current_direction_index + 1
-	if current_direction_index > 20 then current_direction_index = 1 end
-	return random_directions[current_direction_index]
-end
-
-df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, param_height, param_direction)
-
-	local height = param_height
-	local direction = param_direction
-
-	if height == nil or height > 9 or height < 4 then
-		height = math.random(4, 9)
-	end
-	if direction == nil or direction > 3 or direction < 0 then
-		direction = math.random(1,4)-1
-	end
-	
-	if height > 9 or height < 4 then
-		minetest.log("error", "spawn_tunnel_tube_vm given bad height: " .. tostring(height) .. " location: " ..minetest.pos_to_string(area:position(vi)))
-		height = get_next_height() -- Somehow, for this specific use case, the random number generator is on rare occasions failing. Baffling!
-	end
-	if direction > 3 or direction < 0 then
-		minetest.log("error", "spawn_tunnel_tube_vm bad direction: " .. tostring(direction) .. " location: " ..minetest.pos_to_string(area:position(vi)))
-		direction = get_next_direction() -- Somehow, for this specific use case, the random number generator is on rare occasions failing. Fabbling!
-	end
-	
+df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, height, direction)
 	local increment
 	if direction == 0 then
 		increment = -area.zstride
@@ -410,7 +374,6 @@ df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, param_heig
 	elseif direction == 3 then
 		increment = 1
 	else
-		minetest.log("error", "I give up, spawn_tunnel_tube_vm bad direction: " .. tostring(direction) .. " location: " ..minetest.pos_to_string(area:position(vi)))
 		return
 	end
 

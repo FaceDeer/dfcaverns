@@ -4,6 +4,7 @@ end
 
 local c_slade = minetest.get_content_id("df_underworld_items:slade")
 local c_air = minetest.get_content_id("air")
+local c_water = minetest.get_content_id("default:water_source")
 
 local c_glowstone = minetest.get_content_id("df_underworld_items:glowstone")
 local c_amethyst = minetest.get_content_id("df_underworld_items:glow_amethyst")
@@ -297,6 +298,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end			
 			elseif y < ceiling_height and data[vi] ~= c_amethyst then
 				data[vi] = c_air
+			elseif data[vi] == c_water then
+				data[vi] = c_air -- no water down here
 			end
 		end
 	end

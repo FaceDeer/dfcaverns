@@ -18,6 +18,8 @@ local c_cobble = minetest.get_content_id("default:cobble")
 local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
 local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
 
+local c_glow_ore = minetest.get_content_id("df_mapitems:glow_ruby_ore")
+
 local c_sprite
 if minetest.get_modpath("ice_sprites") then
 	c_sprite = minetest.get_content_id("ice_sprites:ice_sprite")
@@ -309,7 +311,10 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				-- bloodthorn ceiling
 				if abs_cracks < 0.075 then
 					df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
-				end	
+				elseif abs_cracks > 0.75 and math.random() < 0.05 then
+					data[vi] = c_glow_ore
+					df_mapitems.place_big_crystal(data, data_param2, vi-area.ystride, true)
+				end
 			end
 		end
 	end
@@ -461,7 +466,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 						-- with the full blown generated array rigamarole.
 						hoar_moss_generator = hoar_moss_generator or minetest.get_perlin(hoar_moss_perlin_params)
 						local pos = area:position(vi)
-						if hoar_moss_generator:get_3d({x=pos.z, y=pos.y, z=pos.x}) > 0.5 then
+						if hoar_moss_generator.get_3d and hoar_moss_generator:get_3d({x=pos.z, y=pos.y, z=pos.x}) > 0.5 then -- TODO: version 0.4.16 gets no hoar moss
 							data[vi] = c_hoar_moss
 						else
 							data[vi] = c_ice

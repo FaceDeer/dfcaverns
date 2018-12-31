@@ -268,7 +268,7 @@ local c_big_crystal_30_45 = minetest.get_content_id("df_mapitems:big_crystal_30_
 local c_med_crystal_30_45 = minetest.get_content_id("df_mapitems:med_crystal_30_45")
 local c_glow_ore = minetest.get_content_id("df_mapitems:glow_ruby_ore")
 
-local place_big_crystal = function(data, data_param2, vi, ceiling)
+df_mapitems.place_big_crystal = function(data, data_param2, vi, ceiling)
 	local orientation = math.random()
 	if orientation < 0.33 then
 		if math.random() > 0.5 then
@@ -304,7 +304,7 @@ df_mapitems.place_big_crystal_cluster = function(area, data, data_param2, vi, ra
 	for li in area:iterp(vector.add(pos, -radius), vector.add(pos, radius)) do
 		local adjacent = li + y*area.ystride
 		if math.random() > 0.5  and data[li] == c_stone and data[adjacent] == c_air then
-			place_big_crystal(data, data_param2, adjacent, ceiling)
+			df_mapitems.place_big_crystal(data, data_param2, adjacent, ceiling)
 			data[li] = c_glow_ore
 		end
 	end

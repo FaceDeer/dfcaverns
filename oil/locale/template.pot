@@ -1,0 +1,73 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-23 00:28-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: oil\gas.lua:11
+msgid ""
+"Gaseous hydrocarbons formed from the detritus of long dead plants and "
+"animals processed by heat and pressure deep within the earth."
+msgstr ""
+
+#: oil\gas.lua:12
+msgid ""
+"Gas is highly hazardous. Heavier than air, it pools in deep caverns and "
+"asphyxiates the unwary."
+msgstr ""
+
+#: oil\gas.lua:14
+msgid ""
+"When exposed to air and an ignition source it can produce a deadly explosion."
+msgstr ""
+
+#: oil\gas.lua:17
+msgid "Some coal deposits have cracks that seep a steady flow of mine gas."
+msgstr ""
+
+#: oil\gas.lua:18
+msgid "Mining out such a deposit seals the crack."
+msgstr ""
+
+#: oil\gas.lua:22
+msgid "Mine Gas"
+msgstr ""
+
+#: oil\gas.lua:42
+msgid "Gas Seep"
+msgstr ""
+
+#: oil\init.lua:8
+msgid ""
+"Liquid hydrocarbons formed from the detritus of long dead plants and animals "
+"processed by heat and pressure deep within the earth."
+msgstr ""
+
+#: oil\init.lua:9
+msgid "Buckets of oil can be used as fuel."
+msgstr ""
+
+#: oil\init.lua:17
+msgid "Oil"
+msgstr ""
+
+#: oil\init.lua:67
+msgid "Flowing Oil"
+msgstr ""
+
+#: oil\init.lua:196
+msgid "Oil Bucket"
+msgstr ""

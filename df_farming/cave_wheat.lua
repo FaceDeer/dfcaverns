@@ -113,14 +113,31 @@ minetest.register_craftitem("df_farming:cave_bread", {
 	groups = {flammable = 2, food = 5},
 })
 
+local recipe_registered = false
 if minetest.get_modpath("cottages") then
 	cottages.handmill_product["df_farming:cave_wheat"] = "df_farming:cave_flour";
-else
-minetest.register_craft({
-	type = "shapeless",
-	output = "df_farming:cave_flour",
-	recipe = {"df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat"}
-})
+	recipe_registered = true
+end
+
+if minetest.registered_items["farming:mortar_pestle"] ~= nil then
+	minetest.register_craft({
+		type = "shapeless",
+		output = "df_farming:cave_flour",
+		recipe = {
+			"df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat",
+			"df_farming:cave_wheat", "farming:mortar_pestle"
+		},
+		replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
+	})
+	recipe_registered = true
+end
+
+if not recipe_registered then
+	minetest.register_craft({
+		type = "shapeless",
+		output = "df_farming:cave_flour",
+		recipe = {"df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat"}
+	})
 end
 
 minetest.register_craft({

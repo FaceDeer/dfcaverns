@@ -102,9 +102,26 @@ minetest.register_craftitem("df_farming:sugar", {
 	groups = {dfcaverns_cookable = 1},
 })
 
+local recipe_registered = false
+
 if minetest.get_modpath("cottages") then
 	cottages.handmill_product["df_farming:sweet_pods"] = "df_farming:sugar";
-else
+	recipe_registered = true
+end
+
+if minetest.registered_items["farming:mortar_pestle"] ~= nil then
+	minetest.register_craft({
+		type = "shapeless",
+		output = "df_farming:sugar",
+		recipe = {
+			"df_farming:sweet_pods", "farming:mortar_pestle"
+		},
+		replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
+	})
+	recipe_registered = true
+end
+
+if not recipe_registered then
 minetest.register_craft({
 	type = "cooking",
 	cooktime = 3,

@@ -204,6 +204,10 @@ if df_farming.config.light_kills_fungus then
 		chance = 5,
 		action = function(pos, node)
 			local node_def = minetest.registered_nodes[node.name]
+			if not node_def then
+				print("node_def is nil?")
+				return
+			end
 			local dead_node = node_def._dfcaverns_dead_node or "df_farming:dead_fungus"
 			-- 11 is the value adjacent to a torch
 			local light_level = minetest.get_node_light(pos)

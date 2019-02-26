@@ -211,6 +211,10 @@ if df_farming.config.light_kills_fungus then
 			local dead_node = node_def._dfcaverns_dead_node or "df_farming:dead_fungus"
 			-- 11 is the value adjacent to a torch
 			local light_level = minetest.get_node_light(pos)
+			if not light_level then
+				print("light_level is nil?")
+				return
+			end
 			if light_level and light_level > node_def.groups.light_sensitive_fungus then
 				minetest.set_node(pos, {name=dead_node, param2 = node.param2})
 			end

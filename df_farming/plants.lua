@@ -204,10 +204,12 @@ if df_farming.config.light_kills_fungus then
 		chance = 5,
 		action = function(pos, node)
 			local node_def = minetest.registered_nodes[node.name]
+			local light_sensitive_fungus_level = node_def.groups.light_sensitive_fungus
+			if not light_sensitive_fungus_level then return end -- This should never be the case, but I've received a report of it happening anyway so guarding against it.
 			local dead_node = node_def._dfcaverns_dead_node or "df_farming:dead_fungus"
 			-- 11 is the value adjacent to a torch
 			local light_level = minetest.get_node_light(pos)
-			if light_level and light_level > node_def.groups.light_sensitive_fungus then
+			if light_level and light_level > light_sensitive_fungus_level then
 				minetest.set_node(pos, {name=dead_node, param2 = node.param2})
 			end
 		end

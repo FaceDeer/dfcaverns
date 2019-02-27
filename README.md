@@ -30,7 +30,7 @@ Some of the other cave decorations provide dim bioluminescent lighting in some c
 
 "[dynamic liquid](https://github.com/minetest-mods/dynamic_liquid)" is recommended to provide Dwarf Fortress-like fluid dynamics and to deal with water that might spill into caverns.
 
-"[magma conduits](https://github.com/FaceDeer/magma_conduits/)" is recommended for a Dwarf Fortress like magmatic landscape. If not magma conduits, it is at least recommended that mapgen magma be disabled on whatever mapgen you're adding this mod to; mapgen magma is difficult for lua mapgens like this to tidy up and it will often spill into caverns setting large swaths of fungal forests on fire.
+"[magma conduits](https://github.com/FaceDeer/magma_conduits/)" is recommended for a Dwarf Fortress like magmatic landscape. If not magma conduits, it is at least recommended that mapgen magma be disabled on whatever mapgen you're adding this mod to; mapgen magma is difficult for lua mapgens like this to tidy up and it will often spill into caverns setting large swaths of fungal forests on fire. Depending on the mapgen you're using this mod with you could do this by setting ``mgv5_lava_depth, mgv7_lava_depth``, ``mgcarpathian_lava_depth``, ``mgflat_lava_depth``, ``mgfractal_lava_depth``, or ``mgvalleys_lava_depth`` to -2800 (near the default depth of the magma sea).
 
 The "[doc](https://forum.minetest.net/viewtopic.php?f=9&t=15912&p=240152)" mod is supported to provide in-game documentation for all of the new items and nodes this mod adds.
 

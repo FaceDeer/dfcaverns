@@ -9,8 +9,6 @@ if minetest.get_modpath("doc") then
 	oil_usage = S("Buckets of oil can be used as fuel.")
 end
 
-dofile(MP.."/gas.lua")
-
 local oil_sounds = {footstep = {name = "oil_oil_footstep", gain = 0.2}}
 
 minetest.register_node("oil:oil_source", {

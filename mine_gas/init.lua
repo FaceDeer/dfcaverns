@@ -18,7 +18,11 @@ if minetest.get_modpath("doc") then
 	seep_usage = S("Mining out such a deposit seals the crack.")
 end
 
-minetest.register_node("oil:gas", {
+
+minetest.register_alias("oil:gas", "mine_gas:gas")
+minetest.register_alias("oil:gas_seep", "mine_gas:gas_seep")
+
+minetest.register_node("mine_gas:gas", {
 	description = S("Mine Gas"),
 	_doc_items_longdesc = gas_desc,
 	_doc_items_usagehelp = gas_usage,
@@ -29,16 +33,16 @@ minetest.register_node("oil:gas", {
 	drawtype = "glasslike",
 	drowning = 1,
 	post_effect_color = {a = 20, r = 20, g = 20, b = 250},
-	tiles = {"oil_gas.png^[opacity:28"},
+	tiles = {"mine_gas.png^[opacity:28"},
 	use_texture_alpha = true,
-	groups = {not_in_creative_inventory=1},
+	groups = {not_in_creative_inventory=1, ropes_can_extend_into=1},
 	paramtype = "light",
 	drop = {},
 	sunlight_propagates = true,
 	--on_blast = function() end, -- unaffected by explosions
 })
 
-minetest.register_node("oil:gas_seep", {
+minetest.register_node("mine_gas:gas_seep", {
 	description = S("Gas Seep"),
 	_doc_items_longdesc = seep_desc,
 	_doc_items_usagehelp = seep_usage,
@@ -55,9 +59,9 @@ minetest.register_on_dignode(function(pos, oldnode, digger)
 		return;
 	end
 
-	local np = minetest.find_node_near(pos, 1,{"oil:gas"})
+	local np = minetest.find_node_near(pos, 1,{"mine_gas:gas"})
 	if np ~= nil then
-		minetest.set_node(pos, {name = "oil:gas"})
+		minetest.set_node(pos, {name = "mine_gas:gas"})
 		return
 	end
 end)
@@ -69,10 +73,10 @@ local directions = {
 	{x=0, y=0, z=-1},
 }
 
-local gas_node = {name="oil:gas"}
+local gas_node = {name="mine_gas:gas"}
 minetest.register_abm({
-    label = "oil:gas movement",
-    nodenames = {"oil:gas"},
+    label = "mine_gas:gas movement",
+    nodenames = {"mine_gas:gas"},
     neighbors = {"group:liquid", "air"},
     interval = 1.0,
     chance = 1,
@@ -113,9 +117,9 @@ minetest.register_abm({
 })
 
 minetest.register_abm({
-	label = "oil:gas snuffing torches",
+	label = "mine_gas:gas snuffing torches",
 	nodenames = {"group:torch"},
-	neighbors = {"oil:gas"},
+	neighbors = {"mine_gas:gas"},
 	interval = 1.0,
 	chance = 1,
 	catch_up = true,
@@ -126,7 +130,7 @@ minetest.register_abm({
 			for _, dropped_item in pairs(drops) do
 				minetest.add_item(pos, dropped_item)
 	        end
-			minetest.set_node(pos, {name="oil:gas"})
+			minetest.set_node(pos, {name="mine_gas:gas"})
 			minetest.sound_play(
 				"default_cool_lava",
 				{pos = pos, max_hear_distance = 16, gain = 0.1}
@@ -137,9 +141,9 @@ minetest.register_abm({
 
 if minetest.get_modpath("tnt") then
 	minetest.register_abm({
-		label = "oil:gas ignition",
+		label = "mine_gas:gas ignition",
 		nodenames = {"group:torch", "group:igniter"},
-		neighbors = {"oil:gas"},
+		neighbors = {"mine_gas:gas"},
 		interval = 1.0,
 		chance = 1,
 		catch_up = true,
@@ -161,8 +165,8 @@ local orthogonal = {
 }
 
 minetest.register_abm({
-	label = "oil:gas seep",
-	nodenames = {"oil:gas_seep"},
+	label = "mine_gas:gas seep",
+	nodenames = {"mine_gas:gas_seep"},
 	neighbors = {"air"},
 	interval = 1.0,
 	chance = 1,
@@ -170,10 +174,10 @@ minetest.register_abm({
 	action = function(pos, node)
 		local target_pos = vector.add(pos,orthogonal[math.random(1,6)])
 		if minetest.get_node(target_pos).name == "air" then
-			minetest.swap_node(target_pos, {name="oil:gas"})
+			minetest.swap_node(target_pos, {name="mine_gas:gas"})
 			if math.random() < 0.5 then
 				minetest.sound_play(
-					"oil_gas_seep_hiss",
+					"mine_gas_seep_hiss",
 					{pos = pos, max_hear_distance = 8, gain = 0.05}
 				)
 			end

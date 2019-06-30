@@ -120,7 +120,7 @@ Also found in Black Cap caverns are torchspines, stalagmite-like growths that so
 
 ![Nethercaps, with ice sprites hovering near icicles above](./df_caverns/screenshots/nethercap.jpg)
 
-Nethercaps break the known laws of thermodynamics by somehow "feeding" directly on heat. As a result Nethercap caverns are frigid and icy, with icicles mixed with stalactites and giant columns of frozen water. Nethercap caverns have little other life in them as a result. They are lit by thet blue glow of the Nethercap's gills, as well as by the mysterious "ice sprites" that hover and sparkle near the ceilings and by the streaks of hoar moss that grow on the surfaces of ice columns.
+Nethercaps break the known laws of thermodynamics by somehow "feeding" directly on heat. As a result Nethercap caverns are frigid and icy, with icicles mixed with stalactites and giant columns of frozen water. Nethercap caverns have little other life in them as a result. They are lit by the blue glow of the Nethercap's gills, as well as by the mysterious "ice sprites" that hover and sparkle near the ceilings and by the streaks of hoar moss that grow on the surfaces of ice columns.
 
 Any liquid water that touches Nethercap wood will freeze, even if the Nethercap has been harvested and crafted into other forms. Nethercap will not burn and indeed will snuff out fires and even solidify lava it touches. If a Nethercap cavern has a lake its surface will be covered in a solid sheet of ice.
 

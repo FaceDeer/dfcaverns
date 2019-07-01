@@ -3,7 +3,7 @@ if not df_caverns.config.enable_oil_sea then
 end
 
 local c_oil = minetest.get_content_id("oil:oil_source")
-local c_gas = minetest.get_content_id("oil:gas")
+local c_gas = minetest.get_content_id("mine_gas:gas")
 local c_lava = minetest.get_content_id("default:lava_source")
 local c_obsidian = minetest.get_content_id("default:obsidian")
 
@@ -108,7 +108,7 @@ end)
 
 minetest.register_ore({
 	ore_type       = "scatter",
-	ore            = "oil:gas_seep",
+	ore            = "mine_gas:gas_seep",
 	wherein        = "default:stone",
 	clust_scarcity = 32 * 32 * 32,
 	clust_num_ores = 27,

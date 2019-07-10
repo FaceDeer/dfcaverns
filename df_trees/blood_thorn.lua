@@ -173,7 +173,7 @@ minetest.register_craft({
 
 -- This ensures consistent random maximum to bloodthorn growth
 local max_bloodthorn_height = function(pos)
-	local next_seed = math.random(1, 1000000000)
+	local next_seed = math.random(1, 2^31)
 	math.randomseed(pos.x + pos.z * 2 ^ 8)
 	local output = math.random(3,6)
 	math.randomseed(next_seed)

@@ -209,7 +209,7 @@ local get_pit = function(pos)
 	if region_mapblocks < 1 then return nil end
 
 	local corner_xz = get_corner(pos)
-	local next_seed = math.random(1, 1000000000)
+	local next_seed = math.random(1, 2^31)
 	math.randomseed(corner_xz.x + corner_xz.z * 2 ^ 8 + mapgen_seed)
 	local location = scatter_2d(corner_xz, pit_region_size, radius_pit_max + radius_pit_variance)
 	local variance_multiplier = math.random()

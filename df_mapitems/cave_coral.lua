@@ -42,6 +42,7 @@ local coral_names = {"df_mapitems:cave_coral_1", "df_mapitems:cave_coral_2", "df
 minetest.register_abm{
 	label = "df_mapitems:shifting_coral",
 	nodenames = {"group:dfcaverns_cave_coral"},
+	neighbors = {"default:water_source"},
 	interval = 2,
 	chance = 10,
 	action = function(pos)

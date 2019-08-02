@@ -9,6 +9,12 @@ local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
 local c_lava = minetest.get_content_id("default:lava_source")
 local c_obsidian = minetest.get_content_id("default:obsidian")
 
+local c_coral_table = {
+	minetest.get_content_id("df_mapitems:cave_coral_1"),
+	minetest.get_content_id("df_mapitems:cave_coral_2"),
+	minetest.get_content_id("df_mapitems:cave_coral_3")
+}
+
 local mushroom_shrublist
 local fungispore_shrublist
 
@@ -357,15 +363,19 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 
 	-- columns
 	for _, vi in ipairs(node_arrays.column_nodes) do
-		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-		local heat = heatmap[index2d]
-
-		if area:get_y(vi) > sea_level and heat > hot_zone_boundary and data[vi] == c_wet_flowstone then
-			data[vi] = c_dry_flowstone
+		if data[vi] == c_wet_flowstone then
+			if area:get_y(vi) > sea_level then
+				local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+				local heat = heatmap[index2d]
+				if heat > hot_zone_boundary then
+					data[vi] = c_dry_flowstone
+				end
+			else
+				data[vi] = c_coral_table[math.random(1,3)]
+			end
 		end
 	end
 
-	
 	vm:set_param2_data(data_param2)
 end
 

@@ -10,6 +10,7 @@ minetest.register_node("df_mapitems:cave_coral_3", {
 	is_ground_content = true,
 	drop = "default:coral_skeleton",
 	light_source = 3,
+	paramtype2 = "facedir",
 	groups = {cracky = 3, dfcaverns_cave_coral = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -22,6 +23,7 @@ minetest.register_node("df_mapitems:cave_coral_2", {
 	is_ground_content = true,
 	drop = "default:coral_skeleton",
 	light_source = 2,
+	paramtype2 = "facedir",
 	groups = {cracky = 3, dfcaverns_cave_coral = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -34,6 +36,7 @@ minetest.register_node("df_mapitems:cave_coral_1", {
 	is_ground_content = true,
 	drop = "default:coral_skeleton",
 	light_source = 1,
+	paramtype2 = "facedir",
 	groups = {cracky = 3, dfcaverns_cave_coral = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -46,7 +49,8 @@ minetest.register_abm{
 	interval = 2,
 	chance = 10,
 	action = function(pos)
-		minetest.swap_node(pos, {name=coral_names[math.random(1,3)]})
+		local node = minetest.get_node(pos)
+		minetest.swap_node(pos, {name=coral_names[math.random(1,3)], param2=node.param2})
 	end,
 }
 

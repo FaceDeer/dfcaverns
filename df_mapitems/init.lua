@@ -18,3 +18,4 @@ dofile(modpath.."/crystals_mese.lua")
 dofile(modpath.."/crystals_ruby.lua")
 
 dofile(modpath.."/veinstone.lua")
+dofile(modpath.."/cave_pearls.lua")

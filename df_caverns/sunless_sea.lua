@@ -372,6 +372,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				end
 			else
 				data[vi] = c_coral_table[math.random(1,3)]
+				data_param2[vi] = math.random(1,4)-1
 			end
 		end
 	end

@@ -167,9 +167,12 @@ minetest.register_node("df_trees:spore_tree_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(
-			df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_min_growth_delay,
-			df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		local below_node = minetest.get_node(vector.add(pos, {x=0,y=-1,z=0}))
+		if minetest.get_item_group(below_node.name, "soil") > 0 then
+			minetest.get_node_timer(pos):start(math.random(
+				df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_min_growth_delay,
+				df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		end
 	end,
 	
 	on_timer = function(pos)

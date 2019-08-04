@@ -31,7 +31,7 @@ minetest.register_node("mine_gas:gas_wisp", {
 	inventory_image = "mine_gas_wisp_inventory.png",
 	drop = {},
 	sunlight_propagates = true,
-	--on_blast = function() end, -- unaffected by explosions
+	on_blast = function() end, -- unaffected by explosions
 })
 
 minetest.register_abm({
@@ -64,8 +64,9 @@ minetest.register_abm({
 		for y = -1, 1 do
 			for x = -1, 1 do
 				for z = -1, 1 do
-					if minetest.get_node({x=pos.x+x, y=pos.y+y, z=pos.z+z}).name == "mine_gas:gas" then
-						-- there's gas adjacent, don't extinguish
+					local node_name = minetest.get_node({x=pos.x+x, y=pos.y+y, z=pos.z+z}).name
+					if node_name == "mine_gas:gas" or minetest.get_item_group(node_name, "flammable") > 0 then
+						-- there's gas or a flammable adjacent, don't extinguish
 						return
 					end
 				end

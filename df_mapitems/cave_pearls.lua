@@ -67,40 +67,9 @@ local pearl_on_place = function(itemstack, placer, pointed_thing)
 	return itemstack
 end
 
-local valid_mounting_node = function(pos)
-	local node = minetest.get_node(pos)
-	if not node then return false end
-	local def = minetest.registered_nodes[node.name]
-	if not def then return false end
-	if def.buildable_to then return false end
-	return true
-end
-
 local add_to_table = function(dest, source)
 	for _, val in ipairs(source) do
 		table.insert(dest, val)
-	end
-end
-
-local get_valid_facedirs = function(pos)
-	local dirs = {}
-	if valid_mounting_node(vector.add(pos, {x=1,y=0,z=0})) then
-		add_to_table(dirs, {16, 17, 18, 19})
-	end
-	if valid_mounting_node(vector.add(pos, {x=-1,y=0,z=0})) then
-		add_to_table(dirs, {12, 13, 14, 15})
-	end
-	if valid_mounting_node(vector.add(pos, {x=0,y=1,z=0})) then
-		add_to_table(dirs, {0, 1, 2, 3})
-	end
-	if valid_mounting_node(vector.add(pos, {x=0,y=-1,z=0})) then
-		add_to_table(dirs, {20, 21, 22, 23})
-	end
-	if valid_mounting_node(vector.add(pos, {x=0,y=0,z=1})) then
-		add_to_table(dirs, {8, 9, 10, 11})
-	end
-	if valid_mounting_node(vector.add(pos, {x=0,y=0,z=-1})) then
-		add_to_table(dirs, {4, 5, 6, 7})
 	end
 end
 
@@ -126,28 +95,61 @@ minetest.register_node("df_mapitems:wall_pearls", {
 })
 
 local c_air = minetest.get_content_id("air")
-local c_stone = minetest.get_content_id("default:stone")
 local c_pearls = minetest.get_content_id("df_mapitems:wall_pearls")
+
+local valid_nodes = {} -- cache values
+local is_valid_mounting_node = function(c_node)
+	if valid_nodes[c_node] ~= nil then
+		return valid_nodes[c_node]
+	end
+	local def = minetest.registered_nodes[minetest.get_name_from_content_id(c_node)]
+	if def ~= nil and (def.drawtype == "normal" or def.drawtype == nil) and (not def.buildable_to) then
+		valid_nodes[c_node] = true
+		return true
+	end
+	valid_nodes[c_node] = false
+	return false
+end
 
 --facing +x: 16, 17, 18, 19, 
 --facing -x: 12, 13, 14, 15
 --facing +z: 8, 9, 10, 11
 --facing -z: 4, 5, 6, 7
 --facing -y: 20, 21, 22, 23, (ceiling)
+--facing +y: 0, 1, 2, 3
+
+local get_valid_facedirs_vm = function(vi, area, data)
+	local dirs = {}
+	local ystride = area.ystride
+	local zstride = area.zstride
+	if is_valid_mounting_node(data[vi+1]) then
+		add_to_table(dirs, {16, 17, 18, 19})
+	end
+	if is_valid_mounting_node(data[vi-1]) then
+		add_to_table(dirs, {12, 13, 14, 15})
+	end
+	if is_valid_mounting_node(data[vi-ystride]) then
+		add_to_table(dirs, {0, 1, 2, 3})
+	end
+	if is_valid_mounting_node(data[vi+ystride]) then
+		add_to_table(dirs, {20, 21, 22, 23})
+	end
+	if is_valid_mounting_node(data[vi+zstride]) then
+		add_to_table(dirs, {8, 9, 10, 11})
+	end
+	if is_valid_mounting_node(data[vi-zstride]) then
+		add_to_table(dirs, {4, 5, 6, 7})
+	end
+	return dirs
+end
+
 df_mapitems.place_wall_pearls = function(vi, area, data, data_param2)
 	if data[vi] == c_air then
-		if data[vi+1] == c_stone then -- positive X
+		local facedirs = get_valid_facedirs_vm(vi, area, data)
+		local count = #facedirs
+		if count > 0 then
 			data[vi] = c_pearls
-			data_param2[vi] = 15 + math.random(1,4)
-		elseif data[vi-1] == c_stone then -- negative X
-			data[vi] = c_pearls
-			data_param2[vi] = 11 + math.random(1,4)
-		elseif data[vi+area.zstride] == c_stone then -- positive Z
-			data[vi] = c_pearls
-			data_param2[vi] = 7 + math.random(1,4)
-		elseif data[vi-area.zstride] == c_stone then -- negative Z
-			data[vi] = c_pearls
-			data_param2[vi] = 3 + math.random(1,4)
+			data_param2[vi] = facedirs[math.random(1, count)]
 		end
 	end
 end

@@ -243,21 +243,29 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 		local flooded_caverns = nvals_cave[cave_area:transform(area, vi)] < 0 -- this indicates if we're in the "flooded" set of caves or not.
+		local ystride = area.ystride
 
 		if not (flooded_caverns and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
-			if flooded_caverns or biome_name ~= "barren" then		
+			if flooded_caverns or biome_name ~= "barren" then
 				-- we're in flooded areas or are not barren
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
 			end
+			if not flooded_caverns and (biome_name == "barren" or biome_name == "sporetree") and nvals_cracks[index2d] > 0.5 then
+				for i= 1, 4 do
+					if math.random() > 0.5 then
+						df_mapitems.place_wall_pearls(vi-i*ystride, area, data, data_param2)
+					end
+				end
+			end
 		else
 			-- air pockets
 			local ystride = area.ystride
 			local cracks = nvals_cracks[index2d]
-			if cracks > 0.5 and data[vi-ystride] == c_water then
+			if cracks > 0.4 and data[vi-ystride] == c_water then
 				data[vi-ystride] = c_air
-				if cracks > 0.7 and data[vi-ystride*2] == c_water then
+				if cracks > 0.6 and data[vi-ystride*2] == c_water then
 					data[vi-ystride*2] = c_air
 				end
 			end			
@@ -289,6 +297,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 		local flooded_caverns = nvals_cave[cave_area:transform(area, vi)] < 0 -- this indicates if we're in the "flooded" set of caves or not.
+		local ystride = area.ystride
 
 		if not (flooded_caverns and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
 			if flooded_caverns or biome_name ~= "barren" then		
@@ -297,8 +306,25 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			else
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
 			end
+
+			if not flooded_caverns and (biome_name == "barren" or biome_name == "sporetree") and nvals_cracks[index2d] > 0.5 then
+				for i= 1, 4 do
+					if math.random() > 0.5 then
+						df_mapitems.place_wall_pearls(vi-i*ystride, area, data, data_param2)
+					end
+				end
+			end
+		else
+			-- air pockets
+			local cracks = nvals_cracks[index2d]
+			if cracks > 0.4 and data[vi-ystride] == c_water then
+				data[vi-ystride] = c_air
+				if cracks > 0.6 and data[vi-ystride*2] == c_water then
+					data[vi-ystride*2] = c_air
+				end
+			end			
 		end
-		-- else air pockets?
+
 	end
 
 	----------------------------------------------

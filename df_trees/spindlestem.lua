@@ -4,6 +4,9 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 local vessels = minetest.get_modpath("vessels")
 
+-- pre-declare
+local get_spindlestem_cap_type
+
 -- Copied from subterrane's features.lua
 -- Figured that was nicer than adding a dependency for just this little bit
 local stem_on_place = function(itemstack, placer, pointed_thing)
@@ -35,7 +38,7 @@ local stem_on_place = function(itemstack, placer, pointed_thing)
 
 	local new_param2
 	-- check if pointing at an existing stalactite
-	if minetest.get_item_group(under.name, "spindleshroom") ~= 0 then
+	if minetest.get_item_group(under.name, "spindlestem") ~= 0 then
 		new_param2 = under.param2
 	else
 		new_param2 = math.random(0,3)
@@ -57,10 +60,10 @@ end
 
 local disp = 0.0625 -- adjusting position a bit
 
-minetest.register_node("df_trees:spindleshroom_stem", {
+minetest.register_node("df_trees:spindlestem_stem", {
 	description = S("Spindlestem"),
 	is_ground_content = true,
-	groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindleshroom = 1},
+	groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
 	sounds = default.node_sound_wood_defaults(),
 	tiles = {
 		"dfcaverns_tower_cap.png",
@@ -81,17 +84,17 @@ minetest.register_node("df_trees:spindleshroom_stem", {
 
 minetest.register_craft({
 	type = "fuel",
-	recipe = "df_trees:spindleshroom_stem",
+	recipe = "df_trees:spindlestem_stem",
 	burntime = 5,
 })
 
-local register_spindleshroom_type = function(item_suffix, colour_name, colour_code, light_level)
-	local cap_item = "df_trees:spindleshroom_cap_"..item_suffix
+local register_spindlestem_type = function(item_suffix, colour_name, colour_code, light_level)
+	local cap_item = "df_trees:spindlestem_cap_"..item_suffix
 	
 	minetest.register_node(cap_item, {
 		description = S("@1 Spindlestem Cap", color_name),
 		is_ground_content = true,
-		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindleshroom = 1},
+		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
 		sounds = default.node_sound_wood_defaults(),
 		tiles = {
 			"dfcaverns_tower_cap.png^[multiply:#"..colour_code,
@@ -122,15 +125,15 @@ local register_spindleshroom_type = function(item_suffix, colour_name, colour_co
             -- Choose max_items randomly from this list
             items = {
                 {
-                    items = {cap_item, "df_trees:spindleshroom_seedling"},  -- Items to drop
+                    items = {cap_item, "df_trees:spindlestem_seedling"},  -- Items to drop
                     rarity = 2,  -- Probability of dropping is 1 / rarity
                 },
                 {
-                    items = {cap_item, "df_trees:spindleshroom_seedling", "df_trees:spindleshroom_seedling"},  -- Items to drop
+                    items = {cap_item, "df_trees:spindlestem_seedling", "df_trees:spindlestem_seedling"},  -- Items to drop
                     rarity = 2,  -- Probability of dropping is 1 / rarity
                 },
                 {
-                    items = {cap_item, "df_trees:spindleshroom_seedling", "df_trees:spindleshroom_seedling", "df_trees:spindleshroom_seedling"},  -- Items to drop
+                    items = {cap_item, "df_trees:spindlestem_seedling", "df_trees:spindlestem_seedling", "df_trees:spindlestem_seedling"},  -- Items to drop
                     rarity = 2,  -- Probability of dropping is 1 / rarity
                 },
                 {
@@ -150,14 +153,14 @@ local register_spindleshroom_type = function(item_suffix, colour_name, colour_co
 				return
 			end
 			local meta = minetest.get_meta(pos)
-			local height = meta:get_int("spindleshroom_to_grow")
+			local height = meta:get_int("spindlestem_to_grow")
 			local node = minetest.get_node(pos)
-			minetest.set_node(pos, {name="df_trees:spindleshroom_stem", param2 = node.param2})
+			minetest.set_node(pos, {name="df_trees:spindlestem_stem", param2 = node.param2})
 			minetest.set_node(above, {name=cap_item, param2 = node.param2})
 			height = height - 1
 			if height > 0 then
 				meta = minetest.get_meta(above)
-				meta:set_int("spindleshroom_to_grow", height)
+				meta:set_int("spindlestem_to_grow", height)
 				minetest.get_node_timer(above):start(growth_delay())
 			end
 		end,
@@ -169,7 +172,7 @@ local register_spindleshroom_type = function(item_suffix, colour_name, colour_co
 		burntime = 10,
 	})
 
-	local c_stem = minetest.get_content_id("df_trees:spindleshroom_stem")
+	local c_stem = minetest.get_content_id("df_trees:spindlestem_stem")
 	local c_cap = minetest.get_content_id(cap_item)
 	
 	if vessels and light_level > 0 then
@@ -221,7 +224,7 @@ local seedling_construct = function(pos)
 	end
 end
 
-minetest.register_node("df_trees:spindleshroom_seedling", {
+minetest.register_node("df_trees:spindlestem_seedling", {
 	description = S("Spindlestem Spawn"),
 	_doc_items_longdesc = nil,
 	_doc_items_usagehelp = nil,
@@ -245,37 +248,37 @@ minetest.register_node("df_trees:spindleshroom_seedling", {
 	on_construct = seedling_construct,
 	
 	on_timer = function(pos, elapsed)
-		local cap_item = minetest.get_name_from_content_id(df_trees.get_spindleshroom_cap_type(pos))
+		local cap_item = minetest.get_name_from_content_id(get_spindlestem_cap_type(pos))
 		local node = minetest.get_node(pos)
 		minetest.set_node(pos, {name=cap_item, param2 = node.param2})
 		local meta = minetest.get_meta(pos)
 		local disp = {x=3, y=3, z=3}
-		local nearby = minetest.find_nodes_in_area(vector.add(pos, disp), vector.subtract(pos, disp), {"group:spindleshroom"})
+		local nearby = minetest.find_nodes_in_area(vector.add(pos, disp), vector.subtract(pos, disp), {"group:spindlestem"})
 		local count = #nearby
-		local height = math.random(1,3)-1
-		if count > 10 then height = height + 2 end -- if there are a lot of nearby spindleshrooms, grow taller
+		local height = math.random(1,3)
+		if count > 10 then height = height + 2 end -- if there are a lot of nearby spindlestems, grow taller
 		if height > 0 then
-			meta:set_int("spindleshroom_to_grow", height)
+			meta:set_int("spindlestem_to_grow", height)
 			minetest.get_node_timer(pos):start(growth_delay())
 		end
 	end,
 })
 
-register_spindleshroom_type("white", S("White"), "FFFFFF", 0)
-register_spindleshroom_type("red", S("Red"), "FFC3C3", 3)
-register_spindleshroom_type("green", S("Green"), "C3FFC3", 4)
-register_spindleshroom_type("cyan", S("Cyan"), "C3FFFF", 6)
-register_spindleshroom_type("golden", S("Golden"), "FFFFC3", 12)
+register_spindlestem_type("white", S("White"), "FFFFFF", 0)
+register_spindlestem_type("red", S("Red"), "FFC3C3", 3)
+register_spindlestem_type("green", S("Green"), "C3FFC3", 4)
+register_spindlestem_type("cyan", S("Cyan"), "C3FFFF", 6)
+register_spindlestem_type("golden", S("Golden"), "FFFFC3", 12)
 
 local c_air = minetest.get_content_id("air")
-local c_stem = minetest.get_content_id("df_trees:spindleshroom_stem")
+local c_stem = minetest.get_content_id("df_trees:spindlestem_stem")
 
-df_trees.spawn_spindleshroom_vm = function(vi, area, data, data_param2, c_cap)
+df_trees.spawn_spindlestem_vm = function(vi, area, data, data_param2, c_cap)
 	if data[vi] ~= c_air then return end
 	
 	if c_cap == nil then
 		-- note: this won't account for rock removed by subterrane, so may not be entirely accurate. Good enough!
-		c_cap = df_trees.get_spindleshroom_cap_type(area:position(vi))
+		c_cap = get_spindlestem_cap_type(area:position(vi))
 	end
 	
 	local stem_height = math.random(1,3)
@@ -297,19 +300,19 @@ df_trees.spawn_spindleshroom_vm = function(vi, area, data, data_param2, c_cap)
 	data[index] = c_cap
 end
 
-local c_white = minetest.get_content_id("df_trees:spindleshroom_cap_white")
-local c_red = minetest.get_content_id("df_trees:spindleshroom_cap_red")
-local c_green = minetest.get_content_id("df_trees:spindleshroom_cap_green")
-local c_cyan = minetest.get_content_id("df_trees:spindleshroom_cap_cyan")
-local c_golden = minetest.get_content_id("df_trees:spindleshroom_cap_golden")
+local c_white = minetest.get_content_id("df_trees:spindlestem_cap_white")
+local c_red = minetest.get_content_id("df_trees:spindlestem_cap_red")
+local c_green = minetest.get_content_id("df_trees:spindlestem_cap_green")
+local c_cyan = minetest.get_content_id("df_trees:spindlestem_cap_cyan")
+local c_golden = minetest.get_content_id("df_trees:spindlestem_cap_golden")
 
-df_trees.get_spindleshroom_cap_type = function(pos)
+get_spindlestem_cap_type = function(pos)
 	if pos.y > -100 then
 		return c_white
 	end
-	local iron = minetest.find_node_near(pos, 10, {"default:stone_with_iron", "default:steelblock"})
-	local copper = minetest.find_node_near(pos, 10, {"default:stone_with_copper", "default:copperblock"})
-	local mese = minetest.find_node_near(pos, 10, {"default:stone_with_mese", "default:mese"})
+	local iron = minetest.find_node_near(pos, 5, {"default:stone_with_iron", "default:steelblock"})
+	local copper = minetest.find_node_near(pos, 5, {"default:stone_with_copper", "default:copperblock"})
+	local mese = minetest.find_node_near(pos, 5, {"default:stone_with_mese", "default:mese"})
 	local possibilities = {}
 
 	if mese then table.insert(possibilities, c_golden) end

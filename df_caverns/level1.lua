@@ -6,7 +6,7 @@ local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
 local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
 
-local c_spindleshroom_white = minetest.get_content_id("df_trees:spindleshroom_cap_white")
+local c_spindlestem_white = minetest.get_content_id("df_trees:spindlestem_cap_white")
 
 local tower_cap_shrublist
 local fungiwood_shrublist
@@ -57,7 +57,7 @@ local tower_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, d
 			if math.random() < 0.01 then
 				df_trees.spawn_tower_cap_vm(vi+ystride, area, data)
 			elseif math.random() < 0.03 then
-				df_trees.spawn_spindleshroom_vm(vi+ystride, area, data, data_param2, c_spindleshroom_white)
+				df_trees.spawn_spindlestem_vm(vi+ystride, area, data, data_param2, c_spindlestem_white)
 			end
 		end
 	end
@@ -234,7 +234,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 						end
 					end
 					if rand > cracks*2 then
-						df_trees.spawn_spindleshroom_vm(vi+ystride, area, data, data_param2)
+						df_trees.spawn_spindlestem_vm(vi+ystride, area, data, data_param2)
 					end
 				end
 			end

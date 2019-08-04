@@ -1,6 +1,8 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
+dofile(MP.."/wisp.lua")
+
 local gas_desc
 local gas_usage
 

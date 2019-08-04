@@ -103,9 +103,12 @@ local is_valid_mounting_node = function(c_node)
 		return valid_nodes[c_node]
 	end
 	local def = minetest.registered_nodes[minetest.get_name_from_content_id(c_node)]
-	if def ~= nil and (def.drawtype == "normal" or def.drawtype == nil) and (not def.buildable_to) then
-		valid_nodes[c_node] = true
-		return true
+	if def ~= nil
+		and (def.drawtype == "normal" or def.drawtype == nil)
+		and not def.buildable_to
+		and not (def.groups and def.groups.falling_node) then
+			valid_nodes[c_node] = true
+			return true
 	end
 	valid_nodes[c_node] = false
 	return false

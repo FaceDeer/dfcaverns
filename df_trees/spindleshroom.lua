@@ -4,9 +4,6 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 local vessels = minetest.get_modpath("vessels")
 
--- pre-declare
-local get_cap_type
-
 -- Copied from subterrane's features.lua
 -- Figured that was nicer than adding a dependency for just this little bit
 local stem_on_place = function(itemstack, placer, pointed_thing)
@@ -215,22 +212,6 @@ local register_spindleshroom_type = function(item_suffix, colour_name, colour_co
 			}
 		})
 	end
-
-	-- mapgen function
-	return function(vi, area, data, data_param2)
-		local stem_height = math.random(1,5)-1
-		local param2 = math.random(1,4)-1
-		local i = 0
-		while i < stem_height do
-			index = vi + i * area.ystride
-			data[index] = c_stem
-			data_param2[index] = param2
-			i = i + 1
-		end
-		index = vi + i * area.ystride
-		data[index] = c_cap
-		data_param2[index] = param2	
-	end
 end
 
 local seedling_construct = function(pos)
@@ -264,7 +245,7 @@ minetest.register_node("df_trees:spindleshroom_seedling", {
 	on_construct = seedling_construct,
 	
 	on_timer = function(pos, elapsed)
-		local cap_item = "df_trees:spindleshroom_cap_"..get_cap_type(pos)
+		local cap_item = minetest.get_name_from_content_id(df_trees.get_spindleshroom_cap_type(pos))
 		local node = minetest.get_node(pos)
 		minetest.set_node(pos, {name=cap_item, param2 = node.param2})
 		local meta = minetest.get_meta(pos)
@@ -280,28 +261,64 @@ minetest.register_node("df_trees:spindleshroom_seedling", {
 	end,
 })
 
-df_trees.spawn_spindleshroom_white_vm = register_spindleshroom_type("white", S("White"), "FFFFFF", 0)
-df_trees.spawn_spindleshroom_red_vm = register_spindleshroom_type("red", S("Red"), "FFC3C3", 3)
-df_trees.spawn_spindleshroom_green_vm = register_spindleshroom_type("green", S("Green"), "C3FFC3", 4)
-df_trees.spawn_spindleshroom_cyan_vm = register_spindleshroom_type("cyan", S("Cyan"), "C3FFFF", 6)
-df_trees.spawn_spindleshroom_red_vm = register_spindleshroom_type("golden", S("Golden"), "FFFFC3", 12)
+register_spindleshroom_type("white", S("White"), "FFFFFF", 0)
+register_spindleshroom_type("red", S("Red"), "FFC3C3", 3)
+register_spindleshroom_type("green", S("Green"), "C3FFC3", 4)
+register_spindleshroom_type("cyan", S("Cyan"), "C3FFFF", 6)
+register_spindleshroom_type("golden", S("Golden"), "FFFFC3", 12)
 
-get_cap_type = function(pos)
+local c_air = minetest.get_content_id("air")
+local c_stem = minetest.get_content_id("df_trees:spindleshroom_stem")
+
+df_trees.spawn_spindleshroom_vm = function(vi, area, data, data_param2, c_cap)
+	if data[vi] ~= c_air then return end
+	
+	if c_cap == nil then
+		-- note: this won't account for rock removed by subterrane, so may not be entirely accurate. Good enough!
+		c_cap = df_trees.get_spindleshroom_cap_type(area:position(vi))
+	end
+	
+	local stem_height = math.random(1,3)
+	local param2 = math.random(1,4)-1
+	local i = 0
+	local top = 0
+	while i <= stem_height do
+		index = vi + i * area.ystride
+		if data[index] == c_air then
+			data[index] = c_stem
+			data_param2[index] = param2
+			top = i
+		else
+			i = 100
+		end
+		i = i + 1
+	end
+	index = vi + top * area.ystride
+	data[index] = c_cap
+end
+
+local c_white = minetest.get_content_id("df_trees:spindleshroom_cap_white")
+local c_red = minetest.get_content_id("df_trees:spindleshroom_cap_red")
+local c_green = minetest.get_content_id("df_trees:spindleshroom_cap_green")
+local c_cyan = minetest.get_content_id("df_trees:spindleshroom_cap_cyan")
+local c_golden = minetest.get_content_id("df_trees:spindleshroom_cap_golden")
+
+df_trees.get_spindleshroom_cap_type = function(pos)
 	if pos.y > -100 then
-		return "white"
+		return c_white
 	end
 	local iron = minetest.find_node_near(pos, 10, {"default:stone_with_iron", "default:steelblock"})
 	local copper = minetest.find_node_near(pos, 10, {"default:stone_with_copper", "default:copperblock"})
 	local mese = minetest.find_node_near(pos, 10, {"default:stone_with_mese", "default:mese"})
 	local possibilities = {}
 
-	if mese then table.insert(possibilities, "golden") end
-	if copper then table.insert(possibilities, "green") end
-	if iron then table.insert(possibilities, "red") end
-	if iron and copper then table.insert(possibilities, "cyan") end
+	if mese then table.insert(possibilities, c_golden) end
+	if copper then table.insert(possibilities, c_green) end
+	if iron then table.insert(possibilities, c_red) end
+	if iron and copper then table.insert(possibilities, c_cyan) end
 	
 	if #possibilities == 0 then
-		return "white"
+		return c_white
 	else
 		local pick = math.random(1, #possibilities)
 		return possibilities[pick]

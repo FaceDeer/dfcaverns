@@ -6,6 +6,8 @@ local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
 local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
 
+local c_spindleshroom_white = minetest.get_content_id("df_trees:spindleshroom_cap_white")
+
 local tower_cap_shrublist
 local fungiwood_shrublist
 
@@ -51,8 +53,12 @@ local tower_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, d
 
 		if math.random() < 0.1 then
 			df_caverns.place_shrub(vi+ystride, area, data, data_param2, tower_cap_shrublist)
-		elseif math.random() < 0.01 and abs_cracks > 0.25 then
-			df_trees.spawn_tower_cap_vm(vi+ystride, area, data)
+		elseif abs_cracks > 0.25 then
+			if math.random() < 0.01 then
+				df_trees.spawn_tower_cap_vm(vi+ystride, area, data)
+			elseif math.random() < 0.03 then
+				df_trees.spawn_spindleshroom_vm(vi+ystride, area, data, data_param2, c_spindleshroom_white)
+			end
 		end
 	end
 end
@@ -203,6 +209,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 		local flooded_caverns = nvals_cave[cave_area:transform(area, vi)] < 0 -- this indicates if we're in the "flooded" set of caves or not.
+		local ystride = area.ystride
 
 		if not (flooded_caverns and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
 			if flooded_caverns or biome_name ~= "barren" then		
@@ -210,6 +217,26 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
+			end
+			
+			if (not flooded_caverns) and biome_name ~= "barren" then
+				local cracks = nvals_cracks[index2d]
+				if cracks > 0.25 then
+					local rand = math.random()
+					if rand > cracks then
+						if math.random() < 0.25 then
+							data[vi] = c_dirt_moss
+						else
+							data[vi] = c_dirt
+						end
+						if data[vi+ystride] == c_air and math.random() < 0.25 then
+							df_caverns.place_shrub(vi+ystride, area, data, data_param2, tower_cap_shrublist)
+						end
+					end
+					if rand > cracks*2 then
+						df_trees.spawn_spindleshroom_vm(vi+ystride, area, data, data_param2)
+					end
+				end
 			end
 		end
 	end

@@ -32,36 +32,30 @@ local register_cooking_recipes = function(prefix, item, name, returns)
 	minetest.register_alias("dfcaverns:"..item.."_stew", "df_farming:"..item.."_stew")
 	minetest.register_alias("dfcaverns:"..item.."_roast", "df_farming:"..item.."_roast")
 	
-	if minetest.get_modpath("simplecrafting_lib") then
-		simplecrafting_lib.register("cooking", {
+	if minetest.get_modpath("crafting") then
+		simplecrafting_lib.register("furnace", {
 			input = {
 				["group:dfcaverns_cookable"] = 1,
 				[prefix..":"..item] = 1,
+				["simplecrafting_lib:heat"] = 5,
 			},
-			output = {
-				["df_farming:"..item.."_biscuit"] = 1,
-			},
-			cooktime = 5.0,
+			output = "df_farming:"..item.."_biscuit",
 		})
-		simplecrafting_lib.register("cooking", {
+		simplecrafting_lib.register("furnace", {
 			input = {
 				["group:dfcaverns_cookable"] = 2,
 				[prefix..":"..item] = 1,
+				["simplecrafting_lib:heat"] = 10,
 			},
-			output = {
-				["df_farming:"..item.."_stew"] = 1,
-			},
-			cooktime = 10.0,
+			output = "df_farming:"..item.."_stew",
 		})
-		simplecrafting_lib.register("cooking", {
+		simplecrafting_lib.register("furnace", {
 			input = {
 				["group:dfcaverns_cookable"] = 3,
 				[prefix..":"..item] = 1,
+				["simplecrafting_lib:heat"] = 15,
 			},
-			output = {
-				["df_farming:"..item.."_roast"] = 1,
-			},
-			cooktime = 15.0,
+			output = "df_farming:"..item.."_roast",
 		})
 	else
 		minetest.register_craft({

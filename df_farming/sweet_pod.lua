@@ -239,16 +239,14 @@ if minetest.get_modpath("bucket") then
 		S("Dwarven Syrup Bucket")
 	)
 	
-	if minetest.get_modpath("simplecrafting_lib") then
-		simplecrafting_lib.register("cooking", {
+	if minetest.get_modpath("crafting") then
+		simplecrafting_lib.register("furnace", {
 			input = {
 				["bucket:bucket_empty"] = 1,
 				["df_farming:sugar"] = 3,
+				["simplecrafting_lib:heat"] = 5,
 			},
-			output = {
-				["df_farming:dwarven_syrup_bucket"] = 1,
-			},
-			cooktime = 5.0,
+			output = "df_farming:dwarven_syrup_bucket",
 		})
 	else
 		minetest.register_craft({

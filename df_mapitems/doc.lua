@@ -41,3 +41,6 @@ df_mapitems.doc.glow_ruby_ore_usage = S("Aside from its aesthetic value this roc
 
 df_mapitems.doc.big_crystal_desc = S("Monolithic crystals of this size form only over extremely long periods deep underground, in large long-lived cavities that allow them room to grow. Water and the life it hosts tend to disrupt the formation process of these crystals so they're only found in dry environments.")
 df_mapitems.doc.big_crystal_usage = S("Aside from its aesthetic value this crystal has no particular use.")
+
+df_mapitems.doc.cave_pearls_desc = S("These nodules are actually calcified bacterial colonies.")
+df_mapitems.doc.cave_pearls_usage = S("Aside from their soft glow and beauty, cave pearls have no practical use. Except perhaps as handholds for climbing.")

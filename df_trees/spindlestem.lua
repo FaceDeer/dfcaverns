@@ -62,6 +62,8 @@ local disp = 0.0625 -- adjusting position a bit
 
 minetest.register_node("df_trees:spindlestem_stem", {
 	description = S("Spindlestem"),
+	_doc_items_longdesc = df_trees.doc.spindlestem_desc,
+	_doc_items_usagehelp = df_trees.doc.spindlestem_usage,
 	is_ground_content = true,
 	groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
 	sounds = default.node_sound_wood_defaults(),
@@ -92,8 +94,10 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 	local cap_item = "df_trees:spindlestem_cap_"..item_suffix
 	
 	minetest.register_node(cap_item, {
-		description = S("@1 Spindlestem Cap", color_name),
+		description = S("@1 Spindlestem Cap", colour_name),
 		is_ground_content = true,
+		_doc_items_longdesc = df_trees.doc["spindlestem_cap_"..item_suffix.."_desc"],
+		_doc_items_usagehelp = df_trees.doc["spindlestem_cap_"..item_suffix.."_usage"],
 		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
 		sounds = default.node_sound_wood_defaults(),
 		tiles = {
@@ -181,6 +185,8 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 		minetest.register_node("df_trees:glowing_bottle_"..item_suffix, {
 			description = S("@1 Spindlestem Extract", colour_name),
 			drawtype = "plantlike",
+			_doc_items_longdesc = df_trees.doc["spindlestem_extract_"..item_suffix.."_desc"],
+			_doc_items_usagehelp = df_trees.doc["spindlestem_extract_"..item_suffix.."_usage"],
 			tiles = {tex},
 			inventory_image = tex,
 			wield_image = tex,
@@ -226,8 +232,8 @@ end
 
 minetest.register_node("df_trees:spindlestem_seedling", {
 	description = S("Spindlestem Spawn"),
-	_doc_items_longdesc = nil,
-	_doc_items_usagehelp = nil,
+	_doc_items_longdesc = df_trees.doc.spindlestem_desc,
+	_doc_items_usagehelp = df_trees.doc.spindlestem_usage,
 	tiles = {
 		"dfcaverns_tower_cap.png",
 	},
@@ -307,7 +313,7 @@ local c_cyan = minetest.get_content_id("df_trees:spindlestem_cap_cyan")
 local c_golden = minetest.get_content_id("df_trees:spindlestem_cap_golden")
 
 get_spindlestem_cap_type = function(pos)
-	if pos.y > -100 then
+	if pos.y > -100 or minetest.find_node_near(pos, 15, "group:tower_cap") then
 		return c_white
 	end
 	if minetest.find_node_near(pos, 15, "group:goblin_cap") then

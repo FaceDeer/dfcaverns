@@ -73,9 +73,11 @@ local add_to_table = function(dest, source)
 	end
 end
 
-minetest.register_node("df_mapitems:wall_pearls", {
+minetest.register_node("df_mapitems:cave_pearls", {
 	description = S("Cave Pearls"),
 	tiles = {"dfcaverns_cave_pearl.png"},
+	_doc_items_longdesc = df_mapitems.doc.cave_pearls_desc,
+	_doc_items_usagehelp = df_mapitems.doc.cave_pearls_usage,
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -95,7 +97,7 @@ minetest.register_node("df_mapitems:wall_pearls", {
 })
 
 local c_air = minetest.get_content_id("air")
-local c_pearls = minetest.get_content_id("df_mapitems:wall_pearls")
+local c_pearls = minetest.get_content_id("df_mapitems:cave_pearls")
 
 local valid_nodes = {} -- cache values
 local is_valid_mounting_node = function(c_node)

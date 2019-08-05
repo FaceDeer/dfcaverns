@@ -1,10 +1,18 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
+local wisp_desc
+local wisp_usage
+
+if minetest.get_modpath("doc") then
+	wisp_desc = S("Mysterious blue flames may occasionally be found flickering on the edges of oil lakes, burning without oxygen and seeming to maintain their size as they drift about through the unbreathable atmosphere.")
+	wisp_usage = S("Gas Wisps have no known use, and fortunately they are not hostile or very dangerous.")
+end
+
 minetest.register_node("mine_gas:gas_wisp", {
 	description = S("Gas Wisp"),
-	_doc_items_longdesc = nil,
-	_doc_items_usagehelp = nil,
+	_doc_items_longdesc = wisp_desc,
+	_doc_items_usagehelp = wisp_usage,
 	walkable = false,
 	diggable = false,
 	buildable_to = true,

@@ -78,6 +78,16 @@ Fungiwoods have thinner stalks that sprout numerous thin irregular "shelves" bra
 
 Plump helmets and cave wheat grow here.
 
+## Spindlestems
+
+![Spindlestems](./df_caverns/screenshots/spindlestems.jpg)
+
+Spindlestem mushrooms are the weedy "saplings" of the upper fungal forests, too large to pick by hand but not exactly inspiring tree-like analogies. They are common, though, and not without their uses. Their long stems can serve as a wood substutitue in many crafts and their bioluminescent caps can produce a long-lived glowing extract that's useful as a source of light. They grow taller when crowded.
+
+The bioluminescence of Spindlestems are actually a very interesting feature. Despite their apparent visual diversity, Spindlestems are a single species. They pick up their glow from symbiotic microorganisms that colonize their caps, and the specific breed of symbiote that thrives in any given Spindlestem depends on the minerals present in the nearby rocks. Iron results in a weak red-glowing cap, copper results in a green-tinted cap, and the combination of both can result in a brighter cyan glow. Brilliant yellow "Golden Spindlestems" have also been spotted.
+
+For some reason, Spindlestems that grow in the presence of Tower Caps are never luminescent. Perhaps they're intimidated.
+
 # Second cavern layer
 
 By default, the second cavern layer can be found between -800 and -1400 meters elevation. Like the first layer, some caverns contain lakes filling their lower regions. The dry barren caverns at this level will have some occasional ruby crystal growths in them, but they will be detailed in an entry on the third cavern layer where they're much more common.
@@ -86,7 +96,9 @@ By default, the second cavern layer can be found between -800 and -1400 meters e
 
 ![Goblin Caps](./df_caverns/screenshots/goblin_cap.jpg)
 
-Goblin caps are the broader, squatter cousins of the Tower Cap fungus. Like Tower Caps they have no particular special properties, but their wood comes in two different colours - the reddish orange of their caps and the cream coloured stem wood. Plump helmets grow here.
+Goblin caps are the broader, squatter cousins of the Tower Cap fungus. Like Tower Caps they have no particular special properties, but their wood comes in two different colours - the reddish orange of their caps and the cream coloured stem wood. Plump helmets and Spindlestems grow here.
+
+For some reason, Spindlestems that grow in the presence of Goblin Caps are always red.
 
 ## Spore Tree caverns
 
@@ -103,6 +115,12 @@ Cave wheat and pig tails can be found growing here.
 Tunnel tubes are hollow, curved fungal growths that support a fruiting body at their tip. The trunk of a tunnel tube can be cut and processed to produce plywood-like material. The fruiting body accumulates high-energy compounds that, when ignited, produce a vigorous detonation - a unique adaptation for spreading tunnel tube spawn through the still cavern air. If the TNT mod is enabled tunnel tube fruiting bodies can be detonated like weak TNT blocks and can be harvested for gunpowder.
 
 Sweet pods and cave wheat can be found growing in tunnel tube caverns.
+
+## Cave pearls
+
+![Cave Pearls](./df_caverns/screenshots/cave_pearls.jpg)
+
+At these depths you may find a distinctive and beautiful formation encrusting the ceilings and walls of smaller tunnels and warrens; "cave pearls." These nodules are actually calcified bacterial colonies that can only form where they're left undisturbed for the long periods needed for them to grow this large.
 
 # Third cavern layer
 
@@ -163,6 +181,8 @@ This is the last stop for the living world, however. Caverns continue to stretch
 Venturing below the Sunless Sea will require either a great deal of digging through solid rock or a lengthy SCUBA swim through flooded tunnels. Getting past the water doesn't guarantee that you'll be able to breathe, however.
 
 Eventually, at around -2600 meters elevation, an explorer may encounter lakes of oil in lenticular caverns. Falling into a lake of oil is an unpleasant experience - one is completely blind when below the surface - but that's not the real danger. The atmosphere above the oil is filled with unbreathable gasses that are explosive when mixed with air and an ignition source (such as a carelessly placed torch). Even in the tunnels above the oil there are occasional gas seeps venting this gas from cracks and seams of coal. This gas is heavier than air and will pool in depressions, and of course it cannot be swum through so take care not to jump down into a place you can't easily climb back out of.
+
+A few mysterious blue flames may occasionally be found flickering on the edges of oil lakes, burning without oxygen and seeming to maintain their size as they drift about through the unbreathable atmosphere. These "gas wisps" may be a strange form of plasmoidal life but they are easily snuffed and so little is known about them.
 
 Buckets of oil serve as an excellent fuel source, powering a furnace as well as a block of coal.
 

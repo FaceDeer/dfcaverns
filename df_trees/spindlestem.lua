@@ -37,8 +37,8 @@ local stem_on_place = function(itemstack, placer, pointed_thing)
 	end
 
 	local new_param2
-	-- check if pointing at an existing stalactite
-	if minetest.get_item_group(under.name, "spindlestem") ~= 0 then
+	-- check if pointing at an existing spindlestem
+	if minetest.get_item_group(under.name, "spindlestem") > 0 then
 		new_param2 = under.param2
 	else
 		new_param2 = math.random(0,3)
@@ -143,7 +143,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
             },
         },
 		
-		on_place = stal_on_place,
+		on_place = stem_on_place,
 		on_timer = function(pos, elapsed)
 			local above = vector.add(pos, {x=0,y=1,z=0})
 			local node_above = minetest.get_node(above)
@@ -244,7 +244,7 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 		}
 	},
 	
-	on_place = stal_on_place,
+	on_place = stem_on_place,
 	on_construct = seedling_construct,
 	
 	on_timer = function(pos, elapsed)
@@ -310,6 +310,10 @@ get_spindlestem_cap_type = function(pos)
 	if pos.y > -100 then
 		return c_white
 	end
+	if minetest.find_node_near(pos, 15, "group:goblin_cap") then
+		return c_red
+	end
+	
 	local iron = minetest.find_node_near(pos, 5, {"default:stone_with_iron", "default:steelblock"})
 	local copper = minetest.find_node_near(pos, 5, {"default:stone_with_copper", "default:copperblock"})
 	local mese = minetest.find_node_near(pos, 5, {"default:stone_with_mese", "default:mese"})

@@ -9,7 +9,7 @@ minetest.register_node("df_trees:goblin_cap_stem", {
 	_doc_items_usagehelp = df_trees.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap_stem.png"},
 	is_ground_content = true,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, goblin_cap = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -20,7 +20,7 @@ minetest.register_node("df_trees:goblin_cap", {
 	_doc_items_usagehelp = df_trees.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap.png"},
 	is_ground_content = true,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, goblin_cap = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -31,7 +31,7 @@ minetest.register_node("df_trees:goblin_cap_gills", {
 	_doc_items_usagehelp = df_trees.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap_gills.png"},
 	is_ground_content = true,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, goblin_cap = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	drawtype = "plantlike",
 	paramtype = "light",

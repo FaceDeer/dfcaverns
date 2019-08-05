@@ -60,6 +60,8 @@ if minetest.get_modpath("df_farming") then
 	}
 end
 
+local c_red = minetest.get_content_id("df_trees:spindlestem_cap_red")
+
 local goblin_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	local ystride = area.ystride
 	if abs_cracks < 0.1 then
@@ -72,6 +74,8 @@ local goblin_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, 
 		end
 		if math.random() < 0.1 then
 			df_caverns.place_shrub(vi+ystride, area, data, data_param2, goblin_cap_shrublist)
+		elseif math.random() < 0.02 then
+			df_trees.spawn_spindlestem_vm(vi+ystride, area, data, data_param2, c_red)
 		elseif math.random() < 0.015 then
 			df_trees.spawn_goblin_cap_vm(vi+ystride, area, data)
 		end

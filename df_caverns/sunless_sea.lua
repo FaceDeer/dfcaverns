@@ -276,7 +276,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				if math.random() < 0.001 then
 					local iterations = math.random(1, 6)
 					df_mapitems.spawn_coral_pile(area, data, vi, iterations)
-					df_mapitems.spawn_cave_coral(area, data, vi+area.ystride, iterations)
+					df_mapitems.spawn_castle_coral(area, data, vi+area.ystride, iterations)
 				end
 			end
 		end

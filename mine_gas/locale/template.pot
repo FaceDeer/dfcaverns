@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-26 00:49-0600\n"
+"POT-Creation-Date: 2019-08-05 20:30-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +17,52 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: dfcaverns\mine_gas\init.lua:11
+#: mine_gas\init.lua:13
 msgid ""
 "Gaseous hydrocarbons formed from the detritus of long dead plants and "
 "animals processed by heat and pressure deep within the earth."
 msgstr ""
 
-#: dfcaverns\mine_gas\init.lua:12
+#: mine_gas\init.lua:14
 msgid ""
 "Gas is highly hazardous. Heavier than air, it pools in deep caverns and "
 "asphyxiates the unwary."
 msgstr ""
 
-#: dfcaverns\mine_gas\init.lua:14
+#: mine_gas\init.lua:16
 msgid ""
 "When exposed to air and an ignition source it can produce a deadly explosion."
 msgstr ""
 
-#: dfcaverns\mine_gas\init.lua:17
+#: mine_gas\init.lua:19
 msgid "Some coal deposits have cracks that seep a steady flow of mine gas."
 msgstr ""
 
-#: dfcaverns\mine_gas\init.lua:18
+#: mine_gas\init.lua:20
 msgid "Mining out such a deposit seals the crack."
 msgstr ""
 
-#: dfcaverns\mine_gas\init.lua:26
+#: mine_gas\init.lua:28
 msgid "Mine Gas"
 msgstr ""
 
-#: dfcaverns\mine_gas\init.lua:46
+#: mine_gas\init.lua:48
 msgid "Gas Seep"
+msgstr ""
+
+#: mine_gas\wisp.lua:8
+msgid ""
+"Mysterious blue flames may occasionally be found flickering on the edges of "
+"oil lakes, burning without oxygen and seeming to maintain their size as they "
+"drift about through the unbreathable atmosphere."
+msgstr ""
+
+#: mine_gas\wisp.lua:9
+msgid ""
+"Gas Wisps have no known use, and fortunately they are not hostile or very "
+"dangerous."
+msgstr ""
+
+#: mine_gas\wisp.lua:13
+msgid "Gas Wisp"
 msgstr ""

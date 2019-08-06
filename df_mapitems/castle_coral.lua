@@ -10,6 +10,8 @@ minetest.register_node("df_mapitems:castle_coral", {
 		"dfcaverns_castle_coral.png",
 		"dfcaverns_castle_coral.png^[multiply:#888888",
 	},
+	_doc_items_longdesc = df_mapitems.doc.castle_coral_desc,
+	_doc_items_usagehelp = df_mapitems.doc.castle_coral_usage,
 	drawtype = "mesh",
 	light_source = 2,
 	mesh = "octagonal_coral.obj",
@@ -21,6 +23,8 @@ minetest.register_node("df_mapitems:castle_coral", {
 
 minetest.register_node("df_mapitems:castle_coral_skeleton", {
 	description = S("Castle Coral Skeleton"),
+	_doc_items_longdesc = df_mapitems.doc.castle_coral_desc,
+	_doc_items_usagehelp = df_mapitems.doc.castle_coral_usage,
 	tiles = {
 		"default_coral_skeleton.png",
 		"default_coral_skeleton.png",

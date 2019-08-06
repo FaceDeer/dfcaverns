@@ -44,3 +44,6 @@ df_mapitems.doc.big_crystal_usage = S("Aside from its aesthetic value this cryst
 
 df_mapitems.doc.cave_pearls_desc = S("These nodules are actually calcified bacterial colonies.")
 df_mapitems.doc.cave_pearls_usage = S("Aside from their soft glow and beauty, cave pearls have no practical use. Except perhaps as handholds for climbing.")
+
+df_mapitems.doc.castle_coral_desc = S("Deep under the surface of the Sunless Sea are the rare and beautiful Castle Corals, so named due to their resemblance to small undersea castles.")
+df_mapitems.doc.castle_coral_usage = S("Castle Coral has little practical use aside from perhaps as a distinctive-looking building material.")

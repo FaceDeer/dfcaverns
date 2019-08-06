@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-29 19:30-0700\n"
+"POT-Creation-Date: 2019-08-05 20:29-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: df_mapitems\castle_coral.lua:6
+msgid "Castle Coral"
+msgstr ""
+
+#: df_mapitems\castle_coral.lua:25
+msgid "Castle Coral Skeleton"
+msgstr ""
+
 #: df_mapitems\cave_coral.lua:6
 #: df_mapitems\cave_coral.lua:18
 #: df_mapitems\cave_coral.lua:30
 msgid "Cave Coral"
+msgstr ""
+
+#: df_mapitems\cave_pearls.lua:77
+msgid "Cave Pearls"
 msgstr ""
 
 #: df_mapitems\crystals_mese.lua:7
@@ -197,6 +209,28 @@ msgstr ""
 msgid "Aside from its aesthetic value this crystal has no particular use."
 msgstr ""
 
+#: df_mapitems\doc.lua:45
+msgid "These nodules are actually calcified bacterial colonies."
+msgstr ""
+
+#: df_mapitems\doc.lua:46
+msgid ""
+"Aside from their soft glow and beauty, cave pearls have no practical use. "
+"Except perhaps as handholds for climbing."
+msgstr ""
+
+#: df_mapitems\doc.lua:48
+msgid ""
+"Deep under the surface of the Sunless Sea are the rare and beautiful Castle "
+"Corals, so named due to their resemblance to small undersea castles."
+msgstr ""
+
+#: df_mapitems\doc.lua:49
+msgid ""
+"Castle Coral has little practical use aside from perhaps as a distinctive-"
+"looking building material."
+msgstr ""
+
 #: df_mapitems\flowstone.lua:8
 msgid "Dry Dripstone"
 msgstr ""
@@ -225,12 +259,12 @@ msgstr ""
 msgid "Dirt With Cave Moss"
 msgstr ""
 
-#: df_mapitems\ground_cover.lua:53
-#: df_mapitems\ground_cover.lua:67
+#: df_mapitems\ground_cover.lua:54
+#: df_mapitems\ground_cover.lua:69
 msgid "Cobblestone With Floor Fungus"
 msgstr ""
 
-#: df_mapitems\ground_cover.lua:106
+#: df_mapitems\ground_cover.lua:109
 msgid "Ice With Hoar Moss"
 msgstr ""
 

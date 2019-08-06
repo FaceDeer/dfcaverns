@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-23 00:27-0700\n"
+"POT-Creation-Date: 2019-08-05 20:30-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,15 +45,15 @@ msgstr ""
 msgid "Dead Blood Thorn Stem"
 msgstr ""
 
-#: df_trees\blood_thorn.lua:60
+#: df_trees\blood_thorn.lua:61
 msgid "Blood Thorn Spike"
 msgstr ""
 
-#: df_trees\blood_thorn.lua:90
+#: df_trees\blood_thorn.lua:91
 msgid "Dead Blood Thorn Spike"
 msgstr ""
 
-#: df_trees\blood_thorn.lua:127
+#: df_trees\blood_thorn.lua:134
 msgid "Blood Thorn Planks"
 msgstr ""
 
@@ -196,6 +196,96 @@ msgid ""
 "sprout into new torchspines when placed on flammable surfaces."
 msgstr ""
 
+#: df_trees\doc.lua:45
+msgid ""
+"Spindlestems are too big to easily pluck by hand but too small to be called "
+"a proper tree. Nevertheless, they are a common and useful resource for "
+"underground travelers - particularly their glowing caps."
+msgstr ""
+
+#: df_trees\doc.lua:46
+msgid ""
+"The stem of a Spindlestem is surprisingly sturdy, and despite their thinness "
+"they can grow quite tall. They can be used as a wood substitute in many "
+"crafting recipes."
+msgstr ""
+
+#: df_trees\doc.lua:48
+msgid ""
+"The cap of a Spindlestem, uncontaminated by any symbiotic luminescent "
+"microorganisms."
+msgstr ""
+
+#: df_trees\doc.lua:49
+msgid "These things are useless except as weak fuel for a fire."
+msgstr ""
+
+#: df_trees\doc.lua:51
+msgid ""
+"The cap of a Spindlestem, glowing a weak red due to symbiotic microorganisms."
+msgstr ""
+
+#: df_trees\doc.lua:52
+msgid ""
+"Red Spindlestems are a sign of nearby iron deposits - or perhaps Goblin "
+"Caps. Their glowing symbiotes can be extracted as a long-lived light source, "
+"though the glow is weak."
+msgstr ""
+
+#: df_trees\doc.lua:54
+msgid ""
+"The cap of a Spindlestem, glowing a soft green due to symbiotic "
+"microorganisms."
+msgstr ""
+
+#: df_trees\doc.lua:55
+msgid ""
+"Green Spindlestems are a sign of nearby copper deposits. Their glowing "
+"symbiotes can be extracted as a long-lived light source, though the glow is "
+"not strong."
+msgstr ""
+
+#: df_trees\doc.lua:57
+msgid ""
+"The cap of a Spindlestem, glowing a strong cyan due to symbiotic "
+"microorganisms."
+msgstr ""
+
+#: df_trees\doc.lua:58
+msgid ""
+"Cyan Spindlestems are a sign of both copper and iron deposits nearby. Their "
+"glowing symbiotes can be extracted as a long-lived light source."
+msgstr ""
+
+#: df_trees\doc.lua:60
+msgid ""
+"The cap of a Spindlestem, glowing a brilliant yellow due to symbiotic "
+"microorganisms."
+msgstr ""
+
+#: df_trees\doc.lua:61
+msgid ""
+"Golden Spindlestems are a sign of rare and magical mineral deposits nearby. "
+"Their glowing symbiotes can be extracted as a strong and long-lived light "
+"source."
+msgstr ""
+
+#: df_trees\doc.lua:64
+msgid "Living extract from the cap of a red Spindlestem."
+msgstr ""
+
+#: df_trees\doc.lua:66
+msgid "Living extract from the cap of a green Spindlestem."
+msgstr ""
+
+#: df_trees\doc.lua:68
+msgid "Living extract from the cap of a cyan Spindlestem."
+msgstr ""
+
+#: df_trees\doc.lua:70
+msgid "Living extract from the cap of a yellow Spindlestem."
+msgstr ""
+
 #: df_trees\fungiwood.lua:13
 msgid "Fungiwood Stem"
 msgstr ""
@@ -264,6 +354,42 @@ msgstr ""
 msgid "Nether Cap Spawn"
 msgstr ""
 
+#: df_trees\spindlestem.lua:64
+msgid "Spindlestem"
+msgstr ""
+
+#: df_trees\spindlestem.lua:97
+msgid "@1 Spindlestem Cap"
+msgstr ""
+
+#: df_trees\spindlestem.lua:186
+msgid "@1 Spindlestem Extract"
+msgstr ""
+
+#: df_trees\spindlestem.lua:234
+msgid "Spindlestem Spawn"
+msgstr ""
+
+#: df_trees\spindlestem.lua:273
+msgid "White"
+msgstr ""
+
+#: df_trees\spindlestem.lua:274
+msgid "Red"
+msgstr ""
+
+#: df_trees\spindlestem.lua:275
+msgid "Green"
+msgstr ""
+
+#: df_trees\spindlestem.lua:276
+msgid "Cyan"
+msgstr ""
+
+#: df_trees\spindlestem.lua:277
+msgid "Golden"
+msgstr ""
+
 #: df_trees\spore_tree.lua:14
 msgid "Spore Tree Stem"
 msgstr ""
@@ -284,7 +410,7 @@ msgstr ""
 msgid "Spore Tree Spawn"
 msgstr ""
 
-#: df_trees\spore_tree.lua:303
+#: df_trees\spore_tree.lua:306
 msgid "Spore Tree Ladder"
 msgstr ""
 
@@ -323,23 +449,23 @@ msgstr ""
 msgid "Tower Cap Spawn"
 msgstr ""
 
-#: df_trees\tunnel_tube.lua:16
-#: df_trees\tunnel_tube.lua:39
-#: df_trees\tunnel_tube.lua:69
-#: df_trees\tunnel_tube.lua:98
+#: df_trees\tunnel_tube.lua:14
+#: df_trees\tunnel_tube.lua:37
+#: df_trees\tunnel_tube.lua:67
+#: df_trees\tunnel_tube.lua:96
 msgid "Tunnel Tube"
 msgstr ""
 
-#: df_trees\tunnel_tube.lua:135
+#: df_trees\tunnel_tube.lua:133
 msgid "Tunnel Tube Plies"
 msgstr ""
 
-#: df_trees\tunnel_tube.lua:172
-#: df_trees\tunnel_tube.lua:228
-#: df_trees\tunnel_tube.lua:248
+#: df_trees\tunnel_tube.lua:170
+#: df_trees\tunnel_tube.lua:226
+#: df_trees\tunnel_tube.lua:246
 msgid "Tunnel Tube Fruiting Body"
 msgstr ""
 
-#: df_trees\tunnel_tube.lua:279
+#: df_trees\tunnel_tube.lua:277
 msgid "Tunnel Tube Spawn"
 msgstr ""

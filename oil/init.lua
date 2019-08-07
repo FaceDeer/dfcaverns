@@ -200,4 +200,13 @@ if minetest.get_modpath("bucket") then
 		burntime = 370, -- same as coalblock
 		replacements = {{"oil:oil_bucket", "bucket:bucket_empty"}},
 	})
+	
+	if minetest.get_modpath("basic_materials") then
+		minetest.register_craft({
+			type = "cooking",
+			output = "basic_materials:paraffin",
+			recipe = "oil:oil_bucket",
+			replacements = {{"oil:oil_bucket", "bucket:bucket_empty"}},
+		})
+	end
 end

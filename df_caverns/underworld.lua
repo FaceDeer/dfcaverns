@@ -2,6 +2,8 @@ if not df_caverns.config.enable_underworld then
 	return
 end
 
+local bones_loot_path = minetest.get_modpath("bones_loot")
+
 local c_slade = minetest.get_content_id("df_underworld_items:slade")
 local c_air = minetest.get_content_id("air")
 local c_water = minetest.get_content_id("default:water_source")
@@ -385,6 +387,40 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:update_liquids()
 	--write it to world
 	vm:write_to_map()
+	
+	if bones_loot_path then
+		for i = 1, 15 do
+			local x = math.random(minp.x, maxp.x)
+			local z = math.random(minp.z, maxp.z)
+			local index2d = mapgen_helper.index2d(emin, emax, x, z)
+			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+			local wave = nvals_wave[index2d] * wave_mult
+			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
+			if floor_height < ceiling_height then
+				local zone = math.abs(nvals_zone[index2d])
+				if math.random() < zone then -- bones are more common in the built-up areas
+					local floor_node = minetest.get_node({x=x, y=floor_height, z=z})
+					local floor_node_def = minetest.registered_nodes[floor_node.name]
+					if floor_node_def and not floor_node_def.buildable_to then
+						local y = floor_height + 1
+						while y < ceiling_height do
+							local target_pos = {x=x, y=y, z=z}
+							local target_node = minetest.get_node(target_pos)
+							if target_node.name == "air" then
+								bones_loot.place_bones(target_pos, "normal", math.random(5, 15))
+								break
+							elseif target_node.name == "bones:bones" then
+								-- don't stack bones on bones, it looks silly
+								break
+							end
+							y = y + 1
+						end
+					end
+				end
+			end
+		end
+	end
 	
 	local chunk_generation_time = math.ceil((os.clock() - t_start) * 1000) --grab how long it took
 	if chunk_generation_time < 1000 then

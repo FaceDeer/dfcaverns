@@ -206,6 +206,7 @@ if minetest.get_modpath("bucket") then
 			type = "cooking",
 			output = "basic_materials:paraffin",
 			recipe = "oil:oil_bucket",
+			cooktime = 5,
 			replacements = {{"oil:oil_bucket", "bucket:bucket_empty"}},
 		})
 	end

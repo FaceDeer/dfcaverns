@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-05 20:29-0600\n"
+"POT-Creation-Date: 2019-08-07 21:33-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr ""
 msgid "Cave Coral"
 msgstr ""
 
-#: df_mapitems\cave_pearls.lua:77
+#: df_mapitems\cave_pearls.lua:6
 msgid "Cave Pearls"
 msgstr ""
 
@@ -57,6 +57,14 @@ msgstr ""
 #: df_mapitems\crystals_ruby.lua:122
 #: df_mapitems\crystals_ruby.lua:195
 msgid "Big Red Crystal"
+msgstr ""
+
+#: df_mapitems\crystals_salt.lua:6
+msgid "Luminous Salt Crystal"
+msgstr ""
+
+#: df_mapitems\crystals_salt.lua:23
+msgid "Salty Cobble"
 msgstr ""
 
 #: df_mapitems\doc.lua:11
@@ -229,6 +237,31 @@ msgstr ""
 msgid ""
 "Castle Coral has little practical use aside from perhaps as a distinctive-"
 "looking building material."
+msgstr ""
+
+#: df_mapitems\doc.lua:51
+msgid ""
+"A crystal of salt grown from water that percolated through the depths of the "
+"earth, picking up all manner of minerals as it went."
+msgstr ""
+
+#: df_mapitems\doc.lua:52
+msgid ""
+"Traces of Mese must have been dissolved by the water as this crystal has an "
+"inherent glow to it. Not enough Mese to be useful as a reagent, "
+"unfortunately."
+msgstr ""
+
+#: df_mapitems\doc.lua:54
+msgid ""
+"Much water has seeped through the cracks in this rock and then quickly "
+"evaporated, leaving a crust of salt laced throughout."
+msgstr ""
+
+#: df_mapitems\doc.lua:55
+msgid ""
+"Attemping to mine this rock knocks the salt crust away, leaving only base "
+"stone."
 msgstr ""
 
 #: df_mapitems\flowstone.lua:8

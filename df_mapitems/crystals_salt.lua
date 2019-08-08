@@ -21,8 +21,8 @@ minetest.register_node("df_mapitems:salt_crystal", {
 
 minetest.register_node("df_mapitems:salty_cobble", {
 	description = S("Salty Cobble"),
-	_doc_items_longdesc = df_mapitems.doc.salt_desc,
-	_doc_items_usagehelp = df_mapitems.doc.salt_desc,
+	_doc_items_longdesc = df_mapitems.doc.salty_cobble_desc,
+	_doc_items_usagehelp = df_mapitems.doc.salty_cobble_desc,
 	tiles = {"default_cobble.png^dfcaverns_salty.png"},
 	groups = {cracky = 3, stone = 1, lava_heatable = 1},
 	_magma_conduits_heats_to = "default:cobble",

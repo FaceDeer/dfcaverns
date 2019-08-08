@@ -18,6 +18,8 @@ local wall_vein_perlin_params = {
 	flags = "eased",
 }
 
+local c_pearls = minetest.get_content_id("df_mapitems:cave_pearls")
+
 local subsea_level = df_caverns.config.level2_min - (df_caverns.config.level2_min - df_caverns.config.level1_min) * 0.33 -- "sea level" for the flooded caverns.
 local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold, df_caverns.config.cavern_threshold) -- cavern value out to which we're flooding tunnels and warrens
 
@@ -259,7 +261,10 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			if not flooded_caverns and (biome_name == "barren" or biome_name == "sporetree") and nvals_cracks[index2d] > 0.5 then
 				for i= 1, 4 do
 					if math.random() > 0.5 then
-						df_mapitems.place_wall_pearls(vi-i*ystride, area, data, data_param2)
+						local index = vi-i*ystride
+						if data[index] == c_air then
+							df_mapitems.place_against_surface_vm(c_pearls, index, area, data, data_param2)
+						end
 					end
 				end
 			end
@@ -314,7 +319,10 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			if not flooded_caverns and (biome_name == "barren" or biome_name == "sporetree") and nvals_cracks[index2d] > 0.5 then
 				for i= 1, 4 do
 					if math.random() > 0.5 then
-						df_mapitems.place_wall_pearls(vi-i*ystride, area, data, data_param2)
+						local index = vi-i*ystride
+						if data[index] == c_air then
+							df_mapitems.place_against_surface_vm(c_pearls, index, area, data, data_param2)
+						end
 					end
 				end
 			end

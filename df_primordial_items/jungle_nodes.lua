@@ -17,6 +17,7 @@ minetest.register_node("df_primordial_items:fern_1", {
 	visual_scale = 1.69,
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,
@@ -28,27 +29,13 @@ minetest.register_node("df_primordial_items:fern_2", {
 	_doc_items_longdesc = df_primordial_items.doc.fern_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.fern_usage,
 	tiles = {"dfcaverns_jungle_fern_02.png"},
+	visual_scale = 1.69,
 	inventory_image = "dfcaverns_jungle_fern_02.png",
 	wield_image = "dfcaverns_jungle_fern_02.png",
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
-	walkable = false,
-	sounds = default.node_sound_leaves_defaults(),
-	use_texture_alpha = true,
-	sunlight_propagates = true,
-})
-
-minetest.register_node("df_primordial_items:fern_3", {
-	description = S("Primordial Fern"),
-	_doc_items_longdesc = df_primordial_items.doc.fern_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.fern_usage,
-	tiles = {"dfcaverns_jungle_fern_03.png"},
-	inventory_image = "dfcaverns_jungle_fern_03.png",
-	wield_image = "dfcaverns_jungle_fern_03.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
-	paramtype = "light",
-	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,
@@ -68,6 +55,7 @@ minetest.register_node("df_primordial_items:glow_plant_1", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	light_source = 6,
 	sounds = default.node_sound_leaves_defaults(),
@@ -85,6 +73,7 @@ minetest.register_node("df_primordial_items:glow_plant_2", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	light_source = 6,
 	sounds = default.node_sound_leaves_defaults(),
@@ -102,6 +91,7 @@ minetest.register_node("df_primordial_items:glow_plant_3", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	light_source = 6,
 	sounds = default.node_sound_leaves_defaults(),
@@ -123,6 +113,7 @@ minetest.register_node("df_primordial_items:jungle_grass_1", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,
@@ -139,6 +130,7 @@ minetest.register_node("df_primordial_items:jungle_grass_2", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	place_param2 = 3,
 	sounds = default.node_sound_leaves_defaults(),
@@ -156,6 +148,7 @@ minetest.register_node("df_primordial_items:jungle_grass_3", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	place_param2 = 3,
 	sounds = default.node_sound_leaves_defaults(),
@@ -189,84 +182,6 @@ minetest.register_node("df_primordial_items:jungle_ivy", {
 	},
 })
 
---------------------------------------------------------------------------------------------------
--- Jungle tree
-
--- Leaves
-minetest.register_node("df_primordial_items:jungle_leaves", {
-	description = S("Primordial Jungle Tree Leaves"),
-	_doc_items_longdesc = df_primordial_items.doc.leaves_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.leaves_usage,
-	drawtype = "plantlike",
-	walkable = false,
-	waving = 2,
-	tiles = {"dfcaverns_jungle_leaves_01.png"},
-	inventory_image = "dfcaverns_jungle_leaves_01.png",
-	wield_image = "dfcaverns_jungle_leaves_01.png",
-	paramtype = "light",
-	is_ground_content = false,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
-	sounds = default.node_sound_leaves_defaults(),
-	after_place_node = default.after_place_leaves,
-})
-
-minetest.register_node("df_primordial_items:jungle_leaves_glowing", {
-	description = S("Phosphorescent Primordial Jungle Tree Leaves"),
-	_doc_items_longdesc = df_primordial_items.doc.glowing_leaves_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.glowing_leaves_usage,
-	drawtype = "plantlike",
-	walkable = false,
-	waving = 2,
-	tiles = {"dfcaverns_jungle_leaves_02.png"},
-	inventory_image = "dfcaverns_jungle_leaves_02.png",
-	wield_image = "dfcaverns_jungle_leaves_02.png",
-	paramtype = "light",
-	is_ground_content = false,
-	light_source = 4,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
-	sounds = default.node_sound_leaves_defaults(),
-	after_place_node = default.after_place_leaves,
-})
-
--- Trunk
-
-minetest.register_node("df_primordial_items:jungle_tree", {
-	description = S("Primordial Jungle Tree"),
-	_doc_items_longdesc = df_primordial_items.doc.tree_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.tree_usage,
-	tiles = {"dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_01.png"},
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
-
-minetest.register_node("df_primordial_items:jungle_tree_mossy", {
-	description = S("Mossy Primordial Jungle Tree"),
-	_doc_items_longdesc = df_primordial_items.doc.tree_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.tree_usage,
-	tiles = {"dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_03.png"},
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
-
-minetest.register_node("df_primordial_items:jungle_tree_glowing", {
-	description = S("Phosphorescent Primordial Jungle Tree"),
-	_doc_items_longdesc = df_primordial_items.doc.tree_glowing_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.tree_glowing_usage,
-	tiles = {"dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_04.png"},
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	light_source = 4,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
-
 -------------------------------------------------------------------------------------
 -- Small jungle mushrooms
 
@@ -280,6 +195,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_1", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,
@@ -296,6 +212,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_2", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,
@@ -347,7 +264,7 @@ minetest.register_node("df_primordial_items:plant_matter", {
 	groups = {crumbly = 3, soil = 1},
 	sounds = default.node_sound_dirt_defaults(),
 })
-minetest.register_node("df_primordial_items:dirt", {
+minetest.register_node("df_primordial_items:packed_roots", {
 	description = S("Packed Primordial Jungle Roots"),
 	_doc_items_longdesc = df_primordial_items.doc.packed_roots_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.packed_roots_usage,

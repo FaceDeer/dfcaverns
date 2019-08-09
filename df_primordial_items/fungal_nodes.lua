@@ -2,67 +2,6 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-
--------------------------------------------------------------------------
--- Giant mushroom
-
-minetest.register_node("df_primordial_items:mushroom_trunk", {
-	description = S("Primordial Mushroom Trunk"),
-	_doc_items_longdesc = df_primordial_items.doc.big_mushroom_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.big_mushroom_usage,
-	tiles = {"dfcaverns_mush_shaft_top.png", "dfcaverns_mush_shaft_top.png", "dfcaverns_mush_shaft_side.png"},
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
-
-minetest.register_node("df_primordial_items:mushroom_cap", {
-	description = S("Primordial Mushroom Cap"),
-	_doc_items_longdesc = df_primordial_items.doc.giant_mushroom_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.giant_mushroom_usage,
-	tiles = {"dfcaverns_mush_cap.png"},
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
-
-minetest.register_node("df_primordial_items:mushroom_gills", {
-	description = S("Primordial Mushroom Gills"),
-	_doc_items_longdesc = df_primordial_items.doc.gills_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.gills_usage,
-	tiles = {"dfcaverns_mush_gills.png"},
-	inventory_image = "dfcaverns_mush_gills.png",
-	wield_image = "dfcaverns_mush_gills.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
-	paramtype = "light",
-	drawtype = "plantlike",
-	walkable = false,
-	sounds = default.node_sound_leaves_defaults(),
-	use_texture_alpha = true,
-	sunlight_propagates = true,
-})
-
-minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
-	description = S("Glowing Primordial Mushroom Gills"),
-	_doc_items_longdesc = df_primordial_items.doc.gills_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.gills_usage,
-	tiles = {"dfcaverns_mush_gills_glow.png"},
-	inventory_image = "dfcaverns_mush_gills_glow.png",
-	wield_image = "dfcaverns_mush_gills_glow.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
-	paramtype = "light",
-	drawtype = "plantlike",
-	walkable = false,
-	light_source = 6,
-	sounds = default.node_sound_leaves_defaults(),
-	use_texture_alpha = true,
-	sunlight_propagates = true,
-})
-
 ---------------------------------------------------------------------------------------
 -- Glownode and stalk
 
@@ -107,6 +46,7 @@ minetest.register_node("df_primordial_items:fungal_grass_1", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,
@@ -123,6 +63,7 @@ minetest.register_node("df_primordial_items:fungal_grass_2", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	place_param2 = 3,
 	sounds = default.node_sound_leaves_defaults(),
@@ -142,6 +83,7 @@ minetest.register_node("df_primordial_items:glow_orb", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	light_source = 9,
 	sounds = default.node_sound_leaves_defaults(),
@@ -159,6 +101,7 @@ minetest.register_node("df_primordial_items:glow_orb_hanging", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	light_source = 6,
 	sounds = default.node_sound_leaves_defaults(),
@@ -176,6 +119,7 @@ minetest.register_node("df_primordial_items:glow_orb_stalks", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	light_source = 6,
 	sounds = default.node_sound_leaves_defaults(),
@@ -193,6 +137,7 @@ minetest.register_node("df_primordial_items:glow_pods", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
+	buildable_to = true,
 	walkable = false,
 	light_source = 6,
 	sounds = default.node_sound_leaves_defaults(),
@@ -203,7 +148,7 @@ minetest.register_node("df_primordial_items:glow_pods", {
 ------------------------------------------------------------------------------------
 -- Dirt
 
-minetest.register_node("df_primordial_items:dirt_with_jungle_grass", {
+minetest.register_node("df_primordial_items:dirt_with_mycelium", {
 	description = S("Dirt With Primordial Mycelium"),
 	tiles = {"dfcaverns_mush_soil.png"},
 	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},

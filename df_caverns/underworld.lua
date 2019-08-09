@@ -283,9 +283,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
 					local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
 					if distance < pit.radius -3 then
-						if y < y_min + 4 then -- make a layer of amethyst at the bottom of the pit to keep the plasma from digging infinitely downward.
-							data[vi] = c_amethyst
-						elseif y < median + floor_displace + wave - pit.depth then
+						if y < median + floor_displace + wave - pit.depth then
 							data[vi] = c_pit_plasma
 						else
 							data[vi] = c_air

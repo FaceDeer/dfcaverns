@@ -138,9 +138,18 @@ if df_underworld_items.config.destructive_pit_plasma then
 				for y = pos.y-1, pos.y+1 do
 					for z = pos.z-1, pos.z+1 do
 						local test_pos = {x=x, y=y, z=z}
-						if minetest.get_item_group(minetest.get_node(test_pos).name, "pit_plasma_resistant") == 0 then
+						local node_name = minetest.get_node(test_pos).name
+						if minetest.get_item_group(node_name, "pit_plasma_resistant") == 0 then
 							sparkle_pos = test_pos
-							minetest.set_node(test_pos, {name="air"})
+							if minetest.get_item_group(node_name, "stone") > 0 then
+								if math.random() < 0.66 then
+									minetest.set_node(test_pos, {name="df_underworld_items:glow_amethyst"})
+								else
+									minetest.set_node(test_pos, {name="default:lava_source"})
+								end
+							else
+								minetest.set_node(test_pos, {name="air"})
+							end
 						end
 					end
 				end

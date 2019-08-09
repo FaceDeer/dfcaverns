@@ -56,7 +56,7 @@ local tower_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, d
 		elseif abs_cracks > 0.25 then
 			if math.random() < 0.01 then
 				df_trees.spawn_tower_cap_vm(vi+ystride, area, data)
-			elseif math.random() < 0.03 then
+			elseif math.random() < 0.04 then
 				df_trees.spawn_spindlestem_vm(vi+ystride, area, data, data_param2, c_spindlestem_white)
 			end
 		end
@@ -77,6 +77,8 @@ local fungiwood_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, d
 			df_caverns.place_shrub(vi+ystride, area, data, data_param2, fungiwood_shrublist)
 		elseif math.random() < 0.03 and abs_cracks > 0.35 then
 			df_trees.spawn_fungiwood_vm(vi+ystride, area, data)
+		elseif math.random() < 0.04 then
+			df_trees.spawn_spindlestem_vm(vi+ystride, area, data, data_param2)
 		end
 	end
 end
@@ -219,7 +221,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
 			end
 			
-			if (not flooded_caverns) and biome_name ~= "barren" then
+			if biome_name ~= "barren" then
 				local cracks = nvals_cracks[index2d]
 				if cracks > 0.25 then
 					local rand = math.random()

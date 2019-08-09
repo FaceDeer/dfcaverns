@@ -291,6 +291,7 @@ df_trees.spawn_spindlestem_vm = function(vi, area, data, data_param2, c_cap)
 	local param2 = math.random(1,4)-1
 	local i = 0
 	local top = 0
+	local index
 	while i <= stem_height do
 		index = vi + i * area.ystride
 		if data[index] == c_air then

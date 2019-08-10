@@ -1,4 +1,4 @@
-if not df_caverns.config.enable_underworld then
+if not df_caverns.config.enable_underworld or not minetest.get_modpath("df_underworld_items") then
 	return
 end
 
@@ -57,6 +57,8 @@ local wave_mult = 50
 
 local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
 local y_min = median - 2*wave_mult + floor_displace - 2*floor_mult
+
+--df_caverns.config.underworld_min = y_min
 
 ---------------------------------------------------------
 -- Buildings
@@ -267,7 +269,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			
 			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-			if y <= floor_height then
+			if y < floor_height and y > y_min + math.abs(wave) / 5 then -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
 				data[vi] = c_slade
 				if	pit and
 					pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and

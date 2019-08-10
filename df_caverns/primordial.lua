@@ -2,6 +2,10 @@ if not df_caverns.config.enable_primordial or not minetest.get_modpath("df_primo
 	return
 end
 
+local c_orb = minetest.get_content_id("df_primordial_items:glow_orb_hanging")
+local c_mycelial_dirt = minetest.get_content_id("df_primordial_items:dirt_with_mycelium")
+local c_dirt = minetest.get_content_id("default:dirt")
+
 -----------------------------------------------------------------------------------------
 
 local perlin_cave_primordial = {
@@ -23,12 +27,31 @@ local perlin_wave_primordial = {
 }
 
 
+local plants = {
+	minetest.get_content_id("df_primordial_items:fungal_grass_1"),
+	minetest.get_content_id("df_primordial_items:fungal_grass_2"),
+	minetest.get_content_id("df_primordial_items:glow_orb"),
+	minetest.get_content_id("df_primordial_items:glow_orb_stalks"),
+	minetest.get_content_id("df_primordial_items:glow_pods"),
+}
+
 local mushroom_cavern_floor = function(abs_cracks, vi, area, data, data_param2)
 	local ystride = area.ystride
+	if abs_cracks < 0.7 then
+		data[vi] = c_mycelial_dirt
+	elseif abs_cracks < 1 then
+		data[vi] = c_dirt
+	end
+	local rand = math.random() * math.min(abs_cracks, 1)
+	if rand < 0.01 then
+		local schematic = df_primordial_items.get_primordial_mushroom()
+		local rotation = (math.random(1,4)-1)*90
+		mapgen_helper.place_schematic_on_data(data, data_param2, area, area:position(vi+ystride), schematic, rotation)
+	elseif rand < 0.05 then
+		data[vi+ystride] = plants[math.random(1,5)]
+	end
 end
 
-local c_orb = minetest.get_content_id("df_primordial_items:glow_orb_hanging")
-local c_mycelial_dirt = minetest.get_content_id("df_primordial_items:dirt_with_mycelium")
 local mushroom_cavern_ceiling = function(abs_cracks, vi, area, data, data_param2)
 	local ystride = area.ystride
 	if abs_cracks < 0.4 then
@@ -51,6 +74,19 @@ local mushroom_warren_ceiling = function(abs_cracks, vi, area, data, data_param2
 				data[vi-ystride] = c_orb
 			end
 		end
+	end
+end
+
+local mushroom_warren_floor = function(abs_cracks, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.7 then
+		data[vi] = c_mycelial_dirt
+	elseif abs_cracks < 1 then
+		data[vi] = c_dirt
+	end
+	local rand = math.random() * math.min(abs_cracks, 1)
+	if rand < 0.03 then
+		data[vi+ystride] = plants[math.random(1,5)]
 	end
 end
 
@@ -81,11 +117,11 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local abs_cracks = math.abs(cracks)
 		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
 		
-		if jungle then
-			jungle_cavern_floor(abs_cracks, vi, area, data, data_param2)
-		else
+--		if jungle then
+--			jungle_cavern_floor(abs_cracks, vi, area, data, data_param2)
+--		else
 			mushroom_cavern_floor(abs_cracks, vi, area, data, data_param2)
-		end
+--		end
 	end
 	
 	--------------------------------------
@@ -139,6 +175,16 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 	-- Warren floors
 	
 	for _, vi in ipairs(node_arrays.warren_floor_nodes) do
+		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+		local cracks = nvals_cracks[index2d]
+		local abs_cracks = math.abs(cracks)
+		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
+		
+--		if jungle then
+--			jungle_warren_floor(abs_cracks, vi, area, data, data_param2)
+--		else
+			mushroom_warren_floor(abs_cracks, vi, area, data, data_param2)
+--		end
 	end
 
 	-- columns

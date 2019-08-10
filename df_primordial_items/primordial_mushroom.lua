@@ -628,8 +628,17 @@ local bc_mushroom_21 = {
 	}
 }
 
-local mushrooms = {bc_mushroom_3, bc_mushroom_5, bc_mushroom_9, bc_mushroom_21}
-local rotations = {0, 90, 180, 270}
+df_primordial_items.get_primordial_mushroom = function()
+	local rand = math.random()
+	if rand < 0.3 then
+		return bc_mushroom_3
+	elseif rand < 0.7 then
+		return bc_mushroom_5
+	elseif rand < 0.975 then
+		return bc_mushroom_9
+	end
+	return bc_mushroom_21
+end
 
 minetest.register_node("df_primordial_items:mush_sapling", {
 	description = S("Primordial Mushroom Spawn"),
@@ -647,8 +656,8 @@ minetest.register_node("df_primordial_items:mush_sapling", {
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	on_construct = function(pos)
-		local mushroom = mushrooms[math.random(1,#mushrooms)]
-		local rotation = rotations[math.random(1,#rotations)]
+		local mushroom = df_primordial.get_primordial_mushroom
+		local rotation = (math.random(1,4)-1)*90
 		minetest.set_node(pos, {name="air"}) -- clear sapling so mushroom can replace it
 		mapgen_helper.place_schematic(pos, mushroom, rotation)
 	end,

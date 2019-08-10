@@ -35,38 +35,48 @@ local plants = {
 	minetest.get_content_id("df_primordial_items:glow_pods"),
 }
 
-local mushroom_cavern_floor = function(abs_cracks, vi, area, data, data_param2)
+local mushroom_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_param2)
 	local ystride = area.ystride
+	local humidityfactor = humidity/200 + 0.5
+	abs_cracks = abs_cracks * humidityfactor
+
 	if abs_cracks < 0.7 then
 		data[vi] = c_mycelial_dirt
 	elseif abs_cracks < 1 then
 		data[vi] = c_dirt
 	end
-	local rand = math.random() * math.min(abs_cracks, 1)
+
+	local rand = math.random() * math.min(abs_cracks, 1) * humidityfactor
 	if rand < 0.01 then
 		local schematic = df_primordial_items.get_primordial_mushroom()
 		local rotation = (math.random(1,4)-1)*90
-		mapgen_helper.place_schematic_on_data(data, data_param2, area, area:position(vi+ystride), schematic, rotation)
+		mapgen_helper.place_schematic_on_data_if_it_fits(data, data_param2, area, area:position(vi+ystride), schematic, rotation)
 	elseif rand < 0.05 then
 		data[vi+ystride] = plants[math.random(1,5)]
 	end
 end
 
-local mushroom_cavern_ceiling = function(abs_cracks, vi, area, data, data_param2)
+local mushroom_cavern_ceiling = function(abs_cracks, humidity, vi, area, data, data_param2)
 	local ystride = area.ystride
-	if abs_cracks < 0.4 then
+	local humidityfactor = humidity/200 + 0.5
+	abs_cracks = abs_cracks * humidityfactor
+
+	if abs_cracks < 0.5 then
 		data[vi] = c_mycelial_dirt
 		if abs_cracks < 0.3 then
-			if math.random() < 0.2 then
-				data[vi-ystride] = c_orb
-			elseif math.random() < 0.03 then
+			local rand = math.random() * humidityfactor
+			if rand < 0.03 then
 				df_primordial_items.spawn_ceiling_spire_vm(vi, area, data)
+			elseif rand < 0.2 then
+				data[vi-ystride] = c_orb
 			end
 		end
 	end
 end
+
 local mushroom_warren_ceiling = function(abs_cracks, vi, area, data, data_param2)
 	local ystride = area.ystride
+
 	if abs_cracks < 0.3 then
 		data[vi] = c_mycelial_dirt
 		if abs_cracks < 0.2 then
@@ -108,6 +118,9 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 	local cave_area = node_arrays.cave_area
 	local nvals_cave = node_arrays.nvals_cave
 	
+	local humiditymap = minetest.get_mapgen_object("humiditymap")
+
+	
 	---------------------------------------------------------
 	-- Cavern floors
 	
@@ -115,12 +128,13 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
+		local humidity = humiditymap[index2d]
 		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
 		
 --		if jungle then
 --			jungle_cavern_floor(abs_cracks, vi, area, data, data_param2)
 --		else
-			mushroom_cavern_floor(abs_cracks, vi, area, data, data_param2)
+			mushroom_cavern_floor(abs_cracks, humidity, vi, area, data, data_param2)
 --		end
 	end
 	
@@ -132,11 +146,11 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
 		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
-
+		local humidity = humiditymap[index2d]
 --		if jungle then
 --			jungle_cavern_ceiling(abs_cracks, vi, area, data, data_param2)
 --		else
-			mushroom_cavern_ceiling(abs_cracks, vi, area, data, data_param2)
+			mushroom_cavern_ceiling(abs_cracks, humidity, vi, area, data, data_param2)
 --		end
 
 

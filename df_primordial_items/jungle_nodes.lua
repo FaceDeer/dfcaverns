@@ -2,8 +2,7 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-
------------------------------------------------------
+----------------------------------------------------
 -- Ferns
 
 minetest.register_node("df_primordial_items:fern_1", {
@@ -217,33 +216,6 @@ minetest.register_node("df_primordial_items:jungle_mushroom_2", {
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,
 	sunlight_propagates = true,
-})
-
-------------------------------------------------------------------------------------------
--- Big jungle mushroom
-
-minetest.register_node("df_primordial_items:jungle_mushroom_trunk", {
-	description = S("Primordial Jungle Mushroom Trunk"),
-	_doc_items_longdesc = df_primordial_items.doc.big_mushroom_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.big_mushroom_usage,
-	tiles = {"dfcaverns_jungle_mushroom_stem.png", "dfcaverns_jungle_mushroom_stem.png", "dfcaverns_jungle_mushroom_stem_02.png"},
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
-})
-
-minetest.register_node("df_primordial_items:jungle_mushroom_cap", {
-	description = S("Primordial Jungle Mushroom Cap"),
-	_doc_items_longdesc = df_primordial_items.doc.big_mushroom_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.big_mushroom_usage,
-	tiles = {"dfcaverns_jungle_mushroom_top_01.png", "dfcaverns_jungle_mushroom_top_02.png", "dfcaverns_jungle_mushroom_top_01.png"},
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
-	on_place = minetest.rotate_node
 })
 
 ----------------------------------------------------------------------------------------

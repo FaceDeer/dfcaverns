@@ -48,3 +48,7 @@ setting("bool", "enable_underworld", true, "Enable underworld")
 df_caverns.config.enable_underworld = df_caverns.config.enable_underworld and minetest.get_modpath("df_underworld_items") ~= nil
 setting("int", "underworld_level", -3200, "Underworld level")
 setting("int", "underworld_glowing_pit_mapblocks", 8, "Average pit spacing measured in mapblocks")
+
+setting("bool", "enable_primordial", true, "Enable primordial cavern")
+setting("int", "primordial_max", -3393, "Upper limit to primordial caverns")
+setting("int", "primordial_min", -4032, "Lower limit to primordial caverns")

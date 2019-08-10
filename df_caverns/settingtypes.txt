@@ -38,3 +38,8 @@ dfcaverns_enable_underworld (Generate underworld) bool true
 dfcaverns_underworld_level (Underworld level) int -3200
 #Set this to 0 to disable glowing pit generation entirely.
 dfcaverns_underworld_glowing_pit_mapblocks(Average pit spacing measured in mapblocks) int 8
+
+[Primordial]
+dfcaverns_enable_primordial (Generate primordial caverns) bool true
+dfcaverns_primordial_max (Upper limit of primordial caverns) int -3393
+dfcaverns_primordial_min (Lower limit of primordial caverns) int -4032

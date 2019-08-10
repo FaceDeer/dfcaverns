@@ -7,7 +7,7 @@ end
 local perlin_cave_primordial = {
 	offset = 0,
 	scale = 1,
-	spread = {x=df_caverns.config.horizontal_cavern_scale, y=df_caverns.config.vertical_cavern_scale, z=df_caverns.config.horizontal_cavern_scale},
+	spread = {x=df_caverns.config.horizontal_cavern_scale, y=df_caverns.config.vertical_cavern_scale*0.5, z=df_caverns.config.horizontal_cavern_scale},
 	seed = 14055553,
 	octaves = 3,
 	persist = 0.67
@@ -16,7 +16,7 @@ local perlin_cave_primordial = {
 local perlin_wave_primordial = {
 	offset = 0,
 	scale = 1,
-	spread = {x=df_caverns.config.horizontal_cavern_scale, y=df_caverns.config.vertical_cavern_scale, z=df_caverns.config.horizontal_cavern_scale},
+	spread = {x=df_caverns.config.horizontal_cavern_scale, y=df_caverns.config.vertical_cavern_scale*0.5, z=df_caverns.config.horizontal_cavern_scale},
 	seed = 923444,
 	octaves = 6,
 	persist = 0.63
@@ -27,17 +27,41 @@ local mushroom_cavern_floor = function(abs_cracks, vi, area, data, data_param2)
 	local ystride = area.ystride
 end
 
+local c_orb = minetest.get_content_id("df_primordial_items:glow_orb_hanging")
+local c_mycelial_dirt = minetest.get_content_id("df_primordial_items:dirt_with_mycelium")
 local mushroom_cavern_ceiling = function(abs_cracks, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.4 then
+		data[vi] = c_mycelial_dirt
+		if abs_cracks < 0.3 then
+			if math.random() < 0.2 then
+				data[vi-ystride] = c_orb
+			elseif math.random() < 0.03 then
+				df_primordial_items.spawn_ceiling_spire_vm(vi, area, data)
+			end
+		end
+	end
 end
-
+local mushroom_warren_ceiling = function(abs_cracks, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.3 then
+		data[vi] = c_mycelial_dirt
+		if abs_cracks < 0.2 then
+			if math.random() < 0.2 then
+				data[vi-ystride] = c_orb
+			end
+		end
+	end
+end
 
 local jungle_cavern_floor = function(abs_cracks, vi, area, data, data_param2)
 	local ystride = area.ystride
 end
 
-local jungle_cavern_ceiling = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+local jungle_cavern_ceiling = function(abs_cracks, vi, area, data, data_param2)
 end
-
+local jungle_warren_ceiling = function(abs_cracks, vi, area, data, data_param2)
+end
 
 local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, data)
 	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
@@ -73,11 +97,11 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local abs_cracks = math.abs(cracks)
 		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
 
-		if jungle then
-			jungle_cavern_ceiling(abs_cracks, vi, area, data, data_param2)
-		else
+--		if jungle then
+--			jungle_cavern_ceiling(abs_cracks, vi, area, data, data_param2)
+--		else
 			mushroom_cavern_ceiling(abs_cracks, vi, area, data, data_param2)
-		end
+--		end
 
 
 	end
@@ -98,6 +122,17 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 	-- Warren ceiling
 
 	for _, vi in ipairs(node_arrays.warren_ceiling_nodes) do
+		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+		local cracks = nvals_cracks[index2d]
+		local abs_cracks = math.abs(cracks)
+		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
+		
+--		if jungle then
+--			jungle_warren_ceiling(abs_cracks, vi, area, data, data_param2)
+--		else
+			mushroom_warren_ceiling(abs_cracks, vi, area, data, data_param2)
+--		end
+
 	end
 
 	----------------------------------------------

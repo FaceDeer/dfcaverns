@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-23 00:27-0700\n"
+"POT-Creation-Date: 2019-08-11 03:51-0600\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -19,104 +19,209 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: df_farming\cave_wheat.lua:10
-#: df_farming\cave_wheat.lua:70
+#: df_farming\cave_wheat.lua:87
 msgid "Cave Wheat"
 msgstr "Grano di caverna"
 
-#: df_farming\cave_wheat.lua:62
-#: df_farming\cooking.lua:89
+#: df_farming\cave_wheat.lua:79
 msgid "Cave Wheat Seed"
 msgstr "Seme di grano di caverna"
 
-#: df_farming\cave_wheat.lua:83
-#: df_farming\cooking.lua:88
+#: df_farming\cave_wheat.lua:100
 msgid "Cave Wheat Flour"
 msgstr "Farina di grano di caverna"
 
-#: df_farming\cave_wheat.lua:91
+#: df_farming\cave_wheat.lua:108
 msgid "Dwarven Bread"
 msgstr "Pane nanico"
 
-#: df_farming\cooking.lua:7
-msgid "@1 Biscuit"
-msgstr "Biscotto di @1"
+#: df_farming\cooking.lua:72
+#, fuzzy
+msgid "Cave Wheat Flour Biscuit"
+msgstr "Farina di grano di caverna"
 
-#: df_farming\cooking.lua:15
-msgid "@1 Stew"
-msgstr "Stufato di @1"
+#: df_farming\cooking.lua:73
+#, fuzzy
+msgid "Cave Wheat Flour Bun"
+msgstr "Farina di grano di caverna"
 
-#: df_farming\cooking.lua:23
-msgid "@1 Roast"
-msgstr "Arrosto di @1"
+#: df_farming\cooking.lua:74
+#, fuzzy
+msgid "Cave Wheat Flour Pancake"
+msgstr "Farina di grano di caverna"
 
-#: df_farming\cooking.lua:90
-msgid "Sweet Pod Spore"
+#: df_farming\cooking.lua:77
+#, fuzzy
+msgid "Cave Wheat Seed Loaf"
+msgstr "Seme di grano di caverna"
+
+#: df_farming\cooking.lua:78
+#, fuzzy
+msgid "Cave Wheat Seed Puffs"
+msgstr "Seme di grano di caverna"
+
+#: df_farming\cooking.lua:79
+#, fuzzy
+msgid "Cave Wheat Seed Risotto"
+msgstr "Seme di grano di caverna"
+
+#: df_farming\cooking.lua:82
+#, fuzzy
+msgid "Sweet Pod Spore Dumplings"
+msgstr "Spore di baccello dolce"
+
+#: df_farming\cooking.lua:83
+#, fuzzy
+msgid "Sweet Pod Spore Single Crust Pie"
+msgstr "Spore di baccello dolce"
+
+#: df_farming\cooking.lua:84
+#, fuzzy
+msgid "Sweet Pod Spore Brule"
 msgstr "Spora di baccello dolce"
 
-#: df_farming\cooking.lua:91
-#: df_farming\sweet_pod.lua:84
-msgid "Sweet Pod Sugar"
+#: df_farming\cooking.lua:87
+#, fuzzy
+msgid "Sweet Pod Sugar Cookie"
+msgstr "Zucchero di baccello dolce"
+
+#: df_farming\cooking.lua:88
+#, fuzzy
+msgid "Sweet Pod Sugar Gingerbread"
+msgstr "Zucchero di baccello dolce"
+
+#: df_farming\cooking.lua:89
+#, fuzzy
+msgid "Sweet Pod Sugar Roll"
 msgstr "Zucchero di baccello dolce"
 
 #: df_farming\cooking.lua:92
-#: df_farming\plump_helmet.lua:92
-#: df_farming\plump_helmet.lua:129
-#: df_farming\plump_helmet.lua:164
-#: df_farming\plump_helmet.lua:199
-#: df_farming\plump_helmet.lua:251
-msgid "Plump Helmet"
+#, fuzzy
+msgid "Plump Helmet Mince"
 msgstr "Elmo rotondo"
 
 #: df_farming\cooking.lua:93
-#: df_farming\plump_helmet.lua:61
-msgid "Plump Helmet Spawn"
+#, fuzzy
+msgid "Plump Helmet Stalk Sausage"
 msgstr "Prole di elmo rotondo"
 
 #: df_farming\cooking.lua:94
-msgid "Quarry Bush Leaf"
-msgstr "Foglia di cespuglio di cava"
-
-#: df_farming\cooking.lua:95
-msgid "Rock Nut"
-msgstr "Noce di roccia"
-
-#: df_farming\cooking.lua:96
-msgid "Dimple Cup Spore"
-msgstr "Spora di coppa increspata"
+#, fuzzy
+msgid "Plump Helmet Roast"
+msgstr "Elmo rotondo"
 
 #: df_farming\cooking.lua:97
-#: df_farming\pig_tail.lua:62
-msgid "Pig Tail Spore"
-msgstr "Spora di coda di maiale"
+#, fuzzy
+msgid "Plump Helmet Spawn Soup"
+msgstr "Prole di elmo rotondo"
 
 #: df_farming\cooking.lua:98
-msgid "Dwarven Syrup"
+#, fuzzy
+msgid "Plump Helmet Spawn Jambalaya"
+msgstr "Prole di elmo rotondo"
+
+#: df_farming\cooking.lua:99
+#, fuzzy
+msgid "Plump Helmet Sprout Stew"
+msgstr "Prole di elmo rotondo"
+
+#: df_farming\cooking.lua:102
+#, fuzzy
+msgid "Quarry Bush Leaf Spicy Bun"
+msgstr "Foglia di cespuglio di cava"
+
+#: df_farming\cooking.lua:103
+#, fuzzy
+msgid "Quarry Bush Leaf Croissant"
+msgstr "Foglia di cespuglio di cava"
+
+#: df_farming\cooking.lua:104
+#, fuzzy
+msgid "Stuffed Quarry Bush Leaf"
+msgstr "Foglia di cespuglio di cava"
+
+#: df_farming\cooking.lua:107
+#, fuzzy
+msgid "Rock Nut Bread"
+msgstr "Noce di roccia"
+
+#: df_farming\cooking.lua:108
+#, fuzzy
+msgid "Rock Nut Cookie"
+msgstr "Noce di roccia"
+
+#: df_farming\cooking.lua:109
+#, fuzzy
+msgid "Rock Nut Cake"
+msgstr "Noce di roccia"
+
+#: df_farming\cooking.lua:112
+#, fuzzy
+msgid "Dimple Cup Spore Flatbread"
+msgstr "Spora di coppa increspata"
+
+#: df_farming\cooking.lua:113
+#, fuzzy
+msgid "Dimple Cup Spore Scone"
+msgstr "Spora di coppa increspata"
+
+#: df_farming\cooking.lua:114
+#, fuzzy
+msgid "Dimple Cup Spore Roll"
+msgstr "Spora di coppa increspata"
+
+#: df_farming\cooking.lua:117
+#, fuzzy
+msgid "Pig Tail Spore Sandwich"
+msgstr "Spora di coda di maiale"
+
+#: df_farming\cooking.lua:118
+#, fuzzy
+msgid "Pig Tail Spore Tofu"
+msgstr "Spora di coda di maiale"
+
+#: df_farming\cooking.lua:119
+#, fuzzy
+msgid "Pig Tail Spore Casserole"
+msgstr "Spora di coda di maiale"
+
+#: df_farming\cooking.lua:122
+#, fuzzy
+msgid "Dwarven Syrup Taffy"
 msgstr "Sciroppo nanico"
+
+#: df_farming\cooking.lua:123
+#, fuzzy
+msgid "Dwarven Syrup Jellies"
+msgstr "Sciroppo nanico"
+
+#: df_farming\cooking.lua:124
+#, fuzzy
+msgid "Dwarven Syrup Delight"
+msgstr "Secchio di sciroppo nanico"
 
 #: df_farming\dimple_cup.lua:10
 msgid "Dimple Cup"
 msgstr "Coppa increspata"
 
-#: df_farming\dimple_cup.lua:56
+#: df_farming\dimple_cup.lua:68
 msgid "Dimple Cup Spores"
 msgstr "Spore di coppa increspata"
 
 #: df_farming\doc.lua:11
 msgid ""
-"A meal made from the admixture of two ingredients, biscuits keep well but "
-"are not a rich source of nutrients."
+"A meal made from the admixture of two ingredients, it keeps well but are not "
+"a rich source of nutrients."
 msgstr ""
 
 #: df_farming\doc.lua:13
 msgid ""
-"Stews mix three ingredients together. They're more wholesome than biscuits, "
+"A meal made from three ingredients mixed together. They're more wholesome, "
 "packing more nutrition into a single serving."
 msgstr ""
 
 #: df_farming\doc.lua:15
-msgid ""
-"Four finely minced ingredients combine into a roast, which serves as a full "
-"meal."
+msgid "Four finely minced ingredients combine into a fine, full meal."
 msgstr ""
 
 #: df_farming\doc.lua:21
@@ -287,7 +392,11 @@ msgstr ""
 msgid "Pig Tail"
 msgstr "Coda di maiale"
 
-#: df_farming\pig_tail.lua:70
+#: df_farming\pig_tail.lua:78
+msgid "Pig Tail Spore"
+msgstr "Spora di coda di maiale"
+
+#: df_farming\pig_tail.lua:86
 msgid "Pig tail thread"
 msgstr "Filo di coda di maiale"
 
@@ -295,19 +404,31 @@ msgstr "Filo di coda di maiale"
 msgid "Dead Fungus"
 msgstr "Fungo morto"
 
-#: df_farming\plants.lua:36
+#: df_farming\plants.lua:42
 msgid "Cavern Fungi"
 msgstr "Funghi di caverna"
+
+#: df_farming\plump_helmet.lua:61
+msgid "Plump Helmet Spawn"
+msgstr "Prole di elmo rotondo"
+
+#: df_farming\plump_helmet.lua:92
+#: df_farming\plump_helmet.lua:129
+#: df_farming\plump_helmet.lua:164
+#: df_farming\plump_helmet.lua:199
+#: df_farming\plump_helmet.lua:251
+msgid "Plump Helmet"
+msgstr "Elmo rotondo"
 
 #: df_farming\quarry_bush.lua:10
 msgid "Quarry Bush"
 msgstr "Cespuglio di cava"
 
-#: df_farming\quarry_bush.lua:62
+#: df_farming\quarry_bush.lua:75
 msgid "Rock Nuts"
 msgstr "Noci di roccia"
 
-#: df_farming\quarry_bush.lua:71
+#: df_farming\quarry_bush.lua:84
 msgid "Quarry Bush Leaves"
 msgstr "Foglie di cespuglio di cava"
 
@@ -315,22 +436,35 @@ msgstr "Foglie di cespuglio di cava"
 msgid "Sweet Pod"
 msgstr "Baccello dolce"
 
-#: df_farming\sweet_pod.lua:60
+#: df_farming\sweet_pod.lua:74
 msgid "Sweet Pod Spores"
 msgstr "Spore di baccello dolce"
 
-#: df_farming\sweet_pod.lua:68
+#: df_farming\sweet_pod.lua:82
 msgid "Sweet Pods"
 msgstr "Baccelli dolci"
 
-#: df_farming\sweet_pod.lua:107
+#: df_farming\sweet_pod.lua:98
+msgid "Sweet Pod Sugar"
+msgstr "Zucchero di baccello dolce"
+
+#: df_farming\sweet_pod.lua:138
 msgid "Dwarven Syrup Source"
 msgstr "Fonte di sciroppo nanico"
 
-#: df_farming\sweet_pod.lua:155
+#: df_farming\sweet_pod.lua:186
 msgid "Flowing Dwarven Syrup"
 msgstr "Sciroppo nanico che scorre"
 
-#: df_farming\sweet_pod.lua:208
+#: df_farming\sweet_pod.lua:239
 msgid "Dwarven Syrup Bucket"
 msgstr "Secchio di sciroppo nanico"
+
+#~ msgid "@1 Biscuit"
+#~ msgstr "Biscotto di @1"
+
+#~ msgid "@1 Stew"
+#~ msgstr "Stufato di @1"
+
+#~ msgid "@1 Roast"
+#~ msgstr "Arrosto di @1"

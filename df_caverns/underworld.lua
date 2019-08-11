@@ -235,6 +235,17 @@ local perlin_pit = {
 
 -------------------------------------
 
+minetest.register_chatcommand("find_pit", {
+	params = "",
+	privs = {server=true},
+	decription = "find a nearby glowing pit",
+	func = function(name, param)
+		local player = minetest.get_player_by_name(name)
+		local pit = get_pit(player:get_pos())
+		minetest.chat_send_player(name, "Pit location: x=" .. math.floor(pit.location.x) .. " z=" .. math.floor(pit.location.z))
+	end,
+})
+
 
 minetest.register_on_generated(function(minp, maxp, seed)
 
@@ -389,7 +400,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:write_to_map()
 	
 	if bones_loot_path then
-		for i = 1, 15 do
+		for i = 1, 30 do
 			local x = math.random(minp.x, maxp.x)
 			local z = math.random(minp.z, maxp.z)
 			local index2d = mapgen_helper.index2d(emin, emax, x, z)
@@ -408,7 +419,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							local target_pos = {x=x, y=y, z=z}
 							local target_node = minetest.get_node(target_pos)
 							if target_node.name == "air" then
-								bones_loot.place_bones(target_pos, "normal", math.random(5, 15))
+								bones_loot.place_bones(target_pos, "underworld_warrior", math.random(3, 10), nil, true)
 								break
 							elseif target_node.name == "bones:bones" then
 								-- don't stack bones on bones, it looks silly

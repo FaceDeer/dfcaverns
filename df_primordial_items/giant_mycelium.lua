@@ -1,3 +1,5 @@
+-- This file defines a type of root-like growth that spreads over the surface of the ground in a random web-like pattern
+
 -- internationalization boilerplate
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
@@ -14,10 +16,9 @@ local get_node_box = function(hub_thickness, connector_thickness)
 		connect_right = {0, -connector_thickness, -connector_thickness, 0.5, connector_thickness, connector_thickness},
 		connect_front = {-connector_thickness, -connector_thickness, -0.5, connector_thickness, connector_thickness, 0},
 		connect_left = {-0.5, -connector_thickness, -connector_thickness, 0, connector_thickness, connector_thickness},
-		disconnected = {-connector_thickness,-connector_thickness,-connector_thickness,connector_thickness,connector_thickness,connector_thickness},
+		disconnected = {-connector_thickness, -connector_thickness, -connector_thickness, connector_thickness, connector_thickness, connector_thickness},
 	}
 end
-
 
 minetest.register_node("df_primordial_items:giant_hypha_root", {
 	description = S("Rooted Giant Hypha"),
@@ -31,7 +32,7 @@ minetest.register_node("df_primordial_items:giant_hypha_root", {
 	paramtype = "light",
 	light_source = 2,
 	is_ground_content = false,
-	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha =1},
+	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
 minetest.register_node("df_primordial_items:giant_hypha", {
@@ -46,9 +47,15 @@ minetest.register_node("df_primordial_items:giant_hypha", {
 	paramtype = "light",
 	light_source = 2,
 	is_ground_content = false,
-	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha =1},
+	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
+
+-- Check each of the six cardinal directions to see if it's buildable-to,
+-- if it has an adjacent "soil" node (or if it's going out over the corner of an adjacent soil node),
+-- and does *not* have an adjacent hypha already.
+-- By growing with these conditions hyphae will hug the ground and will not immediately loop back on themselves
+-- (though they can run into other pre-existing growths, forming larger loops - which is fine, large loops are nice)
 
 local find_mycelium_growth_targets = function(pos)
 	local nodes = {}
@@ -59,8 +66,13 @@ local find_mycelium_growth_targets = function(pos)
 			for z = -1, 1 do
 				if not (x == y and y == z) then -- we don't care about the diagonals or the center node
 					local node = minetest.get_node({x=pos.x+x, y=pos.y+y, z=pos.z+z})
+					if node.name == "ignore" then
+						-- Pause growth! We're at the edge of the known world.
+						return nil
+					end
 					local state = {}
-					if minetest.get_item_group(node.name, "soil") > 0 then
+					if minetest.get_item_group(node.name, "soil") > 0 or
+						minetest.get_item_group(node.name, "stone") > 0 and math.random() < 0.5 then -- let hyphae explore out over stone
 						state.soil = true
 					elseif minetest.get_item_group(node.name, "hypha") > 0 then
 						state.hypha = true
@@ -199,6 +211,11 @@ local grow_mycelium = function(pos, meristem_name)
 	local new_meristems = {}
 	-- Can we grow? If so, pick a random direction and add a new meristem there
 	local targets = find_mycelium_growth_targets(pos)
+	
+	if targets == nil then
+		return nil -- We hit the edge of the known world, pause!
+	end
+	
 	local target_count = #targets
 	if target_count > 0 then
 		local target = targets[math.random(1,target_count)]
@@ -211,7 +228,7 @@ local grow_mycelium = function(pos, meristem_name)
 	end
 
 	if math.random() < 0.06 then -- Note: hypha growth pattern is very sensitive to this branching factor. Higher than about 0.06 will blanket the landscape with fungus.
-	-- Split - try again from here next time
+		-- Split - try again from here next time
 		table.insert(new_meristems, pos)
 	-- Otherwise, just turn into a hypha and we're done
 	elseif math.random() < 0.333 then
@@ -257,9 +274,14 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 				local new_stack = {} -- populate this with new node output.
 				for _, stackpos in ipairs(stack) do -- for each currently growing location
 					local ret = grow_mycelium(stackpos, "df_primordial_items:giant_hypha_apical_meristem")
-					for _, retpos in ipairs(ret) do
-						-- put the new locations into new_stack
-						table.insert(new_stack, retpos)
+					if ret == nil then
+						-- We hit the edge of the known world, stop and retry later
+						minetest.get_node_timer(stackpos):start(math.random(min_growth_delay,max_growth_delay))
+					else
+						for _, retpos in ipairs(ret) do
+							-- put the new locations into new_stack
+							table.insert(new_stack, retpos)
+						end
 					end
 				end
 				stack = new_stack -- replace the old stack with the new
@@ -271,8 +293,13 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 		else
 			-- just do one iteration.
 			local new_meristems = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_meristem")
-			for _, newpos in ipairs(new_meristems) do
-				minetest.get_node_timer(newpos):start(math.random(min_growth_delay,max_growth_delay))
+			if new_meristems == nil then
+				-- We hit the end of the known world, try again later. Unlikely in this case, but theoretically possible I guess.
+				minetest.get_node_timer(pos):start(math.random(min_growth_delay,max_growth_delay))
+			else
+				for _, newpos in ipairs(new_meristems) do
+					minetest.get_node_timer(newpos):start(math.random(min_growth_delay,max_growth_delay))
+				end
 			end
 		end		
 	end,
@@ -296,13 +323,15 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 	sounds = default.node_sound_wood_defaults(),
 })
 
-df_primordial_items.grow_mycelium_immediately = function(pos)
+local grow_mycelium_immediately = function(pos)
 	local stack = {pos}
 	while #stack > 0 do
 		local pos = table.remove(stack)
-		local new_poses = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_meristem")
-		for _, new_pos in ipairs(new_poses) do
-			table.insert(stack, new_pos)
+		local new_poses = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_mapgen")
+		if new_poses then -- if we hit the end of the world, just stop. There'll be a mapgen meristem left here, the abm will re-trigger it when the player gets close.
+			for _, new_pos in ipairs(new_poses) do
+				table.insert(stack, new_pos)
+			end
 		end
 	end	
 end
@@ -313,6 +342,6 @@ minetest.register_abm({
 	interval = 1.0,
 	chance = 1,
 	action = function(pos, node, active_object_count, active_object_count_wider)
-		df_primordial_items.grow_mycelium_immediately(pos)
+		grow_mycelium_immediately(pos)
 	end
 })

@@ -1,0 +1,2 @@
+dfcaverns_mycelium_min_growth_delay (Minimum mycelium growth delay) int 240
+dfcaverns_mycelium_max_growth_delay (Maximum mycelium growth delay) int 400

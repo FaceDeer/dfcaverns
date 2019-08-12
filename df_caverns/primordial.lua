@@ -5,6 +5,7 @@ end
 local c_orb = minetest.get_content_id("df_primordial_items:glow_orb_hanging")
 local c_mycelial_dirt = minetest.get_content_id("df_primordial_items:dirt_with_mycelium")
 local c_dirt = minetest.get_content_id("default:dirt")
+local c_giant_mycelium = minetest.get_content_id("df_primordial_items:giant_hypha_apical_mapgen")
 
 -----------------------------------------------------------------------------------------
 
@@ -47,7 +48,9 @@ local mushroom_cavern_floor = function(abs_cracks, humidity, vi, area, data, dat
 	end
 
 	local rand = math.random() * math.min(abs_cracks, 1) * humidityfactor
-	if rand < 0.01 then
+	if rand < 0.001 then
+		data[vi+ystride] = c_giant_mycelium
+	elseif rand < 0.01 then
 		local schematic = df_primordial_items.get_primordial_mushroom()
 		local rotation = (math.random(1,4)-1)*90
 		mapgen_helper.place_schematic_on_data_if_it_fits(data, data_param2, area, area:position(vi+ystride), schematic, rotation)
@@ -65,7 +68,9 @@ local mushroom_cavern_ceiling = function(abs_cracks, humidity, vi, area, data, d
 		data[vi] = c_mycelial_dirt
 		if abs_cracks < 0.3 then
 			local rand = math.random() * humidityfactor
-			if rand < 0.03 then
+			if rand < 0.003 then
+				data[vi-ystride] = c_giant_mycelium
+			elseif rand < 0.03 then
 				df_primordial_items.spawn_ceiling_spire_vm(vi, area, data)
 			elseif rand < 0.2 then
 				data[vi-ystride] = c_orb
@@ -81,7 +86,10 @@ local mushroom_warren_ceiling = function(abs_cracks, vi, area, data, data_param2
 	if abs_cracks < 0.3 then
 		data[vi] = c_mycelial_dirt
 		if abs_cracks < 0.2 then
-			if math.random() < 0.2 then
+			local rand = math.random()
+			if rand < 0.003 then
+				data[vi-ystride] = c_giant_mycelium
+			elseif rand < 0.2 then
 				data[vi-ystride] = c_orb
 				data_param2[vi-ystride] = math.random(0,179)
 			end
@@ -97,7 +105,9 @@ local mushroom_warren_floor = function(abs_cracks, vi, area, data, data_param2)
 		data[vi] = c_dirt
 	end
 	local rand = math.random() * math.min(abs_cracks, 1)
-	if rand < 0.03 then
+	if rand < 0.001 then
+		data[vi+ystride] = c_giant_mycelium
+	elseif rand < 0.03 then
 		data[vi+ystride] = plants[math.random(1,5)]
 	end
 end

@@ -38,7 +38,7 @@ minetest.register_node("df_primordial_items:glow_orb_hanging", {
 	tiles = {"dfcaverns_mush_orb_vert.png"},
 	inventory_image = "dfcaverns_mush_orb_vert.png",
 	wield_image = "dfcaverns_mush_orb_vert.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1},
 	paramtype = "light",
 	paramtype2 = "degrotate",
 	drawtype = "plantlike",

@@ -20,7 +20,7 @@ end
 
 
 minetest.register_node("df_primordial_items:giant_hypha_root", {
-	description = S("Giant Hypha"),
+	description = S("Rooted Giant Hypha"),
 	tiles = {
 		{name="dfcaverns_mush_giant_hypha.png"},
 	},
@@ -210,7 +210,7 @@ local grow_mycelium = function(pos, meristem_name)
 		return new_meristems
 	end
 
-	if math.random() < 0.05 then
+	if math.random() < 0.06 then -- Note: hypha growth pattern is very sensitive to this branching factor. Higher than about 0.06 will blanket the landscape with fungus.
 	-- Split - try again from here next time
 		table.insert(new_meristems, pos)
 	-- Otherwise, just turn into a hypha and we're done
@@ -222,8 +222,9 @@ local grow_mycelium = function(pos, meristem_name)
 	return new_meristems
 end
 
-local min_growth_delay = minetest.settings:get("dfcaverns_mycelium_min_growth_delay") or 240
-local max_growth_delay = minetest.settings:get("dfcaverns_mycelium_max_growth_delay") or 400
+local min_growth_delay = tonumber(minetest.settings:get("dfcaverns_mycelium_min_growth_delay")) or 240
+local max_growth_delay = tonumber(minetest.settings:get("dfcaverns_mycelium_max_growth_delay")) or 400
+local avg_growth_delay = (min_growth_delay + max_growth_delay) / 2
 
 minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 	description = S("Giant Hypha Apical Meristem"),
@@ -239,19 +240,45 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node = "df_primordial_items:giant_hypha_root",
 	sounds = default.node_sound_wood_defaults(),
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(min_growth_delay,max_growth_delay))
+		minetest.get_node_timer(pos):start(math.random(min_growth_delay, max_growth_delay))
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
 	end,
 	on_timer = function(pos, elapsed)
-		local new_meristems = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_meristem")
-		for _, newpos in ipairs(new_meristems) do
-			minetest.get_node_timer(newpos):start(math.random(min_growth_delay,max_growth_delay))
-		end
+		if elapsed > max_growth_delay then
+			-- We've been unloaded for a while, need to do multiple growth iterations.
+			local iterations = math.floor(elapsed / avg_growth_delay) -- the number of iterations we've missed
+			local stack = {pos} -- initialize with the current location
+			for i = 1, iterations do
+				local new_stack = {} -- populate this with new node output.
+				for _, stackpos in ipairs(stack) do -- for each currently growing location
+					local ret = grow_mycelium(stackpos, "df_primordial_items:giant_hypha_apical_meristem")
+					for _, retpos in ipairs(ret) do
+						-- put the new locations into new_stack
+						table.insert(new_stack, retpos)
+					end
+				end
+				stack = new_stack -- replace the old stack with the new
+			end
+			for _, donepos in ipairs(stack) do
+				-- After all the iterations are done, if there's any leftover growing positions set a timer for each of them
+				minetest.get_node_timer(donepos):start(math.random(min_growth_delay,max_growth_delay))
+			end
+		else
+			-- just do one iteration.
+			local new_meristems = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_meristem")
+			for _, newpos in ipairs(new_meristems) do
+				minetest.get_node_timer(newpos):start(math.random(min_growth_delay,max_growth_delay))
+			end
+		end		
 	end,
 })
 
--- this version grows instantly via ABM, is meant for mapgen usage
+-- this version grows instantly via ABM, it is meant for mapgen usage
 minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 	description = S("Giant Hypha Apical Meristem"),
 	tiles = {
@@ -265,7 +292,7 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 	paramtype = "light",
 
 	is_ground_content = false,
-	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, light_sensitive_fungus = 13},
+	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, not_in_creative_inventory = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
 

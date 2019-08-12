@@ -222,8 +222,8 @@ local grow_mycelium = function(pos, meristem_name)
 	return new_meristems
 end
 
-local min_growth_delay = minetest.settings:get_key("dfcaverns_mycelium_min_growth_delay") or 240
-local max_growth_delay = minetest.settings:get_key("dfcaverns_mycelium_max_growth_delay") or 400
+local min_growth_delay = minetest.settings:get("dfcaverns_mycelium_min_growth_delay") or 240
+local max_growth_delay = minetest.settings:get("dfcaverns_mycelium_max_growth_delay") or 400
 
 minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 	description = S("Giant Hypha Apical Meristem"),

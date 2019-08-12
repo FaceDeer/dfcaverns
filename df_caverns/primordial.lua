@@ -235,7 +235,7 @@ subterrane.register_layer({
 	columns = {
 		maximum_radius = 20,
 		minimum_radius = 5,
-		node = "df_mapitems:wet_flowstone",
+		node = "df_mapitems:wet_flowstone", --TODO: no flowstone below the Sunless Sea, replace with something else
 		weight = 0.5,
 		maximum_count = 60,
 		minimum_count = 10,

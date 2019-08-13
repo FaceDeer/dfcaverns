@@ -34,6 +34,18 @@ minetest.register_node("df_primordial_items:giant_hypha_root", {
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
 	sounds = default.node_sound_wood_defaults(),
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				items = {"df_primordial_items:mycelial_fibers","df_primordial_items:giant_hypha_apical_meristem"},
+				rarity = 100,
+			},
+			{
+				items = {"df_primordial_items:mycelial_fibers"},
+			},
+		},
+	},
 })
 minetest.register_node("df_primordial_items:giant_hypha", {
 	description = S("Giant Hypha"),
@@ -49,6 +61,36 @@ minetest.register_node("df_primordial_items:giant_hypha", {
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
 	sounds = default.node_sound_wood_defaults(),
+	drop = {
+		max_items = 1,
+		items = {
+			{
+				items = {"df_primordial_items:mycelial_fibers","df_primordial_items:giant_hypha_apical_meristem"},
+				rarity = 100,
+			},
+			{
+				items = {"df_primordial_items:mycelial_fibers"},
+			},
+		},
+	},
+})
+
+minetest.register_craftitem("df_primordial_items:mycelial_fibers", {
+	description = S("Giant Mycelial Fibers"),
+	groups = {wool = 1},
+	inventory_image = "dfcaverns_mush_mycelial_fibers.png",
+})
+
+minetest.register_craftitem("df_primordial_items:mycelial_thread", {
+	description = S("Mycelial thread"),
+	inventory_image = "dfcaverns_pig_tail_thread.png",
+	groups = {flammable = 1, thread = 1},
+})
+
+minetest.register_craft({
+	output = "df_primordial_items:mycelial_thread 4",
+	type = "shapeless",
+	recipe = { "df_primordial_items:mycelial_fibers"},
 })
 
 -- Check each of the six cardinal directions to see if it's buildable-to,

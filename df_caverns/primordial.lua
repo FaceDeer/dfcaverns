@@ -68,7 +68,7 @@ local mushroom_cavern_ceiling = function(abs_cracks, humidity, vi, area, data, d
 		data[vi] = c_mycelial_dirt
 		if abs_cracks < 0.3 then
 			local rand = math.random() * humidityfactor
-			if rand < 0.003 then
+			if rand < 0.002 then
 				data[vi-ystride] = c_giant_mycelium
 			elseif rand < 0.03 then
 				df_primordial_items.spawn_ceiling_spire_vm(vi, area, data)
@@ -87,7 +87,7 @@ local mushroom_warren_ceiling = function(abs_cracks, vi, area, data, data_param2
 		data[vi] = c_mycelial_dirt
 		if abs_cracks < 0.2 then
 			local rand = math.random()
-			if rand < 0.003 then
+			if rand < 0.002 then
 				data[vi-ystride] = c_giant_mycelium
 			elseif rand < 0.2 then
 				data[vi-ystride] = c_orb

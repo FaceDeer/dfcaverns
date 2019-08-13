@@ -656,6 +656,7 @@ minetest.register_node("df_primordial_items:mush_sapling", {
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	on_construct = function(pos)
+		--TODO: timer
 		local mushroom = df_primordial.get_primordial_mushroom
 		local rotation = (math.random(1,4)-1)*90
 		minetest.set_node(pos, {name="air"}) -- clear sapling so mushroom can replace it

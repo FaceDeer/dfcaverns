@@ -65,6 +65,27 @@ minetest.register_node("df_primordial_items:jungle_mushroom_cap_2", {
 	},
 })
 
+minetest.register_craftitem("df_primordial_items:diced_mushroom", {
+	description = S("Diced Mushroom"),
+	_doc_items_longdesc = df_primordial_items.doc.big_mushroom_desc,
+	_doc_items_usagehelp = df_primordial_items.doc.big_mushroom_usage,
+	inventory_image = "dfcaverns_mush_diced_giant_mushroom.png",
+	groups = {food = 1},
+	on_use = minetest.item_eat(1),
+})
+
+minetest.register_craft({
+	output = "df_primordial_items:diced_mushroom 4",
+	type = "shapeless",
+	recipe = { "df_primordial_items:jungle_mushroom_cap_1"},
+})
+minetest.register_craft({
+	output = "df_primordial_items:diced_mushroom 4",
+	type = "shapeless",
+	recipe = { "df_primordial_items:jungle_mushroom_cap_2"},
+})
+
+
 minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	description = S("Primordial Jungle Mushroom Sapling"),
 	_doc_items_longdesc = df_primordial_items.doc.big_mushroom_desc,

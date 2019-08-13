@@ -1,5 +1,13 @@
 df_trees = {}
 
+df_trees.node_sound_tree_soft_fungus_defaults = function(table)
+	table = table or {}
+	table.footstep = table.footstep or
+			{name = "dfcaverns_fungus_footstep", gain = 0.3}
+	default.node_sound_wood_defaults(table)
+	return table
+end
+
 --grab a shorthand for the filepath of the mod
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 

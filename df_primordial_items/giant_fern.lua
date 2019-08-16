@@ -238,6 +238,10 @@ local fern_9_nodes_tall = {
 local ferns = {fern_4_nodes_tall, fern_5_nodes_tall, fern_6_nodes_tall, fern_9_nodes_tall}
 local rotations = {0, 90, 180, 270}
 
+df_primordial_items.get_fern_schematic = function()
+	return ferns[math.random(1,4)]
+end
+
 minetest.register_node("df_primordial_items:fern_sapling", {
 	description = S("Giant Fern Sapling"),
 	_doc_items_longdesc = df_primordial_items.doc.giant_fern_desc,
@@ -254,7 +258,8 @@ minetest.register_node("df_primordial_items:fern_sapling", {
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	on_construct = function(pos)
-		local fern = ferns[math.random(1,#ferns)]
+		--TODO timer
+		local fern = df_primordial_items.get_fern_schematic()
 		local rotation = rotations[math.random(1,#rotations)]
 		minetest.set_node(pos, {name="air"}) -- clear sapling so fern can replace it
 		mapgen_helper.place_schematic(pos, fern, rotation)

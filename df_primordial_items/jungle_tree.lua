@@ -46,7 +46,7 @@ minetest.register_node("df_primordial_items:jungle_leaves_glowing", {
 	paramtype = "light",
 	is_ground_content = false,
 	buildable_to = true,
-	light_source = 4,
+	light_source = 2,
 	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	drop = {
@@ -140,6 +140,17 @@ df_primordial_items.spawn_jungle_tree = function(pos)
 	vm:update_map()
 end
 
+local get_tree_nodes = function()
+	local rand = math.random()
+	if rand < 0.5 then
+		return c_trunk_glow, c_leaves_glow
+	end
+	if rand < 0.75 then
+		return c_trunk_mossy, c_leaves
+	end
+	return c_trunk, c_leaves
+end
+
 df_primordial_items.spawn_jungle_tree_vm = function(height, vi, area, data)
 	local ystride = area.ystride
 	local zstride = area.zstride
@@ -149,10 +160,11 @@ df_primordial_items.spawn_jungle_tree_vm = function(height, vi, area, data)
 	for i = 1, 6 do
 		local root_column = vi + math.random(-1,1) + math.random(-1,1)*zstride
 		if not roots_done[root_column] then
+			local trunknode = get_tree_nodes()
 			for y = -2, math.random(0,1) do -- root height is 1 to 2 nodes above ground
 				local root_index = root_column + y * ystride
 				if buildable_to(data[root_index]) then
-					data[root_index] = c_trunk
+					data[root_index] = trunknode
 				end
 			end
 		end
@@ -160,9 +172,11 @@ df_primordial_items.spawn_jungle_tree_vm = function(height, vi, area, data)
 	end
 	
 	-- puts a trunk node in the center and surrounds it with leaves
-	local branch = function(bi)
+	local branch = function(bi, glow)
+		local trunknode, leafnode
 		if buildable_to(data[bi]) then
-			data[bi] = c_trunk
+			trunknode, leafnode = get_tree_nodes()
+			data[bi] = trunknode
 		else
 			return -- if a branch is placed in a non-viable place, don't add leaves
 		end
@@ -172,7 +186,7 @@ df_primordial_items.spawn_jungle_tree_vm = function(height, vi, area, data)
 					if math.random() < 0.75 then
 						local li = bi + x + z*zstride + y*ystride
 						if buildable_to(data[li]) then
-							data[li] = c_leaves
+							data[li] = leafnode
 						end
 					end
 				end
@@ -183,7 +197,7 @@ df_primordial_items.spawn_jungle_tree_vm = function(height, vi, area, data)
 	for i = 0, height-2 do
 		local y_index = vi + i * ystride
 		if buildable_to(data[y_index]) then
-			data[y_index] = c_trunk
+			data[y_index] = get_tree_nodes()
 		else
 			return -- if we hit something we can't grow through, stop.
 		end

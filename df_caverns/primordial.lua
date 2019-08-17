@@ -141,13 +141,13 @@ local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_
 	data[vi] = c_jungle_dirt
 
 	local rand = math.random()
-	if rand < 0.05 then
+	if rand < 0.05 * humidityfactor then
 		local fern_schematic = df_primordial_items.get_fern_schematic()
 		local rotation = (math.random(1,4)-1)*90
 		mapgen_helper.place_schematic_on_data_if_it_fits(data, data_param2, area, area:position(vi+ystride), fern_schematic, rotation)
-	elseif rand < 0.075 then
+	elseif rand < 0.075 * (1-humidityfactor) then
 		df_primordial_items.spawn_jungle_mushroom_vm(vi+ystride, area, data)
-	elseif rand < 0.125 then
+	elseif rand < 0.125 * (1-humidityfactor) then
 		df_primordial_items.spawn_jungle_tree_vm(math.random(8,14), vi+ystride, area, data)
 	elseif rand < 0.3 then
 		data[vi+ystride] = jungle_plants[math.random(1,#jungle_plants)]

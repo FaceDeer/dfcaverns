@@ -4,6 +4,7 @@ end
 
 local c_oil = minetest.get_content_id("oil:oil_source")
 local c_gas = minetest.get_content_id("mine_gas:gas")
+local c_gas_wisp = minetest.get_content_id("mine_gas:gas_wisp")
 local c_lava = minetest.get_content_id("default:lava_source")
 local c_obsidian = minetest.get_content_id("default:obsidian")
 
@@ -78,7 +79,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 		if y > floor_height and y < ceiling_height then
 			if y > median then
-				data[vi] = c_gas
+				if math.random() < 0.00025 and ((y < median + 3) or (y > ceiling_height - 3)) then
+					data[vi] = c_gas_wisp
+				else
+					data[vi] = c_gas
+				end
 			else
 				data[vi] = c_oil
 			end

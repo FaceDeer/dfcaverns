@@ -8,12 +8,12 @@ end
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-df_farming.doc.biscuit_desc = S("A meal made from the admixture of two ingredients, biscuits keep well but are not a rich source of nutrients.")
-df_farming.doc.biscuit_usage = nil
-df_farming.doc.stew_desc = S("Stews mix three ingredients together. They're more wholesome than biscuits, packing more nutrition into a single serving.")
-df_farming.doc.stew_usage = nil
-df_farming.doc.roast_desc = S("Four finely minced ingredients combine into a roast, which serves as a full meal.")
-df_farming.doc.roast_usage = nil
+df_farming.doc.simple_meal_desc = S("A meal made from the admixture of two ingredients, it keeps well but are not a rich source of nutrients.")
+df_farming.doc.simple_meal_usage = nil
+df_farming.doc.medium_meal_desc = S("A meal made from three ingredients mixed together. They're more wholesome, packing more nutrition into a single serving.")
+df_farming.doc.medium_meal_usage = nil
+df_farming.doc.complex_meal_desc = S("Four finely minced ingredients combine into a fine, full meal.")
+df_farming.doc.complex_meal_usage = nil
 
 
 -- Plants

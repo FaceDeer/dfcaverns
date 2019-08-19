@@ -108,6 +108,8 @@ local mushroom_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, da
 				df_trees.spawn_tower_cap_vm(vi+ystride, area, data)
 			elseif math.random() < 0.01 then
 				df_trees.spawn_goblin_cap_vm(vi+ystride, area, data)
+			elseif math.random() < 0.02 then
+				df_trees.spawn_spindlestem_vm(vi+ystride, area, data, data_param2)
 			end
 		end
 	end
@@ -274,7 +276,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				if math.random() < 0.001 then
 					local iterations = math.random(1, 6)
 					df_mapitems.spawn_coral_pile(area, data, vi, iterations)
-					df_mapitems.spawn_cave_coral(area, data, vi+area.ystride, iterations)
+					df_mapitems.spawn_castle_coral(area, data, vi+area.ystride, iterations)
 				end
 			end
 		end
@@ -372,6 +374,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				end
 			else
 				data[vi] = c_coral_table[math.random(1,3)]
+				data_param2[vi] = math.random(1,4)-1
 			end
 		end
 	end

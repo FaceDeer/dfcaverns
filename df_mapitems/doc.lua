@@ -41,3 +41,15 @@ df_mapitems.doc.glow_ruby_ore_usage = S("Aside from its aesthetic value this roc
 
 df_mapitems.doc.big_crystal_desc = S("Monolithic crystals of this size form only over extremely long periods deep underground, in large long-lived cavities that allow them room to grow. Water and the life it hosts tend to disrupt the formation process of these crystals so they're only found in dry environments.")
 df_mapitems.doc.big_crystal_usage = S("Aside from its aesthetic value this crystal has no particular use.")
+
+df_mapitems.doc.cave_pearls_desc = S("These nodules are actually calcified bacterial colonies.")
+df_mapitems.doc.cave_pearls_usage = S("Aside from their soft glow and beauty, cave pearls have no practical use. Except perhaps as handholds for climbing.")
+
+df_mapitems.doc.castle_coral_desc = S("Deep under the surface of the Sunless Sea are the rare and beautiful Castle Corals, so named due to their resemblance to small undersea castles.")
+df_mapitems.doc.castle_coral_usage = S("Castle Coral has little practical use aside from perhaps as a distinctive-looking building material.")
+
+df_mapitems.doc.salt_desc = S("A crystal of salt grown from water that percolated through the depths of the earth, picking up all manner of minerals as it went.")
+df_mapitems.doc.salt_usage = S("Traces of Mese must have been dissolved by the water as this crystal has an inherent glow to it. Not enough Mese to be useful as a reagent, unfortunately.")
+
+df_mapitems.doc.salty_cobble_desc = S("Much water has seeped through the cracks in this rock and then quickly evaporated, leaving a crust of salt laced throughout.")
+df_mapitems.doc.salty_cobble_usage = S("Attemping to mine this rock knocks the salt crust away, leaving only base stone.")

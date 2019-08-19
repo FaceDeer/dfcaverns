@@ -7,3 +7,4 @@ ice_sprites?
 oil?
 df_underworld_items?
 magma_conduits?
+bones_loot?

@@ -40,6 +40,7 @@ minetest.register_node("df_mapitems:mese_crystal", {
 	sounds = default.node_sound_glass_defaults(),
 	use_texture_alpha = true,
 	sunlight_propagates = true,
+	on_place = df_mapitems.place_against_surface,
 })
 
 minetest.register_craft({

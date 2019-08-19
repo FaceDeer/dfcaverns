@@ -1,6 +1,8 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
+dofile(MP.."/wisp.lua")
+
 local gas_desc
 local gas_usage
 
@@ -150,6 +152,10 @@ if minetest.get_modpath("tnt") then
 		action = function(pos, node)
 			if minetest.find_node_near(pos, 1, "air") then
 				tnt.boom(pos, {radius=1, damage_radius=6})
+				-- One in a hundred explosions will spawn a gas wisp
+				if math.random() < 0.01 then
+					minetest.set_node(pos, {name="mine_gas:gas_wisp"})
+				end
 			end	
 		end,
 	})

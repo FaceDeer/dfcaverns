@@ -150,7 +150,9 @@ Ice sprites, mysterious glowing insect-like creatures that appear to be made par
 
 Bloodthorns are cactus-like in appearance and habitat, growing in dry sandy caverns, but they are far more agressive about seeking moisture than their surface kin. Bloodthorns have thick spines projecting randomly from their trunks that are coated in smaller barbs that greedily drain fluids from any creature that touches them. You can climb a bloodthorn quite easily, using its spines like rungs on a ladder, but it will hurt to do so. Bloodthorn caverns are dimly lit so take care not to blunder into the rows of bloodthorns that grow like living fences.
 
-Lakes are never found in Bloodthorn caverns. Quarry bushes can be found here.
+Lakes are never found in Bloodthorn caverns and the cracks in the rock that would normally seep moisture are choked with crystals of salt. Some of the salts seem to containe traces of Mese, giving them a faint unearthly glow.
+
+Quarry bushes can be found here.
 
 ## Barren crystal caverns
 

@@ -202,6 +202,8 @@ The foundations of the world lie at -3100 meters, under a default configuration.
 
 There is no native life in the Underworld. It appears there once _was_, however. Occasional clusters of vacant buildings can be found, impossibly crafted from bricks of Slade and empty of any furnishings. Around those clusters of vacant buildings are fields filled with sealed pits lined with flawless Slade blocks. It is unclear whether these pits are as vacant as the buildings, though. The seals capping them are engraved with ancient words in lost tongues, but one phrase can be translated from the oldest known languages: "This Place is Not a Place of Honor."
 
+Just as ominously, the ancient bones of long-dead warriors are scattered amidst the buildings. They contain loot for those willing to risk disturbing them. There are no traces of who - or what - they died fighting.
+
 ![Glowing pit](./df_caverns/screenshots/glowing_pit.jpg)
 
 Also scattered around the Underworld are the occasional twisting shaft leading down into the Slade. The edges of these shafts are encrusted with glowing purple crystals and the bottoms of these shafts are filled with some form of shimmering liquid that destroys whatever tries to penetrate it.

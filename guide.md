@@ -78,6 +78,16 @@ Fungiwoods have thinner stalks that sprout numerous thin irregular "shelves" bra
 
 Plump helmets and cave wheat grow here.
 
+## Spindlestems
+
+![Spindlestems](./df_caverns/screenshots/spindlestems.jpg)
+
+Spindlestem mushrooms are the weedy "saplings" of the upper fungal forests, too large to pick by hand but not exactly inspiring tree-like analogies. They are common, though, and not without their uses. Their long stems can serve as a wood substutitue in many crafts and their bioluminescent caps can produce a long-lived glowing extract that's useful as a source of light. They grow taller when crowded.
+
+The bioluminescence of Spindlestems are actually a very interesting feature. Despite their apparent visual diversity, Spindlestems are a single species. They pick up their glow from symbiotic microorganisms that colonize their caps, and the specific breed of symbiote that thrives in any given Spindlestem depends on the minerals present in the nearby rocks. Iron results in a weak red-glowing cap, copper results in a green-tinted cap, and the combination of both can result in a brighter cyan glow. Brilliant yellow "Golden Spindlestems" have also been spotted.
+
+For some reason, Spindlestems that grow in the presence of Tower Caps are never luminescent. Perhaps they're intimidated.
+
 # Second cavern layer
 
 By default, the second cavern layer can be found between -800 and -1400 meters elevation. Like the first layer, some caverns contain lakes filling their lower regions. The dry barren caverns at this level will have some occasional ruby crystal growths in them, but they will be detailed in an entry on the third cavern layer where they're much more common.
@@ -86,7 +96,9 @@ By default, the second cavern layer can be found between -800 and -1400 meters e
 
 ![Goblin Caps](./df_caverns/screenshots/goblin_cap.jpg)
 
-Goblin caps are the broader, squatter cousins of the Tower Cap fungus. Like Tower Caps they have no particular special properties, but their wood comes in two different colours - the reddish orange of their caps and the cream coloured stem wood. Plump helmets grow here.
+Goblin caps are the broader, squatter cousins of the Tower Cap fungus. Like Tower Caps they have no particular special properties, but their wood comes in two different colours - the reddish orange of their caps and the cream coloured stem wood. Plump helmets and Spindlestems grow here.
+
+For some reason, Spindlestems that grow in the presence of Goblin Caps are always red.
 
 ## Spore Tree caverns
 
@@ -103,6 +115,12 @@ Cave wheat and pig tails can be found growing here.
 Tunnel tubes are hollow, curved fungal growths that support a fruiting body at their tip. The trunk of a tunnel tube can be cut and processed to produce plywood-like material. The fruiting body accumulates high-energy compounds that, when ignited, produce a vigorous detonation - a unique adaptation for spreading tunnel tube spawn through the still cavern air. If the TNT mod is enabled tunnel tube fruiting bodies can be detonated like weak TNT blocks and can be harvested for gunpowder.
 
 Sweet pods and cave wheat can be found growing in tunnel tube caverns.
+
+## Cave pearls
+
+![Cave Pearls](./df_caverns/screenshots/cave_pearls.jpg)
+
+At these depths you may find a distinctive and beautiful formation encrusting the ceilings and walls of smaller tunnels and warrens; "cave pearls." These nodules are actually calcified bacterial colonies that can only form where they're left undisturbed for the long periods needed for them to grow this large.
 
 # Third cavern layer
 
@@ -132,7 +150,9 @@ Ice sprites, mysterious glowing insect-like creatures that appear to be made par
 
 Bloodthorns are cactus-like in appearance and habitat, growing in dry sandy caverns, but they are far more agressive about seeking moisture than their surface kin. Bloodthorns have thick spines projecting randomly from their trunks that are coated in smaller barbs that greedily drain fluids from any creature that touches them. You can climb a bloodthorn quite easily, using its spines like rungs on a ladder, but it will hurt to do so. Bloodthorn caverns are dimly lit so take care not to blunder into the rows of bloodthorns that grow like living fences.
 
-Lakes are never found in Bloodthorn caverns. Quarry bushes can be found here.
+Lakes are never found in Bloodthorn caverns and the cracks in the rock that would normally seep moisture are choked with crystals of salt. Some of the salts seem to containe traces of Mese, giving them a faint unearthly glow.
+
+Quarry bushes can be found here.
 
 ## Barren crystal caverns
 
@@ -164,6 +184,8 @@ Venturing below the Sunless Sea will require either a great deal of digging thro
 
 Eventually, at around -2600 meters elevation, an explorer may encounter lakes of oil in lenticular caverns. Falling into a lake of oil is an unpleasant experience - one is completely blind when below the surface - but that's not the real danger. The atmosphere above the oil is filled with unbreathable gasses that are explosive when mixed with air and an ignition source (such as a carelessly placed torch). Even in the tunnels above the oil there are occasional gas seeps venting this gas from cracks and seams of coal. This gas is heavier than air and will pool in depressions, and of course it cannot be swum through so take care not to jump down into a place you can't easily climb back out of.
 
+A few mysterious blue flames may occasionally be found flickering on the edges of oil lakes, burning without oxygen and seeming to maintain their size as they drift about through the unbreathable atmosphere. These "gas wisps" may be a strange form of plasmoidal life but they are easily snuffed and so little is known about them.
+
 Buckets of oil serve as an excellent fuel source, powering a furnace as well as a block of coal.
 
 # Magma Sea
@@ -181,6 +203,8 @@ The Magma Sea is not without its treasures, however. In the most infernal region
 The foundations of the world lie at -3100 meters, under a default configuration. The diggable rock of the world ends at a rippling layer of invulnerable Slade, a material of unparalleled density. There is a cavern layer at the seam between rock and Slade, however, as if the earth itself was reluctant to touch the strange matter below. The crevices of the ceiling have strange glowing rocks in them, producing a surprisingly bright ambience. Don't attempt to disturb those rocks.
 
 There is no native life in the Underworld. It appears there once _was_, however. Occasional clusters of vacant buildings can be found, impossibly crafted from bricks of Slade and empty of any furnishings. Around those clusters of vacant buildings are fields filled with sealed pits lined with flawless Slade blocks. It is unclear whether these pits are as vacant as the buildings, though. The seals capping them are engraved with ancient words in lost tongues, but one phrase can be translated from the oldest known languages: "This Place is Not a Place of Honor."
+
+Just as ominously, the ancient bones of long-dead warriors are scattered amidst the buildings. They contain loot for those willing to risk disturbing them. There are no traces of who - or what - they died fighting.
 
 ![Glowing pit](./df_caverns/screenshots/glowing_pit.jpg)
 

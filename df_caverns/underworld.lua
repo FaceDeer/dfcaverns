@@ -1,6 +1,8 @@
-if not df_caverns.config.enable_underworld then
+if not df_caverns.config.enable_underworld or not minetest.get_modpath("df_underworld_items") then
 	return
 end
+
+local bones_loot_path = minetest.get_modpath("bones_loot")
 
 local c_slade = minetest.get_content_id("df_underworld_items:slade")
 local c_air = minetest.get_content_id("air")
@@ -55,6 +57,8 @@ local wave_mult = 50
 
 local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
 local y_min = median - 2*wave_mult + floor_displace - 2*floor_mult
+
+--df_caverns.config.underworld_min = y_min
 
 ---------------------------------------------------------
 -- Buildings
@@ -231,6 +235,17 @@ local perlin_pit = {
 
 -------------------------------------
 
+minetest.register_chatcommand("find_pit", {
+	params = "",
+	privs = {server=true},
+	decription = "find a nearby glowing pit",
+	func = function(name, param)
+		local player = minetest.get_player_by_name(name)
+		local pit = get_pit(player:get_pos())
+		minetest.chat_send_player(name, "Pit location: x=" .. math.floor(pit.location.x) .. " z=" .. math.floor(pit.location.z))
+	end,
+})
+
 
 minetest.register_on_generated(function(minp, maxp, seed)
 
@@ -265,7 +280,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			
 			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-			if y <= floor_height then
+			if y < floor_height and y > y_min + math.abs(wave) / 5 then -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
 				data[vi] = c_slade
 				if	pit and
 					pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and
@@ -281,9 +296,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
 					local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
 					if distance < pit.radius -3 then
-						if y < y_min + 4 then -- make a layer of amethyst at the bottom of the pit to keep the plasma from digging infinitely downward.
-							data[vi] = c_amethyst
-						elseif y < median + floor_displace + wave - pit.depth then
+						if y < median + floor_displace + wave - pit.depth then
 							data[vi] = c_pit_plasma
 						else
 							data[vi] = c_air
@@ -385,6 +398,40 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:update_liquids()
 	--write it to world
 	vm:write_to_map()
+	
+	if bones_loot_path then
+		for i = 1, 30 do
+			local x = math.random(minp.x, maxp.x)
+			local z = math.random(minp.z, maxp.z)
+			local index2d = mapgen_helper.index2d(emin, emax, x, z)
+			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+			local wave = nvals_wave[index2d] * wave_mult
+			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
+			if floor_height < ceiling_height then
+				local zone = math.abs(nvals_zone[index2d])
+				if math.random() < zone then -- bones are more common in the built-up areas
+					local floor_node = minetest.get_node({x=x, y=floor_height, z=z})
+					local floor_node_def = minetest.registered_nodes[floor_node.name]
+					if floor_node_def and not floor_node_def.buildable_to then
+						local y = floor_height + 1
+						while y < ceiling_height do
+							local target_pos = {x=x, y=y, z=z}
+							local target_node = minetest.get_node(target_pos)
+							if target_node.name == "air" then
+								bones_loot.place_bones(target_pos, "underworld_warrior", math.random(3, 10), nil, true)
+								break
+							elseif target_node.name == "bones:bones" then
+								-- don't stack bones on bones, it looks silly
+								break
+							end
+							y = y + 1
+						end
+					end
+				end
+			end
+		end
+	end
 	
 	local chunk_generation_time = math.ceil((os.clock() - t_start) * 1000) --grab how long it took
 	if chunk_generation_time < 1000 then

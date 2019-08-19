@@ -41,3 +41,31 @@ end
 
 df_trees.doc.torchspine_desc = S("Torchspines are strange organic formations that are alive only in a technical sense. They \"feed\" on volatile flammable vapors vented up through their structure, growing from combustion residue deposited at their tips.")
 df_trees.doc.torchspine_usage = S("A torchspine alternates between active and quiescent phases and emits dim light when active. They can be harvested for torches, and their embers sprout into new torchspines when placed on flammable surfaces.")
+
+df_trees.doc.spindlestem_desc = S("Spindlestems are too big to easily pluck by hand but too small to be called a proper tree. Nevertheless, they are a common and useful resource for underground travelers - particularly their glowing caps.")
+df_trees.doc.spindlestem_usage = S("The stem of a Spindlestem is surprisingly sturdy, and despite their thinness they can grow quite tall. They can be used as a wood substitute in many crafting recipes.")
+
+df_trees.doc.spindlestem_cap_white_desc = S("The cap of a Spindlestem, uncontaminated by any symbiotic luminescent microorganisms.")
+df_trees.doc.spindlestem_cap_white_usage = S("These things are useless except as weak fuel for a fire.")
+
+df_trees.doc.spindlestem_cap_red_desc = S("The cap of a Spindlestem, glowing a weak red due to symbiotic microorganisms.")
+df_trees.doc.spindlestem_cap_red_usage = S("Red Spindlestems are a sign of nearby iron deposits - or perhaps Goblin Caps. Their glowing symbiotes can be extracted as a long-lived light source, though the glow is weak.")
+
+df_trees.doc.spindlestem_cap_green_desc = S("The cap of a Spindlestem, glowing a soft green due to symbiotic microorganisms.")
+df_trees.doc.spindlestem_cap_green_usage = S("Green Spindlestems are a sign of nearby copper deposits. Their glowing symbiotes can be extracted as a long-lived light source, though the glow is not strong.")
+
+df_trees.doc.spindlestem_cap_cyan_desc = S("The cap of a Spindlestem, glowing a strong cyan due to symbiotic microorganisms.")
+df_trees.doc.spindlestem_cap_cyan_usage = S("Cyan Spindlestems are a sign of both copper and iron deposits nearby. Their glowing symbiotes can be extracted as a long-lived light source.")
+
+df_trees.doc.spindlestem_cap_golden_desc = S("The cap of a Spindlestem, glowing a brilliant yellow due to symbiotic microorganisms.")
+df_trees.doc.spindlestem_cap_golden_usage = S("Golden Spindlestems are a sign of rare and magical mineral deposits nearby. Their glowing symbiotes can be extracted as a strong and long-lived light source.")
+
+
+df_trees.doc.spindlestem_extract_red_desc = S("Living extract from the cap of a red Spindlestem.")
+df_trees.doc.spindlestem_extract_red_usage = df_trees.doc.spindlestem_cap_red_usage
+df_trees.doc.spindlestem_extract_green_desc = S("Living extract from the cap of a green Spindlestem.")
+df_trees.doc.spindlestem_extract_green_usage = df_trees.doc.spindlestem_cap_green_usage
+df_trees.doc.spindlestem_extract_cyan_desc = S("Living extract from the cap of a cyan Spindlestem.")
+df_trees.doc.spindlestem_extract_cyan_usage = df_trees.doc.spindlestem_cap_cyan_usage
+df_trees.doc.spindlestem_extract_golden_desc = S("Living extract from the cap of a yellow Spindlestem.")
+df_trees.doc.spindlestem_extract_golden_usage = df_trees.doc.spindlestem_cap_golden_usage

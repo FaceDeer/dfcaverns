@@ -81,6 +81,15 @@ minetest.register_craft({
 	}
 })
 
+if minetest.get_modpath("basic_materials") then
+	minetest.register_craft({
+		type = "cooking",
+		output = "basic_materials:paraffin",
+		recipe = "df_trees:black_cap_gills",
+		cooktime = 5,
+	})
+end
+
 minetest.register_node("df_trees:black_cap_wood", {
 	description = S("Black Cap Planks"),
 	_doc_items_longdesc = df_trees.doc.black_cap_desc,

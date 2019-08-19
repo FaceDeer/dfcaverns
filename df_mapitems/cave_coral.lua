@@ -7,9 +7,9 @@ minetest.register_node("df_mapitems:cave_coral_3", {
 	_doc_items_longdesc = df_mapitems.doc.cave_coral_desc,
 	_doc_items_usagehelp = df_mapitems.doc.cave_coral_usage,
 	tiles = {"dfcaverns_cave_coral_end.png", "dfcaverns_cave_coral_end.png", "dfcaverns_cave_coral.png"},
-	is_ground_content = true,
 	drop = "default:coral_skeleton",
 	light_source = 3,
+	paramtype2 = "facedir",
 	groups = {cracky = 3, dfcaverns_cave_coral = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -19,9 +19,9 @@ minetest.register_node("df_mapitems:cave_coral_2", {
 	_doc_items_longdesc = df_mapitems.doc.cave_coral_desc,
 	_doc_items_usagehelp = df_mapitems.doc.cave_coral_usage,
 	tiles = {"dfcaverns_cave_coral_end.png", "dfcaverns_cave_coral_end.png", "dfcaverns_cave_coral.png"},
-	is_ground_content = true,
 	drop = "default:coral_skeleton",
 	light_source = 2,
+	paramtype2 = "facedir",
 	groups = {cracky = 3, dfcaverns_cave_coral = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -31,9 +31,9 @@ minetest.register_node("df_mapitems:cave_coral_1", {
 	_doc_items_longdesc = df_mapitems.doc.cave_coral_desc,
 	_doc_items_usagehelp = df_mapitems.doc.cave_coral_usage,
 	tiles = {"dfcaverns_cave_coral_end.png", "dfcaverns_cave_coral_end.png", "dfcaverns_cave_coral.png"},
-	is_ground_content = true,
 	drop = "default:coral_skeleton",
 	light_source = 1,
+	paramtype2 = "facedir",
 	groups = {cracky = 3, dfcaverns_cave_coral = 1},
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -46,70 +46,7 @@ minetest.register_abm{
 	interval = 2,
 	chance = 10,
 	action = function(pos)
-		minetest.swap_node(pos, {name=coral_names[math.random(1,3)]})
+		local node = minetest.get_node(pos)
+		minetest.swap_node(pos, {name=coral_names[math.random(1,3)], param2=node.param2})
 	end,
 }
-
-local c_coral_1 = minetest.get_content_id("df_mapitems:cave_coral_1")
-local c_coral_2 = minetest.get_content_id("df_mapitems:cave_coral_2")
-local c_coral_3 = minetest.get_content_id("df_mapitems:cave_coral_3")
-local c_coral_skeleton = minetest.get_content_id("default:coral_skeleton")
-local c_dirt = minetest.get_content_id("default:dirt")
-local c_stone = minetest.get_content_id("default:stone")
-local c_water = minetest.get_content_id("default:water_source")
-
-local corals = {c_coral_1, c_coral_2, c_coral_3}
-local get_coral = function()
-	return corals[math.random(1,3)]
-end
-
-df_mapitems.spawn_cave_coral = function(area, data, vi, iterations)
-	local run = math.random(2,4)
-	local index = vi
-	local zstride = area.zstride
-	local ystride = area.ystride
-	while run > 0 do
-		if math.random() > 0.95 or data[index] == c_stone or not area:containsi(index) then return end
-		data[index] = get_coral()
-		if iterations > 2 then
-			data[index + 1] = get_coral()
-			data[index - 1] = get_coral()
-			data[index + zstride] = get_coral()
-			data[index - zstride] = get_coral()
-		end
-		if iterations > 3 then
-			data[index + 2] = get_coral()
-			data[index - 2] = get_coral()
-			data[index + zstride * 2] = get_coral()
-			data[index - zstride * 2] = get_coral()
-			data[index + 1 + zstride] = get_coral()
-			data[index - 1 + zstride] = get_coral()
-			data[index + 1 - zstride] = get_coral()
-			data[index - 1 - zstride] = get_coral()
-		end
-		index = index + ystride
-		run = run - 1
-	end
-
-	local newiterations = iterations - 1
-	if newiterations == 0 then return end
-	
-	if math.random() > 0.5 then
-		df_mapitems.spawn_cave_coral(area, data, index + 1 - ystride, newiterations)
-		df_mapitems.spawn_cave_coral(area, data, index - 1 - ystride, newiterations)
-	else
-		df_mapitems.spawn_cave_coral(area, data, index + zstride - ystride, newiterations)
-		df_mapitems.spawn_cave_coral(area, data, index - zstride - ystride, newiterations)
-	end
-end
-
-df_mapitems.spawn_coral_pile = function(area, data, vi, radius)
-	local pos = area:position(vi)
-	for li in area:iterp(vector.add(pos, -radius), vector.add(pos, radius)) do
-		local adjacent = li + area.ystride
-		local node_type = data[li]
-		if math.random() < 0.2  and not mapgen_helper.buildable_to(node_type) and data[adjacent] == c_water then
-			data[adjacent] = c_coral_skeleton
-		end
-	end
-end

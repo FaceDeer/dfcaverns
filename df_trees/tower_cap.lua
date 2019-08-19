@@ -9,8 +9,8 @@ minetest.register_node("df_trees:tower_cap_stem", {
 	_doc_items_usagehelp = df_trees.doc.tower_cap_usage,
 	tiles = {"dfcaverns_tower_cap.png"},
 	is_ground_content = true,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, tower_cap = 1},
+	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 })
 
 --cap
@@ -20,8 +20,8 @@ minetest.register_node("df_trees:tower_cap", {
 	_doc_items_usagehelp = df_trees.doc.tower_cap_usage,
 	tiles = {"dfcaverns_tower_cap.png"},
 	is_ground_content = true,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, tower_cap = 1},
+	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 })
 
 --gills
@@ -31,7 +31,7 @@ minetest.register_node("df_trees:tower_cap_gills", {
 	_doc_items_usagehelp = df_trees.doc.tower_cap_usage,
 	tiles = {"dfcaverns_tower_cap_gills.png"},
 	is_ground_content = true,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, tower_cap = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	drawtype = "plantlike",
 	paramtype = "light",
@@ -50,7 +50,7 @@ minetest.register_node("df_trees:tower_cap_gills", {
 	after_place_node = default.after_place_leaves,
 })
 
-if default.register_leafdecay then -- default.register_leafdecay is very new, remove this check some time after 0.4.16 is released
+if default.register_leafdecay then -- default.register_leafdecay is new, remove this check some time after 0.4.16 is released
 	default.register_leafdecay({
 		trunks = {"df_trees:tower_cap"}, -- don't need stem nodes here
 		leaves = {"df_trees:tower_cap_gills"},
@@ -136,9 +136,12 @@ minetest.register_node("df_trees:tower_cap_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(
-			df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
-			df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		local below_node = minetest.get_node(vector.add(pos, {x=0,y=-1,z=0}))
+		if minetest.get_item_group(below_node.name, "soil") > 0 then
+			minetest.get_node_timer(pos):start(math.random(
+				df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
+				df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		end
 	end,
 	
 	on_timer = function(pos)

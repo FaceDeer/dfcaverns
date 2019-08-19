@@ -21,7 +21,9 @@ minetest.register_node("df_trees:nether_cap", {
 	tiles = {"dfcaverns_nether_cap.png"},
 	is_ground_content = true,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1 },
-	sounds = default.node_sound_wood_defaults(),
+	sounds = default.node_sound_wood_defaults({
+		footstep = {name = "default_snow_footstep", gain = 0.2},
+	}),
 })
 
 --gills

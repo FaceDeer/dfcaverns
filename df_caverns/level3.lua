@@ -20,6 +20,9 @@ local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
 
 local c_glow_ore = minetest.get_content_id("df_mapitems:glow_ruby_ore")
 
+local c_salty_cobble = minetest.get_content_id("df_mapitems:salty_cobble")
+local c_salt_crystal = minetest.get_content_id("df_mapitems:salt_crystal")
+
 local c_sprite
 if minetest.get_modpath("ice_sprites") then
 	c_sprite = minetest.get_content_id("ice_sprites:ice_sprite")
@@ -157,20 +160,28 @@ local nether_cap_cavern_ceiling = function(abs_cracks, vert_rand, vi, area, data
 end
 
 local blood_thorn_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
+	local ai = vi+area.ystride
+
 	if abs_cracks < 0.075 then
 		if vert_rand < 0.004 then
-			subterrane.big_stalagmite(vi+area.ystride, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
+			subterrane.big_stalagmite(ai, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
+		elseif data[vi] ~= air and math.random() < 0.5 then
+			data[vi] = c_salty_cobble
+			if data[ai] == c_air and math.random() < 0.25 then
+				data[ai] = c_salt_crystal
+				data_param2[ai] = math.random(1,4)-1
+			end
 		else
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 66)
-			subterrane.stalagmite(vi+area.ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
+			subterrane.stalagmite(ai, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
 		end
 	elseif math.random() > abs_cracks + 0.66 then
-		df_trees.spawn_blood_thorn_vm(vi+area.ystride, area, data, data_param2)
+		df_trees.spawn_blood_thorn_vm(ai, area, data, data_param2)
 		data[vi] = c_desert_sand
 	else
 		if math.random() < 0.1 then
-			df_caverns.place_shrub(vi+area.ystride, area, data, data_param2, blood_thorn_shrublist)
+			df_caverns.place_shrub(ai, area, data, data_param2, blood_thorn_shrublist)
 			data[vi] = c_desert_sand
 		elseif math.random() > 0.25 then
 			data[vi] = c_desert_sand
@@ -310,7 +321,16 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			else
 				-- bloodthorn ceiling
 				if abs_cracks < 0.075 then
-					df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
+					if data[vi] ~= air and math.random() < 0.5 then
+						data[vi] = c_salty_cobble
+						local bi = vi - area.ystride
+						if data[bi] == c_air and math.random() < 0.25 then
+							data[bi] = c_salt_crystal
+							data_param2[bi] = 19 + math.random(1,4)
+						end
+					else
+						df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
+					end
 				elseif abs_cracks > 0.75 and math.random() < 0.05 then
 					data[vi] = c_glow_ore
 					df_mapitems.place_big_crystal(data, data_param2, vi-area.ystride, true)

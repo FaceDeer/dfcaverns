@@ -208,3 +208,33 @@ df_caverns.place_shrub = function(vi, area, data, param2_data, shrub_list)
 	local shrub = shrub_list[math.random(#shrub_list)]
 	shrub(vi, area, data, param2_data)
 end
+
+---------------------------------------------------------------------------------
+-- This method allows subterrane to overgenerate caves without destroying any of the decorations
+-- Water is included so that the sunless sea won't have gaps torn in it
+local dfcaverns_nodes = nil
+local dfcaverns_mods = {
+	"df_farming:",
+	"df_mapitems:",
+	"df_primordial_items:",
+	"df_trees:",
+	"df_underworld_items:",
+	"ice_sprites:",
+	"mine_gas:",
+	"default:water",
+}
+df_caverns.is_ground_content = function(c_node)
+	if dfcaverns_nodes then
+		return not dfcaverns_nodes[c_node]
+	end
+	dfcaverns_nodes = {}
+	for k, v in pairs(minetest.registered_nodes) do
+		for _, prefix in ipairs(dfcaverns_mods) do
+			if k:sub(1, #prefix) == prefix then
+				dfcaverns_nodes[minetest.get_content_id(k)] = true
+			end
+		end
+	end
+	dfcaverns_mods = nil
+	return not dfcaverns_nodes[c_node]
+end

@@ -300,4 +300,5 @@ subterrane.register_layer({
 	decorate = decorate_level_1,
 	warren_region_variability_threshold = 0.33,
 	double_frequency = true,
+	is_ground_content = df_caverns.is_ground_content,
 })

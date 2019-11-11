@@ -401,4 +401,5 @@ subterrane.register_layer({
 	},
 	decorate = decorate_sunless_sea,
 	double_frequency = false,
+	is_ground_content = df_caverns.is_ground_content,
 })

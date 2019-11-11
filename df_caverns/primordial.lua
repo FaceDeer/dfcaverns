@@ -286,4 +286,5 @@ subterrane.register_layer({
 	},
 	decorate = decorate_primordial,
 	double_frequency = true,
+	is_ground_content = df_caverns.is_ground_content,
 })

@@ -308,8 +308,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							df_underworld_items.underworld_shard(data, area, vi)
 						end
 					end
-				end			
-			elseif y < ceiling_height and data[vi] ~= c_amethyst then
+				end
+			elseif y >= floor_height and y < ceiling_height and data[vi] ~= c_amethyst then
 				data[vi] = c_air
 			elseif data[vi] == c_water then
 				data[vi] = c_air -- no water down here

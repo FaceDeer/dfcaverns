@@ -141,19 +141,20 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	for vi, x, y, z in area:iterp_yxz(area.MinEdge, area.MaxEdge) do
 		local cave_val = nvals_cave[vi]
 		if cave_val < -flooding_threshold then
-
-			local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-			local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
-			local cave_threshold = cavern_def.cave_threshold
+			if mapgen_helper.is_pos_within_box({x=x, y=y, z=z}, minp, maxp) then
+				local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+				local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
+				local cave_threshold = cavern_def.cave_threshold
 	
-			--check if we're just inside the boundary of the (negazone) cavern threshold
-			if biome_name == "barren" and cave_val < -cave_threshold and cave_val > -cave_threshold - 0.01 then
-				-- add giant rooty structures to the flooded barren caverns
-				if vein_noise == nil then
-					vein_noise, vein_area = mapgen_helper.perlin3d("df_caverns:wall_veins", minp, maxp, wall_vein_perlin_params)
-				end
-				if data[vi] == c_air and math.abs(vein_noise[vein_area:transform(area, vi)]) < 0.02 then
-					data[vi] = c_veinstone
+				--check if we're just inside the boundary of the (negazone) cavern threshold
+				if biome_name == "barren" and cave_val < -cave_threshold and cave_val > -cave_threshold - 0.01 then
+					-- add giant rooty structures to the flooded barren caverns
+					if vein_noise == nil then
+						vein_noise, vein_area = mapgen_helper.perlin3d("df_caverns:wall_veins", minp, maxp, wall_vein_perlin_params)
+					end
+					if data[vi] == c_air and math.abs(vein_noise[vein_area:transform(area, vi)]) < 0.02 then
+						data[vi] = c_veinstone
+					end
 				end
 			end
 			if data[vi] == c_air and y <= subsea_level then

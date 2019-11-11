@@ -96,8 +96,9 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	
 	-- Partly fill flooded caverns and warrens
 	if minp.y <= subsea_level then
-		for vi in area:iterp(minp, maxp) do
-			if data[vi] == c_air and area:get_y(vi) <= subsea_level and nvals_cave[vi] < -flooding_threshold then
+		for vi, x, y, z in area:iterp_yxz(area.MinEdge, area.MaxEdge) do
+			-- convert all air below sea level into water
+			if y <= subsea_level and data[vi] == c_air and nvals_cave[vi] < -flooding_threshold then
 				data[vi] = c_water
 			end
 		end

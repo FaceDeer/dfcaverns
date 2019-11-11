@@ -223,15 +223,20 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 					data[vi] = c_obsidian
 				end
 			end
-			-- convert all air below sea level into water
-			if y <= sea_level and data[vi] == c_air then
-				data[vi] = c_water
-			end
 		else
 			skip_next = false
 		end
 	end
 	
+	if minp.y <= sea_level then
+		for vi, x, y, z in area:iterp_yxz(area.MinEdge, area.MaxEdge) do
+			-- convert all air below sea level into water
+			if y <= sea_level and data[vi] == c_air then
+				data[vi] = c_water
+			end
+		end
+	end
+
 	
 	---------------------------------------------------------
 	-- Cavern floors

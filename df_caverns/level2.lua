@@ -138,7 +138,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	local vein_area
 	
 	-- Partly fill flooded caverns and warrens
-	for vi in area:iterp(minp, maxp) do
+	for vi, x, y, z in area:iterp_yxz(area.MinEdge, area.MaxEdge) do
 		local cave_val = nvals_cave[vi]
 		if cave_val < -flooding_threshold then
 
@@ -156,7 +156,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 					data[vi] = c_veinstone
 				end
 			end
-			if data[vi] == c_air and area:get_y(vi) <= subsea_level then
+			if data[vi] == c_air and y <= subsea_level then
 				data[vi] = c_water -- otherwise, fill air with water when below sea level
 			end
 		end

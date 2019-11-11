@@ -118,8 +118,9 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 })
 
 local c_stem = minetest.get_content_id("df_primordial_items:jungle_mushroom_trunk")
-local c_cap_1  = minetest.get_content_id("df_primordial_items:jungle_mushroom_cap_1")
-local c_cap_2  = minetest.get_content_id("df_primordial_items:jungle_mushroom_cap_2")
+local c_cap_1 = minetest.get_content_id("df_primordial_items:jungle_mushroom_cap_1")
+local c_cap_2 = minetest.get_content_id("df_primordial_items:jungle_mushroom_cap_2")
+local c_air = minetest.get_content_id("air")
 
 df_primordial_items.spawn_jungle_mushroom = function(pos)
 	local x, y, z = pos.x, pos.y, pos.z
@@ -142,7 +143,7 @@ df_primordial_items.spawn_jungle_mushroom = function(pos)
 	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
 
-	subterrane.giant_mushroom(area:indexp(pos), area, data, c_stem, c_cap, nil, stem_height, cap_radius)
+	subterrane.giant_mushroom(area:indexp(pos), area, data, c_stem, c_cap, c_air, stem_height, cap_radius)
 	
 	vm:set_data(data)
 	vm:write_to_map()
@@ -158,5 +159,5 @@ df_primordial_items.spawn_jungle_mushroom_vm = function(vi, area, data)
 	else
 		c_cap = c_cap_2
 	end
-	subterrane.giant_mushroom(vi, area, data, c_stem, c_cap, nil, stem_height, cap_radius)
+	subterrane.giant_mushroom(vi, area, data, c_stem, c_cap, c_air, stem_height, cap_radius)
 end

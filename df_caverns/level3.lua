@@ -207,25 +207,25 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	
 	-- Partly fill flooded caverns and warrens
 	if minp.y <= subsea_level then
-		for vi in area:iterp(minp, maxp) do
-			local y = area:get_y(vi)
+		for vi, x, y, z in area:iterp_yxz(area.MinEdge, area.MaxEdge) do
 			if y <= subsea_level and nvals_cave[vi] < -flooding_threshold then
 				if data[vi] == c_air and y <= subsea_level then
 					data[vi] = c_water
 				end
 				
-				local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-				local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
-				
-				if biome_name == "blackcap" then
-					-- oil slick
-					local cave = math.abs(nvals_cave[vi])
-					if y == subsea_level and data[vi] == c_water and cave + nvals_cracks[index2d]*0.025 < cavern_def.cave_threshold + 0.1 then
-						data[vi] = c_oil
+				if (mapgen_helper.is_pos_within_box({x=x, y=y, z=z}, minp, maxp)) then				
+					local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
+					local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
+					if biome_name == "blackcap" then
+						-- oil slick
+						local cave = math.abs(nvals_cave[vi])
+						if y == subsea_level and data[vi] == c_water and cave + nvals_cracks[index2d]*0.025 < cavern_def.cave_threshold + 0.1 then
+							data[vi] = c_oil
+						end
+					elseif biome_name == "bloodnether" and y <= subsea_level and y > subsea_level - ice_thickness and data[vi] == c_water then
+						-- floating ice
+						data[vi] = c_ice
 					end
-				elseif biome_name == "bloodnether" and y <= subsea_level and y > subsea_level - ice_thickness and data[vi] == c_water then
-					-- floating ice
-					data[vi] = c_ice
 				end
 			end
 		end

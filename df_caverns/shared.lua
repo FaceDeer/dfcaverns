@@ -221,7 +221,6 @@ local dfcaverns_mods = {
 	"df_underworld_items:",
 	"ice_sprites:",
 	"mine_gas:",
-	"default:water",
 }
 df_caverns.is_ground_content = function(c_node)
 	if dfcaverns_nodes then

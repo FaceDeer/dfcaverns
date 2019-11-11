@@ -185,7 +185,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
 		local humidity = humiditymap[index2d]
-		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
+		local jungle = nvals_cave[vi] < 0
 		
 		if jungle then
 			jungle_cavern_floor(abs_cracks, humidity, vi, area, data, data_param2)
@@ -201,7 +201,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
-		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
+		local jungle = nvals_cave[vi] < 0
 		local humidity = humiditymap[index2d]
 		if jungle then
 			jungle_cavern_ceiling(abs_cracks, vi, area, data, data_param2)
@@ -231,7 +231,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
-		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
+		local jungle = nvals_cave[vi] < 0
 		
 --		if jungle then
 --			jungle_warren_ceiling(abs_cracks, vi, area, data, data_param2)
@@ -248,7 +248,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
-		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
+		local jungle = nvals_cave[vi] < 0
 		
 --		if jungle then
 --			jungle_warren_floor(abs_cracks, vi, area, data, data_param2)
@@ -259,7 +259,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 
 	-- columns
 	for _, vi in ipairs(node_arrays.column_nodes) do
-		local jungle = nvals_cave[cave_area:transform(area, vi)] < 0
+		local jungle = nvals_cave[vi] < 0
 		if jungle then
 		end
 	end

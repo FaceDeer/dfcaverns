@@ -31,6 +31,7 @@ minetest.register_node("mine_gas:gas", {
 	walkable = false,
 	pointable = false,
 	diggable = false,
+	is_ground_content = false,
 	buildable_to = true,
 	drawtype = "glasslike",
 	drowning = 1,

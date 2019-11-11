@@ -17,6 +17,7 @@ local register_cave_wheat = function(number)
 		inventory_image = "dfcaverns_cave_wheat_"..tostring(number)..".png",
 		paramtype = "light",
 		walkable = false,
+		is_ground_content = false,
 		buildable_to = true,
 		floodable = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},

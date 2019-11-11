@@ -38,6 +38,7 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_bottom", {
 	drop = "df_primordial_items:giant_fern_tree",
 	groups = {choppy = 2, tree = 1, oddly_breakable_by_hand=1, flammable = 2, fern_stem = 1},
 	sounds = default.node_sound_wood_defaults(),
+	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	selection_box = {
 		type = "fixed",
@@ -74,6 +75,7 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_top", {
 	drop = "df_primordial_items:giant_fern_tree",
 	groups = {choppy = 2, tree = 1, oddly_breakable_by_hand=1, flammable = 2, fern_stem = 1},
 	sounds = default.node_sound_wood_defaults(),
+	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	selection_box = {
 		type = "fixed",
@@ -110,6 +112,7 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_full", {
 	drop = "df_primordial_items:giant_fern_tree",
 	groups = {choppy = 2, tree = 1, oddly_breakable_by_hand=1, flammable = 2, fern_stem = 1},
 	sounds = default.node_sound_wood_defaults(),
+	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	selection_box = {
 		type = "fixed",
@@ -253,6 +256,7 @@ minetest.register_node("df_primordial_items:fern_sapling", {
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
+	is_ground_content = false,
 	walkable = false,
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,

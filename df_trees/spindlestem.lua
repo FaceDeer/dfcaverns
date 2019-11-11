@@ -64,7 +64,7 @@ minetest.register_node("df_trees:spindlestem_stem", {
 	description = S("Spindlestem"),
 	_doc_items_longdesc = df_trees.doc.spindlestem_desc,
 	_doc_items_usagehelp = df_trees.doc.spindlestem_usage,
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
 	sounds = default.node_sound_wood_defaults(),
 	tiles = {
@@ -95,7 +95,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 	
 	minetest.register_node(cap_item, {
 		description = S("@1 Spindlestem Cap", colour_name),
-		is_ground_content = true,
+		is_ground_content = false,
 		_doc_items_longdesc = df_trees.doc["spindlestem_cap_"..item_suffix.."_desc"],
 		_doc_items_usagehelp = df_trees.doc["spindlestem_cap_"..item_suffix.."_usage"],
 		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
@@ -241,6 +241,7 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	is_ground_content = false,
 	walkable = false,
 	floodable = true,
 	node_box = {

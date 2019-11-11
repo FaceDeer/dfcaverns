@@ -8,7 +8,7 @@ local glowstone_def = {
 	light_source = minetest.LIGHT_MAX,
 	description = S("Lightseam"),
 	tiles = {"dfcaverns_glowstone.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {cracky=3},
 	sounds = default.node_sound_glass_defaults(),
 	paramtype = "light",

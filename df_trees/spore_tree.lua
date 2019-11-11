@@ -157,6 +157,7 @@ minetest.register_node("df_trees:spore_tree_sapling", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	selection_box = {
 		type = "fixed",

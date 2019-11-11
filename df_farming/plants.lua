@@ -15,6 +15,7 @@ minetest.register_node("df_farming:dead_fungus", {
 	inventory_image = "dfcaverns_dead_fungus.png",
 	paramtype = "light",
 	walkable = false,
+	is_ground_content = false,
 	buildable_to = true,
 	floodable = true,
 	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, flow_through = 1},
@@ -47,6 +48,7 @@ minetest.register_node("df_farming:cavern_fungi", {
 	inventory_image = "dfcaverns_fungi.png",
 	paramtype = "light",
 	walkable = false,
+	is_ground_content = false,
 	buildable_to = true,
 	floodable = true,
 	light_source = 6,
@@ -155,6 +157,7 @@ df_farming.register_seed = function(name, description, image, stage_one, grow_ti
 		_dfcaverns_next_stage_time = grow_time,
 		paramtype = "light",
 		walkable = false,
+		is_ground_content = false,
 		floodable = true,
 		sunlight_propagates = true,
 		selection_box = {

@@ -225,6 +225,7 @@ minetest.register_node("df_primordial_items:jungletree_sapling", {
 	drawtype = "plantlike",
 	buildable_to = true,
 	walkable = false,
+	is_ground_content = false,
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,
 	sunlight_propagates = true,

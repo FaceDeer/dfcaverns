@@ -63,7 +63,7 @@ minetest.register_node("df_trees:torchspine_1", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	is_ground_content = true,
+	is_ground_content = false,
 	drops = "default:torch",
 	node_box = {
 		type = "fixed",
@@ -82,7 +82,7 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = 6,
-	is_ground_content = true,
+	is_ground_content = false,
 	drops = "default:torch 2",
 	node_box = {
 		type = "fixed",
@@ -100,7 +100,7 @@ minetest.register_node("df_trees:torchspine_2", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	is_ground_content = true,
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_2,
@@ -126,7 +126,7 @@ minetest.register_node("df_trees:torchspine_3", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	is_ground_content = true,
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_3,
@@ -156,7 +156,7 @@ minetest.register_node("df_trees:torchspine_4", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	is_ground_content = true,
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_4,
@@ -187,6 +187,7 @@ minetest.register_node("df_trees:torchspine_ember", {
 	light_source = 2,
 	paramtype2 = "facedir",
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	node_box = {
 		type = "fixed",

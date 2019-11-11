@@ -8,7 +8,7 @@ minetest.register_node("df_trees:nether_cap_stem", {
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_stem.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
@@ -19,7 +19,7 @@ minetest.register_node("df_trees:nether_cap", {
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1 },
 	sounds = default.node_sound_wood_defaults({
 		footstep = {name = "default_snow_footstep", gain = 0.2},
@@ -32,7 +32,7 @@ minetest.register_node("df_trees:nether_cap_gills", {
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_gills.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	light_source = 6,
 	groups = {snappy = 3, leafdecay = 3, leaves = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1},
 	sounds = default.node_sound_leaves_defaults(),
@@ -103,6 +103,7 @@ minetest.register_node("df_trees:nether_cap_sapling", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
+	is_ground_content = false,
 	floodable = true, -- nether cap spawn aren't tough enough to freeze water yet
 	selection_box = {
 		type = "fixed",

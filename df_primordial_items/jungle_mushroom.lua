@@ -97,6 +97,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
+	is_ground_content = false,
 	walkable = false,
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,

@@ -43,6 +43,7 @@ minetest.register_node("df_primordial_items:glow_orb_hanging", {
 	paramtype2 = "degrotate",
 	drawtype = "plantlike",
 	buildable_to = true,
+	is_ground_content = false,
 	walkable = false,
 	light_source = 6,
 	sounds = default.node_sound_leaves_defaults(),

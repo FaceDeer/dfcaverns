@@ -38,6 +38,7 @@ minetest.register_node("ice_sprites:ice_sprite", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	buildable_to = true,
+	is_ground_content = false,
 	walkable = false,
 	groups = {catchable = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1},
 	selection_box = {
@@ -75,6 +76,7 @@ minetest.register_node("ice_sprites:hidden_ice_sprite", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
+	is_ground_content = false,
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
@@ -124,6 +126,7 @@ minetest.register_node("ice_sprites:ice_sprite_bottle", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	light_source = 9,
+	is_ground_content = false,
 	walkable = false,
 	groups = {dig_immediate = 3, attached_node = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1},
 	selection_box = {

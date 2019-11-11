@@ -35,7 +35,7 @@ minetest.register_node("df_underworld_items:pit_plasma", {
 	liquid_alternative_flowing = "df_underworld_items:pit_plasma_flowing",
 	liquid_alternative_source = "df_underworld_items:pit_plasma",
 	liquid_renewable = false,
-	is_ground_content = true,
+	is_ground_content = false,
 	light_source = minetest.LIGHT_MAX,
 	paramtype = "light",
 })
@@ -84,7 +84,7 @@ minetest.register_node("df_underworld_items:pit_plasma_flowing", {
 	liquid_alternative_flowing = "df_underworld_items:pit_plasma_flowing",
 	liquid_alternative_source = "df_underworld_items:pit_plasma",
 	liquid_renewable = false,
-	is_ground_content = true,
+	is_ground_content = false,
 	light_source = minetest.LIGHT_MAX,
 	paramtype = "light",
 })

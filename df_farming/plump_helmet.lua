@@ -71,6 +71,7 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	node_box = {
 		type = "fixed",
@@ -103,6 +104,7 @@ minetest.register_node("df_farming:plump_helmet_1", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	is_ground_content = false,
 	walkable = false,
 	floodable = true,
 	node_box = {
@@ -141,6 +143,7 @@ minetest.register_node("df_farming:plump_helmet_2", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	node_box = {
 		type = "fixed",
@@ -176,6 +179,7 @@ minetest.register_node("df_farming:plump_helmet_3", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	node_box = {
 		type = "fixed",
@@ -209,6 +213,7 @@ minetest.register_node("df_farming:plump_helmet_4", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	is_ground_content = false,
 	floodable = false, -- I figure full grown plump helmets are sturdy enough to survive inundation
 	node_box = {
 		type = "fixed",
@@ -261,6 +266,7 @@ minetest.register_node("df_farming:plump_helmet_4_picked", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	is_ground_content = false,
 	floodable = false,
 	node_box = {
 		type = "fixed",

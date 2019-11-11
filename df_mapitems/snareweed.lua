@@ -10,7 +10,7 @@ minetest.register_node("df_mapitems:snareweed", {
 	drawtype="plantlike_rooted",
 	paramtype2 = "leveled",
 	special_tiles = {{name = "dfcaverns_snareweed.png", tileable_vertical = true}},
-	is_ground_content = true,
+	is_ground_content = false,
 	drop = 'default:dirt',
 	light_source = 6,
 	groups = {crumbly = 3, soil = 1},

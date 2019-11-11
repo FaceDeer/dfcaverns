@@ -64,6 +64,7 @@ local slade_wall_def = {
 	paramtype = "light",
 	tiles = {"dfcaverns_slade_brick.png"},
 	walkable = true,
+	is_ground_content = false,
 	groups = { cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
 }
@@ -78,7 +79,7 @@ minetest.register_node("df_underworld_items:slade_sand", {
 	_doc_items_longdesc = df_underworld_items.doc.slade_desc,
 	_doc_items_usagehelp = df_underworld_items.doc.slade_usage,
 	tiles = {"dfcaverns_slade_sand.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {crumbly = 3, level = 2, falling_node = 1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = default.node_sound_gravel_defaults({
 		footstep = {name = "default_gravel_footstep", gain = 0.45},

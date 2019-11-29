@@ -5,6 +5,7 @@ end
 local bones_loot_path = minetest.get_modpath("bones_loot")
 
 local c_slade = minetest.get_content_id("df_underworld_items:slade")
+local c_slade_block = minetest.get_content_id("df_underworld_items:slade_block")
 local c_air = minetest.get_content_id("air")
 local c_water = minetest.get_content_id("default:water_source")
 
@@ -59,6 +60,9 @@ local y_max = median + 2*wave_mult + ceiling_displace + -2*ceiling_mult
 local y_min = median - 2*wave_mult + floor_displace - 2*floor_mult
 
 --df_caverns.config.underworld_min = y_min
+
+--local poisson = mapgen_helper.get_poisson_points({x=-32000, z=-32000}, {x=32000, z=32000}, 1000)
+--minetest.debug(dump(poisson.objects))
 
 ---------------------------------------------------------
 -- Buildings
@@ -207,21 +211,24 @@ local get_corner = function(pos)
 	return {x = math.floor((pos.x+32) / pit_region_size) * pit_region_size - 32, z = math.floor((pos.z+32) / pit_region_size) * pit_region_size - 32}
 end
 
-local mapgen_seed = tonumber(minetest.get_mapgen_setting("seed"))
+local mapgen_seed = tonumber(minetest.get_mapgen_setting("seed")) % 2^21
 
 local get_pit = function(pos)
 	if region_mapblocks < 1 then return nil end
 
 	local corner_xz = get_corner(pos)
-	local next_seed = math.floor(math.random() * 2^31)
+	local next_seed = math.floor(math.random() * 2^21)
 	math.randomseed(corner_xz.x + corner_xz.z * 2 ^ 8 + mapgen_seed)
 	local location = scatter_2d(corner_xz, pit_region_size, radius_pit_max + radius_pit_variance)
 	local variance_multiplier = math.random()
 	local radius = variance_multiplier * (radius_pit_max - 15) + 15
 	local variance = radius_pit_variance/2 + radius_pit_variance*variance_multiplier/2
 	local depth = math.random(plasma_depth_min, plasma_depth_max)
+	
+	local shaft_seed = math.random()
+	local shaft_location = corner_xz
 	math.randomseed(next_seed)
-	return {location = location, radius = radius, variance = variance, depth = depth}
+	return {location = location, radius = radius, variance = variance, depth = depth}, {seed = shaft_seed, location = shaft_location}
 end
 
 local perlin_pit = {
@@ -241,11 +248,13 @@ minetest.register_chatcommand("find_pit", {
 	decription = "find a nearby glowing pit",
 	func = function(name, param)
 		local player = minetest.get_player_by_name(name)
-		local pit = get_pit(player:get_pos())
-		minetest.chat_send_player(name, "Pit location: x=" .. math.floor(pit.location.x) .. " z=" .. math.floor(pit.location.z))
+		local pit, shaft = get_pit(player:get_pos())
+		if pit then
+			minetest.chat_send_player(name, "Pit location: x=" .. math.floor(pit.location.x) .. " z=" .. math.floor(pit.location.z))
+			minetest.chat_send_player(name, "Shaft location: x=" .. math.floor(shaft.location.x) .. " z=" .. math.floor(shaft.location.z))
+		end
 	end,
 })
-
 
 minetest.register_on_generated(function(minp, maxp, seed)
 
@@ -264,9 +273,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", emin, emax, perlin_wave) --cave noise for structure
 	local nvals_zone = mapgen_helper.perlin2d("df_caverns:underworld_zone", emin, emax, perlin_zone) --building zones
 	
-	local pit = get_pit(minp)
+	local pit, shaft = get_pit(minp)
 	--minetest.chat_send_all(minetest.pos_to_string(pit.location))
-	
+
 	local buildings = get_buildings(emin, emax, nvals_zone)
 	
 	local pit_uninitialized = true
@@ -279,8 +288,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local wave = nvals_wave[index2d] * wave_mult
 			
 			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			local underside_height = y_min + math.abs(wave) / 5
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-			if y < floor_height and y > y_min + math.abs(wave) / 5 then -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
+			if y < floor_height and y > underside_height then -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
 				data[vi] = c_slade
 				if	pit and
 					pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and
@@ -388,6 +398,50 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			end
 		end
 	end
+	
+	-- puzzle shaft
+	local puzzle_init = nil	
+	if pit_uninitialized and minp.x == shaft.location.x and minp.z == shaft.location.z then
+		local index2d = mapgen_helper.index2d(emin, emax, minp.x + 3, minp.z + 3)
+		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+		local wave = nvals_wave[index2d] * wave_mult
+			
+		local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+		local underside_height = math.floor(y_min + math.abs(wave) / 5)
+		
+		local shaftwallmin = {x=minp.x, y=math.max(underside_height-3, minp.y), z=minp.z}
+		local shaftwallmax = {x=minp.x+4, y=math.min(floor_height, maxp.y), z=minp.z+4}
+		local shaftcoremin = {x=minp.x+1, y=shaftwallmin.y, z=minp.z+1}
+		local shaftcoremax = {x=minp.x+3, y=math.min(floor_height+3, maxp.y), z=minp.z+3}
+
+		minetest.debug("minp,maxp")
+		minetest.debug(minetest.pos_to_string(minp))
+		minetest.debug(minetest.pos_to_string(maxp))
+
+		minetest.debug("wall")
+		minetest.debug(minetest.pos_to_string(shaftwallmin))
+		minetest.debug(minetest.pos_to_string(shaftwallmax))
+	
+		for wall_vi in area:iterp(shaftwallmin, shaftwallmax) do
+			data[wall_vi] = c_slade_block
+		end
+
+		minetest.debug("core")
+		minetest.debug(minetest.pos_to_string(shaftcoremin))
+		minetest.debug(minetest.pos_to_string(shaftcoremax))
+
+		for core_vi in area:iterp(shaftcoremin, shaftcoremax) do
+			data[core_vi] = c_air
+		end
+		
+		local puzzle_seal_y = floor_height-1--math.floor((floor_height+underside_height)/2)
+		if puzzle_seal_y < maxp.y and puzzle_seal_y > minp.y then
+			for seal_vi in area:iter(minp.x+1, puzzle_seal_y, minp.z+1, minp.x+3, puzzle_seal_y, minp.z+3) do
+				data[seal_vi] = c_slade_block
+			end			
+			puzzle_init = {x=minp.x+2, y=puzzle_seal_y, z=minp.z+2}
+		end
+	end
 
 	--send data back to voxelmanip
 	vm:set_data(data)
@@ -398,6 +452,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:update_liquids()
 	--write it to world
 	vm:write_to_map()
+	
+	if puzzle_init ~= nil then
+	end
 	
 	if bones_loot_path then
 		for i = 1, 30 do

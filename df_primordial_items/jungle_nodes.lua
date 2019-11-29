@@ -174,19 +174,21 @@ minetest.register_node("df_primordial_items:jungle_ivy", {
 	tiles = {"dfcaverns_jungle_ivy_01.png"},
 	inventory_image = "dfcaverns_jungle_ivy_01.png",
 	wield_image = "dfcaverns_jungle_ivy_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1},
 	paramtype = "light",
-	paramtype2 = "wallmounted",
-	drawtype = "signlike",
+	drawtype = "plantlike",
+	place_param2 = 3,
+	--paramtype2 = "wallmouinted",
+	--drawtype = "signlike",
 	sounds = default.node_sound_leaves_defaults(),
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	is_ground_content = false,
 	walkable = false,
 	climbable = true,
-	selection_box = {
-		type = "wallmounted",
-	},
+--	selection_box = {
+--		type = "wallmounted",
+--	},
 })
 
 -------------------------------------------------------------------------------------
@@ -257,6 +259,18 @@ minetest.register_node("df_primordial_items:packed_roots", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_abm({
+	label = "Plant matter converting to roots",
+	nodenames = {"df_primordial_items:plant_matter"},
+	interval = 10.0,
+	chance = 5,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		if minetest.find_node_near(pos, 1, {"air"}) == nil then
+			minetest.set_node(pos, {name="df_primordial_items:packed_roots"})
+		end
+	end
 })
 
 ----------------------------------------------------------------------------------------

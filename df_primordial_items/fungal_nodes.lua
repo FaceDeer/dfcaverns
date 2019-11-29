@@ -26,7 +26,7 @@ minetest.register_node("df_primordial_items:fungal_grass_1", {
 })
 
 minetest.register_node("df_primordial_items:fungal_grass_2", {
-	description = S("Primordial Jungle Grass"),
+	description = S("Primordial Fungal Grass"),
 	_doc_items_longdesc = df_primordial_items.doc.fungal_grass_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.fungal_grass_usage,
 	tiles = {"dfcaverns_mush_grass_02.png"},

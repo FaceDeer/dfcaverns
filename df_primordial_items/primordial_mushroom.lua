@@ -10,7 +10,7 @@ minetest.register_node("df_primordial_items:mushroom_trunk", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_place = minetest.rotate_node
 })
 
@@ -22,7 +22,7 @@ minetest.register_node("df_primordial_items:mushroom_cap", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_place = minetest.rotate_node
 })
 

@@ -393,6 +393,10 @@ df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, height, di
 
 	local previous_vi = vi
 	local pattern = tunnel_tube_patterns[height]
+	if pattern == nil then
+		minetest.log("error", "Tunnel tube pattern was nil somehow. height: " .. string(height) .. " location: " .. minetest.pos_to_string(area:position(vi)))
+		return nil
+	end
 	for i, nodepattern in ipairs(pattern) do
 		local current_vi = vi + nodepattern[1] * increment
 		if data[current_vi] == c_air or data[current_vi] == c_ignore then

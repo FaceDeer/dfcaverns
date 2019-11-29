@@ -33,7 +33,7 @@ minetest.register_node("df_primordial_items:giant_hypha_root", {
 	light_source = 2,
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	drop = {
 		max_items = 1,
 		items = {
@@ -60,7 +60,7 @@ minetest.register_node("df_primordial_items:giant_hypha", {
 	light_source = 2,
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	drop = {
 		max_items = 1,
 		items = {
@@ -300,7 +300,7 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, light_sensitive_fungus = 13},
 	_dfcaverns_dead_node = "df_primordial_items:giant_hypha_root",
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_construct = function(pos)
 		minetest.get_node_timer(pos):start(math.random(min_growth_delay, max_growth_delay))
 	end,
@@ -362,7 +362,7 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, not_in_creative_inventory = 1},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 })
 
 local grow_mycelium_immediately = function(pos)

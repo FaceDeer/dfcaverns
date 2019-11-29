@@ -211,7 +211,6 @@ end
 
 ---------------------------------------------------------------------------------
 -- This method allows subterrane to overgenerate caves without destroying any of the decorations
--- Water is included so that the sunless sea won't have gaps torn in it
 local dfcaverns_nodes = nil
 local dfcaverns_mods = {
 	"df_farming:",

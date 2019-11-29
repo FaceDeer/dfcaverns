@@ -20,6 +20,8 @@ local perlin_wave_primordial = {
 	persist = 0.63
 }
 
+local c_air = minetest.get_content_id("air")
+
 -----------------------------------------------------------------------------------------
 -- Fungal biome
 
@@ -50,7 +52,7 @@ local mushroom_cavern_floor = function(abs_cracks, humidity, vi, area, data, dat
 	local rand = math.random() * math.min(abs_cracks, 1) * humidityfactor
 	if rand < 0.001 then
 		data[vi+ystride] = c_giant_mycelium
-	elseif rand < 0.01 then
+	elseif rand < 0.005 then
 		local schematic = df_primordial_items.get_primordial_mushroom()
 		local rotation = (math.random(1,4)-1)*90
 		mapgen_helper.place_schematic_on_data_if_it_fits(data, data_param2, area, area:position(vi+ystride), schematic, rotation)
@@ -133,6 +135,7 @@ local c_jungle_dirt = minetest.get_content_id("df_primordial_items:dirt_with_jun
 local c_plant_matter = minetest.get_content_id("df_primordial_items:plant_matter")
 local c_packed_roots = minetest.get_content_id("df_primordial_items:packed_roots")
 local c_glowstone = minetest.get_content_id("df_underworld_items:glowstone")
+local c_ivy = minetest.get_content_id("df_primordial_items:jungle_ivy")
 
 local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_param2)
 	local ystride = area.ystride
@@ -141,13 +144,13 @@ local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_
 	data[vi] = c_jungle_dirt
 
 	local rand = math.random()
-	if rand < 0.05 * humidityfactor then
+	if rand < 0.025 * humidityfactor then
 		local fern_schematic = df_primordial_items.get_fern_schematic()
 		local rotation = (math.random(1,4)-1)*90
 		mapgen_helper.place_schematic_on_data_if_it_fits(data, data_param2, area, area:position(vi+ystride), fern_schematic, rotation)
-	elseif rand < 0.075 * (1-humidityfactor) then
+	elseif rand < 0.05 * (1-humidityfactor) then
 		df_primordial_items.spawn_jungle_mushroom_vm(vi+ystride, area, data)
-	elseif rand < 0.125 * (1-humidityfactor) then
+	elseif rand < 0.1 * (1-humidityfactor) then
 		df_primordial_items.spawn_jungle_tree_vm(math.random(8,14), vi+ystride, area, data)
 	elseif rand < 0.3 then
 		data[vi+ystride] = jungle_plants[math.random(1,#jungle_plants)]
@@ -157,12 +160,38 @@ end
 local jungle_cavern_ceiling = function(abs_cracks, vi, area, data, data_param2)
 	if abs_cracks < 0.25 then
 		data[vi] = c_glowstone
+	elseif abs_cracks > 0.75 and math.random() < 0.1 then
+		local ystride = area.ystride
+		local index = vi - ystride
+		for i = 1, math.random(16) do
+			if data[index] == c_air then
+				data[index] = c_ivy
+				index = index - ystride
+			else
+				break
+			end
+		end
 	end
 end
 
 local jungle_warren_ceiling = function(abs_cracks, vi, area, data, data_param2)
+	if abs_cracks < 0.1 then
+		data[vi] = c_glowstone
+	end
 end
 
+local jungle_warren_floor = function(abs_cracks, vi, area, data, data_param2)
+	local ystride = area.ystride
+	if abs_cracks < 0.7 then
+		data[vi] = c_jungle_dirt
+		local rand = math.random() * abs_cracks
+		if rand < 0.1 then
+			data[vi+ystride] = jungle_plants[math.random(1,#jungle_plants)]
+		end
+	elseif abs_cracks < 1 then
+		data[vi] = c_dirt
+	end
+end
 ---------------------------------------------------------------------------------------------------------
 
 local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, data)
@@ -233,11 +262,11 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local abs_cracks = math.abs(cracks)
 		local jungle = nvals_cave[vi] < 0
 		
---		if jungle then
---			jungle_warren_ceiling(abs_cracks, vi, area, data, data_param2)
---		else
+		if jungle then
+			jungle_warren_ceiling(abs_cracks, vi, area, data, data_param2)
+		else
 			mushroom_warren_ceiling(abs_cracks, vi, area, data, data_param2)
---		end
+		end
 
 	end
 
@@ -250,17 +279,21 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local abs_cracks = math.abs(cracks)
 		local jungle = nvals_cave[vi] < 0
 		
---		if jungle then
---			jungle_warren_floor(abs_cracks, vi, area, data, data_param2)
---		else
+		if jungle then
+			jungle_warren_floor(abs_cracks, vi, area, data, data_param2)
+		else
 			mushroom_warren_floor(abs_cracks, vi, area, data, data_param2)
---		end
+		end
 	end
 
 	-- columns
+	-- no flowstone below the Sunless Sea, replace with something else
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local jungle = nvals_cave[vi] < 0
 		if jungle then
+			data[vi] = c_plant_matter
+		else
+			data[vi] = c_mycelial_dirt
 		end
 	end
 
@@ -276,14 +309,14 @@ subterrane.register_layer({
 	perlin_cave = perlin_cave_primordial,
 	perlin_wave = perlin_wave_primordial,
 	solidify_lava = true,
-	columns = {
-		maximum_radius = 20,
-		minimum_radius = 5,
-		node = "df_mapitems:wet_flowstone", --TODO: no flowstone below the Sunless Sea, replace with something else
-		weight = 0.5,
-		maximum_count = 60,
-		minimum_count = 10,
-	},
+--	columns = {
+--		maximum_radius = 20,
+--		minimum_radius = 5,
+--		node = "df_mapitems:wet_flowstone", -- no flowstone below the Sunless Sea, replace with something else
+--		weight = 0.5,
+--		maximum_count = 60,
+--		minimum_count = 10,
+--	},
 	decorate = decorate_primordial,
 	double_frequency = true,
 	is_ground_content = df_caverns.is_ground_content,

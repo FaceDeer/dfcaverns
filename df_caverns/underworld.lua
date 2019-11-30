@@ -411,33 +411,15 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		
 		local shaftwallmin = {x=minp.x, y=math.max(underside_height-3, minp.y), z=minp.z}
 		local shaftwallmax = {x=minp.x+4, y=math.min(floor_height, maxp.y), z=minp.z+4}
-		local shaftcoremin = {x=minp.x+1, y=shaftwallmin.y, z=minp.z+1}
-		local shaftcoremax = {x=minp.x+3, y=math.min(floor_height+3, maxp.y), z=minp.z+3}
-
-		minetest.debug("minp,maxp")
-		minetest.debug(minetest.pos_to_string(minp))
-		minetest.debug(minetest.pos_to_string(maxp))
-
-		minetest.debug("wall")
-		minetest.debug(minetest.pos_to_string(shaftwallmin))
-		minetest.debug(minetest.pos_to_string(shaftwallmax))
 	
 		for wall_vi in area:iterp(shaftwallmin, shaftwallmax) do
 			data[wall_vi] = c_slade_block
 		end
-
-		minetest.debug("core")
-		minetest.debug(minetest.pos_to_string(shaftcoremin))
-		minetest.debug(minetest.pos_to_string(shaftcoremax))
-
-		for core_vi in area:iterp(shaftcoremin, shaftcoremax) do
-			data[core_vi] = c_air
-		end
 		
-		local puzzle_seal_y = floor_height-1--math.floor((floor_height+underside_height)/2)
+		local puzzle_seal_y = floor_height
 		if puzzle_seal_y < maxp.y and puzzle_seal_y > minp.y then
-			for seal_vi in area:iter(minp.x+1, puzzle_seal_y, minp.z+1, minp.x+3, puzzle_seal_y, minp.z+3) do
-				data[seal_vi] = c_slade_block
+			for seal_vi in area:iter(minp.x+1, puzzle_seal_y, minp.z+1, minp.x+3, puzzle_seal_y+2, minp.z+3) do
+				data[seal_vi] = c_air
 			end			
 			puzzle_init = {x=minp.x+2, y=puzzle_seal_y, z=minp.z+2}
 		end
@@ -454,6 +436,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:write_to_map()
 	
 	if puzzle_init ~= nil then
+		minetest.set_node(puzzle_init, {name="df_underworld_items:puzzle_seal"})
 	end
 	
 	if bones_loot_path then

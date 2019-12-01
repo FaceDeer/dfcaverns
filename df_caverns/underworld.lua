@@ -399,8 +399,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 	
-	-- puzzle shaft
-	local puzzle_init = nil	
+	-- puzzle seal
+	local puzzle_seal = nil	
 	if pit_uninitialized and minp.x == shaft.location.x and minp.z == shaft.location.z then
 		local index2d = mapgen_helper.index2d(emin, emax, minp.x + 3, minp.z + 3)
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
@@ -408,20 +408,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			
 		local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
 		local underside_height = math.floor(y_min + math.abs(wave) / 5)
-		
-		local shaftwallmin = {x=minp.x, y=math.max(underside_height-3, minp.y), z=minp.z}
-		local shaftwallmax = {x=minp.x+4, y=math.min(floor_height, maxp.y), z=minp.z+4}
-	
-		for wall_vi in area:iterp(shaftwallmin, shaftwallmax) do
-			data[wall_vi] = c_slade_block
-		end
-		
-		local puzzle_seal_y = floor_height
-		if puzzle_seal_y < maxp.y and puzzle_seal_y > minp.y then
-			for seal_vi in area:iter(minp.x+1, puzzle_seal_y, minp.z+1, minp.x+3, puzzle_seal_y+2, minp.z+3) do
-				data[seal_vi] = c_air
-			end			
-			puzzle_init = {x=minp.x+2, y=puzzle_seal_y, z=minp.z+2}
+
+		if floor_height < maxp.y and floor_height > minp.y then
+			for plat_vi in area:iter(minp.x, floor_height-6, minp.z, minp.x+6, floor_height, minp.z+6) do
+				data[plat_vi] = c_slade_block
+			end
+			puzzle_seal = {x=minp.x+3, y=floor_height+1, z=minp.z+3}
 		end
 	end
 
@@ -435,8 +427,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	--write it to world
 	vm:write_to_map()
 	
-	if puzzle_init ~= nil then
-		minetest.set_node(puzzle_init, {name="df_underworld_items:puzzle_seal"})
+	if puzzle_seal ~= nil then
+		minetest.place_schematic({x=puzzle_seal.x-3, y=puzzle_seal.y, z=puzzle_seal.z-3}, df_underworld_items.seal_temple_schem, 0, {}, true)
+		minetest.set_node(puzzle_seal, {name="df_underworld_items:puzzle_seal"})
 	end
 	
 	if bones_loot_path then

@@ -71,8 +71,11 @@ local oubliette_threshold = 0.8
 local town_threshold = 1.1
 
 local local_random = function(x, z)
+	local next_seed = math.floor(math.random()*2^21)
 	math.randomseed(x + z*2^16)
-	return math.random()
+	local ret = math.random()
+	math.randomseed(next_seed)
+	return ret
 end
 
 -- create a deterministic list of buildings
@@ -397,7 +400,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 	-- puzzle seal
 	local puzzle_seal = nil	
-	if pit_uninitialized and math.random() < 0.1 then
+	if pit_uninitialized and math.random() < 0.15 then
 		local index2d = mapgen_helper.index2d(emin, emax, minp.x + 3, minp.z + 3)
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 		local wave = nvals_wave[index2d] * wave_mult
@@ -410,6 +413,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				data[plat_vi] = c_slade_block
 			end
 			puzzle_seal = {x=minp.x+3, y=floor_height+1, z=minp.z+3}
+			minetest.log("info", "Puzzle seal generated at " .. minetest.pos_to_string(puzzle_seal))
 		end
 	end
 

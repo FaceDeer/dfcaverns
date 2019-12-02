@@ -51,6 +51,12 @@ bones_loot.register_loot({
 	{name = "bucket:bucket_empty", chance = 0.3, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "fire:flint_and_steel", chance = 0.3, count = {1,2}, types = {"underworld_warrior"}},
 	{name = "flowers:tulip_black", chance = 0.01, count = {1,1}, types = {"underworld_warrior"}},
+	{name = "flowers:dandelion_white", chance = 0.01, count = {1,1}, types = {"underworld_warrior"}},
+	{name = "flowers:dandelion_yellow", chance = 0.01, count = {1,1}, types = {"underworld_warrior"}},
+	{name = "flowers:rose", chance = 0.01, count = {1,1}, types = {"underworld_warrior"}},
+	{name = "flowers:tulip", chance = 0.01, count = {1,1}, types = {"underworld_warrior"}},
+	{name = "flowers:chrysanthemum_green", chance = 0.01, count = {1,1}, types = {"underworld_warrior"}},
+	{name = "flowers:geranium", chance = 0.01, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "map:mapping_kit", chance = 0.1, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "screwdriver:screwdriver", chance = 0.05, count = {1,1}, types = {"underworld_warrior"}},
 	-- don't give the player tnt:tnt, they can craft that from this if tnt is enabled for them

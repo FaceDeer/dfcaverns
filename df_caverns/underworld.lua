@@ -397,7 +397,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 	-- puzzle seal
 	local puzzle_seal = nil	
-	if pit_uninitialized and math.random() < 0.025 then
+	if pit_uninitialized and math.random() < 0.1 then
 		local index2d = mapgen_helper.index2d(emin, emax, minp.x + 3, minp.z + 3)
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 		local wave = nvals_wave[index2d] * wave_mult

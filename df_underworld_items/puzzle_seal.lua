@@ -58,7 +58,10 @@ local test_key = function(pos)
 			end
 		end
 		if valid then
-			meta:set_int("unlocked", 1)
+			local unlocked = meta:get_int("unlocked")
+			if unlocked == 0 then
+				meta:set_int("unlocked", 1)
+			end
 			return true
 		end
 	end
@@ -105,7 +108,7 @@ local show_key = function(pos, index)
     minetest.sound_play("dfcaverns_seal_key", {
         pos = pos,
         gain = 0.125,
-        max_hear_distance = 16,
+        max_hear_distance = 32,
     })
     local meta = minetest.get_meta(pos)
 	local keystring = meta:get_string("key")
@@ -131,12 +134,13 @@ local show_key = function(pos, index)
 	})
 end
 
-local show_unlocked = function(pos)
+local show_unlocked = function(pos, global)
 	-- Plays globally. This is deliberate.
-	minetest.sound_play("dfcaverns_seal_unlocked", {
-        gain = 1.0,
-        pitch = 1.0,
-    })
+	if global then
+		minetest.sound_play("dfcaverns_seal_unlocked", {})
+	else
+		minetest.sound_play("dfcaverns_seal_unlocked", {pos = pos, max_hear_distance = 128,})
+	end
 	minetest.add_particle({
 		pos = pos,
 		velocity = {x=0, y=1, z=0},
@@ -180,8 +184,10 @@ local puzzle_seal_def = {
 	end,
 	on_timer = function(pos, elapsed)	
 		local meta = minetest.get_meta(pos)
-		if meta:get_int("unlocked") > 0 then
-			show_unlocked(pos)
+		local unlocked = meta:get_int("unlocked")
+		if unlocked > 0 then
+			meta:set_int("unlocked", unlocked + 1)
+			show_unlocked(pos, unlocked <= 13)
 		else
 			local index = meta:get_int("key_index")
 			show_key(pos, index)

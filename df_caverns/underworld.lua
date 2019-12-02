@@ -224,11 +224,8 @@ local get_pit = function(pos)
 	local radius = variance_multiplier * (radius_pit_max - 15) + 15
 	local variance = radius_pit_variance/2 + radius_pit_variance*variance_multiplier/2
 	local depth = math.random(plasma_depth_min, plasma_depth_max)
-	
-	local shaft_seed = math.random()
-	local shaft_location = corner_xz
 	math.randomseed(next_seed)
-	return {location = location, radius = radius, variance = variance, depth = depth}, {seed = shaft_seed, location = shaft_location}
+	return {location = location, radius = radius, variance = variance, depth = depth}
 end
 
 local perlin_pit = {
@@ -248,10 +245,9 @@ minetest.register_chatcommand("find_pit", {
 	decription = "find a nearby glowing pit",
 	func = function(name, param)
 		local player = minetest.get_player_by_name(name)
-		local pit, shaft = get_pit(player:get_pos())
+		local pit = get_pit(player:get_pos())
 		if pit then
 			minetest.chat_send_player(name, "Pit location: x=" .. math.floor(pit.location.x) .. " z=" .. math.floor(pit.location.z))
-			minetest.chat_send_player(name, "Shaft location: x=" .. math.floor(shaft.location.x) .. " z=" .. math.floor(shaft.location.z))
 		end
 	end,
 })
@@ -273,7 +269,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", emin, emax, perlin_wave) --cave noise for structure
 	local nvals_zone = mapgen_helper.perlin2d("df_caverns:underworld_zone", emin, emax, perlin_zone) --building zones
 	
-	local pit, shaft = get_pit(minp)
+	local pit = get_pit(minp)
 	--minetest.chat_send_all(minetest.pos_to_string(pit.location))
 
 	local buildings = get_buildings(emin, emax, nvals_zone)
@@ -300,7 +296,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				then
 					-- there's a pit nearby
 					if pit_uninitialized then
-						nvals_pit, area_pit = mapgen_helper.perlin3d("df_cavern:perlin_cave", minp, maxp, perlin_pit) -- determine which areas are spongey with warrens
+						nvals_pit, area_pit = mapgen_helper.perlin3d("df_cavern:perlin_cave", minp, maxp, perlin_pit)
 						pit_uninitialized = false
 					end
 					local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
@@ -401,7 +397,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 	-- puzzle seal
 	local puzzle_seal = nil	
-	if pit_uninitialized and minp.x == shaft.location.x and minp.z == shaft.location.z then
+	if pit_uninitialized and math.random() < 0.025 then
 		local index2d = mapgen_helper.index2d(emin, emax, minp.x + 3, minp.z + 3)
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 		local wave = nvals_wave[index2d] * wave_mult
@@ -429,7 +425,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 	if puzzle_seal ~= nil then
 		minetest.place_schematic({x=puzzle_seal.x-3, y=puzzle_seal.y, z=puzzle_seal.z-3}, df_underworld_items.seal_temple_schem, 0, {}, true)
-		minetest.set_node(puzzle_seal, {name="df_underworld_items:puzzle_seal"})
+		local node_name = minetest.get_node(puzzle_seal).name
+		local node_def = minetest.registered_nodes[node_name]
+		node_def.on_construct(puzzle_seal)
 	end
 	
 	if bones_loot_path then

@@ -77,10 +77,22 @@ local test_key = function(pos)
 	return false
 end
 
+
+--We were a powerful culture.
+--This place is not a place of honor.
+--No esteemed deed is commemorated here.
+--What is here is dangerous and repulsive.
+--This message is a warning about danger.
+--The danger is still present.
+--The danger is unleashed if you disturb this place.
+--This place is best shunned and left uninhabited.
+
 local formspec_prefix = "df_underworld_items_puzzle_seal:"
 local get_formspec = function(pos, unlocked)
 	local formspec = 
 		"size[8,8]"
+		.."image[0,0;2.5,4;dfcaverns_puzzle_inscription_1.png]"
+		.."image[5.8,0;2.5,4;dfcaverns_puzzle_inscription_2.png]"
 		.."container[2.25,0]"
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;0.25,0.25;1,1;0]"
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;1.25,0;1,1;1]"
@@ -344,8 +356,6 @@ local inscription_block_def = {
 	is_ground_content = false,
 	on_blast = function() end,
 	on_rotate = function() return false end,
-	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-	end,
 }
 
 minetest.register_node("df_underworld_items:inscription_block", inscription_block_def)

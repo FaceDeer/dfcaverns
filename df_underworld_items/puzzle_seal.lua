@@ -4,6 +4,14 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 local invulnerable = df_underworld_items.config.invulnerable_slade and not minetest.settings:get_bool("creative_mode")
 
+local slade_groups = nil
+if invulnerable then
+	slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, immortal = 1, not_in_creative_inventory=1}
+else
+	slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, not_in_creative_inventory=1}
+end
+
+
 -- Ensures that the node is functioning correctly
 local ensure_meta = function(pos)
     local meta = minetest.get_meta(pos)
@@ -162,9 +170,9 @@ local puzzle_seal_def = {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = 8,
-	groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, not_in_creative_inventory=1},
+	groups = slade_groups,
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
-		selection_box = {
+	selection_box = {
 		type = "fixed",
 		fixed = {-0.625, -0.625, -0.625, 0.625, 0.625, 0.625},
 	},
@@ -206,11 +214,6 @@ local puzzle_seal_def = {
 	end,
 }
 
-if invulnerable then
-	puzzle_seal_def.groups.immortal = 1
-else
-	puzzle_seal_def.groups.cracky = 3
-end
 
 minetest.register_node("df_underworld_items:puzzle_seal", puzzle_seal_def)
 
@@ -229,7 +232,7 @@ local digging_seal_def = {
 	light_source = 15,
 	groups = {immortal=1, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
-		selection_box = {
+	selection_box = {
 		type = "fixed",
 		fixed = {-0.625, -0.625, -0.625, 0.625, 0.625, 0.625},
 	},
@@ -321,6 +324,68 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
+-------------------------------------------------------------------------------------------------
+
+local inscription_block_def = {
+	description = S("Inscribed Slade Block"),
+	_doc_items_longdesc = nil,
+	_doc_items_usagehelp = nil,
+	tiles = {
+		"dfcaverns_slade_block.png",
+		"dfcaverns_slade_block.png",
+		"dfcaverns_slade_block.png^(dfcaverns_inscription_1.png^[opacity:128)",
+		"dfcaverns_slade_block.png^(dfcaverns_inscription_2.png^[opacity:128)",
+		"dfcaverns_slade_block.png^(dfcaverns_inscription_3.png^[opacity:128)",
+		"dfcaverns_slade_block.png^(dfcaverns_inscription_4.png^[opacity:128)",
+	},
+	paramtype2 = "facedir",
+	groups = slade_groups,
+	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	is_ground_content = false,
+	on_blast = function() end,
+	on_rotate = function() return false end,
+	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+	end,
+}
+
+minetest.register_node("df_underworld_items:inscription_block", inscription_block_def)
+
+
+local capstone_def = {
+	description = S("Slade Capstone"),
+	_doc_items_longdesc = nil,
+	_doc_items_usagehelp = nil,
+	drawtype = "mesh",
+	mesh = "underworld_capstone.obj",
+	tiles = {
+		"dfcaverns_slade_block.png",
+		"dfcaverns_slade_block.png"
+	},
+	selection_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
+			{-0.25, 0, -0.25, 0.25, 0.5, 0.25},
+		},
+	},
+	collision_box = {
+		type = "fixed",
+		fixed = {
+			{-0.5, -0.5, -0.5, 0.5, 0, 0.5},
+			{-0.25, 0, -0.25, 0.25, 0.5, 0.25},
+		},
+	},
+	paramtype = "light",
+	paramtype2 = "facedir",
+	groups = slade_groups,
+	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	is_ground_content = false,
+	on_blast = function() end,
+	on_rotate = function() return false end,
+}
+
+minetest.register_node("df_underworld_items:slade_capstone", capstone_def)
+
 -----------------------------------------------------------------------------------------
 -- Schematics
 
@@ -335,6 +400,12 @@ local n7 = n3
 local n9 = n3
 local n10 = n1
 local n11 = n3
+
+local n12 = { name = "df_underworld_items:inscription_block", param2 = 0 }
+local n13 = { name = "df_underworld_items:inscription_block", param2 = 1 }
+local n14 = { name = "df_underworld_items:inscription_block", param2 = 2 }
+local n15 = { name = "df_underworld_items:inscription_block", param2 = 3 }
+local n16 = { name = "df_underworld_items:slade_capstone"}
 
 if minetest.get_modpath("stairs") then
 	local stair_groups = {level = 3, mese_radiation_shield=1, pit_plasma_resistant=1, slade=1}
@@ -365,8 +436,8 @@ end
 df_underworld_items.seal_temple_schem = {
 	size = {y = 6, x = 7, z = 7},
 	data = {
-		n1, n2, n3, n3, n3, n4, n1, n1, n3, n3, n3, n3, n3, n1, n1, n3, n3, 
-		n3, n3, n3, n1, n5, n3, n3, n3, n3, n3, n5, n6, n6, n6, n6, n6, n6, 
+		n15, n2, n3, n3, n3, n4, n14, n14, n3, n3, n3, n3, n3, n15, n13, n3, n3, 
+		n3, n3, n3, n13, n16, n3, n3, n3, n3, n3, n16, n6, n6, n6, n6, n6, n6, 
 		n6, n6, n6, n6, n6, n6, n6, n6, n7, n3, n3, n3, n3, n3, n7, n3, n3, 
 		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, 
 		n3, n3, n6, n3, n3, n3, n3, n3, n6, n6, n6, n6, n6, n6, n6, n6, n3, 
@@ -379,9 +450,9 @@ df_underworld_items.seal_temple_schem = {
 		n3, n3, n3, n3, n3, n3, n3, n3, n3, n6, n3, n3, n3, n3, n3, n6, n6, 
 		n6, n3, n3, n3, n6, n6, n9, n3, n3, n3, n3, n3, n9, n3, n3, n3, n3, 
 		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, 
-		n6, n3, n3, n3, n3, n3, n6, n6, n6, n6, n6, n6, n6, n6, n1, n2, n3, 
-		n3, n3, n4, n1, n1, n3, n3, n3, n3, n3, n1, n1, n3, n3, n3, n3, n3, 
-		n1, n5, n3, n3, n3, n3, n3, n5, n6, n6, n6, n6, n6, n6, n6, n6, n6, 
+		n6, n3, n3, n3, n3, n3, n6, n6, n6, n6, n6, n6, n6, n6, n12, n2, n3, 
+		n3, n3, n4, n12, n14, n3, n3, n3, n3, n3, n15, n13, n3, n3, n3, n3, n3, 
+		n12, n16, n3, n3, n3, n3, n3, n16, n6, n6, n6, n6, n6, n6, n6, n6, n6, 
 		n6, n6, n6, n6, n6, 
 	}
 }

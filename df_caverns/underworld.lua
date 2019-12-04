@@ -287,9 +287,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local wave = nvals_wave[index2d] * wave_mult
 			
 			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
-			local underside_height = y_min + math.abs(wave) / 5
+			local underside_height = math.floor(y_min + math.abs(wave) / 5)+2 -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-			if y < floor_height and y > underside_height then -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
+			if (y == underside_height or y == underside_height - 1) and (x % 8 == 0 or z % 8 == 0) then
+				data[vi] = c_air
+			elseif y < floor_height and y > underside_height then 
 				data[vi] = c_slade
 				if	pit and
 					pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and

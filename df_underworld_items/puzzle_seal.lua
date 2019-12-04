@@ -91,8 +91,8 @@ local formspec_prefix = "df_underworld_items_puzzle_seal:"
 local get_formspec = function(pos, unlocked)
 	local formspec = 
 		"size[8,8]"
-		.."image[0,0;2.5,4;dfcaverns_puzzle_inscription_1.png]"
-		.."image[5.8,0;2.5,4;dfcaverns_puzzle_inscription_2.png]"
+		.."image[0,0;2.5,4;dfcaverns_puzzle_inscription_background.png^dfcaverns_puzzle_inscription_1.png]"
+		.."image[5.8,0;2.5,4;dfcaverns_puzzle_inscription_background.png^[transformR180^dfcaverns_puzzle_inscription_2.png]"
 		.."container[2.25,0]"
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;0.25,0.25;1,1;0]"
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;1.25,0;1,1;1]"

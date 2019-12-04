@@ -178,7 +178,7 @@ local puzzle_seal_def = {
 	_doc_items_usagehelp = nil,
 	drawtype = "mesh",
 	mesh = "underworld_seal.obj",
-	tiles = {"dfcaverns_slade_block.png", "dfcaverns_slade_block.png^dfcaverns_seal.png", "dfcaverns_slade_block.png"},
+	tiles = {"dfcaverns_slade_block.png", "dfcaverns_slade_block.png^dfcaverns_seal.png", "dfcaverns_slade_block.png^(dfcaverns_inscription_1.png^[opacity:128)"},
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = 8,
@@ -233,7 +233,7 @@ minetest.register_node("df_underworld_items:puzzle_seal", puzzle_seal_def)
 -- Once the seal is opened, it turns into this and digs its way down through the slade.
 
 local digging_seal_def = {
-	description = S("Slade Digging Seal"),
+	description = S("Active Slade Breacher"),
 	_doc_items_longdesc = nil,
 	_doc_items_usagehelp = nil,
 	drawtype = "mesh",

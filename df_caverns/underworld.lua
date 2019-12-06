@@ -443,7 +443,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local index2d = mapgen_helper.index2d(emin, emax, x, z)
 			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 			local wave = nvals_wave[index2d] * wave_mult
-			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)-1
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 			if floor_height < ceiling_height then
 				local zone = math.abs(nvals_zone[index2d])

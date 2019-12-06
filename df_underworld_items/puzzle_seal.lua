@@ -149,7 +149,7 @@ local show_key = function(pos, index)
 		maxexptime = 3,
 		minsize = 1,
 		maxsize = 1,
-		texture = "dfcaverns_glow_amethyst.png",
+		texture = "dfcaverns_puzzle_particle.png",
 		glow = 8,
 	})
 end
@@ -388,6 +388,7 @@ local capstone_def = {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	groups = slade_groups,
+	light_source = 8,
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
 	on_blast = function() end,

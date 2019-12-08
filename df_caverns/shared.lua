@@ -233,6 +233,8 @@ df_caverns.is_ground_content = function(c_node)
 			end
 		end
 	end
+	dfcaverns_nodes[minetest.get_content_id("default:ice")] = true -- needed for nethercap cavern water covering
+	dfcaverns_nodes[minetest.get_content_id("oil:oil_source")] = true -- needed for blackcap oil slicks
 	dfcaverns_mods = nil
 	return not dfcaverns_nodes[c_node]
 end

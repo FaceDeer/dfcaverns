@@ -28,7 +28,7 @@ if minetest.get_modpath("ice_sprites") then
 	c_sprite = minetest.get_content_id("ice_sprites:ice_sprite")
 end
 
-local subsea_level = df_caverns.config.level3_min - (df_caverns.config.level3_min - df_caverns.config.level2_min) * 0.33
+local subsea_level = math.floor(df_caverns.config.level3_min - (df_caverns.config.level3_min - df_caverns.config.level2_min) * 0.33)
 local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold, df_caverns.config.cavern_threshold)
 
 local ice_thickness = 3
@@ -208,7 +208,8 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	-- Partly fill flooded caverns and warrens
 	if minp.y <= subsea_level then
 		for vi, x, y, z in area:iterp_yxz(area.MinEdge, area.MaxEdge) do
-			if y <= subsea_level and nvals_cave[vi] < -flooding_threshold then
+			local cave = nvals_cave[vi]
+			if y <= subsea_level and cave < -flooding_threshold then
 				if data[vi] == c_air and y <= subsea_level then
 					data[vi] = c_water
 				end
@@ -218,8 +219,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 					local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 					if biome_name == "blackcap" then
 						-- oil slick
-						local cave = math.abs(nvals_cave[vi])
-						if y == subsea_level and data[vi] == c_water and cave + nvals_cracks[index2d]*0.025 < cavern_def.cave_threshold + 0.1 then
+						if y == subsea_level and data[vi] == c_water and math.abs(cave) + nvals_cracks[index2d]*0.025 < cavern_def.cave_threshold + 0.1 then
 							data[vi] = c_oil
 						end
 					elseif biome_name == "bloodnether" and y <= subsea_level and y > subsea_level - ice_thickness and data[vi] == c_water then

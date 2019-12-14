@@ -8,7 +8,7 @@ local S, NS = dofile(MP.."/intllib.lua")
 -- cyan/dark cyan
 
 minetest.register_node("df_mapitems:dirt_with_cave_moss", {
-	description = S("Dirt With Cave Moss"),
+	description = S("Dirt with Cave Moss"),
 	_doc_items_longdesc = df_mapitems.doc.cave_moss_desc,
 	_doc_items_usagehelp = df_mapitems.doc.cave_moss_usage,
 	tiles = {"default_dirt.png^dfcaverns_cave_moss.png", "default_dirt.png", 
@@ -45,13 +45,26 @@ minetest.register_abm{
 	end,
 }
 
+if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
+	local HARDPACK_PROBABILITY = minetest.settings:get("trail_hardpack_probability") or 0.5 -- Chance walked dirt/grass is worn and compacted to trail:trail.
+	local HARDPACK_COUNT = minetest.settings:get("trail_hardpack_count") or 5 -- Number of times the above chance needs to be passed for soil to compact.
+
+	trail.register_trample_node("df_mapitems:dirt_with_cave_moss", {
+		trampled_node_def_override = {description = S("Dirt with Cave Moss and Footprint"),},
+		hard_pack_node_name = "trail:trail",
+		footprint_opacity = 128,
+		hard_pack_probability = HARDPACK_PROBABILITY,
+		hard_pack_count = HARDPACK_COUNT,
+	})	
+end
+
 --------------------------------------------------
 -- floor fungus
 
 -- white/yellow
 
 minetest.register_node("df_mapitems:cobble_with_floor_fungus", {
-	description = S("Cobblestone With Floor Fungus"),
+	description = S("Cobblestone with Floor Fungus"),
 	_doc_items_longdesc = df_mapitems.doc.floor_fungus_desc,
 	_doc_items_usagehelp = df_mapitems.doc.floor_fungus_usage,
 	tiles = {"default_cobble.png^dfcaverns_floor_fungus.png"},
@@ -66,7 +79,7 @@ minetest.register_node("df_mapitems:cobble_with_floor_fungus", {
 })
 
 minetest.register_node("df_mapitems:cobble_with_floor_fungus_fine", {
-	description = S("Cobblestone With Floor Fungus"),
+	description = S("Cobblestone with Floor Fungus"),
 	_doc_items_longdesc = df_mapitems.doc.floor_fungus_desc,
 	_doc_items_usagehelp = df_mapitems.doc.floor_fungus_usage,
 	tiles = {"default_cobble.png^dfcaverns_floor_fungus_fine.png"},
@@ -106,7 +119,7 @@ minetest.register_abm{
 -- Hoar moss
 
 minetest.register_node("df_mapitems:ice_with_hoar_moss", {
-	description = S("Ice With Hoar Moss"),
+	description = S("Ice with Hoar Moss"),
 	_doc_items_longdesc = df_mapitems.doc.hoar_moss_desc,
 	_doc_items_usagehelp = df_mapitems.doc.hoar_moss_usage,
 	tiles = {"default_ice.png^dfcaverns_hoar_moss.png"},

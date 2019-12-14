@@ -107,7 +107,7 @@ minetest.register_node("df_primordial_items:glow_pods", {
 -- Dirt
 
 minetest.register_node("df_primordial_items:dirt_with_mycelium", {
-	description = S("Dirt With Primordial Mycelium"),
+	description = S("Dirt with Primordial Mycelium"),
 	tiles = {"dfcaverns_mush_soil.png"},
 	groups = {crumbly = 3, soil = 1},
 	is_ground_content = false,
@@ -115,3 +115,16 @@ minetest.register_node("df_primordial_items:dirt_with_mycelium", {
 	sounds = default.node_sound_dirt_defaults(),
 	light_source = 3,
 })
+
+if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
+	local HARDPACK_PROBABILITY = minetest.settings:get("trail_hardpack_probability") or 0.5 -- Chance walked dirt/grass is worn and compacted to trail:trail.
+	local HARDPACK_COUNT = minetest.settings:get("trail_hardpack_count") or 5 -- Number of times the above chance needs to be passed for soil to compact.
+
+	trail.register_trample_node("df_primordial_items:dirt_with_mycelium", {
+		trampled_node_def_override = {description = S("Dirt with Primordial Mycelium and Footprint"),},
+		footprint_opacity = 196,
+		hard_pack_node_name = "trail:trail",
+		hard_pack_probability = HARDPACK_PROBABILITY,
+		hard_pack_count = HARDPACK_COUNT,
+	})	
+end

@@ -136,6 +136,7 @@ local c_plant_matter = minetest.get_content_id("df_primordial_items:plant_matter
 local c_packed_roots = minetest.get_content_id("df_primordial_items:packed_roots")
 local c_glowstone = minetest.get_content_id("df_underworld_items:glowstone")
 local c_ivy = minetest.get_content_id("df_primordial_items:jungle_ivy")
+local c_root = minetest.get_content_id("df_primordial_items:jungle_roots_2")
 
 local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_param2)
 	local ystride = area.ystride
@@ -163,9 +164,15 @@ local jungle_cavern_ceiling = function(abs_cracks, vi, area, data, data_param2)
 	elseif abs_cracks > 0.75 and math.random() < 0.1 then
 		local ystride = area.ystride
 		local index = vi - ystride
+		local hanging_node
+		if math.random() < 0.5 then
+			hanging_node = c_ivy
+		else
+			hanging_node = c_root
+		end
 		for i = 1, math.random(16) do
 			if data[index] == c_air then
-				data[index] = c_ivy
+				data[index] = hanging_node
 				index = index - ystride
 			else
 				break

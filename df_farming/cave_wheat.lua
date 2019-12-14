@@ -147,3 +147,41 @@ minetest.register_craft({
 	output = "df_farming:cave_bread",
 	recipe = "df_farming:cave_flour"
 })
+
+if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
+	minetest.register_node("df_farming:wheat_trampled", {
+		description = S("Flattened Cave Wheat"),
+		tiles = {"dfcaverns_cave_wheat_flattened.png"},
+		inventory_image = "dfcaverns_cave_wheat_flattened.png",
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		buildable_to = true,
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.5, 0.5, -3 / 8, 0.5}
+			},
+		},
+		groups = {snappy = 3, flammable = 2, attached_node = 1},
+		drop = "",
+		sounds = default.node_sound_leaves_defaults(),
+	})
+	
+	trail.register_trample_node("df_farming:cave_wheat_5", {
+		trampled_node_name = "df_farming:wheat_trampled",
+		randomize_trampled_param2 = true,
+	})
+	trail.register_trample_node("df_farming:cave_wheat_6", {
+		trampled_node_name = "df_farming:wheat_trampled",
+		randomize_trampled_param2 = true,
+	})
+	trail.register_trample_node("df_farming:cave_wheat_7", {
+		trampled_node_name = "df_farming:wheat_trampled",
+		randomize_trampled_param2 = true,
+	})
+	trail.register_trample_node("df_farming:cave_wheat_8", {
+		trampled_node_name = "df_farming:wheat_trampled",
+		randomize_trampled_param2 = true,
+	})
+end

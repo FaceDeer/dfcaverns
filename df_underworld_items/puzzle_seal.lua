@@ -241,7 +241,7 @@ local digging_seal_def = {
 	tiles = {"dfcaverns_pit_plasma_static.png", "dfcaverns_pit_plasma_static.png^dfcaverns_seal.png", "dfcaverns_pit_plasma_static.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 15,
+	light_source = default.LIGHT_MAX,
 	groups = {immortal=1, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, not_in_creative_inventory=1},
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	selection_box = {

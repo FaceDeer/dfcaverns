@@ -2,6 +2,11 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
+local vegetation =
+{
+}
+
+
 ----------------------------------------------------
 -- Ferns
 
@@ -250,6 +255,26 @@ minetest.register_node("df_primordial_items:plant_matter", {
 	groups = {crumbly = 3, soil = 1},
 	sounds = default.node_sound_dirt_defaults(),
 })
+if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
+	local HARDPACK_PROBABILITY = minetest.settings:get("trail_hardpack_probability") or 0.5 -- Chance walked dirt/grass is worn and compacted to trail:trail.
+	local HARDPACK_COUNT = minetest.settings:get("trail_hardpack_count") or 5 -- Number of times the above chance needs to be passed for soil to compact.
+
+	trail.register_trample_node("df_primordial_items:dirt_with_jungle_grass", {
+		trampled_node_def_override = {description = S("Dirt With Primordial Jungle Grass and Footprint"),},
+		footprint_opacity = 128,
+		hard_pack_node_name = "trail:trail",
+		hard_pack_probability = HARDPACK_PROBABILITY,
+		hard_pack_count = HARDPACK_COUNT,
+	})	
+	trail.register_trample_node("df_primordial_items:plant_matter", {
+		trampled_node_def_override = {description = S("Primordial Plant Matter with Footprint"),},
+		footprint_opacity = 128,
+		hard_pack_node_name = "trail:trail",
+		hard_pack_probability = HARDPACK_PROBABILITY,
+		hard_pack_count = HARDPACK_COUNT,
+	})
+end
+
 minetest.register_node("df_primordial_items:packed_roots", {
 	description = S("Packed Primordial Jungle Roots"),
 	_doc_items_longdesc = df_primordial_items.doc.packed_roots_desc,
@@ -305,7 +330,7 @@ minetest.register_node("df_primordial_items:jungle_roots_2", {
 	tiles = {"dfcaverns_jungle_root_02.png"},
 	inventory_image = "dfcaverns_jungle_root_02.png",
 	wield_image = "dfcaverns_jungle_root_02.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
 	sounds = default.node_sound_leaves_defaults(),
@@ -327,7 +352,7 @@ minetest.register_node("df_primordial_items:jungle_thorns", {
 	visual_scale = 1.41,
 	inventory_image = "dfcaverns_jungle_thorns_01.png",
 	wield_image = "dfcaverns_jungle_thorns_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
 	walkable = false,
@@ -338,3 +363,55 @@ minetest.register_node("df_primordial_items:jungle_thorns", {
 	sunlight_propagates = true,
 	damage_per_second = 1,
 })
+
+--local thorn_dir = 
+--{
+--	{x=1,y=0,z=1},
+--	{x=-1,y=0,z=-1},
+--	{x=1,y=0,z=0},
+--	{x=1,y=0,z=-1},
+--	{x=-1,y=0,z=0},
+--	{x=-1,y=0,z=1},
+--}
+--
+--
+--local thorn_name = "df_primordial_items:jungle_thorns"
+--minetest.register_abm({
+--	label = "Primordial thorn growth",
+--	nodenames = {thorn_name},
+--	neighbors = {"group:soil"},
+--	interval = 1.0,
+--	chance = 5,
+--	catch_up = true,
+--	action = function(pos, node, active_object_count, active_object_count_wider)
+--		if math.random() < 0.1 then
+--			local above = vector.add({x=0,y=1,z=0},pos)
+--			local below = vector.add({x=0,y=-1,z=0},pos)
+--			local above_node = minetest.get_node(above)
+--			local below_node = minetest.get_node(below)
+--			if above_node.name == "air" and minetest.get_item_group(below_node.name, "soil") then
+--				minetest.set_node(above, {name=thorn_name})
+--			end
+--			if below_node.name == "air" then
+--				minetest.set_node(below, {name=thorn_name})
+--			end
+--			return
+--		end
+--	
+--		local dir = thorn_dir[math.random(#thorn_dir)]
+--		local target_pos = vector.add(dir, pos)
+--		-- This gets the corners of the target zone
+--		local pos1 = vector.add(target_pos, thorn_dir[1])
+--		local pos2 = vector.add(target_pos, thorn_dir[2])
+--
+--		local list, counts = minetest.find_nodes_in_area(pos1, pos2, {thorn_name})
+--		local count = counts[thorn_name]
+--		local target_node = minetest.get_node(target_pos)
+--		-- Cellular automaton rule B3/S12345, approximately
+--		if count == 3 and target_node.name == "air" then
+--			minetest.set_node(target_pos, {name=thorn_name})
+--		elseif count > 5 then
+--			minetest.set_node(target_pos, {name="air"})
+--		end
+--	end
+--})

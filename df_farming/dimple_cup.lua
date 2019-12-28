@@ -20,6 +20,12 @@ local register_dimple_cup = function(number)
 		buildable_to = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, color_blue = 1, light_sensitive_fungus = 11, flower = 1},
 		sounds = default.node_sound_leaves_defaults(),
+        selection_box = {
+            type = "fixed",
+            fixed = {
+                {-8/16, -8/16, -8/16, 8/16, -8/16 + 4*number/16, 8/16},
+            },
+        },
 		
 		on_timer = function(pos, elapsed)
 			df_farming.grow_underground_plant(pos, name, elapsed)

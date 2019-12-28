@@ -165,7 +165,7 @@ local blood_thorn_cavern_floor = function(abs_cracks, vert_rand, vi, area, data,
 	if abs_cracks < 0.075 then
 		if vert_rand < 0.004 then
 			subterrane.big_stalagmite(ai, area, data, 6, 15, c_dry_flowstone, c_dry_flowstone, c_dry_flowstone)
-		elseif data[vi] ~= air and math.random() < 0.5 then
+		elseif data[vi] ~= c_air and math.random() < 0.5 then
 			data[vi] = c_salty_cobble
 			if data[ai] == c_air and math.random() < 0.25 then
 				data[ai] = c_salt_crystal
@@ -321,7 +321,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			else
 				-- bloodthorn ceiling
 				if abs_cracks < 0.075 then
-					if data[vi] ~= air and math.random() < 0.5 then
+					if data[vi] ~= c_air and math.random() < 0.5 then
 						data[vi] = c_salty_cobble
 						local bi = vi - area.ystride
 						if data[bi] == c_air and math.random() < 0.25 then

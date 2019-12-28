@@ -34,7 +34,7 @@ local plants = {
 
 --Plants
 
-setting("int", "plant_growth_time", 500, "Base plant growth time")
+setting("int", "plant_growth_time", 3600, "Base plant growth time") -- 60 minutes
 
 for _, plant in pairs(plants) do
 	setting("float", plant.name.."_delay_multiplier", plant.delay_multiplier, plant.name.." growth delay multiplier")

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-24 21:26-0700\n"
+"POT-Creation-Date: 2020-01-25 13:52-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,6 +84,38 @@ msgstr ""
 msgid "Lightseam"
 msgstr ""
 
+#: df_underworld_items\puzzle_seal.lua:108
+msgid "Turn"
+msgstr ""
+
+#: df_underworld_items\puzzle_seal.lua:178
+msgid "Slade Puzzle Seal"
+msgstr ""
+
+#: df_underworld_items\puzzle_seal.lua:238
+msgid "Active Slade Breacher"
+msgstr ""
+
+#: df_underworld_items\puzzle_seal.lua:336
+msgid "A breach in the Slade"
+msgstr ""
+
+#: df_underworld_items\puzzle_seal.lua:347
+msgid "Inscribed Slade Block"
+msgstr ""
+
+#: df_underworld_items\puzzle_seal.lua:370
+msgid "Slade Capstone"
+msgstr ""
+
+#: df_underworld_items\puzzle_seal.lua:439
+msgid "Slade Block Stair"
+msgstr ""
+
+#: df_underworld_items\puzzle_seal.lua:440
+msgid "Slade Block Slab"
+msgstr ""
+
 #: df_underworld_items\slade.lua:18
 msgid "Slade"
 msgstr ""
@@ -96,22 +128,22 @@ msgstr ""
 msgid "Slade Wall"
 msgstr ""
 
-#: df_underworld_items\slade.lua:77
+#: df_underworld_items\slade.lua:78
 msgid "Slade Sand"
 msgstr ""
 
-#: df_underworld_items\slade.lua:89
+#: df_underworld_items\slade.lua:90
 msgid "Slade Block"
 msgstr ""
 
-#: df_underworld_items\slade.lua:105
+#: df_underworld_items\slade.lua:106
 msgid "Slade Seal"
 msgstr ""
 
-#: df_underworld_items\slade.lua:154
+#: df_underworld_items\slade.lua:155
 msgid "Slade Stair"
 msgstr ""
 
-#: df_underworld_items\slade.lua:155
+#: df_underworld_items\slade.lua:156
 msgid "Slade Slab"
 msgstr ""

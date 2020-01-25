@@ -2,7 +2,42 @@ if not df_caverns.config.enable_underworld or not minetest.get_modpath("df_under
 	return
 end
 
+local S = minetest.get_translator("df_caverns")
+
 local bones_loot_path = minetest.get_modpath("bones_loot")
+local named_waypoints_path = minetest.get_modpath("named_waypoints")
+
+if named_waypoints_path then
+	local pit_waypoint_def = {
+		default_name = S("A glowing pit"),
+		default_color = 0xFF88FF,
+		discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_discovery_range")) or 60,
+	}
+	if minetest.settings:get_bool("dfcaverns_pit_hud_requires_mapping_kit", true)
+		and minetest.registered_items["map:mapping_kit"] then
+		pit_waypoint_def.visibility_requires_item = "map:mapping_kit"
+	end
+	if minetest.settings:get_bool("dfcaverns_show_pits_in_hud", true) then
+		pit_waypoint_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_visibility_range")) or 300
+		pit_waypoint_def.on_discovery = named_waypoints.default_discovery_popup
+	end
+	named_waypoints.register_named_waypoints("glowing_pits", pit_waypoint_def)
+
+	local seal_waypoint_def = {
+		default_name = S("A mysterious seal"),
+		default_color = 0xFF88FF,
+		discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_discovery_range")) or 20,
+	}
+	if minetest.settings:get_bool("dfcaverns_pit_hud_requires_mapping_kit", true)
+		and minetest.registered_items["map:mapping_kit"] then
+		seal_waypoint_def.visibility_requires_item = "map:mapping_kit"
+	end
+	if minetest.settings:get_bool("dfcaverns_show_pits_in_hud", true) then
+		seal_waypoint_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_visibility_range")) or 300
+		seal_waypoint_def.on_discovery = named_waypoints.default_discovery_popup
+	end
+	named_waypoints.register_named_waypoints("puzzle_seals", seal_waypoint_def)
+end
 
 local c_slade = minetest.get_content_id("df_underworld_items:slade")
 local c_slade_block = minetest.get_content_id("df_underworld_items:slade_block")
@@ -203,9 +238,9 @@ local pit_region_size = region_mapblocks * mapgen_chunksize * 16
 local scatter_2d = function(min_xz, gridscale, border_width)
 	local bordered_scale = gridscale - 2 * border_width
 	local point = {}
-	point.x = math.random() * bordered_scale + min_xz.x + border_width
+	point.x = math.floor(math.random() * bordered_scale + min_xz.x + border_width)
 	point.y = 0
-	point.z = math.random() * bordered_scale + min_xz.z + border_width
+	point.z = math.floor(math.random() * bordered_scale + min_xz.z + border_width)
 	return point
 end
 
@@ -226,7 +261,7 @@ local get_pit = function(pos)
 	local variance_multiplier = math.random()
 	local radius = variance_multiplier * (radius_pit_max - 15) + 15
 	local variance = radius_pit_variance/2 + radius_pit_variance*variance_multiplier/2
-	local depth = math.random(plasma_depth_min, plasma_depth_max)
+	local depth = math.random(plasma_depth_min, plasma_depth_max)	
 	math.randomseed(next_seed)
 	return {location = location, radius = radius, variance = variance, depth = depth}
 end
@@ -287,6 +322,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local wave = nvals_wave[index2d] * wave_mult
 			
 			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			
+			if named_waypoints_path and floor_height == y and pit and pit.location.x == x and pit.location.z == z then
+				named_waypoints.add_waypoint("glowing_pits", {x=x, y=y, z=z})
+			end
+
 			local underside_height = math.floor(y_min + math.abs(wave) / 5)+2 -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 			if (y == underside_height or y == underside_height - 1) and (x % 8 == 0 or z % 8 == 0) then
@@ -430,6 +470,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:write_to_map()
 	
 	if puzzle_seal ~= nil then
+		if named_waypoints_path then
+			named_waypoints.add_waypoint("puzzle_seals", puzzle_seal)
+		end
+
 		minetest.place_schematic({x=puzzle_seal.x-3, y=puzzle_seal.y, z=puzzle_seal.z-3}, df_underworld_items.seal_temple_schem, 0, {}, true)
 		local node_name = minetest.get_node(puzzle_seal).name
 		local node_def = minetest.registered_nodes[node_name]

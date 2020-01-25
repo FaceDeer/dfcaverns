@@ -2,6 +2,8 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
+local named_waypoints_path = minetest.get_modpath("named_waypoints")
+
 local invulnerable = df_underworld_items.config.invulnerable_slade and not minetest.settings:get_bool("creative_mode")
 
 local slade_groups = nil
@@ -330,6 +332,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	local pos_string = formname:sub(prefix_len+1)	
 	local pos = minetest.string_to_pos(pos_string)
 	if test_key(pos) then
+		if named_waypoints_path then
+			named_waypoints.update_waypoint("puzzle_seals", pos, {name=S("A breach in the Slade")})
+		end		
 		minetest.set_node(pos, {name="df_underworld_items:digging_seal", param2 = math.random(1,4)-1})
 		minetest.get_node_timer(pos):start(4)
 		minetest.close_formspec(player:get_player_name(), formname)

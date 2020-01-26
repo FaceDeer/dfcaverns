@@ -254,6 +254,11 @@ minetest.register_node("df_primordial_items:plant_matter", {
 	is_ground_content = false,
 	groups = {crumbly = 3, soil = 1},
 	sounds = default.node_sound_dirt_defaults(),
+	on_timer = function(pos)
+		if minetest.find_node_near(pos, 1, {"air"}) == nil then
+			minetest.set_node(pos, {name="df_primordial_items:packed_roots"})
+		end
+	end,
 })
 if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
 	local HARDPACK_PROBABILITY = minetest.settings:get("trail_hardpack_probability") or 0.5 -- Chance walked dirt/grass is worn and compacted to trail:trail.
@@ -284,18 +289,6 @@ minetest.register_node("df_primordial_items:packed_roots", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = default.node_sound_wood_defaults(),
-})
-
-minetest.register_abm({
-	label = "Plant matter converting to roots",
-	nodenames = {"df_primordial_items:plant_matter"},
-	interval = 10.0,
-	chance = 5,
-	action = function(pos, node, active_object_count, active_object_count_wider)
-		if minetest.find_node_near(pos, 1, {"air"}) == nil then
-			minetest.set_node(pos, {name="df_primordial_items:packed_roots"})
-		end
-	end
 })
 
 ----------------------------------------------------------------------------------------

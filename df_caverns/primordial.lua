@@ -299,6 +299,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local jungle = nvals_cave[vi] < 0
 		if jungle then
 			data[vi] = c_plant_matter
+			minetest.get_node_timer(area:position(vi)):start(math.random(10, 60))
 		else
 			data[vi] = c_mycelial_dirt
 		end

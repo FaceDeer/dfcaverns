@@ -380,6 +380,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 			else
 				data[vi] = c_coral_table[math.random(1,3)]
 				data_param2[vi] = math.random(1,4)-1
+				minetest.get_node_timer(area:position(vi)):start(math.random(10, 60))
 			end
 		end
 	end

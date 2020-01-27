@@ -51,6 +51,11 @@ dfcaverns_seal_hud_requires_mapping_kit (Require mapping kit to show seals) bool
 dfcaverns_seal_discovery_range (Seal discovery range) int 10
 dfcaverns_seal_visibility_range (Seal visibility range) int 200
 
+dfcaverns_show_ruins_in_hud (Ruin locations visible in HUD) bool true
+dfcaverns_ruin_hud_requires_mapping_kit (Require mapping kit to show ruins) bool true
+dfcaverns_ruin_discovery_range (Ruin discovery range) int 40
+dfcaverns_ruin_visibility_range (Ruin visibility range) int 250
+
 [Primordial]
 dfcaverns_enable_primordial (Generate primordial caverns) bool true
 dfcaverns_primordial_max (Upper limit of primordial caverns) int -3393

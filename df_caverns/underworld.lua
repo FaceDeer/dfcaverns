@@ -55,13 +55,13 @@ if named_waypoints_path then
 		
 		local underworld_ruin_def = {
 			default_name = S("Ancient ruin"),
-			discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_discovery_range")) or 60,
+			discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_ruin_discovery_range")) or 40,
 		}
-		if minetest.settings:get_bool("dfcaverns_show_pits_in_hud", true) then
-			underworld_ruin_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_visibility_range")) or 500
+		if minetest.settings:get_bool("dfcaverns_show_ruins_in_hud", true) then
+			underworld_ruin_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_ruin_visibility_range")) or 250
 			underworld_ruin_def.on_discovery = named_waypoints.default_discovery_popup
 		end
-		if minetest.settings:get_bool("dfcaverns_pit_hud_requires_mapping_kit", true)
+		if minetest.settings:get_bool("dfcaverns_ruin_hud_requires_mapping_kit", true)
 			and minetest.registered_items["map:mapping_kit"] then
 			underworld_ruin_def.visibility_requires_item = "map:mapping_kit"
 		end

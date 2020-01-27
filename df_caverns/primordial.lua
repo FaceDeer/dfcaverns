@@ -38,6 +38,15 @@ local fungal_plants = {
 	minetest.get_content_id("df_primordial_items:glow_pods"),
 }
 
+local fungal_plant_names = {}
+local fungal_plants = {}
+for node_name, node_def in pairs(minetest.registered_nodes) do
+	if minetest.get_item_group(node_name, "primordial_fungal_plant") > 0 then
+		table.insert(fungal_plant_names, node_name)
+		table.insert(fungal_plants, minetest.get_content_id(node_name))
+	end
+end
+
 local mushroom_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_param2)
 	local ystride = area.ystride
 	local humidityfactor = humidity/200 + 0.5
@@ -117,26 +126,22 @@ end
 --------------------------------------------------------------------------------------------------
 -- Jungle biome
 
-
-local jungle_plants = {
-	minetest.get_content_id("df_primordial_items:fern_1"),
-	minetest.get_content_id("df_primordial_items:fern_2"),
-	minetest.get_content_id("df_primordial_items:glow_plant_1"),
-	minetest.get_content_id("df_primordial_items:glow_plant_2"),
-	minetest.get_content_id("df_primordial_items:glow_plant_3"),
-	minetest.get_content_id("df_primordial_items:jungle_grass_1"),
-	minetest.get_content_id("df_primordial_items:jungle_grass_2"),
-	minetest.get_content_id("df_primordial_items:jungle_grass_3"),
-	minetest.get_content_id("df_primordial_items:jungle_mushroom_1"),
-	minetest.get_content_id("df_primordial_items:jungle_mushroom_2"),
-}
+local jungle_plant_names = {}
+local jungle_plants = {}
+for node_name, node_def in pairs(minetest.registered_nodes) do
+	if minetest.get_item_group(node_name, "primordial_jungle_plant") > 0 then
+		table.insert(jungle_plant_names, node_name)
+		table.insert(jungle_plants, minetest.get_content_id(node_name))
+	end
+end
 
 local c_jungle_dirt = minetest.get_content_id("df_primordial_items:dirt_with_jungle_grass")
 local c_plant_matter = minetest.get_content_id("df_primordial_items:plant_matter")
 local c_packed_roots = minetest.get_content_id("df_primordial_items:packed_roots")
 local c_glowstone = minetest.get_content_id("df_underworld_items:glowstone")
 local c_ivy = minetest.get_content_id("df_primordial_items:jungle_ivy")
-local c_root = minetest.get_content_id("df_primordial_items:jungle_roots_2")
+local c_root_2 = minetest.get_content_id("df_primordial_items:jungle_roots_2")
+local c_root_1 = minetest.get_content_id("df_primordial_items:jungle_roots_1")
 
 local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_param2)
 	local ystride = area.ystride
@@ -163,12 +168,13 @@ local jungle_cavern_ceiling = function(abs_cracks, vi, area, data, data_param2)
 		data[vi] = c_glowstone
 	elseif abs_cracks > 0.75 and math.random() < 0.1 then
 		local ystride = area.ystride
+		data[vi] = c_dirt
 		local index = vi - ystride
 		local hanging_node
 		if math.random() < 0.5 then
 			hanging_node = c_ivy
 		else
-			hanging_node = c_root
+			hanging_node = c_root_2
 		end
 		for i = 1, math.random(16) do
 			if data[index] == c_air then
@@ -184,6 +190,24 @@ end
 local jungle_warren_ceiling = function(abs_cracks, vi, area, data, data_param2)
 	if abs_cracks < 0.1 then
 		data[vi] = c_glowstone
+	elseif abs_cracks > 0.75 and math.random() < 0.1 then
+		local ystride = area.ystride
+		data[vi] = c_dirt
+		local index = vi - ystride
+		local hanging_node
+		if math.random() < 0.5 then
+			hanging_node = c_root_1
+		else
+			hanging_node = c_root_2
+		end
+		for i = 1, math.random(8) do
+			if data[index] == c_air then
+				data[index] = hanging_node
+				index = index - ystride
+			else
+				break
+			end
+		end
 	end
 end
 
@@ -244,8 +268,6 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		else
 			mushroom_cavern_ceiling(abs_cracks, humidity, vi, area, data, data_param2)
 		end
-
-
 	end
 	
 		----------------------------------------------
@@ -295,6 +317,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 
 	-- columns
 	-- no flowstone below the Sunless Sea, replace with something else
+	local random_dir = {1, -1, area.zstride, -area.zstride}
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local jungle = nvals_cave[vi] < 0
 		if jungle then
@@ -302,6 +325,12 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 			minetest.get_node_timer(area:position(vi)):start(math.random(10, 60))
 		else
 			data[vi] = c_mycelial_dirt
+			if math.random() < 0.01 then
+				local rand_vi = vi + random_dir[math.random(1,4)]
+				if data[rand_vi] == c_air then
+					data[rand_vi] = c_giant_mycelium
+				end				
+			end
 		end
 	end
 
@@ -317,15 +346,50 @@ subterrane.register_layer({
 	perlin_cave = perlin_cave_primordial,
 	perlin_wave = perlin_wave_primordial,
 	solidify_lava = true,
---	columns = {
---		maximum_radius = 20,
---		minimum_radius = 5,
---		node = "df_mapitems:wet_flowstone", -- no flowstone below the Sunless Sea, replace with something else
---		weight = 0.5,
---		maximum_count = 60,
---		minimum_count = 10,
---	},
+	columns = {
+		maximum_radius = 20,
+		minimum_radius = 5,
+		node = "default:stone", -- no flowstone below the Sunless Sea, replace with something else
+		weight = 0.5,
+		maximum_count = 60,
+		minimum_count = 10,
+	},
 	decorate = decorate_primordial,
 	double_frequency = true,
 	is_ground_content = df_caverns.is_ground_content,
+})
+
+-- Rather than make plants farmable, have them randomly respawn in jungle soil. You can only get them down there.
+minetest.register_abm({
+	label = "Primordial plant growth",
+	nodenames = {"df_primordial_items:dirt_with_jungle_grass"},
+	neighbors = {"air"},
+	interval = 60.0,
+	chance = 20,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		if minetest.find_node_near(pos, 2, {"group:primordial_jungle_plant"}) == nil then
+			local pos_above = {x=pos.x, y=pos.y+1, z=pos.z}
+			local node_above = minetest.get_node(pos_above)
+			if node_above.name == "air" then
+				minetest.set_node(pos_above, {name = jungle_plant_names[math.random(1,#jungle_plant_names)]})
+			end
+		end
+	end,
+})
+
+minetest.register_abm({
+	label = "Primordial fungus growth",
+	nodenames = {"df_primordial_items:dirt_with_mycelium"},
+	neighbors = {"air"},
+	interval = 60.0,
+	chance = 20,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		if minetest.find_node_near(pos, 3, {"group:primordial_fungal_plant"}) == nil then
+			local pos_above = {x=pos.x, y=pos.y+1, z=pos.z}
+			local node_above = minetest.get_node(pos_above)
+			if node_above.name == "air" then
+				minetest.set_node(pos_above, {name = fungal_plant_names[math.random(1,#fungal_plant_names)]})
+			end
+		end
+	end,
 })

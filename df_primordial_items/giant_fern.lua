@@ -130,6 +130,24 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_full", {
 	},
 })
 
+minetest.register_node("df_primordial_items:fern_wood", {
+	description = S("Fern Wood"),
+	_doc_items_longdesc = df_primordial_items.doc.giant_fern_desc,
+	_doc_items_usagehelp = df_primordial_items.doc.giant_fern_usage,
+	paramtype2 = "facedir",
+	tiles = {"default_wood.png^[multiply:#10FF10"},
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
+	sounds = default.node_sound_wood_defaults(),
+})
+
+minetest.register_craft({
+	output = "df_primordial_items:fern_wood 4",
+	recipe = {
+		{"group:fern_stem"},
+	}
+})
+
 minetest.register_node("df_primordial_items:giant_fern_leaves", {
 	description = S("Giant Fern Leaves"),
 	_doc_items_longdesc = df_primordial_items.doc.giant_fern_desc,

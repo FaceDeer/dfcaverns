@@ -24,7 +24,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_cap_1", {
 	tiles = {"dfcaverns_jungle_mushroom_top_02.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_place = minetest.rotate_node,
 	drop = {
@@ -48,7 +48,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_cap_2", {
 	tiles = {"dfcaverns_jungle_mushroom_top_01.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_place = minetest.rotate_node,
 	drop = {
@@ -77,14 +77,15 @@ minetest.register_craftitem("df_primordial_items:diced_mushroom", {
 minetest.register_craft({
 	output = "df_primordial_items:diced_mushroom 4",
 	type = "shapeless",
-	recipe = { "df_primordial_items:jungle_mushroom_cap_1"},
-})
-minetest.register_craft({
-	output = "df_primordial_items:diced_mushroom 4",
-	type = "shapeless",
-	recipe = { "df_primordial_items:jungle_mushroom_cap_2"},
+	recipe = { "group:primordial_mushroom_cap"},
 })
 
+-- Note: no wood-making recipe for the trunk, it's pretty useless
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:jungle_mushroom_trunk",
+	burntime = 15,
+})
 
 minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	description = S("Primordial Jungle Mushroom Sapling"),
@@ -93,7 +94,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	tiles = {"dfcaverns_jungle_mushroom_02.png^[brighten"},
 	inventory_image = "dfcaverns_jungle_mushroom_02.png^[brighten",
 	wield_image = "dfcaverns_jungle_mushroom_02.png^[brighten",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, light_sensitive_fungus = 13},
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,

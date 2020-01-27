@@ -59,7 +59,7 @@ minetest.register_node("df_primordial_items:jungle_leaves_glowing", {
 				rarity = 10,
 			},
 			{
-				items = {"df_primordial_items:jungle_leaves"},
+				items = {"df_primordial_items:jungle_leaves_glowing"},
 			}
 		}
 	},
@@ -75,7 +75,7 @@ minetest.register_node("df_primordial_items:jungle_tree", {
 	tiles = {"dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_01.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_jungle_tree = 1},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -87,7 +87,7 @@ minetest.register_node("df_primordial_items:jungle_tree_mossy", {
 	tiles = {"dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_02.png", "dfcaverns_jungle_wood_03.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_jungle_tree = 1},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
@@ -100,16 +100,22 @@ minetest.register_node("df_primordial_items:jungle_tree_glowing", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	light_source = 4,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_jungle_tree = 1},
 	sounds = default.node_sound_wood_defaults(),
 	on_place = minetest.rotate_node
 })
-
 
 default.register_leafdecay({
 	trunks = {"df_primordial_items:jungle_tree", "df_primordial_items:jungle_tree_mossy", "df_primordial_items:jungle_tree_glowing"},
 	leaves = {"df_primordial_items:jungle_leaves", "df_primordial_items:jungle_leaves_glowing"},
 	radius = 1,
+})
+
+minetest.register_craft({
+	output = "default:junglewood 4",
+	recipe = {
+		{"group:primordial_jungle_tree"},
+	}
 })
 
 ----------------------------
@@ -222,7 +228,7 @@ minetest.register_node("df_primordial_items:jungletree_sapling", {
 	tiles = {"dfcaverns_jungle_sapling.png"},
 	inventory_image = "dfcaverns_jungle_sapling.png",
 	wield_image = "dfcaverns_jungle_sapling.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,

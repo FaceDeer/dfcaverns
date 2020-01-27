@@ -264,6 +264,7 @@ local digging_seal_def = {
 		local node = minetest.get_node(pos)
 		local below_node = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z})
 		if below_node.name == "ignore" then
+			-- map's not loaded below, try again later
 			minetest.get_node_timer(pos):start(4)
 			return
 		end
@@ -295,6 +296,7 @@ local digging_seal_def = {
 		})
 		
 		if minetest.get_item_group(below_node.name, "slade") == 0 then
+			tnt.boom({x=pos.x, y=pos.y-2, z=pos.z}, {radius=3})
 			minetest.set_node(pos, {name="default:lava_source"})
 			return
 		end
@@ -313,6 +315,8 @@ local digging_seal_def = {
 			minetest.place_schematic({x=pos.x-3, y=pos.y-2, z=pos.z-3}, df_underworld_items.seal_stair_schem, 270, {}, true)
 			node.param2 = 0
 		else
+			tnt.boom(pos, {radius=3})
+			minetest.set_node(pos, {name="default:lava_source"})
 			return
 		end
 		minetest.set_node(pos, {name="air"})

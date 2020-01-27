@@ -22,6 +22,8 @@ end
 
 minetest.register_node("df_primordial_items:giant_hypha_root", {
 	description = S("Rooted Giant Hypha"),
+	_doc_items_longdesc = df_primordial_items.doc.giant_hyphae_desc,
+	_doc_items_usagehelp = df_primordial_items.doc.giant_hyphae_usage,
 	tiles = {
 		{name="dfcaverns_mush_giant_hypha.png"},
 	},
@@ -49,6 +51,8 @@ minetest.register_node("df_primordial_items:giant_hypha_root", {
 })
 minetest.register_node("df_primordial_items:giant_hypha", {
 	description = S("Giant Hypha"),
+	_doc_items_longdesc = df_primordial_items.doc.giant_hyphae_desc,
+	_doc_items_usagehelp = df_primordial_items.doc.giant_hyphae_usage,
 	tiles = {
 		{name="dfcaverns_mush_giant_hypha.png"},
 	},
@@ -77,12 +81,16 @@ minetest.register_node("df_primordial_items:giant_hypha", {
 
 minetest.register_craftitem("df_primordial_items:mycelial_fibers", {
 	description = S("Giant Mycelial Fibers"),
+	_doc_items_longdesc = df_primordial_items.doc.mycelial_fibers_desc,
+	_doc_items_usagehelp = df_primordial_items.doc.mycelial_fibers_usage,
 	groups = {wool = 1},
 	inventory_image = "dfcaverns_mush_mycelial_fibers.png",
 })
 
 minetest.register_craftitem("df_primordial_items:mycelial_thread", {
 	description = S("Mycelial thread"),
+	_doc_items_longdesc = df_primordial_items.doc.mycelial_thread_desc,
+	_doc_items_usagehelp = df_primordial_items.doc.mycelial_thread_usage,
 	inventory_image = "dfcaverns_pig_tail_thread.png",
 	groups = {flammable = 1, thread = 1},
 })
@@ -347,7 +355,9 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 	end,
 })
 
--- this version grows instantly via ABM, it is meant for mapgen usage
+-- this version grows instantly via ABM, it is meant for mapgen usage.
+-- An ABM is used so that it will trigger only after the surrounding map chunks have
+-- also been generated, in case it wants to grow into them.
 minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 	description = S("Giant Hypha Apical Meristem"),
 	tiles = {

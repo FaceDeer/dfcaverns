@@ -59,7 +59,7 @@ local mushroom_cavern_floor = function(abs_cracks, humidity, vi, area, data, dat
 	end
 
 	local rand = math.random() * math.min(abs_cracks, 1) * humidityfactor
-	if rand < 0.00075 then
+	if rand < 0.0005 then
 		data[vi+ystride] = c_giant_mycelium
 	elseif rand < 0.003 then
 		local schematic = df_primordial_items.get_primordial_mushroom()
@@ -325,7 +325,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 			minetest.get_node_timer(area:position(vi)):start(math.random(10, 60))
 		else
 			data[vi] = c_mycelial_dirt
-			if math.random() < 0.01 then
+			if math.random() < 0.025 then
 				local rand_vi = vi + random_dir[math.random(1,4)]
 				if data[rand_vi] == c_air then
 					data[rand_vi] = c_giant_mycelium
@@ -365,7 +365,7 @@ minetest.register_abm({
 	nodenames = {"df_primordial_items:dirt_with_jungle_grass"},
 	neighbors = {"air"},
 	interval = 60.0,
-	chance = 20,
+	chance = 50,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		if minetest.find_node_near(pos, 2, {"group:primordial_jungle_plant"}) == nil then
 			local pos_above = {x=pos.x, y=pos.y+1, z=pos.z}
@@ -382,7 +382,7 @@ minetest.register_abm({
 	nodenames = {"df_primordial_items:dirt_with_mycelium"},
 	neighbors = {"air"},
 	interval = 60.0,
-	chance = 20,
+	chance = 50,
 	action = function(pos, node, active_object_count, active_object_count_wider)
 		if minetest.find_node_near(pos, 3, {"group:primordial_fungal_plant"}) == nil then
 			local pos_above = {x=pos.x, y=pos.y+1, z=pos.z}

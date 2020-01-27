@@ -1,11 +1,16 @@
 if not df_caverns.config.enable_underworld or not minetest.get_modpath("df_underworld_items") then
 	return
 end
+local modpath = minetest.get_modpath(minetest.get_current_modname())
 
 local S = minetest.get_translator("df_caverns")
 
 local bones_loot_path = minetest.get_modpath("bones_loot")
 local named_waypoints_path = minetest.get_modpath("named_waypoints")
+local namegen_path = minetest.get_modpath("namegen")
+
+local name_pit = function() end
+local name_ruin = function() end
 
 if named_waypoints_path then
 	local pit_waypoint_def = {
@@ -37,7 +42,34 @@ if named_waypoints_path then
 		seal_waypoint_def.on_discovery = named_waypoints.default_discovery_popup
 	end
 	named_waypoints.register_named_waypoints("puzzle_seals", seal_waypoint_def)
+
+	if namegen_path then
+		namegen.parse_lines(io.lines(modpath.."/underworld_names.cfg"))
+		
+		name_pit = function()
+			return namegen.generate("glowing_pits")
+		end
+		name_ruin = function()
+			return namegen.generate("underworld_ruins")
+		end
+		
+		local underworld_ruin_def = {
+			default_name = S("Ancient ruin"),
+			discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_discovery_range")) or 60,
+		}
+		if minetest.settings:get_bool("dfcaverns_show_pits_in_hud", true) then
+			underworld_ruin_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_visibility_range")) or 500
+			underworld_ruin_def.on_discovery = named_waypoints.default_discovery_popup
+		end
+		if minetest.settings:get_bool("dfcaverns_pit_hud_requires_mapping_kit", true)
+			and minetest.registered_items["map:mapping_kit"] then
+			underworld_ruin_def.visibility_requires_item = "map:mapping_kit"
+		end
+		named_waypoints.register_named_waypoints("underworld_ruins", underworld_ruin_def)
+	end
 end
+
+
 
 local c_slade = minetest.get_content_id("df_underworld_items:slade")
 local c_slade_block = minetest.get_content_id("df_underworld_items:slade_block")
@@ -324,7 +356,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
 			
 			if named_waypoints_path and floor_height == y and pit and pit.location.x == x and pit.location.z == z then
-				named_waypoints.add_waypoint("glowing_pits", {x=x, y=y, z=z})
+				named_waypoints.add_waypoint("glowing_pits", {x=x, y=y, z=z}, {name=name_pit()})
 			end
 
 			local underside_height = math.floor(y_min + math.abs(wave) / 5)+2 -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
@@ -347,7 +379,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
 					local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
 					if distance < pit.radius -3 then
-						if y < median + floor_displace + wave - pit.depth then
+						if y < median + floor_displace + wave - pit.depth or y < underside_height + plasma_depth_min then
 							data[vi] = c_pit_plasma
 						else
 							data[vi] = c_air
@@ -429,6 +461,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_building_schematic, building.rotation)
 						elseif building.building_type == "medium building" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, medium_building_schematic, building.rotation)
+							if named_waypoints_path and namegen_path then
+								if not next(named_waypoints.get_waypoints_in_area("underworld_ruins", vector.subtract(building.pos, 250), vector.add(building.pos, 250))) then
+									named_waypoints.add_waypoint("underworld_ruins", {x=building.pos.x, y=floor_height+1, z=building.pos.z}, {name=name_ruin()})
+								end
+							end							
 						elseif building.building_type == "small slab" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_slab_schematic, building.rotation)
 						else

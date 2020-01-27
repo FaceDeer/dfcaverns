@@ -101,7 +101,7 @@ end
 local sparkle = function(sparkle_pos)
 	minetest.add_particlespawner({
 		amount = 10,
-		time = 1,
+		time = 2,
 		minpos = {x=sparkle_pos.x-5, y=sparkle_pos.y-0.5, z=sparkle_pos.z-5},
 		maxpos = {x=sparkle_pos.x+5, y=sparkle_pos.y+0.5, z=sparkle_pos.z+5},
 		minvel = {x=-0.1, y=2, z=-0.1},
@@ -129,7 +129,7 @@ if df_underworld_items.config.destructive_pit_plasma then
 	minetest.register_abm({
 		label = "glowing pit matter degradation",
 		nodenames = {"group:pit_plasma"},
-		interval = 1,
+		interval = 2,
 		chance = 30,
 		catch_up = false,
 		action = function(pos)
@@ -164,7 +164,7 @@ else
 		label = "glowing pit sparkle",
 		nodenames = {"group:pit_plasma"},
 		neighbors = {"air"},
-		interval = 1,
+		interval = 2,
 		chance = 30,
 		catch_up = false,
 		action = function(pos)

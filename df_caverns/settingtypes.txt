@@ -39,6 +39,18 @@ dfcaverns_underworld_level (Underworld level) int -3200
 #Set this to 0 to disable glowing pit generation entirely.
 dfcaverns_underworld_glowing_pit_mapblocks(Average pit spacing measured in mapblocks) int 8
 
+[Underworld feature HUD]
+
+dfcaverns_show_pits_in_hud (Show pit locations in HUD) bool true
+dfcaverns_pit_hud_requires_mapping_kit (Require mapping kit to show pits) bool true
+dfcaverns_pit_discovery_range (Pit discovery range) int 60
+dfcaverns_pit_visibility_range (Pit visibility range) int 500
+
+dfcaverns_show_seals_in_hud (Seal locations in HUD) bool true
+dfcaverns_seal_hud_requires_mapping_kit (Require mapping kit to show seals) bool true
+dfcaverns_seal_discovery_range (Seal discovery range) int 10
+dfcaverns_seal_visibility_range (Seal visibility range) int 200
+
 [Primordial]
 dfcaverns_enable_primordial (Generate primordial caverns) bool true
 dfcaverns_primordial_max (Upper limit of primordial caverns) int -3393

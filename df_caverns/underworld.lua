@@ -18,22 +18,22 @@ if named_waypoints_path then
 		pit_waypoint_def.visibility_requires_item = "map:mapping_kit"
 	end
 	if minetest.settings:get_bool("dfcaverns_show_pits_in_hud", true) then
-		pit_waypoint_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_visibility_range")) or 300
+		pit_waypoint_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_visibility_range")) or 500
 		pit_waypoint_def.on_discovery = named_waypoints.default_discovery_popup
 	end
 	named_waypoints.register_named_waypoints("glowing_pits", pit_waypoint_def)
 
 	local seal_waypoint_def = {
-		default_name = S("A mysterious seal"),
-		default_color = 0xFF88FF,
-		discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_discovery_range")) or 20,
+		default_name = S("Mysterious seal"),
+		default_color = 0x9C2233,
+		discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_seal_discovery_range")) or 10,
 	}
-	if minetest.settings:get_bool("dfcaverns_pit_hud_requires_mapping_kit", true)
+	if minetest.settings:get_bool("dfcaverns_seal_hud_requires_mapping_kit", true)
 		and minetest.registered_items["map:mapping_kit"] then
 		seal_waypoint_def.visibility_requires_item = "map:mapping_kit"
 	end
-	if minetest.settings:get_bool("dfcaverns_show_pits_in_hud", true) then
-		seal_waypoint_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_visibility_range")) or 300
+	if minetest.settings:get_bool("dfcaverns_show_seals_in_hud", true) then
+		seal_waypoint_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_seal_visibility_range")) or 200
 		seal_waypoint_def.on_discovery = named_waypoints.default_discovery_popup
 	end
 	named_waypoints.register_named_waypoints("puzzle_seals", seal_waypoint_def)

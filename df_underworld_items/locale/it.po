@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-25 13:52-0700\n"
+"POT-Creation-Date: 2020-01-26 21:11-0700\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -97,23 +97,23 @@ msgstr ""
 msgid "Active Slade Breacher"
 msgstr ""
 
-#: df_underworld_items\puzzle_seal.lua:336
-msgid "A breach in the Slade"
+#: df_underworld_items\puzzle_seal.lua:340
+msgid "Breach in the Slade"
 msgstr ""
 
-#: df_underworld_items\puzzle_seal.lua:347
+#: df_underworld_items\puzzle_seal.lua:351
 msgid "Inscribed Slade Block"
 msgstr ""
 
-#: df_underworld_items\puzzle_seal.lua:370
+#: df_underworld_items\puzzle_seal.lua:374
 msgid "Slade Capstone"
 msgstr ""
 
-#: df_underworld_items\puzzle_seal.lua:439
+#: df_underworld_items\puzzle_seal.lua:443
 msgid "Slade Block Stair"
 msgstr ""
 
-#: df_underworld_items\puzzle_seal.lua:440
+#: df_underworld_items\puzzle_seal.lua:444
 msgid "Slade Block Slab"
 msgstr ""
 

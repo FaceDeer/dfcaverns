@@ -118,6 +118,21 @@ minetest.register_node("df_primordial_items:dirt_with_mycelium", {
 	light_source = 3,
 })
 
+minetest.register_abm{
+	label = "df_primordial_items:dirt_with_mycelium_spread",
+	nodenames = {"default:dirt"},
+	neighbors = {"df_mapitems:dirt_with_mycelium"},
+	interval = 60,
+	chance = 50,
+	catch_up = true,
+	action = function(pos)
+		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
+		if above_def and (above_def.buildable_to == true or above_def.walkable == false) then
+			minetest.swap_node(pos, {name="df_mapitems:dirt_with_mycelium"})
+		end
+	end,
+}
+
 if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
 	local HARDPACK_PROBABILITY = minetest.settings:get("trail_hardpack_probability") or 0.5 -- Chance walked dirt/grass is worn and compacted to trail:trail.
 	local HARDPACK_COUNT = minetest.settings:get("trail_hardpack_count") or 5 -- Number of times the above chance needs to be passed for soil to compact.

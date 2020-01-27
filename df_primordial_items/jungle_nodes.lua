@@ -243,11 +243,27 @@ minetest.register_node("df_primordial_items:dirt_with_jungle_grass", {
 	_doc_items_longdesc = df_primordial_items.doc.dirt_with_jungle_grass_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.dirt_with_jungle_grass_usage,
 	tiles = {"dfcaverns_jungle_plant_grass_node_01.png"},
-	groups = {crumbly = 3, soil = 1, spreading_dirt_type = 1},
+	groups = {crumbly = 3, soil = 1},
 	is_ground_content = false,
 	drops = "default:dirt",
 	sounds = default.node_sound_dirt_defaults(),
 })
+
+minetest.register_abm{
+	label = "df_primordial_items:jungle_grass_spread",
+	nodenames = {"default:dirt"},
+	neighbors = {"df_mapitems:dirt_with_jungle_grass"},
+	interval = 60,
+	chance = 50,
+	catch_up = true,
+	action = function(pos)
+		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
+		if above_def and (above_def.buildable_to == true or above_def.walkable == false) then
+			minetest.swap_node(pos, {name="df_mapitems:dirt_with_jungle_grass"})
+		end
+	end,
+}
+
 minetest.register_node("df_primordial_items:plant_matter", {
 	description = S("Primordial Plant Matter"),
 	_doc_items_longdesc = df_primordial_items.doc.plant_matter_desc,
@@ -262,6 +278,7 @@ minetest.register_node("df_primordial_items:plant_matter", {
 		end
 	end,
 })
+
 if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
 	local HARDPACK_PROBABILITY = minetest.settings:get("trail_hardpack_probability") or 0.5 -- Chance walked dirt/grass is worn and compacted to trail:trail.
 	local HARDPACK_COUNT = minetest.settings:get("trail_hardpack_count") or 5 -- Number of times the above chance needs to be passed for soil to compact.

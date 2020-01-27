@@ -59,9 +59,9 @@ local mushroom_cavern_floor = function(abs_cracks, humidity, vi, area, data, dat
 	end
 
 	local rand = math.random() * math.min(abs_cracks, 1) * humidityfactor
-	if rand < 0.001 then
+	if rand < 0.00075 then
 		data[vi+ystride] = c_giant_mycelium
-	elseif rand < 0.005 then
+	elseif rand < 0.003 then
 		local schematic = df_primordial_items.get_primordial_mushroom()
 		local rotation = (math.random(1,4)-1)*90
 		mapgen_helper.place_schematic_on_data_if_it_fits(data, data_param2, area, area:position(vi+ystride), schematic, rotation)
@@ -154,9 +154,9 @@ local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_
 		local fern_schematic = df_primordial_items.get_fern_schematic()
 		local rotation = (math.random(1,4)-1)*90
 		mapgen_helper.place_schematic_on_data_if_it_fits(data, data_param2, area, area:position(vi+ystride), fern_schematic, rotation)
-	elseif rand < 0.05 * (1-humidityfactor) then
+	elseif rand < 0.025 * (1-humidityfactor) then
 		df_primordial_items.spawn_jungle_mushroom_vm(vi+ystride, area, data)
-	elseif rand < 0.1 * (1-humidityfactor) then
+	elseif rand < 0.05 * (1-humidityfactor) then
 		df_primordial_items.spawn_jungle_tree_vm(math.random(8,14), vi+ystride, area, data)
 	elseif rand < 0.3 then
 		data[vi+ystride] = jungle_plants[math.random(1,#jungle_plants)]
@@ -273,14 +273,14 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		----------------------------------------------
 	-- Tunnel floors
 	
-	for _, vi in ipairs(node_arrays.tunnel_floor_nodes) do
-	end
+--	for _, vi in ipairs(node_arrays.tunnel_floor_nodes) do
+--	end
 	
 	------------------------------------------------------
 	-- Tunnel ceiling
 	
-	for _, vi in ipairs(node_arrays.tunnel_ceiling_nodes) do
-	end
+--	for _, vi in ipairs(node_arrays.tunnel_ceiling_nodes) do
+--	end
 	
 	------------------------------------------------------
 	-- Warren ceiling

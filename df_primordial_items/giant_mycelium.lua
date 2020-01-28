@@ -31,9 +31,11 @@ minetest.register_node("df_primordial_items:giant_hypha_root", {
     connect_sides = { "top", "bottom", "front", "left", "back", "right" },
 	drawtype = "nodebox",
 	node_box = get_node_box(0.1875, 0.25),
+	collision_box = get_node_box(0.125, 0.1875),
 	paramtype = "light",
 	light_source = 2,
 	is_ground_content = false,
+	climbable = true,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	drop = {
@@ -60,9 +62,11 @@ minetest.register_node("df_primordial_items:giant_hypha", {
     connect_sides = { "top", "bottom", "front", "left", "back", "right" },
 	drawtype = "nodebox",
 	node_box = get_node_box(0.1875, 0.25),
+	collision_box = get_node_box(0.125, 0.1875),
 	paramtype = "light",
 	light_source = 2,
 	is_ground_content = false,
+	climbable = true,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	drop = {

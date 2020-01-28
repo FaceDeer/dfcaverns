@@ -337,8 +337,9 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	local pos = minetest.string_to_pos(pos_string)
 	if test_key(pos) then
 		if named_waypoints_path then
-			named_waypoints.update_waypoint("puzzle_seals", pos, {name=S("Breach in the Slade"), color=0xFA264F})
-		end		
+			named_waypoints.update_waypoint("puzzle_seals", pos, {name=S("Breach in the Slade"), color=0xFA264F, player=player:get_player_name()})
+		end
+		minetest.log("action", "[df_underworld_items] " .. player:get_player_name() .. " triggered a puzzle seal at " .. pos_string)
 		minetest.set_node(pos, {name="df_underworld_items:digging_seal", param2 = math.random(1,4)-1})
 		minetest.get_node_timer(pos):start(4)
 		minetest.close_formspec(player:get_player_name(), formname)

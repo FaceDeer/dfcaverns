@@ -452,7 +452,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						building.pos.y = floor_height
 						--minetest.chat_send_all("placing " .. building.building_type .. " at " .. minetest.pos_to_string(building.pos))
 						if building.building_type == "oubliette" then
-							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic)						
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic)
 						elseif building.building_type == "open oubliette" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic, 0, {["df_underworld_items:slade_seal"] = "air"})
 						elseif building.building_type == "lamppost" then

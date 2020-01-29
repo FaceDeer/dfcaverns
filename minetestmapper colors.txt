@@ -87,6 +87,7 @@ df_primordial_items:dirt_with_mycelium 132 127 157
 df_primordial_items:fern_1 6 52 42
 df_primordial_items:fern_2 1 51 24
 df_primordial_items:fern_sapling 8 54 22
+df_primordial_items:fern_wood 131 102 57									
 df_primordial_items:fungal_grass_1 118 121 180
 df_primordial_items:fungal_grass_2 116 118 179
 df_primordial_items:giant_fern_leaves 16 52 29
@@ -133,6 +134,8 @@ df_primordial_items:mushroom_gills_glowing 197 180 249
 df_primordial_items:mushroom_trunk 161 171 196
 df_primordial_items:packed_roots 21 11 6
 df_primordial_items:plant_matter 27 45 21
+df_primordial_items:primordial_mush_cap_wood 118 117 140
+df_primordial_items:primordial_mush_trunk_wood 169 171 193											  
 df_trees:black_cap 58 58 58
 df_trees:black_cap_gills 0 0 0
 df_trees:black_cap_sapling 66 69 76
@@ -162,10 +165,10 @@ df_trees:nether_cap_gills 3 120 144
 df_trees:nether_cap_sapling 3 88 231
 df_trees:nether_cap_stem 58 51 142
 df_trees:nether_cap_wood 17 17 95
-df_trees:spindlestem_cap_cyan 235 230 215
-df_trees:spindlestem_cap_golden 235 230 215
-df_trees:spindlestem_cap_green 235 230 215
-df_trees:spindlestem_cap_red 235 230 215
+df_trees:spindlestem_cap_cyan 179 230 215
+df_trees:spindlestem_cap_golden 235 230 164
+df_trees:spindlestem_cap_green 179 230 164
+df_trees:spindlestem_cap_red 235 176 164
 df_trees:spindlestem_cap_white 235 230 215
 df_trees:spindlestem_seedling 235 230 215
 df_trees:spindlestem_stem 235 230 215

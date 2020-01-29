@@ -103,12 +103,15 @@ minetest.register_craft({
 	burntime = 2
 })
 
+-------------
+--- Flour and bread
+
 minetest.register_craftitem("df_farming:cave_flour", {
 	description = S("Cave Wheat Flour"),
 	_doc_items_longdesc = df_farming.doc.cave_flour_desc,
 	_doc_items_usagehelp = df_farming.doc.cave_flour_usage,
 	inventory_image = "dfcaverns_flour.png",
-	groups = {flammable = 1, dfcaverns_cookable = 1},
+	groups = {flammable = 1, dfcaverns_cookable = 1, food_flour = 1},
 })
 
 minetest.register_craftitem("df_farming:cave_bread", {
@@ -153,6 +156,37 @@ minetest.register_craft({
 	output = "df_farming:cave_bread",
 	recipe = "df_farming:cave_flour"
 })
+
+--------
+-- Straw
+
+minetest.register_node("df_farming:cave_straw", {
+	description = S("Cave Straw"),
+	tiles = {"dfcaverns_cave_straw.png"},
+	is_ground_content = false,
+	groups = {snappy=3, flammable=4, fall_damage_add_percent=-30, straw=1},
+	sounds = default.node_sound_leaves_defaults(),
+})
+
+minetest.register_craft({
+	output = "df_farming:cave_straw 3",
+	recipe = {
+		{"df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat"},
+		{"df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat"},
+		{"df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat"},
+	}
+})
+
+minetest.register_craft({
+	output = "df_farming:cave_wheat 3",
+	recipe = {
+		{"df_farming:cave_straw"},
+	}
+})
+
+
+---------
+-- Trample support
 
 if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
 	minetest.register_node("df_farming:wheat_trampled", {

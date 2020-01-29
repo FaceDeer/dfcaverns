@@ -131,6 +131,22 @@ minetest.register_craft({
 	burntime = 2,
 })
 
+local thick_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_thick.lua")
+local thicker_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_thicker.lua")
+local hut_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_hut.lua")
+
+-- The hut has a chest near pos, use this to initialize it
+local chest_on_construct = minetest.registered_items["default:chest"].on_construct
+local init_chest = function(pos)
+	local chest_pos = minetest.find_node_near({x=pos.x, y=pos.y+1, z=pos.z}, 1, "default:chest")
+	if chest_pos then
+		chest_on_construct(chest_pos)
+		local inv = minetest.get_inventory({type="node", pos=chest_pos})
+		inv:add_item("main", "default:apple 3")
+		inv:add_item("main", "default:gold_ingot ".. math.random(1,5))
+	end
+end
+
 -- sapling
 minetest.register_node("df_trees:goblin_cap_sapling", {
 	description = S("Goblin Cap Spawn"),
@@ -165,7 +181,16 @@ minetest.register_node("df_trees:goblin_cap_sapling", {
 	
 	on_timer = function(pos)
 		minetest.set_node(pos, {name="air"})
-		df_trees.spawn_goblin_cap(pos)
+		if minetest.find_node_near({x=pos.x, y=pos.y-1, z=pos.z}, 1, {"group:straw"}) then
+			if math.random() < 0.5 then
+				mapgen_helper.place_schematic(pos, thick_goblin_cap_schem)
+			else
+				mapgen_helper.place_schematic(pos, thicker_goblin_cap_schem)
+			end
+			return
+		else
+			df_trees.spawn_goblin_cap(pos)
+		end
 	end,
 })
 
@@ -173,8 +198,32 @@ local c_stem = minetest.get_content_id("df_trees:goblin_cap_stem")
 local c_cap  = minetest.get_content_id("df_trees:goblin_cap")
 local c_gills  = minetest.get_content_id("df_trees:goblin_cap_gills")
 
+if minetest.get_modpath("farming") then
+	local straw_def = minetest.registered_items["farming:straw"]
+	if straw_def then
+		local new_groups = {}
+		for group, val in pairs(straw_def.groups) do
+			new_groups[group] = val
+		end
+		new_groups.straw = 1
+		minetest.override_item("farming:straw", {
+			groups = new_groups
+		})
+	end
+end
+
 df_trees.spawn_goblin_cap = function(pos)
+	if math.random() < 0.1 then
+		if math.random() < 0.5 then
+			mapgen_helper.place_schematic(pos, thick_goblin_cap_schem)
+		else
+			mapgen_helper.place_schematic(pos, thicker_goblin_cap_schem)
+		end
+		return
+	end
+
 	local x, y, z = pos.x, pos.y, pos.z
+	
 	local stem_height = math.random(1,3)
 	local cap_radius = math.random(3,6)
 	local maxy = y + stem_height + 3
@@ -194,7 +243,21 @@ df_trees.spawn_goblin_cap = function(pos)
 	vm:update_map()
 end
 
-df_trees.spawn_goblin_cap_vm = function(vi, area, data)
+df_trees.spawn_goblin_cap_vm = function(vi, area, data, data_param2)
+	if math.random() < 0.1 then
+		local pos = area:position(vi)
+		if math.random() < 0.5 then
+			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, thick_goblin_cap_schem)
+		elseif math.random() < 0.9 then
+			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, thicker_goblin_cap_schem)
+		else
+			-- easter egg - every once in a while (0.5%), a mapgen Goblin cap is a Smurf house
+			minetest.after(5, init_chest, pos)
+			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, hut_goblin_cap_schem)
+		end
+		return
+	end
+
 	local stem_height = math.random(1,3)
 	local cap_radius = math.random(3,6)
 	subterrane.giant_mushroom(vi, area, data, c_stem, c_cap, c_gills, stem_height, cap_radius)

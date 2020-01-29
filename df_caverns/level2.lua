@@ -79,7 +79,7 @@ local goblin_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, 
 		elseif math.random() < 0.02 then
 			df_trees.spawn_spindlestem_vm(vi+ystride, area, data, data_param2, c_red)
 		elseif math.random() < 0.015 then
-			df_trees.spawn_goblin_cap_vm(vi+ystride, area, data)
+			df_trees.spawn_goblin_cap_vm(vi+ystride, area, data, data_param2)
 		end
 	end
 

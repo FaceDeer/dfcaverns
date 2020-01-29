@@ -107,7 +107,7 @@ local mushroom_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, da
 			if math.random() < 0.01 then
 				df_trees.spawn_tower_cap_vm(vi+ystride, area, data)
 			elseif math.random() < 0.01 then
-				df_trees.spawn_goblin_cap_vm(vi+ystride, area, data)
+				df_trees.spawn_goblin_cap_vm(vi+ystride, area, data, data_param2)
 			elseif math.random() < 0.02 then
 				df_trees.spawn_spindlestem_vm(vi+ystride, area, data, data_param2)
 			end

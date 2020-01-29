@@ -131,21 +131,56 @@ minetest.register_craft({
 	burntime = 2,
 })
 
-local thick_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_thick.lua")
-local thicker_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_thicker.lua")
-local hut_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_hut.lua")
+local big_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_big.lua")
+local big_goblin_cap_hut_schem = dofile(MP.."/schematics/goblin_cap_big_hut.lua")
+local bigger_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_bigger.lua")
+local bigger_goblin_cap_hut_schem = dofile(MP.."/schematics/goblin_cap_bigger_hut.lua")
 
--- The hut has a chest near pos, use this to initialize it
+-- The hut has a chest and furnace near pos, use this to initialize it
 local chest_on_construct = minetest.registered_items["default:chest"].on_construct
-local init_chest = function(pos)
-	local chest_pos = minetest.find_node_near({x=pos.x, y=pos.y+1, z=pos.z}, 1, "default:chest")
+local furnace_on_construct = minetest.registered_items["default:furnace"].on_construct
+local init_hut = function(pos)
+	local chest_pos = minetest.find_node_near({x=pos.x, y=pos.y+1, z=pos.z}, 2, "default:chest")
 	if chest_pos then
 		chest_on_construct(chest_pos)
 		local inv = minetest.get_inventory({type="node", pos=chest_pos})
 		inv:add_item("main", "default:apple 3")
 		inv:add_item("main", "default:gold_ingot ".. math.random(1,5))
 	end
+	local furnace_pos = minetest.find_node_near({x=pos.x, y=pos.y+1, z=pos.z}, 2, "default:furnace")
+	if furnace_pos then
+		furnace_on_construct(furnace_pos)
+	end
 end
+local init_vessels
+if minetest.get_modpath("vessels") then
+	local vessels_on_construct = minetest.registered_items["vessels:shelf"].on_construct
+	init_vessels = function(pos)
+		local vessel_pos = minetest.find_node_near({x=pos.x, y=pos.y+1, z=pos.z}, 2, "vessels:shelf")
+		if vessel_pos then
+			vessels_on_construct(vessel_pos)
+			local inv = minetest.get_inventory({type="node", pos=vessel_pos})
+			inv:add_item("vessels", "df_trees:glowing_bottle_red "..math.random(50,99))
+			inv:add_item("vessels", "df_trees:glowing_bottle_green "..math.random(50,99))
+			inv:add_item("vessels", "df_trees:glowing_bottle_cyan "..math.random(40,99))
+			inv:add_item("vessels", "df_trees:glowing_bottle_golden "..math.random(30,99))
+		end
+	end
+end
+
+--local debug_test_hut = function(pos)
+--	minetest.set_node(pos, {name="air"})
+--	minetest.after(5, init_hut, pos)
+--	if math.random() < 0.5 then
+--		mapgen_helper.place_schematic(pos, big_goblin_cap_hut_schem, "random")
+--	else
+--		if init_vessels then
+--			minetest.after(5, init_vessels, pos)
+--		end
+--		mapgen_helper.place_schematic(pos, bigger_goblin_cap_hut_schem, "random")
+--	end
+--end
+
 
 -- sapling
 minetest.register_node("df_trees:goblin_cap_sapling", {
@@ -183,9 +218,9 @@ minetest.register_node("df_trees:goblin_cap_sapling", {
 		minetest.set_node(pos, {name="air"})
 		if minetest.find_node_near({x=pos.x, y=pos.y-1, z=pos.z}, 1, {"group:straw"}) then
 			if math.random() < 0.5 then
-				mapgen_helper.place_schematic(pos, thick_goblin_cap_schem)
+				mapgen_helper.place_schematic(pos, big_goblin_cap_schem)
 			else
-				mapgen_helper.place_schematic(pos, thicker_goblin_cap_schem)
+				mapgen_helper.place_schematic(pos, bigger_goblin_cap_schem)
 			end
 			return
 		else
@@ -198,6 +233,9 @@ local c_stem = minetest.get_content_id("df_trees:goblin_cap_stem")
 local c_cap  = minetest.get_content_id("df_trees:goblin_cap")
 local c_gills  = minetest.get_content_id("df_trees:goblin_cap_gills")
 
+-- If the farming mod is installed, add the "straw" group to farming straw.
+-- This way we just need to check for group:straw to get cave straw as well, without 
+-- needing a df_farming dependency for this mod.
 if minetest.get_modpath("farming") then
 	local straw_def = minetest.registered_items["farming:straw"]
 	if straw_def then
@@ -215,9 +253,9 @@ end
 df_trees.spawn_goblin_cap = function(pos)
 	if math.random() < 0.1 then
 		if math.random() < 0.5 then
-			mapgen_helper.place_schematic(pos, thick_goblin_cap_schem)
+			mapgen_helper.place_schematic(pos, big_goblin_cap_schem)
 		else
-			mapgen_helper.place_schematic(pos, thicker_goblin_cap_schem)
+			mapgen_helper.place_schematic(pos, bigger_goblin_cap_schem)
 		end
 		return
 	end
@@ -247,13 +285,20 @@ df_trees.spawn_goblin_cap_vm = function(vi, area, data, data_param2)
 	if math.random() < 0.1 then
 		local pos = area:position(vi)
 		if math.random() < 0.5 then
-			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, thick_goblin_cap_schem)
+			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, big_goblin_cap_schem)
 		elseif math.random() < 0.9 then
-			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, thicker_goblin_cap_schem)
+			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, bigger_goblin_cap_schem)
 		else
 			-- easter egg - every once in a while (0.5%), a mapgen Goblin cap is a Smurf house
-			minetest.after(5, init_chest, pos)
-			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, hut_goblin_cap_schem)
+			minetest.after(5, init_hut, pos)
+			if math.random() < 0.5 then
+				mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, big_goblin_cap_hut_schem)
+			else
+				if init_vessels then
+					minetest.after(5, init_vessels, pos)
+				end
+				mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, bigger_goblin_cap_hut_schem)
+			end
 		end
 		return
 	end

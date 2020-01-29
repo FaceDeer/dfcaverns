@@ -378,7 +378,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 					local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
 					local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
-					if distance < pit.radius -3 then
+					if distance < pit.radius -2.5 then
 						if y < median + floor_displace + wave - pit.depth or y < underside_height + plasma_depth_min then
 							data[vi] = c_pit_plasma
 						else

@@ -131,7 +131,7 @@ local fungispore_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, 
 			if math.random() < 0.025 then
 				df_trees.spawn_fungiwood_vm(vi+ystride, area, data)
 			elseif math.random() < 0.025 then
-				df_trees.spawn_spore_tree_vm(vi+ystride, area, data)
+				df_trees.spawn_spore_tree_vm(vi+ystride, area, data, data_param2)
 			end
 		end
 	end

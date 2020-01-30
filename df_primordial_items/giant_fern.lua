@@ -272,6 +272,10 @@ minetest.register_node("df_primordial_items:fern_sapling", {
 	wield_image = "dfcaverns_jungle_fern_03.png",
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 13},
 	_dfcaverns_dead_node = "default:dry_shrub",
+	selection_box = {
+		type = "fixed",
+		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
+	},
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,

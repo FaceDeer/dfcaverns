@@ -57,11 +57,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, humidity > 30)
 				end
 				previous_potential_floor_vi = nil
-				previous_potential_floor_in_range = nil
 			elseif not mapgen_helper.buildable_to(current_node) then
 				-- we've entered a non-stone ceiling of some kind. Abort potential floor-ceiling pair detection.
 				previous_potential_floor_vi = nil
-				previous_potential_floor_in_range = nil
 			end
 		end
 		previous_node = current_node

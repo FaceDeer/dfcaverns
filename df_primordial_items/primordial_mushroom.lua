@@ -692,6 +692,10 @@ minetest.register_node("df_primordial_items:mush_sapling", {
 	inventory_image = "dfcaverns_mush_sapling.png",
 	wield_image = "dfcaverns_mush_sapling.png",
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 11},
+	selection_box = {
+		type = "fixed",
+		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
+	},
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -715,7 +719,7 @@ minetest.register_node("df_primordial_items:mush_sapling", {
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
 		end
-		local mushroom = df_primordial.get_primordial_mushroom()
+		local mushroom = df_primordial_items.get_primordial_mushroom()
 		local rotation = (math.random(1,4)-1)*90
 		minetest.set_node(pos, {name="air"}) -- clear sapling so mushroom can replace it
 		mapgen_helper.place_schematic(pos, mushroom, rotation)

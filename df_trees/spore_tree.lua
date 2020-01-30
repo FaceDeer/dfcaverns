@@ -194,7 +194,7 @@ local c_spore_pod = minetest.get_content_id("df_trees:spore_tree_fruiting_body")
 local c_tree = minetest.get_content_id("df_trees:spore_tree")
 local c_spore_frond = minetest.get_content_id("df_trees:spore_tree_hyphae")
 
-df_trees.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has_fruiting_bodies)
+df_trees.spawn_spore_tree_vm = function(vi, area, data, data_param2, height, size, iters, has_fruiting_bodies)
 	if height == nil then height = math.random(3,6) end
 	if size == nil then size = 2 end
 	if iters == nil then iters = 10 end
@@ -211,6 +211,7 @@ df_trees.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has
 		local node_id = data[vi]
 		if node_id == c_air or node_id == c_ignore or node_id == c_spore_frond or node_id == c_spore_pod then
 			data[vi] = c_tree
+			data_param2[vi] = 0
 		end
 	end
 
@@ -225,6 +226,7 @@ df_trees.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has
 				else
 					data[vi] = c_spore_frond
 				end
+				data_param2[vi] = 0
 			end
 			vi = vi + 1
 		end
@@ -247,6 +249,7 @@ df_trees.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has
 						else
 							data[vi] = c_spore_frond
 						end
+						data_param2[vi] = 0
 					end
 				end
 			end
@@ -265,10 +268,12 @@ df_trees.spawn_spore_tree = function(pos)
 	)
 	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
+	local data_param_2 = vm:get_param2_data()
 
-	df_trees.spawn_spore_tree_vm(area:indexp(pos), area, data)
+	df_trees.spawn_spore_tree_vm(area:indexp(pos), area, data, data_param_2)
 
 	vm:set_data(data)
+	vm:set_param2_data(data_param_2)
 	vm:write_to_map()
 	vm:update_map()
 end

@@ -98,7 +98,7 @@ local spore_tree_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, 
 		if math.random() < 0.1 then
 			df_caverns.place_shrub(vi+ystride, area, data, data_param2, spore_tree_shrublist)
 		elseif math.random() < 0.05 then
-			df_trees.spawn_spore_tree_vm(vi+ystride, area, data)
+			df_trees.spawn_spore_tree_vm(vi+ystride, area, data, data_param2)
 		end
 	end
 end

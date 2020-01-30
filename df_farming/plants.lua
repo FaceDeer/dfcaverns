@@ -183,6 +183,9 @@ df_farming.register_seed = function(name, description, image, stage_one, grow_ti
 end
 
 df_farming.grow_underground_plant = function(pos, plant_name, elapsed)
+	if df_farming.kill_if_sunlit(pos) then
+		return
+	end
 	local node_def = minetest.registered_nodes[plant_name]
 	local next_stage = node_def._dfcaverns_next_stage
 	if next_stage then
@@ -198,7 +201,33 @@ df_farming.grow_underground_plant = function(pos, plant_name, elapsed)
 	end
 end
 
+df_farming.kill_if_sunlit = function(pos, node)
+	return false
+end
 if df_farming.config.light_kills_fungus then
+	local kill_if_sunlit = function(pos, node)
+		if not node then
+			node = minetest.get_node(pos)
+		end
+		local node_def = minetest.registered_nodes[node.name]
+		local light_sensitive_fungus_level = node_def.groups.light_sensitive_fungus
+		
+		-- This should never be the case, but I've received a report of it happening anyway in the ABM so guarding against it.
+		if not light_sensitive_fungus_level then return false end
+		
+		local dead_node = node_def._dfcaverns_dead_node or "df_farming:dead_fungus"
+		-- 11 is the value adjacent to a torch
+		local light_level = minetest.get_node_light(pos, 0.5) -- check at 0.5 to get how bright it would be here at noon,
+			-- prevents fungus from growing on the surface world by happenstance
+		if light_level and light_level > light_sensitive_fungus_level then
+			minetest.set_node(pos, {name=dead_node, param2 = node.param2})
+			return true
+		end
+		return false
+	end
+
+	df_farming.kill_if_sunlit = kill_if_sunlit
+
 	minetest.register_abm({
 		label = "df_farming:kill_light_sensitive_fungus",
 		nodenames = {"group:light_sensitive_fungus"},
@@ -206,15 +235,7 @@ if df_farming.config.light_kills_fungus then
 		interval = 30,
 		chance = 5,
 		action = function(pos, node)
-			local node_def = minetest.registered_nodes[node.name]
-			local light_sensitive_fungus_level = node_def.groups.light_sensitive_fungus
-			if not light_sensitive_fungus_level then return end -- This should never be the case, but I've received a report of it happening anyway so guarding against it.
-			local dead_node = node_def._dfcaverns_dead_node or "df_farming:dead_fungus"
-			-- 11 is the value adjacent to a torch
-			local light_level = minetest.get_node_light(pos)
-			if light_level and light_level > light_sensitive_fungus_level then
-				minetest.set_node(pos, {name=dead_node, param2 = node.param2})
-			end
+			kill_if_sunlit(pos, node)
 		end
 	})
 end

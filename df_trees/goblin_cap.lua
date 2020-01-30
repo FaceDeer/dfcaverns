@@ -206,15 +206,22 @@ minetest.register_node("df_trees:goblin_cap_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		local below_node = minetest.get_node(vector.add(pos, {x=0,y=-1,z=0}))
-		if minetest.get_item_group(below_node.name, "soil") > 0 then
-			minetest.get_node_timer(pos):start(math.random(
-				df_trees.config.goblin_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
-				df_trees.config.goblin_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
+			return
 		end
+		minetest.get_node_timer(pos):start(math.random(
+			df_trees.config.goblin_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
+			df_trees.config.goblin_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
 	end,
 	
 	on_timer = function(pos)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
+
 		minetest.set_node(pos, {name="air"})
 		if minetest.find_node_near({x=pos.x, y=pos.y-1, z=pos.z}, 1, {"group:straw"}) then
 			if math.random() < 0.5 then

@@ -154,9 +154,15 @@ minetest.register_node("df_trees:black_cap_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(
-			df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
-			df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		local below_node_name = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
+		if minetest.get_item_group(below_node_name, "soil") > 0 or minetest.get_item_group(below_node_name, "coal") > 0 then
+			minetest.get_node_timer(pos):start(math.random(
+				df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
+				df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		end
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
 	end,
 	
 	on_timer = function(pos)

@@ -17,7 +17,8 @@ minetest.register_node("df_primordial_items:fern_1", {
 	tiles = {"dfcaverns_jungle_fern_01.png"},
 	inventory_image = "dfcaverns_jungle_fern_01.png",
 	wield_image = "dfcaverns_jungle_fern_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node = "default:dry_shrub",
 	visual_scale = 1.69,
 	paramtype = "light",
 	drawtype = "plantlike",
@@ -37,7 +38,8 @@ minetest.register_node("df_primordial_items:fern_2", {
 	visual_scale = 1.69,
 	inventory_image = "dfcaverns_jungle_fern_02.png",
 	wield_image = "dfcaverns_jungle_fern_02.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node = "default:dry_shrub",
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -58,7 +60,8 @@ minetest.register_node("df_primordial_items:glow_plant_1", {
 	tiles = {"dfcaverns_jungle_flower_01.png"},
 	inventory_image = "dfcaverns_jungle_flower_01.png",
 	wield_image = "dfcaverns_jungle_flower_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node = "default:dry_shrub",
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -77,7 +80,8 @@ minetest.register_node("df_primordial_items:glow_plant_2", {
 	tiles = {"dfcaverns_jungle_glow_plant_01.png"},
 	inventory_image = "dfcaverns_jungle_glow_plant_01.png",
 	wield_image = "dfcaverns_jungle_glow_plant_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node = "default:dry_shrub",
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -96,7 +100,8 @@ minetest.register_node("df_primordial_items:glow_plant_3", {
 	tiles = {"dfcaverns_jungle_glow_plant_02.png"},
 	inventory_image = "dfcaverns_jungle_glow_plant_02.png",
 	wield_image = "dfcaverns_jungle_glow_plant_02.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node = "default:dry_shrub",
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -119,7 +124,8 @@ minetest.register_node("df_primordial_items:jungle_grass_1", {
 	tiles = {"dfcaverns_jungle_grass_01.png"},
 	inventory_image = "dfcaverns_jungle_grass_01.png",
 	wield_image = "dfcaverns_jungle_grass_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node ="default:dry_grass_3",
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -137,7 +143,8 @@ minetest.register_node("df_primordial_items:jungle_grass_2", {
 	tiles = {"dfcaverns_jungle_grass_02.png"},
 	inventory_image = "dfcaverns_jungle_grass_02.png",
 	wield_image = "dfcaverns_jungle_grass_02.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node ="default:dry_grass_4",
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -156,7 +163,8 @@ minetest.register_node("df_primordial_items:jungle_grass_3", {
 	tiles = {"dfcaverns_jungle_grass_03.png"},
 	inventory_image = "dfcaverns_jungle_grass_03.png",
 	wield_image = "dfcaverns_jungle_grass_03.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node ="default:dry_grass_4",
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -203,10 +211,10 @@ minetest.register_node("df_primordial_items:jungle_mushroom_1", {
 	description = S("Primordial Jungle Mushroom"),
 	_doc_items_longdesc = df_primordial_items.doc.small_mushroom_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.small_mushroom_usage,
-	tiles = {"dfcaverns_jungle_mushroom_01.png"},
-	inventory_image = "dfcaverns_jungle_mushroom_01.png",
-	wield_image = "dfcaverns_jungle_mushroom_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	tiles = {"dfcaverns_jungle_mushroom_01.png^[multiply:#f3df2a"},
+	inventory_image = "dfcaverns_jungle_mushroom_01.png^[multiply:#f3df2a",
+	wield_image = "dfcaverns_jungle_mushroom_01.png^[multiply:#f3df2a",
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 11},
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -218,13 +226,13 @@ minetest.register_node("df_primordial_items:jungle_mushroom_1", {
 })
 
 minetest.register_node("df_primordial_items:jungle_mushroom_2", {
-	description = S("Primordial Jungle Mushroom"),
+	description = S("Large Primordial Jungle Mushroom"),
 	_doc_items_longdesc = df_primordial_items.doc.small_mushroom_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.small_mushroom_usage,
 	tiles = {"dfcaverns_jungle_mushroom_02.png"},
 	inventory_image = "dfcaverns_jungle_mushroom_02.png",
 	wield_image = "dfcaverns_jungle_mushroom_02.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 11},
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -243,7 +251,9 @@ minetest.register_node("df_primordial_items:dirt_with_jungle_grass", {
 	_doc_items_longdesc = df_primordial_items.doc.dirt_with_jungle_grass_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.dirt_with_jungle_grass_usage,
 	tiles = {"dfcaverns_jungle_plant_grass_node_01.png"},
-	groups = {crumbly = 3, soil = 1},
+	paramtype = "light",
+	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node = "default:dirt",
 	is_ground_content = false,
 	drops = "default:dirt",
 	sounds = default.node_sound_dirt_defaults(),
@@ -270,6 +280,7 @@ minetest.register_node("df_primordial_items:plant_matter", {
 	_doc_items_usagehelp = df_primordial_items.doc.plant_matter_usage,
 	tiles = {"dfcaverns_jungle_plant_matter_01.png"},
 	is_ground_content = false,
+	paramtype = "light",
 	groups = {crumbly = 3, soil = 1},
 	sounds = default.node_sound_dirt_defaults(),
 	on_timer = function(pos)
@@ -278,6 +289,18 @@ minetest.register_node("df_primordial_items:plant_matter", {
 		end
 	end,
 })
+
+minetest.register_node("df_primordial_items:packed_roots", {
+	description = S("Packed Primordial Jungle Roots"),
+	_doc_items_longdesc = df_primordial_items.doc.packed_roots_desc,
+	_doc_items_usagehelp = df_primordial_items.doc.packed_roots_usage,
+	tiles = {"dfcaverns_jungle_plant_packed_roots_01.png"},
+	paramtype2 = "facedir",
+	is_ground_content = false,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2},
+	sounds = default.node_sound_wood_defaults(),
+})
+
 
 if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
 	local HARDPACK_PROBABILITY = minetest.settings:get("trail_hardpack_probability") or 0.5 -- Chance walked dirt/grass is worn and compacted to trail:trail.
@@ -293,22 +316,11 @@ if minetest.get_modpath("trail") and trail and trail.register_trample_node then
 	trail.register_trample_node("df_primordial_items:plant_matter", {
 		trampled_node_def_override = {description = S("Primordial Plant Matter with Footprint"),},
 		footprint_opacity = 128,
-		hard_pack_node_name = "trail:trail",
+		hard_pack_node_name = "df_primordial_items:packed_roots",
 		hard_pack_probability = HARDPACK_PROBABILITY,
 		hard_pack_count = HARDPACK_COUNT,
 	})
 end
-
-minetest.register_node("df_primordial_items:packed_roots", {
-	description = S("Packed Primordial Jungle Roots"),
-	_doc_items_longdesc = df_primordial_items.doc.packed_roots_desc,
-	_doc_items_usagehelp = df_primordial_items.doc.packed_roots_usage,
-	tiles = {"dfcaverns_jungle_plant_packed_roots_01.png"},
-	paramtype2 = "facedir",
-	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
-})
 
 minetest.register_craft({
 	type = "fuel",

@@ -223,13 +223,6 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 	end
 end
 
-local seedling_construct = function(pos)
-	local below_node = minetest.get_node(vector.add(pos, {x=0,y=-1,z=0}))
-	if minetest.get_item_group(below_node.name, "soil") > 0 then
-		minetest.get_node_timer(pos):start(growth_delay())
-	end
-end
-
 minetest.register_node("df_trees:spindlestem_seedling", {
 	description = S("Spindlestem Spawn"),
 	_doc_items_longdesc = df_trees.doc.spindlestem_desc,
@@ -252,9 +245,21 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 	},
 	
 	on_place = stem_on_place,
-	on_construct = seedling_construct,
+	on_construct = function(pos)
+		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
+			return
+		end
+		minetest.get_node_timer(pos):start(growth_delay())
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
+	end,
 	
-	on_timer = function(pos, elapsed)
+	on_timer = function(pos)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
+
 		local cap_item = minetest.get_name_from_content_id(get_spindlestem_cap_type(pos))
 		local node = minetest.get_node(pos)
 		minetest.set_node(pos, {name=cap_item, param2 = node.param2})

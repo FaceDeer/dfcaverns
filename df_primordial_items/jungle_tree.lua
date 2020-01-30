@@ -217,10 +217,6 @@ df_primordial_items.spawn_jungle_tree_vm = function(height, vi, area, data)
 	branch(vi + (height-1)*ystride) -- topper	
 end
 
---TODO: separate setting
-local min_growth_delay = tonumber(minetest.settings:get("dfcaverns_mycelium_min_growth_delay")) or 240
-local max_growth_delay = tonumber(minetest.settings:get("dfcaverns_mycelium_max_growth_delay")) or 400
-
 minetest.register_node("df_primordial_items:jungletree_sapling", {
 	description = S("Primordial Jungle Tree Sapling"),
 	_doc_items_longdesc = df_primordial_items.doc.tree_desc,
@@ -228,7 +224,8 @@ minetest.register_node("df_primordial_items:jungletree_sapling", {
 	tiles = {"dfcaverns_jungle_sapling.png"},
 	inventory_image = "dfcaverns_jungle_sapling.png",
 	wield_image = "dfcaverns_jungle_sapling.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node = "default:dry_shrub",
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -238,12 +235,24 @@ minetest.register_node("df_primordial_items:jungletree_sapling", {
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(min_growth_delay, max_growth_delay))
+		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
+			return
+		end
+		minetest.get_node_timer(pos):start(math.random(
+			df_trees.config.tree_min_growth_delay,
+			df_trees.config.tree_max_growth_delay))
 	end,
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
 	on_timer = function(pos, elapsed)
-		df_primordial_items.spawn_jungle_tree(pos)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
+		if minetest.get_node_light(pos) > 6 then
+			df_primordial_items.spawn_jungle_tree(pos)
+		else
+			minetest.get_node_timer(pos):start(df_trees.config.tree_min_growth_delay)
+		end
 	end,
 })

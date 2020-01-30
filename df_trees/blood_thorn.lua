@@ -185,6 +185,11 @@ local max_bloodthorn_height = function(pos)
 end
 
 function df_trees.grow_blood_thorn(pos, node)
+	if df_farming and df_farming.kill_if_sunlit(pos) then
+		return
+	end
+	
+	-- node is tipped over
 	if node.param2 >= 4 then
 		return
 	end

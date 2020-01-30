@@ -320,6 +320,10 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 		minetest.get_node_timer(pos):stop()
 	end,
 	on_timer = function(pos, elapsed)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
+	
 		if elapsed > max_growth_delay then
 			-- We've been unloaded for a while, need to do multiple growth iterations.
 			local iterations = math.floor(elapsed / avg_growth_delay) -- the number of iterations we've missed
@@ -370,12 +374,13 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
     connects_to = {"group:hypha"},
     connect_sides = { "top", "bottom", "front", "left", "back", "right" },
 	drawtype = "nodebox",
+	_dfcaverns_dead_node = "df_primordial_items:giant_hypha_root",
 	light_source = 6,
 	node_box = get_node_box(0.25, 0.375),
 	paramtype = "light",
 
 	is_ground_content = false,
-	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, not_in_creative_inventory = 1},
+	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, not_in_creative_inventory = 1, light_sensitive_fungus = 13},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 })
 
@@ -383,10 +388,12 @@ local grow_mycelium_immediately = function(pos)
 	local stack = {pos}
 	while #stack > 0 do
 		local pos = table.remove(stack)
-		local new_poses = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_mapgen")
-		if new_poses then -- if we hit the end of the world, just stop. There'll be a mapgen meristem left here, the abm will re-trigger it when the player gets close.
-			for _, new_pos in ipairs(new_poses) do
-				table.insert(stack, new_pos)
+		if not (df_farming and df_farming.kill_if_sunlit(pos)) then
+			local new_poses = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_mapgen")
+			if new_poses then -- if we hit the end of the world, just stop. There'll be a mapgen meristem left here, the abm will re-trigger it when the player gets close.
+				for _, new_pos in ipairs(new_poses) do
+					table.insert(stack, new_pos)
+				end
 			end
 		end
 	end	

@@ -684,10 +684,6 @@ df_primordial_items.get_primordial_mushroom = function()
 	return bc_mushroom_21
 end
 
---TODO: separate setting
-local min_growth_delay = tonumber(minetest.settings:get("dfcaverns_mycelium_min_growth_delay")) or 240
-local max_growth_delay = tonumber(minetest.settings:get("dfcaverns_mycelium_max_growth_delay")) or 400
-
 minetest.register_node("df_primordial_items:mush_sapling", {
 	description = S("Primordial Mushroom Spawn"),
 	_doc_items_longdesc = df_primordial_items.doc.giant_mushroom_desc,
@@ -705,12 +701,20 @@ minetest.register_node("df_primordial_items:mush_sapling", {
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(min_growth_delay, max_growth_delay))
+		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
+			return
+		end
+		minetest.get_node_timer(pos):start(math.random(
+			df_trees.config.tree_min_growth_delay,
+			df_trees.config.tree_max_growth_delay))
 	end,
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
 	on_timer = function(pos, elapsed)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
 		local mushroom = df_primordial.get_primordial_mushroom()
 		local rotation = (math.random(1,4)-1)*90
 		minetest.set_node(pos, {name="air"}) -- clear sapling so mushroom can replace it

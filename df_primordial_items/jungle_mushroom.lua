@@ -105,14 +105,21 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	sunlight_propagates = true,
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(
-			math.random(
-				df_trees.config.nether_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
-				df_trees.config.nether_cap_delay_multiplier*df_trees.config.tree_max_growth_delay)
-		)
+		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
+			return
+		end
+		minetest.get_node_timer(pos):start(math.random(
+			df_trees.config.tree_min_growth_delay,
+			df_trees.config.tree_max_growth_delay))
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
 	end,
 	
 	on_timer = function(pos)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
 		minetest.set_node(pos, {name="air"})
 		df_primordial_items.spawn_jungle_mushroom(pos)
 	end,

@@ -9,7 +9,7 @@ minetest.register_node("df_trees:nether_cap_stem", {
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_stem.png"},
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
 	sounds = default.node_sound_wood_defaults(),
 })
 
@@ -20,7 +20,7 @@ minetest.register_node("df_trees:nether_cap", {
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap.png"},
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1 },
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
 	sounds = default.node_sound_wood_defaults({
 		footstep = {name = "default_snow_footstep", gain = 0.2},
 	}),
@@ -34,7 +34,7 @@ minetest.register_node("df_trees:nether_cap_gills", {
 	tiles = {"dfcaverns_nether_cap_gills.png"},
 	is_ground_content = false,
 	light_source = 6,
-	groups = {snappy = 3, leafdecay = 3, leaves = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1},
+	groups = {snappy = 3, leafdecay = 3, leaves = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	drawtype = "plantlike",
 	paramtype = "light",
@@ -114,12 +114,24 @@ minetest.register_node("df_trees:nether_cap_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
+		local node_below_name = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
+		if minetest.get_item_group(node_below_name, "cools_lava") == 0 or minetest.get_item_group(node_below_name, "nether_cap") > 0 then
+			return
+		end
+
 		minetest.get_node_timer(pos):start(math.random(
 			df_trees.config.nether_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
 			df_trees.config.nether_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
 	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
+	end,
 	
 	on_timer = function(pos)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
+
 		minetest.set_node(pos, {name="air"})
 		df_trees.spawn_nether_cap(pos)
 	end,

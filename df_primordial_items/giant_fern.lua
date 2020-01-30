@@ -270,7 +270,8 @@ minetest.register_node("df_primordial_items:fern_sapling", {
 	tiles = {"dfcaverns_jungle_fern_03.png"},
 	inventory_image = "dfcaverns_jungle_fern_03.png",
 	wield_image = "dfcaverns_jungle_fern_03.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 13},
+	_dfcaverns_dead_node = "default:dry_shrub",
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -280,10 +281,28 @@ minetest.register_node("df_primordial_items:fern_sapling", {
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	on_construct = function(pos)
-		--TODO timer
-		local fern = df_primordial_items.get_fern_schematic()
-		local rotation = rotations[math.random(1,#rotations)]
-		minetest.set_node(pos, {name="air"}) -- clear sapling so fern can replace it
-		mapgen_helper.place_schematic(pos, fern, rotation)
+		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
+			return
+		end
+		minetest.get_node_timer(pos):start(math.random(
+			df_trees.config.tree_min_growth_delay,
+			df_trees.config.tree_max_growth_delay))
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
+	end,
+	on_timer = function(pos, elapsed)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
+
+		if minetest.get_node_light(pos) > 6 then
+			local fern = df_primordial_items.get_fern_schematic()
+			local rotation = rotations[math.random(1,#rotations)]
+			minetest.set_node(pos, {name="air"}) -- clear sapling so fern can replace it
+			mapgen_helper.place_schematic(pos, fern, rotation)
+		else
+			minetest.get_node_timer(pos):start(df_trees.config.tree_min_growth_delay)
+		end
 	end,
 })

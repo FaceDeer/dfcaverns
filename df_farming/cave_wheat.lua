@@ -119,6 +119,7 @@ minetest.register_craftitem("df_farming:cave_bread", {
 	_doc_items_longdesc = df_farming.doc.cave_bread_desc,
 	_doc_items_usagehelp = df_farming.doc.cave_bread_usage,
 	inventory_image = "dfcaverns_prepared_food13x16.png",
+	sound = {eat = {name = "df_farming_chomp_crunch", gain = 1.0}},
 	on_use = minetest.item_eat(5),
 	groups = {flammable = 2, food = 5},
 })

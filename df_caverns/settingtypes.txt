@@ -41,18 +41,22 @@ dfcaverns_underworld_glowing_pit_mapblocks(Average pit spacing measured in mapbl
 
 [Underworld feature HUD]
 
+dfcaverns_underworld_hud_requires_item (Require an item to view waypoints) bool true
+#Players can still discover the locations of volcanoes without this, but waypoints
+#will only be visible in their hud if they have this item in their inventory. You can also
+#specify "group:groupname" here. Leave it blank to default to map:mapping_kit.
+dfcaverns_underworld_hud_item_required (Specify the item or group required) string map:mapping_kit
+
+
 dfcaverns_show_pits_in_hud (Show pit locations in HUD) bool true
-dfcaverns_pit_hud_requires_mapping_kit (Require mapping kit to show pits) bool true
 dfcaverns_pit_discovery_range (Pit discovery range) int 60
 dfcaverns_pit_visibility_range (Pit visibility range) int 500
 
 dfcaverns_show_seals_in_hud (Seal locations in HUD) bool true
-dfcaverns_seal_hud_requires_mapping_kit (Require mapping kit to show seals) bool true
 dfcaverns_seal_discovery_range (Seal discovery range) int 10
 dfcaverns_seal_visibility_range (Seal visibility range) int 200
 
 dfcaverns_show_ruins_in_hud (Ruin locations visible in HUD) bool true
-dfcaverns_ruin_hud_requires_mapping_kit (Require mapping kit to show ruins) bool true
 dfcaverns_ruin_discovery_range (Ruin discovery range) int 40
 dfcaverns_ruin_visibility_range (Ruin visibility range) int 250
 

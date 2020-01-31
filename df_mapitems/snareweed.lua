@@ -25,7 +25,7 @@ if df_mapitems.config.snareweed_damage then
 		if timer >= 1 then
 			timer = timer - 1
 			for _, player in pairs(minetest.get_connected_players()) do
-				local player_pos = player:getpos() -- node player's feet are in this location.
+				local player_pos = player:get_pos() -- node player's feet are in this location.
 				local rounded_pos = vector.round(player_pos)
 				local nearby_nodes = minetest.find_nodes_in_area(vector.add(rounded_pos, {x=0, y= -8, z=0}), rounded_pos, {"df_mapitems:snareweed"})
 				for _, node_pos in ipairs(nearby_nodes) do

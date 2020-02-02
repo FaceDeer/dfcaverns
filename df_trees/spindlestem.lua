@@ -173,10 +173,10 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 			end
 			
 			if height > 0 then
-				meta = minetest.get_meta(above)
+				meta = minetest.get_meta(pos)
 				meta:set_int("spindlestem_to_grow", height)
 				meta:set_int("spindlestem_delay", delay)
-				minetest.get_node_timer(above):start(delay-elapsed)
+				minetest.get_node_timer(pos):start(delay-elapsed)
 			end
 		end,
 	})

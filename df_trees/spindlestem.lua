@@ -46,7 +46,7 @@ local stem_on_place = function(itemstack, placer, pointed_thing)
 
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name = itemstack:get_name(), param2 = new_param2})
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode", false) then
 		itemstack:take_item()
 	end
 	return itemstack
@@ -149,23 +149,34 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 		
 		on_place = stem_on_place,
 		on_timer = function(pos, elapsed)
-			local above = vector.add(pos, {x=0,y=1,z=0})
-			local node_above = minetest.get_node(above)
-			local above_def = minetest.registered_nodes[node_above.name]
-			if not above_def or not above_def.buildable_to then
-				-- can't grow any more, exit
-				return
-			end
 			local meta = minetest.get_meta(pos)
 			local height = meta:get_int("spindlestem_to_grow")
+			local delay = meta:get_int("spindlestem_delay")
+			if delay == 0 then
+				delay = growth_delay() -- compatibility code to ensure no crash for previous version
+			end
 			local node = minetest.get_node(pos)
-			minetest.set_node(pos, {name="df_trees:spindlestem_stem", param2 = node.param2})
-			minetest.set_node(above, {name=cap_item, param2 = node.param2})
-			height = height - 1
+		
+			while height > 0 and elapsed >= delay do
+				elapsed = elapsed - delay
+				local this_pos = pos
+				pos = vector.add(this_pos, {x=0,y=1,z=0})
+				local node_above = minetest.get_node(pos)
+				local above_def = minetest.registered_nodes[node_above.name]
+				if not above_def or not above_def.buildable_to then
+					-- can't grow any more, exit
+					return
+				end
+				minetest.set_node(this_pos, {name="df_trees:spindlestem_stem", param2 = node.param2})
+				minetest.set_node(pos, {name=cap_item, param2 = node.param2})
+				height = height - 1
+			end
+			
 			if height > 0 then
 				meta = minetest.get_meta(above)
 				meta:set_int("spindlestem_to_grow", height)
-				minetest.get_node_timer(above):start(growth_delay())
+				meta:set_int("spindlestem_delay", delay)
+				minetest.get_node_timer(above):start(delay-elapsed)
 			end
 		end,
 	})
@@ -255,7 +266,7 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 		minetest.get_node_timer(pos):stop()
 	end,
 	
-	on_timer = function(pos)
+	on_timer = function(pos, elapsed)
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
 		end
@@ -270,8 +281,10 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 		local height = math.random(1,3)
 		if count > 10 then height = height + 2 end -- if there are a lot of nearby spindlestems, grow taller
 		if height > 0 then
+			local delay = growth_delay()
 			meta:set_int("spindlestem_to_grow", height)
-			minetest.get_node_timer(pos):start(growth_delay())
+			meta:set_int("spindlestem_delay", delay)
+			minetest.get_node_timer(pos):start(delay)
 		end
 	end,
 })
@@ -320,7 +333,7 @@ local c_cyan = minetest.get_content_id("df_trees:spindlestem_cap_cyan")
 local c_golden = minetest.get_content_id("df_trees:spindlestem_cap_golden")
 
 get_spindlestem_cap_type = function(pos)
-	if pos.y > -100 or minetest.find_node_near(pos, 15, "group:tower_cap") then
+	if minetest.find_node_near(pos, 15, "group:tower_cap") then
 		return c_white
 	end
 	if minetest.find_node_near(pos, 15, "group:goblin_cap") then
@@ -336,7 +349,6 @@ get_spindlestem_cap_type = function(pos)
 	if copper then table.insert(possibilities, c_green) end
 	if iron then table.insert(possibilities, c_red) end
 	if iron and copper then table.insert(possibilities, c_cyan) end
-	
 	if #possibilities == 0 then
 		return c_white
 	else

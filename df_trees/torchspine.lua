@@ -43,7 +43,7 @@ local stal_on_place = function(itemstack, placer, pointed_thing)
 
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name = itemstack:get_name(), param2 = new_param2})
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode", false) then
 		itemstack:take_item()
 	end
 	return itemstack

@@ -136,7 +136,7 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name = plantname, param2 = 1})
 	df_farming.plant_timer(pt.above, plantname)
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode", false) then
 		itemstack:take_item()
 	end
 	return itemstack

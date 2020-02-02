@@ -143,6 +143,11 @@ local c_ivy = minetest.get_content_id("df_primordial_items:jungle_ivy")
 local c_root_2 = minetest.get_content_id("df_primordial_items:jungle_roots_2")
 local c_root_1 = minetest.get_content_id("df_primordial_items:jungle_roots_1")
 
+local c_fireflies
+if minetest.get_modpath("fireflies") then
+	c_fireflies = minetest.get_content_id("fireflies:firefly")
+end
+
 local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_param2)
 	local ystride = area.ystride
 	local humidityfactor = humidity/100
@@ -160,6 +165,13 @@ local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_
 		df_primordial_items.spawn_jungle_tree_vm(math.random(8,14), vi+ystride, area, data)
 	elseif rand < 0.3 then
 		data[vi+ystride] = jungle_plants[math.random(1,#jungle_plants)]
+	end
+	
+	if c_fireflies and math.random() < 0.01 then
+		local firefly_vi = vi + ystride * math.random(1, 5)
+		if data[firefly_vi] == c_air then
+			data[firefly_vi] = c_fireflies
+		end
 	end
 end
 
@@ -221,6 +233,13 @@ local jungle_warren_floor = function(abs_cracks, vi, area, data, data_param2)
 		end
 	elseif abs_cracks < 1 then
 		data[vi] = c_dirt
+	end
+	
+	if c_fireflies and math.random() < 0.005 then
+		local firefly_vi = vi + ystride * math.random(1, 5)
+		if data[firefly_vi] == c_air then
+			data[firefly_vi] = c_fireflies
+		end
 	end
 end
 ---------------------------------------------------------------------------------------------------------
@@ -322,7 +341,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local jungle = nvals_cave[vi] < 0
 		if jungle then
 			data[vi] = c_plant_matter
-			minetest.get_node_timer(area:position(vi)):start(math.random(10, 60))
+			minetest.get_node_timer(area:position(vi)):start(math.random(30, 120))
 		else
 			data[vi] = c_mycelial_dirt
 			if math.random() < 0.025 then

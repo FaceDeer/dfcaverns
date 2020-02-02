@@ -283,7 +283,14 @@ minetest.register_node("df_primordial_items:plant_matter", {
 	paramtype = "light",
 	groups = {crumbly = 3, soil = 1},
 	sounds = default.node_sound_dirt_defaults(),
-	on_timer = function(pos)
+	on_timer = function(pos, elapsed)
+		if elapsed > 130 then
+			-- the timer triggered more than ten seconds after it was suppposed to,
+			-- it may have been in an unloaded block. Rather than have all the timers
+			-- go off at once now that the block's loaded, stagger them out again.
+			minetest.get_node_timer(pos):start(math.random(10, 120))
+			return
+		end
 		if minetest.find_node_near(pos, 1, {"air"}) == nil then
 			minetest.set_node(pos, {name="df_primordial_items:packed_roots"})
 		end

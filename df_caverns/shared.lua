@@ -235,6 +235,9 @@ df_caverns.is_ground_content = function(c_node)
 	end
 	dfcaverns_nodes[minetest.get_content_id("default:ice")] = true -- needed for nethercap cavern water covering
 	dfcaverns_nodes[minetest.get_content_id("oil:oil_source")] = true -- needed for blackcap oil slicks
+	if minetest.get_modpath("fireflies") then
+		dfcaverns_nodes[minetest.get_content_id("fireflies:firefly")] = true -- used in the primordial caverns
+	end
 	dfcaverns_mods = nil
 	return not dfcaverns_nodes[c_node]
 end

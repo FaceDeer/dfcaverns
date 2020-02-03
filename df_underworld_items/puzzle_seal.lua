@@ -6,11 +6,16 @@ local named_waypoints_path = minetest.get_modpath("named_waypoints")
 
 local invulnerable = df_underworld_items.config.invulnerable_slade and not minetest.settings:get_bool("creative_mode")
 
-local slade_groups = nil
+local can_dig
 if invulnerable then
-	slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, immortal = 1, not_in_creative_inventory=1}
-else
-	slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, not_in_creative_inventory=1}
+	can_dig = function(pos, player)
+		return minetest.check_player_privs(player, "server")
+	end
+end
+
+local slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, not_in_creative_inventory=1}
+if invulnerable then
+	slade_groups.immortal = 1
 end
 
 
@@ -195,6 +200,7 @@ local puzzle_seal_def = {
 		fixed = {-0.625, -0.625, -0.625, 0.625, 0.625, 0.625},
 	},
 	is_ground_content = false,
+	can_dig = can_dig,
 	on_blast = function() end,
 	on_rotate = function() return false end,
 	on_construct = function(pos)
@@ -255,6 +261,7 @@ local digging_seal_def = {
 		fixed = {-0.625, -0.625, -0.625, 0.625, 0.625, 0.625},
 	},
 	is_ground_content = false,
+	can_dig = can_dig,
 	on_blast = function() end,
 	on_rotate = function() return false end,
 	on_construct = function(pos)
@@ -364,6 +371,7 @@ local inscription_block_def = {
 	groups = slade_groups,
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
+	can_dig = can_dig,
 	on_blast = function() end,
 	on_rotate = function() return false end,
 }
@@ -401,6 +409,7 @@ local capstone_def = {
 	light_source = 8,
 	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
+	can_dig = can_dig,
 	on_blast = function() end,
 	on_rotate = function() return false end,
 }
@@ -429,11 +438,9 @@ local n15 = { name = "df_underworld_items:inscription_block", param2 = 3 }
 local n16 = { name = "df_underworld_items:slade_capstone"}
 
 if minetest.get_modpath("stairs") then
-	local stair_groups = {level = 3, mese_radiation_shield=1, pit_plasma_resistant=1, slade=1}
+	local stair_groups = {level = 3, mese_radiation_shield=1, pit_plasma_resistant=1, slade=1, cracky = 3}
 	if invulnerable then
 		stair_groups.immortal = 1
-	else
-		stair_groups.cracky = 3
 	end
 
 	stairs.register_stair_and_slab(
@@ -445,6 +452,14 @@ if minetest.get_modpath("stairs") then
 		S("Slade Block Slab"),
 		default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } })
 	)
+	
+	if invulnerable then
+		for name, def in pairs(minetest.registered_nodes) do
+			if name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_block" then
+				minetest.override_item(name, {can_dig = can_dig})
+			end
+		end
+	end
 	
 	n2 = { name = "stairs:stair_slade_block", param2 = 3 }
 	n4 = { name = "stairs:stair_slade_block", param2 = 1 }

@@ -4,13 +4,13 @@ local S, NS = dofile(MP.."/intllib.lua")
 
 local invulnerable = df_underworld_items.config.invulnerable_slade and not minetest.settings:get_bool("creative_mode")
 
+local server_diggable_only = function(pos, player)
+	return minetest.check_player_privs(player, "server")
+end
+
 local add_immortality = function(slade_def)
 	slade_def.groups.immortal = 1
-	slade_def.groups.cracky = nil
-	--slade_def.on_destruct = function() end
-	--slade_def.can_dig = function(pos, player) return minetest.settings:get_bool("creative_mode") == true end
-	--slade_def.diggable = false
-	--slade_def.on_blast = function() end
+	slade_def.can_dig = server_diggable_only
 	return slade_def
 end
 
@@ -143,10 +143,9 @@ if minetest.get_modpath("stairs") then
 	local stair_groups = {level = 3, mese_radiation_shield=1, pit_plasma_resistant=1, slade=1}
 	if invulnerable then
 		stair_groups.immortal = 1
-	else
-		stair_groups.cracky = 3
 	end
-
+	stair_groups.cracky = 3
+	
 	stairs.register_stair_and_slab(
 		"slade_brick",
 		"df_underworld_items:slade_brick",
@@ -156,6 +155,15 @@ if minetest.get_modpath("stairs") then
 		S("Slade Slab"),
 		default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } })
 	)
+	
+	if invulnerable then
+		for name, def in pairs(minetest.registered_nodes) do
+			if name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_brick" then
+				minetest.override_item(name, {can_dig = server_diggable_only})
+			end
+		end
+	end
+	
 end
 
 if minetest.get_modpath("mesecons_mvps") and df_underworld_items.config.invulnerable_slade then

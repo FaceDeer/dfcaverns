@@ -135,3 +135,15 @@ bones_loot.place_bones = function(pos, loot_type, max_stacks, infotext, exclusiv
 		end
 	end
 end
+
+minetest.register_lbm({
+	label = "Repair underworld bones formspec",
+	name = "bones_loot:repair_underworld_bones_formspec",
+	nodenames = {"bones:bones"},	
+	action = function(pos, node)
+		local meta = minetest.get_meta(pos)
+		if not meta:get("formspec") then
+			meta:set_string("formspec", bones_formspec)
+		end	
+	end,
+})

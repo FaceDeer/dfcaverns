@@ -64,7 +64,7 @@ minetest.register_node("df_trees:torchspine_1", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	drops = "default:torch",
+	drop = "default:torch",
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_1,
@@ -88,7 +88,7 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 	paramtype2 = "facedir",
 	light_source = 6,
 	is_ground_content = false,
-	drops = "default:torch 2",
+	drop = "default:torch 2",
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_1,

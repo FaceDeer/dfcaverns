@@ -70,6 +70,11 @@ minetest.register_node("df_trees:torchspine_1", {
 		fixed = stal_box_1,
 	},
 	on_place = stal_on_place,
+	on_punch = function(pos, node, puncher)
+		if puncher:get_wielded_item():get_name() == "default:torch" then
+			minetest.swap_node(pos, {name = "df_trees:torchspine_1_lit", param2 = node.param2})
+		end
+	end,
 })
 
 minetest.register_node("df_trees:torchspine_1_lit", {
@@ -77,7 +82,7 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 	_doc_items_longdesc = df_trees.doc.torchspine_desc,
 	_doc_items_usagehelp = df_trees.doc.torchspine_usage,
 	tiles = {"default_gold_block.png", "dfcaverns_torchspine_1.5.png", "dfcaverns_torchspine_1_lit.png"},
-	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, torch = 1, fall_damage_add_percent = 150},
+	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, torch = 1, fall_damage_add_percent = 150, smokey = 1},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -282,11 +287,11 @@ minetest.register_abm{
 minetest.register_abm{
 	label = "torchspine lighting",
 	nodenames = {"df_trees:torchspine_1"},
-	interval = 57,
+	interval = 30,
 	chance = 10,
 	catch_up = true,
 	action = function(pos)
-		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})]
+		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
 		if above_def and above_def.buildable_to then
 			minetest.swap_node(pos, {name="df_trees:torchspine_1_lit", param2=minetest.get_node(pos).param2})
 		end
@@ -296,7 +301,7 @@ local torchspine_list = {"df_trees:torchspine_1","df_trees:torchspine_2","df_tre
 minetest.register_abm{
 	label = "torchspine growing",
 	nodenames = {"df_trees:torchspine_1_lit"},
-	interval = 30,
+	interval = 37,
 	chance = 10,
 	catch_up = true,
 	action = function(pos)

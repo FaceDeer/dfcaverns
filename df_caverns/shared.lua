@@ -124,6 +124,9 @@ local content_in_list=function(content, list)
 end
 
 df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, data_param2, wet)
+	if maxp.y > -30 then
+		wet = false
+	end
 	local ystride = area.ystride
 	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 	local cracks = nvals_cracks[index2d]
@@ -148,6 +151,10 @@ df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, dat
 end
 
 df_caverns.tunnel_ceiling = function(minp, maxp, area, vi, nvals_cracks, data, data_param2, wet)
+	if maxp.y > -30 then
+		wet = false
+	end
+
 	local ystride = area.ystride
 	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 	local cracks = nvals_cracks[index2d]

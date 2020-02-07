@@ -133,6 +133,14 @@ minetest.register_craft({
 	}
 })
 
+-- Paper
+minetest.register_craft({
+	output = "default:paper 3",
+	type = "shapeless",
+	recipe = {'df_trees:tunnel_tube', 'bucket:bucket_water'},
+	replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}},
+})
+
 minetest.register_node("df_trees:tunnel_tube_wood", {
 	description = S("Tunnel Tube Plies"),
 	_doc_items_longdesc = df_trees.doc.tunnel_tube_desc,

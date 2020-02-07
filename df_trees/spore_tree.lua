@@ -296,7 +296,12 @@ minetest.register_abm{
 			vertical = false,
 			texture = "dfcaverns_spore_tree_spores.png",
 		})
-		
+		if math.random() < 0.025 then
+			minetest.sound_play("dfcaverns_spore_tree_pitter_patter", {
+				pos = pos,
+				gain = 0.2,
+			})
+		end
 	end,
 }
 
@@ -336,4 +341,3 @@ minetest.register_node("df_trees:spore_tree_ladder", {
 	legacy_wallmounted = true,
 	sounds = default.node_sound_wood_defaults(),
 })
-

@@ -60,7 +60,9 @@ local mushroom_cavern_floor = function(abs_cracks, humidity, vi, area, data, dat
 
 	local rand = math.random() * math.min(abs_cracks, 1) * humidityfactor
 	if rand < 0.0005 then
-		data[vi+ystride] = c_giant_mycelium
+		local mycelium_index = vi+ystride
+		data[mycelium_index] = c_giant_mycelium
+		minetest.get_node_timer(area:position(mycelium_index)):start(math.random(1,10))
 	elseif rand < 0.003 then
 		local schematic = df_primordial_items.get_primordial_mushroom()
 		local rotation = (math.random(1,4)-1)*90
@@ -80,7 +82,9 @@ local mushroom_cavern_ceiling = function(abs_cracks, humidity, vi, area, data, d
 		if abs_cracks < 0.3 then
 			local rand = math.random() * humidityfactor
 			if rand < 0.002 then
-				data[vi-ystride] = c_giant_mycelium
+				local mycelium_index = vi-ystride
+				data[mycelium_index] = c_giant_mycelium
+				minetest.get_node_timer(area:position(mycelium_index)):start(math.random(1,10))
 			elseif rand < 0.03 then
 				df_primordial_items.spawn_ceiling_spire_vm(vi, area, data)
 			elseif rand < 0.2 then
@@ -99,7 +103,9 @@ local mushroom_warren_ceiling = function(abs_cracks, vi, area, data, data_param2
 		if abs_cracks < 0.2 then
 			local rand = math.random()
 			if rand < 0.002 then
-				data[vi-ystride] = c_giant_mycelium
+				local mycelium_index = vi-ystride
+				data[mycelium_index] = c_giant_mycelium
+				minetest.get_node_timer(area:position(mycelium_index)):start(math.random(1,10))
 			elseif rand < 0.2 then
 				data[vi-ystride] = c_orb
 				data_param2[vi-ystride] = math.random(0,179)
@@ -117,7 +123,9 @@ local mushroom_warren_floor = function(abs_cracks, vi, area, data, data_param2)
 	end
 	local rand = math.random() * math.min(abs_cracks, 1)
 	if rand < 0.001 then
-		data[vi+ystride] = c_giant_mycelium
+		local mycelium_index = vi+ystride
+		data[mycelium_index] = c_giant_mycelium
+		minetest.get_node_timer(area:position(mycelium_index)):start(math.random(1,10))
 	elseif rand < 0.03 then
 		data[vi+ystride] = fungal_plants[math.random(1,5)]
 	end
@@ -348,6 +356,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 				local rand_vi = vi + random_dir[math.random(1,4)]
 				if data[rand_vi] == c_air then
 					data[rand_vi] = c_giant_mycelium
+					minetest.get_node_timer(area:position(rand_vi)):start(math.random(1,10))
 				end				
 			end
 		end

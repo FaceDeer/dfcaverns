@@ -363,9 +363,25 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 	end,
 })
 
--- this version grows instantly via ABM, it is meant for mapgen usage.
--- An ABM is used so that it will trigger only after the surrounding map chunks have
--- also been generated, in case it wants to grow into them.
+-- this version grows instantly, it is meant for mapgen usage.
+
+local grow_mycelium_immediately = function(pos)
+	local stack = {pos}
+	while #stack > 0 do
+		local pos = table.remove(stack)
+		if not (df_farming and df_farming.kill_if_sunlit(pos)) then
+			local new_poses = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_mapgen")
+			if new_poses then -- if we hit the end of the world, just stop. There'll be a mapgen meristem left here, re-trigger it.
+				for _, new_pos in ipairs(new_poses) do
+					table.insert(stack, new_pos)
+				end
+			else
+				minetest.get_node_timer(pos):start(math.random(10,60))
+			end
+		end
+	end	
+end
+
 minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 	description = S("Giant Hypha Apical Meristem"),
 	tiles = {
@@ -382,29 +398,13 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 	is_ground_content = false,
 	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, not_in_creative_inventory = 1, light_sensitive_fungus = 13},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
-})
-
-local grow_mycelium_immediately = function(pos)
-	local stack = {pos}
-	while #stack > 0 do
-		local pos = table.remove(stack)
-		if not (df_farming and df_farming.kill_if_sunlit(pos)) then
-			local new_poses = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_mapgen")
-			if new_poses then -- if we hit the end of the world, just stop. There'll be a mapgen meristem left here, the abm will re-trigger it when the player gets close.
-				for _, new_pos in ipairs(new_poses) do
-					table.insert(stack, new_pos)
-				end
-			end
-		end
-	end	
-end
-
-minetest.register_abm({
-	label = "Mycelium mapgen growth",
-	nodenames = {"df_primordial_items:giant_hypha_apical_mapgen"},
-	interval = 1.0,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
+	on_timer = function(pos, elapsed)
 		grow_mycelium_immediately(pos)
-	end
+	end,
+	on_construct = function(pos)
+		minetest.get_node_timer(pos):start(1)
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
+	end,
 })

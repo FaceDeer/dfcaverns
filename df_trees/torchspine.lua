@@ -82,11 +82,11 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 	_doc_items_longdesc = df_trees.doc.torchspine_desc,
 	_doc_items_usagehelp = df_trees.doc.torchspine_usage,
 	tiles = {"default_gold_block.png", "dfcaverns_torchspine_1.5.png", "dfcaverns_torchspine_1_lit.png"},
-	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, torch = 1, fall_damage_add_percent = 150},
+	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, torch = 1, fall_damage_add_percent = 150, smokey = 6},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 6,
+	light_source = 8,
 	is_ground_content = false,
 	drop = "default:torch 2",
 	node_box = {

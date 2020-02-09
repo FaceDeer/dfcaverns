@@ -555,11 +555,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 	
-	local chunk_generation_time = math.ceil((os.clock() - t_start) * 1000) --grab how long it took
-	if chunk_generation_time < 1000 then
-		minetest.log("info", "[df_caverns] underworld mapblock generation took "..chunk_generation_time.." ms") --tell people how long
-	else
-		minetest.log("warning", "[df_caverns] underworld took "..chunk_generation_time.." ms to generate map block "
-			.. minetest.pos_to_string(minp) .. minetest.pos_to_string(maxp))
-	end
+	local time_taken = os.clock() - t_start -- how long this chunk took, in seconds
+	mapgen_helper.record_time("df_caverns underworld", time_taken)
 end)

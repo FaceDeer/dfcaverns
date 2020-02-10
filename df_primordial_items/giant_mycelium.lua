@@ -111,29 +111,37 @@ minetest.register_craft({
 -- By growing with these conditions hyphae will hug the ground and will not immediately loop back on themselves
 -- (though they can run into other pre-existing growths, forming larger loops - which is fine, large loops are nice)
 
+local ystride = 3
+local zstride = 9
+local get_item_group = minetest.get_item_group
+local get_node = minetest.get_node
+local registered_nodes = minetest.registered_nodes
+local math_random = math.random
+
 local find_mycelium_growth_targets = function(pos)
 	local nodes = {}
+	local pos_x = pos.x
+	local pos_y = pos.y
+	local pos_z = pos.z
+	
 	for x = -1, 1 do
-		nodes[x] = {}
 		for y = -1, 1 do
-			nodes[x][y] = {}
 			for z = -1, 1 do
 				if not (x == y and y == z) then -- we don't care about the diagonals or the center node
-					local node = minetest.get_node({x=pos.x+x, y=pos.y+y, z=pos.z+z})
-					if node.name == "ignore" then
+					local node = get_node({x=pos_x+x, y=pos_y+y, z=pos_z+z})
+					local node_name = node.name
+					if node_name == "ignore" then
 						-- Pause growth! We're at the edge of the known world.
 						return nil
 					end
-					local state = {}
-					if minetest.get_item_group(node.name, "soil") > 0 or
-						minetest.get_item_group(node.name, "stone") > 0 and math.random() < 0.5 then -- let hyphae explore out over stone
-						state.soil = true
-					elseif minetest.get_item_group(node.name, "hypha") > 0 then
-						state.hypha = true
-					elseif minetest.registered_nodes[node.name] and minetest.registered_nodes[node.name].buildable_to then
-						state.buildable = true
+					if get_item_group(node_name, "soil") > 0 or
+						get_item_group(node_name, "stone") > 0 and math_random() < 0.5 then -- let hyphae explore out over stone
+						nodes[x + y*ystride + z*zstride] = "soil"
+					elseif get_item_group(node_name, "hypha") > 0 then
+						nodes[x + y*ystride + z*zstride] = "hypha"
+					elseif registered_nodes[node_name] and registered_nodes[node_name].buildable_to then
+						nodes[x + y*ystride + z*zstride] = "buildable"
 					end
-					nodes[x][y][z] = state
 				end
 			end
 		end
@@ -143,119 +151,119 @@ local find_mycelium_growth_targets = function(pos)
 	--copy and pasting is easy and nobody's going to decide whether to hire or fire me based on this
 	--particular snippet of code so what the hell. I'll fix it later when that clever way comes to me.
 	local valid_targets = {}
-	if nodes[-1][0][0].buildable and
+	if nodes[-1] == "buildable" and
 		-- test for soil to directly support new growth
-		(nodes[-1][-1][0].soil or
-		nodes[-1][1][0].soil or
-		nodes[-1][0][-1].soil or
-		nodes[-1][0][1].soil or
+		(nodes[-1 -ystride] == "soil" or
+		nodes[-1 +ystride] == "soil" or
+		nodes[-1 -zstride] == "soil" or
+		nodes[-1 +zstride] == "soil" or
 		-- test for soil "around the corner" to allow for growth over an edge
-		nodes[0][-1][0].soil or
-		nodes[0][1][0].soil or
-		nodes[0][0][-1].soil or
-		nodes[0][0][1].soil)
+		nodes[-ystride] == "soil" or
+		nodes[ystride] == "soil" or
+		nodes[-zstride] == "soil" or
+		nodes[zstride] == "soil")
 		and not -- no adjacent hypha
-		(nodes[-1][-1][0].hypha or
-		nodes[-1][1][0].hypha or
-		nodes[-1][0][-1].hypha or
-		nodes[-1][0][1].hypha)
+		(nodes[-1 -ystride] == "hypha" or
+		nodes[-1 +ystride] == "hypha" or
+		nodes[-1 -zstride] == "hypha" or
+		nodes[-1 +zstride] == "hypha")
 	then
-		table.insert(valid_targets, {x=pos.x-1, y=pos.y, z=pos.z})
+		table.insert(valid_targets, {x=pos_x-1, y=pos_y, z=pos_z})
 	end
-	if nodes[1][0][0].buildable and
+	if nodes[1] == "buildable" and
 		-- test for soil to directly support new growth
-		(nodes[1][-1][0].soil or
-		nodes[1][1][0].soil or
-		nodes[1][0][-1].soil or
-		nodes[1][0][1].soil or
+		(nodes[1 -ystride] == "soil" or
+		nodes[1 +ystride] == "soil" or
+		nodes[1 -zstride] == "soil" or
+		nodes[1 +zstride] == "soil" or
 		-- test for soil "around the corner" to allow for growth over an edge
-		nodes[0][-1][0].soil or
-		nodes[0][1][0].soil or
-		nodes[0][0][-1].soil or
-		nodes[0][0][1].soil)
+		nodes[-ystride] == "soil" or
+		nodes[ystride] == "soil" or
+		nodes[-zstride] == "soil" or
+		nodes[zstride] == "soil")
 		and not -- no adjacent hypha
-		(nodes[1][-1][0].hypha or
-		nodes[1][1][0].hypha or
-		nodes[1][0][-1].hypha or
-		nodes[1][0][1].hypha)
+		(nodes[1 -ystride] == "hypha" or
+		nodes[1 +ystride] == "hypha" or
+		nodes[1 -zstride] == "hypha" or
+		nodes[1 +zstride] == "hypha")
 	then
-		table.insert(valid_targets, {x=pos.x+1, y=pos.y, z=pos.z})
+		table.insert(valid_targets, {x=pos_x+1, y=pos_y, z=pos_z})
 	end
-	if nodes[0][-1][0].buildable and
+	if nodes[-ystride] == "buildable" and
 		-- test for soil to directly support new growth
-		(nodes[-1][-1][0].soil or
-		nodes[1][-1][0].soil or
-		nodes[0][-1][-1].soil or
-		nodes[0][-1][1].soil or
+		(nodes[-1 -ystride] == "soil" or
+		nodes[1 -ystride] == "soil" or
+		nodes[-ystride -zstride] == "soil" or
+		nodes[-ystride +zstride] == "soil" or
 		-- test for soil "around the corner" to allow for growth over an edge
-		nodes[-1][0][0].soil or
-		nodes[1][0][0].soil or
-		nodes[0][0][-1].soil or
-		nodes[0][0][1].soil)
+		nodes[-1] == "soil" or
+		nodes[1] == "soil" or
+		nodes[-zstride] == "soil" or
+		nodes[zstride] == "soil")
 		and not -- no adjacent hypha
-		(nodes[-1][-1][0].hypha or
-		nodes[1][-1][0].hypha or
-		nodes[0][-1][-1].hypha or
-		nodes[0][-1][1].hypha)
+		(nodes[-1 -ystride] == "hypha" or
+		nodes[1 -ystride] == "hypha" or
+		nodes[-ystride -zstride] == "hypha" or
+		nodes[-ystride +zstride] == "hypha")
 	then
-		table.insert(valid_targets, {x=pos.x, y=pos.y-1, z=pos.z})
+		table.insert(valid_targets, {x=pos_x, y=pos_y-1, z=pos_z})
 	end
-	if nodes[0][1][0].buildable and
+	if nodes[ystride] == "buildable" and
 		-- test for soil to directly support new growth
-		(nodes[-1][1][0].soil or
-		nodes[1][1][0].soil or
-		nodes[0][1][-1].soil or
-		nodes[0][1][1].soil or
+		(nodes[-1 +ystride] == "soil" or
+		nodes[1 +ystride] == "soil" or
+		nodes[ystride -zstride] == "soil" or
+		nodes[ystride +zstride] == "soil" or
 		-- test for soil "around the corner" to allow for growth over an edge
-		nodes[-1][0][0].soil or
-		nodes[1][0][0].soil or
-		nodes[0][0][-1].soil or
-		nodes[0][0][1].soil)
+		nodes[-1] == "soil" or
+		nodes[1] == "soil" or
+		nodes[-zstride] == "soil" or
+		nodes[zstride] == "soil")
 		and not -- no adjacent hypha
-		(nodes[-1][1][0].hypha or
-		nodes[1][1][0].hypha or
-		nodes[0][1][-1].hypha or
-		nodes[0][1][1].hypha)
+		(nodes[-1] == "hypha" or
+		nodes[1 + ystride] == "hypha" or
+		nodes[ystride -zstride] == "hypha" or
+		nodes[ystride +zstride] == "hypha")
 	then
-		table.insert(valid_targets, {x=pos.x, y=pos.y+1, z=pos.z})
+		table.insert(valid_targets, {x=pos_x, y=pos_y+1, z=pos_z})
 	end
-	if nodes[0][0][-1].buildable and
+	if nodes[-zstride] == "buildable" and
 		-- test for soil to directly support new growth
-		(nodes[-1][0][-1].soil or
-		nodes[1][0][-1].soil or
-		nodes[0][-1][-1].soil or
-		nodes[0][1][-1].soil or
+		(nodes[-1 -zstride] == "soil" or
+		nodes[1 -zstride] == "soil" or
+		nodes[-ystride -zstride] == "soil" or
+		nodes[ystride -zstride] == "soil" or
 		-- test for soil "around the corner" to allow for growth over an edge
-		nodes[-1][0][0].soil or
-		nodes[1][0][0].soil or
-		nodes[0][-1][0].soil or
-		nodes[0][1][0].soil)
+		nodes[-1] == "soil" or
+		nodes[1] == "soil" or
+		nodes[-ystride] == "soil" or
+		nodes[ystride] == "soil")
 		and not -- no adjacent hypha
-		(nodes[-1][0][-1].hypha or
-		nodes[1][0][-1].hypha or
-		nodes[0][-1][-1].hypha or
-		nodes[0][1][-1].hypha)
+		(nodes[-1 -zstride] == "hypha" or
+		nodes[1 -zstride] == "hypha" or
+		nodes[-ystride -zstride] == "hypha" or
+		nodes[ystride -zstride] == "hypha")
 	then
-		table.insert(valid_targets, {x=pos.x, y=pos.y, z=pos.z-1})
+		table.insert(valid_targets, {x=pos_x, y=pos_y, z=pos_z-1})
 	end
-	if nodes[0][0][1].buildable and
+	if nodes[zstride] == "buildable" and
 		-- test for soil to directly support new growth
-		(nodes[-1][0][1].soil or
-		nodes[1][0][1].soil or
-		nodes[0][-1][1].soil or
-		nodes[0][1][1].soil or
+		(nodes[-1 +zstride] == "soil" or
+		nodes[1 +zstride] == "soil" or
+		nodes[-ystride +zstride] == "soil" or
+		nodes[ystride +zstride] == "soil" or
 		-- test for soil "around the corner" to allow for growth over an edge
-		nodes[-1][0][0].soil or
-		nodes[1][0][0].soil or
-		nodes[0][-1][0].soil or
-		nodes[0][1][0].soil)
+		nodes[-1] == "soil" or
+		nodes[1] == "soil" or
+		nodes[-ystride] == "soil" or
+		nodes[ystride] == "soil")
 		and not -- no adjacent hypha
-		(nodes[-1][0][1].hypha or
-		nodes[1][0][1].hypha or
-		nodes[0][-1][1].hypha or
-		nodes[0][1][1].hypha)
+		(nodes[-1 +zstride] == "hypha" or
+		nodes[1 +zstride] == "hypha" or
+		nodes[-ystride + zstride] == "hypha" or
+		nodes[ystride +zstride] == "hypha")
 	then
-		table.insert(valid_targets, {x=pos.x, y=pos.y, z=pos.z+1})
+		table.insert(valid_targets, {x=pos_x, y=pos_y, z=pos_z+1})
 	end
 	
 	return valid_targets
@@ -371,11 +379,12 @@ local grow_mycelium_immediately = function(pos)
 		local pos = table.remove(stack)
 		if not (df_farming and df_farming.kill_if_sunlit(pos)) then
 			local new_poses = grow_mycelium(pos, "df_primordial_items:giant_hypha_apical_mapgen")
-			if new_poses then -- if we hit the end of the world, just stop. There'll be a mapgen meristem left here, re-trigger it.
+			if new_poses then
 				for _, new_pos in ipairs(new_poses) do
 					table.insert(stack, new_pos)
 				end
 			else
+				-- if we hit the end of the world, just stop. There'll be a mapgen meristem left here, re-trigger it.
 				minetest.get_node_timer(pos):start(math.random(10,60))
 			end
 		end
@@ -406,5 +415,19 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 	end,
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
+	end,
+})
+
+-- Just in case mapgen fails to trigger the timer on a mapgen mycelium this ABM will clean up.
+minetest.register_abm({
+	label = "df_primordial_items ensure giant mycelium growth",
+	nodenames = {"df_primordial_items:giant_hypha_apical_mapgen"},
+	interval = 10.0,
+	chance = 1,
+	action = function(pos, node, active_object_count, active_object_count_wider)
+		local timer = minetest.get_node_timer(pos)
+		if not timer:is_started() then
+			timer:start(math.random(1,10))
+		end
 	end,
 })

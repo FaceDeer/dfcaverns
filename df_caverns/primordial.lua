@@ -104,7 +104,7 @@ local mushroom_warren_ceiling = function(abs_cracks, vi, area, data, data_param2
 		data[vi] = c_mycelial_dirt
 		if abs_cracks < 0.2 then
 			local rand = math.random()
-			if rand < 0.002 then
+			if rand < 0.001 then
 				local mycelium_index = vi-ystride
 				data[mycelium_index] = c_giant_mycelium
 				minetest.get_node_timer(area:position(mycelium_index)):start(math.random(1,giant_mycelium_timer_spread))
@@ -354,7 +354,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 			minetest.get_node_timer(area:position(vi)):start(math.random(30, 120))
 		else
 			data[vi] = c_mycelial_dirt
-			if math.random() < 0.025 then
+			if math.random() < 0.05 then
 				local rand_vi = vi + random_dir[math.random(1,4)]
 				if data[rand_vi] == c_air then
 					data[rand_vi] = c_giant_mycelium

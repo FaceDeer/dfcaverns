@@ -64,3 +64,10 @@ dfcaverns_ruin_visibility_range (Ruin visibility range) int 250
 dfcaverns_enable_primordial (Generate primordial caverns) bool true
 dfcaverns_primordial_max (Upper limit of primordial caverns) int -3393
 dfcaverns_primordial_min (Lower limit of primordial caverns) int -4032
+
+# This setting is pretty technical, it spreads out the
+# construction of giant mycelium networks on mapgen
+# over this many seconds. If you're experiencing lag spikes
+# during mapgen of Primordial cavern layer mushroom caverns
+# then increasing this number may help.
+dcaverns_giant_mycelium_timer_spread (Giant Mycelium mapgen timer spread) int 10

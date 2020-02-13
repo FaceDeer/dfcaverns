@@ -7,11 +7,11 @@ local print_settingtypes = false
 local function setting(stype, name, default, description)
 	local value
 	if stype == "bool" then
-		value = minetest.setting_getbool(CONFIG_FILE_PREFIX..name)
+		value = minetest.settings:get_bool(CONFIG_FILE_PREFIX..name, default)
 	elseif stype == "string" then
-		value = minetest.setting_get(CONFIG_FILE_PREFIX..name)
+		value = minetest.settings:get(CONFIG_FILE_PREFIX..name)
 	elseif stype == "int" or stype == "float" then
-		value = tonumber(minetest.setting_get(CONFIG_FILE_PREFIX..name))
+		value = tonumber(minetest.settings:get(CONFIG_FILE_PREFIX..name))
 	end
 	if value == nil then
 		value = default
@@ -34,7 +34,7 @@ local plants = {
 
 --Plants
 
-setting("int", "plant_growth_time", 500, "Base plant growth time")
+setting("int", "plant_growth_time", 3600, "Base plant growth time") -- 60 minutes
 
 for _, plant in pairs(plants) do
 	setting("float", plant.name.."_delay_multiplier", plant.delay_multiplier, plant.name.." growth delay multiplier")

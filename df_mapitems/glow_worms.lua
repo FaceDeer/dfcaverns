@@ -24,7 +24,7 @@ minetest.register_node("df_mapitems:glow_worm", {
 	},
 	inventory_image = "dfcaverns_glow_worm.png",
 	wield_image = "dfcaverns_glow_worm.png",
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {oddly_breakable_by_hand=3, light_sensitive_fungus = 12},
 	_dfcaverns_dead_node = "air",
 	light_source = 9,

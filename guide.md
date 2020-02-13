@@ -209,3 +209,15 @@ Just as ominously, the ancient bones of long-dead warriors are scattered amidst 
 ![Glowing pit](./df_caverns/screenshots/glowing_pit.jpg)
 
 Also scattered around the Underworld are the occasional twisting shaft leading down into the Slade. The edges of these shafts are encrusted with glowing purple crystals and the bottoms of these shafts are filled with some form of shimmering liquid that destroys whatever tries to penetrate it.
+
+There may be other ways to get through the Slade, but the ancient warriors fought hard to seal them...
+
+![Mysterious seal](./df_caverns/screenshots/mysterious_seal.jpg)
+
+# Primordial Deeps
+
+What mysteries lie below? Perhaps a realm that time itself has forgotten, with life from a world that no longer exists?
+
+And why was it locked away?
+
+![Primordial Fungal](./df_caverns/screenshots/primordial_fungal.jpg) ![Primordial Jungle](./df_caverns/screenshots/primordial_jungle.jpg)

@@ -10,8 +10,14 @@ minetest.register_node("df_mapitems:cave_coral_3", {
 	drop = "default:coral_skeleton",
 	light_source = 3,
 	paramtype2 = "facedir",
+	is_ground_content = false,
 	groups = {cracky = 3, dfcaverns_cave_coral = 1},
 	sounds = default.node_sound_stone_defaults(),
+	on_timer = function(pos)
+		if minetest.find_node_near(pos, 1, {"default:water_source"}) == nil then
+			minetest.set_node(pos, {name="default:coral_skeleton"})
+		end
+	end,
 })
 
 minetest.register_node("df_mapitems:cave_coral_2", {
@@ -22,8 +28,14 @@ minetest.register_node("df_mapitems:cave_coral_2", {
 	drop = "default:coral_skeleton",
 	light_source = 2,
 	paramtype2 = "facedir",
+	is_ground_content = false,
 	groups = {cracky = 3, dfcaverns_cave_coral = 1},
 	sounds = default.node_sound_stone_defaults(),
+	on_timer = function(pos)
+		if minetest.find_node_near(pos, 1, {"default:water_source"}) == nil then
+			minetest.set_node(pos, {name="default:coral_skeleton"})
+		end
+	end,
 })
 
 minetest.register_node("df_mapitems:cave_coral_1", {
@@ -34,8 +46,14 @@ minetest.register_node("df_mapitems:cave_coral_1", {
 	drop = "default:coral_skeleton",
 	light_source = 1,
 	paramtype2 = "facedir",
+	is_ground_content = false,
 	groups = {cracky = 3, dfcaverns_cave_coral = 1},
 	sounds = default.node_sound_stone_defaults(),
+	on_timer = function(pos)
+		if minetest.find_node_near(pos, 1, {"default:water_source"}) == nil then
+			minetest.set_node(pos, {name="default:coral_skeleton"})
+		end
+	end,
 })
 
 local coral_names = {"df_mapitems:cave_coral_1", "df_mapitems:cave_coral_2", "df_mapitems:cave_coral_3"}

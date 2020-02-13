@@ -1,10 +1,82 @@
 if not df_caverns.config.enable_underworld or not minetest.get_modpath("df_underworld_items") then
 	return
 end
+local modpath = minetest.get_modpath(minetest.get_current_modname())
+
+local S = minetest.get_translator("df_caverns")
 
 local bones_loot_path = minetest.get_modpath("bones_loot")
+local named_waypoints_path = minetest.get_modpath("named_waypoints")
+local namegen_path = minetest.get_modpath("namegen")
+
+local name_pit = function() end
+local name_ruin = function() end
+
+if named_waypoints_path then
+
+	local item_required = nil
+	if minetest.settings:get_bool("dfcaverns_underworld_hud_requires_item", true) then
+		local setting_item_required = minetest.settings:get("dfcaverns_underworld_hud_item_required")
+		if setting_item_required == nil or setting_item_required == "" then
+			setting_item_required = "map:mapping_kit"
+		end	
+		item_required = setting_item_required
+	end
+
+	local pit_waypoint_def = {
+		default_name = S("A glowing pit"),
+		default_color = 0xFF88FF,
+		discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_discovery_range")) or 60,
+		visibility_requires_item = item_required,
+	}	
+	
+	if minetest.settings:get_bool("dfcaverns_show_pits_in_hud", true) then
+		pit_waypoint_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_visibility_range")) or 500
+		pit_waypoint_def.on_discovery = named_waypoints.default_discovery_popup
+	end
+	named_waypoints.register_named_waypoints("glowing_pits", pit_waypoint_def)
+
+	local seal_waypoint_def = {
+		default_name = S("Mysterious seal"),
+		default_color = 0x9C2233,
+		discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_seal_discovery_range")) or 10,
+		visibility_requires_item = item_required,
+	}
+
+	if minetest.settings:get_bool("dfcaverns_show_seals_in_hud", true) then
+		seal_waypoint_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_seal_visibility_range")) or 200
+		seal_waypoint_def.on_discovery = named_waypoints.default_discovery_popup
+	end
+	named_waypoints.register_named_waypoints("puzzle_seals", seal_waypoint_def)
+
+	if namegen_path then
+		namegen.parse_lines(io.lines(modpath.."/underworld_names.cfg"))
+		
+		name_pit = function()
+			return namegen.generate("glowing_pits")
+		end
+		name_ruin = function()
+			return namegen.generate("underworld_ruins")
+		end
+		
+		local underworld_ruin_def = {
+			default_name = S("Ancient ruin"),
+			discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_ruin_discovery_range")) or 40,
+			visibility_requires_item = item_required,
+		}
+		if minetest.settings:get_bool("dfcaverns_show_ruins_in_hud", true) then
+			underworld_ruin_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_ruin_visibility_range")) or 250
+			underworld_ruin_def.on_discovery = named_waypoints.default_discovery_popup
+		end
+
+		named_waypoints.register_named_waypoints("underworld_ruins", underworld_ruin_def)
+	end
+end
+
+
 
 local c_slade = minetest.get_content_id("df_underworld_items:slade")
+local c_slade_block = minetest.get_content_id("df_underworld_items:slade_block")
 local c_air = minetest.get_content_id("air")
 local c_water = minetest.get_content_id("default:water_source")
 
@@ -60,6 +132,9 @@ local y_min = median - 2*wave_mult + floor_displace - 2*floor_mult
 
 --df_caverns.config.underworld_min = y_min
 
+--local poisson = mapgen_helper.get_poisson_points({x=-32000, z=-32000}, {x=32000, z=32000}, 1000)
+--minetest.debug(dump(poisson.objects))
+
 ---------------------------------------------------------
 -- Buildings
 
@@ -67,8 +142,11 @@ local oubliette_threshold = 0.8
 local town_threshold = 1.1
 
 local local_random = function(x, z)
+	local next_seed = math.floor(math.random()*2^21)
 	math.randomseed(x + z*2^16)
-	return math.random()
+	local ret = math.random()
+	math.randomseed(next_seed)
+	return ret
 end
 
 -- create a deterministic list of buildings
@@ -196,9 +274,9 @@ local pit_region_size = region_mapblocks * mapgen_chunksize * 16
 local scatter_2d = function(min_xz, gridscale, border_width)
 	local bordered_scale = gridscale - 2 * border_width
 	local point = {}
-	point.x = math.random() * bordered_scale + min_xz.x + border_width
+	point.x = math.floor(math.random() * bordered_scale + min_xz.x + border_width)
 	point.y = 0
-	point.z = math.random() * bordered_scale + min_xz.z + border_width
+	point.z = math.floor(math.random() * bordered_scale + min_xz.z + border_width)
 	return point
 end
 
@@ -207,19 +285,19 @@ local get_corner = function(pos)
 	return {x = math.floor((pos.x+32) / pit_region_size) * pit_region_size - 32, z = math.floor((pos.z+32) / pit_region_size) * pit_region_size - 32}
 end
 
-local mapgen_seed = tonumber(minetest.get_mapgen_setting("seed"))
+local mapgen_seed = tonumber(minetest.get_mapgen_setting("seed")) % 2^21
 
 local get_pit = function(pos)
 	if region_mapblocks < 1 then return nil end
 
 	local corner_xz = get_corner(pos)
-	local next_seed = math.floor(math.random() * 2^31)
+	local next_seed = math.floor(math.random() * 2^21)
 	math.randomseed(corner_xz.x + corner_xz.z * 2 ^ 8 + mapgen_seed)
 	local location = scatter_2d(corner_xz, pit_region_size, radius_pit_max + radius_pit_variance)
 	local variance_multiplier = math.random()
 	local radius = variance_multiplier * (radius_pit_max - 15) + 15
 	local variance = radius_pit_variance/2 + radius_pit_variance*variance_multiplier/2
-	local depth = math.random(plasma_depth_min, plasma_depth_max)
+	local depth = math.random(plasma_depth_min, plasma_depth_max)	
 	math.randomseed(next_seed)
 	return {location = location, radius = radius, variance = variance, depth = depth}
 end
@@ -242,10 +320,11 @@ minetest.register_chatcommand("find_pit", {
 	func = function(name, param)
 		local player = minetest.get_player_by_name(name)
 		local pit = get_pit(player:get_pos())
-		minetest.chat_send_player(name, "Pit location: x=" .. math.floor(pit.location.x) .. " z=" .. math.floor(pit.location.z))
+		if pit then
+			minetest.chat_send_player(name, "Pit location: x=" .. math.floor(pit.location.x) .. " z=" .. math.floor(pit.location.z))
+		end
 	end,
 })
-
 
 minetest.register_on_generated(function(minp, maxp, seed)
 
@@ -266,7 +345,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	
 	local pit = get_pit(minp)
 	--minetest.chat_send_all(minetest.pos_to_string(pit.location))
-	
+
 	local buildings = get_buildings(emin, emax, nvals_zone)
 	
 	local pit_uninitialized = true
@@ -279,8 +358,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local wave = nvals_wave[index2d] * wave_mult
 			
 			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			
+			if named_waypoints_path and floor_height == y and pit and pit.location.x == x and pit.location.z == z then
+				named_waypoints.add_waypoint("glowing_pits", {x=x, y=y, z=z}, {name=name_pit()})
+			end
+
+			local underside_height = math.floor(y_min + math.abs(wave) / 5)+2 -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-			if y < floor_height and y > y_min + math.abs(wave) / 5 then -- divide wave by five to smooth out the underside of the slade, we only want the interface to ripple a little down here
+			if (y == underside_height or y == underside_height - 1) and (x % 8 == 0 or z % 8 == 0) then
+				data[vi] = c_air
+			elseif y < floor_height and y > underside_height then 
 				data[vi] = c_slade
 				if	pit and
 					pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and
@@ -290,13 +377,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				then
 					-- there's a pit nearby
 					if pit_uninitialized then
-						nvals_pit, area_pit = mapgen_helper.perlin3d("df_cavern:perlin_cave", minp, maxp, perlin_pit) -- determine which areas are spongey with warrens
+						nvals_pit, area_pit = mapgen_helper.perlin3d("df_cavern:perlin_cave", minp, maxp, perlin_pit)
 						pit_uninitialized = false
 					end
 					local pit_value = nvals_pit[area_pit:index(x,y,z)] * pit.variance
 					local distance = vector.distance({x=x, y=y, z=z}, {x=pit.location.x, y=y, z=pit.location.z}) + pit_value
-					if distance < pit.radius -3 then
-						if y < median + floor_displace + wave - pit.depth then
+					if distance < pit.radius -2.5 then
+						if y < median + floor_displace + wave - pit.depth or y < underside_height + plasma_depth_min then
 							data[vi] = c_pit_plasma
 						else
 							data[vi] = c_air
@@ -308,8 +395,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							df_underworld_items.underworld_shard(data, area, vi)
 						end
 					end
-				end			
-			elseif y < ceiling_height and data[vi] ~= c_amethyst then
+				end
+			elseif y >= floor_height and y < ceiling_height and data[vi] ~= c_amethyst then
 				data[vi] = c_air
 			elseif data[vi] == c_water then
 				data[vi] = c_air -- no water down here
@@ -369,7 +456,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						building.pos.y = floor_height
 						--minetest.chat_send_all("placing " .. building.building_type .. " at " .. minetest.pos_to_string(building.pos))
 						if building.building_type == "oubliette" then
-							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic)						
+							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic)
 						elseif building.building_type == "open oubliette" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic, 0, {["df_underworld_items:slade_seal"] = "air"})
 						elseif building.building_type == "lamppost" then
@@ -378,6 +465,11 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_building_schematic, building.rotation)
 						elseif building.building_type == "medium building" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, medium_building_schematic, building.rotation)
+							if named_waypoints_path and namegen_path then
+								if not next(named_waypoints.get_waypoints_in_area("underworld_ruins", vector.subtract(building.pos, 250), vector.add(building.pos, 250))) then
+									named_waypoints.add_waypoint("underworld_ruins", {x=building.pos.x, y=floor_height+1, z=building.pos.z}, {name=name_ruin()})
+								end
+							end							
 						elseif building.building_type == "small slab" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_slab_schematic, building.rotation)
 						else
@@ -386,6 +478,25 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					end
 				end	
 			end
+		end
+	end
+	
+	-- puzzle seal
+	local puzzle_seal = nil	
+	if pit_uninitialized and math.random() < 0.05 then
+		local index2d = mapgen_helper.index2d(emin, emax, minp.x + 3, minp.z + 3)
+		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+		local wave = nvals_wave[index2d] * wave_mult
+			
+		local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+		local underside_height = math.floor(y_min + math.abs(wave) / 5)
+
+		if floor_height < maxp.y and floor_height > minp.y then
+			for plat_vi in area:iter(minp.x, floor_height-6, minp.z, minp.x+6, floor_height, minp.z+6) do
+				data[plat_vi] = c_slade_block
+			end
+			puzzle_seal = {x=minp.x+3, y=floor_height+1, z=minp.z+3}
+			minetest.log("info", "Puzzle seal generated at " .. minetest.pos_to_string(puzzle_seal))
 		end
 	end
 
@@ -399,6 +510,17 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	--write it to world
 	vm:write_to_map()
 	
+	if puzzle_seal ~= nil then
+		if named_waypoints_path then
+			named_waypoints.add_waypoint("puzzle_seals", puzzle_seal)
+		end
+
+		minetest.place_schematic({x=puzzle_seal.x-3, y=puzzle_seal.y, z=puzzle_seal.z-3}, df_underworld_items.seal_temple_schem, 0, {}, true)
+		local node_name = minetest.get_node(puzzle_seal).name
+		local node_def = minetest.registered_nodes[node_name]
+		node_def.on_construct(puzzle_seal)
+	end
+	
 	if bones_loot_path then
 		for i = 1, 30 do
 			local x = math.random(minp.x, maxp.x)
@@ -406,7 +528,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local index2d = mapgen_helper.index2d(emin, emax, x, z)
 			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 			local wave = nvals_wave[index2d] * wave_mult
-			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
+			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)-1
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 			if floor_height < ceiling_height then
 				local zone = math.abs(nvals_zone[index2d])
@@ -433,11 +555,6 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		end
 	end
 	
-	local chunk_generation_time = math.ceil((os.clock() - t_start) * 1000) --grab how long it took
-	if chunk_generation_time < 1000 then
-		minetest.log("info", "[df_caverns] underworld mapblock generation took "..chunk_generation_time.." ms") --tell people how long
-	else
-		minetest.log("warning", "[df_caverns] underworld took "..chunk_generation_time.." ms to generate map block "
-			.. minetest.pos_to_string(minp) .. minetest.pos_to_string(maxp))
-	end
+	local time_taken = os.clock() - t_start -- how long this chunk took, in seconds
+	mapgen_helper.record_time("df_caverns underworld", time_taken)
 end)

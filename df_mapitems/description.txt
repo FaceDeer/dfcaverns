@@ -1,1 +1,0 @@
-Various node types used by the dfcaverns mapgen mod. Includes cave coral, flowstone, glowing crystals, glow worms, moss and fungi ground cover, and snare weed.

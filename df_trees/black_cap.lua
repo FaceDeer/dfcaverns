@@ -8,7 +8,7 @@ minetest.register_node("df_trees:black_cap_stem", {
 	_doc_items_longdesc = df_trees.doc.black_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.black_cap_usage,
 	tiles = {"dfcaverns_black_cap_top.png","dfcaverns_black_cap_top.png","dfcaverns_black_cap_side.png",},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 })
@@ -19,7 +19,7 @@ minetest.register_node("df_trees:black_cap", {
 	_doc_items_longdesc = df_trees.doc.black_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.black_cap_usage,
 	tiles = {"dfcaverns_black_cap_top.png","dfcaverns_black_cap_top.png","dfcaverns_black_cap_side.png^[transformR90",},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 })
@@ -30,7 +30,7 @@ minetest.register_node("df_trees:black_cap_gills", {
 	_doc_items_longdesc = df_trees.doc.black_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.black_cap_usage,
 	tiles = {"dfcaverns_black_cap_gills.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	drawtype = "plantlike",
@@ -143,6 +143,7 @@ minetest.register_node("df_trees:black_cap_sapling", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	selection_box = {
 		type = "fixed",
@@ -153,9 +154,15 @@ minetest.register_node("df_trees:black_cap_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(
-			df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
-			df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		local below_node_name = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
+		if minetest.get_item_group(below_node_name, "soil") > 0 or minetest.get_item_group(below_node_name, "coal") > 0 then
+			minetest.get_node_timer(pos):start(math.random(
+				df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
+				df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		end
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
 	end,
 	
 	on_timer = function(pos)

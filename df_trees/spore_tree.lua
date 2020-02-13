@@ -157,6 +157,7 @@ minetest.register_node("df_trees:spore_tree_sapling", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	selection_box = {
 		type = "fixed",
@@ -167,15 +168,21 @@ minetest.register_node("df_trees:spore_tree_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		local below_node = minetest.get_node(vector.add(pos, {x=0,y=-1,z=0}))
-		if minetest.get_item_group(below_node.name, "soil") > 0 then
-			minetest.get_node_timer(pos):start(math.random(
-				df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_min_growth_delay,
-				df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
+			return
 		end
+		minetest.get_node_timer(pos):start(math.random(
+			df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_min_growth_delay,
+			df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_max_growth_delay))
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
 	end,
 	
 	on_timer = function(pos)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
 		minetest.set_node(pos, {name="air"})
 		df_trees.spawn_spore_tree(pos)
 	end,
@@ -187,7 +194,7 @@ local c_spore_pod = minetest.get_content_id("df_trees:spore_tree_fruiting_body")
 local c_tree = minetest.get_content_id("df_trees:spore_tree")
 local c_spore_frond = minetest.get_content_id("df_trees:spore_tree_hyphae")
 
-df_trees.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has_fruiting_bodies)
+df_trees.spawn_spore_tree_vm = function(vi, area, data, data_param2, height, size, iters, has_fruiting_bodies)
 	if height == nil then height = math.random(3,6) end
 	if size == nil then size = 2 end
 	if iters == nil then iters = 10 end
@@ -204,6 +211,7 @@ df_trees.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has
 		local node_id = data[vi]
 		if node_id == c_air or node_id == c_ignore or node_id == c_spore_frond or node_id == c_spore_pod then
 			data[vi] = c_tree
+			data_param2[vi] = 0
 		end
 	end
 
@@ -218,6 +226,7 @@ df_trees.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has
 				else
 					data[vi] = c_spore_frond
 				end
+				data_param2[vi] = 0
 			end
 			vi = vi + 1
 		end
@@ -240,6 +249,7 @@ df_trees.spawn_spore_tree_vm = function(vi, area, data, height, size, iters, has
 						else
 							data[vi] = c_spore_frond
 						end
+						data_param2[vi] = 0
 					end
 				end
 			end
@@ -258,10 +268,12 @@ df_trees.spawn_spore_tree = function(pos)
 	)
 	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
+	local data_param_2 = vm:get_param2_data()
 
-	df_trees.spawn_spore_tree_vm(area:indexp(pos), area, data)
+	df_trees.spawn_spore_tree_vm(area:indexp(pos), area, data, data_param_2)
 
 	vm:set_data(data)
+	vm:set_param2_data(data_param_2)
 	vm:write_to_map()
 	vm:update_map()
 end
@@ -284,7 +296,12 @@ minetest.register_abm{
 			vertical = false,
 			texture = "dfcaverns_spore_tree_spores.png",
 		})
-		
+		if math.random() < 0.025 then
+			minetest.sound_play("dfcaverns_spore_tree_pitter_patter", {
+				pos = pos,
+				gain = 0.2,
+			})
+		end
 	end,
 }
 
@@ -324,4 +341,3 @@ minetest.register_node("df_trees:spore_tree_ladder", {
 	legacy_wallmounted = true,
 	sounds = default.node_sound_wood_defaults(),
 })
-

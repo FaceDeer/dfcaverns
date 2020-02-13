@@ -16,6 +16,7 @@ minetest.register_node("df_mapitems:salt_crystal", {
 	sounds = default.node_sound_glass_defaults(),
 	use_texture_alpha = true,
 	sunlight_propagates = true,
+	is_ground_content = false,
 	on_place = df_mapitems.place_against_surface,
 })
 
@@ -26,7 +27,7 @@ minetest.register_node("df_mapitems:salty_cobble", {
 	tiles = {"default_cobble.png^dfcaverns_salty.png"},
 	groups = {cracky = 3, stone = 1, lava_heatable = 1},
 	_magma_conduits_heats_to = "default:cobble",
-	is_ground_content = true,
+	is_ground_content = false,
 	light_source = 2,
 	drop = 'default:cobble',
 	sounds = default.node_sound_stone_defaults(),

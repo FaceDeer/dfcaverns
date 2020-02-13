@@ -50,7 +50,7 @@ local plump_helmet_on_place =  function(itemstack, placer, pointed_thing, plantn
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name = plantname, param2 = math.random(0,3)})
 	df_farming.plant_timer(pt.above, plantname)
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode", false) then
 		itemstack:take_item()
 	end
 	return itemstack
@@ -71,6 +71,7 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	node_box = {
 		type = "fixed",
@@ -103,6 +104,9 @@ minetest.register_node("df_farming:plump_helmet_1", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	is_ground_content = false,
+	sounds = default.node_sound_leaves_defaults(),
+	sound = {eat = {name = "df_farming_gummy_chew", gain = 1.0}},
 	walkable = false,
 	floodable = true,
 	node_box = {
@@ -140,7 +144,10 @@ minetest.register_node("df_farming:plump_helmet_2", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	sounds = default.node_sound_leaves_defaults(),
+	sound = {eat = {name = "df_farming_gummy_chew", gain = 1.0}},
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	node_box = {
 		type = "fixed",
@@ -175,7 +182,10 @@ minetest.register_node("df_farming:plump_helmet_3", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	sounds = default.node_sound_leaves_defaults(),
+	sound = {eat = {name = "df_farming_gummy_chew", gain = 1.0}},
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	node_box = {
 		type = "fixed",
@@ -208,7 +218,10 @@ minetest.register_node("df_farming:plump_helmet_4", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	sounds = default.node_sound_leaves_defaults(),
+	sound = {eat = {name = "df_farming_gummy_chew", gain = 1.0}},
 	walkable = false,
+	is_ground_content = false,
 	floodable = false, -- I figure full grown plump helmets are sturdy enough to survive inundation
 	node_box = {
 		type = "fixed",
@@ -260,7 +273,10 @@ minetest.register_node("df_farming:plump_helmet_4_picked", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
+	sounds = default.node_sound_leaves_defaults(),
+	sound = {eat = {name = "df_farming_gummy_chew", gain = 1.0}},
 	walkable = false,
+	is_ground_content = false,
 	floodable = false,
 	node_box = {
 		type = "fixed",

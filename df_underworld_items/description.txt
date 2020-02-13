@@ -1,1 +1,0 @@
-Various node types used by the dfcaverns mapgen mod for its underworld layer.

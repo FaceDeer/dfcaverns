@@ -43,7 +43,7 @@ local stal_on_place = function(itemstack, placer, pointed_thing)
 
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name = itemstack:get_name(), param2 = new_param2})
-	if not minetest.setting_getbool("creative_mode") then
+	if not minetest.settings:get_bool("creative_mode", false) then
 		itemstack:take_item()
 	end
 	return itemstack
@@ -63,13 +63,18 @@ minetest.register_node("df_trees:torchspine_1", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	is_ground_content = true,
-	drops = "default:torch",
+	is_ground_content = false,
+	drop = "default:torch",
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_1,
 	},
 	on_place = stal_on_place,
+	on_punch = function(pos, node, puncher)
+		if puncher:get_wielded_item():get_name() == "default:torch" then
+			minetest.swap_node(pos, {name = "df_trees:torchspine_1_lit", param2 = node.param2})
+		end
+	end,
 })
 
 minetest.register_node("df_trees:torchspine_1_lit", {
@@ -81,9 +86,9 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 6,
-	is_ground_content = true,
-	drops = "default:torch 2",
+	light_source = 8,
+	is_ground_content = false,
+	drop = "default:torch 2",
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_1,
@@ -100,7 +105,7 @@ minetest.register_node("df_trees:torchspine_2", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	is_ground_content = true,
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_2,
@@ -126,7 +131,7 @@ minetest.register_node("df_trees:torchspine_3", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	is_ground_content = true,
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_3,
@@ -156,7 +161,7 @@ minetest.register_node("df_trees:torchspine_4", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	is_ground_content = true,
+	is_ground_content = false,
 	node_box = {
 		type = "fixed",
 		fixed = stal_box_4,
@@ -187,6 +192,7 @@ minetest.register_node("df_trees:torchspine_ember", {
 	light_source = 2,
 	paramtype2 = "facedir",
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	node_box = {
 		type = "fixed",
@@ -281,11 +287,11 @@ minetest.register_abm{
 minetest.register_abm{
 	label = "torchspine lighting",
 	nodenames = {"df_trees:torchspine_1"},
-	interval = 57,
+	interval = 30,
 	chance = 10,
 	catch_up = true,
 	action = function(pos)
-		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})]
+		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
 		if above_def and above_def.buildable_to then
 			minetest.swap_node(pos, {name="df_trees:torchspine_1_lit", param2=minetest.get_node(pos).param2})
 		end
@@ -295,7 +301,7 @@ local torchspine_list = {"df_trees:torchspine_1","df_trees:torchspine_2","df_tre
 minetest.register_abm{
 	label = "torchspine growing",
 	nodenames = {"df_trees:torchspine_1_lit"},
-	interval = 30,
+	interval = 37,
 	chance = 10,
 	catch_up = true,
 	action = function(pos)

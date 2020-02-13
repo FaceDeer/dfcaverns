@@ -7,7 +7,7 @@ minetest.register_node("df_underworld_items:glow_amethyst", {
 	_doc_items_longdesc = df_underworld_items.doc.glow_amethyst_desc,
 	_doc_items_usagehelp = df_underworld_items.doc.glow_amethyst_usage,
 	tiles = {"dfcaverns_glow_amethyst.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {cracky=3, pit_plasma_resistant=1},
 	sounds = default.node_sound_glass_defaults(),
 	light_source = 6,

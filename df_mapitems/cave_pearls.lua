@@ -12,6 +12,7 @@ minetest.register_node("df_mapitems:cave_pearls", {
 	paramtype2 = "facedir",
 	groups = {cracky = 2},
 	walkable = false,
+	is_ground_content = false,
 	climbable = true,
 	light_source = 4,
 	node_box = {

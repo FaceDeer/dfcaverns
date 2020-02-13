@@ -106,6 +106,17 @@ bones_loot.get_loot = function(pos, loot_type, max_stacks, exclusive_loot_type)
 	return items
 end
 
+local bones_formspec =
+	"size[8,9]" ..
+	"list[current_name;main;0,0.3;8,4;]" ..
+	"list[current_player;main;0,4.85;8,1;]" ..
+	"list[current_player;main;0,6.08;8,3;8]" ..
+	"listring[current_name;main]" ..
+	"listring[current_player;main]"
+if minetest.get_modpath("default") then
+	bones_formspec = bones_formspec .. default.get_hotbar_bg(0,4.85)
+end
+
 bones_loot.place_bones = function(pos, loot_type, max_stacks, infotext, exclusive_loot_type)
 	minetest.set_node(pos, {name="bones:bones", param2 = math.random(1,4)-1})
 	local meta = minetest.get_meta(pos)
@@ -113,6 +124,7 @@ bones_loot.place_bones = function(pos, loot_type, max_stacks, infotext, exclusiv
 		infotext = S("Someone's old bones")
 	end
 	meta:set_string("infotext", infotext)
+	meta:set_string("formspec", bones_formspec)
 	
 	if max_stacks and max_stacks > 0 then
 		local loot = bones_loot.get_loot(pos, loot_type, max_stacks, exclusive_loot_type)
@@ -123,3 +135,15 @@ bones_loot.place_bones = function(pos, loot_type, max_stacks, infotext, exclusiv
 		end
 	end
 end
+
+minetest.register_lbm({
+	label = "Repair underworld bones formspec",
+	name = "bones_loot:repair_underworld_bones_formspec",
+	nodenames = {"bones:bones"},	
+	action = function(pos, node)
+		local meta = minetest.get_meta(pos)
+		if not meta:get("formspec") then
+			meta:set_string("formspec", bones_formspec)
+		end	
+	end,
+})

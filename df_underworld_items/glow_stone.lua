@@ -7,8 +7,19 @@ local glowstone_def = {
 	_doc_items_usagehelp = df_underworld_items.doc.glowstone_usage,
 	light_source = minetest.LIGHT_MAX,
 	description = S("Lightseam"),
-	tiles = {"dfcaverns_glowstone.png"},
-	is_ground_content = true,
+	tiles = {
+		{
+			name = "dfcaverns_glowstone_anim.png",
+			backface_culling = true,
+			animation = {
+				type = "vertical_frames",
+				aspect_w = 16,
+				aspect_h = 16,
+				length = 8,
+			},
+		},
+	},
+	is_ground_content = false,
 	groups = {cracky=3},
 	sounds = default.node_sound_glass_defaults(),
 	paramtype = "light",

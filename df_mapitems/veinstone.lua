@@ -9,7 +9,7 @@ minetest.register_node("df_mapitems:veinstone", {
 	tiles = {"default_stone.png^dfcaverns_veins.png"},
 	groups = {cracky = 3, stone = 1, lava_heatable = 1},
 	_magma_conduits_heats_to = "default:cobble",
-	is_ground_content = true,
+	is_ground_content = false,
 	light_source = 2,
 	drop = 'default:cobble',
 	sounds = default.node_sound_stone_defaults(),

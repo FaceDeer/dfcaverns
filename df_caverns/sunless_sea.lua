@@ -107,7 +107,7 @@ local mushroom_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, da
 			if math.random() < 0.01 then
 				df_trees.spawn_tower_cap_vm(vi+ystride, area, data)
 			elseif math.random() < 0.01 then
-				df_trees.spawn_goblin_cap_vm(vi+ystride, area, data)
+				df_trees.spawn_goblin_cap_vm(vi+ystride, area, data, data_param2)
 			elseif math.random() < 0.02 then
 				df_trees.spawn_spindlestem_vm(vi+ystride, area, data, data_param2)
 			end
@@ -131,7 +131,7 @@ local fungispore_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, 
 			if math.random() < 0.025 then
 				df_trees.spawn_fungiwood_vm(vi+ystride, area, data)
 			elseif math.random() < 0.025 then
-				df_trees.spawn_spore_tree_vm(vi+ystride, area, data)
+				df_trees.spawn_spore_tree_vm(vi+ystride, area, data, data_param2)
 			end
 		end
 	end
@@ -223,15 +223,20 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 					data[vi] = c_obsidian
 				end
 			end
-			-- convert all air below sea level into water
-			if y <= sea_level and data[vi] == c_air then
-				data[vi] = c_water
-			end
 		else
 			skip_next = false
 		end
 	end
 	
+	if minp.y <= sea_level then
+		for vi, x, y, z in area:iterp_yxz(area.MinEdge, area.MaxEdge) do
+			-- convert all air below sea level into water
+			if y <= sea_level and data[vi] == c_air then
+				data[vi] = c_water
+			end
+		end
+	end
+
 	
 	---------------------------------------------------------
 	-- Cavern floors
@@ -375,6 +380,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 			else
 				data[vi] = c_coral_table[math.random(1,3)]
 				data_param2[vi] = math.random(1,4)-1
+				minetest.get_node_timer(area:position(vi)):start(math.random(10, 60))
 			end
 		end
 	end
@@ -401,4 +407,5 @@ subterrane.register_layer({
 	},
 	decorate = decorate_sunless_sea,
 	double_frequency = false,
+	is_ground_content = df_caverns.is_ground_content,
 })

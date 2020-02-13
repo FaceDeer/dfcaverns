@@ -13,6 +13,7 @@ minetest.register_node("df_mapitems:castle_coral", {
 	_doc_items_longdesc = df_mapitems.doc.castle_coral_desc,
 	_doc_items_usagehelp = df_mapitems.doc.castle_coral_usage,
 	drawtype = "mesh",
+	is_ground_content = false,
 	light_source = 2,
 	mesh = "octagonal_coral.obj",
 	drop = "df_mapitems:castle_coral_skeleton",
@@ -34,6 +35,7 @@ minetest.register_node("df_mapitems:castle_coral_skeleton", {
 	drawtype = "mesh",
 	mesh = "octagonal_coral.obj",
 	paramtype = "light",
+	is_ground_content = false,
 	groups = {cracky = 3},
 	sounds = default.node_sound_stone_defaults(),
 })

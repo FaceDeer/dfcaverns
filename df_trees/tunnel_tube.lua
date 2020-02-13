@@ -17,6 +17,7 @@ minetest.register_node("df_trees:tunnel_tube", {
 	tiles = {"dfcaverns_tunnel_tube.png"},
 	paramtype2 = "facedir",
 	drawtype = "nodebox",
+	is_ground_content = false,
 	paramtype = "light",
 	groups = {choppy = 3, tree = 1, oddly_breakable_by_hand=1, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
@@ -40,6 +41,7 @@ minetest.register_node("df_trees:tunnel_tube_slant_bottom", {
 	tiles = {"dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png"},
 	paramtype2 = "facedir",
 	drawtype = "mesh",
+	is_ground_content = false,
 	mesh = "tunnel_tube_slant.obj",
 	paramtype = "light",
 	drop = "df_trees:tunnel_tube",
@@ -70,6 +72,7 @@ minetest.register_node("df_trees:tunnel_tube_slant_top", {
 	tiles = {"dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png"},
 	paramtype2 = "facedir",
 	drawtype = "mesh",
+	is_ground_content = false,
 	mesh = "tunnel_tube_slant_2.obj",
 	paramtype = "light",
 	drop = "df_trees:tunnel_tube",
@@ -99,6 +102,7 @@ minetest.register_node("df_trees:tunnel_tube_slant_full", {
 	tiles = {"dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png", "dfcaverns_tunnel_tube.png"},
 	paramtype2 = "facedir",
 	drawtype = "mesh",
+	is_ground_content = false,
 	mesh = "tunnel_tube_slant_full.obj",
 	paramtype = "light",
 	drop = "df_trees:tunnel_tube",
@@ -127,6 +131,14 @@ minetest.register_craft({
 	recipe = {
 		{'df_trees:tunnel_tube'},
 	}
+})
+
+-- Paper
+minetest.register_craft({
+	output = "default:paper 3",
+	type = "shapeless",
+	recipe = {'df_trees:tunnel_tube', 'bucket:bucket_water'},
+	replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}},
 })
 
 minetest.register_node("df_trees:tunnel_tube_wood", {
@@ -172,6 +184,7 @@ if df_trees.config.enable_tnt then
 		_doc_items_usagehelp = df_trees.doc.tunnel_tube_usage,
 		tiles = {"dfcaverns_tunnel_tube.png^[multiply:#b09090"},
 		paramtype2 = "facedir",
+		is_ground_content = false,
 		groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2, tnt = 1,},
 		sounds = default.node_sound_wood_defaults(),
 		on_place = minetest.rotate_node,
@@ -227,6 +240,7 @@ if df_trees.config.enable_tnt then
 		_doc_items_longdesc = df_trees.doc.tunnel_tube_desc,
 		_doc_items_usagehelp = df_trees.doc.tunnel_tube_usage,
 		tiles = {"dfcaverns_tunnel_tube.png^[multiply:#b09090"},
+		is_ground_content = false,
 		groups = {not_in_creative_inventory = 1,},
 		light_source = 5,
 		drop = "",
@@ -248,6 +262,7 @@ else
 		_doc_items_usagehelp = df_trees.doc.tunnel_tube_usage,
 		tiles = {"dfcaverns_tunnel_tube.png^[multiply:#b09090"},
 		paramtype2 = "facedir",
+		is_ground_content = false,
 		groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2},
 		sounds = default.node_sound_wood_defaults(),
 		on_place = minetest.rotate_node,
@@ -285,6 +300,7 @@ minetest.register_node("df_trees:tunnel_tube_sapling", {
 	paramtype = "light",
 	sunlight_propagates = true,
 	walkable = false,
+	is_ground_content = false,
 	floodable = true,
 	selection_box = {
 		type = "fixed",
@@ -295,15 +311,21 @@ minetest.register_node("df_trees:tunnel_tube_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		local below_node = minetest.get_node(vector.add(pos, {x=0,y=-1,z=0}))
-		if minetest.get_item_group(below_node.name, "soil") > 0 then
-			minetest.get_node_timer(pos):start(math.random(
-				df_trees.config.tunnel_tube_delay_multiplier*df_trees.config.tree_min_growth_delay,
-				df_trees.config.tunnel_tube_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
+			return
 		end
+		minetest.get_node_timer(pos):start(math.random(
+			df_trees.config.tunnel_tube_delay_multiplier*df_trees.config.tree_min_growth_delay,
+			df_trees.config.tunnel_tube_delay_multiplier*df_trees.config.tree_max_growth_delay))
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
 	end,
 	
 	on_timer = function(pos)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
 		minetest.set_node(pos, {name="air"})
 		df_trees.spawn_tunnel_tube(pos)
 	end,
@@ -385,6 +407,10 @@ df_trees.spawn_tunnel_tube_vm = function(vi, area, data, param2_data, height, di
 
 	local previous_vi = vi
 	local pattern = tunnel_tube_patterns[height]
+	if pattern == nil then
+		minetest.log("error", "Tunnel tube pattern was nil somehow. height: " .. string(height) .. " location: " .. minetest.pos_to_string(area:position(vi)))
+		return nil
+	end
 	for i, nodepattern in ipairs(pattern) do
 		local current_vi = vi + nodepattern[1] * increment
 		if data[current_vi] == c_air or data[current_vi] == c_ignore then

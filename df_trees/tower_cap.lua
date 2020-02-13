@@ -8,7 +8,7 @@ minetest.register_node("df_trees:tower_cap_stem", {
 	_doc_items_longdesc = df_trees.doc.tower_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.tower_cap_usage,
 	tiles = {"dfcaverns_tower_cap.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, tower_cap = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 })
@@ -19,7 +19,7 @@ minetest.register_node("df_trees:tower_cap", {
 	_doc_items_longdesc = df_trees.doc.tower_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.tower_cap_usage,
 	tiles = {"dfcaverns_tower_cap.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, tower_cap = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 })
@@ -30,7 +30,7 @@ minetest.register_node("df_trees:tower_cap_gills", {
 	_doc_items_longdesc = df_trees.doc.tower_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.tower_cap_usage,
 	tiles = {"dfcaverns_tower_cap_gills.png"},
-	is_ground_content = true,
+	is_ground_content = false,
 	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, tower_cap = 1},
 	sounds = default.node_sound_leaves_defaults(),
 	drawtype = "plantlike",
@@ -125,6 +125,7 @@ minetest.register_node("df_trees:tower_cap_sapling", {
 	wield_image = "dfcaverns_tower_cap_sapling.png",
 	paramtype = "light",
 	sunlight_propagates = true,
+	is_ground_content = false,
 	walkable = false,
 	floodable = true,
 	selection_box = {
@@ -136,15 +137,21 @@ minetest.register_node("df_trees:tower_cap_sapling", {
 	sounds = default.node_sound_leaves_defaults(),
 
 	on_construct = function(pos)
-		local below_node = minetest.get_node(vector.add(pos, {x=0,y=-1,z=0}))
-		if minetest.get_item_group(below_node.name, "soil") > 0 then
-			minetest.get_node_timer(pos):start(math.random(
-				df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
-				df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
+			return
 		end
+		minetest.get_node_timer(pos):start(math.random(
+			df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
+			df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
 	end,
 	
 	on_timer = function(pos)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
 		minetest.set_node(pos, {name="air"})
 		df_trees.spawn_tower_cap(pos)
 	end,

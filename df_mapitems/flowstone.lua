@@ -13,6 +13,7 @@ df_mapitems.dry_stalagmite_ids = subterrane.register_stalagmite_nodes("df_mapite
 	},
 	groups = {cracky = 3, stone = 2},
 	sounds = default.node_sound_stone_defaults(),
+	is_ground_content = false,
 })
 
 minetest.register_node("df_mapitems:dry_flowstone", {
@@ -22,7 +23,7 @@ minetest.register_node("df_mapitems:dry_flowstone", {
 	tiles = {"default_stone.png^[brighten"},
 	groups = {cracky = 3, stone = 1, lava_heatable = 1},
 	_magma_conduits_heats_to = "default:cobble",
-	is_ground_content = true,
+	is_ground_content = false,
 	drop = 'default:cobble',
 	sounds = default.node_sound_stone_defaults(),
 })
@@ -38,6 +39,7 @@ df_mapitems.wet_stalagmite_ids = subterrane.register_stalagmite_nodes("df_mapite
 	},
 	groups = {cracky = 3, stone = 2, subterrane_wet_dripstone = 1},
 	sounds = default.node_sound_stone_defaults(),
+	is_ground_content = false,
 }, "df_mapitems:dry_stal")
 
 
@@ -48,7 +50,7 @@ minetest.register_node("df_mapitems:wet_flowstone", {
 	tiles = {"default_stone.png^[brighten^dfcaverns_dripstone_streaks.png"},
 	groups = {cracky = 3, stone = 1, subterrane_wet_dripstone = 1, lava_heatable = 1},
 	_magma_conduits_heats_to = "df_mapitems:dry_flowstone",
-	is_ground_content = true,
+	is_ground_content = false,
 	drop = 'default:cobble',
 	sounds = default.node_sound_stone_defaults(),
 })

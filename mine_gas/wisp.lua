@@ -14,6 +14,7 @@ minetest.register_node("mine_gas:gas_wisp", {
 	_doc_items_longdesc = wisp_desc,
 	_doc_items_usagehelp = wisp_usage,
 	walkable = false,
+	is_ground_content = false,
 	diggable = false,
 	buildable_to = true,
 	drawtype = "plantlike",

@@ -124,6 +124,9 @@ local content_in_list=function(content, list)
 end
 
 df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, data_param2, wet)
+	if maxp.y > -30 then
+		wet = false
+	end
 	local ystride = area.ystride
 	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 	local cracks = nvals_cracks[index2d]
@@ -148,6 +151,10 @@ df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, dat
 end
 
 df_caverns.tunnel_ceiling = function(minp, maxp, area, vi, nvals_cracks, data, data_param2, wet)
+	if maxp.y > -30 then
+		wet = false
+	end
+
 	local ystride = area.ystride
 	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 	local cracks = nvals_cracks[index2d]
@@ -207,4 +214,37 @@ df_caverns.place_shrub = function(vi, area, data, param2_data, shrub_list)
 	
 	local shrub = shrub_list[math.random(#shrub_list)]
 	shrub(vi, area, data, param2_data)
+end
+
+---------------------------------------------------------------------------------
+-- This method allows subterrane to overgenerate caves without destroying any of the decorations
+local dfcaverns_nodes = nil
+local dfcaverns_mods = {
+	"df_farming:",
+	"df_mapitems:",
+	"df_primordial_items:",
+	"df_trees:",
+	"df_underworld_items:",
+	"ice_sprites:",
+	"mine_gas:",
+}
+df_caverns.is_ground_content = function(c_node)
+	if dfcaverns_nodes then
+		return not dfcaverns_nodes[c_node]
+	end
+	dfcaverns_nodes = {}
+	for k, v in pairs(minetest.registered_nodes) do
+		for _, prefix in ipairs(dfcaverns_mods) do
+			if k:sub(1, #prefix) == prefix then
+				dfcaverns_nodes[minetest.get_content_id(k)] = true
+			end
+		end
+	end
+	dfcaverns_nodes[minetest.get_content_id("default:ice")] = true -- needed for nethercap cavern water covering
+	dfcaverns_nodes[minetest.get_content_id("oil:oil_source")] = true -- needed for blackcap oil slicks
+	if minetest.get_modpath("fireflies") then
+		dfcaverns_nodes[minetest.get_content_id("fireflies:firefly")] = true -- used in the primordial caverns
+	end
+	dfcaverns_mods = nil
+	return not dfcaverns_nodes[c_node]
 end

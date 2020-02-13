@@ -17,10 +17,17 @@ local register_pig_tail = function(number)
 		inventory_image = "dfcaverns_pig_tail_"..tostring(number)..".png",
 		paramtype = "light",
 		walkable = false,
+		is_ground_content = false,
 		floodable = true,
 		buildable_to = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
 		sounds = default.node_sound_leaves_defaults(),
+        selection_box = {
+            type = "fixed",
+            fixed = {
+                {-8/16, -8/16, -8/16, 8/16, -8/16 + 2*number/16, 8/16},
+            },
+        },
 		
 		on_timer = function(pos, elapsed)
 			df_farming.grow_underground_plant(pos, name, elapsed)
@@ -115,3 +122,40 @@ minetest.register_craft({
 	burntime = 1,
 })
 
+if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
+	minetest.register_node("df_farming:pig_tail_trampled", {
+		description = S("Flattened Pig Tail"),
+		tiles = {"dfcaverns_pig_tail_flattened.png"},
+		inventory_image = "dfcaverns_pig_tail_flattened.png",
+		drawtype = "nodebox",
+		paramtype = "light",
+		paramtype2 = "facedir",
+		buildable_to = true,
+		node_box = {
+			type = "fixed",
+			fixed = {
+				{-0.5, -0.5, -0.5, 0.5, -3 / 8, 0.5}
+			},
+		},
+		groups = {snappy = 3, flammable = 2, attached_node = 1},
+		drop = "",
+		sounds = default.node_sound_leaves_defaults(),
+	})
+	
+	trail.register_trample_node("df_farming:pig_tail_5", {
+		trampled_node_name = "df_farming:pig_tail_trampled",
+		randomize_trampled_param2 = true,
+	})
+	trail.register_trample_node("df_farming:pig_tail_6", {
+		trampled_node_name = "df_farming:pig_tail_trampled",
+		randomize_trampled_param2 = true,
+	})
+	trail.register_trample_node("df_farming:pig_tail_7", {
+		trampled_node_name = "df_farming:pig_tail_trampled",
+		randomize_trampled_param2 = true,
+	})
+	trail.register_trample_node("df_farming:pig_tail_8", {
+		trampled_node_name = "df_farming:pig_tail_trampled",
+		randomize_trampled_param2 = true,
+	})
+end

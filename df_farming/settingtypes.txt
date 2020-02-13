@@ -1,4 +1,4 @@
-dfcaverns_plant_growth_time (Base plant growth timer interval) int 100
+dfcaverns_plant_growth_time (Base plant growth timer interval) int 3600
 dfcaverns_cave_wheat_delay_multiplier (cave_wheat growth delay multiplier) float 1
 dfcaverns_dimple_cup_delay_multiplier (dimple_cup growth delay multiplier) float 3
 dfcaverns_pig_tail_delay_multiplier (pig_tail growth delay multiplier) float 1

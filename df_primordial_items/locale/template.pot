@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-26 16:09-0700\n"
+"POT-Creation-Date: 2020-02-16 00:30-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -211,7 +211,7 @@ msgstr ""
 msgid "Dirt with Primordial Mycelium"
 msgstr ""
 
-#: df_primordial_items\fungal_nodes.lua:126
+#: df_primordial_items\fungal_nodes.lua:139
 msgid "Dirt with Primordial Mycelium and Footprint"
 msgstr ""
 
@@ -238,20 +238,20 @@ msgstr ""
 msgid "Rooted Giant Hypha"
 msgstr ""
 
-#: df_primordial_items\giant_mycelium.lua:53
+#: df_primordial_items\giant_mycelium.lua:55
 msgid "Giant Hypha"
 msgstr ""
 
-#: df_primordial_items\giant_mycelium.lua:83
+#: df_primordial_items\giant_mycelium.lua:87
 msgid "Giant Mycelial Fibers"
 msgstr ""
 
-#: df_primordial_items\giant_mycelium.lua:91
+#: df_primordial_items\giant_mycelium.lua:95
 msgid "Mycelial thread"
 msgstr ""
 
-#: df_primordial_items\giant_mycelium.lua:297
-#: df_primordial_items\giant_mycelium.lua:362
+#: df_primordial_items\giant_mycelium.lua:309
+#: df_primordial_items\giant_mycelium.lua:395
 msgid "Giant Hypha Apical Meristem"
 msgstr ""
 
@@ -271,68 +271,71 @@ msgstr ""
 msgid "Diced Mushroom"
 msgstr ""
 
-#: df_primordial_items\jungle_mushroom.lua:91
+#: df_primordial_items\jungle_mushroom.lua:92
 msgid "Primordial Jungle Mushroom Sapling"
 msgstr ""
 
 #: df_primordial_items\jungle_nodes.lua:14
-#: df_primordial_items\jungle_nodes.lua:33
+#: df_primordial_items\jungle_nodes.lua:34
 msgid "Primordial Fern"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:55
+#: df_primordial_items\jungle_nodes.lua:57
 msgid "Primordial Flower"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:74
-#: df_primordial_items\jungle_nodes.lua:93
+#: df_primordial_items\jungle_nodes.lua:77
+#: df_primordial_items\jungle_nodes.lua:97
 msgid "Primordial Jungle Pod"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:116
-#: df_primordial_items\jungle_nodes.lua:134
-#: df_primordial_items\jungle_nodes.lua:153
+#: df_primordial_items\jungle_nodes.lua:121
+#: df_primordial_items\jungle_nodes.lua:140
+#: df_primordial_items\jungle_nodes.lua:160
 msgid "Primordial Jungle Grass"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:176
+#: df_primordial_items\jungle_nodes.lua:184
 msgid "Primordial Jungle Ivy"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:203
-#: df_primordial_items\jungle_nodes.lua:221
+#: df_primordial_items\jungle_nodes.lua:211
 msgid "Primordial Jungle Mushroom"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:242
+#: df_primordial_items\jungle_nodes.lua:229
+msgid "Large Primordial Jungle Mushroom"
+msgstr ""
+
+#: df_primordial_items\jungle_nodes.lua:250
 msgid "Dirt With Primordial Jungle Grass"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:252
+#: df_primordial_items\jungle_nodes.lua:278
 msgid "Primordial Plant Matter"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:270
-msgid "Dirt With Primordial Jungle Grass and Footprint"
-msgstr ""
-
-#: df_primordial_items\jungle_nodes.lua:277
-msgid "Primordial Plant Matter with Footprint"
-msgstr ""
-
-#: df_primordial_items\jungle_nodes.lua:286
+#: df_primordial_items\jungle_nodes.lua:301
 msgid "Packed Primordial Jungle Roots"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:300
+#: df_primordial_items\jungle_nodes.lua:317
+msgid "Dirt With Primordial Jungle Grass and Footprint"
+msgstr ""
+
+#: df_primordial_items\jungle_nodes.lua:324
+msgid "Primordial Plant Matter with Footprint"
+msgstr ""
+
+#: df_primordial_items\jungle_nodes.lua:342
 msgid "Primordial Jungle Roots"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:318
+#: df_primordial_items\jungle_nodes.lua:360
 msgid "Primordial Jungle Root"
 msgstr ""
 
-#: df_primordial_items\jungle_nodes.lua:339
+#: df_primordial_items\jungle_nodes.lua:381
 msgid "Primordial Jungle Thorns"
 msgstr ""
 
@@ -356,7 +359,7 @@ msgstr ""
 msgid "Phosphorescent Primordial Jungle Tree"
 msgstr ""
 
-#: df_primordial_items\jungle_tree.lua:225
+#: df_primordial_items\jungle_tree.lua:221
 msgid "Primordial Jungle Tree Sapling"
 msgstr ""
 
@@ -384,6 +387,6 @@ msgstr ""
 msgid "Primordial Cap Wood"
 msgstr ""
 
-#: df_primordial_items\primordial_mushroom.lua:692
+#: df_primordial_items\primordial_mushroom.lua:688
 msgid "Primordial Mushroom Spawn"
 msgstr ""

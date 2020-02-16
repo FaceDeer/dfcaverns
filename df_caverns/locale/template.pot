@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-25 13:52-0700\n"
+"POT-Creation-Date: 2020-02-16 00:22-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,14 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: df_caverns\underworld.lua:12
+#: df_caverns\underworld.lua:27
 msgid "A glowing pit"
 msgstr ""
 
-#: df_caverns\underworld.lua:27
-msgid "A mysterious seal"
+#: df_caverns\underworld.lua:40
+msgid "Mysterious seal"
+msgstr ""
+
+#: df_caverns\underworld.lua:63
+msgid "Ancient ruin"
 msgstr ""

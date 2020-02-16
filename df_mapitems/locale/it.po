@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-07 21:33-0600\n"
+"POT-Creation-Date: 2020-02-16 00:29-0700\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -22,13 +22,13 @@ msgstr ""
 msgid "Castle Coral"
 msgstr ""
 
-#: df_mapitems\castle_coral.lua:25
+#: df_mapitems\castle_coral.lua:26
 msgid "Castle Coral Skeleton"
 msgstr ""
 
 #: df_mapitems\cave_coral.lua:6
-#: df_mapitems\cave_coral.lua:18
-#: df_mapitems\cave_coral.lua:30
+#: df_mapitems\cave_coral.lua:24
+#: df_mapitems\cave_coral.lua:42
 #, fuzzy
 msgid "Cave Coral"
 msgstr "Grano di caverna"
@@ -50,14 +50,14 @@ msgid "Red Crystal Vein"
 msgstr ""
 
 #: df_mapitems\crystals_ruby.lua:16
-#: df_mapitems\crystals_ruby.lua:71
-#: df_mapitems\crystals_ruby.lua:158
+#: df_mapitems\crystals_ruby.lua:73
+#: df_mapitems\crystals_ruby.lua:162
 msgid "Giant Red Crystal"
 msgstr ""
 
-#: df_mapitems\crystals_ruby.lua:43
-#: df_mapitems\crystals_ruby.lua:122
-#: df_mapitems\crystals_ruby.lua:195
+#: df_mapitems\crystals_ruby.lua:44
+#: df_mapitems\crystals_ruby.lua:125
+#: df_mapitems\crystals_ruby.lua:200
 msgid "Big Red Crystal"
 msgstr ""
 
@@ -65,7 +65,7 @@ msgstr ""
 msgid "Luminous Salt Crystal"
 msgstr ""
 
-#: df_mapitems\crystals_salt.lua:23
+#: df_mapitems\crystals_salt.lua:24
 msgid "Salty Cobble"
 msgstr ""
 
@@ -270,19 +270,19 @@ msgstr ""
 msgid "Dry Dripstone"
 msgstr ""
 
-#: df_mapitems\flowstone.lua:19
+#: df_mapitems\flowstone.lua:20
 msgid "Dry Flowstone"
 msgstr ""
 
-#: df_mapitems\flowstone.lua:33
+#: df_mapitems\flowstone.lua:34
 msgid "Wet Dripstone"
 msgstr ""
 
-#: df_mapitems\flowstone.lua:45
+#: df_mapitems\flowstone.lua:47
 msgid "Wet Flowstone"
 msgstr ""
 
-#: df_mapitems\flowstone.lua:59
+#: df_mapitems\flowstone.lua:61
 msgid "Icicle"
 msgstr ""
 
@@ -291,16 +291,23 @@ msgid "Glow Worms"
 msgstr "Vermi luminosi"
 
 #: df_mapitems\ground_cover.lua:11
-msgid "Dirt With Cave Moss"
+#, fuzzy
+msgid "Dirt with Cave Moss"
 msgstr "Terra con muschio di caverna"
 
-#: df_mapitems\ground_cover.lua:54
-#: df_mapitems\ground_cover.lua:69
-msgid "Cobblestone With Floor Fungus"
+#: df_mapitems\ground_cover.lua:53
+#, fuzzy
+msgid "Dirt with Cave Moss and Footprint"
+msgstr "Terra con muschio di caverna"
+
+#: df_mapitems\ground_cover.lua:67
+#: df_mapitems\ground_cover.lua:82
+#, fuzzy
+msgid "Cobblestone with Floor Fungus"
 msgstr "Ciottoli con funghi del terreno"
 
-#: df_mapitems\ground_cover.lua:109
-msgid "Ice With Hoar Moss"
+#: df_mapitems\ground_cover.lua:122
+msgid "Ice with Hoar Moss"
 msgstr ""
 
 #: df_mapitems\snareweed.lua:6

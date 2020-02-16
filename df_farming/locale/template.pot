@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-11 03:51-0600\n"
+"POT-Creation-Date: 2020-02-16 00:26-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,151 +18,159 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: df_farming\cave_wheat.lua:10
-#: df_farming\cave_wheat.lua:87
+#: df_farming\cave_wheat.lua:94
 msgid "Cave Wheat"
 msgstr ""
 
-#: df_farming\cave_wheat.lua:79
+#: df_farming\cave_wheat.lua:86
 msgid "Cave Wheat Seed"
 msgstr ""
 
-#: df_farming\cave_wheat.lua:100
+#: df_farming\cave_wheat.lua:110
 msgid "Cave Wheat Flour"
 msgstr ""
 
-#: df_farming\cave_wheat.lua:108
+#: df_farming\cave_wheat.lua:118
 msgid "Dwarven Bread"
 msgstr ""
 
-#: df_farming\cooking.lua:72
+#: df_farming\cave_wheat.lua:165
+msgid "Cave Straw"
+msgstr ""
+
+#: df_farming\cave_wheat.lua:194
+msgid "Flattened Cave Wheat"
+msgstr ""
+
+#: df_farming\cooking.lua:81
 msgid "Cave Wheat Flour Biscuit"
 msgstr ""
 
-#: df_farming\cooking.lua:73
+#: df_farming\cooking.lua:82
 msgid "Cave Wheat Flour Bun"
 msgstr ""
 
-#: df_farming\cooking.lua:74
+#: df_farming\cooking.lua:83
 msgid "Cave Wheat Flour Pancake"
 msgstr ""
 
-#: df_farming\cooking.lua:77
+#: df_farming\cooking.lua:86
 msgid "Cave Wheat Seed Loaf"
 msgstr ""
 
-#: df_farming\cooking.lua:78
+#: df_farming\cooking.lua:87
 msgid "Cave Wheat Seed Puffs"
 msgstr ""
 
-#: df_farming\cooking.lua:79
+#: df_farming\cooking.lua:88
 msgid "Cave Wheat Seed Risotto"
 msgstr ""
 
-#: df_farming\cooking.lua:82
+#: df_farming\cooking.lua:91
 msgid "Sweet Pod Spore Dumplings"
 msgstr ""
 
-#: df_farming\cooking.lua:83
+#: df_farming\cooking.lua:92
 msgid "Sweet Pod Spore Single Crust Pie"
 msgstr ""
 
-#: df_farming\cooking.lua:84
+#: df_farming\cooking.lua:93
 msgid "Sweet Pod Spore Brule"
 msgstr ""
 
-#: df_farming\cooking.lua:87
+#: df_farming\cooking.lua:96
 msgid "Sweet Pod Sugar Cookie"
 msgstr ""
 
-#: df_farming\cooking.lua:88
+#: df_farming\cooking.lua:97
 msgid "Sweet Pod Sugar Gingerbread"
 msgstr ""
 
-#: df_farming\cooking.lua:89
+#: df_farming\cooking.lua:98
 msgid "Sweet Pod Sugar Roll"
 msgstr ""
 
-#: df_farming\cooking.lua:92
+#: df_farming\cooking.lua:101
 msgid "Plump Helmet Mince"
 msgstr ""
 
-#: df_farming\cooking.lua:93
+#: df_farming\cooking.lua:102
 msgid "Plump Helmet Stalk Sausage"
 msgstr ""
 
-#: df_farming\cooking.lua:94
+#: df_farming\cooking.lua:103
 msgid "Plump Helmet Roast"
 msgstr ""
 
-#: df_farming\cooking.lua:97
+#: df_farming\cooking.lua:106
 msgid "Plump Helmet Spawn Soup"
 msgstr ""
 
-#: df_farming\cooking.lua:98
+#: df_farming\cooking.lua:107
 msgid "Plump Helmet Spawn Jambalaya"
 msgstr ""
 
-#: df_farming\cooking.lua:99
+#: df_farming\cooking.lua:108
 msgid "Plump Helmet Sprout Stew"
 msgstr ""
 
-#: df_farming\cooking.lua:102
+#: df_farming\cooking.lua:111
 msgid "Quarry Bush Leaf Spicy Bun"
 msgstr ""
 
-#: df_farming\cooking.lua:103
+#: df_farming\cooking.lua:112
 msgid "Quarry Bush Leaf Croissant"
 msgstr ""
 
-#: df_farming\cooking.lua:104
+#: df_farming\cooking.lua:113
 msgid "Stuffed Quarry Bush Leaf"
 msgstr ""
 
-#: df_farming\cooking.lua:107
+#: df_farming\cooking.lua:116
 msgid "Rock Nut Bread"
 msgstr ""
 
-#: df_farming\cooking.lua:108
+#: df_farming\cooking.lua:117
 msgid "Rock Nut Cookie"
 msgstr ""
 
-#: df_farming\cooking.lua:109
+#: df_farming\cooking.lua:118
 msgid "Rock Nut Cake"
 msgstr ""
 
-#: df_farming\cooking.lua:112
+#: df_farming\cooking.lua:121
 msgid "Dimple Cup Spore Flatbread"
 msgstr ""
 
-#: df_farming\cooking.lua:113
+#: df_farming\cooking.lua:122
 msgid "Dimple Cup Spore Scone"
 msgstr ""
 
-#: df_farming\cooking.lua:114
+#: df_farming\cooking.lua:123
 msgid "Dimple Cup Spore Roll"
 msgstr ""
 
-#: df_farming\cooking.lua:117
+#: df_farming\cooking.lua:126
 msgid "Pig Tail Spore Sandwich"
 msgstr ""
 
-#: df_farming\cooking.lua:118
+#: df_farming\cooking.lua:127
 msgid "Pig Tail Spore Tofu"
 msgstr ""
 
-#: df_farming\cooking.lua:119
+#: df_farming\cooking.lua:128
 msgid "Pig Tail Spore Casserole"
 msgstr ""
 
-#: df_farming\cooking.lua:122
+#: df_farming\cooking.lua:131
 msgid "Dwarven Syrup Taffy"
 msgstr ""
 
-#: df_farming\cooking.lua:123
+#: df_farming\cooking.lua:132
 msgid "Dwarven Syrup Jellies"
 msgstr ""
 
-#: df_farming\cooking.lua:124
+#: df_farming\cooking.lua:133
 msgid "Dwarven Syrup Delight"
 msgstr ""
 
@@ -170,7 +178,7 @@ msgstr ""
 msgid "Dimple Cup"
 msgstr ""
 
-#: df_farming\dimple_cup.lua:68
+#: df_farming\dimple_cup.lua:75
 msgid "Dimple Cup Spores"
 msgstr ""
 
@@ -358,19 +366,23 @@ msgstr ""
 msgid "Pig Tail"
 msgstr ""
 
-#: df_farming\pig_tail.lua:78
+#: df_farming\pig_tail.lua:85
 msgid "Pig Tail Spore"
 msgstr ""
 
-#: df_farming\pig_tail.lua:86
+#: df_farming\pig_tail.lua:93
 msgid "Pig tail thread"
+msgstr ""
+
+#: df_farming\pig_tail.lua:127
+msgid "Flattened Pig Tail"
 msgstr ""
 
 #: df_farming\plants.lua:10
 msgid "Dead Fungus"
 msgstr ""
 
-#: df_farming\plants.lua:42
+#: df_farming\plants.lua:43
 msgid "Cavern Fungi"
 msgstr ""
 
@@ -378,11 +390,11 @@ msgstr ""
 msgid "Plump Helmet Spawn"
 msgstr ""
 
-#: df_farming\plump_helmet.lua:92
-#: df_farming\plump_helmet.lua:129
-#: df_farming\plump_helmet.lua:164
-#: df_farming\plump_helmet.lua:199
-#: df_farming\plump_helmet.lua:251
+#: df_farming\plump_helmet.lua:93
+#: df_farming\plump_helmet.lua:133
+#: df_farming\plump_helmet.lua:171
+#: df_farming\plump_helmet.lua:209
+#: df_farming\plump_helmet.lua:264
 msgid "Plump Helmet"
 msgstr ""
 
@@ -390,11 +402,11 @@ msgstr ""
 msgid "Quarry Bush"
 msgstr ""
 
-#: df_farming\quarry_bush.lua:75
+#: df_farming\quarry_bush.lua:82
 msgid "Rock Nuts"
 msgstr ""
 
-#: df_farming\quarry_bush.lua:84
+#: df_farming\quarry_bush.lua:91
 msgid "Quarry Bush Leaves"
 msgstr ""
 
@@ -402,26 +414,26 @@ msgstr ""
 msgid "Sweet Pod"
 msgstr ""
 
-#: df_farming\sweet_pod.lua:74
+#: df_farming\sweet_pod.lua:81
 msgid "Sweet Pod Spores"
 msgstr ""
 
-#: df_farming\sweet_pod.lua:82
+#: df_farming\sweet_pod.lua:89
 msgid "Sweet Pods"
 msgstr ""
 
-#: df_farming\sweet_pod.lua:98
+#: df_farming\sweet_pod.lua:105
 msgid "Sweet Pod Sugar"
 msgstr ""
 
-#: df_farming\sweet_pod.lua:138
+#: df_farming\sweet_pod.lua:145
 msgid "Dwarven Syrup Source"
 msgstr ""
 
-#: df_farming\sweet_pod.lua:186
+#: df_farming\sweet_pod.lua:193
 msgid "Flowing Dwarven Syrup"
 msgstr ""
 
-#: df_farming\sweet_pod.lua:239
+#: df_farming\sweet_pod.lua:246
 msgid "Dwarven Syrup Bucket"
 msgstr ""

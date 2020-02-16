@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: dfcaverns module's Italian locale\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-05 20:30-0600\n"
+"POT-Creation-Date: 2020-02-16 00:30-0700\n"
 "PO-Revision-Date: 2017-08-17 23:01+0100\n"
 "Last-Translator: H4mlet <h4mlet@riseup.net>\n"
 "Language-Team: ITALIANO\n"
@@ -30,11 +30,11 @@ msgstr "Cappello nero"
 msgid "Black Cap Gills"
 msgstr "Lamelle di cappello nero"
 
-#: df_trees\black_cap.lua:85
+#: df_trees\black_cap.lua:94
 msgid "Black Cap Planks"
 msgstr "Assi di cappello nero"
 
-#: df_trees\black_cap.lua:126
+#: df_trees\black_cap.lua:135
 msgid "Black Cap Spawn"
 msgstr "Prole di cappello nero"
 
@@ -42,19 +42,19 @@ msgstr "Prole di cappello nero"
 msgid "Blood Thorn Stem"
 msgstr "Gambo di spina del sangue"
 
-#: df_trees\blood_thorn.lua:47
+#: df_trees\blood_thorn.lua:48
 msgid "Dead Blood Thorn Stem"
 msgstr "Gambo di spina del sangue morta"
 
-#: df_trees\blood_thorn.lua:61
+#: df_trees\blood_thorn.lua:63
 msgid "Blood Thorn Spike"
 msgstr "Spuntone di spina del sangue"
 
-#: df_trees\blood_thorn.lua:91
+#: df_trees\blood_thorn.lua:94
 msgid "Dead Blood Thorn Spike"
 msgstr "Spuntone di spina del sangue morta"
 
-#: df_trees\blood_thorn.lua:134
+#: df_trees\blood_thorn.lua:138
 msgid "Blood Thorn Planks"
 msgstr "Assi di spina del sangue"
 
@@ -323,15 +323,15 @@ msgstr "Assi di cappello di folletto"
 msgid "Goblin Cap Stem Planks"
 msgstr "Assi di gambo di cappello di folletto"
 
-#: df_trees\goblin_cap.lua:136
+#: df_trees\goblin_cap.lua:187
 msgid "Goblin Cap Spawn"
 msgstr "Prole di cappello di folletto"
 
-#: df_trees\init.lua:45
+#: df_trees\init.lua:53
 msgid "@1 Stair"
 msgstr ""
 
-#: df_trees\init.lua:46
+#: df_trees\init.lua:54
 msgid "@1 Slab"
 msgstr ""
 
@@ -343,15 +343,15 @@ msgstr "Gambo di cappello del Nether"
 msgid "Nether Cap"
 msgstr "Cappello del Nether"
 
-#: df_trees\nether_cap.lua:29
+#: df_trees\nether_cap.lua:31
 msgid "Nether Cap Gills"
 msgstr "Lamelle di cappello del Nether"
 
-#: df_trees\nether_cap.lua:78
+#: df_trees\nether_cap.lua:80
 msgid "Nether Cap Planks"
 msgstr "Assi di cappello del Nether"
 
-#: df_trees\nether_cap.lua:93
+#: df_trees\nether_cap.lua:95
 msgid "Nether Cap Spawn"
 msgstr "Prole di cappello del Nether"
 
@@ -363,32 +363,32 @@ msgstr ""
 msgid "@1 Spindlestem Cap"
 msgstr ""
 
-#: df_trees\spindlestem.lua:186
+#: df_trees\spindlestem.lua:197
 msgid "@1 Spindlestem Extract"
 msgstr ""
 
-#: df_trees\spindlestem.lua:234
+#: df_trees\spindlestem.lua:238
 #, fuzzy
 msgid "Spindlestem Spawn"
 msgstr "Prole di albero delle spore"
 
-#: df_trees\spindlestem.lua:273
+#: df_trees\spindlestem.lua:292
 msgid "White"
 msgstr ""
 
-#: df_trees\spindlestem.lua:274
+#: df_trees\spindlestem.lua:293
 msgid "Red"
 msgstr ""
 
-#: df_trees\spindlestem.lua:275
+#: df_trees\spindlestem.lua:294
 msgid "Green"
 msgstr ""
 
-#: df_trees\spindlestem.lua:276
+#: df_trees\spindlestem.lua:295
 msgid "Cyan"
 msgstr ""
 
-#: df_trees\spindlestem.lua:277
+#: df_trees\spindlestem.lua:296
 msgid "Golden"
 msgstr ""
 
@@ -412,23 +412,23 @@ msgstr "Corpo fruttifero dell'albero delle spore"
 msgid "Spore Tree Spawn"
 msgstr "Prole di albero delle spore"
 
-#: df_trees\spore_tree.lua:306
+#: df_trees\spore_tree.lua:323
 #, fuzzy
 msgid "Spore Tree Ladder"
 msgstr "Ife di albero delle spore"
 
 #: df_trees\torchspine.lua:58
-#: df_trees\torchspine.lua:76
+#: df_trees\torchspine.lua:81
 msgid "Torchspine Tip"
 msgstr ""
 
-#: df_trees\torchspine.lua:95
-#: df_trees\torchspine.lua:121
-#: df_trees\torchspine.lua:151
+#: df_trees\torchspine.lua:100
+#: df_trees\torchspine.lua:126
+#: df_trees\torchspine.lua:156
 msgid "Torchspine"
 msgstr ""
 
-#: df_trees\torchspine.lua:180
+#: df_trees\torchspine.lua:185
 msgid "Torchspine Ember"
 msgstr ""
 
@@ -453,22 +453,22 @@ msgid "Tower Cap Spawn"
 msgstr "Prole di cappello a torre"
 
 #: df_trees\tunnel_tube.lua:14
-#: df_trees\tunnel_tube.lua:37
-#: df_trees\tunnel_tube.lua:67
-#: df_trees\tunnel_tube.lua:96
+#: df_trees\tunnel_tube.lua:38
+#: df_trees\tunnel_tube.lua:69
+#: df_trees\tunnel_tube.lua:99
 msgid "Tunnel Tube"
 msgstr "Tubo di galleria"
 
-#: df_trees\tunnel_tube.lua:133
+#: df_trees\tunnel_tube.lua:145
 msgid "Tunnel Tube Plies"
 msgstr "Strati di tubo di galleria"
 
-#: df_trees\tunnel_tube.lua:170
-#: df_trees\tunnel_tube.lua:226
-#: df_trees\tunnel_tube.lua:246
+#: df_trees\tunnel_tube.lua:182
+#: df_trees\tunnel_tube.lua:239
+#: df_trees\tunnel_tube.lua:260
 msgid "Tunnel Tube Fruiting Body"
 msgstr "Corpo fruttifero del tubo di galleria"
 
-#: df_trees\tunnel_tube.lua:277
+#: df_trees\tunnel_tube.lua:292
 msgid "Tunnel Tube Spawn"
 msgstr "Prole di tubo di galleria"

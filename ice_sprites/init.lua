@@ -1,6 +1,5 @@
--- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
+local modname = minetest.get_current_modname()
+local S = minetest.get_translator(modname)
 
 local ice_sprite_desc
 local ice_sprite_usage

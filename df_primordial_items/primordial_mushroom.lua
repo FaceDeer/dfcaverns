@@ -1,6 +1,4 @@
--- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
+local S = df_primordial_items.S
 
 minetest.register_node("df_primordial_items:mushroom_trunk", {
 	description = S("Primordial Mushroom Trunk"),

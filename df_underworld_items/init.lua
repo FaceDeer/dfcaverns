@@ -1,6 +1,8 @@
 df_underworld_items = {}
 
-local modpath = minetest.get_modpath(minetest.get_current_modname())
+local modname = minetest.get_current_modname()
+df_underworld_items.S = minetest.get_translator(modname)
+local modpath = minetest.get_modpath(modname)
 
 dofile(modpath.."/config.lua")
 dofile(modpath.."/doc.lua")

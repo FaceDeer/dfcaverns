@@ -1,0 +1,7 @@
+A bottle containing a captured ice sprite.=
+Hidden Ice Sprite=
+Ice Sprite=
+Ice Sprite in a Bottle=
+Ice sprites are mysterious glowing insect-like creatures that appear to be made partly of crystalized water.=
+Ice sprites can be caught with nets and placed in bottles as sources of light and freezing cold.=
+Ice sprites radiate both light and freezing cold.=

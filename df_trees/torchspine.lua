@@ -1,6 +1,4 @@
--- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
+local S = df_trees.S
 
 -- Rather than make this whole mod depend on subterrane just for this, I copied and pasted a chunk of stalactite code.
 local x_disp = 0.125

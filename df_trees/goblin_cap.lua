@@ -1,6 +1,5 @@
--- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
+local modpath = minetest.get_modpath(minetest.get_current_modname())
+local S = df_trees.S
 
 --stem
 minetest.register_node("df_trees:goblin_cap_stem", {
@@ -131,10 +130,10 @@ minetest.register_craft({
 	burntime = 2,
 })
 
-local big_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_big.lua")
-local big_goblin_cap_hut_schem = dofile(MP.."/schematics/goblin_cap_big_hut.lua")
-local bigger_goblin_cap_schem = dofile(MP.."/schematics/goblin_cap_bigger.lua")
-local bigger_goblin_cap_hut_schem = dofile(MP.."/schematics/goblin_cap_bigger_hut.lua")
+local big_goblin_cap_schem = dofile(modpath.."/schematics/goblin_cap_big.lua")
+local big_goblin_cap_hut_schem = dofile(modpath.."/schematics/goblin_cap_big_hut.lua")
+local bigger_goblin_cap_schem = dofile(modpath.."/schematics/goblin_cap_bigger.lua")
+local bigger_goblin_cap_hut_schem = dofile(modpath.."/schematics/goblin_cap_bigger_hut.lua")
 
 -- The hut has a chest and furnace near pos, use this to initialize it
 local chest_on_construct = minetest.registered_items["default:chest"].on_construct

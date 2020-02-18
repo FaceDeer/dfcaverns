@@ -1,10 +1,7 @@
--- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
+local S = df_farming.S
 
 -----------------------------------------------------------------------
 -- Plants
-
 
 minetest.register_node("df_farming:dead_fungus", {
 	description = S("Dead Fungus"),

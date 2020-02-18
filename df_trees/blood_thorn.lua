@@ -6,9 +6,7 @@
 -- High density wood
 -- Depth 3
 
--- internationalization boilerplate
-local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
+local S = df_trees.S
 
 local spike_directions = {
 	{dir={x=0,y=0,z=1}, facedir=2},

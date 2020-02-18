@@ -1,9 +1,9 @@
 if not df_caverns.config.enable_underworld or not minetest.get_modpath("df_underworld_items") then
 	return
 end
-local modpath = minetest.get_modpath(minetest.get_current_modname())
-
-local S = minetest.get_translator("df_caverns")
+local modname = minetest.get_current_modname()
+local modpath = minetest.get_modpath(modname)
+local S = minetest.get_translator(modname)
 
 local bones_loot_path = minetest.get_modpath("bones_loot")
 local named_waypoints_path = minetest.get_modpath("named_waypoints")

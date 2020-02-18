@@ -2,11 +2,6 @@
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local S, NS = dofile(MP.."/intllib.lua")
 
-local vegetation =
-{
-}
-
-
 ----------------------------------------------------
 -- Ferns
 
@@ -187,7 +182,7 @@ minetest.register_node("df_primordial_items:jungle_ivy", {
 	tiles = {"dfcaverns_jungle_ivy_01.png"},
 	inventory_image = "dfcaverns_jungle_ivy_01.png",
 	wield_image = "dfcaverns_jungle_ivy_01.png",
-	groups = {snappy = 3, flora = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
 	place_param2 = 3,
@@ -335,6 +330,12 @@ minetest.register_craft({
 	burntime = 40,
 })
 
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:plant_matter",
+	burntime = 20,
+})
+
 ----------------------------------------------------------------------------------------
 -- Roots
 
@@ -345,7 +346,7 @@ minetest.register_node("df_primordial_items:jungle_roots_1", {
 	tiles = {"dfcaverns_jungle_root_01.png"},
 	inventory_image = "dfcaverns_jungle_root_01.png",
 	wield_image = "dfcaverns_jungle_root_01.png",
-	groups = {snappy = 3, flora = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
 	sounds = default.node_sound_leaves_defaults(),
@@ -363,7 +364,7 @@ minetest.register_node("df_primordial_items:jungle_roots_2", {
 	tiles = {"dfcaverns_jungle_root_02.png"},
 	inventory_image = "dfcaverns_jungle_root_02.png",
 	wield_image = "dfcaverns_jungle_root_02.png",
-	groups = {snappy = 3, flora = 1, flammable = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1},
 	paramtype = "light",
 	drawtype = "plantlike",
 	sounds = default.node_sound_leaves_defaults(),

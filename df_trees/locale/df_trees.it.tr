@@ -1,39 +1,28 @@
 # textdomain: df_trees
 
-@1 Slab=
-@1 Spindlestem Cap=
-@1 Spindlestem Extract=
-@1 Stair=
-A torchspine alternates between active and quiescent phases and emits dim light when active. They can be harvested for torches, and their embers sprout into new torchspines when placed on flammable surfaces.=
-Aside from the artistic applications of its particularly dark color, black cap wood is a long-burning fuel source that's as good as coal for some applications. Black cap gills are oily and make for excellent torch fuel.=
+
+# ./df_trees/black_cap.lua
 Black Cap=Cappello nero
 Black Cap Gills=Lamelle di cappello nero
 Black Cap Planks=Assi di cappello nero
 Black Cap Spawn=Prole di cappello nero
 Black Cap Stem=Gambo di cappello nero
+
+# ./df_trees/blood_thorn.lua
 Blood Thorn Planks=Assi di spina del sangue
 Blood Thorn Spike=Spuntone di spina del sangue
 Blood Thorn Stem=Gambo di spina del sangue
-Blood thorns are the most vicious of underground flora, as befits their harsh environments. Found only in hot, dry caverns with sandy soil far from the surface world's organic bounty, blood thorns seek to supplement their nutrient supply with wickedly barbed hollow spines that actively drain fluids from whatever stray plant or creature they might impale.=
-Cyan=
-Cyan Spindlestems are a sign of both copper and iron deposits nearby. Their glowing symbiotes can be extracted as a long-lived light source.=
 Dead Blood Thorn Spike=Spuntone di spina del sangue morta
 Dead Blood Thorn Stem=Gambo di spina del sangue morta
-Fungiwood Planks=Assi di fungo di legno
-Fungiwood Shelf=Mensola di fungo di legno
-Fungiwood Spawn=Prole di fungo di legno
-Fungiwood Stem=Gambo di fungo di legno
+
+# ./df_trees/doc.lua
+A torchspine alternates between active and quiescent phases and emits dim light when active. They can be harvested for torches, and their embers sprout into new torchspines when placed on flammable surfaces.=
+Aside from the artistic applications of its particularly dark color, black cap wood is a long-burning fuel source that's as good as coal for some applications. Black cap gills are oily and make for excellent torch fuel.=
+Blood thorns are the most vicious of underground flora, as befits their harsh environments. Found only in hot, dry caverns with sandy soil far from the surface world's organic bounty, blood thorns seek to supplement their nutrient supply with wickedly barbed hollow spines that actively drain fluids from whatever stray plant or creature they might impale.=
+Cyan Spindlestems are a sign of both copper and iron deposits nearby. Their glowing symbiotes can be extracted as a long-lived light source.=
 Fungiwood stalk is strong and very fine-grained, making smooth yellow-tinted lumber when cut. Fungiwood shelf is too fragile to be much use as anything other than fuel.=
-Goblin Cap=Cappello di folletto
-Goblin Cap Gills=Lamelle di cappello di folletto
-Goblin Cap Planks=Assi di cappello di folletto
-Goblin Cap Spawn=Prole di cappello di folletto
-Goblin Cap Stem=Gambo di cappello di folletto
-Goblin Cap Stem Planks=Assi di gambo di cappello di folletto
 Goblin cap stem and cap material can be cut into wood of two different hues, a subdued cream and a bright orange-red.=
-Golden=
 Golden Spindlestems are a sign of rare and magical mineral deposits nearby. Their glowing symbiotes can be extracted as a strong and long-lived light source.=
-Green=
 Green Spindlestems are a sign of nearby copper deposits. Their glowing symbiotes can be extracted as a long-lived light source, though the glow is not strong.=
 Living blood thorn spikes remain harmful to creatures that touch them. If killed by bright light, they cause only passive damage to creatures that fall on them (as one would expect from an enormous spike).=
 Living extract from the cap of a cyan Spindlestem.=
@@ -41,24 +30,10 @@ Living extract from the cap of a green Spindlestem.=
 Living extract from the cap of a red Spindlestem.=
 Living extract from the cap of a yellow Spindlestem.=
 Massive but squat, mature goblin cap mushrooms are the size of small cottages.=
-Nether Cap=Cappello del Nether
-Nether Cap Gills=Lamelle di cappello del Nether
-Nether Cap Planks=Assi di cappello del Nether
-Nether Cap Spawn=Prole di cappello del Nether
-Nether Cap Stem=Gambo di cappello del Nether
 Nether cap wood, in addition to being a beautiful blue hue, retains the odd heat-draining ability of living nether caps and is able to quickly freeze nearby water solid.=
 Nether caps have an unusual biochemistry that allows them to somehow subsist on ambient heat, in violation of all known laws of thermodynamics. They grow deep underground in frigid, icy caverns that should by all rights be volcanic.=
-Red=
 Red Spindlestems are a sign of nearby iron deposits - or perhaps Goblin Caps. Their glowing symbiotes can be extracted as a long-lived light source, though the glow is weak.=
-Spindlestem=
-Spindlestem Spawn=Prole di albero delle spore
 Spindlestems are too big to easily pluck by hand but too small to be called a proper tree. Nevertheless, they are a common and useful resource for underground travelers - particularly their glowing caps.=
-Spore Tree Fruiting Body=Corpo fruttifero dell'albero delle spore
-Spore Tree Hyphae=Ife di albero delle spore
-Spore Tree Ladder=Ife di albero delle spore
-Spore Tree Planks=Assi di albero delle spore
-Spore Tree Spawn=Prole di albero delle spore
-Spore Tree Stem=Gambo di albero delle spore
 Spore tree trunks can be cut into pale woody planks. The branching fibers and fruiting bodies are only useful as fuel.=
 Spore trees have a sturdy 'trunk' that supports a large spongy mesh of branching fibers, with embedded fruiting bodies that produce a copious amount of spores that gently rain down around the spore tree's base.=
 The cap of a Spindlestem, glowing a brilliant yellow due to symbiotic microorganisms.=
@@ -74,21 +49,69 @@ The trunk of a tunnel tube can be cut and processed to produce plywood-like mate
 The trunk of a tunnel tube can be cut and processed to produce plywood-like material. The fruiting body accumulates high-energy compounds that, when ignited, produce a vigorous detonation - a unique adaptation for spreading tunnel tube spawn through the still cavern air.=
 These things are useless except as weak fuel for a fire.=
 Thin, irregular layers of spore-producing 'shelves' surround the strong central stalk of the mighty Fungiwood.=
+Torchspines are strange organic formations that are alive only in a technical sense. They "feed" on volatile flammable vapors vented up through their structure, growing from combustion residue deposited at their tips.=
+Tower caps are an excellent source of wood.=
+Tunnel tubes are hollow, curved fungal growths that support a fruiting body.=
+When harvested, the central stalk of a blood thorn can be cut into planks and used as wood. It has a purple-red hue that may or may not appeal, depending on one's artistic tastes.=
+
+# ./df_trees/fungiwood.lua
+Fungiwood Planks=Assi di fungo di legno
+Fungiwood Shelf=Mensola di fungo di legno
+Fungiwood Spawn=Prole di fungo di legno
+Fungiwood Stem=Gambo di fungo di legno
+
+# ./df_trees/goblin_cap.lua
+Goblin Cap=Cappello di folletto
+Goblin Cap Gills=Lamelle di cappello di folletto
+Goblin Cap Planks=Assi di cappello di folletto
+Goblin Cap Spawn=Prole di cappello di folletto
+Goblin Cap Stem=Gambo di cappello di folletto
+Goblin Cap Stem Planks=Assi di gambo di cappello di folletto
+
+# ./df_trees/init.lua
+@1 Slab=
+@1 Stair=
+
+# ./df_trees/nether_cap.lua
+Nether Cap=Cappello del Nether
+Nether Cap Gills=Lamelle di cappello del Nether
+Nether Cap Planks=Assi di cappello del Nether
+Nether Cap Spawn=Prole di cappello del Nether
+Nether Cap Stem=Gambo di cappello del Nether
+
+# ./df_trees/spindlestem.lua
+@1 Spindlestem Cap=
+@1 Spindlestem Extract=
+Cyan=
+Golden=
+Green=
+Red=
+Spindlestem=
+Spindlestem Spawn=Prole di albero delle spore
+White=
+
+# ./df_trees/spore_tree.lua
+Spore Tree Fruiting Body=Corpo fruttifero dell'albero delle spore
+Spore Tree Hyphae=Ife di albero delle spore
+Spore Tree Ladder=Ife di albero delle spore
+Spore Tree Planks=Assi di albero delle spore
+Spore Tree Spawn=Prole di albero delle spore
+Spore Tree Stem=Gambo di albero delle spore
+
+# ./df_trees/torchspine.lua
 Torchspine=
 Torchspine Ember=
 Torchspine Tip=
-Torchspines are strange organic formations that are alive only in a technical sense. They "feed" on volatile flammable vapors vented up through their structure, growing from combustion residue deposited at their tips.=
+
+# ./df_trees/tower_cap.lua
 Tower Cap=Cappello a torre
 Tower Cap Gills=Lamelle di cappello a torre
 Tower Cap Planks=Assi di cappello a torre
 Tower Cap Spawn=Prole di cappello a torre
 Tower Cap Stem=Gambo di cappello a torre
-Tower caps are an excellent source of wood.=
+
+# ./df_trees/tunnel_tube.lua
 Tunnel Tube=Tubo di galleria
 Tunnel Tube Fruiting Body=Corpo fruttifero del tubo di galleria
 Tunnel Tube Plies=Strati di tubo di galleria
 Tunnel Tube Spawn=Prole di tubo di galleria
-Tunnel tubes are hollow, curved fungal growths that support a fruiting body.=
-When harvested, the central stalk of a blood thorn can be cut into planks and used as wood. It has a purple-red hue that may or may not appeal, depending on one's artistic tastes.=
-White=
-##### not used anymore #####

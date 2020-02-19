@@ -1,62 +1,25 @@
+# textdomain: df_primordial_items
+
+
+# ./df_primordial_items/ceiling_fungus.lua
+Primordial Fungal Lantern=
+Primordial Fungal Lantern Stalk=
+
+# ./df_primordial_items/ceiling_fungus.lua
+# ./df_primordial_items/fungal_nodes.lua
+Primordial Fungal Orb=
+
+# ./df_primordial_items/doc.lua
 =
 Compared to the behemoths found elsewhere in the deep places of the world, the giant mushrooms of the primordial jungles are on the smaller side - often overwhelmed by the green plants that grow in the mysterious light below. Still, they can become substantial resources.=
-Dark Jungle Mushroom Cap=
-Diced Mushroom=
-Dirt With Primordial Jungle Grass=
-Dirt With Primordial Jungle Grass and Footprint=
-Dirt with Primordial Mycelium=
-Dirt with Primordial Mycelium and Footprint=
-Fern Wood=
 Fibers extracted from gigantic fungal hyphae.=
 Fungal fibers have infiltrated the ground in a spongy mass, making the soil half mineral and half living matter.=
 Fungus in its purest form, these gigantic rope-like hyphae creep over the surface of soil and burrow in to feed wherever nutrients are sensed.=
-Giant Fern Leaves=
-Giant Fern Sapling=
-Giant Fern Stem=
-Giant Hypha=
-Giant Hypha Apical Meristem=
-Giant Mycelial Fibers=
-Glowing Primordial Mushroom Gills=
 Ivy is climbable, if it hangs close enough to the ground it can serve as a path between floor and ceiling.=
-Large Primordial Jungle Mushroom=
 Like wood of the surface world, primordial jungle trees can be chopped and carved as building material or as fuel.=
-Mossy Primordial Jungle Tree=
 Much like a rope, hyphae have fibers inside that can be unraveled and used for a variety of crafts.=
 Much like the giant mushrooms of higher cavern layers, these can be carved into woody material for use as fuel or for building things. The grain of these primordial mushrooms is knurled.=
-Mycelial thread=
-Packed Primordial Jungle Roots=
-Pale Jungle Mushroom Cap=
-Phosphorescent Primordial Jungle Tree=
-Phosphorescent Primordial Jungle Tree Leaves=
-Primordial Cap Wood=
-Primordial Fern=
-Primordial Flower=
-Primordial Fungal Grass=
-Primordial Fungal Lantern=
-Primordial Fungal Lantern Stalk=
-Primordial Fungal Orb=
-Primordial Fungal Pod=
-Primordial Jungle Grass=
-Primordial Jungle Ivy=
-Primordial Jungle Mushroom=
-Primordial Jungle Mushroom Sapling=
-Primordial Jungle Mushroom Trunk=
-Primordial Jungle Pod=
-Primordial Jungle Root=
-Primordial Jungle Roots=
-Primordial Jungle Thorns=
-Primordial Jungle Tree=
-Primordial Jungle Tree Leaves=
-Primordial Jungle Tree Sapling=
-Primordial Mushroom Cap=
-Primordial Mushroom Gills=
-Primordial Mushroom Spawn=
-Primordial Mushroom Trunk=
-Primordial Mushroom Trunk Wood=
-Primordial Plant Matter=
-Primordial Plant Matter with Footprint=
 Questing fibers of fungal mycelium sometimes erupt from the soil and reach upward, driven by chemical cues to seek out nourishment above. They look a lot like white grass, at a glance.=
-Rooted Giant Hypha=
 Some fronds of primordial jungle trees also become host to the phosphorescent fungus that creeps through cracks in the bark.=
 Somewhere above an enormous plant has wedged its roots down through the rock and emerged from the ceiling of another cavern.=
 Tangled weaves of ivy hang from the ceiling where there are wide enough gaps between the bright sources of light.=
@@ -75,3 +38,63 @@ These hanging roots are climbable.=
 When a fern grows to such sizes its stem becomes dense enough to be used as a form of wood.=
 When left uncultivated mycelial soil will sprout all manner of strange wild fungi.=
 When left uncultivated primordial jungle soil will sprout all manner of strange wild plants.=
+
+# ./df_primordial_items/fungal_nodes.lua
+Dirt with Primordial Mycelium=
+Dirt with Primordial Mycelium and Footprint=
+Primordial Fungal Grass=
+Primordial Fungal Pod=
+
+# ./df_primordial_items/giant_fern.lua
+Fern Wood=
+Giant Fern Leaves=
+Giant Fern Sapling=
+Giant Fern Stem=
+
+# ./df_primordial_items/giant_mycelium.lua
+Giant Hypha=
+Giant Hypha Apical Meristem=
+Giant Mycelial Fibers=
+Mycelial thread=
+Rooted Giant Hypha=
+
+# ./df_primordial_items/jungle_mushroom.lua
+Dark Jungle Mushroom Cap=
+Diced Mushroom=
+Pale Jungle Mushroom Cap=
+Primordial Jungle Mushroom Sapling=
+Primordial Jungle Mushroom Trunk=
+
+# ./df_primordial_items/jungle_nodes.lua
+Dirt With Primordial Jungle Grass=
+Dirt With Primordial Jungle Grass and Footprint=
+Large Primordial Jungle Mushroom=
+Packed Primordial Jungle Roots=
+Primordial Fern=
+Primordial Flower=
+Primordial Jungle Grass=
+Primordial Jungle Ivy=
+Primordial Jungle Mushroom=
+Primordial Jungle Pod=
+Primordial Jungle Root=
+Primordial Jungle Roots=
+Primordial Jungle Thorns=
+Primordial Plant Matter=
+Primordial Plant Matter with Footprint=
+
+# ./df_primordial_items/jungle_tree.lua
+Mossy Primordial Jungle Tree=
+Phosphorescent Primordial Jungle Tree=
+Phosphorescent Primordial Jungle Tree Leaves=
+Primordial Jungle Tree=
+Primordial Jungle Tree Leaves=
+Primordial Jungle Tree Sapling=
+
+# ./df_primordial_items/primordial_mushroom.lua
+Glowing Primordial Mushroom Gills=
+Primordial Cap Wood=
+Primordial Mushroom Cap=
+Primordial Mushroom Gills=
+Primordial Mushroom Spawn=
+Primordial Mushroom Trunk=
+Primordial Mushroom Trunk Wood=

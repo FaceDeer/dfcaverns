@@ -1,3 +1,7 @@
+# textdomain: ice_sprites
+
+
+# ./ice_sprites/init.lua
 A bottle containing a captured ice sprite.=
 Hidden Ice Sprite=
 Ice Sprite=

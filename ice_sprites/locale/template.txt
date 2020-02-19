@@ -1,4 +1,4 @@
-##### textdomain: ice_sprites #####
+# textdomain: ice_sprites
 
 
 ### init.lua ###

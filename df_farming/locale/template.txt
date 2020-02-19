@@ -1,4 +1,4 @@
-##### textdomain: df_farming #####
+# textdomain: df_farming
 
 
 ### cave_wheat.lua ###

@@ -1,4 +1,4 @@
-##### textdomain: mine_gas #####
+# textdomain: mine_gas
 
 
 ### init.lua ###

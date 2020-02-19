@@ -200,7 +200,7 @@ def mkdir_p(path):
 # dOld is a dictionary of existing translations and comments from
 # the previous version of this text
 def strings_to_text(dkeyStrings, dOld, mod_name):
-    lOut = [f"##### textdomain: {mod_name} #####\n"]
+    lOut = [f"# textdomain: {mod_name}\n"]
     
     dGroupedBySource = {}
 

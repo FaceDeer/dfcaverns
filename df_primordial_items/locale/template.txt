@@ -1,4 +1,4 @@
-##### textdomain: df_primordial_items #####
+# textdomain: df_primordial_items
 
 
 ### ceiling_fungus.lua ###

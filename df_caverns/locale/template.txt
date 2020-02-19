@@ -1,4 +1,4 @@
-##### textdomain: df_caverns #####
+# textdomain: df_caverns
 
 
 ### underworld.lua ###

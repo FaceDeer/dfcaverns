@@ -1,4 +1,4 @@
-##### textdomain: bones_loot #####
+# textdomain: bones_loot
 
 
 ### init.lua ###

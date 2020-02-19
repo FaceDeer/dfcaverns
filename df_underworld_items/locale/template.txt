@@ -1,4 +1,4 @@
-##### textdomain: df_underworld_items #####
+# textdomain: df_underworld_items
 
 
 ### crystals_amethyst.lua ###

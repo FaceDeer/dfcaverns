@@ -1,7 +1,10 @@
-# textdomain: df_caverns
+##### textdomain: df_caverns #####
 
 
-# ./df_caverns/underworld.lua
+### underworld.lua ###
+
 A glowing pit=
+
 Ancient ruin=
+
 Mysterious seal=

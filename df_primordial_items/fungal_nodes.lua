@@ -129,14 +129,14 @@ minetest.register_abm{
 	end,
 }
 
-if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
-	local HARDPACK_PROBABILITY = minetest.settings:get("trail_hardpack_probability") or 0.5 -- Chance walked dirt/grass is worn and compacted to trail:trail.
-	local HARDPACK_COUNT = minetest.settings:get("trail_hardpack_count") or 5 -- Number of times the above chance needs to be passed for soil to compact.
+if minetest.get_modpath("footprints") then
+	local HARDPACK_PROBABILITY = minetest.settings:get("footprints_hardpack_probability") or 0.9 -- Chance walked dirt/grass is worn and compacted to footprints:trail.
+	local HARDPACK_COUNT = minetest.settings:get("footprints_hardpack_count") or 10 -- Number of times the above chance needs to be passed for soil to compact.
 
-	trail.register_trample_node("df_primordial_items:dirt_with_mycelium", {
+	footprints.register_trample_node("df_primordial_items:dirt_with_mycelium", {
 		trampled_node_def_override = {description = S("Dirt with Primordial Mycelium and Footprint"),},
 		footprint_opacity = 196,
-		hard_pack_node_name = "trail:trail",
+		hard_pack_node_name = "footprints:trail",
 		hard_pack_probability = HARDPACK_PROBABILITY,
 		hard_pack_count = HARDPACK_COUNT,
 	})	

@@ -4,7 +4,6 @@
 ### castle_coral.lua ###
 
 Castle Coral=
-
 Castle Coral Skeleton=
 
 ### cave_coral.lua ###
@@ -18,21 +17,17 @@ Cave Pearls=
 ### crystals_mese.lua ###
 
 Flawless Mese Block=
-
 Flawless Mese Crystal=
 
 ### crystals_ruby.lua ###
 
 Big Red Crystal=
-
 Giant Red Crystal=
-
 Red Crystal Vein=
 
 ### crystals_salt.lua ###
 
 Luminous Salt Crystal=
-
 Salty Cobble=
 
 ### doc.lua ###
@@ -101,16 +96,13 @@ These nodules are actually calcified bacterial colonies.=
 
 Traces of Mese must have been dissolved by the water as this crystal has an inherent glow to it. Not enough Mese to be useful as a reagent, unfortunately.=
 
+
 ### flowstone.lua ###
 
 Dry Dripstone=Trockener Tropfstein
-
 Dry Flowstone=Trockener Fließstein
-
 Icicle=
-
 Wet Dripstone=Nasser Tropfstein
-
 Wet Flowstone=Nasser Fließstein
 
 ### glow_worms.lua ###
@@ -120,11 +112,8 @@ Glow Worms=
 ### ground_cover.lua ###
 
 Cobblestone with Floor Fungus=
-
 Dirt with Cave Moss=
-
 Dirt with Cave Moss and Footprint=
-
 Ice with Hoar Moss=
 
 ### snareweed.lua ###

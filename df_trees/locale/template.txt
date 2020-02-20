@@ -4,25 +4,17 @@
 ### black_cap.lua ###
 
 Black Cap=
-
 Black Cap Gills=
-
 Black Cap Planks=
-
 Black Cap Spawn=
-
 Black Cap Stem=
 
 ### blood_thorn.lua ###
 
 Blood Thorn Planks=
-
 Blood Thorn Spike=
-
 Blood Thorn Stem=
-
 Dead Blood Thorn Spike=
-
 Dead Blood Thorn Stem=
 
 ### doc.lua ###
@@ -46,11 +38,8 @@ Green Spindlestems are a sign of nearby copper deposits. Their glowing symbiotes
 Living blood thorn spikes remain harmful to creatures that touch them. If killed by bright light, they cause only passive damage to creatures that fall on them (as one would expect from an enormous spike).=
 
 Living extract from the cap of a cyan Spindlestem.=
-
 Living extract from the cap of a green Spindlestem.=
-
 Living extract from the cap of a red Spindlestem.=
-
 Living extract from the cap of a yellow Spindlestem.=
 
 Massive but squat, mature goblin cap mushrooms are the size of small cottages.=
@@ -101,108 +90,74 @@ Tunnel tubes are hollow, curved fungal growths that support a fruiting body.=
 
 When harvested, the central stalk of a blood thorn can be cut into planks and used as wood. It has a purple-red hue that may or may not appeal, depending on one's artistic tastes.=
 
+
 ### fungiwood.lua ###
 
 Fungiwood Planks=
-
 Fungiwood Shelf=
-
 Fungiwood Spawn=
-
 Fungiwood Stem=
 
 ### goblin_cap.lua ###
 
 Goblin Cap=
-
 Goblin Cap Gills=
-
 Goblin Cap Planks=
-
 Goblin Cap Spawn=
-
 Goblin Cap Stem=
-
 Goblin Cap Stem Planks=
 
 ### init.lua ###
 
 @1 Slab=
-
 @1 Stair=
 
 ### nether_cap.lua ###
 
 Nether Cap=
-
 Nether Cap Gills=
-
 Nether Cap Planks=
-
 Nether Cap Spawn=
-
 Nether Cap Stem=
 
 ### spindlestem.lua ###
 
 @1 Spindlestem Cap=
-
 @1 Spindlestem Extract=
-
 Cyan=
-
 Golden=
-
 Green=
-
 Red=
-
 Spindlestem=
-
 Spindlestem Spawn=
-
 White=
 
 ### spore_tree.lua ###
 
 Spore Tree Fruiting Body=
-
 Spore Tree Hyphae=
-
 Spore Tree Ladder=
-
 Spore Tree Planks=
-
 Spore Tree Spawn=
-
 Spore Tree Stem=
 
 ### torchspine.lua ###
 
 Torchspine=
-
 Torchspine Ember=
-
 Torchspine Tip=
 
 ### tower_cap.lua ###
 
 Tower Cap=
-
 Tower Cap Gills=
-
 Tower Cap Planks=
-
 Tower Cap Spawn=
-
 Tower Cap Stem=
 
 ### tunnel_tube.lua ###
 
 Tunnel Tube=
-
 Tunnel Tube Fruiting Body=
-
 Tunnel Tube Plies=
-
 Tunnel Tube Spawn=

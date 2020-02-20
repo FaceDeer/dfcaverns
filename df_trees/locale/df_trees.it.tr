@@ -4,25 +4,17 @@
 ### black_cap.lua ###
 
 Black Cap=Cappello nero
-
 Black Cap Gills=Lamelle di cappello nero
-
 Black Cap Planks=Assi di cappello nero
-
 Black Cap Spawn=Prole di cappello nero
-
 Black Cap Stem=Gambo di cappello nero
 
 ### blood_thorn.lua ###
 
 Blood Thorn Planks=Assi di spina del sangue
-
 Blood Thorn Spike=Spuntone di spina del sangue
-
 Blood Thorn Stem=Gambo di spina del sangue
-
 Dead Blood Thorn Spike=Spuntone di spina del sangue morta
-
 Dead Blood Thorn Stem=Gambo di spina del sangue morta
 
 ### doc.lua ###
@@ -46,11 +38,8 @@ Green Spindlestems are a sign of nearby copper deposits. Their glowing symbiotes
 Living blood thorn spikes remain harmful to creatures that touch them. If killed by bright light, they cause only passive damage to creatures that fall on them (as one would expect from an enormous spike).=
 
 Living extract from the cap of a cyan Spindlestem.=
-
 Living extract from the cap of a green Spindlestem.=
-
 Living extract from the cap of a red Spindlestem.=
-
 Living extract from the cap of a yellow Spindlestem.=
 
 Massive but squat, mature goblin cap mushrooms are the size of small cottages.=
@@ -101,108 +90,74 @@ Tunnel tubes are hollow, curved fungal growths that support a fruiting body.=
 
 When harvested, the central stalk of a blood thorn can be cut into planks and used as wood. It has a purple-red hue that may or may not appeal, depending on one's artistic tastes.=
 
+
 ### fungiwood.lua ###
 
 Fungiwood Planks=Assi di fungo di legno
-
 Fungiwood Shelf=Mensola di fungo di legno
-
 Fungiwood Spawn=Prole di fungo di legno
-
 Fungiwood Stem=Gambo di fungo di legno
 
 ### goblin_cap.lua ###
 
 Goblin Cap=Cappello di folletto
-
 Goblin Cap Gills=Lamelle di cappello di folletto
-
 Goblin Cap Planks=Assi di cappello di folletto
-
 Goblin Cap Spawn=Prole di cappello di folletto
-
 Goblin Cap Stem=Gambo di cappello di folletto
-
 Goblin Cap Stem Planks=Assi di gambo di cappello di folletto
 
 ### init.lua ###
 
 @1 Slab=
-
 @1 Stair=
 
 ### nether_cap.lua ###
 
 Nether Cap=Cappello del Nether
-
 Nether Cap Gills=Lamelle di cappello del Nether
-
 Nether Cap Planks=Assi di cappello del Nether
-
 Nether Cap Spawn=Prole di cappello del Nether
-
 Nether Cap Stem=Gambo di cappello del Nether
 
 ### spindlestem.lua ###
 
 @1 Spindlestem Cap=
-
 @1 Spindlestem Extract=
-
 Cyan=
-
 Golden=
-
 Green=
-
 Red=
-
 Spindlestem=
-
 Spindlestem Spawn=Prole di albero delle spore
-
 White=
 
 ### spore_tree.lua ###
 
 Spore Tree Fruiting Body=Corpo fruttifero dell'albero delle spore
-
 Spore Tree Hyphae=Ife di albero delle spore
-
 Spore Tree Ladder=Ife di albero delle spore
-
 Spore Tree Planks=Assi di albero delle spore
-
 Spore Tree Spawn=Prole di albero delle spore
-
 Spore Tree Stem=Gambo di albero delle spore
 
 ### torchspine.lua ###
 
 Torchspine=
-
 Torchspine Ember=
-
 Torchspine Tip=
 
 ### tower_cap.lua ###
 
 Tower Cap=Cappello a torre
-
 Tower Cap Gills=Lamelle di cappello a torre
-
 Tower Cap Planks=Assi di cappello a torre
-
 Tower Cap Spawn=Prole di cappello a torre
-
 Tower Cap Stem=Gambo di cappello a torre
 
 ### tunnel_tube.lua ###
 
 Tunnel Tube=Tubo di galleria
-
 Tunnel Tube Fruiting Body=Corpo fruttifero del tubo di galleria
-
 Tunnel Tube Plies=Strati di tubo di galleria
-
 Tunnel Tube Spawn=Prole di tubo di galleria

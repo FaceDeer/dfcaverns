@@ -187,7 +187,7 @@ minetest.register_craft({
 ---------
 -- Trample support
 
-if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
+if minetest.get_modpath("footprints") then
 	minetest.register_node("df_farming:wheat_trampled", {
 		description = S("Flattened Cave Wheat"),
 		tiles = {"dfcaverns_cave_wheat_flattened.png"},
@@ -207,19 +207,19 @@ if minetest.get_modpath("trail") and trail and trail.register_trample_node then
 		sounds = default.node_sound_leaves_defaults(),
 	})
 	
-	trail.register_trample_node("df_farming:cave_wheat_5", {
+	footprints.register_trample_node("df_farming:cave_wheat_5", {
 		trampled_node_name = "df_farming:wheat_trampled",
 		randomize_trampled_param2 = true,
 	})
-	trail.register_trample_node("df_farming:cave_wheat_6", {
+	footprints.register_trample_node("df_farming:cave_wheat_6", {
 		trampled_node_name = "df_farming:wheat_trampled",
 		randomize_trampled_param2 = true,
 	})
-	trail.register_trample_node("df_farming:cave_wheat_7", {
+	footprints.register_trample_node("df_farming:cave_wheat_7", {
 		trampled_node_name = "df_farming:wheat_trampled",
 		randomize_trampled_param2 = true,
 	})
-	trail.register_trample_node("df_farming:cave_wheat_8", {
+	footprints.register_trample_node("df_farming:cave_wheat_8", {
 		trampled_node_name = "df_farming:wheat_trampled",
 		randomize_trampled_param2 = true,
 	})

@@ -4,7 +4,6 @@
 ### ceiling_fungus.lua ###
 
 Primordial Fungal Lantern=
-
 Primordial Fungal Lantern Stalk=
 
 ### ceiling_fungus.lua ###
@@ -68,108 +67,70 @@ When left uncultivated mycelial soil will sprout all manner of strange wild fung
 
 When left uncultivated primordial jungle soil will sprout all manner of strange wild plants.=
 
+
 ### fungal_nodes.lua ###
 
 Dirt with Primordial Mycelium=
-
 Dirt with Primordial Mycelium and Footprint=
-
 Primordial Fungal Grass=
-
 Primordial Fungal Pod=
 
 ### giant_fern.lua ###
 
 Fern Wood=
-
 Giant Fern Leaves=
-
 Giant Fern Sapling=
-
 Giant Fern Stem=
 
 ### giant_mycelium.lua ###
 
 Giant Hypha=
-
 Giant Hypha Apical Meristem=
-
 Giant Mycelial Fibers=
-
 Mycelial thread=
-
 Rooted Giant Hypha=
 
 ### jungle_mushroom.lua ###
 
 Dark Jungle Mushroom Cap=
-
 Diced Mushroom=
-
 Pale Jungle Mushroom Cap=
-
 Primordial Jungle Mushroom Sapling=
-
 Primordial Jungle Mushroom Trunk=
 
 ### jungle_nodes.lua ###
 
 Dirt With Primordial Jungle Grass=
-
 Dirt With Primordial Jungle Grass and Footprint=
-
 Large Primordial Jungle Mushroom=
-
 Packed Primordial Jungle Roots=
-
 Primordial Fern=
-
 Primordial Flower=
-
 Primordial Jungle Grass=
-
 Primordial Jungle Ivy=
-
 Primordial Jungle Mushroom=
-
 Primordial Jungle Pod=
-
 Primordial Jungle Root=
-
 Primordial Jungle Roots=
-
 Primordial Jungle Thorns=
-
 Primordial Plant Matter=
-
 Primordial Plant Matter with Footprint=
 
 ### jungle_tree.lua ###
 
 Mossy Primordial Jungle Tree=
-
 Phosphorescent Primordial Jungle Tree=
-
 Phosphorescent Primordial Jungle Tree Leaves=
-
 Primordial Jungle Tree=
-
 Primordial Jungle Tree Leaves=
-
 Primordial Jungle Tree Sapling=
 
 ### primordial_mushroom.lua ###
 
 Glowing Primordial Mushroom Gills=
-
 Primordial Cap Wood=
-
 Primordial Mushroom Cap=
-
 Primordial Mushroom Gills=
-
 Primordial Mushroom Spawn=
-
 Primordial Mushroom Trunk=
-
 Primordial Mushroom Trunk Wood=

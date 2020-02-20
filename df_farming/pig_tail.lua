@@ -120,7 +120,7 @@ minetest.register_craft({
 	burntime = 1,
 })
 
-if minetest.get_modpath("trail") and trail and trail.register_trample_node then	
+if minetest.get_modpath("footprints") then
 	minetest.register_node("df_farming:pig_tail_trampled", {
 		description = S("Flattened Pig Tail"),
 		tiles = {"dfcaverns_pig_tail_flattened.png"},
@@ -140,19 +140,19 @@ if minetest.get_modpath("trail") and trail and trail.register_trample_node then
 		sounds = default.node_sound_leaves_defaults(),
 	})
 	
-	trail.register_trample_node("df_farming:pig_tail_5", {
+	footprints.register_trample_node("df_farming:pig_tail_5", {
 		trampled_node_name = "df_farming:pig_tail_trampled",
 		randomize_trampled_param2 = true,
 	})
-	trail.register_trample_node("df_farming:pig_tail_6", {
+	footprints.register_trample_node("df_farming:pig_tail_6", {
 		trampled_node_name = "df_farming:pig_tail_trampled",
 		randomize_trampled_param2 = true,
 	})
-	trail.register_trample_node("df_farming:pig_tail_7", {
+	footprints.register_trample_node("df_farming:pig_tail_7", {
 		trampled_node_name = "df_farming:pig_tail_trampled",
 		randomize_trampled_param2 = true,
 	})
-	trail.register_trample_node("df_farming:pig_tail_8", {
+	footprints.register_trample_node("df_farming:pig_tail_8", {
 		trampled_node_name = "df_farming:pig_tail_trampled",
 		randomize_trampled_param2 = true,
 	})

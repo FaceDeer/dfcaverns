@@ -172,6 +172,20 @@ local orthogonal = {
 	{x=-1,y=0,z=0},
 }
 
+minetest.register_lbm({
+    label = "shut down gas seeps near lava",
+    name = "mine_gas:shut_down_lava_adjacent",
+    nodenames = {"mine_gas:gas_seep"},
+    run_at_every_load = true,
+    action = function(pos, node)
+		minetest.after(math.random()*60, function()
+			if minetest.find_node_near(pos, 30, "group:lava") then
+				minetest.set_node(pos, {name="default:stone_with_coal"})
+			end
+		end)
+	end,
+})
+
 minetest.register_abm({
 	label = "mine_gas:gas seep",
 	nodenames = {"mine_gas:gas_seep"},

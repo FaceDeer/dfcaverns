@@ -160,6 +160,7 @@ if minetest.get_modpath("footprints") then
 	footprints.register_trample_node("df_mapitems:spongestone", {
 		trampled_node_def_override = {description = S("Spongestone with Footprint"),},
 		hard_pack_node_name = "footprints:trail",
+		footprint_opacity = 128,
 		hard_pack_probability = HARDPACK_PROBABILITY,
 		hard_pack_count = HARDPACK_COUNT * 2,
 	})
@@ -167,6 +168,7 @@ if minetest.get_modpath("footprints") then
 	footprints.register_trample_node("df_mapitems:dirt_with_pebble_fungus", {
 		trampled_node_def_override = {description = S("Dirt with Pebble Fungus and Footprint"),},
 		hard_pack_node_name = "footprints:trail",
+		footprint_opacity = 128,
 		hard_pack_probability = HARDPACK_PROBABILITY,
 		hard_pack_count = HARDPACK_COUNT,
 	})
@@ -174,6 +176,7 @@ if minetest.get_modpath("footprints") then
 	footprints.register_trample_node("df_mapitems:dirt_with_stillworm", {
 		trampled_node_def_override = {description = S("Dirt with Stillworm and Footprint"),},
 		hard_pack_node_name = "footprints:trail",
+		footprint_opacity = 192,
 		hard_pack_probability = HARDPACK_PROBABILITY,
 		hard_pack_count = HARDPACK_COUNT,
 	})

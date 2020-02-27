@@ -34,9 +34,13 @@ Salty Cobble=
 
 A crystal of salt grown from water that percolated through the depths of the earth, picking up all manner of minerals as it went.=
 
+A highly aggressive form of lichen that eats into solid rock, turning its upper surfaces rough and a little spongy.=
+
 A nasty kelp-like plant that grows in patches on the floor of the Sunless Sea. Its reflective patches draw in the unwary and then its prickly barbs catch and hold small creatures.=
 
 A rare form of coral found only deep underground in the Sunless Sea, cave coral grows hanging from the ceilings of flooded caverns.=
+
+Although a strong mineral matrix remains, spongestone has enough organic content that it can be used as soil for farming.=
 
 Although stalagmites are blunter than the stalactites above them, they can cause extra damage to the unwary caver who falls on them.=
 
@@ -86,7 +90,23 @@ Monolithic crystals of this size form only over extremely long periods deep unde
 
 Much water has seeped through the cracks in this rock and then quickly evaporated, leaving a crust of salt laced throughout.=
 
+Organic material accumulates in the enlarged pores of rock rot, but not enough to be considered "soil" in the usable sense.=
+
+Pebble fungus grows in soil that is rich enough for farming.=
+
+Sand scum is a crust of algae that sometimes accumulates on wet sand deep underground, somehow managing to eke out a meager living from the phosphorescent light emitted by other organisms.=
+
+Sand scum is useless. You can get sand out of it, at least.=
+
 Snareweed has no practical use, its fibers disintegrate when they dry.=
+
+Soil that is rich enough to support gigantic mushrooms can support innumerable smaller ones as well. Pebble fungus is a prolific form of mushroom that covers the soil in small spheroidal fruiting bodies.=
+
+Spongestone is the result of advanced rock rot in its ultimate form. The stone has become so riddled with pores and cavities that it's no longer really stone.=
+
+Stillworm grows in soil that is rich enough for farming.=
+
+Stillworm is not actually a kind of worm, but a sort of fungus that looks uncannily like pale, motionless earthworms intertwined with the soil.=
 
 The iconic stalactites and stalagmites found in caverns are composed of flowstone (or 'dripstone' in the case of these formations). Moist dripstone is still undergoing growth, whereas dry dripstone is found in 'dead' caverns once the source of water that created them ceases.=
 
@@ -114,7 +134,16 @@ Glow Worms=Vermi luminosi
 Cobblestone with Floor Fungus=Ciottoli con funghi del terreno
 Dirt with Cave Moss=Terra con muschio di caverna
 Dirt with Cave Moss and Footprint=Terra con muschio di caverna
+Dirt with Pebble Fungus=
+Dirt with Pebble Fungus and Footprint=
+Dirt with Stillworm=
+Dirt with Stillworm and Footprint=
 Ice with Hoar Moss=
+Rock Rot=
+Sand Scum=
+Sand Scum with Footprint=
+Spongestone=
+Spongestone with Footprint=
 
 ### snareweed.lua ###
 

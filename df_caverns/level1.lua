@@ -2,6 +2,7 @@ local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
 local c_dirt = minetest.get_content_id("default:dirt")
 local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
+local c_gravel = minetest.get_content_id("default:gravel")
 
 local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
 local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
@@ -172,7 +173,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				-- we're in flooded areas or are not barren
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
-				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
+				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false, c_gravel)
 			end
 		end
 	end
@@ -219,7 +220,7 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				-- we're in flooded areas or are not barren
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
-				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
+				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false, c_gravel)
 			end
 			
 			if biome_name ~= "barren" then

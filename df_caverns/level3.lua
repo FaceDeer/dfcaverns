@@ -353,7 +353,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				-- we're in flooded areas or are not barren
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
-				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
+				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false, c_gravel)
 			end
 		end
 	end
@@ -463,7 +463,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			if flooded_caverns or biome_name == "blackcap" then
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
-				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
+				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, false, c_gravel)
 			end
 		end
 	end

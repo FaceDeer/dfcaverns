@@ -6,6 +6,9 @@
 #
 # Copyright (C) 2019 Joachim Stolberg, 2020 FaceDeer, 2020 Louis Royer
 # LGPLv2.1+
+#
+# See https://github.com/minetest-tools/update_translations for
+# potential future updates to this script.
 
 from __future__ import print_function
 import os, fnmatch, re, shutil, errno
@@ -167,7 +170,7 @@ def process_po_file(text):
 # any "no longer used" strings will be preserved.
 # Note that "fuzzy" tags will be lost in this process.
 def process_po_files(folder, modname):
-    for root, dirs, files in os.walk(os.path.join(folder + 'locale/')):
+    for root, dirs, files in os.walk(os.path.join(folder, 'locale/')):
         for name in files:
             code_match = pattern_po_language_code.match(name)
             if code_match == None:

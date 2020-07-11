@@ -3,7 +3,6 @@
 local c_water = minetest.get_content_id("default:water_source")
 local c_air = minetest.get_content_id("air")
 local c_dirt = minetest.get_content_id("default:dirt")
-local c_gravel = minetest.get_content_id("default:gravel")
 
 local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
 local c_cobble_fungus = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus")
@@ -123,7 +122,7 @@ local content_in_list=function(content, list)
 	return false
 end
 
-df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, data_param2, wet)
+df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, data_param2, wet, dirt_node)
 	if maxp.y > -30 then
 		wet = false
 	end
@@ -138,14 +137,16 @@ df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, dat
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
 			data[vi] = c_wet_flowstone
+		elseif dirt_node and abs_cracks > 0.5 and data[vi-ystride] ~= c_air then
+			data[vi] = dirt_node		
 		end
 	else
 		if abs_cracks < 0.025 and data[vi+ystride] == c_air and not content_in_list(data[vi], df_mapitems.dry_stalagmite_ids) then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
-		elseif cracks > 0.5 and data[vi-ystride] ~= c_air then
-			data[vi] = c_gravel
+		elseif dirt_node and cracks > 0.5 and data[vi-ystride] ~= c_air then
+			data[vi] = dirt_node
 		end
 	end
 end

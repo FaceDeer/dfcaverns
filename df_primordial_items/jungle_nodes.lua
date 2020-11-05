@@ -274,7 +274,7 @@ minetest.register_node("df_primordial_items:plant_matter", {
 	tiles = {"dfcaverns_jungle_plant_matter_01.png"},
 	is_ground_content = false,
 	paramtype = "light",
-	groups = {crumbly = 3, soil = 1},
+	groups = {crumbly = 3, soil = 1, flammable = 1},
 	sounds = default.node_sound_dirt_defaults(),
 	on_timer = function(pos, elapsed)
 		if elapsed > 130 then
@@ -297,7 +297,7 @@ minetest.register_node("df_primordial_items:packed_roots", {
 	tiles = {"dfcaverns_jungle_plant_packed_roots_01.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2},
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = default.node_sound_wood_defaults(),
 })
 

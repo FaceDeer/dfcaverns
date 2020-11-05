@@ -246,6 +246,7 @@ df_caverns.is_ground_content = function(c_node)
 	if minetest.get_modpath("fireflies") then
 		dfcaverns_nodes[minetest.get_content_id("fireflies:firefly")] = true -- used in the primordial caverns
 	end
+	dfcaverns_nodes[minetest.get_content_id("df_underworld_items:glowstone")] = nil
 	dfcaverns_mods = nil
 	return not dfcaverns_nodes[c_node]
 end

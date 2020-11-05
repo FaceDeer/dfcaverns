@@ -389,6 +389,40 @@ subterrane.register_layer({
 	is_ground_content = df_caverns.is_ground_content,
 })
 
+minetest.register_ore({
+	ore_type = "vein",
+	ore = "df_underworld_items:glowstone",
+	wherein = {
+		"default:stone",
+		"default:stone_with_coal",
+		"default:stone_with_iron",
+		"default:stone_with_copper",
+		"default:stone_with_tin",
+		"default:stone_with_gold",
+		"default:stone_with_diamond",
+		"default:dirt",
+		"default:sand",
+		"default:desert_sand",
+		"default:silver_sand",
+		"default:gravel",
+	},
+	column_height_min = 2,
+	column_height_max = 6,
+	y_min = df_caverns.config.primordial_min,
+	y_max = df_caverns.config.primordial_max,
+	noise_threshold = 0.9,
+	noise_params = {
+		offset = 0,
+		scale = 3,
+		spread = {x=400, y=400, z=400},
+		seed = 25111,
+		octaves = 4,
+		persist = 0.5,
+		flags = "eased",
+	},
+	random_factor = 0,
+})
+
 -- Rather than make plants farmable, have them randomly respawn in jungle soil. You can only get them down there.
 minetest.register_abm({
 	label = "Primordial plant growth",
@@ -423,3 +457,34 @@ minetest.register_abm({
 		end
 	end,
 })
+
+-- an ABM to extinguish fires on the primordial layer. Glowstone next to plant life equals too much fire.
+local fire_enabled = minetest.settings:get_bool("enable_fire")
+if fire_enabled == nil then
+	-- enable_fire setting not specified, check for disable_fire
+	local fire_disabled = minetest.settings:get_bool("disable_fire")
+	if fire_disabled == nil then
+		-- Neither setting specified, check whether singleplayer
+		fire_enabled = minetest.is_singleplayer()
+	else
+		fire_enabled = not fire_disabled
+	end
+end
+if fire_enabled and minetest.get_modpath("fire") then
+	local primordial_min = df_caverns.config.primordial_min
+	local primordial_max = df_caverns.config.primordial_max
+	minetest.register_abm({
+		label = "Remove fire in the primordial layer",
+		nodenames = {"fire:basic_flame"},
+		--neighbors = {"fire:basic_flame"},
+		interval = 3,
+		chance = 3,
+		catch_up = false,
+		action = function(pos)
+			local pos_y = pos.y
+			if pos_y > primordial_min and pos_y < primordial_max then
+				minetest.remove_node(pos)
+			end
+		end
+	})
+end

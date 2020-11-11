@@ -9,6 +9,8 @@ local bones_loot_path = minetest.get_modpath("bones_loot")
 local named_waypoints_path = minetest.get_modpath("named_waypoints")
 local namegen_path = minetest.get_modpath("namegen")
 
+local hunters_enabled = minetest.get_modpath("hunter_statue") and df_underworld_items.config.underworld_hunter_statues
+
 local name_pit = function() end
 local name_ruin = function() end
 
@@ -553,6 +555,27 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end
 			end
 		end
+	end
+	
+	if hunters_enabled then
+		local x = math.random(minp.x, maxp.x)
+		local z = math.random(minp.z, maxp.z)
+		local index2d = mapgen_helper.index2d(emin, emax, x, z)
+		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
+		local wave = nvals_wave[index2d] * wave_mult
+		local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)-1
+		local zone = math.abs(nvals_zone[index2d])
+		if math.random() < zone / 2 then -- hunters are more common in the built-up areas
+			for y = floor_height, floor_height+20 do
+				local target_pos = {x=x, y=y, z=z}
+				local target_node = minetest.get_node(target_pos)
+				if minetest.get_item_group(target_node.name, "slade") == 0 then
+					minetest.set_node(target_pos, {name="df_underworld_items:hunter_statue"})
+					break
+				end
+			end
+		end
+		
 	end
 	
 	local time_taken = os.clock() - t_start -- how long this chunk took, in seconds

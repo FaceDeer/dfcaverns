@@ -139,6 +139,7 @@ hunter_statue.register_hunter_statue = function(node_name, statue_def)
 								minetest.set_node(test_above, {name="air"}) -- some kind of filler node?
 								node.param2 = new_facedir
 								minetest.set_node(test_base, node)
+								minetest.check_for_falling({x=pos.x, y=pos.y+1, z=pos.z})
 								minetest.sound_play({name="hunter_statue_brick_step"}, {pos = pos})
 								return
 							end

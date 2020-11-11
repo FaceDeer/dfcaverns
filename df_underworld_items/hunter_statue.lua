@@ -13,7 +13,10 @@ if minetest.get_modpath("hunter_statue") and df_underworld_items.config.underwor
 		groups = {hunter_statue = 1, falling_node = 1, immortal = 1},
 		other_overrides = {
 			can_dig = function(pos, player)
-				return minetest.check_player_privs(player, "server")
+				if player then
+					return minetest.check_player_privs(player, "server")
+				end
+				return false
 			end,
 		}
 	})

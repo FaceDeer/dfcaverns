@@ -19,7 +19,7 @@ local register_pig_tail = function(number)
 		floodable = true,
 		buildable_to = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
-		sounds = default.node_sound_leaves_defaults(),
+		sounds = df_farming.sounds.leaves,
         selection_box = {
             type = "fixed",
             fixed = {
@@ -137,7 +137,7 @@ if minetest.get_modpath("footprints") then
 		},
 		groups = {snappy = 3, flammable = 2, attached_node = 1},
 		drop = "",
-		sounds = default.node_sound_leaves_defaults(),
+		sounds = df_farming.sounds.leaves,
 	})
 	
 	footprints.register_trample_node("df_farming:pig_tail_5", {

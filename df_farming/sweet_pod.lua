@@ -17,7 +17,7 @@ local register_sweet_pod = function(number)
 		buildable_to = true,
 		floodable = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
-		sounds = default.node_sound_leaves_defaults(),
+		sounds = df_farming.sounds.leaves,
         selection_box = {
             type = "fixed",
             fixed = {
@@ -184,7 +184,7 @@ if minetest.get_modpath("bucket") then
 		liquid_range = 2,
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
 		groups = {liquid = 3, flammable = 2},
-		sounds = default.node_sound_water_defaults(),
+		sounds = df_farming.sounds.water,
 	})
 	
 	minetest.register_node("df_farming:dwarven_syrup_flowing", {
@@ -233,7 +233,7 @@ if minetest.get_modpath("bucket") then
 		liquid_range = 2,
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
 		groups = {liquid = 3, flammable = 2, not_in_creative_inventory = 1},
-		sounds = default.node_sound_water_defaults(),
+		sounds = df_farming.sounds.water,
 	})
 
 	bucket.register_liquid(

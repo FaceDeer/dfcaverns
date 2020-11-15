@@ -5,6 +5,7 @@ local modname = minetest.get_current_modname()
 df_primordial_items.S = minetest.get_translator(modname)
 local modpath = minetest.get_modpath(modname)
 
+dofile(modpath.."/dependencies.lua")
 dofile(modpath.."/doc.lua")
 dofile(modpath.."/jungle_nodes.lua")
 dofile(modpath.."/jungle_tree.lua")

@@ -18,7 +18,7 @@ minetest.register_node("df_primordial_items:fungal_grass_1", {
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 })
@@ -37,7 +37,7 @@ minetest.register_node("df_primordial_items:fungal_grass_2", {
 	is_ground_content = false,
 	walkable = false,
 	place_param2 = 3,
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 })
@@ -58,7 +58,7 @@ minetest.register_node("df_primordial_items:glow_orb", {
 	is_ground_content = false,
 	walkable = false,
 	light_source = 9,
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 })
@@ -77,7 +77,7 @@ minetest.register_node("df_primordial_items:glow_orb_stalks", {
 	is_ground_content = false,
 	walkable = false,
 	light_source = 6,
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 })
@@ -96,7 +96,7 @@ minetest.register_node("df_primordial_items:glow_pods", {
 	is_ground_content = false,
 	walkable = false,
 	light_source = 6,
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 })
@@ -112,14 +112,14 @@ minetest.register_node("df_primordial_items:dirt_with_mycelium", {
 	groups = {crumbly = 3, soil = 1},
 	is_ground_content = false,
 	paramtype = "light",
-	drops = "default:dirt",
-	sounds = default.node_sound_dirt_defaults(),
+	drops = df_primordial_items.node_names.dirt,
+	sounds = df_primordial_items.sounds.dirt,
 	light_source = 3,
 })
 
 minetest.register_abm{
 	label = "df_primordial_items:dirt_with_mycelium_spread",
-	nodenames = {"default:dirt"},
+	nodenames = {df_primordial_items.node_names.dirt},
 	neighbors = {"df_mapitems:dirt_with_mycelium"},
 	interval = 60,
 	chance = 50,

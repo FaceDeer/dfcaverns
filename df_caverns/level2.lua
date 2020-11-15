@@ -1,16 +1,19 @@
-local c_water = minetest.get_content_id("default:water_source")
-local c_air = minetest.get_content_id("air")
-local c_dirt = minetest.get_content_id("default:dirt")
-local c_dirt_moss = minetest.get_content_id("df_mapitems:dirt_with_cave_moss")
-local c_gravel = minetest.get_content_id("default:gravel")
+local c_water = df_caverns.node_id.water
+local c_air = df_caverns.node_id.air
+local c_dirt = df_caverns.node_id.dirt
+local c_dirt_moss = df_caverns.node_id.dirt_moss
+local c_gravel = df_caverns.node_id.gravel
 
-local c_stillworm = minetest.get_content_id("df_mapitems:dirt_with_stillworm")
-local c_pebble_fungus = minetest.get_content_id("df_mapitems:dirt_with_pebble_fungus")
+local c_stillworm = df_caverns.node_id.stillworm
+local c_pebble_fungus = df_caverns.node_id.pebble_fungus
+local c_red = df_caverns.node_id.spindlestem_red
 
-local c_wet_flowstone = minetest.get_content_id("df_mapitems:wet_flowstone")
-local c_dry_flowstone = minetest.get_content_id("df_mapitems:dry_flowstone")
+local c_wet_flowstone = df_caverns.node_id.wet_flowstone
+local c_dry_flowstone = df_caverns.node_id.dry_flowstone
 
-local c_veinstone = minetest.get_content_id("df_mapitems:veinstone")
+local c_veinstone = df_caverns.node_id.veinstone
+local c_pearls = df_caverns.node_id.pearls
+
 local wall_vein_perlin_params = {
 	offset = 0,
 	scale = 1,
@@ -21,8 +24,6 @@ local wall_vein_perlin_params = {
 	lacunarity = 2.0,
 	flags = "eased",
 }
-
-local c_pearls = minetest.get_content_id("df_mapitems:cave_pearls")
 
 local subsea_level = df_caverns.config.level2_min - (df_caverns.config.level2_min - df_caverns.config.level1_min) * 0.33 -- "sea level" for the flooded caverns.
 local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold, df_caverns.config.cavern_threshold) -- cavern value out to which we're flooding tunnels and warrens
@@ -65,8 +66,6 @@ if minetest.get_modpath("df_farming") then
 		df_farming.spawn_cavern_fungi_vm,
 	}
 end
-
-local c_red = minetest.get_content_id("df_trees:spindlestem_cap_red")
 
 local goblin_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
 	local ystride = area.ystride

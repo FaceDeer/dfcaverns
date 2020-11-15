@@ -77,14 +77,14 @@ end
 
 
 
-local c_slade = minetest.get_content_id("df_underworld_items:slade")
-local c_slade_block = minetest.get_content_id("df_underworld_items:slade_block")
-local c_air = minetest.get_content_id("air")
-local c_water = minetest.get_content_id("default:water_source")
+local c_slade = df_caverns.node_id.slade
+local c_slade_block = df_caverns.node_id.slade_block
+local c_air = df_caverns.node_id.air
+local c_water = df_caverns.node_id.water
 
-local c_glowstone = minetest.get_content_id("df_underworld_items:glowstone")
-local c_amethyst = minetest.get_content_id("df_underworld_items:glow_amethyst")
-local c_pit_plasma = minetest.get_content_id("df_underworld_items:pit_plasma")
+local c_glowstone = df_caverns.node_id.glowstone
+local c_amethyst = df_caverns.node_id.amethyst
+local c_pit_plasma = df_caverns.node_id.pit_plasma
 
 local MP = minetest.get_modpath(minetest.get_current_modname())
 local oubliette_schematic = dofile(MP.."/schematics/oubliette.lua")

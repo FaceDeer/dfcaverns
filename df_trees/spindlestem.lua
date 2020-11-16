@@ -64,7 +64,7 @@ minetest.register_node("df_trees:spindlestem_stem", {
 	_doc_items_usagehelp = df_trees.doc.spindlestem_usage,
 	is_ground_content = false,
 	groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.sounds.wood,
 	tiles = {
 		"dfcaverns_tower_cap.png",
 	},
@@ -97,7 +97,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 		_doc_items_longdesc = df_trees.doc["spindlestem_cap_"..item_suffix.."_desc"],
 		_doc_items_usagehelp = df_trees.doc["spindlestem_cap_"..item_suffix.."_usage"],
 		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
-		sounds = default.node_sound_wood_defaults(),
+		sounds = df_trees.sounds.wood,
 		tiles = {
 			"dfcaverns_tower_cap.png^[multiply:#"..colour_code,
 			"dfcaverns_spindlestem_cap.png^[multiply:#"..colour_code,
@@ -213,7 +213,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 				fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 			},
 			groups = groups,
-			sounds = default.node_sound_glass_defaults(),
+			sounds = df_trees.sounds.glass,
 			light_source = new_light,
 		})
 		
@@ -344,9 +344,9 @@ get_spindlestem_cap_type = function(pos)
 		return c_red
 	end
 	
-	local iron = minetest.find_node_near(pos, 5, {"default:stone_with_iron", "default:steelblock"})
-	local copper = minetest.find_node_near(pos, 5, {"default:stone_with_copper", "default:copperblock"})
-	local mese = minetest.find_node_near(pos, 5, {"default:stone_with_mese", "default:mese"})
+	local iron = minetest.find_node_near(pos, 5, df_trees.iron_containing_nodes)
+	local copper = minetest.find_node_near(pos, 5, df_trees.copper_containing_nodes)
+	local mese = minetest.find_node_near(pos, 5, df_trees.mese_containing_nodes)
 	local possibilities = {}
 
 	if mese then table.insert(possibilities, c_golden) end

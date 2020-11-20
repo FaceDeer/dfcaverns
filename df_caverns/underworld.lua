@@ -565,7 +565,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local wave = nvals_wave[index2d] * wave_mult
 		local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)-1
 		local zone = math.abs(nvals_zone[index2d])
-		if math.random() < zone / 2 then -- hunters are more common in the built-up areas
+		if math.random() < zone / 4 then -- hunters are more common in the built-up areas. zone/4 gives ~ 400 hunters per square kilometer.
 			for y = floor_height, floor_height+20 do
 				local target_pos = {x=x, y=y, z=z}
 				local target_node = minetest.get_node(target_pos)

@@ -7,6 +7,8 @@ if minetest.get_modpath("hunter_statue") and df_underworld_items.config.underwor
 		chance = 2,
 		tiles = {
 			{ name = "dfcaverns_slade.png", backface_culling = true },
+			{ name = "dfcaverns_slade.png^(dfcaverns_statue_eyes.png^[opacity:128)", backface_culling = true },
+			{ name = "dfcaverns_slade.png^(dfcaverns_statue_fang_overlay.png^[opacity:128)", backface_culling = true },
 		},
 		tnt_vulnerable = true,
 		tnt_debris = "df_underworld_items:slade_sand",

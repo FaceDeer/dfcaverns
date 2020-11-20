@@ -140,7 +140,7 @@ hunter_statue.register_hunter_statue = function(node_name, statue_def)
 								node.param2 = new_facedir
 								minetest.set_node(test_base, node)
 								minetest.check_for_falling({x=pos.x, y=pos.y+1, z=pos.z})
-								minetest.sound_play({name="hunter_statue_brick_step"}, {pos = pos})
+								minetest.sound_play({name="hunter_statue_brick_step"}, {pos = pos, gain = 0.5})
 								return
 							end
 						end
@@ -149,7 +149,7 @@ hunter_statue.register_hunter_statue = function(node_name, statue_def)
 				if node.param2 ~= new_facedir then
 					node.param2 = new_facedir
 					minetest.set_node(pos, node)
-					minetest.sound_play({name="hunter_statue_turn_grind"}, {pos = pos})
+					minetest.sound_play({name="hunter_statue_turn_grind"}, {pos = pos, gain = 0.5})
 				end
 			end
 		end,

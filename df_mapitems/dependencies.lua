@@ -33,6 +33,9 @@ df_mapitems.node_name.dirt = "default:dirt"
 df_mapitems.node_name.stone = "default:stone"
 df_mapitems.node_name.ice = "default:ice"
 
+df_mapitems.node_name.farming_soil = "farming:soil"
+df_mapitems.node_name.farming_soil_wet = "farming:soil_wet"
+
 -- This stuff should only be used during initialization
 minetest.after(0, function()
 	df_mapitems.node_name = nil

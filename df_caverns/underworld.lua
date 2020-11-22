@@ -7,7 +7,7 @@ local S = minetest.get_translator(modname)
 
 local bones_loot_path = minetest.get_modpath("bones_loot")
 local named_waypoints_path = minetest.get_modpath("named_waypoints")
-local namegen_path = minetest.get_modpath("namegen")
+local name_generator_path = minetest.get_modpath("name_generator")
 
 local hunters_enabled = minetest.get_modpath("hunter_statue") and df_underworld_items.config.underworld_hunter_statues
 
@@ -51,14 +51,14 @@ if named_waypoints_path then
 	end
 	named_waypoints.register_named_waypoints("puzzle_seals", seal_waypoint_def)
 
-	if namegen_path then
-		namegen.parse_lines(io.lines(modpath.."/underworld_names.cfg"))
+	if name_generator_path then
+		name_generator.parse_lines(io.lines(modpath.."/underworld_names.cfg"))
 		
 		name_pit = function()
-			return namegen.generate("glowing_pits")
+			return name_generator.generate("glowing_pits")
 		end
 		name_ruin = function()
-			return namegen.generate("underworld_ruins")
+			return name_generator.generate("underworld_ruins")
 		end
 		
 		local underworld_ruin_def = {
@@ -467,7 +467,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_building_schematic, building.rotation)
 						elseif building.building_type == "medium building" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, medium_building_schematic, building.rotation)
-							if named_waypoints_path and namegen_path then
+							if named_waypoints_path and name_generator_path then
 								if not next(named_waypoints.get_waypoints_in_area("underworld_ruins", vector.subtract(building.pos, 250), vector.add(building.pos, 250))) then
 									named_waypoints.add_waypoint("underworld_ruins", {x=building.pos.x, y=floor_height+1, z=building.pos.z}, {name=name_ruin()})
 								end

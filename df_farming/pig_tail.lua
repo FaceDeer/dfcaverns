@@ -97,7 +97,7 @@ minetest.register_craftitem("df_farming:pig_tail_thread", {
 
 if minetest.get_modpath("wool") then
 	minetest.register_craft({
-		output = "wool:white",
+		output = df_farming.node_names.wool_white,
 		recipe = {
 			{"group:thread", "group:thread"},
 			{"group:thread", "group:thread"},

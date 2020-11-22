@@ -9,6 +9,10 @@ df_farming.node_names.dirt = "default:dirt"
 df_farming.node_names.dirt_moss = "df_farming:dirt_with_cave_moss"
 df_farming.node_names.floor_fungus = "df_farming:cobble_with_floor_fungus"
 df_farming.node_names.dirt_wet = "farming:soil_wet"
+df_farming.node_names.mortar_pestle = "farming:mortar_pestle"
+df_farming.node_names.bucket = "bucket:bucket_empty"
+df_farming.node_names.wool_white = "wool:white"
+
 
 -- these are only for initialization
 minetest.after(0, function()

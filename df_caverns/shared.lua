@@ -13,6 +13,9 @@ local c_glowstone = df_caverns.node_id.glowstone
 local c_ice = df_caverns.node_id.ice
 local c_mossycobble = df_caverns.node_id.mossycobble
 local c_oil = df_caverns.node_id.oil
+local c_sand_scum = df_caverns.node_id.sand_scum
+local c_spongestone = df_caverns.node_id.spongestone
+local c_rock_rot = df_caverns.node_id.rock_rot
 local c_water = df_caverns.node_id.water
 local c_wet_flowstone = df_caverns.node_id.wet_flowstone
 
@@ -64,7 +67,7 @@ df_caverns.flooded_cavern_floor = function(abs_cracks, vert_rand, vi, area, data
 	if abs_cracks < 0.25 then
 		data[vi] = c_mossycobble
 	elseif data[vi-ystride] ~= c_water then
-		data[vi] = c_dirt
+		data[vi] = c_sand_scum
 	end
 	
 	-- put in only the large stalagmites that won't get in the way of the water
@@ -95,8 +98,10 @@ df_caverns.wet_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, da
 		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, true)
 	elseif abs_cracks < 0.6 then
 		data[vi] = c_cobble
+	elseif abs_cracks < 0.8 then
+		data[vi] = c_rock_rot
 	else
-		data[vi] = c_mossycobble
+		data[vi] = c_spongestone
 		if c_dead_fungus and math.random() < 0.05 then
 			data[vi+area.ystride] = c_dead_fungus
 		end

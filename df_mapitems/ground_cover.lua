@@ -18,6 +18,8 @@ local function soil_type_spread(label, node_to_spread, target_node)
 	}
 end
 
+local farming_soil = df_mapitems.node_name.farming_soil
+local farming_soil_wet = df_mapitems.node_name.farming_soil_wet
 
 --------------------------------------------------
 -- Cave moss
@@ -47,8 +49,8 @@ minetest.register_node("df_mapitems:dirt_with_cave_moss", {
 	sounds = df_mapitems.sounds.dirt_mossy,
 	soil = {
 		base = "df_mapitems:dirt_with_cave_moss",
-		dry = "farming:soil",
-		wet = "farming:soil_wet"
+		dry = farming_soil,
+		wet = farming_soil_wet
 	},
 	_dfcaverns_dead_node = dirt_node,
 })
@@ -94,8 +96,8 @@ minetest.register_node("df_mapitems:dirt_with_pebble_fungus", {
 	sounds = df_mapitems.sounds.dirt,
 	soil = {
 		base = "df_mapitems:dirt_with_pebble_fungus",
-		dry = "farming:soil",
-		wet = "farming:soil_wet"
+		dry = farming_soil,
+		wet = farming_soil_wet
 	},
 	_dfcaverns_dead_node = dirt_node,
 })
@@ -120,8 +122,8 @@ minetest.register_node("df_mapitems:dirt_with_stillworm", {
 	sounds = df_mapitems.sounds.dirt_mossy,
 	soil = {
 		base = "df_mapitems:dirt_with_stillworm",
-		dry = "farming:soil",
-		wet = "farming:soil_wet"
+		dry = farming_soil,
+		wet = farming_soil_wet
 	},
 	_dfcaverns_dead_node = dirt_node,
 })
@@ -142,8 +144,8 @@ minetest.register_node("df_mapitems:spongestone", {
 	sounds = df_mapitems.sounds.dirt,
 	soil = {
 		base = "df_mapitems:spongestone",
-		dry = "farming:soil",
-		wet = "farming:soil_wet"
+		dry = farming_soil,
+		wet = farming_soil_wet
 	},
 	_dfcaverns_dead_node = dirt_node,
 })

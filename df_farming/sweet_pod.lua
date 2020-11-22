@@ -114,14 +114,14 @@ if minetest.get_modpath("cottages") then
 	recipe_registered = true
 end
 
-if minetest.registered_items["farming:mortar_pestle"] ~= nil then
+if minetest.registered_items[df_farming.node_names.mortar_pestle] ~= nil then
 	minetest.register_craft({
 		type = "shapeless",
 		output = "df_farming:sugar",
 		recipe = {
-			"df_farming:sweet_pods", "farming:mortar_pestle"
+			"df_farming:sweet_pods", df_farming.node_names.mortar_pestle
 		},
-		replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
+		replacements = {{"group:food_mortar_pestle", df_farming.node_names.mortar_pestle}},
 	})
 	recipe_registered = true
 end
@@ -247,7 +247,7 @@ if minetest.get_modpath("bucket") then
 	if minetest.get_modpath("crafting") then
 		simplecrafting_lib.register("furnace", {
 			input = {
-				["bucket:bucket_empty"] = 1,
+				[df_farming.node_names.bucket] = 1,
 				["df_farming:sugar"] = 3,
 				["simplecrafting_lib:heat"] = 5,
 			},
@@ -257,7 +257,7 @@ if minetest.get_modpath("bucket") then
 		minetest.register_craft({
 			type = "shapeless",
 			output = "df_farming:dwarven_syrup_bucket",
-			recipe = {"bucket:bucket_empty", "df_farming:sugar", "df_farming:sugar", "df_farming:sugar"},
+			recipe = {df_farming.node_names.bucket, "df_farming:sugar", "df_farming:sugar", "df_farming:sugar"},
 		})
 	end
 	

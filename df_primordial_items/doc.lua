@@ -72,3 +72,9 @@ df_primordial_items.doc.plant_matter_usage = df_primordial_items.doc.packed_root
 --
 --df_primordial_items.doc.thorn_desc =
 --df_primordial_items.doc.thorn_usage =
+
+df_primordial_items.doc.primordial_fruit_desc = S("This strange fruit from the depths has absorbed healthful energies.")
+df_primordial_items.doc.primordial_fruit_usage = S("Eating this fruit will improve your vitality.")
+
+df_primordial_items.doc.glowtato_desc = S("A strangely glowing starchy nodule from a plant that grew deeper than any plant has a right to.")
+df_primordial_items.doc.glowtato_usage = S("Much energy is contained in this tuber. It tastes surprisingly good, too. You could cook with it but any change in its pure state would only reduce its value.")

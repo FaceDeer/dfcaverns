@@ -16,9 +16,12 @@ Primordial Fungal Orb=Urpilzkugel
 
 ### doc.lua ###
 
+A strangely glowing starchy nodule from a plant that grew deeper than any plant has a right to.=
+
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Compared to the behemoths found elsewhere in the deep places of the world, the giant mushrooms of the primordial jungles are on the smaller side - often overwhelmed by the green plants that grow in the mysterious light below. Still, they can become substantial resources.=Im Vergleich zu den Giganten, die anderswo in den Tiefen der Welt zu finden sind, sind die riesigen Pilze des Urdschungels eher klein - oft überwältigt von den grünen Pflanzen, die im mysteriösen Licht unten wachsen. Dennoch können sie zu erheblichen Ressourcen werden.
 
+Eating this fruit will improve your vitality.=
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Fibers extracted from gigantic fungal hyphae.=Fasern aus riesigen Pilzhyphen.
 
@@ -33,6 +36,8 @@ Ivy is climbable, if it hangs close enough to the ground it can serve as a path 
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Like wood of the surface world, primordial jungle trees can be chopped and carved as building material or as fuel.=Ursprüngliche Dschungelbäume können wie Holz der Oberflächenwelt als Baumaterial oder als Brennstoff gehackt und geschnitzt werden.
+
+Much energy is contained in this tuber. It tastes surprisingly good, too. You could cook with it but any change in its pure state would only reduce its value.=
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Much like a rope, hyphae have fibers inside that can be unraveled and used for a variety of crafts.=Ähnlich wie ein Seil haben Hyphen Fasern im Inneren, die entwirrt und für eine Vielzahl von Handwerken verwendet werden können.
@@ -88,6 +93,8 @@ These fibrous plants that grow in the deep appear similar to grass at a glance, 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 These hanging roots are climbable.=Diese hängenden Wurzeln sind kletterbar.
 
+This strange fruit from the depths has absorbed healthful energies.=
+
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 When a fern grows to such sizes its stem becomes dense enough to be used as a form of wood.=Wenn ein Farn so groß wird, wird sein Stamm dicht genug, um als Holzform verwendet zu werden.
 
@@ -97,6 +104,11 @@ When left uncultivated mycelial soil will sprout all manner of strange wild fung
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 When left uncultivated primordial jungle soil will sprout all manner of strange wild plants.=Wenn sie nicht kultiviert werden, sprießen alle Arten von seltsamen Wildpflanzen aus dem ursprünglichen Dschungelboden.
 
+
+### edibles.lua ###
+
+Glowtato=
+Primordial Fruit=
 
 ### fungal_nodes.lua ###
 

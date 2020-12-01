@@ -92,6 +92,19 @@ minetest.register_node("df_primordial_items:glow_pods", {
 	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_fungal_plant = 1, light_sensitive_fungus = 13},
 	paramtype = "light",
 	drawtype = "plantlike",
+	drop = {
+		max_items = 2,
+		items = {
+			{
+				rarity = 3,
+				items = {"df_primordial_items:primordial_fruit"},
+			},
+			{
+				rarity = 3,
+				items = {"df_primordial_items:primordial_fruit"},
+			},
+		},
+	},
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,

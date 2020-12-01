@@ -61,6 +61,19 @@ minetest.register_node("df_primordial_items:glow_plant_1", {
 	is_ground_content = false,
 	walkable = false,
 	light_source = 6,
+	drop = {
+		max_items = 2,
+		items = {
+			{
+				rarity = 3,
+				items = {"df_primordial_items:primordial_fruit"},
+			},
+			{
+				rarity = 3,
+				items = {"df_primordial_items:primordial_fruit"},
+			},
+		},
+	},
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
 	sunlight_propagates = true,
@@ -80,6 +93,7 @@ minetest.register_node("df_primordial_items:glow_plant_2", {
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,
+	drop = "df_primordial_items:glowtato",
 	light_source = 6,
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
@@ -97,6 +111,7 @@ minetest.register_node("df_primordial_items:glow_plant_3", {
 	_dfcaverns_dead_node = df_primordial_items.node_names.dry_shrub,
 	paramtype = "light",
 	drawtype = "plantlike",
+	drop = "df_primordial_items:glowtato 2",
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,

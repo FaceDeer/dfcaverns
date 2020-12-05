@@ -36,7 +36,7 @@ minetest.register_node("df_trees:blood_thorn", {
 	paramtype = "light",
 	groups = {choppy = 3, tree = 1, flammable = 2, light_sensitive_fungus = 11},
 	_dfcaverns_dead_node = "df_trees:blood_thorn_dead",
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.sounds.wood,
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	after_dig_node = blood_thorn_after_dig,
@@ -51,7 +51,7 @@ minetest.register_node("df_trees:blood_thorn_dead", {
 	paramtype2 = "facedir",
 	paramtype = "light",
 	groups = {choppy = 3, tree = 1, flammable = 2},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.sounds.wood,
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	after_dig_node = blood_thorn_after_dig,
@@ -71,7 +71,7 @@ minetest.register_node("df_trees:blood_thorn_spike", {
 		},
 	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100, light_sensitive_fungus = 11},
 	_dfcaverns_dead_node = "df_trees:blood_thorn_spike_dead",
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.sounds.wood,
 	drawtype = "nodebox",
 	climbable = true,
 	is_ground_content = false,
@@ -101,7 +101,7 @@ minetest.register_node("df_trees:blood_thorn_spike_dead", {
 		"dfcaverns_blood_thorn_spike_front.png^[multiply:#804000"
 		},
 	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.sounds.wood,
 	drawtype = "nodebox",
 	climbable = true,
 	is_ground_content = false,
@@ -141,7 +141,7 @@ minetest.register_node("df_trees:blood_thorn_wood", {
 	tiles = {"dfcaverns_blood_thorn_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_trees.sounds.wood,
 })
 
 df_trees.register_all_stairs("blood_thorn_wood")

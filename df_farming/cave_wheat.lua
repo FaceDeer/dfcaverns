@@ -19,7 +19,7 @@ local register_cave_wheat = function(number)
 		buildable_to = true,
 		floodable = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
-		sounds = default.node_sound_leaves_defaults(),
+		sounds = df_farming.sounds.leaves,
         selection_box = {
             type = "fixed",
             fixed = {
@@ -119,6 +119,7 @@ minetest.register_craftitem("df_farming:cave_bread", {
 	inventory_image = "dfcaverns_prepared_food13x16.png",
 	sound = {eat = {name = "df_farming_chomp_crunch", gain = 1.0}},
 	on_use = minetest.item_eat(5),
+	_hunger_ng = {satiates = 5},
 	groups = {flammable = 2, food = 5},
 })
 
@@ -164,7 +165,7 @@ minetest.register_node("df_farming:cave_straw", {
 	tiles = {"dfcaverns_cave_straw.png"},
 	is_ground_content = false,
 	groups = {snappy=3, flammable=4, fall_damage_add_percent=-30, straw=1},
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = df_farming.sounds.leaves,
 })
 
 minetest.register_craft({
@@ -204,7 +205,7 @@ if minetest.get_modpath("footprints") then
 		},
 		groups = {snappy = 3, flammable = 2, attached_node = 1},
 		drop = "",
-		sounds = default.node_sound_leaves_defaults(),
+		sounds = df_farming.sounds.leaves,
 	})
 	
 	footprints.register_trample_node("df_farming:cave_wheat_5", {

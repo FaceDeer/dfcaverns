@@ -3,7 +3,10 @@ local S = df_underworld_items.S
 local invulnerable = df_underworld_items.config.invulnerable_slade and not minetest.settings:get_bool("creative_mode")
 
 local server_diggable_only = function(pos, player)
-	return minetest.check_player_privs(player, "server")
+	if player then
+		return minetest.check_player_privs(player, "server")
+	end
+	return false
 end
 
 local add_immortality = function(slade_def)

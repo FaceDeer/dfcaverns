@@ -36,6 +36,10 @@ Lightseam=
 
 Glowing Pit Plasma=
 
+### hunter_statue.lua ###
+
+Guardian Statue=
+
 ### puzzle_seal.lua ###
 
 Active Slade Breacher=

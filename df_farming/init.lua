@@ -6,6 +6,7 @@ local modpath = minetest.get_modpath(modname)
 
 --load companion lua files
 dofile(modpath.."/config.lua")
+dofile(modpath.."/dependencies.lua")
 dofile(modpath.."/doc.lua")
 dofile(modpath.."/aliases.lua")
 

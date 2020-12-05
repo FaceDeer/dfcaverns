@@ -37,7 +37,7 @@ minetest.register_node("df_primordial_items:mushroom_gills", {
 	waving = 2,
 	walkable = false,
 	is_ground_content = false,
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	drop = {
@@ -53,6 +53,7 @@ minetest.register_node("df_primordial_items:mushroom_gills", {
 			}
 		}
 	},
+	after_place_node = df_primordial_items.after_place_leaves,
 })
 
 minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
@@ -69,7 +70,7 @@ minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
 	walkable = false,
 	is_ground_content = false,
 	light_source = 6,
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	drop = {
@@ -85,9 +86,10 @@ minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
 			}
 		}
 	},
+	after_place_node = df_primordial_items.after_place_leaves,
 })
 
-default.register_leafdecay({
+df_primordial_items.register_leafdecay({
 	trunks = {"df_primordial_items:mushroom_trunk", "df_primordial_items:mushroom_cap"},
 	leaves = {"df_primordial_items:mushroom_gills", "df_primordial_items:mushroom_gills_glowing"},
 	radius = 5,
@@ -101,7 +103,7 @@ minetest.register_node("df_primordial_items:primordial_mush_trunk_wood", {
 	tiles = {"dfcaverns_mush_shaft_side.png^(dfcaverns_mush_gills.png^[multiply:#888888)"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_primordial_items.sounds.wood,
 })
 
 minetest.register_craft({
@@ -119,7 +121,7 @@ minetest.register_node("df_primordial_items:primordial_mush_cap_wood", {
 	tiles = {"dfcaverns_mush_cap.png^dfcaverns_mush_gills.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = default.node_sound_wood_defaults(),
+	sounds = df_primordial_items.sounds.wood,
 })
 
 minetest.register_craft({
@@ -699,7 +701,7 @@ minetest.register_node("df_primordial_items:mush_sapling", {
 	buildable_to = true,
 	walkable = false,
 	is_ground_content = false,
-	sounds = default.node_sound_leaves_defaults(),
+	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,
 	sunlight_propagates = true,
 	on_construct = function(pos)

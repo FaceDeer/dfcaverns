@@ -127,6 +127,7 @@ if df_underworld_items.config.destructive_pit_plasma then
 	minetest.register_abm({
 		label = "glowing pit matter degradation",
 		nodenames = {"group:pit_plasma"},
+		neighbors = df_underworld_items.abm_neighbors.pit_plasma,
 		interval = 2,
 		chance = 30,
 		catch_up = false,
@@ -157,19 +158,18 @@ if df_underworld_items.config.destructive_pit_plasma then
 			end		
 		end,
 	})
-else
-	minetest.register_abm({
-		label = "glowing pit sparkle",
-		nodenames = {"group:pit_plasma"},
-		neighbors = {"air"},
-		interval = 2,
-		chance = 30,
-		catch_up = false,
-		action = function(pos)
-			local air_pos = minetest.find_node_near(pos, 1, "air")
-			if air_pos then
-				sparkle(air_pos)
-			end
-		end,
-	})
 end
+minetest.register_abm({
+	label = "glowing pit sparkle",
+	nodenames = {"group:pit_plasma"},
+	neighbors = {"air"},
+	interval = 2,
+	chance = 30,
+	catch_up = false,
+	action = function(pos)
+		local air_pos = minetest.find_node_near(pos, 1, "air")
+		if air_pos then
+			sparkle(air_pos)
+		end
+	end,
+})

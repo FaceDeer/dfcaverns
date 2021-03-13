@@ -21,7 +21,6 @@ local glowstone_def = {
 	groups = {cracky=3},
 	sounds = default.node_sound_glass_defaults(),
 	paramtype = "light",
-	--use_texture_alpha = true,
 	drawtype = "glasslike",
 	drop = "",
 	sunlight_propagates = true,

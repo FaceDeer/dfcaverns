@@ -36,6 +36,7 @@ minetest.register_node("df_primordial_items:mushroom_gills", {
 	drawtype = "plantlike",
 	waving = 2,
 	walkable = false,
+	climbable = true,
 	is_ground_content = false,
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = true,

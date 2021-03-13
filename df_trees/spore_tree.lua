@@ -123,7 +123,7 @@ minetest.register_node("df_trees:spore_tree_fruiting_body", {
 		items = {
 			{
 				items = {'df_trees:spore_tree_sapling'},
-				rarity = 10,
+				rarity = 2,
 			},
 			{
 				items = {'df_trees:spore_tree_hyphae'},

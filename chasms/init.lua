@@ -4,11 +4,11 @@ local maxy = tonumber(minetest.settings:get("chasms_maxy")) or -50
 local miny = tonumber(minetest.settings:get("chasms_miny")) or -3000
 local falloff = tonumber(minetest.settings:get("chasms_falloff")) or 100
 
-local chasms_threshold = tonumber(minetest.settings:get("chasms_threshold")) or 1.0
+local chasms_threshold = tonumber(minetest.settings:get("chasms_threshold")) or 0.9
 local np_chasms_default = {
 	offset = 0,
 	scale = 1,
-	spread = {x = 75, y = 500, z = 2000},
+	spread = {x = 50, y = 1000, z = 3000},
 	seed = 94586,
 	octaves = 2,
 	persist = 0.63,

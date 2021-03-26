@@ -1,7 +1,7 @@
 local data = {}
 
 local maxy = tonumber(minetest.settings:get("chasms_maxy")) or -50
-local miny = tonumber(minetest.settings:get("chasms_miny")) or -3000
+local miny = tonumber(minetest.settings:get("chasms_miny")) or -2500
 local falloff = tonumber(minetest.settings:get("chasms_falloff")) or 100
 
 local chasms_threshold = tonumber(minetest.settings:get("chasms_threshold")) or 0.9
@@ -56,7 +56,7 @@ local get_intensity = function(y)
 		return (y-miny)/falloff
 	end
 --	if y > maxfalloff then
-		return (maxy-y)/falloff
+	return (maxy-y)/falloff
 --	end
 end
 

@@ -81,10 +81,10 @@ local web_line = function(pos, dir, distance)
 	local web_spine = {}
 	for i = 0, distance do
 		local web_pos = vector.add(pos, vector.multiply(dir,i))
-		local node = minetest.get_node(web_pos).name
-		if node.name == "air" or node.name == "big_webs:webbing" then
+		local node_name = minetest.get_node(web_pos).name
+		if node_name == "air" or node_name == "big_webs:webbing" then
 			table.insert(web_spine, web_pos)
-		elseif in_anchor_group(node.name) then
+		elseif in_anchor_group(node_name) then
 			anchored=true
 			break
 		else
@@ -94,7 +94,7 @@ local web_line = function(pos, dir, distance)
 	end
 
 	if anchored then
-		for _, web_pos in web_spine do
+		for _, web_pos in pairs(web_spine) do
 			minetest.set_node(web_pos, {name="big_webs:webbing"})
 			minetest.get_node_timer(web_pos):stop() -- no need to test, we know it's anchored
 		end
@@ -106,9 +106,11 @@ end
 local generate_web = function(pos)
 	local dir_choice = math.random(1, 6)
 	local dir = cardinal_directions[dir_choice]
+	minetest.chat_send_all(minetest.pos_to_string(dir))
 	local web_spine = web_line(pos, dir, 30)
+	minetest.chat_send_all(dump(web_spine))
 	if web_spine then
-		local dir2 = cardinal_planes[dir_choice][math.random(1, 4)]
+		local dir2 = cardinal_directions[cardinal_planes[dir_choice][math.random(1, 2)]]
 		local dir2_opposite = vector.multiply(dir2, -1)
 		for _, web_pos in pairs(web_spine) do
 			web_line(web_pos, dir2, 15)

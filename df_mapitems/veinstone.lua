@@ -11,7 +11,8 @@ minetest.register_node("df_mapitems:veinstone", {
 	light_source = 2,
 	drop = "df_mapitems:veinstone",
 	sounds = df_mapitems.sounds.stone,
-	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
+	on_punch = function(pos, node, puncher, pointed_thing)
+        minetest.node_punch(pos, node, puncher, pointed_thing)
 		minetest.swap_node(pos, {name="df_mapitems:veinstone_pulse"})
 		minetest.get_node_timer(pos):start(2)
 	end,

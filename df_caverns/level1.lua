@@ -10,6 +10,8 @@ local c_spindlestem_white = df_caverns.node_id.spindlestem_white
 local tower_cap_shrublist
 local fungiwood_shrublist
 
+local chasms_path = minetest.get_modpath("chasms")
+
 if minetest.get_modpath("df_farming") then
 	tower_cap_shrublist = {
 		df_farming.spawn_plump_helmet_vm,
@@ -272,6 +274,18 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 
 		if dry and data[vi] == c_wet_flowstone then
 			data[vi] = c_dry_flowstone
+		end
+		
+		if chasms_path then
+			local pos = area:position(vi)
+			if chasms.is_in_chasm_without_taper(pos) then
+				local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
+				if flooded_caverns and pos.y < subsea_level then
+					data[vi] = c_water
+				else
+					data[vi] = c_air
+				end
+			end
 		end
 	end
 

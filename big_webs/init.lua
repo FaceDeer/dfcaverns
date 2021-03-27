@@ -31,9 +31,18 @@ local cardinal_directions = {
 	{x=1,y=0,z=0},
 	{x=-1,y=0,z=0},
 	{x=0,y=1,z=0},
-	{x=0,y=1,z=0},
+	{x=0,y=-1,z=0},
 	{x=0,y=0,z=1},
 	{x=0,y=0,z=-1}
+}
+
+local cardinal_planes = {
+	{3,5},
+	{3,5},
+	{1,5},
+	{1,5},
+	{1,3},
+	{1,3},
 }
 
 local insert_if_not_in_hashtable = function(pos, insert_into, if_not_in)
@@ -67,10 +76,51 @@ if default_path then
 	sound = default.node_sound_leaves_defaults()
 end
 
+
+local web_line = function(pos, dir, distance)
+	local web_spine = {}
+	for i = 0, distance do
+		local web_pos = vector.add(pos, vector.multiply(dir,i))
+		local node = minetest.get_node(web_pos).name
+		if node.name == "air" or node.name == "big_webs:webbing" then
+			table.insert(web_spine, web_pos)
+		elseif in_anchor_group(node.name) then
+			anchored=true
+			break
+		else
+			anchored=false
+			break
+		end
+	end
+
+	if anchored then
+		for _, web_pos in web_spine do
+			minetest.set_node(web_pos, {name="big_webs:webbing"})
+			minetest.get_node_timer(web_pos):stop() -- no need to test, we know it's anchored
+		end
+		return web_spine
+	end
+	return nil
+end
+
+local generate_web = function(pos)
+	local dir_choice = math.random(1, 6)
+	local dir = cardinal_directions[dir_choice]
+	local web_spine = web_line(pos, dir, 30)
+	if web_spine then
+		local dir2 = cardinal_planes[dir_choice][math.random(1, 4)]
+		local dir2_opposite = vector.multiply(dir2, -1)
+		for _, web_pos in pairs(web_spine) do
+			web_line(web_pos, dir2, 15)
+			web_line(web_pos, dir2_opposite, 15)
+		end
+	end
+end
+
 minetest.register_node("big_webs:webbing", {
-	description = S("Big Spiderweb"),
-	_doc_items_longdesc = S("Thick ropes of sticky silk, strung between cavern walls in hopes of catching bats and larger beasts."),
-	_doc_items_usagehelp = S("Webbing can be collected and re-strung elsewhere to aid in climbing."),
+	description = S("Giant Cave Spider Webbing"),
+	_doc_items_longdesc = S("Thick ropes of sticky, springy silk, strung between cavern walls in hopes of catching bats and even larger beasts."),
+	_doc_items_usagehelp = S("Webbing can be collected and re-strung elsewhere to aid in climbing. It absorbs all falling damage when you land on it."),
 	tiles = {
 		{name="big_webs.png"},
 	},
@@ -81,13 +131,23 @@ minetest.register_node("big_webs:webbing", {
 	node_box = get_node_box(0.0625),
 	collision_box = get_node_box(0.0625),
 	paramtype = "light",
-	--light_source = 2,
 	is_ground_content = false,
 	climbable = true,
-	walkable = false,
 	floodable = true,
-	groups = {choppy = 2, webbing = 1, flammable=1},
+	groups = {choppy = 2, webbing = 1, flammable=1, fall_damage_add_percent=-100, bouncy=20},
 	sounds = sound,
+	on_construct = function(pos)
+		minetest.get_node_timer(pos):start(30)
+	end,
+	on_destruct = function(pos)
+		for _, dir in pairs(cardinal_directions) do
+			local neighbor_pos = vector.add(pos, dir)
+			if minetest.get_item_group(minetest.get_node(neighbor_pos).name, "webbing") > 0 then
+				minetest.get_node_timer(neighbor_pos):start(30)
+			end
+		end
+		minetest.get_node_timer(pos):stop()
+	end,
 	on_timer = function(pos, elapsed)
 		local webs = {}
 		local anchors = {}
@@ -103,8 +163,35 @@ minetest.register_node("big_webs:webbing", {
 			if first_anchor == nil then
 				-- unsupported web
 				minetest.set_node(web_pos, {name="air"})
+				minetest.item_drop(ItemStack("big_webs:webbing"), nil, web_pos)
 			end
 			minetest.get_node_timer(web_pos):stop() -- no need to recheck
 		end	
+	end,
+})
+
+minetest.register_node("big_webs:web_egg", {
+	description = S("Giant Cave Spider Web Generator"),
+	tiles = {
+		{name="big_webs.png"},
+	},
+	use_texture_alpha = "blend",
+    connects_to = {"group:soil", "group:stone", "group:tree", "group:leaves", "group:sand", "group:wood", "group:webbing"},
+    connect_sides = { "top", "bottom", "front", "left", "back", "right" },
+	drawtype = "nodebox",
+	node_box = get_node_box(0.0625),
+	collision_box = get_node_box(0.0625),
+	paramtype = "light",
+	is_ground_content = false,
+	climbable = true,
+	floodable = true,
+	groups = {choppy = 2, webbing = 1, flammable=1, fall_damage_add_percent=-100, bouncy=20},
+	sounds = sound,
+	on_construct = function(pos)
+		minetest.get_node_timer(pos):start(1)
+	end,
+	on_timer = function(pos, elapsed)
+		minetest.set_node(pos, {name="air"})
+		generate_web(pos)
 	end,
 })

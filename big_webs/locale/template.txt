@@ -7,5 +7,5 @@ Big Spiderweb=
 
 Thick ropes of sticky silk, strung between cavern walls in hopes of catching bats and larger beasts.=
 
-Webbing can be collected and re-strung elsewhere to aid in climbing.=
+Webbing can be collected and re-strung elsewhere to aid in climbing. It absorbs all falling damage when you land on it.=
 

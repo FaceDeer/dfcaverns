@@ -21,9 +21,25 @@ local c_wet_flowstone = df_caverns.node_id.wet_flowstone
 
 df_caverns.data_param2 = {}
 
+-- prevent mapgen from using these nodes as a base for stalactites or stalagmites
+local dont_build_speleothems_on = {}
+for _, content_id in pairs(df_mapitems.wet_stalagmite_ids) do
+	dont_build_speleothems_on[content_id] = true
+end
+for _, content_id in pairs(df_mapitems.dry_stalagmite_ids) do
+	dont_build_speleothems_on[content_id] = true
+end
+if minetest.get_modpath("big_webs") then
+	dont_build_speleothems_on[df_caverns.node_id.big_webs] = true
+	dont_build_speleothems_on[df_caverns.node_id.big_webs_egg] = true
+end
+
 --------------------------------------------------
 
 df_caverns.stalagmites = function(abs_cracks, vert_rand, vi, area, data, data_param2, wet, reverse_sign)
+	if dont_build_speleothems_on[data[vi]] then
+		return
+	end
 	local flowstone
 	local stalagmite_ids
 	if wet then
@@ -118,13 +134,6 @@ df_caverns.glow_worm_cavern_ceiling = function(abs_cracks, vert_rand, vi, area, 
 	end
 end
 
-local content_in_list=function(content, list)
-	for i, v in ipairs(list) do
-		if content == v then return true end
-	end
-	return false
-end
-
 df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, data_param2, wet, dirt_node)
 	if maxp.y > -30 then
 		wet = false
@@ -135,7 +144,7 @@ df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, dat
 	local abs_cracks = math.abs(cracks)
 
 	if wet then
-		if abs_cracks < 0.05 and data[vi+ystride] == c_air and not content_in_list(data[vi], df_mapitems.wet_stalagmite_ids) then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
+		if abs_cracks < 0.05 and data[vi+ystride] == c_air and not dont_build_speleothems_on[data[vi]] then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
@@ -144,7 +153,7 @@ df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, dat
 			data[vi] = dirt_node		
 		end
 	else
-		if abs_cracks < 0.025 and data[vi+ystride] == c_air and not content_in_list(data[vi], df_mapitems.dry_stalagmite_ids) then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
+		if abs_cracks < 0.025 and data[vi+ystride] == c_air and not dont_build_speleothems_on[data[vi]] then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)
@@ -165,14 +174,14 @@ df_caverns.tunnel_ceiling = function(minp, maxp, area, vi, nvals_cracks, data, d
 	local abs_cracks = math.abs(cracks)
 	 
 	if wet then
-		if abs_cracks < 0.05 and data[vi-ystride] == c_air and not content_in_list(data[vi], df_mapitems.wet_stalagmite_ids) then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
+		if abs_cracks < 0.05 and data[vi-ystride] == c_air and not dont_build_speleothems_on[data[vi]] then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalactite(vi-ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
 			data[vi] = c_wet_flowstone
 		end
 	else
-		if abs_cracks < 0.025 and data[vi-ystride] == c_air and not content_in_list(data[vi], df_mapitems.dry_stalagmite_ids) then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
+		if abs_cracks < 0.025 and data[vi-ystride] == c_air and not dont_build_speleothems_on[data[vi]] then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
 			local height = math.floor(abs_cracks * 100)
 			subterrane.stalactite(vi-ystride, area, data, data_param2, param2, height, df_mapitems.dry_stalagmite_ids)

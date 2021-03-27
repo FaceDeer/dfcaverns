@@ -1,5 +1,7 @@
 local data = {}
 
+chasms = {}
+
 local maxy = tonumber(minetest.settings:get("chasms_maxy")) or -50
 local miny = tonumber(minetest.settings:get("chasms_miny")) or -2500
 local falloff = tonumber(minetest.settings:get("chasms_falloff")) or 100
@@ -72,31 +74,41 @@ end
 
 local z_displace = 10000
 
+
+local calculate_web_array = function(minp, maxp)
+	local seed = math.random()*10000000
+	math.randomseed(minp.y + z_displace*minp.z) -- use consistent seeds across the x axis
+	local webs = {}
+	for count = 1, math.random(10,30) do
+		local width = math.random(5, 20)
+		local direction_vertical = math.random() > 0.5
+		local web_y = math.random(minp.y+8, maxp.y-8)
+		local web_z = math.random(minp.z+8, maxp.z-8)
+		for i = -math.floor(width/2), math.ceil(width/2) do
+			if direction_vertical then
+				webs[(web_y+i) + web_z*z_displace] = true
+			else
+				webs[web_y + (web_z+i)*z_displace] = true
+			end
+		end
+	end
+	math.randomseed(seed)
+	return webs
+end
+
 minetest.register_on_generated(function(minp, maxp, seed)
 	if minp.y >= maxy or maxp.y <= miny then
 		return
 	end
 	
-	-- build a set of web patterns
+	-- check if webs are present
 	local webs
+	local webs_present = false
 	if big_webs_path then
 		local seed = math.random()*10000000
 		math.randomseed(minp.y + z_displace*minp.z) -- use consistent seeds across the x axis
 		if math.random() < web_probability then
-			webs = {}
-			for count = 1, math.random(10,30) do
-				local width = math.random(5, 20)
-				local direction_vertical = math.random() > 0.5
-				local web_y = math.random(minp.y+8, maxp.y-8)
-				local web_z = math.random(minp.z+8, maxp.z-8)
-				for i = -math.floor(width/2), math.ceil(width/2) do
-					if direction_vertical then
-						webs[(web_y+i) + web_z*z_displace] = true
-					else
-						webs[web_y + (web_z+i)*z_displace] = true
-					end
-				end
-			end
+			webs_present = true
 		end
 		math.randomseed(seed)
 	end
@@ -117,7 +129,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local waver = math.min(math.max(math.floor(waver_data[i]+0.5), -waver_strength), waver_strength)
 		local intensity = get_intensity(y)
 		if chasm_data[chasm_area:index(x+waver, y, z)]*intensity > chasms_threshold then
-			if webs then
+			if webs_present then
+				webs = webs or calculate_web_array(minp, maxp) -- only calculate webs when we know we're in a chasm
 				if webs[y + z*z_displace] and math.random() < 0.85 then -- random holes in the web
 					data[i] = c_web
 					minetest.get_node_timer({x=x,y=y,z=z}):start(1) -- this timer will check for unsupported webs
@@ -134,3 +147,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:calc_lighting()
 	vm:write_to_map()
 end)
+
+local nobj_local_chasm = minetest.get_perlin(np_chasms)
+local nobj_local_waver = minetest.get_perlin(np_waver)
+
+chasms.is_in_chasm = function(pos)
+	nobj_local_chasm = nobj_local_chasm or minetest.get_perlin(np_chasms)
+	nobj_local_waver = nobj_local_waver or minetest.get_perlin(np_waver)
+	local waver = math.min(math.max(math.floor(nobj_local_waver:get_3d(pos)+0.5), -waver_strength), waver_strength)
+	local chasm_value = nobj_local_chasm:get_3d({x=pos.x+waver, y=pos.y, z=pos.z})
+	return chasm_value*get_intensity(pos.y) > chasms_threshold
+end
+
+-- A little cheaper to run, for mapgens that know they don't have to worry about the tops and bottoms of chasms
+chasms.is_in_chasm_without_taper = function(pos)
+	nobj_local_chasm = nobj_local_chasm or minetest.get_perlin(np_chasms)
+	nobj_local_waver = nobj_local_waver or minetest.get_perlin(np_waver)
+	local waver = math.min(math.max(math.floor(nobj_local_waver:get_3d(pos)+0.5), -waver_strength), waver_strength)
+	local chasm_value = nobj_local_chasm:get_3d({x=pos.x+waver, y=pos.y, z=pos.z})
+	return chasm_value > chasms_threshold
+end

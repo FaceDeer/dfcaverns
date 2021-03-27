@@ -79,11 +79,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local chasm_area = VoxelArea:new{MinEdge = vector.subtract(emin, waver_vector), MaxEdge = vector.add(emax, waver_vector)}
 	local data_area = VoxelArea:new{MinEdge = emin, MaxEdge = emax}
 
---	local count = {}
-
-	for i, x, y, z in data_area:iterp_xyz(minp, maxp) do
+	for i, x, y, z in data_area:iterp_xyz(emin, emax) do
 		local waver = math.min(math.max(math.floor(waver_data[i]+0.5), -waver_strength), waver_strength)
---		count[waver] = (count[waver] or 0) + 1
 		local intensity = get_intensity(y)
 		if chasm_data[chasm_area:index(x+waver, y, z)]*intensity > chasms_threshold then
 			data[i] = c_air
@@ -92,6 +89,4 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:set_data(data)
 	vm:calc_lighting()
 	vm:write_to_map()
-	
---	minetest.debug(dump(count))
 end)

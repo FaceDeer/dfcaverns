@@ -6,7 +6,7 @@ local maxy = tonumber(minetest.settings:get("chasms_maxy")) or -50
 local miny = tonumber(minetest.settings:get("chasms_miny")) or -2500
 local falloff = tonumber(minetest.settings:get("chasms_falloff")) or 100
 
-local web_probability = 0.1 -- the chance that a given mapblock will have webbing criss-crossing the chasm
+local web_probability = 0.15 -- the chance that a given mapblock will have webbing criss-crossing the chasm
 
 local chasms_threshold = tonumber(minetest.settings:get("chasms_threshold")) or 0.9
 local np_chasms_default = {

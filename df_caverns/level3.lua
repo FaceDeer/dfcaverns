@@ -367,7 +367,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			else
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
 			end
-			if c_webs_egg and biome_name == "barren" and nvals_cracks[index2d] > 0.5 and math.random() < 0.1 then
+			if c_webs_egg and (biome_name == "barren" or biome_name == "blackcap") and nvals_cracks[index2d] > 0.5 and math.random() < 0.1 then
 				local index = vi-ystride
 				if data[index] == c_air then
 					data[index] = c_webs_egg

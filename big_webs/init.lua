@@ -79,6 +79,7 @@ end
 
 
 local web_line = function(pos, dir, distance)
+	local anchored
 	local web_spine = {}
 	for i = 0, distance do
 		local web_pos = vector.add(pos, vector.multiply(dir,i))

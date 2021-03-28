@@ -18,6 +18,8 @@ local c_spongestone = df_caverns.node_id.spongestone
 local c_rock_rot = df_caverns.node_id.rock_rot
 local c_water = df_caverns.node_id.water
 local c_wet_flowstone = df_caverns.node_id.wet_flowstone
+local c_webs = df_caverns.node_id.big_webs
+local c_webs_egg = df_caverns.node_id.big_webs_egg
 
 df_caverns.data_param2 = {}
 
@@ -30,8 +32,8 @@ for _, content_id in pairs(df_mapitems.dry_stalagmite_ids) do
 	dont_build_speleothems_on[content_id] = true
 end
 if minetest.get_modpath("big_webs") then
-	dont_build_speleothems_on[df_caverns.node_id.big_webs] = true
-	dont_build_speleothems_on[df_caverns.node_id.big_webs_egg] = true
+	dont_build_speleothems_on[c_webs] = true
+	dont_build_speleothems_on[c_webs_egg] = true
 end
 
 --------------------------------------------------

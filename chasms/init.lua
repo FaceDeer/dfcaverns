@@ -79,8 +79,8 @@ local calculate_web_array = function(minp, maxp)
 	local seed = math.random()*10000000
 	math.randomseed(minp.y + z_displace*minp.z) -- use consistent seeds across the x axis
 	local webs = {}
-	for count = 1, math.random(10,30) do
-		local width = math.random(5, 20)
+	for count = 1, math.random(5,20) do
+		local width = math.random(5, 25)
 		local direction_vertical = math.random() > 0.5
 		local web_y = math.random(minp.y+8, maxp.y-8)
 		local web_z = math.random(minp.z+8, maxp.z-8)

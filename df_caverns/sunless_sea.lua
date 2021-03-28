@@ -9,6 +9,8 @@ local c_dry_flowstone = df_caverns.node_id.dry_flowstone
 local c_lava = df_caverns.node_id.lava
 local c_obsidian = df_caverns.node_id.obsidian
 
+local chasms_path = minetest.get_modpath("chasms")
+
 local c_coral_table = {}
 for node_name, node_def in pairs(minetest.registered_nodes) do
 	if minetest.get_item_group(node_name, "dfcaverns_cave_coral") > 0 then
@@ -382,6 +384,17 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				data[vi] = c_coral_table[math.random(1,3)]
 				data_param2[vi] = math.random(1,4)-1
 				minetest.get_node_timer(area:position(vi)):start(math.random(10, 60))
+			end
+			
+			if chasms_path then
+				local pos = area:position(vi)
+				if chasms.is_in_chasm(pos) then
+					if pos.y <= sea_level then
+						data[vi] = c_water
+					else
+						data[vi] = c_air
+					end
+				end
 			end
 		end
 	end

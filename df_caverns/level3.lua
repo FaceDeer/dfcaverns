@@ -17,6 +17,7 @@ local c_glow_ore = df_caverns.node_id.glow_ore
 local c_salty_cobble = df_caverns.node_id.salty_cobble
 local c_salt_crystal = df_caverns.node_id.salt_crystal
 local c_sprite = df_caverns.node_id.sprite
+local c_webs_egg = df_caverns.node_id.big_webs_egg
 
 local chasms_path = minetest.get_modpath("chasms")
 
@@ -365,6 +366,18 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			else
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
 			end
+			
+			if c_webs_egg and not flooded_caverns and biome_name == "barren" and nvals_cracks[index2d] > 0.5 then
+				if math.random() < 0.05 then
+					local index = vi-ystride
+					if data[index] == c_air then
+						data[index] = c_webs_egg
+						minetest.get_node_timer(area:position(index)):start(1)
+						--minetest.debug("webs generated at " .. minetest.pos_to_string(area:position(index)))
+					end
+				end
+			end
+
 		else
 			-- air pockets
 			local ystride = area.ystride

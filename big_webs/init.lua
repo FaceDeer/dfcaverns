@@ -24,7 +24,8 @@ local in_anchor_group = function(name)
 		minetest.get_item_group(name, "tree") > 0 or
 		minetest.get_item_group(name, "leaves") > 0 or
 		minetest.get_item_group(name, "sand") > 0 or
-		minetest.get_item_group(name, "wood") > 0
+		minetest.get_item_group(name, "wood") > 0 or
+		name == "ignore"
 end
 
 local cardinal_directions = {

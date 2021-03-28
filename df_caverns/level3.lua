@@ -17,6 +17,9 @@ local c_glow_ore = df_caverns.node_id.glow_ore
 local c_salty_cobble = df_caverns.node_id.salty_cobble
 local c_salt_crystal = df_caverns.node_id.salt_crystal
 local c_sprite = df_caverns.node_id.sprite
+local c_webs_egg = df_caverns.node_id.big_webs_egg
+
+local chasms_path = minetest.get_modpath("chasms")
 
 local subsea_level = math.floor(df_caverns.config.level3_min - (df_caverns.config.level3_min - df_caverns.config.level2_min) * 0.33)
 local flooding_threshold = math.min(df_caverns.config.tunnel_flooding_threshold, df_caverns.config.cavern_threshold)
@@ -355,6 +358,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 		local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
+		local ystride = area.ystride
 		
 		if not (flooded_caverns and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
 			if flooded_caverns or biome_name == "blackcap" then
@@ -363,9 +367,15 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			else
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
 			end
+			if c_webs_egg and (biome_name == "barren" or biome_name == "blackcap") and nvals_cracks[index2d] > 0.5 and math.random() < 0.1 then
+				local index = vi-ystride
+				if data[index] == c_air then
+					data[index] = c_webs_egg
+					minetest.get_node_timer(area:position(index)):start(1)
+				end
+			end
 		else
 			-- air pockets
-			local ystride = area.ystride
 			local cracks = nvals_cracks[index2d]
 			if cracks > 0.5 and data[vi-ystride] == c_water then
 				data[vi-ystride] = c_air
@@ -459,7 +469,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	end
 	
 	----------------------------------------------
-	-- Column material override for dry biome	
+	-- Column material override for dry and icy biomes
 	for _, vi in ipairs(node_arrays.column_nodes) do
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
@@ -476,7 +486,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 						-- with the full blown generated array rigamarole.
 						hoar_moss_generator = hoar_moss_generator or minetest.get_perlin(hoar_moss_perlin_params)
 						local pos = area:position(vi)
-						if hoar_moss_generator.get_3d and hoar_moss_generator:get_3d({x=pos.z, y=pos.y, z=pos.x}) > 0.5 then -- TODO: version 0.4.16 gets no hoar moss
+						if hoar_moss_generator:get_3d({x=pos.z, y=pos.y, z=pos.x}) > 0.5 then
 							data[vi] = c_hoar_moss
 						else
 							data[vi] = c_ice
@@ -491,6 +501,19 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		elseif biome_name == "barren" and not flooded_caverns and data[vi] == c_wet_flowstone then
 			data[vi] = c_dry_flowstone
 		end
+		
+		if chasms_path then
+			local pos = area:position(vi)
+			if chasms.is_in_chasm_without_taper(pos) then
+				if flooded_caverns and pos.y < subsea_level then
+					data[vi] = c_water -- this puts a crack in the ice of icy biomes, but why not? A crack in the ice is interesting.
+				else
+					data[vi] = c_air
+				end
+			end
+		end
+
+		
 	end
 
 	vm:set_param2_data(data_param2)

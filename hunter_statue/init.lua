@@ -114,7 +114,7 @@ hunter_statue.register_hunter_statue = function(node_name, statue_def)
 					if fleshy_armour then
 						armour_multiplier = fleshy_armour/100
 					end
-					nearest_player:add_player_velocity(vector.multiply(vector.direction(pos, nearest_pos), knockback))
+					nearest_player:add_velocity(vector.multiply(vector.direction(pos, nearest_pos), knockback))
 					nearest_player:set_hp(math.max(nearest_player:get_hp() - damage*armour_multiplier, 0))
 					minetest.sound_play({name="hunter_statue_thud"}, {pos = nearest_pos})
 					return

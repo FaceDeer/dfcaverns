@@ -14,6 +14,9 @@ local c_dry_flowstone = df_caverns.node_id.dry_flowstone
 local c_veinstone = df_caverns.node_id.veinstone
 local c_pearls = df_caverns.node_id.pearls
 
+local chasms_path = minetest.get_modpath("chasms")
+
+
 local wall_vein_perlin_params = {
 	offset = 0,
 	scale = 1,
@@ -354,6 +357,19 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		if dry and data[vi] == c_wet_flowstone then
 			data[vi] = c_dry_flowstone
 		end
+		
+		if chasms_path then
+			local pos = area:position(vi)
+			if chasms.is_in_chasm_without_taper(pos) then
+				local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
+				if flooded_caverns and pos.y < subsea_level then
+					data[vi] = c_water
+				else
+					data[vi] = c_air
+				end
+			end
+		end
+
 	end
 
 	vm:set_param2_data(data_param2)

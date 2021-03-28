@@ -14,6 +14,11 @@ if minetest.get_modpath("df_farming") then
 	df_caverns.node_id.dead_fungus = minetest.get_content_id("df_farming:dead_fungus")
 end
 
+if minetest.get_modpath("big_webs") then
+	df_caverns.node_id.big_webs = minetest.get_content_id("big_webs:webbing")
+	df_caverns.node_id.big_webs_egg = minetest.get_content_id("big_webs:web_egg")
+end
+
 df_caverns.node_id.air = minetest.get_content_id("air")
 
 df_caverns.node_id.cobble = minetest.get_content_id("default:cobble")

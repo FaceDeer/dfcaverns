@@ -137,7 +137,7 @@ minetest.register_node("big_webs:webbing", {
 	is_ground_content = false,
 	climbable = true,
 	floodable = true,
-	groups = {choppy = 2, webbing = 1, flammable=1, fall_damage_add_percent=-100, bouncy=20},
+	groups = {snappy = 2, choppy = 2, webbing = 1, flammable=1, fall_damage_add_percent=-100, bouncy=20},
 	sounds = sound,
 	on_construct = function(pos)
 		minetest.get_node_timer(pos):start(30)
@@ -185,7 +185,7 @@ minetest.register_node("big_webs:web_egg", {
 	is_ground_content = false,
 	climbable = true,
 	floodable = true,
-	groups = {choppy = 2, webbing = 1, flammable=1, fall_damage_add_percent=-100, bouncy=20},
+	groups = {snappy = 2, choppy = 2, webbing = 1, flammable=1, fall_damage_add_percent=-100, bouncy=20},
 	sounds = sound,
 	on_construct = function(pos)
 		minetest.get_node_timer(pos):start(1)

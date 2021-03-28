@@ -95,8 +95,9 @@ local web_line = function(pos, dir, distance)
 
 	if anchored then
 		for _, web_pos in pairs(web_spine) do
-			minetest.set_node(web_pos, {name="big_webs:webbing"})
-			minetest.get_node_timer(web_pos):stop() -- no need to test, we know it's anchored
+			if math.random() < 0.9 then
+				minetest.set_node(web_pos, {name="big_webs:webbing"})
+			end
 		end
 		return web_spine
 	end
@@ -106,9 +107,7 @@ end
 local generate_web = function(pos)
 	local dir_choice = math.random(1, 6)
 	local dir = cardinal_directions[dir_choice]
-	minetest.chat_send_all(minetest.pos_to_string(dir))
 	local web_spine = web_line(pos, dir, 30)
-	minetest.chat_send_all(dump(web_spine))
 	if web_spine then
 		local dir2 = cardinal_directions[cardinal_planes[dir_choice][math.random(1, 2)]]
 		local dir2_opposite = vector.multiply(dir2, -1)
@@ -157,11 +156,6 @@ minetest.register_node("big_webs:webbing", {
 		local anchors = {}
 		get_web_nodes(pos, webs, anchors)
 		local first_anchor = next(anchors)
---		if first_anchor then
---			minetest.chat_send_all("supported")
---		else
---			minetest.chat_send_all("unsupported")
---		end
 		for hash, _ in pairs(webs) do
 			local web_pos = minetest.get_position_from_hash(hash)
 			if first_anchor == nil then

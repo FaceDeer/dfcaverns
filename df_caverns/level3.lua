@@ -358,6 +358,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 		local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
+		local ystride = area.ystride
 		
 		if not (flooded_caverns and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
 			if flooded_caverns or biome_name == "blackcap" then
@@ -366,21 +367,15 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			else
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
 			end
-			
-			if c_webs_egg and not flooded_caverns and biome_name == "barren" and nvals_cracks[index2d] > 0.5 then
-				if math.random() < 0.05 then
-					local index = vi-ystride
-					if data[index] == c_air then
-						data[index] = c_webs_egg
-						minetest.get_node_timer(area:position(index)):start(1)
-						--minetest.debug("webs generated at " .. minetest.pos_to_string(area:position(index)))
-					end
+			if c_webs_egg and not flooded_caverns and biome_name == "barren" and nvals_cracks[index2d] > 0.5 and math.random() < 0.2 then
+				local index = vi-ystride
+				if data[index] == c_air then
+					data[index] = c_webs_egg
+					minetest.get_node_timer(area:position(index)):start(1)
 				end
 			end
-
 		else
 			-- air pockets
-			local ystride = area.ystride
 			local cracks = nvals_cracks[index2d]
 			if cracks > 0.5 and data[vi-ystride] == c_water then
 				data[vi-ystride] = c_air

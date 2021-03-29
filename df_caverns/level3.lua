@@ -356,7 +356,8 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	
 	for _, vi in ipairs(node_arrays.tunnel_ceiling_nodes) do
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
-		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
+		local humidity = humiditymap[index2d]
+		local biome_name = get_biome(heatmap[index2d], humidity)
 		local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
 		local ystride = area.ystride
 		
@@ -367,7 +368,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			else
 				df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, false)
 			end
-			if c_webs_egg and (biome_name == "barren" or biome_name == "blackcap") and nvals_cracks[index2d] > 0.5 and math.random() < 0.1 then
+			if c_webs_egg and humidity < 40 and nvals_cracks[index2d] > 0.5 and math.random() < 0.1 then
 				local index = vi-ystride
 				if data[index] == c_air then
 					data[index] = c_webs_egg

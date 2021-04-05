@@ -2,6 +2,13 @@ local data = {}
 
 chasms = {}
 
+local ignore = {}
+
+-- Use this to set node types to be left alone by chasm-carving
+chasms.register_ignore = function(node_name)
+	ignore[minetest.get_content_id(node_name)] = true
+end
+
 local maxy = tonumber(minetest.settings:get("chasms_maxy")) or -50
 local miny = tonumber(minetest.settings:get("chasms_miny")) or -2500
 local falloff = tonumber(minetest.settings:get("chasms_falloff")) or 100
@@ -129,16 +136,18 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local waver = math.min(math.max(math.floor(waver_data[i]+0.5), -waver_strength), waver_strength)
 		local intensity = get_intensity(y)
 		if chasm_data[chasm_area:index(x+waver, y, z)]*intensity > chasms_threshold then
-			if webs_present then
-				webs = webs or calculate_web_array(minp, maxp) -- only calculate webs when we know we're in a chasm
-				if webs[y + z*z_displace] and math.random() < 0.85 then -- random holes in the web
-					data[i] = c_web
-					minetest.get_node_timer({x=x,y=y,z=z}):start(1) -- this timer will check for unsupported webs
+			if not ignore[data[i]] then
+				if webs_present then
+					webs = webs or calculate_web_array(minp, maxp) -- only calculate webs when we know we're in a chasm
+					if webs[y + z*z_displace] and math.random() < 0.85 then -- random holes in the web
+						data[i] = c_web
+						minetest.get_node_timer({x=x,y=y,z=z}):start(1) -- this timer will check for unsupported webs
+					else
+						data[i] = c_air
+					end
 				else
 					data[i] = c_air
 				end
-			else
-				data[i] = c_air
 			end
 		end
 	end

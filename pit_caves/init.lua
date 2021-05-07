@@ -28,6 +28,13 @@ if minetest.get_modpath("default") then
 	end
 end
 
+local ignore
+if minetest.get_modpath("chasms") then
+	-- the chasms mod already sets up a method to allow chasms to avoid overwriting stalactites and whatnot,
+	-- hijack that.
+	ignore = chasms.ignore_content_id
+end
+
 local water_level = tonumber(minetest.get_mapgen_setting("water_level"))
 local mapgen_seed = tonumber(minetest.get_mapgen_setting("seed")) % 2^16
 
@@ -114,22 +121,23 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local nvals_perlin = mapgen_helper.perlin3d("pit_caves:pit", emin, emax, perlin_params)
 		
 	for vi, x, y, z in area:iterp_xyz(emin, emax) do
-		local distance_perturbation = (nvals_perlin[vi]+1)*10
-		local distance = vector.distance({x=x, y=y, z=z}, {x=location_x, y=y, z=location_z}) - distance_perturbation
-		local taper_min = top - 40
+		if not (ignore and ignore(data[vi])) then
+			local distance_perturbation = (nvals_perlin[vi]+1)*10
+			local distance = vector.distance({x=x, y=y, z=z}, {x=location_x, y=y, z=location_z}) - distance_perturbation
+			local taper_min = top - 40
 
-		if y < top and y > depth then
-		
-			-- taper the top end
-			if y > top - 40 then
-				distance = distance - ((taper_min - y)/2)
-			end
+			if y < top and y > depth then
+				if y > top - 40 then
+					-- taper the top end
+					distance = distance - ((taper_min - y)/2)
+				end
 			
-			if distance < pit_radius then
-				if y < depth + 20 and data[vi] ~= c_air then
-					data[vi] = c_gravel
-				else
-					data[vi] = c_air
+				if distance < pit_radius then
+					if y < depth + 20 and data[vi] ~= c_air then
+						data[vi] = c_gravel
+					else
+						data[vi] = c_air
+					end
 				end
 			end
 		end

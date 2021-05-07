@@ -6,6 +6,8 @@ local max_depth = tonumber(minetest.settings:get("pit_caves_max_bottom") or -500
 local min_top = tonumber(minetest.settings:get("pit_caves_min_top") or -100)
 local max_top = tonumber(minetest.settings:get("pit_caves_max_top") or 100)
 
+local seal_ocean = minetest.settings:get_bool("pit_caves_seal_ocean", true)
+
 assert(min_depth < max_depth, "pit_caves_min_bottom is above pit_caves_max_bottom")
 assert(min_top < max_top, "pit_caves_min_top is above pit_caves_max_top")
 assert(max_depth < min_top, "pit_caves_max_bottom is above pit_caves_min_top")
@@ -18,8 +20,12 @@ local pit_region_size = region_mapblocks * mapgen_chunksize * 16
 
 local c_air = minetest.get_content_id("air")
 local c_gravel = c_air
+local water_node
 if minetest.get_modpath("default") then
 	c_gravel = minetest.get_content_id("default:gravel")
+	if seal_ocean then
+		water_node = "default:water_source"
+	end
 end
 
 local water_level = tonumber(minetest.get_mapgen_setting("water_level"))
@@ -93,10 +99,21 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local area = VoxelArea:new{MinEdge=emin, MaxEdge=emax}
 	vm:get_data(data)
 
+	if water_node and minp.y <= water_level and maxp.y >= water_level-240 then
+		local test_node = minetest.get_node(vector.new(location_x, water_level, location_z))
+		if test_node.name == water_node then
+			top = math.min(-32, top) -- we're coming up under the ocean, abort the pit.
+			-- note that this does depend on the water-level map block having been generated already,
+			-- which could lead to a sharp cutoff if that's not the case - if the player's coming
+			-- up a pit from below into an unexplored ocean, for example. But it should still at least
+			-- seal the hole before the ocean pours down into it, so that's acceptable. And I expect
+			-- most of the time the surface world will be explored first before pits are discovered.
+		end
+	end
+
 	local nvals_perlin = mapgen_helper.perlin3d("pit_caves:pit", emin, emax, perlin_params)
 		
 	for vi, x, y, z in area:iterp_xyz(emin, emax) do
-	
 		local distance_perturbation = (nvals_perlin[vi]+1)*10
 		local distance = vector.distance({x=x, y=y, z=z}, {x=location_x, y=y, z=location_z}) - distance_perturbation
 		local taper_min = top - 40

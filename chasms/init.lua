@@ -9,6 +9,10 @@ chasms.register_ignore = function(node_name)
 	ignore[minetest.get_content_id(node_name)] = true
 end
 
+chasms.ignore_content_id = function(content_id)
+	return ignore[content_id]
+end
+
 local maxy = tonumber(minetest.settings:get("chasms_maxy")) or -50
 local miny = tonumber(minetest.settings:get("chasms_miny")) or -2500
 local falloff = tonumber(minetest.settings:get("chasms_falloff")) or 100

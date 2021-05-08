@@ -168,6 +168,12 @@ Not all vast open spaces underground are the result of aeons of erosion by water
 
 The great extent of chasms makes them hospitable to small flying creatures, and their narrowness makes the hospitable to creatures that feed on them - giant cave spider webs can be found strung across them here and there. A dubious salvation for anyone falling from above.
 
+# Pit caves
+
+![Looking up from the bottom of a pit](./df_caverns/screenshots/pit_cave.jpg)
+
+A pit cave is a type of cave which contains one or more significant vertical shafts rather than being predominantly a conventional horizontal cave passage. Pit caves typically form in limestone as a result of long-term erosion by water. Given the vast scope of the flowstone formations found throughout the upper layers of the world's caverns, correspondingly gigantic pits can also be found. They sometimes breach the surface of the world, and at their greatest extent can have a drop over two kilometers deep. Bring plenty of rope when exploring such abysses.
+
 # Sunless Sea
 
 ![Sunless river](./df_caverns/screenshots/sunless_river.jpg)

@@ -188,7 +188,7 @@ local send_nearby_states = function(pos, name)
 	return retval
 end
 
-minetest.register_chatcommand("findpits", {
+minetest.register_chatcommand("find_pit_caves", {
     params = "pos", -- Short parameter description
     description = S("find the pits near the player's map region, or in the map region containing pos if provided"),
     func = function(name, param)

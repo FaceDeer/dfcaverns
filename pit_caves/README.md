@@ -15,4 +15,4 @@ The following settings are available for configuring pit cave generation:
 
 The pit_caves_seal_ocean setting isn't perfect, some map generation scenarios can result in a gap through which water can flow. But it's better than having drain holes everywhere.
 
-Users with the "server" privilege can use the ``/findpits`` command, which will list the locations of nearby pit caves.
+Users with the "server" privilege can use the ``/find_pit_caves`` command, which will list the locations of nearby pit caves.

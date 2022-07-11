@@ -90,13 +90,14 @@ minetest.register_craft({
 
 local register_spindlestem_type = function(item_suffix, colour_name, colour_code, light_level, extract_color_group)
 	local cap_item = "df_trees:spindlestem_cap_"..item_suffix
+	local cap_item_harvested = "df_trees:spindlestem_cap_harvested_"..item_suffix
 	
-	minetest.register_node(cap_item, {
+	local cap_def = {
 		description = S("@1 Spindlestem Cap", colour_name),
 		is_ground_content = false,
 		_doc_items_longdesc = df_trees.doc["spindlestem_cap_"..item_suffix.."_desc"],
 		_doc_items_usagehelp = df_trees.doc["spindlestem_cap_"..item_suffix.."_usage"],
-		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
+		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1, not_in_creative_inventory = 1},
 		sounds = df_trees.sounds.wood,
 		tiles = {
 			"dfcaverns_tower_cap.png^[multiply:#"..colour_code,
@@ -127,19 +128,19 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
             -- Choose max_items randomly from this list
             items = {
                 {
-                    items = {cap_item, "df_trees:spindlestem_seedling"},  -- Items to drop
+                    items = {cap_item_harvested, "df_trees:spindlestem_seedling"},  -- Items to drop
                     rarity = 2,  -- Probability of dropping is 1 / rarity
                 },
                 {
-                    items = {cap_item, "df_trees:spindlestem_seedling", "df_trees:spindlestem_seedling"},  -- Items to drop
+                    items = {cap_item_harvested, "df_trees:spindlestem_seedling", "df_trees:spindlestem_seedling"},  -- Items to drop
                     rarity = 2,  -- Probability of dropping is 1 / rarity
                 },
                 {
-                    items = {cap_item, "df_trees:spindlestem_seedling", "df_trees:spindlestem_seedling", "df_trees:spindlestem_seedling"},  -- Items to drop
+                    items = {cap_item_harvested, "df_trees:spindlestem_seedling", "df_trees:spindlestem_seedling", "df_trees:spindlestem_seedling"},  -- Items to drop
                     rarity = 2,  -- Probability of dropping is 1 / rarity
                 },
                 {
-                    items = {cap_item},  -- Items to drop
+                    items = {cap_item_harvested},  -- Items to drop
                     rarity = 1,  -- Probability of dropping is 1 / rarity
                 },
             },
@@ -177,16 +178,28 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 				minetest.get_node_timer(pos):start(delay-elapsed)
 			end
 		end,
-	})
+	}
+	
+	local cap_def_harvested = {}
+	for key, val in pairs(cap_def) do
+		cap_def_harvested[key] = val
+	end
+	cap_def_harvested.groups = {}
+	for key, val in pairs(cap_def.groups) do
+		cap_def_harvested.groups[key] = val
+	end
+	cap_def_harvested.drop = nil -- harvested caps shouldn't drop spawn
+	cap_def_harvested.on_timer = nil -- harvested caps shouldn't grow, just in case a timer and node metadata are set up where it's placed
+	cap_def_harvested.groups.not_in_creative_inventory = nil
+		
+	minetest.register_node(cap_item, cap_def)
+	minetest.register_node(cap_item_harvested, cap_def_harvested)
 
 	minetest.register_craft({
 		type = "fuel",
-		recipe = cap_item,
+		recipe = cap_item_harvested,
 		burntime = 10,
 	})
-
-	local c_stem = minetest.get_content_id("df_trees:spindlestem_stem")
-	local c_cap = minetest.get_content_id(cap_item)
 	
 	if vessels and light_level > 0 then
 		local tex = "dfcaverns_vessels_glowing_liquid.png^[multiply:#"..colour_code.."^vessels_glass_bottle.png"
@@ -224,7 +237,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 				"vessels:glass_bottle",
 				"vessels:glass_bottle",
 				"vessels:glass_bottle",
-				cap_item,
+				cap_item_harvested,
 			}
 		})
 

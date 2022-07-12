@@ -33,11 +33,11 @@ local register_dimple_cup = function(number)
 			max_items = 1,
 			items = {
 				{
-					items = {'df_farming:dimple_cup_seed 2', 'df_farming:dimple_cup_4'},
+					items = {'df_farming:dimple_cup_seed 2', 'df_farming:dimple_cup_harvested'},
 					rarity = 7-number,
 				},
 				{
-					items = {'df_farming:dimple_cup_seed 1', 'df_farming:dimple_cup_4'},
+					items = {'df_farming:dimple_cup_seed 1', 'df_farming:dimple_cup_harvested'},
 					rarity = 5-number,
 				},
 			},
@@ -55,6 +55,30 @@ end
 for i = 1,4 do
 	register_dimple_cup(i)
 end
+
+local name = "df_farming:dimple_cup_harvested"
+local def = {
+	description = S("Dimple Cup"),
+	_doc_items_longdesc = df_farming.doc.dimple_cup_desc,
+	_doc_items_usagehelp = df_farming.doc.dimple_cup_usage,
+	drawtype = "plantlike",
+	tiles = {"dfcaverns_dimple_cup_4.png"},
+	inventory_image = "dfcaverns_dimple_cup_4.png",
+	paramtype = "light",
+	walkable = false,
+	floodable = true,
+	is_ground_content = false,
+	buildable_to = true,
+	groups = {snappy = 3, flammable = 2, plant = 1, attached_node = 1, color_blue = 1, light_sensitive_fungus = 11, flower = 1},
+	sounds = df_farming.sounds.leaves,
+    selection_box = {
+        type = "fixed",
+        fixed = {
+            {-8/16, -8/16, -8/16, 8/16, -8/16 + 4*4/16, 8/16},
+        },
+    },
+}
+minetest.register_node(name, def)
 
 local place_list = {
 	minetest.get_content_id("df_farming:dimple_cup_1"),

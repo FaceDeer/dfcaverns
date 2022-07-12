@@ -146,6 +146,8 @@ minetest.register_craft({
 	}
 })
 
+df_trees.register_all_stairs("fern_wood")
+
 minetest.register_node("df_primordial_items:giant_fern_leaves", {
 	description = S("Giant Fern Leaves"),
 	_doc_items_longdesc = df_primordial_items.doc.giant_fern_desc,

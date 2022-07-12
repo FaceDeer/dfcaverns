@@ -80,7 +80,7 @@ minetest.register_craft({
 	recipe = { "group:primordial_mushroom_cap"},
 })
 
--- Note: no wood-making recipe for the trunk, it's pretty useless
+-- Note: no wood-making recipe for the trunk, it's deliberately pretty useless since the cap is edible
 minetest.register_craft({
 	type = "fuel",
 	recipe = "df_primordial_items:jungle_mushroom_trunk",

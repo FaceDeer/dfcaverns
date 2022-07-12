@@ -115,6 +115,8 @@ minetest.register_craft({
 	}
 })
 
+df_trees.register_all_stairs("primordial_mush_trunk_wood")
+
 minetest.register_node("df_primordial_items:primordial_mush_cap_wood", {
 	description = S("Primordial Cap Wood"),
 	_doc_items_longdesc = df_primordial_items.doc.giant_mushroom_desc,
@@ -132,6 +134,8 @@ minetest.register_craft({
 		{"df_primordial_items:mushroom_cap"},
 	}
 })
+
+df_trees.register_all_stairs("primordial_mush_cap_wood")
 
 ------
 -- Schematics:

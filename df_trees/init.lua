@@ -13,7 +13,7 @@ dofile(modpath.."/aliases.lua")
 local S = df_trees.S
 
 df_trees.register_all_stairs = function(name, override_def)
-	local mod = "df_trees"
+	local mod = minetest.get_current_modname()
 
 	local node_def = minetest.registered_nodes[mod..":"..name]
 	override_def = override_def or {}

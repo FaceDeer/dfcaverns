@@ -263,7 +263,7 @@ minetest.register_node("df_primordial_items:dirt_with_jungle_grass", {
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 13},
 	_dfcaverns_dead_node = df_primordial_items.node_names.dirt,
 	is_ground_content = false,
-	drops = df_primordial_items.node_names.dirt,
+	drop = df_primordial_items.node_names.dirt,
 	sounds = df_primordial_items.sounds.dirt,
 })
 

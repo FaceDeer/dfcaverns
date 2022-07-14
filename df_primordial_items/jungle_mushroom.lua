@@ -94,7 +94,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	tiles = {"dfcaverns_jungle_mushroom_02.png^[brighten"},
 	inventory_image = "dfcaverns_jungle_mushroom_02.png^[brighten",
 	wield_image = "dfcaverns_jungle_mushroom_02.png^[brighten",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, light_sensitive_fungus = 13},
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 13},
 	selection_box = {
 		type = "fixed",
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}

@@ -124,7 +124,6 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
 		end
-		minetest.set_node(pos, {name="air"})
 		df_primordial_items.spawn_jungle_mushroom(pos)
 	end,
 })
@@ -135,6 +134,7 @@ local c_cap_2 = minetest.get_content_id("df_primordial_items:jungle_mushroom_cap
 local c_air = minetest.get_content_id("air")
 
 df_primordial_items.spawn_jungle_mushroom = function(pos)
+	minetest.set_node(pos, {name="air"})
 	local x, y, z = pos.x, pos.y, pos.z
 	local stem_height = math.random(1,3)
 	local cap_radius = math.random(2,3)

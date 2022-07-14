@@ -725,10 +725,13 @@ minetest.register_node("df_primordial_items:mush_sapling", {
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
 		end
-		local mushroom = df_primordial_items.get_primordial_mushroom()
-		local rotation = (math.random(1,4)-1)*90
-		minetest.set_node(pos, {name="air"}) -- clear sapling so mushroom can replace it
-		mapgen_helper.place_schematic(pos, mushroom, rotation)
+		df_primordial_items.spawn_primordial_mushroom(pos)
 	end,
 })
 
+df_primordial_items.spawn_primordial_mushroom = function(pos)
+	local mushroom = df_primordial_items.get_primordial_mushroom()
+	local rotation = (math.random(1,4)-1)*90
+	minetest.set_node(pos, {name="air"}) -- clear sapling so mushroom can replace it
+	mapgen_helper.place_schematic(pos, mushroom, rotation)
+end

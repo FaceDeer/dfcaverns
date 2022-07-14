@@ -287,24 +287,27 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
 		end
-
-		local cap_item = minetest.get_name_from_content_id(get_spindlestem_cap_type(pos))
-		local node = minetest.get_node(pos)
-		minetest.set_node(pos, {name=cap_item, param2 = node.param2})
-		local meta = minetest.get_meta(pos)
-		local disp = {x=3, y=3, z=3}
-		local nearby = minetest.find_nodes_in_area(vector.add(pos, disp), vector.subtract(pos, disp), {"group:spindlestem"})
-		local count = #nearby
-		local height = math.random(1,3)
-		if count > 10 then height = height + 2 end -- if there are a lot of nearby spindlestems, grow taller
-		if height > 0 then
-			local delay = growth_delay()
-			meta:set_int("spindlestem_to_grow", height)
-			meta:set_int("spindlestem_delay", delay)
-			minetest.get_node_timer(pos):start(delay)
-		end
+		df_trees.spawn_spindlestem(pos)
 	end,
 })
+
+df_trees.spawn_spindlestem = function(pos)
+	local cap_item = minetest.get_name_from_content_id(get_spindlestem_cap_type(pos))
+	local node = minetest.get_node(pos)
+	minetest.set_node(pos, {name=cap_item, param2 = node.param2})
+	local disp = {x=3, y=3, z=3}
+	local nearby = minetest.find_nodes_in_area(vector.add(pos, disp), vector.subtract(pos, disp), {"group:spindlestem"})
+	local count = #nearby
+	local height = math.random(1,3)
+	if count > 10 then height = height + 2 end -- if there are a lot of nearby spindlestems, grow taller
+	if height > 0 then
+		local delay = growth_delay()
+		local meta = minetest.get_meta(pos)
+		meta:set_int("spindlestem_to_grow", height)
+		meta:set_int("spindlestem_delay", delay)
+		minetest.get_node_timer(pos):start(delay)
+	end
+end
 
 register_spindlestem_type("white", S("White"), "FFFFFF", 0)
 register_spindlestem_type("red", S("Red"), "FFC3C3", 3, "color_red")

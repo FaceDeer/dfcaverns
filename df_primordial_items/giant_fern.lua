@@ -301,12 +301,16 @@ minetest.register_node("df_primordial_items:fern_sapling", {
 		end
 
 		if minetest.get_node_light(pos) > 6 then
-			local fern = df_primordial_items.get_fern_schematic()
-			local rotation = rotations[math.random(1,#rotations)]
-			minetest.set_node(pos, {name="air"}) -- clear sapling so fern can replace it
-			mapgen_helper.place_schematic(pos, fern, rotation)
+			df_primordial_items.spawn_giant_fern(pos)
 		else
 			minetest.get_node_timer(pos):start(df_trees.config.tree_min_growth_delay)
 		end
 	end,
 })
+
+df_primordial_items.spawn_giant_fern = function(pos)
+	local fern = df_primordial_items.get_fern_schematic()
+	local rotation = rotations[math.random(1,#rotations)]
+	minetest.set_node(pos, {name="air"}) -- clear sapling so fern can replace it
+	mapgen_helper.place_schematic(pos, fern, rotation)
+end

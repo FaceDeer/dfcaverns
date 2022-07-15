@@ -26,6 +26,9 @@ local blood_thorn_after_dig = function(pos, oldnode, oldmetadata, digger)
 	end
 end
 
+local blood_thorn_min_delay = df_trees.config.blood_thorn_delay_multiplier*df_trees.config.tree_min_growth_delay
+local blood_thorn_max_delay = df_trees.config.blood_thorn_delay_multiplier*df_trees.config.tree_max_growth_delay
+
 minetest.register_node("df_trees:blood_thorn", {
 	description = S("Blood Thorn Stem"),
 	_doc_items_longdesc = df_trees.doc.blood_thorn_desc,
@@ -40,6 +43,35 @@ minetest.register_node("df_trees:blood_thorn", {
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	after_dig_node = blood_thorn_after_dig,
+
+	on_construct = function(pos)
+		minetest.get_node_timer(pos):start(math.random(blood_thorn_min_delay, blood_thorn_max_delay))
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
+		local below = {x=pos.x, y=pos.y-1, z=pos.z}
+		local below_node = minetest.get_node(below)
+		while below_node.name == "df_trees:blood_thorn" do
+			-- if you chop down a bloodthorn it can start growing again
+			minetest.get_node_timer(below):start(math.random(blood_thorn_min_delay, blood_thorn_max_delay))
+			below.y = below.y-1
+			below_node = minetest.get_node(below)
+		end
+	end,
+	
+	on_timer = function(pos, elapsed)
+		while elapsed > blood_thorn_max_delay do
+			-- catch up if the block was unloaded for a long time
+			elapsed = elapsed - blood_thorn_max_delay
+			if not df_trees.grow_blood_thorn(vector.new(pos), minetest.get_node(pos)) then
+				return
+			end
+		end
+		if df_trees.grow_blood_thorn(vector.new(pos), minetest.get_node(pos)) then
+			minetest.get_node_timer(pos):start(math.random(blood_thorn_min_delay, blood_thorn_max_delay))
+		end
+	end,
+	
 })
 
 minetest.register_node("df_trees:blood_thorn_dead", {
@@ -222,15 +254,14 @@ function df_trees.grow_blood_thorn(pos, node)
 	return true
 end
 
-minetest.register_abm({
-	label = "Grow Blood Thorn",
-	nodenames = {"df_trees:blood_thorn"},
-	catch_up = true,
-	interval = df_trees.config.blood_thorn_growth_interval,
-	chance = df_trees.config.blood_thorn_growth_chance,
-	action = function(pos, node)
-		df_trees.grow_blood_thorn(pos, node)
-	end
+minetest.register_lbm({
+    label = "Start timers for bloodthorn nodes that used to depend on the ABM",
+    name = "df_trees:start_bloodthorn_timers",
+    nodenames = {"df_trees:blood_thorn"},
+    run_at_every_load = false,
+    action = function(pos, node)
+		minetest.get_node_timer(pos):start(math.random(blood_thorn_min_delay, blood_thorn_max_delay))
+	end,
 })
 
 function df_trees.spawn_blood_thorn(pos)

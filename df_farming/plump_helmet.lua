@@ -3,7 +3,7 @@ local S = df_farming.S
 local displace_x = 0.125
 local displace_z = 0.125
 
-local plump_helmet_grow_time = df_farming.config.plant_growth_time * df_farming.config.cave_wheat_delay_multiplier / 4
+local plump_helmet_grow_time = df_farming.config.plant_growth_time * df_farming.config.plump_helmet_delay_multiplier / 4
 
 local plump_helmet_on_place =  function(itemstack, placer, pointed_thing, plantname)
 	local pt = pointed_thing

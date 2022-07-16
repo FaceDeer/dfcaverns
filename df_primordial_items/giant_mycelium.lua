@@ -416,13 +416,13 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 	end,
 })
 
--- Just in case mapgen fails to trigger the timer on a mapgen mycelium this ABM will clean up.
-minetest.register_abm({
-	label = "df_primordial_items ensure giant mycelium growth",
-	nodenames = {"df_primordial_items:giant_hypha_apical_mapgen"},
-	interval = 10.0,
-	chance = 1,
-	action = function(pos, node, active_object_count, active_object_count_wider)
+-- Just in case mapgen fails to trigger the timer on a mapgen mycelium this LBM will clean up.
+minetest.register_lbm({
+    label = "ensure mapgen mycelium has a timer running",
+    name = "df_primordial_items:ensure_mapgen_mycelium_timer",
+    nodenames = {"df_primordial_items:giant_hypha_apical_mapgen"},
+    run_at_every_load = true,
+    action = function(pos, node)
 		local timer = minetest.get_node_timer(pos)
 		if not timer:is_started() then
 			timer:start(math.random(1,10))

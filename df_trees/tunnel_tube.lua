@@ -151,7 +151,8 @@ minetest.register_node("df_trees:tunnel_tube_wood", {
 	sounds = df_trees.sounds.wood,
 })
 
-df_trees.register_all_stairs("tunnel_tube_wood")
+df_trees.register.all_stairs("tunnel_tube_wood")
+df_trees.register.all_fences("tunnel_tube_wood", {burntime = 9})
 
 minetest.register_craft({
 	type = "fuel",

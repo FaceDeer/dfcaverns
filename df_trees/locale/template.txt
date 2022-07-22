@@ -17,6 +17,15 @@ Blood Thorn Stem=
 Dead Blood Thorn Spike=
 Dead Blood Thorn Stem=
 
+### dependencies.lua ###
+
+@1 Fence=
+@1 Fence Gate=
+@1 Fence Rail=
+@1 Mese Post Light=
+@1 Slab=
+@1 Stair=
+
 ### doc.lua ###
 
 A torchspine alternates between active and quiescent phases and emits dim light when active. They can be harvested for torches, and their embers sprout into new torchspines when placed on flammable surfaces.=
@@ -106,11 +115,6 @@ Goblin Cap Planks=
 Goblin Cap Spawn=
 Goblin Cap Stem=
 Goblin Cap Stem Planks=
-
-### init.lua ###
-
-@1 Slab=
-@1 Stair=
 
 ### nether_cap.lua ###
 

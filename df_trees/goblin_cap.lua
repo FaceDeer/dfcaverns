@@ -94,8 +94,10 @@ minetest.register_node("df_trees:goblin_cap_stem_wood", {
 	sounds = df_trees.sounds.wood,
 })
 
-df_trees.register_all_stairs("goblin_cap_wood")
-df_trees.register_all_stairs("goblin_cap_stem_wood")
+df_trees.register.all_stairs("goblin_cap_wood")
+df_trees.register.all_fences("goblin_cap_wood", {burntime = 12})
+df_trees.register.all_stairs("goblin_cap_stem_wood")
+df_trees.register.all_fences("goblin_cap_stem_wood", {burntime = 7})
 
 minetest.register_craft({
 	type = "fuel",

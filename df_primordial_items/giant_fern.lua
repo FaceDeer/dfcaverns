@@ -146,7 +146,8 @@ minetest.register_craft({
 	}
 })
 
-df_trees.register_all_stairs("fern_wood")
+df_trees.register.all_stairs("fern_wood")
+df_trees.register.all_fences("fern_wood", {burntime=7})
 
 minetest.register_node("df_primordial_items:giant_fern_leaves", {
 	description = S("Giant Fern Leaves"),
@@ -188,6 +189,27 @@ df_primordial_items.register_leafdecay({
 	radius = 2,
 })
 
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:fern_wood",
+	burntime = 7,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "group:fern_stem",
+	burntime = 28,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:giant_fern_leaves",
+	burntime = 2,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:fern_sapling",
+	burntime = 2,
+})
 ------------------------------------------------------------------------------------
 -- Schematics
 

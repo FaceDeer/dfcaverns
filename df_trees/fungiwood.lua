@@ -40,7 +40,8 @@ minetest.register_node("df_trees:fungiwood_wood", {
 	sounds = df_trees.sounds.wood,
 })
 
-df_trees.register_all_stairs("fungiwood_wood")
+df_trees.register.all_stairs("fungiwood_wood")
+df_trees.register.all_fences("fungiwood_wood", {burntime = 7})
 
 minetest.register_craft({
 	type = "fuel",

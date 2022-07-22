@@ -138,6 +138,7 @@ minetest.register_node("df_mapitems:spongestone", {
 	_doc_items_longdesc = df_mapitems.doc.sponge_stone_desc,
 	_doc_items_usagehelp = df_mapitems.doc.sponge_stone_usage,
 	tiles = {"dfcaverns_ground_cover_sponge_stone.png"},
+	drop = dirt_node,
 	is_ground_content = false,
 	paramtype = "light",
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},

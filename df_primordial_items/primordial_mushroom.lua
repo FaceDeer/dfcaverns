@@ -115,7 +115,8 @@ minetest.register_craft({
 	}
 })
 
-df_trees.register_all_stairs("primordial_mush_trunk_wood")
+df_trees.register.all_stairs("primordial_mush_trunk_wood")
+df_trees.register.all_fences("primordial_mush_trunk_wood", {burntime = 7})
 
 minetest.register_node("df_primordial_items:primordial_mush_cap_wood", {
 	description = S("Primordial Cap Wood"),
@@ -135,7 +136,45 @@ minetest.register_craft({
 	}
 })
 
-df_trees.register_all_stairs("primordial_mush_cap_wood")
+df_trees.register.all_stairs("primordial_mush_cap_wood")
+df_trees.register.all_fences("primordial_mush_cap_wood", {burntime=12})
+
+
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:primordial_mush_cap_wood",
+	burntime = 12,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:primordial_mush_trunk_wood",
+	burntime = 7,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:mushroom_cap",
+	burntime = 40,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:mushroom_trunk",
+	burntime = 30,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:mushroom_gills",
+	burntime = 2,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:mushroom_gills_glowing",
+	burntime = 4,
+})
+minetest.register_craft({
+	type = "fuel",
+	recipe = "df_primordial_items:mush_sapling",
+	burntime = 2,
+})
 
 ------
 -- Schematics:

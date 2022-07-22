@@ -16,7 +16,7 @@ local register_sweet_pod = function(number)
 		is_ground_content = false,
 		buildable_to = true,
 		floodable = true,
-		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11},
+		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flora = 1},
 		sounds = df_farming.sounds.leaves,
         selection_box = {
             type = "fixed",

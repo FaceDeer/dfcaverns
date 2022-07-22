@@ -17,6 +17,17 @@ Blood Thorn Stem=Gambo di spina del sangue
 Dead Blood Thorn Spike=Spuntone di spina del sangue morta
 Dead Blood Thorn Stem=Gambo di spina del sangue morta
 
+### dependencies.lua ###
+
+@1 Fence=
+@1 Fence Gate=
+@1 Fence Rail=
+@1 Mese Post Light=
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+@1 Slab=@1 Lastra
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+@1 Stair=@1 Scala
+
 ### doc.lua ###
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
@@ -143,13 +154,6 @@ Goblin Cap Planks=Assi di cappello di folletto
 Goblin Cap Spawn=Prole di cappello di folletto
 Goblin Cap Stem=Gambo di cappello di folletto
 Goblin Cap Stem Planks=Assi di gambo di cappello di folletto
-
-### init.lua ###
-
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-@1 Slab=@1 Lastra
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-@1 Stair=@1 Scala
 
 ### nether_cap.lua ###
 

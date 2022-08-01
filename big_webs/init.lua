@@ -1,7 +1,10 @@
 local modname = minetest.get_current_modname()
 local S = minetest.get_translator(modname)
 
-local default_path = minetest.get_modpath("default")
+local sound
+if minetest.get_modpath("default") then
+	sound = default.node_sound_leaves_defaults()
+end
 
 local get_node_box = function(connector_thickness)
 	return {
@@ -71,12 +74,6 @@ local get_web_nodes = function(pos, webs, anchors)
 		end		
 	end	
 end
-
-local sound
-if default_path then
-	sound = default.node_sound_leaves_defaults()
-end
-
 
 local web_line = function(pos, dir, distance)
 	local anchored

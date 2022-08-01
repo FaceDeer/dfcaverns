@@ -6,7 +6,7 @@
 -- High density wood
 -- Depth 3
 
-local S = df_trees.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local spike_directions = {
 	{dir={x=0,y=0,z=1}, facedir=2},
@@ -224,11 +224,11 @@ function df_trees.grow_blood_thorn(pos, node)
 	if node.param2 >= 4 then
 		return
 	end
-	pos.y = pos.y - 1
-	if minetest.get_item_group(minetest.get_node(pos).name, "sand") == 0 then
+	
+	if not df_trees.blood_thorn_growth_permitted(pos) then
 		return
 	end
-	pos.y = pos.y + 1
+
 	local height = 0
 	local max_height = max_bloodthorn_height(pos)
 	while node.name == "df_trees:blood_thorn" and height < max_height do

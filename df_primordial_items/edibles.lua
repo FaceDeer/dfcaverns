@@ -1,4 +1,4 @@
-local S = df_primordial_items.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 minetest.register_craftitem("df_primordial_items:primordial_fruit", {
 	description = S("Primordial Fruit"),

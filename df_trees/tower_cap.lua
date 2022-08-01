@@ -1,4 +1,4 @@
-local S = df_trees.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 --stem
 minetest.register_node("df_trees:tower_cap_stem", {
@@ -134,12 +134,11 @@ minetest.register_node("df_trees:tower_cap_sapling", {
 	sounds = df_trees.sounds.leaves,
 
 	on_construct = function(pos)
-		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
-			return
+		if df_trees.tower_cap_growth_permitted(pos) then
+			minetest.get_node_timer(pos):start(math.random(
+				df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
+				df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
 		end
-		minetest.get_node_timer(pos):start(math.random(
-			df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
-			df_trees.config.tower_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
 	end,
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()

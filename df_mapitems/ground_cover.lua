@@ -183,7 +183,7 @@ minetest.register_node("df_mapitems:cobble_with_floor_fungus", {
 	drop = cobble_node,
 	is_ground_content = false,
 	paramtype = "light",
-	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8},
+	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8, df_caverns_floor_fungus = 1},
 	_dfcaverns_dead_node = df_mapitems.node_name.cobble,
 	sounds = df_mapitems.sounds.floor_fungus,
 })
@@ -196,30 +196,32 @@ minetest.register_node("df_mapitems:cobble_with_floor_fungus_fine", {
 	drop = cobble_node,
 	is_ground_content = false,
 	paramtype = "light",
-	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8},
+	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8, df_caverns_floor_fungus = 1},
 	_dfcaverns_dead_node = df_mapitems.node_name.cobble,
 	df_mapitems.sounds.floor_fungus,
+	on_timer = function(pos, elapsed)
+		minetest.swap_node(pos, {name="df_mapitems:cobble_with_floor_fungus"})
+	end,
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
+	end,
 })
 
 minetest.register_abm{
 	label = "df_mapitems:floor_fungus_spread",
 	nodenames = {cobble_node},
-	neighbors = {"df_mapitems:cobble_with_floor_fungus"},
+	neighbors = {"group:df_caverns_floor_fungus"},
 	interval = 60,
 	chance = 10,
 	catch_up = true,
 	action = function(pos)
-		minetest.swap_node(pos, {name="df_mapitems:cobble_with_floor_fungus_fine"})
-	end,
-}
-minetest.register_abm{
-	label = "df_mapitems:floor_fungus_thickening",
-	nodenames = {"df_mapitems:cobble_with_floor_fungus_fine"},
-	interval = 59,
-	chance = 10,
-	catch_up = true,
-	action = function(pos)
-		minetest.swap_node(pos, {name="df_mapitems:cobble_with_floor_fungus"})
+		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
+		if above_def and (above_def.buildable_to == true or above_def.walkable == false) then
+			minetest.swap_node(pos, {name="df_mapitems:cobble_with_floor_fungus_fine"})
+			if math.random() > 0.5 then
+				minetest.get_node_timer(pos):start(math.random(100, 1000))
+			end
+		end
 	end,
 }
 

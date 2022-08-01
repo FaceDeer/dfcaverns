@@ -9,6 +9,10 @@ local c_mese_crystal = df_caverns.node_id.mese_crystal
 local c_mese_crystal_block = df_caverns.node_id.mese_crystal_block
 local c_obsidian = df_caverns.node_id.obsidian
 
+local log_location
+if mapgen_helper.log_location_enabled then
+	log_location = mapgen_helper.log_first_location
+end
 -------------------------------------------------------------------------------------------
 
 local perlin_cave = {
@@ -84,6 +88,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				data[vi] = c_air
 			else
 				data[vi] = c_lava
+				if log_location then log_location("magma_sea", area:position(vi)) end
 			end
 		elseif y > floor_height - 5 and y < ceiling_height and y <= lava_height + 2 and not mapgen_helper.buildable_to(data[vi]) then
 			data[vi] = c_obsidian -- thick obsidian floor
@@ -112,13 +117,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					-- decorate ceiling
 					if math.random() < 0.25 then
 						data[vi] = c_meseore
+						if log_location then log_location("magma_sea_meseore", area:position(vi)) end
 					elseif mese_intensity > 0.75 and math.random() < 0.1 then
 						data[vi] = c_meseore
 						local bi = vi-area.ystride
 						data[bi] = c_mese_crystal
 						data_param2[bi] = math.random(1,4) + 19
+						if log_location then log_location("magma_sea_mesecrystal", area:position(vi)) end
 					elseif mese_intensity > 0.85 and math.random() < 0.025 then
 						subterrane.big_stalactite(vi-area.ystride, area, data, 6, 13, c_meseore, c_meseore, c_mese_crystal_block)
+						if log_location then log_location("magma_sea_mesebig", area:position(vi)) end
 					end
 				end
 			end

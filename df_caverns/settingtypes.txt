@@ -74,3 +74,8 @@ dfcaverns_primordial_min (Lower limit of primordial caverns) int -4032
 # during mapgen of Primordial cavern layer mushroom caverns
 # then increasing this number may help.
 dcaverns_giant_mycelium_timer_spread (Giant Mycelium mapgen timer spread) int 10
+
+[Plant growth restrictions]
+
+dfcaverns_restrict_trees_to_biomes (Restrict underground tree growth to their home biomes) bool false
+dfcaverns_restrict_farmables_to_biomes (Restrict underground farmable plant growth to their home biomes) bool false

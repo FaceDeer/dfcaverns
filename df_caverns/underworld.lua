@@ -11,6 +11,11 @@ local name_generator_path = minetest.get_modpath("name_generator")
 
 local hunters_enabled = minetest.get_modpath("hunter_statue") and df_underworld_items.config.underworld_hunter_statues
 
+local log_location
+if mapgen_helper.log_location_enabled then
+	log_location = mapgen_helper.log_first_location
+end
+
 local name_pit = function() end
 local name_ruin = function() end
 
@@ -387,6 +392,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					if distance < pit.radius -2.5 then
 						if y < median + floor_displace + wave - pit.depth or y < underside_height + plasma_depth_min then
 							data[vi] = c_pit_plasma
+							if log_location then log_location("underworld_pit", vector.new(x,y,z)) end
 						else
 							data[vi] = c_air
 						end
@@ -471,7 +477,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 								if not next(named_waypoints.get_waypoints_in_area("underworld_ruins", vector.subtract(building.pos, 250), vector.add(building.pos, 250))) then
 									named_waypoints.add_waypoint("underworld_ruins", {x=building.pos.x, y=floor_height+1, z=building.pos.z}, {name=name_ruin()})
 								end
-							end							
+							end
+							if log_location then log_location("underworld_building", building.pos) end
 						elseif building.building_type == "small slab" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_slab_schematic, building.rotation)
 						else
@@ -499,6 +506,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			end
 			puzzle_seal = {x=minp.x+3, y=floor_height+1, z=minp.z+3}
 			minetest.log("info", "Puzzle seal generated at " .. minetest.pos_to_string(puzzle_seal))
+			if log_location then log_location("underworld_puzzle_seal", puzzle_seal) end
 		end
 	end
 

@@ -1,6 +1,6 @@
 -- This file defines a type of root-like growth that spreads over the surface of the ground in a random web-like pattern
 
-local S = df_primordial_items.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 -- hub_thickness -- the bit in the middle that's seen at the ends and corners of long hypha runs
 -- connector_thickness
@@ -320,7 +320,9 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 	_dfcaverns_dead_node = "df_primordial_items:giant_hypha_root",
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_construct = function(pos)
-		minetest.get_node_timer(pos):start(math.random(min_growth_delay, max_growth_delay))
+		if df_primordial_items.giant_mycelium_growth_permitted(pos) then
+			minetest.get_node_timer(pos):start(math.random(min_growth_delay, max_growth_delay))
+		end
 	end,
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()

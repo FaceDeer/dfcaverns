@@ -4,7 +4,7 @@ if not minetest.get_modpath("doc") then
 	return
 end
 
-local S = df_trees.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 -- Trees
 df_trees.doc.black_cap_desc = S("The dense black wood of these mushrooms is heavy and hard to work with, and has few remarkable properties.")

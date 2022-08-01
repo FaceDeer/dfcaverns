@@ -6,13 +6,13 @@ local n6 = { name = "df_trees:goblin_cap_stem", force_place=true } -- walls
 local n7 = { name = "df_trees:goblin_cap_stem_wood", force_place=true } -- internal floor
 local n8 = { name = "doors:door_wood_a", force_place=true }
 local n9 = { name = "doors:hidden", force_place=true }
-local n10 = { name = "default:furnace", param2 = 3, force_place=true }
+local n10 = { name = df_trees.node_names.furnace, param2 = 3, force_place=true }
 local n11 = { name = "air", force_place=true } -- internal air
 local n12 = { name = "beds:bed_bottom", force_place=true }
 local n13 = { name = "df_trees:goblin_cap_stem", prob = 198, force_place=true } -- possible window holes
-local n16 = { name = "default:chest", param2 = 3, force_place=true }
+local n16 = { name = df_trees.node_names.chest, param2 = 3, force_place=true }
 local n17 = { name = "beds:bed_top", force_place=true }
-local n18 = { name = "default:torch_wall", param2 = 4, force_place=true }
+local n18 = { name = df_trees.node_names.torch_wall, param2 = 4, force_place=true }
 local n19 = { name = "df_trees:goblin_cap_stem" } -- base
 
 local n20 = {name = "stairs:stair_goblin_cap_stem_wood", param2 = 1 }
@@ -34,6 +34,13 @@ if not minetest.get_modpath("beds") then
 	--replace the bed with air
 	n12 = n11
 	n17 = n11
+end
+if not minetest.get_modpath("stairs") then
+	-- replace stairs with air
+	n3 = nil
+	n20 = nil
+	n21 = nil
+	n22 = nil
 end
 
 return {

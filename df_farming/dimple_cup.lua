@@ -1,4 +1,4 @@
-local S = df_farming.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local dimple_grow_time = df_farming.config.plant_growth_time * df_farming.config.dimple_cup_delay_multiplier / 4
 

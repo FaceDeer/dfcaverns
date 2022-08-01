@@ -28,6 +28,11 @@ if minetest.get_modpath("default") then
 	end
 end
 
+local log_location
+if minetest.get_modpath("mapgen_helper") and mapgen_helper.log_location_enabled then
+	log_location = mapgen_helper.log_first_location
+end
+
 local ignore
 if minetest.get_modpath("chasms") then
 	-- the chasms mod already sets up a method to allow chasms to avoid overwriting stalactites and whatnot,
@@ -137,6 +142,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						data[vi] = c_gravel
 					else
 						data[vi] = c_air
+						if log_location then log_location("pit_cave", vector.new(x,y,z)) end
 					end
 				end
 			end

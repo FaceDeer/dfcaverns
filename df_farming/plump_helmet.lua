@@ -1,4 +1,4 @@
-local S = df_farming.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local displace_x = 0.125
 local displace_z = 0.125
@@ -47,7 +47,12 @@ local plump_helmet_on_place =  function(itemstack, placer, pointed_thing, plantn
 
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name = plantname, param2 = math.random(0,3)})
-	df_farming.plant_timer(pt.above, plantname)
+	
+	local growth_permitted_function = df_farming.growth_permitted["df_farming:plump_helmet_spawn"] -- use the same permitted function for all plump helmets
+	if not growth_permitted_function or growth_permitted_function(pt.above) then
+		df_farming.plant_timer(pt.above, plantname)
+	end
+
 	if not minetest.settings:get_bool("creative_mode", false) then
 		itemstack:take_item()
 	end
@@ -84,6 +89,10 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 	
 	on_timer = function(pos, elapsed)
 		df_farming.grow_underground_plant(pos, "df_farming:plump_helmet_spawn", elapsed)
+	end,
+	
+	on_destruct = function(pos)
+		minetest.get_node_timer(pos):stop()
 	end,
 })
 

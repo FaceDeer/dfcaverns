@@ -3,7 +3,7 @@ local modpath = minetest.get_modpath(minetest.get_current_modname())
 local debug_dump = false
 
 if minetest.get_modpath("default") then
-	dofile(modpath.."/default.lua")
+	dofile(modpath.."/minetest_game.lua")
 end
 
 if debug_dump then

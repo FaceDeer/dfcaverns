@@ -1,4 +1,4 @@
-local S = df_farming.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 -----------------------------------------------------------------------
 -- Plants
@@ -35,7 +35,6 @@ df_farming.spawn_dead_fungus_vm = function(vi, area, data, param2_data)
 	param2_data[vi] = 0
 end
 
--- not DF canon
 minetest.register_node("df_farming:cavern_fungi", {
 	description = S("Cavern Fungi"),
 	_doc_items_longdesc = df_farming.doc.cavern_fungi_desc,
@@ -132,7 +131,12 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 	
 	-- add the node and remove 1 item from the itemstack
 	minetest.add_node(pt.above, {name = plantname, param2 = 1})
-	df_farming.plant_timer(pt.above, plantname)
+	local growth_permitted_function = df_farming.growth_permitted[plantname]
+	if not growth_permitted_function or growth_permitted_function(pt.above) then
+		df_farming.plant_timer(pt.above, plantname)
+	else
+		minetest.get_node_timer(pt.above):stop() -- make sure no old timers are running on this node
+	end
 	if not minetest.settings:get_bool("creative_mode", false) then
 		itemstack:take_item()
 	end
@@ -168,6 +172,10 @@ df_farming.register_seed = function(name, description, image, stage_one, grow_ti
 		
 		on_timer = function(pos, elapsed)
 			df_farming.grow_underground_plant(pos, "df_farming:"..name, elapsed)
+		end,
+		
+		on_destruct = function(pos)
+			minetest.get_node_timer(pos):stop()
 		end,
 	}
 	

@@ -6,7 +6,7 @@
 -- Max trunk height 	5
 -- depth 2-3
 
-local S = df_trees.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 minetest.register_node("df_trees:spore_tree", {
 	description = S("Spore Tree Stem"),
@@ -165,12 +165,11 @@ minetest.register_node("df_trees:spore_tree_sapling", {
 	sounds = df_trees.sounds.leaves,
 
 	on_construct = function(pos)
-		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
-			return
+		if df_trees.spore_tree_growth_permitted(pos) then
+			minetest.get_node_timer(pos):start(math.random(
+				df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_min_growth_delay,
+				df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_max_growth_delay))
 		end
-		minetest.get_node_timer(pos):start(math.random(
-			df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_min_growth_delay,
-			df_trees.config.spore_tree_delay_multiplier*df_trees.config.tree_max_growth_delay))
 	end,
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()

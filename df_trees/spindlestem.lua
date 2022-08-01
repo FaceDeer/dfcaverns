@@ -1,4 +1,4 @@
-local S = df_trees.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local vessels = minetest.get_modpath("vessels")
 
@@ -274,10 +274,9 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 	
 	on_place = stem_on_place,
 	on_construct = function(pos)
-		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
-			return
+		if df_trees.spindlestem_growth_permitted(pos) then
+			minetest.get_node_timer(pos):start(growth_delay())
 		end
-		minetest.get_node_timer(pos):start(growth_delay())
 	end,
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()

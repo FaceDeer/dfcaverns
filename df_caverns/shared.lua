@@ -21,7 +21,32 @@ local c_wet_flowstone = df_caverns.node_id.wet_flowstone
 local c_webs = df_caverns.node_id.big_webs
 local c_webs_egg = df_caverns.node_id.big_webs_egg
 
-df_caverns.data_param2 = {}
+df_caverns.data_param2 = {} -- shared among all mapgens to reduce memory clutter
+
+df_caverns.get_biome_at_pos_list = {} -- a list of methods of the form function(pos, heat, humidity) to allow modpack-wide queries about what should grow where
+df_caverns.get_biome = function(pos)
+	local heat = minetest.get_heat(pos)
+	local humidity = minetest.get_humidity(pos)
+	for _, val in pairs(df_caverns.get_biome_at_pos_list) do
+		local biome = val(pos, heat, humidity)
+		if biome ~= nil then
+			return biome
+		end
+	end
+end
+
+-- for testing
+--local debug_timer = 0
+--minetest.register_globalstep(function(dtime)
+--	debug_timer = debug_timer + dtime
+--	if debug_timer > 5 then
+--		local singleplayer = minetest.get_player_by_name("singleplayer")
+--		if singleplayer then
+--			minetest.debug(df_caverns.get_biome(singleplayer:get_pos()))
+--		end
+--		debug_timer = debug_timer - 5
+--	end
+--end)
 
 -- prevent mapgen from using these nodes as a base for stalactites or stalagmites
 local dont_build_speleothems_on = {}

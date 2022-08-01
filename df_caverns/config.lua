@@ -52,3 +52,6 @@ setting("int", "underworld_glowing_pit_mapblocks", 8, "Average pit spacing measu
 setting("bool", "enable_primordial", true, "Enable primordial cavern")
 setting("int", "primordial_max", -3393, "Upper limit to primordial caverns")
 setting("int", "primordial_min", -4032, "Lower limit to primordial caverns")
+
+setting("bool", "restrict_trees_to_biomes", false, "Restrict underground tree growth to their home biomes")
+setting("bool", "restrict_farmables_to_biomes", false, "Restrict underground farmable plant growth to their home biomes")

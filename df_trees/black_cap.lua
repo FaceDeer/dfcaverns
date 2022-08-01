@@ -1,4 +1,4 @@
-local S = df_trees.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 --stem
 minetest.register_node("df_trees:black_cap_stem", {
@@ -151,8 +151,7 @@ minetest.register_node("df_trees:black_cap_sapling", {
 	sounds = df_trees.sounds.leaves,
 
 	on_construct = function(pos)
-		local below_node_name = minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name
-		if minetest.get_item_group(below_node_name, "soil") > 0 or minetest.get_item_group(below_node_name, "coal") > 0 then
+		if df_trees.black_cap_growth_permitted(pos) then
 			minetest.get_node_timer(pos):start(math.random(
 				df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
 				df_trees.config.black_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
@@ -163,6 +162,9 @@ minetest.register_node("df_trees:black_cap_sapling", {
 	end,
 	
 	on_timer = function(pos)
+		if df_farming and df_farming.kill_if_sunlit(pos) then
+			return
+		end
 		minetest.set_node(pos, {name="air"})
 		df_trees.spawn_black_cap(pos)
 	end,

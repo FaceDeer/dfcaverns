@@ -1,4 +1,4 @@
-local S = df_primordial_items.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 ------------------------------------------------------------------------------------------
 -- Big jungle mushroom
@@ -109,12 +109,11 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	sunlight_propagates = true,
 
 	on_construct = function(pos)
-		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
-			return
+		if df_primordial_items.jungle_mushroom_growth_permitted(pos) then
+			minetest.get_node_timer(pos):start(math.random(
+				df_trees.config.tree_min_growth_delay,
+				df_trees.config.tree_max_growth_delay))
 		end
-		minetest.get_node_timer(pos):start(math.random(
-			df_trees.config.tree_min_growth_delay,
-			df_trees.config.tree_max_growth_delay))
 	end,
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()

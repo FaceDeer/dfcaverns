@@ -13,7 +13,7 @@ local function deep_copy(table_in)
 	return table_out
 end
 
-local S = df_trees.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 df_trees.sounds = {}
 

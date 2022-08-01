@@ -8,6 +8,11 @@ local c_gas_wisp = df_caverns.node_id.gas_wisp
 local c_lava = df_caverns.node_id.lava
 local c_obsidian = df_caverns.node_id.obsidian
 
+local log_location
+if mapgen_helper.log_location_enabled then
+	log_location = mapgen_helper.log_first_location
+end
+
 -------------------------------------------------------------------------------------------
 
 local perlin_cave = {
@@ -86,6 +91,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end
 			else
 				data[vi] = c_oil
+				if log_location then log_location("oil_sea", area:position(vi)) end
 			end
 		end
 		

@@ -1,5 +1,10 @@
 local modpath = minetest.get_modpath(minetest.get_current_modname())
-local S = df_trees.S
+local S = minetest.get_translator(minetest.get_current_modname())
+
+local log_location
+if minetest.get_modpath("mapgen_helper") and mapgen_helper.log_location_enabled then
+	log_location = mapgen_helper.log_first_location
+end
 
 --stem
 minetest.register_node("df_trees:goblin_cap_stem", {
@@ -210,12 +215,11 @@ minetest.register_node("df_trees:goblin_cap_sapling", {
 	sounds = df_trees.sounds.leaves,
 
 	on_construct = function(pos)
-		if minetest.get_item_group(minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name, "soil") == 0 then
-			return
+		if df_trees.goblin_cap_growth_permitted(pos) then
+			minetest.get_node_timer(pos):start(math.random(
+				df_trees.config.goblin_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
+				df_trees.config.goblin_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
 		end
-		minetest.get_node_timer(pos):start(math.random(
-			df_trees.config.goblin_cap_delay_multiplier*df_trees.config.tree_min_growth_delay,
-			df_trees.config.goblin_cap_delay_multiplier*df_trees.config.tree_max_growth_delay))
 	end,
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
@@ -297,18 +301,22 @@ df_trees.spawn_goblin_cap_vm = function(vi, area, data, data_param2)
 		local pos = area:position(vi)
 		if math.random() < 0.5 then
 			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, big_goblin_cap_schem)
+			if log_location then log_location("goblin_cap_big", pos) end
 		elseif math.random() < 0.9 then
 			mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, bigger_goblin_cap_schem)
+			if log_location then log_location("goblin_cap_bigger", pos) end
 		else
 			-- easter egg - every once in a while (0.5%), a mapgen Goblin cap is a Smurf house
 			minetest.after(5, init_hut, pos)
 			if math.random() < 0.5 then
 				mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, big_goblin_cap_hut_schem)
+				if log_location then log_location("goblin_cap_big_hut", pos) end
 			else
 				if init_vessels then
 					minetest.after(5, init_vessels, pos)
 				end
 				mapgen_helper.place_schematic_on_data(data, data_param2, area, pos, bigger_goblin_cap_hut_schem)
+				if log_location then log_location("goblin_cap_bigger_hut", pos) end
 			end
 		end
 		return

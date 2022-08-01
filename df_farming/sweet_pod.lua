@@ -184,7 +184,7 @@ if minetest.get_modpath("bucket") then
 		liquid_range = 2,
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
 		groups = {liquid = 3, flammable = 2},
-		sounds = df_farming.sounds.water,
+		sounds = df_farming.sounds.syrup,
 	})
 	
 	minetest.register_node("df_farming:dwarven_syrup_flowing", {
@@ -233,7 +233,7 @@ if minetest.get_modpath("bucket") then
 		liquid_range = 2,
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
 		groups = {liquid = 3, flammable = 2, not_in_creative_inventory = 1},
-		sounds = df_farming.sounds.water,
+		sounds = df_farming.sounds.syrup,
 	})
 
 	bucket.register_liquid(

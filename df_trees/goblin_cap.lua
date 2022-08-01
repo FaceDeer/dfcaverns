@@ -248,23 +248,6 @@ local c_stem = minetest.get_content_id("df_trees:goblin_cap_stem")
 local c_cap  = minetest.get_content_id("df_trees:goblin_cap")
 local c_gills  = minetest.get_content_id("df_trees:goblin_cap_gills")
 
--- If the farming mod is installed, add the "straw" group to farming straw.
--- This way we just need to check for group:straw to get cave straw as well, without 
--- needing a df_farming dependency for this mod.
-if minetest.get_modpath("farming") then
-	local straw_def = minetest.registered_items["farming:straw"]
-	if straw_def then
-		local new_groups = {}
-		for group, val in pairs(straw_def.groups) do
-			new_groups[group] = val
-		end
-		new_groups.straw = 1
-		minetest.override_item("farming:straw", {
-			groups = new_groups
-		})
-	end
-end
-
 df_trees.spawn_goblin_cap = function(pos)
 	if math.random() < 0.1 then
 		if math.random() < 0.5 then

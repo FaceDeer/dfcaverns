@@ -22,17 +22,6 @@ Blood Thorn Stem=Blutdornstamm
 Dead Blood Thorn Spike=
 Dead Blood Thorn Stem=
 
-### dependencies.lua ###
-
-@1 Fence=
-@1 Fence Gate=
-@1 Fence Rail=
-@1 Mese Post Light=
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-@1 Slab=@1 Platte
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-@1 Stair=@1 Treppe
-
 ### doc.lua ###
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE

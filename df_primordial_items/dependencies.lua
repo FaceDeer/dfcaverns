@@ -2,21 +2,21 @@
 
 df_primordial_items.node_names = {}
 
-df_primordial_items.node_names.dirt = "default:dirt"
-df_primordial_items.node_names.dry_shrub = "default:dry_shrub"
-df_primordial_items.node_names.dry_grass_3 = "default:dry_grass_3"
-df_primordial_items.node_names.dry_grass_4 = "default:dry_grass_4"
-df_primordial_items.node_names.junglewood = "default:junglewood"
+df_primordial_items.node_names.dirt = df_dependencies.node_name_dirt
+df_primordial_items.node_names.dry_shrub = df_dependencies.node_name_dry_shrub
+df_primordial_items.node_names.dry_grass_3 = df_dependencies.node_name_dry_grass_3
+df_primordial_items.node_names.dry_grass_4 = df_dependencies.node_name_dry_grass_4
+df_primordial_items.node_names.junglewood = df_dependencies.node_name_junglewood
 
 df_primordial_items.sounds = {}
 
-df_primordial_items.sounds.leaves = default.node_sound_leaves_defaults()
-df_primordial_items.sounds.wood = default.node_sound_wood_defaults()
-df_primordial_items.sounds.glass = default.node_sound_glass_defaults()
-df_primordial_items.sounds.dirt = default.node_sound_dirt_defaults()
+df_primordial_items.sounds.leaves = df_dependencies.sound_leaves()
+df_primordial_items.sounds.wood = df_dependencies.sound_wood()
+df_primordial_items.sounds.glass = df_dependencies.sound_glass()
+df_primordial_items.sounds.dirt = df_dependencies.sound_dirt()
 
-df_primordial_items.register_leafdecay = default.register_leafdecay
-df_primordial_items.after_place_leaves = default.after_place_leaves
+df_primordial_items.register_leafdecay = df_dependencies.register_leafdecay
+df_primordial_items.after_place_leaves = df_dependencies.after_place_leaves
 
 -- This stuff should only be used during initialization
 minetest.after(0, function()

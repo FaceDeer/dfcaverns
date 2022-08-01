@@ -6,5 +6,5 @@ df_underworld_items.abm_neighbors.pit_plasma = {"group:stone", "df_underworld_it
 
 -- This stuff should only be used during initialization
 minetest.after(0, function()
-	df_underworld_items.node_name = nil
+	df_underworld_items.abm_neighbors = nil
 end)

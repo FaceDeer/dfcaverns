@@ -95,7 +95,7 @@ minetest.register_craftitem("df_farming:pig_tail_thread", {
 	groups = {flammable = 1, thread = 1},
 })
 
-if minetest.get_modpath("wool") then
+if df_farming.node_names.wool_white then
 	minetest.register_craft({
 		output = df_farming.node_names.wool_white,
 		recipe = {
@@ -104,9 +104,9 @@ if minetest.get_modpath("wool") then
 		}
 	})
 end
-if minetest.get_modpath("farming") then
+if df_farming.node_names.string then
 	minetest.register_craft({
-		output = "farming:string 2",
+		output = df_farming.node_names.string .. " 2",
 		recipe = {
 			{"group:thread"},
 			{"group:thread"},

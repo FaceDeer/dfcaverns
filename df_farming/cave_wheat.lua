@@ -129,15 +129,15 @@ if minetest.get_modpath("cottages") then
 	recipe_registered = true
 end
 
-if minetest.registered_items["farming:mortar_pestle"] ~= nil then
+if minetest.registered_items[df_farming.node_names.mortar_pestle] ~= nil then
 	minetest.register_craft({
 		type = "shapeless",
 		output = "df_farming:cave_flour",
 		recipe = {
 			"df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat",
-			"df_farming:cave_wheat", "farming:mortar_pestle"
+			"df_farming:cave_wheat", df_farming.node_names.mortar_pestle
 		},
-		replacements = {{"group:food_mortar_pestle", "farming:mortar_pestle"}},
+		replacements = {{"group:food_mortar_pestle", df_farming.node_names.mortar_pestle}},
 	})
 	recipe_registered = true
 end

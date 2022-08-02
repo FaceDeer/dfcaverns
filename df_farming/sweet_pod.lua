@@ -138,7 +138,7 @@ end
 ----------------------------------------------
 -- Syrup
 
-if minetest.get_modpath("bucket") then
+if df_dependencies.bucket_register_liquid then
 	minetest.register_node("df_farming:dwarven_syrup_source", {
 		description = S("Dwarven Syrup Source"),
 		_doc_items_longdesc = df_farming.doc.sweet_pod_syrup_desc,
@@ -236,7 +236,7 @@ if minetest.get_modpath("bucket") then
 		sounds = df_farming.sounds.syrup,
 	})
 
-	bucket.register_liquid(
+	df_farming.bucket_register_liquid(
 		"df_farming:dwarven_syrup_source",
 		"df_farming:dwarven_syrup_flowing",
 		"df_farming:dwarven_syrup_bucket",

@@ -16,6 +16,7 @@ if invulnerable then
 	slade_groups.immortal = 1
 end
 
+local lava_source = df_underworld_items.nodes.lava_source
 
 -- Ensures that the node is functioning correctly
 local ensure_meta = function(pos)
@@ -188,7 +189,7 @@ local puzzle_seal_def = {
 	paramtype2 = "facedir",
 	light_source = 8,
 	groups = slade_groups,
-	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	sounds = df_underworld_items.sounds.slade,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.625, -0.625, -0.625, 0.625, 0.625, 0.625},
@@ -247,9 +248,9 @@ local digging_seal_def = {
 	tiles = {"dfcaverns_pit_plasma_static.png", "dfcaverns_pit_plasma_static.png^dfcaverns_seal.png", "dfcaverns_pit_plasma_static.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = default.LIGHT_MAX,
+	light_source = df_underworld_items.LIGHT_MAX,
 	groups = {immortal=1, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, not_in_creative_inventory=1},
-	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	sounds = df_underworld_items.sounds.slade,
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.625, -0.625, -0.625, 0.625, 0.625, 0.625},
@@ -302,7 +303,7 @@ local digging_seal_def = {
 		
 		if minetest.get_item_group(below_node.name, "slade") == 0 then
 			tnt.boom({x=pos.x, y=pos.y-2, z=pos.z}, {radius=3})
-			minetest.set_node(pos, {name="default:lava_source"})
+			minetest.set_node(pos, {name=lava_source})
 			return
 		end
 		
@@ -321,7 +322,7 @@ local digging_seal_def = {
 			node.param2 = 0
 		else
 			tnt.boom(pos, {radius=3})
-			minetest.set_node(pos, {name="default:lava_source"})
+			minetest.set_node(pos, {name=lava_source})
 			return
 		end
 		minetest.set_node(pos, {name="air"})
@@ -367,7 +368,7 @@ local inscription_block_def = {
 	},
 	paramtype2 = "facedir",
 	groups = slade_groups,
-	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
 	can_dig = can_dig,
 	on_blast = function() end,
@@ -405,7 +406,7 @@ local capstone_def = {
 	paramtype2 = "facedir",
 	groups = slade_groups,
 	light_source = 8,
-	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
 	can_dig = can_dig,
 	on_blast = function() end,
@@ -418,7 +419,7 @@ minetest.register_node("df_underworld_items:slade_capstone", capstone_def)
 -- Schematics
 
 local n1 = { name = "df_underworld_items:slade_block" }
-local n5 = { name = "default:meselamp" }
+local n5 = { name = df_underworld_items.nodes.meselamp }
 local n6 = { name = "air", prob = 0 } -- ceiling pieces to leave in place
 local n8 = { name = "df_underworld_items:puzzle_seal" }
 local n3 = { name = "air"}
@@ -448,7 +449,7 @@ if minetest.get_modpath("stairs") then
 		{"dfcaverns_slade_block.png"},
 		S("Slade Block Stair"),
 		S("Slade Block Slab"),
-		default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } })
+		df_underworld_items.sounds.slade
 	)
 	
 	if invulnerable then

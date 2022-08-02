@@ -21,7 +21,7 @@ local slade_def = {
 	_doc_items_usagehelp = df_underworld_items.doc.slade_usage,
 	tiles = {"dfcaverns_slade.png"},
 	groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
-	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
 	on_blast = function(pos, intensity)
 		if intensity > 3.0 then
@@ -41,7 +41,7 @@ local slade_brick_def = {
 	_doc_items_usagehelp = df_underworld_items.doc.slade_usage,
 	tiles = {"dfcaverns_slade_brick.png"},
 	groups = { cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
-	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
 }
 if invulnerable then
@@ -67,7 +67,7 @@ local slade_wall_def = {
 	walkable = true,
 	is_ground_content = false,
 	groups = { cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
-	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	sounds = df_underworld_items.sounds.slade,
 }
 if invulnerable then
 	add_immortality(slade_wall_def)
@@ -82,9 +82,7 @@ minetest.register_node("df_underworld_items:slade_sand", {
 	tiles = {"dfcaverns_slade_sand.png"},
 	is_ground_content = false,
 	groups = {crumbly = 3, level = 2, falling_node = 1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
-	sounds = default.node_sound_gravel_defaults({
-		footstep = {name = "default_gravel_footstep", gain = 0.45},
-	}),
+	sounds = df_dependencies.sound_gravel,
 })
 
 local slade_block_def = {
@@ -93,7 +91,7 @@ local slade_block_def = {
 	_doc_items_usagehelp = df_underworld_items.doc.slade_usage,
 	tiles = {"dfcaverns_slade_block.png"},
 	groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
-	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
 }
 if invulnerable then
@@ -109,7 +107,7 @@ local slade_seal_def = {
 	_doc_items_usagehelp = df_underworld_items.doc.slade_usage,
 	tiles = {"dfcaverns_slade_block.png^dfcaverns_seal.png", "dfcaverns_slade_block.png"},
 	groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
-	sounds = default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
 }
 if invulnerable then
@@ -154,7 +152,7 @@ if minetest.get_modpath("stairs") then
 		{"dfcaverns_slade_brick.png"},
 		S("Slade Stair"),
 		S("Slade Slab"),
-		default.node_sound_stone_defaults({ footstep = { name = "bedrock2_step", gain = 1 } })
+		df_underworld_items.sounds.slade
 	)
 	
 	if invulnerable then

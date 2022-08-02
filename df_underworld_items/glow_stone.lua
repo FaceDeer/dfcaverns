@@ -19,7 +19,7 @@ local glowstone_def = {
 	},
 	is_ground_content = false,
 	groups = {cracky=3},
-	sounds = default.node_sound_glass_defaults(),
+	sounds = df_underworld_items.sounds.glass(),
 	paramtype = "light",
 	drawtype = "glasslike",
 	drop = "",

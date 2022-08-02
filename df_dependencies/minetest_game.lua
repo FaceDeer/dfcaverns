@@ -1,67 +1,73 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
 --- From "default"
-
-df_dependencies.sound_dirt = default.node_sound_dirt_defaults
-df_dependencies.sound_glass = default.node_sound_glass_defaults
-df_dependencies.sound_leaves = default.node_sound_leaves_defaults
-df_dependencies.sound_sand = default.node_sound_sand_defaults
-df_dependencies.sound_stone = default.node_sound_stone_defaults
-df_dependencies.sound_water = default.node_sound_water_defaults
-df_dependencies.sound_wood = default.node_sound_wood_defaults
-
-df_dependencies.soundfile_grass_footstep = "default_grass_footstep"
-df_dependencies.soundfile_snow_footstep = "default_snow_footstep"
-
-df_dependencies.node_name_apple = "default:apple"
-df_dependencies.node_name_chest = "default:chest"
-df_dependencies.node_name_coalblock = "default:coalblock"
-df_dependencies.node_name_cobble = "default:cobble"
-df_dependencies.node_name_coral_skeleton = 	"default:coral_skeleton"
-df_dependencies.node_name_desert_sand = "default:desert_sand"
-df_dependencies.node_name_dirt = "default:dirt"
-df_dependencies.node_name_dry_grass_3 = "default:dry_grass_3"
-df_dependencies.node_name_dry_grass_4 = "default:dry_grass_4"
-df_dependencies.node_name_dry_shrub = "default:dry_shrub"
-df_dependencies.node_name_furnace = "default:furnace"
-df_dependencies.node_name_gold_ingot = "default:gold_ingot"
-df_dependencies.node_name_gravel = "default:gravel"
-df_dependencies.node_name_ice = "default:ice"
-df_dependencies.node_name_junglewood = "default:junglewood"
-df_dependencies.node_name_lava_source = "default:lava_source"
-df_dependencies.node_name_mese_crystal = "default:mese_crystal"
-df_dependencies.node_name_mossycobble = "default:mossycobble"
-df_dependencies.node_name_obsidian = "default:obsidian"
-df_dependencies.node_name_paper = "default:paper"
-df_dependencies.node_name_river_water_flowing = "default:river_water_flowing"
-df_dependencies.node_name_river_water_source = "default:river_water_source"
-df_dependencies.node_name_sand = "default:sand"
-df_dependencies.node_name_sand = "default:sand"
-df_dependencies.node_name_silver_sand = "default:silver_sand"
-df_dependencies.node_name_snow = "default:snow"
-df_dependencies.node_name_stone = "default:stone"
-df_dependencies.node_name_stone_with_coal = "default:stone_with_coal"
-df_dependencies.node_name_stone_with_mese = "default:stone_with_mese"
-df_dependencies.node_name_torch = "default:torch"
-df_dependencies.node_name_torch_wall = "default:torch_wall"
-df_dependencies.node_name_water_flowing = "default:water_flowing"
-df_dependencies.node_name_water_source = "default:water_source"
-
-
-df_dependencies.texture_cobble = "default_cobble.png"
-df_dependencies.texture_coral_skeleton = "default_coral_skeleton.png"
-df_dependencies.texture_dirt = "default_dirt.png"
-df_dependencies.texture_gold_block = "default_gold_block.png"
-df_dependencies.texture_ice = "default_ice.png"
-df_dependencies.texture_sand = "default_sand.png"
-df_dependencies.texture_stone = "default_stone.png"
-
-df_dependencies.data_iron_containing_nodes = {"default:stone_with_iron", "default:steelblock"}
-df_dependencies.data_copper_containing_nodes = {"default:stone_with_copper", "default:copperblock"}
-df_dependencies.data_mese_containing_nodes = {"default:stone_with_mese", "default:mese"}
-
-df_dependencies.register_leafdecay = default.register_leafdecay
-df_dependencies.after_place_leaves = default.after_place_leaves
+if minetest.get_modpath("default") then
+	df_dependencies.sound_dirt = default.node_sound_dirt_defaults
+	df_dependencies.sound_glass = default.node_sound_glass_defaults
+	df_dependencies.sound_gravel = default.node_sound_gravel_defaults
+	df_dependencies.sound_leaves = default.node_sound_leaves_defaults
+	df_dependencies.sound_sand = default.node_sound_sand_defaults
+	df_dependencies.sound_stone = default.node_sound_stone_defaults
+	df_dependencies.sound_water = default.node_sound_water_defaults
+	df_dependencies.sound_wood = default.node_sound_wood_defaults
+	
+	df_dependencies.soundfile_grass_footstep = "default_grass_footstep"
+	df_dependencies.soundfile_snow_footstep = "default_snow_footstep"
+	df_dependencies.soundfile_gravel_footstep = "default_gravel_footstep"
+	
+	df_dependencies.node_name_apple = "default:apple"
+	df_dependencies.node_name_chest = "default:chest"
+	df_dependencies.node_name_coalblock = "default:coalblock"
+	df_dependencies.node_name_cobble = "default:cobble"
+	df_dependencies.node_name_coral_skeleton = 	"default:coral_skeleton"
+	df_dependencies.node_name_desert_sand = "default:desert_sand"
+	df_dependencies.node_name_dirt = "default:dirt"
+	df_dependencies.node_name_dry_grass_3 = "default:dry_grass_3"
+	df_dependencies.node_name_dry_grass_4 = "default:dry_grass_4"
+	df_dependencies.node_name_dry_shrub = "default:dry_shrub"
+	df_dependencies.node_name_furnace = "default:furnace"
+	df_dependencies.node_name_gold_ingot = "default:gold_ingot"
+	df_dependencies.node_name_gravel = "default:gravel"
+	df_dependencies.node_name_ice = "default:ice"
+	df_dependencies.node_name_junglewood = "default:junglewood"
+	df_dependencies.node_name_lava_source = "default:lava_source"
+	df_dependencies.node_name_mese_crystal = "default:mese_crystal"
+	df_dependencies.node_name_meselamp = "default:meselamp"
+	df_dependencies.node_name_mossycobble = "default:mossycobble"
+	df_dependencies.node_name_obsidian = "default:obsidian"
+	df_dependencies.node_name_paper = "default:paper"
+	df_dependencies.node_name_river_water_flowing = "default:river_water_flowing"
+	df_dependencies.node_name_river_water_source = "default:river_water_source"
+	df_dependencies.node_name_sand = "default:sand"
+	df_dependencies.node_name_sand = "default:sand"
+	df_dependencies.node_name_silver_sand = "default:silver_sand"
+	df_dependencies.node_name_snow = "default:snow"
+	df_dependencies.node_name_stone = "default:stone"
+	df_dependencies.node_name_stone_with_coal = "default:stone_with_coal"
+	df_dependencies.node_name_stone_with_mese = "default:stone_with_mese"
+	df_dependencies.node_name_torch = "default:torch"
+	df_dependencies.node_name_torch_wall = "default:torch_wall"
+	df_dependencies.node_name_water_flowing = "default:water_flowing"
+	df_dependencies.node_name_water_source = "default:water_source"
+	
+	
+	df_dependencies.texture_cobble = "default_cobble.png"
+	df_dependencies.texture_coral_skeleton = "default_coral_skeleton.png"
+	df_dependencies.texture_dirt = "default_dirt.png"
+	df_dependencies.texture_gold_block = "default_gold_block.png"
+	df_dependencies.texture_ice = "default_ice.png"
+	df_dependencies.texture_sand = "default_sand.png"
+	df_dependencies.texture_stone = "default_stone.png"
+	
+	df_dependencies.data_iron_containing_nodes = {"default:stone_with_iron", "default:steelblock"}
+	df_dependencies.data_copper_containing_nodes = {"default:stone_with_copper", "default:copperblock"}
+	df_dependencies.data_mese_containing_nodes = {"default:stone_with_mese", "default:mese"}
+	
+	df_dependencies.register_leafdecay = default.register_leafdecay
+	df_dependencies.after_place_leaves = default.after_place_leaves
+	
+	df_dependencies.LIGHT_MAX = default.LIGHT_MAX
+end
 
 -- Note that a circular table reference will result in a crash, TODO: guard against that.
 -- Unlikely to be needed, though - it'd take a lot of work for users to get into this bit of trouble.
@@ -196,11 +202,24 @@ end
 
 -- from "bucket"
 
-df_dependencies.node_name_bucket_empty = "bucket:bucket_empty"
+if minetest.get_modpath("bucket") then
+	df_dependencies.node_name_bucket_empty = "bucket:bucket_empty"
+	df_dependencies.bucket_register_liquid = bucket.register_liquid
+end
 
 -- from "wool"
 
-df_dependencies.node_name_wool_white = "wool:white"
+if minetest.get_modpath("wool") then
+	df_dependencies.node_name_wool_white = "wool:white"
+end
 
 -- from "fireflies"
-df_dependencies.node_name_fireflies = "fireflies:firefly"
+if minetest.get_modpath("fireflies") then
+	df_dependencies.node_name_fireflies = "fireflies:firefly"
+end
+
+-- from "vessels"
+
+if minetest.get_modpath("vessels") then
+	df_dependencies.node_name_glass_bottle = "vessels:glass_bottle"
+end

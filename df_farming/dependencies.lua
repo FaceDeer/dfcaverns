@@ -19,8 +19,11 @@ df_farming.node_names.string = df_dependencies.node_name_string
 df_farming.node_names.dirt_moss = "df_farming:dirt_with_cave_moss"
 df_farming.node_names.floor_fungus = "df_farming:cobble_with_floor_fungus"
 
+df_farming.bucket_register_liquid = df_dependencies.bucket_register_liquid
+
 -- these are only for initialization
 minetest.after(0, function()
 	df_farming.sounds = nil
 	df_farming.node_names = nil
+	df_farming.bucket_register_liquid = nil
 end)

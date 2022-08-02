@@ -2,8 +2,8 @@ local modname = minetest.get_current_modname()
 local S = minetest.get_translator(modname)
 
 local sound
-if minetest.get_modpath("default") then
-	sound = default.node_sound_leaves_defaults()
+if minetest.get_modpath("df_dependencies") then
+	sound = df_dependencies.sound_leaves()
 end
 
 local get_node_box = function(connector_thickness)

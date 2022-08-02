@@ -1,5 +1,7 @@
 local S = df_underworld_items.S
 
+local lava_source = df_underworld_items.nodes.lava_source
+
 minetest.register_node("df_underworld_items:pit_plasma", {
 	description = S("Glowing Pit Plasma"),
 	_doc_items_longdesc = df_underworld_items.doc.pit_plasma_desc,
@@ -144,7 +146,7 @@ if df_underworld_items.config.destructive_pit_plasma then
 								if math.random() < 0.66 then
 									minetest.set_node(test_pos, {name="df_underworld_items:glow_amethyst"})
 								else
-									minetest.set_node(test_pos, {name="default:lava_source"})
+									minetest.set_node(test_pos, {name=lava_source})
 								end
 							else
 								minetest.set_node(test_pos, {name="air"})

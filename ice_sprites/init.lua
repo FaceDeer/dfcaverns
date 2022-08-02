@@ -6,10 +6,13 @@ local ice_sprite_usage
 local ice_sprite_bottle_desc
 local ice_sprite_bottle_usage
 
+local node_name_glass_bottle = df_dependencies.node_name_glass_bottle
+local node_name_firefly = df_dependencies.node_name_fireflies
+
 if minetest.get_modpath("doc") then
 	ice_sprite_desc = S("Ice sprites are mysterious glowing insect-like creatures that appear to be made partly of crystallized water.")
-	if minetest.get_modpath("vessels") then
-		if minetest.get_modpath("fireflies") then
+	if node_name_glass_bottle then
+		if node_name_firefly then
 			ice_sprite_usage = S("Ice sprites can be caught with nets and placed in bottles as sources of light and freezing cold.")
 		end
 		ice_sprite_bottle_desc = S("A bottle containing a captured ice sprite.")
@@ -104,7 +107,7 @@ minetest.register_node("ice_sprites:hidden_ice_sprite", {
 })
 
 -- ice sprite in a bottle
-if minetest.get_modpath("vessels") then
+if node_name_glass_bottle then
 
 minetest.register_node("ice_sprites:ice_sprite_bottle", {
 	description = S("Ice Sprite in a Bottle"),
@@ -151,7 +154,7 @@ minetest.register_node("ice_sprites:ice_sprite_bottle", {
 		end
 
 		if ice_sprite_pos then
-			minetest.set_node(pos, {name = "vessels:glass_bottle"})
+			minetest.set_node(pos, {name = node_name_glass_bottle})
 			minetest.set_node(ice_sprite_pos, {name = "ice_sprites:ice_sprite"})
 			minetest.get_node_timer(ice_sprite_pos):start(1)
 		end
@@ -161,6 +164,6 @@ minetest.register_node("ice_sprites:ice_sprite_bottle", {
 minetest.register_craft( {
 	type = "shapeless",
 	output = "ice_sprites:ice_sprite_bottle",
-	recipe = {"ice_sprites:ice_sprite", "vessels:glass_bottle"}
+	recipe = {"ice_sprites:ice_sprite", node_name_glass_bottle}
 })
 end

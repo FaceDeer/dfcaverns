@@ -28,6 +28,9 @@ df_trees.node_names.torch = df_dependencies.node_name_torch
 df_trees.node_names.torch_wall = df_dependencies.node_name_torch_wall
 df_trees.node_names.water_flowing = df_dependencies.node_name_water_flowing
 df_trees.node_names.water_source = df_dependencies.node_name_water_source
+df_trees.node_names.door_wood_a = df_dependencies.node_name_door_wood_a
+df_trees.node_names.door_hidden = df_dependencies.node_name_door_hidden
+df_trees.node_names.shelf = df_dependencies.node_name_shelf
 
 df_trees.textures = {}
 df_trees.textures.gold_block = df_dependencies.texture_gold_block

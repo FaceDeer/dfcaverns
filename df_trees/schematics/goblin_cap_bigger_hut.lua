@@ -9,34 +9,24 @@ local n8 = { name = df_trees.node_names.furnace, param2 = 2, force_place=true }
 local n9 = { name = "air", force_place=true } -- internal air
 local n10 = { name = df_trees.node_names.torch_wall, param2 = 3, force_place = true }
 local n12 = {name = "stairs:slab_goblin_cap_stem_wood", param2 = 2} -- porch top
-local n13 = { name = "doors:door_wood_a", param2 = 3, force_place = true }
-local n14 = { name = "doors:hidden", param2 = 3, force_place = true }
+local n13 = { name = df_trees.node_names.door_wood_a or "air", param2 = 3, force_place = true }
+local n14 = { name = df_trees.node_names.door_hidden or "air", param2 = 3, force_place = true }
 local n15 = n9 -- internal air, but could be a vessel shelf
-local n16 = { name = df_trees.node_names.bed_top, param2 = 3, force_place = true }
-local n17 = { name = df_trees.node_names.bed_bottom, param2 = 3, force_place = true }
+local n16 = { name = df_trees.node_names.bed_top or "air", param2 = 3, force_place = true }
+local n17 = { name = df_trees.node_names.bed_bottom or "air", param2 = 3, force_place = true }
 local n18 = { name = df_trees.node_names.chest, force_place = true }
 local n19 = { name = df_trees.node_names.torch_wall, param2 = 2, force_place = true }
 local n20 = {name = "stairs:stair_goblin_cap_stem_wood" }
 local n21 = {name = "stairs:stair_goblin_cap_stem_wood", param2 = 2 }
 local n22 = {name = "stairs:slab_goblin_cap_stem_wood", param2 = 22}
 
-if minetest.get_modpath("vessels") then
+if df_trees.node_names.shelf then
 	-- replace torches with glowing bottles, add vessel shelf
 	n10 = { name = "df_trees:glowing_bottle_red", force_place=true}
 	n19 = n10
-	n15 = { name = "vessels:shelf", param2 = 3, force_place = true }
+	n15 = { name = df_trees.node_names.shelf, param2 = 3, force_place = true }
 end
 
-if not minetest.get_modpath("doors") then
-	-- replace the door with air
-	n13 = n9
-	n14 = n9
-end
-if not df_trees.node_names.bed_top then
-	--replace the bed with air
-	n16 = n9
-	n17 = n9
-end
 if not minetest.get_modpath("stairs") then
 	-- replace stairs with air
 	n12 = nil

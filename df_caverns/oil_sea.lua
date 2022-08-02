@@ -115,7 +115,7 @@ end)
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "mine_gas:gas_seep",
-	wherein        = "default:stone",
+	wherein        = df_caverns.node_name.stone,
 	clust_scarcity = 32 * 32 * 32,
 	clust_num_ores = 27,
 	clust_size     = 6,

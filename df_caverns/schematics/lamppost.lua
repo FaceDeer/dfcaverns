@@ -13,7 +13,7 @@ local n7 = { name = "stairs:stair_slade_brick", param2 = 1, force_place=true }
 local n8 = { name = "df_underworld_items:slade_brick", force_place=true }
 local n9 = { name = "stairs:stair_slade_brick", param2 = 3, force_place=true }
 local n10 = { name = "df_underworld_items:slade_wall", force_place=true }
-local n11 = { name = "default:meselamp", force_place=true }
+local n11 = { name = df_caverns.node_name.meselamp, force_place=true }
 local n12 = { name = outer_stair, param2 = 2, force_place=true }
 local n13 = { name = "stairs:stair_slade_brick", param2 = 2, force_place=true }
 local n14 = { name = outer_stair, param2 = 3, force_place=true }

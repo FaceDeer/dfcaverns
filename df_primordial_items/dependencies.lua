@@ -18,8 +18,12 @@ df_primordial_items.sounds.dirt = df_dependencies.sound_dirt()
 df_primordial_items.register_leafdecay = df_dependencies.register_leafdecay
 df_primordial_items.after_place_leaves = df_dependencies.after_place_leaves
 
+df_primordial_items.textures = {}
+df_primordial_items.textures.wood = df_dependencies.texture_wood
+
 -- This stuff should only be used during initialization
 minetest.after(0, function()
 	df_primordial_items.node_names = nil
 	df_primordial_items.sounds = nil
+	df_primordial_items.textures = nil
 end)

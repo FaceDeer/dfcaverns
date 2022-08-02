@@ -58,6 +58,7 @@ if minetest.get_modpath("default") then
 	df_dependencies.texture_ice = "default_ice.png"
 	df_dependencies.texture_sand = "default_sand.png"
 	df_dependencies.texture_stone = "default_stone.png"
+	df_dependencies.texture_wood = "default_wood.png"
 	
 	df_dependencies.data_iron_containing_nodes = {"default:stone_with_iron", "default:steelblock"}
 	df_dependencies.data_copper_containing_nodes = {"default:stone_with_copper", "default:copperblock"}

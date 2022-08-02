@@ -58,10 +58,12 @@ end
 df_dependencies.soundfile_grass_footstep = select_required({default="default_grass_footstep", mcl_sounds="default_grass_footstep"})
 df_dependencies.soundfile_snow_footstep = select_required({default="default_snow_footstep", mcl_sounds="pedology_snow_soft_footstep"})
 df_dependencies.soundfile_gravel_footstep = select_required({default="default_gravel_footstep", mcl_sounds="default_gravel_footstep"})
+df_dependencies.soundfile_cool_lava = select_required({default="default_cool_lava", mcl_sounds="default_cool_lava"})
 
 df_dependencies.node_name_apple = select_required({default="default:apple", mcl_core="mcl_core:apple"})
 df_dependencies.node_name_chest = select_required({default="default:chest", mcl_chests="mcl_chests:chest"})
 df_dependencies.node_name_coalblock = select_required({default="default:coalblock", mcl_core="mcl_core:coalblock"})
+df_dependencies.node_name_coal_lump = select_required({default="default:coal_lump", mcl_core="mcl_core:coal_lump"})
 df_dependencies.node_name_cobble = select_required({default="default:cobble", mcl_core="mcl_core:cobble"})
 df_dependencies.node_name_coral_skeleton = select_required({default="default:coral_skeleton", mcl_ocean="mcl_ocean:dead_horn_coral_block"})
 df_dependencies.node_name_desert_sand = select_required({default="default:desert_sand", mcl_core="mcl_core:redsand"})
@@ -259,7 +261,6 @@ if minetest.get_modpath("fireflies") then
 end
 
 -- from "vessels"
-
 df_dependencies.node_name_glass_bottle = select_required({vessels="vessels:glass_bottle", mcl_potions="mcl_potions:glass_bottle"})
 df_dependencies.node_name_shelf = select_required({vessels="vessels:shelf", })
 df_dependencies.texture_glass_bottle = select_required({vessels="vessels_glass_bottle.png",	mcl_potions="mcl_potions_potion_bottle.png"})

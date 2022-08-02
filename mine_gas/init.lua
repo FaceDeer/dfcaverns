@@ -50,10 +50,10 @@ minetest.register_node("mine_gas:gas_seep", {
 	description = S("Gas Seep"),
 	_doc_items_longdesc = seep_desc,
 	_doc_items_usagehelp = seep_usage,
-	tiles = {"default_stone.png^default_mineral_coal.png^[combine:16x80:0,-16=crack_anylength.png"},
+	tiles = {df_dependencies.texture_stone.."^"..df_dependencies.texture_mineral_coal.."^[combine:16x80:0,-16=crack_anylength.png"},
 	groups = {cracky = 3},
-	drop = 'default:coal_lump',
-	sounds = default.node_sound_stone_defaults(),
+	drop = df_dependencies.node_name_coal_lump,
+	sounds = df_dependencies.sound_stone(),
 	is_ground_content = true,
 })
 
@@ -136,7 +136,7 @@ minetest.register_abm({
 	        end
 			minetest.set_node(pos, {name="mine_gas:gas"})
 			minetest.sound_play(
-				"default_cool_lava",
+				df_dependencies.soundfile_cool_lava,
 				{pos = pos, max_hear_distance = 16, gain = 0.1}
 			)
 		end	
@@ -172,6 +172,7 @@ local orthogonal = {
 	{x=-1,y=0,z=0},
 }
 
+local stone_with_coal = df_dependencies.node_name_stone_with_coal
 minetest.register_lbm({
     label = "shut down gas seeps near lava",
     name = "mine_gas:shut_down_lava_adjacent",
@@ -180,7 +181,7 @@ minetest.register_lbm({
     action = function(pos, node)
 		minetest.after(math.random()*60, function()
 			if minetest.find_node_near(pos, 30, "group:lava") then
-				minetest.set_node(pos, {name="default:stone_with_coal"})
+				minetest.set_node(pos, {name=stone_with_coal})
 			end
 		end)
 	end,

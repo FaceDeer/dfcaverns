@@ -12,8 +12,8 @@ local n12 = {name = "stairs:slab_goblin_cap_stem_wood", param2 = 2} -- porch top
 local n13 = { name = "doors:door_wood_a", param2 = 3, force_place = true }
 local n14 = { name = "doors:hidden", param2 = 3, force_place = true }
 local n15 = n9 -- internal air, but could be a vessel shelf
-local n16 = { name = "beds:bed_top", param2 = 3, force_place = true }
-local n17 = { name = "beds:bed_bottom", param2 = 3, force_place = true }
+local n16 = { name = df_trees.node_names.bed_top, param2 = 3, force_place = true }
+local n17 = { name = df_trees.node_names.bed_bottom, param2 = 3, force_place = true }
 local n18 = { name = df_trees.node_names.chest, force_place = true }
 local n19 = { name = df_trees.node_names.torch_wall, param2 = 2, force_place = true }
 local n20 = {name = "stairs:stair_goblin_cap_stem_wood" }
@@ -32,7 +32,7 @@ if not minetest.get_modpath("doors") then
 	n13 = n9
 	n14 = n9
 end
-if not minetest.get_modpath("beds") then
+if not df_trees.node_names.bed_top then
 	--replace the bed with air
 	n16 = n9
 	n17 = n9

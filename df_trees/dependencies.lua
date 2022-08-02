@@ -11,21 +11,23 @@ df_trees.sounds.glass = df_dependencies.sound_glass()
 
 df_trees.node_names = {}
 
-df_trees.node_names.torch = df_dependencies.node_name_torch
-df_trees.node_names.chest = df_dependencies.node_name_chest
-df_trees.node_names.furnace = df_dependencies.node_name_furnace
 df_trees.node_names.apple = df_dependencies.node_name_apple
-df_trees.node_names.gold_ingot = df_dependencies.node_name_gold_ingot
-df_trees.node_names.water_source = df_dependencies.node_name_water_source
-df_trees.node_names.river_water_source = df_dependencies.node_name_river_water_source
-df_trees.node_names.ice = df_dependencies.node_name_ice
-df_trees.node_names.water_flowing = df_dependencies.node_name_water_flowing
-df_trees.node_names.river_water_flowing = df_dependencies.node_name_river_water_flowing
-df_trees.node_names.snow = df_dependencies.node_name_snow
-df_trees.node_names.torch_wall = df_dependencies.node_name_torch_wall
-df_trees.node_names.stone_with_coal = df_dependencies.node_name_stone_with_coal
+df_trees.node_names.bed_bottom = df_dependencies.node_name_bed_bottom
+df_trees.node_names.bed_top = df_dependencies.node_name_bed_top
+df_trees.node_names.chest = df_dependencies.node_name_chest
 df_trees.node_names.coalblock = df_dependencies.node_name_coalblock
+df_trees.node_names.furnace = df_dependencies.node_name_furnace
+df_trees.node_names.gold_ingot = df_dependencies.node_name_gold_ingot
+df_trees.node_names.ice = df_dependencies.node_name_ice
 df_trees.node_names.paper = df_dependencies.node_name_paper
+df_trees.node_names.river_water_flowing = df_dependencies.node_name_river_water_flowing
+df_trees.node_names.river_water_source = df_dependencies.node_name_river_water_source
+df_trees.node_names.snow = df_dependencies.node_name_snow
+df_trees.node_names.stone_with_coal = df_dependencies.node_name_stone_with_coal
+df_trees.node_names.torch = df_dependencies.node_name_torch
+df_trees.node_names.torch_wall = df_dependencies.node_name_torch_wall
+df_trees.node_names.water_flowing = df_dependencies.node_name_water_flowing
+df_trees.node_names.water_source = df_dependencies.node_name_water_source
 
 df_trees.textures = {}
 df_trees.textures.gold_block = df_dependencies.texture_gold_block

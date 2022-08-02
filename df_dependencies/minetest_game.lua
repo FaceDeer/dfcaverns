@@ -48,8 +48,7 @@ if minetest.get_modpath("default") then
 	df_dependencies.node_name_torch = "default:torch"
 	df_dependencies.node_name_torch_wall = "default:torch_wall"
 	df_dependencies.node_name_water_flowing = "default:water_flowing"
-	df_dependencies.node_name_water_source = "default:water_source"
-	
+	df_dependencies.node_name_water_source = "default:water_source"	
 	
 	df_dependencies.texture_cobble = "default_cobble.png"
 	df_dependencies.texture_coral_skeleton = "default_coral_skeleton.png"
@@ -60,6 +59,7 @@ if minetest.get_modpath("default") then
 	df_dependencies.texture_stone = "default_stone.png"
 	df_dependencies.texture_wood = "default_wood.png"
 	
+	-- used to determine colour of spindlestem caps
 	df_dependencies.data_iron_containing_nodes = {"default:stone_with_iron", "default:steelblock"}
 	df_dependencies.data_copper_containing_nodes = {"default:stone_with_copper", "default:copperblock"}
 	df_dependencies.data_mese_containing_nodes = {"default:stone_with_mese", "default:mese"}
@@ -223,4 +223,9 @@ end
 
 if minetest.get_modpath("vessels") then
 	df_dependencies.node_name_glass_bottle = "vessels:glass_bottle"
+end
+
+if minetest.get_modpath("beds") then
+	df_dependencies.node_name_bed_bottom = "beds:bed_bottom"
+	df_dependencies.node_name_bed_top = "beds:bed_top"
 end

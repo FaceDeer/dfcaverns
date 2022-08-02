@@ -82,7 +82,7 @@ minetest.register_node("df_underworld_items:slade_sand", {
 	tiles = {"dfcaverns_slade_sand.png"},
 	is_ground_content = false,
 	groups = {crumbly = 3, level = 2, falling_node = 1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
-	sounds = df_dependencies.sound_gravel,
+	sounds = df_underworld_items.sounds.slade_gravel,
 })
 
 local slade_block_def = {

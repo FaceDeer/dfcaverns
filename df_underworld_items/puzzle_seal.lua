@@ -248,7 +248,7 @@ local digging_seal_def = {
 	tiles = {"dfcaverns_pit_plasma_static.png", "dfcaverns_pit_plasma_static.png^dfcaverns_seal.png", "dfcaverns_pit_plasma_static.png"},
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = df_underworld_items.LIGHT_MAX,
+	light_source = minetest.LIGHT_MAX,
 	groups = {immortal=1, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, not_in_creative_inventory=1},
 	sounds = df_underworld_items.sounds.slade,
 	selection_box = {

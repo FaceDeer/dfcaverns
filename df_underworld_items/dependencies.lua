@@ -15,12 +15,9 @@ df_underworld_items.nodes = {}
 df_underworld_items.nodes.lava_source = df_dependencies.node_name_lava_source
 df_underworld_items.nodes.meselamp = df_dependencies.node_name_meselamp
 
-df_underworld_items.LIGHT_MAX = df_dependencies.LIGHT_MAX
-
 -- This stuff should only be used during initialization
 minetest.after(0, function()
 	df_underworld_items.abm_neighbors = nil
 	df_underworld_items.sounds = nil
 	df_underworld_items.nodes = nil
-	df_underworld_items.LIGHT_MAX = nil
 end)

@@ -31,7 +31,7 @@ minetest.register_node("df_primordial_items:mushroom_gills", {
 	tiles = {"dfcaverns_mush_gills.png"},
 	inventory_image = "dfcaverns_mush_gills.png",
 	wield_image = "dfcaverns_mush_gills.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, leaves = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1, leaves = 1, leafdecay = 5},
 	paramtype = "light",
 	drawtype = "plantlike",
 	waving = 2,
@@ -55,6 +55,7 @@ minetest.register_node("df_primordial_items:mushroom_gills", {
 		}
 	},
 	after_place_node = df_primordial_items.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
 minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
@@ -64,7 +65,7 @@ minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
 	tiles = {"dfcaverns_mush_gills_glow.png"},
 	inventory_image = "dfcaverns_mush_gills_glow.png",
 	wield_image = "dfcaverns_mush_gills_glow.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, leaves = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1, leaves = 1, leafdecay = 5},
 	paramtype = "light",
 	drawtype = "plantlike",
 	waving = 2,
@@ -89,6 +90,7 @@ minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
 		}
 	},
 	after_place_node = df_primordial_items.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
 df_primordial_items.register_leafdecay({

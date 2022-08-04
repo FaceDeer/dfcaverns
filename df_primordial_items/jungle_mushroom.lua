@@ -22,7 +22,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_cap_1", {
 	tiles = {"dfcaverns_jungle_mushroom_top_02.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_place = minetest.rotate_node,
 	drop = {
@@ -46,7 +46,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_cap_2", {
 	tiles = {"dfcaverns_jungle_mushroom_top_01.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_place = minetest.rotate_node,
 	drop = {

@@ -15,7 +15,7 @@ minetest.register_node("df_primordial_items:jungle_leaves", {
 	paramtype = "light",
 	is_ground_content = false,
 	buildable_to = true,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 1, flammable = 2, leaves = 1},
 	sounds = df_primordial_items.sounds.leaves,
 	drop = {
 		max_items = 1,
@@ -30,6 +30,7 @@ minetest.register_node("df_primordial_items:jungle_leaves", {
 		}
 	},
 	after_place_node = df_primordial_items.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
 minetest.register_node("df_primordial_items:jungle_leaves_glowing", {
@@ -47,7 +48,7 @@ minetest.register_node("df_primordial_items:jungle_leaves_glowing", {
 	is_ground_content = false,
 	buildable_to = true,
 	light_source = 2,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 1, flammable = 2, leaves = 1},
 	sounds = df_primordial_items.sounds.leaves,
 	drop = {
 		max_items = 1,
@@ -62,6 +63,7 @@ minetest.register_node("df_primordial_items:jungle_leaves_glowing", {
 		}
 	},
 	after_place_node = df_primordial_items.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
 -- Trunk

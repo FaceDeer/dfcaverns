@@ -94,6 +94,7 @@ minetest.register_node("df_trees:spore_tree_hyphae", {
 	sounds = df_trees.sounds.leaves,
 
 	after_place_node = df_trees.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
 minetest.register_node("df_trees:spore_tree_fruiting_body", {
@@ -134,6 +135,7 @@ minetest.register_node("df_trees:spore_tree_fruiting_body", {
 	sounds = df_trees.sounds.leaves,
 
 	after_place_node = df_trees.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
 df_trees.register_leafdecay({

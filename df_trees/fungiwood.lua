@@ -81,7 +81,7 @@ minetest.register_node("df_trees:fungiwood_shelf",{
 		}
 	},
 	is_ground_content = false,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 5, flammable = 2, leaves = 1},
 	drop = {
 		max_items = 1,
 		items = {
@@ -92,6 +92,7 @@ minetest.register_node("df_trees:fungiwood_shelf",{
 	sounds = df_trees.sounds.leaves,
 
 	after_place_node = df_trees.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
 df_trees.register_leafdecay({

@@ -22,11 +22,14 @@ df_dependencies.select_required = function(def)
 end
 
 df_dependencies.select_optional = function(def)
+	local ret
 	for mod, item in pairs(def) do
+		df_dependencies.mods_required[mod] = true
 		if minetest.get_modpath(mod) then
-			return item
+			ret = item
 		end
 	end
+	return ret
 end
 
 dofile(modpath.."/nodes.lua")
@@ -34,7 +37,16 @@ dofile(modpath.."/sounds.lua")
 dofile(modpath.."/helper_functions.lua")
 dofile(modpath.."/misc.lua")
 
-minetest.debug(dump(df_dependencies.mods_required))
+local mods_required = ""
+local mods_sorted = {}
+for mod, _ in pairs(df_dependencies.mods_required) do
+	table.insert(mods_sorted, mod)
+end
+table.sort(mods_sorted)
+for _, mod in ipairs(mods_sorted) do
+	mods_required = mods_required .. ", " .. mod
+end
+minetest.debug(mods_required)
 
 -- This mod is meant to only exist at initialization time. Other mods should make copies of anything it points to for their own use.
 minetest.after(1, function() df_dependencies = nil end)

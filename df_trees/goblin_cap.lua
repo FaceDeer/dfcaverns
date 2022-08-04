@@ -35,7 +35,7 @@ minetest.register_node("df_trees:goblin_cap_gills", {
 	_doc_items_usagehelp = df_trees.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap_gills.png"},
 	is_ground_content = false,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, goblin_cap = 1},
+	groups = {snappy = 3, leafdecay = 1, flammable = 2, leaves = 1, goblin_cap = 1},
 	sounds = df_trees.sounds.leaves,
 	drawtype = "plantlike",
 	paramtype = "light",
@@ -52,6 +52,7 @@ minetest.register_node("df_trees:goblin_cap_gills", {
 		}
 	},
 	after_place_node = df_trees.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
 df_trees.register_leafdecay({

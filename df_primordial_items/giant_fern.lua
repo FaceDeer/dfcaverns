@@ -157,7 +157,7 @@ minetest.register_node("df_primordial_items:giant_fern_leaves", {
 	visual_scale = 1.41,
 	inventory_image = "dfcaverns_jungle_fern_leaves_01.png",
 	wield_image = "dfcaverns_jungle_fern_leaves_01.png",
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 2, flammable = 2, leaves = 1},
 	is_ground_content = false,
 	paramtype = "light",
 	drawtype = "plantlike",
@@ -168,6 +168,7 @@ minetest.register_node("df_primordial_items:giant_fern_leaves", {
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
 	after_place_node = df_primordial_items.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 	drop = {
 		max_items = 1,
 		items = {

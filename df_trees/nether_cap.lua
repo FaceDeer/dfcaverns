@@ -30,7 +30,7 @@ minetest.register_node("df_trees:nether_cap_gills", {
 	tiles = {"dfcaverns_nether_cap_gills.png"},
 	is_ground_content = false,
 	light_source = 6,
-	groups = {snappy = 3, leafdecay = 3, leaves = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
+	groups = {snappy = 3, leafdecay = 1, leaves = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
 	sounds = df_trees.sounds.leaves,
 	drawtype = "plantlike",
 	paramtype = "light",
@@ -47,6 +47,7 @@ minetest.register_node("df_trees:nether_cap_gills", {
 		}
 	},
 	after_place_node = df_trees.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
 df_trees.register_leafdecay({

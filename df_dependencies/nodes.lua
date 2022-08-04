@@ -39,7 +39,7 @@ df_dependencies.node_name_ice = select_required("default:ice", "mcl_core:ice")
 df_dependencies.node_name_junglewood = select_required("default:junglewood", "mcl_core:junglewood")
 df_dependencies.node_name_lava_source = select_required("default:lava_source", "mcl_core:lava_source")
 df_dependencies.node_name_mese_crystal = select_required("default:mese_crystal", "mesecons:redstone") -- TODO make sure this is properly balanced. Also, mesecons mod conflict with non-mcl mesecons?
-df_dependencies.node_name_meselamp = select_required("default:meselamp")
+df_dependencies.node_name_meselamp = select_required("default:meselamp", "mcl_lanterns:lantern_floor")
 df_dependencies.node_name_mossycobble = select_required("default:mossycobble", "mcl_core:mossycobble")
 df_dependencies.node_name_obsidian = select_required("default:obsidian", "mcl_core:obsidian")
 df_dependencies.node_name_paper = select_required("default:paper", "mcl_core:paper")
@@ -57,7 +57,7 @@ df_dependencies.node_name_water_flowing = select_required("default:water_flowing
 df_dependencies.node_name_water_source = select_required("default:water_source", "mcl_core:water_source")
 df_dependencies.node_name_stone_with_iron = select_required("default:stone_with_iron", "mcl_core:stone_with_iron")
 df_dependencies.node_name_steelblock = select_required("default:steelblock", "mcl_core:ironblock")
-df_dependencies.node_name_stone_with_copper = select_required("default:stone_with_copper", "mcl_core:stone_with_copper")
+df_dependencies.node_name_stone_with_copper = select_required("default:stone_with_copper", "mcl_copper:stone_with_copper")
 df_dependencies.node_name_copperblock = select_required("default:copperblock", "mcl_copper:block_raw")
 
 df_dependencies.node_name_dirt_furrowed = select_required("farming:soil", "mcl_farming:soil")

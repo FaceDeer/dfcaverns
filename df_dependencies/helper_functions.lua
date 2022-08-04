@@ -3,8 +3,12 @@ local S = minetest.get_translator(minetest.get_current_modname())
 if minetest.get_modpath("default") then
 	df_dependencies.register_leafdecay = default.register_leafdecay
 	df_dependencies.after_place_leaves = default.after_place_leaves
-else
-	--TODO
+elseif ("mcl_core") then
+	-- Mineclone does leaf decay differently, it uses the "leafdecay" group to require that leaves remain
+	-- within the group value distance of any node of group "tree".
+	-- make sure to add place_param2 = 1 to leaves to prevent decay of player-placed leaves
+	df_dependencies.register_leafdecay = function() end
+	df_dependencies.after_place_leaves = function() end
 end
 
 

@@ -109,6 +109,11 @@ minetest.register_node("ice_sprites:hidden_ice_sprite", {
 -- ice sprite in a bottle
 if node_name_glass_bottle then
 
+local glass_sounds
+if minetest.get_modpath("df_dependencies") then
+	glass_sounds = df_dependencies.sound_glass
+end
+
 minetest.register_node("ice_sprites:ice_sprite_bottle", {
 	description = S("Ice Sprite in a Bottle"),
 	_doc_items_longdesc = ice_sprite_bottle_desc,
@@ -135,7 +140,7 @@ minetest.register_node("ice_sprites:ice_sprite_bottle", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
-	sounds = default.node_sound_glass_defaults(),
+	sounds = glass_sounds(),
 	on_rightclick = function(pos, node, player, itemstack, pointed_thing)
 		local lower_pos = {x = pos.x, y = pos.y + 1, z = pos.z}
 		if minetest.is_protected(pos, player:get_player_name()) or

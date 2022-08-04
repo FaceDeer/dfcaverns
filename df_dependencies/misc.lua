@@ -39,10 +39,11 @@ df_dependencies.texture_wood = select_required({default="default_wood.png", mcl_
 df_dependencies.texture_mineral_coal = select_required({default="default_mineral_coal.png",	mcl_core="mcl_core_coal_ore.png"}) -- MCL's coal texture isn't transparent, but is only used with gas seeps and should work fine that way
 df_dependencies.texture_glass_bottle = select_required({vessels="vessels_glass_bottle.png",	mcl_potions="mcl_potions_potion_bottle.png"})
 
-df_dependencies.mods_required.mcl_vars = true
+df_dependencies.mods_required.mcl_init = true
 df_dependencies.mods_required.mcl_worlds = true
 df_dependencies.mods_required.mcl_strongholds = true
-if minetest.get_modpath("mcl_vars") then
+if minetest.get_modpath("mcl_init") then
+
 	local prefix = "dfcaverns_"
 	-- NOTE: These defaults are from df_caverns' config. Update them if those change.
 	
@@ -77,6 +78,8 @@ if minetest.get_modpath("mcl_vars") then
 			return pos.y <= mcl_vars.mg_overworld_max and pos.y >= old_overworld_min
 		end
 	end
+
+--	minetest.debug(dump(mcl_vars))
 	
 	dofile(minetest.get_modpath(minetest.get_current_modname()).."/ores.lua")
 	

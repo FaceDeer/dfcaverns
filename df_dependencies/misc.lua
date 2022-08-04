@@ -39,29 +39,31 @@ df_dependencies.texture_wood = select_required({default="default_wood.png", mcl_
 df_dependencies.texture_mineral_coal = select_required({default="default_mineral_coal.png",	mcl_core="mcl_core_coal_ore.png"}) -- MCL's coal texture isn't transparent, but is only used with gas seeps and should work fine that way
 df_dependencies.texture_glass_bottle = select_required({vessels="vessels_glass_bottle.png",	mcl_potions="mcl_potions_potion_bottle.png"})
 
+
+local prefix = "dfcaverns_"
+-- NOTE: These defaults are from df_caverns' config. Update them if those change.
+
+local lowest_elevation = tonumber(minetest.settings:get(prefix.."sunless_sea_min")) or -2512
+if minetest.settings:get_bool(prefix.."enable_oil_sea", true) then
+	lowest_elevation = (tonumber(minetest.settings:get(prefix.."oil_sea_level")) or -2700)
+end
+if minetest.settings:get_bool(prefix.."enable_lava_sea", true) then
+	lowest_elevation = (tonumber(minetest.settings:get(prefix.."lava_sea_level")) or -2900)
+end
+if minetest.settings:get_bool(prefix.."enable_underworld", true) then
+	lowest_elevation = (tonumber(minetest.settings:get(prefix.."underworld_level")) or -3200)
+end
+if minetest.settings:get_bool(prefix.."enable_primordial", true) then
+	lowest_elevation = (tonumber(minetest.settings:get(prefix.."primordial_min")) or -4032)
+end
+lowest_elevation = lowest_elevation - 193 -- add a little buffer space
+
 df_dependencies.mods_required.mcl_init = true
 df_dependencies.mods_required.mcl_worlds = true
 df_dependencies.mods_required.mcl_strongholds = true
-if minetest.get_modpath("mcl_init") then
-
-	local prefix = "dfcaverns_"
-	-- NOTE: These defaults are from df_caverns' config. Update them if those change.
-	
-	local lowest_elevation = tonumber(minetest.settings:get(prefix.."sunless_sea_min")) or -2512
-	if minetest.settings:get_bool(prefix.."enable_oil_sea", true) then
-		lowest_elevation = (tonumber(minetest.settings:get(prefix.."oil_sea_level")) or -2700)
-	end
-	if minetest.settings:get_bool(prefix.."enable_lava_sea", true) then
-		lowest_elevation = (tonumber(minetest.settings:get(prefix.."lava_sea_level")) or -2900)
-	end
-	if minetest.settings:get_bool(prefix.."enable_underworld", true) then
-		lowest_elevation = (tonumber(minetest.settings:get(prefix.."underworld_level")) or -3200)
-	end
-	if minetest.settings:get_bool(prefix.."enable_primordial", true) then
-		lowest_elevation = (tonumber(minetest.settings:get(prefix.."primordial_min")) or -4032)
-	end
-	lowest_elevation = lowest_elevation - 193 -- add a little buffer space
-
+df_dependencies.mods_required.mcl_compatibility = true
+df_dependencies.mods_required.mcl_mapgen = true
+if minetest.get_modpath("mcl_init") then -- Mineclone 2
 	local old_overworld_min = mcl_vars.mg_overworld_min -- rememeber this for weather control
 	
 	mcl_vars.mg_overworld_min = lowest_elevation
@@ -89,4 +91,22 @@ if minetest.get_modpath("mcl_init") then
 	--	local strongholds = mcl_structures.get_structure_data("stronghold")
 	--	mcl_structures.register_structure_data("stronghold", strongholds)	
 	--end
+end
+if minetest.get_modpath("mcl_compatibility") then -- Mineclone 5
+	mcl_vars.mg_overworld_min = lowest_elevation
+	mcl_vars.mg_bedrock_overworld_min = mcl_vars.mg_overworld_min
+	mcl_vars.mg_bedrock_overworld_max = mcl_vars.mg_overworld_min+4
+	mcl_vars.mg_lava_overworld_max = mcl_vars.mg_overworld_min+6
+	mcl_vars.mg_lava = false
+	mcl_vars.mg_end_max = mcl_vars.mg_overworld_min - 2000
+	mcl_vars.mg_realm_barrier_overworld_end_max = mcl_vars.mg_end_max
+	mcl_vars.mg_realm_barrier_overworld_end_min = mcl_vars.mg_end_max-11
+end
+if minetest.get_modpath("mcl_mapgen") then -- Mineclone 5
+	mcl_mapgen.overworld.min = lowest_elevation
+	mcl_mapgen.overworld.bedrock_min = mcl_mapgen.overworld.min
+	mcl_mapgen.overworld.bedrock_max = mcl_mapgen.overworld.min+4
+	mcl_mapgen.overworld.lava_max = mcl_mapgen.overworld.min+6
+	
+	mcl_mapgen.end_.max = mcl_mapgen.overworld.min - 2000
 end

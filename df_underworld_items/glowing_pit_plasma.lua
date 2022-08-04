@@ -67,7 +67,7 @@ minetest.register_node("df_underworld_items:pit_plasma_flowing", {
 			},
 		},
 	},
-	groups={pit_plasma=1, pit_plasma_resistant=1},
+	groups={pit_plasma=1, pit_plasma_resistant=1, not_in_creative_inventory=1},
 	walkable = false,
 	pointable = false,
 	diggable = false,

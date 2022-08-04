@@ -1,9 +1,19 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
-df_dependencies.register_leafdecay = default.register_leafdecay
-df_dependencies.after_place_leaves = default.after_place_leaves
+if minetest.get_modpath("default") then
+	df_dependencies.register_leafdecay = default.register_leafdecay
+	df_dependencies.after_place_leaves = default.after_place_leaves
+else
+	--TODO
+end
 
-df_dependencies.bucket_register_liquid = bucket.register_liquid
+
+df_dependencies.mods_required.bucket = true
+if minetest.get_modpath("bucket") then
+	df_dependencies.bucket_register_liquid = bucket.register_liquid
+else
+	-- TODO
+end
 
 
 -- Note that a circular table reference will result in a crash, TODO: guard against that.
@@ -20,6 +30,10 @@ local function deep_copy(table_in)
 	end
 	return table_out
 end
+
+df_dependencies.mods_required.stairs = true
+df_dependencies.mods_required.moreblocks = true
+df_dependencies.mods_required.doors = true
 
 df_dependencies.register_all_stairs = function(name, override_def)
 	local mod = minetest.get_current_modname()
@@ -57,43 +71,47 @@ df_dependencies.register_all_fences = function (name, override_def)
 	
 	local burntime = override_def.burntime
 	
-	default.register_fence(material .. "_fence", {
-		description = S("@1 Fence", node_def.description),
-		texture = override_def.texture or node_def.tiles[1],
-		material = override_def.material or material,
-		groups = deep_copy(node_def.groups or {}), -- the default register_fence function modifies the groups table passed in, so send a copy instead to be on the safe side.
-		sounds = node_def.sounds
-	})
-	if burntime then
-		minetest.register_craft({
-			type = "fuel",
-			recipe = material .. "_fence",
-			burntime = burntime, -- ignoring two sticks
+	if minetest.get_modpath("default") then
+		default.register_fence(material .. "_fence", {
+			description = S("@1 Fence", node_def.description),
+			texture = override_def.texture or node_def.tiles[1],
+			material = override_def.material or material,
+			groups = deep_copy(node_def.groups or {}), -- the default register_fence function modifies the groups table passed in, so send a copy instead to be on the safe side.
+			sounds = node_def.sounds
 		})
-	end
+		if burntime then
+			minetest.register_craft({
+				type = "fuel",
+				recipe = material .. "_fence",
+				burntime = burntime, -- ignoring two sticks
+			})
+		end
 
-	default.register_fence_rail(material .. "_fence_rail", {
-		description = S("@1 Fence Rail", node_def.description),
-		texture = override_def.texture or node_def.tiles[1],
-		material = override_def.material or material,
-		groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
-		sounds = node_def.sounds
-	})
-	if burntime then
-		minetest.register_craft({
-			type = "fuel",
-			recipe = material .. "_fence_rail",
-			burntime = burntime * 4/16,
+		default.register_fence_rail(material .. "_fence_rail", {
+			description = S("@1 Fence Rail", node_def.description),
+			texture = override_def.texture or node_def.tiles[1],
+			material = override_def.material or material,
+			groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
+			sounds = node_def.sounds
 		})
-	end
+		if burntime then
+			minetest.register_craft({
+				type = "fuel",
+				recipe = material .. "_fence_rail",
+				burntime = burntime * 4/16,
+			})
+		end
 
-	default.register_mesepost(material .. "_mese_light", {
-		description = S("@1 Mese Post Light", node_def.description),
-		texture = override_def.texture or node_def.tiles[1],
-		material = override_def.material or material,
-		groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
-		sounds = node_def.sounds
-	})
+		default.register_mesepost(material .. "_mese_light", {
+			description = S("@1 Mese Post Light", node_def.description),
+			texture = override_def.texture or node_def.tiles[1],
+			material = override_def.material or material,
+			groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
+			sounds = node_def.sounds
+		})
+	else
+		-- TODO
+	end
 	
 	if minetest.get_modpath("doors") then
 		doors.register_fencegate(material .. "_fence_gate", {
@@ -111,5 +129,8 @@ df_dependencies.register_all_fences = function (name, override_def)
 				burntime = burntime * 2, -- ignoring four sticks
 			})
 		end
+	else
+		-- TODO
 	end
+	
 end

@@ -1,7 +1,7 @@
 df_dependencies = {}
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 
-local mods_required = {}
+df_dependencies.mods_required = {}
 
 df_dependencies.select_required = function(def)
 	local count = 0
@@ -9,7 +9,7 @@ df_dependencies.select_required = function(def)
 	local ret
 	for mod, item in pairs(def) do
 		total = total + 1
-		mods_required[mod] = true
+		df_dependencies.mods_required[mod] = true
 		if minetest.get_modpath(mod) then
 			count = count + 1
 			ret = item
@@ -34,7 +34,7 @@ dofile(modpath.."/sounds.lua")
 dofile(modpath.."/helper_functions.lua")
 dofile(modpath.."/misc.lua")
 
-minetest.debug(dump(mods_required))
+minetest.debug(dump(df_dependencies.mods_required))
 
 -- This mod is meant to only exist at initialization time. Other mods should make copies of anything it points to for their own use.
 minetest.after(1, function() df_dependencies = nil end)

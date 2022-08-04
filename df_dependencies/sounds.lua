@@ -3,6 +3,8 @@ local S = minetest.get_translator(minetest.get_current_modname())
 local select_required = df_dependencies.select_required
 local select_optional = df_dependencies.select_optional
 
+df_dependencies.mods_required.mcl_sounds = true
+
 if minetest.get_modpath("default") then
 	df_dependencies.sound_dirt = default.node_sound_dirt_defaults
 	df_dependencies.sound_glass = default.node_sound_glass_defaults

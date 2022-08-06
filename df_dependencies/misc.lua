@@ -38,7 +38,7 @@ df_dependencies.texture_stone = select_required({default="default_stone.png", mc
 df_dependencies.texture_wood = select_required({default="default_wood.png", mcl_core="default_wood.png"})
 df_dependencies.texture_mineral_coal = select_required({default="default_mineral_coal.png",	mcl_core="mcl_core_coal_ore.png"}) -- MCL's coal texture isn't transparent, but is only used with gas seeps and should work fine that way
 df_dependencies.texture_glass_bottle = select_required({vessels="vessels_glass_bottle.png",	mcl_potions="mcl_potions_potion_bottle.png"})
-
+df_dependencies.texture_meselamp = "dfcaverns_glow_mese.png"
 
 local prefix = "dfcaverns_"
 -- NOTE: These defaults are from df_caverns' config. Update them if those change.
@@ -58,13 +58,15 @@ if minetest.settings:get_bool(prefix.."enable_primordial", true) then
 end
 lowest_elevation = lowest_elevation - 193 -- add a little buffer space
 
+minetest.debug("lowest elevation: " .. tostring(lowest_elevation))
+
 df_dependencies.mods_required.mcl_init = true
 df_dependencies.mods_required.mcl_worlds = true
 df_dependencies.mods_required.mcl_strongholds = true
 df_dependencies.mods_required.mcl_compatibility = true
 df_dependencies.mods_required.mcl_mapgen = true
 if minetest.get_modpath("mcl_init") then -- Mineclone 2
-	local old_overworld_min = mcl_vars.mg_overworld_min -- rememeber this for weather control
+	local old_overworld_min = mcl_vars.mg_overworld_min -- remember this for weather control
 	
 	mcl_vars.mg_overworld_min = lowest_elevation
 	mcl_vars.mg_bedrock_overworld_min = mcl_vars.mg_overworld_min
@@ -105,8 +107,18 @@ end
 if minetest.get_modpath("mcl_mapgen") then -- Mineclone 5
 	mcl_mapgen.overworld.min = lowest_elevation
 	mcl_mapgen.overworld.bedrock_min = mcl_mapgen.overworld.min
-	mcl_mapgen.overworld.bedrock_max = mcl_mapgen.overworld.min+4
+	mcl_mapgen.overworld.bedrock_max = mcl_mapgen.overworld.bedrock_min + (mcl_mapgen.bedrock_is_rough and 4 or 0)
 	mcl_mapgen.overworld.lava_max = mcl_mapgen.overworld.min+6
 	
 	mcl_mapgen.end_.max = mcl_mapgen.overworld.min - 2000
+	mcl_mapgen.realm_barrier_overworld_end_max = mcl_mapgen.end_.max
+	mcl_mapgen.realm_barrier_overworld_end_min = mcl_mapgen.end_.max - 11
+		
+	if mcl_mapgen.on_settings_changed then
+		mcl_mapgen.on_settings_changed()
+	end
 end
+--minetest.after(1, function()
+--minetest.debug("mcl_vars="..dump(mcl_vars))
+--minetest.debug("mcl_mapgen="..dump(mcl_mapgen))
+--end)

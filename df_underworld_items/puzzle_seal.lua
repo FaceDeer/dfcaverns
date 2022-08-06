@@ -419,7 +419,6 @@ minetest.register_node("df_underworld_items:slade_capstone", capstone_def)
 -- Schematics
 
 local n1 = { name = "df_underworld_items:slade_block" }
-local n5 = { name = df_underworld_items.nodes.meselamp }
 local n6 = { name = "air", prob = 0 } -- ceiling pieces to leave in place
 local n8 = { name = "df_underworld_items:puzzle_seal" }
 local n3 = { name = "air"}

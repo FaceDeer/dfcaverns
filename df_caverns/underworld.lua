@@ -469,6 +469,13 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, oubliette_schematic, 0, {["df_underworld_items:slade_seal"] = "air"})
 						elseif building.building_type == "lamppost" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, lamppost_schematic)
+							local lamp_pos = vector.new(building.pos.x, building.pos.y+6, building.pos.z)
+							minetest.after(math.random()*10, function()
+								minetest.get_node_timer({x=lamp_pos.x+1, y=lamp_pos.y, z=lamp_pos.z}):start(math.random()*60)
+								minetest.get_node_timer({x=lamp_pos.x-1, y=lamp_pos.y, z=lamp_pos.z}):start(math.random()*60)
+								minetest.get_node_timer({x=lamp_pos.x, y=lamp_pos.y, z=lamp_pos.z+1}):start(math.random()*60)
+								minetest.get_node_timer({x=lamp_pos.x, y=lamp_pos.y, z=lamp_pos.z-1}):start(math.random()*60)
+							end)
 						elseif building.building_type == "small building" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_building_schematic, building.rotation)
 						elseif building.building_type == "medium building" then

@@ -25,10 +25,10 @@ end
 
 if not minetest.get_modpath("stairs") then
 	-- replace stairs with air
-	n3 = nil
-	n20 = nil
-	n21 = nil
-	n22 = nil
+	n3 = n1
+	n20 = n1
+	n21 = n1
+	n22 = n1
 end
 
 return {

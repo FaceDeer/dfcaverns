@@ -19,7 +19,6 @@ df_caverns.node_id.stone_with_coal = minetest.get_content_id(df_dependencies.nod
 df_caverns.node_id.water = minetest.get_content_id(df_dependencies.node_name_water_source)
 
 df_caverns.node_name = {}
-df_caverns.node_name.meselamp = df_dependencies.node_name_meselamp
 df_caverns.node_name.stone = df_dependencies.node_name_stone
 
 minetest.after(0, function()

@@ -109,11 +109,13 @@ if minetest.get_modpath("mcl_mapgen") then -- Mineclone 5
 	mcl_mapgen.overworld.bedrock_min = mcl_mapgen.overworld.min
 	mcl_mapgen.overworld.bedrock_max = mcl_mapgen.overworld.bedrock_min + (mcl_mapgen.bedrock_is_rough and 4 or 0)
 	mcl_mapgen.overworld.lava_max = mcl_mapgen.overworld.min+6
+	mcl_mapgen.overworld.railcorridors_height_min = -50
+	mcl_mapgen.overworld.railcorridors_height_max = -2
 	
 	mcl_mapgen.end_.max = mcl_mapgen.overworld.min - 2000
 	mcl_mapgen.realm_barrier_overworld_end_max = mcl_mapgen.end_.max
 	mcl_mapgen.realm_barrier_overworld_end_min = mcl_mapgen.end_.max - 11
-		
+
 	if mcl_mapgen.on_settings_changed then
 		mcl_mapgen.on_settings_changed()
 	end

@@ -83,8 +83,7 @@ minetest.register_node("df_trees:nether_cap_wood", {
 	sounds = df_trees.sounds.wood,
 })
 
-df_trees.register.all_stairs("nether_cap_wood")
-df_trees.register.all_fences("nether_cap_wood")
+df_trees.register.all_stairs_and_fences("nether_cap_wood")
 
 -- sapling
 minetest.register_node("df_trees:nether_cap_sapling", {

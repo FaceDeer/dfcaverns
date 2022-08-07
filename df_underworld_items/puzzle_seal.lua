@@ -435,37 +435,24 @@ local n14 = { name = "df_underworld_items:inscription_block", param2 = 2 }
 local n15 = { name = "df_underworld_items:inscription_block", param2 = 3 }
 local n16 = { name = "df_underworld_items:slade_capstone"}
 
-if minetest.get_modpath("stairs") then
-	local stair_groups = {level = 3, mese_radiation_shield=1, pit_plasma_resistant=1, slade=1, cracky = 3}
-	if invulnerable then
-		stair_groups.immortal = 1
-	end
+df_dependencies.register_stairs("slade_block")
 
-	stairs.register_stair_and_slab(
-		"slade_block",
-		"df_underworld_items:slade_block",
-		stair_groups,
-		{"dfcaverns_slade_block.png"},
-		S("Slade Block Stair"),
-		S("Slade Block Slab"),
-		df_underworld_items.sounds.slade
-	)
-	
-	if invulnerable then
-		for name, def in pairs(minetest.registered_nodes) do
-			if name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_block" then
+if invulnerable then
+	for name, def in pairs(minetest.registered_nodes) do
+		if (name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_block") or 
+			name:sub(1,11) == "mcl_stairs:" and name:sub(-11) == "slade_block" then
 				minetest.override_item(name, {can_dig = can_dig})
-			end
 		end
 	end
-	
-	n2 = { name = "stairs:stair_slade_block", param2 = 3 }
-	n4 = { name = "stairs:stair_slade_block", param2 = 1 }
-	n7 = { name = "stairs:stair_slade_block", param2 = 2 }
-	n9 = { name = "stairs:stair_slade_block" }
-	n10 = { name = "stairs:slab_slade_block", param2 = 21 }
-	n11 = { name = "stairs:slab_slade_block", param2 = 1 }
 end
+	
+n2 = { name = df_dependencies.node_name_stair_slade_block, param2 = 3 }
+n4 = { name = df_dependencies.node_name_stair_slade_block, param2 = 1 }
+n7 = { name = df_dependencies.node_name_stair_slade_block, param2 = 2 }
+n9 = { name = df_dependencies.node_name_stair_slade_block }
+n10 = { name = "stairs:slab_slade_block", param2 = 21 }
+n11 = { name = "stairs:slab_slade_block", param2 = 1 }
+
 
 df_underworld_items.seal_temple_schem = {
 	size = {y = 6, x = 7, z = 7},

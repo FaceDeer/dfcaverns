@@ -176,8 +176,7 @@ minetest.register_node("df_trees:blood_thorn_wood", {
 	sounds = df_trees.sounds.wood,
 })
 
-df_trees.register.all_stairs("blood_thorn_wood")
-df_trees.register.all_fences("blood_thorn_wood", {burntime = 40})
+df_trees.register.all_stairs_and_fences("blood_thorn_wood", {burntime = 40})
 
 minetest.register_craft({
 	type = "fuel",

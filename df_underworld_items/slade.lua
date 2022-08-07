@@ -138,32 +138,17 @@ minetest.register_abm{
 
 -- Register stair and slab
 
-if minetest.get_modpath("stairs") then
-	local stair_groups = {level = 3, mese_radiation_shield=1, pit_plasma_resistant=1, slade=1}
-	if invulnerable then
-		stair_groups.immortal = 1
-	end
-	stair_groups.cracky = 3
-	
-	stairs.register_stair_and_slab(
-		"slade_brick",
-		"df_underworld_items:slade_brick",
-		stair_groups,
-		{"dfcaverns_slade_brick.png"},
-		S("Slade Stair"),
-		S("Slade Slab"),
-		df_underworld_items.sounds.slade
-	)
-	
-	if invulnerable then
-		for name, def in pairs(minetest.registered_nodes) do
-			if name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_brick" then
-				minetest.override_item(name, {can_dig = server_diggable_only})
-			end
+df_dependencies.register_stairs("slade_brick")
+
+if invulnerable then
+	for name, def in pairs(minetest.registered_nodes) do
+		if (name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_block") or 
+			name:sub(1,11) == "mcl_stairs:" and name:sub(-11) == "slade_brick" then
+				minetest.override_item(name, {can_dig = server_diggable_only})			
 		end
 	end
-	
 end
+
 
 if minetest.get_modpath("mesecons_mvps") and df_underworld_items.config.invulnerable_slade then
 	mesecon.register_mvps_stopper("df_underworld_items:slade")

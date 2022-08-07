@@ -38,8 +38,10 @@ end
 df_dependencies.mods_required.stairs = true
 df_dependencies.mods_required.moreblocks = true
 df_dependencies.mods_required.doors = true
+df_dependencies.mods_required.mcl_stairs = true
 
-df_dependencies.register_all_stairs = function(name, override_def)
+
+local node_name_to_stair_properties = function(name, override)
 	local mod = minetest.get_current_modname()
 
 	local node_def = minetest.registered_nodes[mod..":"..name]
@@ -49,7 +51,11 @@ df_dependencies.register_all_stairs = function(name, override_def)
 	for index, value in pairs(override_def) do
 		node_copy[index] = value
 	end
-		
+	return mod, node_copy
+end
+
+df_dependencies.register_stairs = function(name, override_def)
+	local mod, node_copy = node_name_to_stair_properties(name, override_def)
 	if minetest.get_modpath("stairs") then
 		stairs.register_stair_and_slab(
 			name,
@@ -61,25 +67,38 @@ df_dependencies.register_all_stairs = function(name, override_def)
 			node_copy.sounds
 		)
 	end
+	if minetest.get_modpath("mcl_stairs") then
+		mcl_stairs.register_stair_and_slab_simple(
+			name,
+			mod ..":" .. name,
+			S("@1 Stair", node_copy.description),
+			S("@1 Slab", node_copy.description),
+			S("Double @1 Slab", node_copy.description)
+		)
+	end
+end
+
+df_dependencies.register_more_stairs = function(name, override_def)
+	local mod, node_copy = node_name_to_stair_properties(name, override_def)
 	if minetest.get_modpath("moreblocks") then
 		stairsplus:register_all(mod, name, mod..":"..name, node_copy)
 	end
 end
 
 df_dependencies.register_all_fences = function (name, override_def)
-	local mod = minetest.get_current_modname()
+	local mod, node_def = node_name_to_stair_properties(name, override_def)
 
-	local material = mod..":"..name
-	local node_def = minetest.registered_nodes[material]
 	override_def = override_def or {}
 	
+	local material = override_def.material or mod..":"..name
 	local burntime = override_def.burntime
+	local texture = override_def.texture or node_def.tiles[1]
 	
 	if minetest.get_modpath("default") then
 		default.register_fence(material .. "_fence", {
 			description = S("@1 Fence", node_def.description),
-			texture = override_def.texture or node_def.tiles[1],
-			material = override_def.material or material,
+			texture = texture,
+			material = material,
 			groups = deep_copy(node_def.groups or {}), -- the default register_fence function modifies the groups table passed in, so send a copy instead to be on the safe side.
 			sounds = node_def.sounds
 		})
@@ -93,8 +112,8 @@ df_dependencies.register_all_fences = function (name, override_def)
 
 		default.register_fence_rail(material .. "_fence_rail", {
 			description = S("@1 Fence Rail", node_def.description),
-			texture = override_def.texture or node_def.tiles[1],
-			material = override_def.material or material,
+			texture = texture,
+			material = material,
 			groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
 			sounds = node_def.sounds
 		})
@@ -108,20 +127,18 @@ df_dependencies.register_all_fences = function (name, override_def)
 
 		default.register_mesepost(material .. "_mese_light", {
 			description = S("@1 Mese Post Light", node_def.description),
-			texture = override_def.texture or node_def.tiles[1],
-			material = override_def.material or material,
+			texture = texture,
+			material = material,
 			groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
 			sounds = node_def.sounds
 		})
-	else
-		-- TODO
 	end
 	
 	if minetest.get_modpath("doors") then
 		doors.register_fencegate(material .. "_fence_gate", {
 			description = S("@1 Fence Gate", node_def.description),
-			texture = override_def.texture or node_def.tiles[1],
-			material = override_def.material or material,
+			texture = texture,
+			material = material,
 			groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
 			sounds = node_def.sounds
 		})
@@ -133,8 +150,11 @@ df_dependencies.register_all_fences = function (name, override_def)
 				burntime = burntime * 2, -- ignoring four sticks
 			})
 		end
-	else
-		-- TODO
 	end
-	
+end
+
+df_dependencies.register_all_stairs_and_fences = function(name, override_def)
+	df_dependencies.register_stairs(name, override_def)
+	df_dependencies.register_more_stairs(name, override_def)
+	df_dependencies.register_all_fences(name, override_def)
 end

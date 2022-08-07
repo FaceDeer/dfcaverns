@@ -1,6 +1,6 @@
 local n1 = { name = "air", prob = 0 } -- external air
 local n2 = { name = "df_trees:goblin_cap" }
-local n3 = {name = "stairs:slab_goblin_cap_stem_wood", param2 = 2} -- porch top
+local n3 = {name = df_dependencies.node_name_slab_goblin_cap_stem_wood, param2 = 2} -- porch top
 local n4 = { name = "df_trees:goblin_cap_gills" }
 local n6 = { name = "df_trees:goblin_cap_stem", force_place=true } -- walls
 local n7 = { name = "df_trees:goblin_cap_stem_wood", force_place=true } -- internal floor
@@ -15,9 +15,9 @@ local n17 = { name = df_trees.node_names.bed_top or "air", force_place=true }
 local n18 = { name = df_trees.node_names.torch_wall, param2 = 4, force_place=true }
 local n19 = { name = "df_trees:goblin_cap_stem" } -- base
 
-local n20 = {name = "stairs:stair_goblin_cap_stem_wood", param2 = 1 }
-local n21 = {name = "stairs:stair_goblin_cap_stem_wood", param2 = 3 }
-local n22 = {name = "stairs:slab_goblin_cap_stem_wood", param2 = 22}
+local n20 = {name = df_dependencies.node_name_stair_goblin_cap_stem_wood, param2 = 1 }
+local n21 = {name = df_dependencies.node_name_stair_goblin_cap_stem_wood, param2 = 3 }
+local n22 = {name = df_dependencies.node_name_slab_goblin_cap_stem_wood, param2 = 22}
 
 if minetest.get_modpath("vessels") then
 	n18 = { name = "df_trees:glowing_bottle_red", force_place=true}

@@ -471,6 +471,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, lamppost_schematic)
 							local lamp_pos = vector.new(building.pos.x, building.pos.y+6, building.pos.z)
 							minetest.after(math.random()*10, function()
+								-- not all of these locations will get a lamp, but it's easier to just set four
+								-- timers than to worry about testing first.
 								minetest.get_node_timer({x=lamp_pos.x+1, y=lamp_pos.y, z=lamp_pos.z}):start(math.random()*60)
 								minetest.get_node_timer({x=lamp_pos.x-1, y=lamp_pos.y, z=lamp_pos.z}):start(math.random()*60)
 								minetest.get_node_timer({x=lamp_pos.x, y=lamp_pos.y, z=lamp_pos.z+1}):start(math.random()*60)

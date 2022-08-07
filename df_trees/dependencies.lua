@@ -37,9 +37,7 @@ df_trees.textures.gold_block = df_dependencies.texture_gold_block
 
 df_trees.register = {}
 
-df_trees.register.all_stairs = df_dependencies.register_all_stairs
-
-df_trees.register.all_fences = df_dependencies.register_all_fences
+df_trees.register.all_stairs_and_fences = df_dependencies.register_all_stairs_and_fences
 
 -- this stuff is only for during initialization
 minetest.after(0, function()

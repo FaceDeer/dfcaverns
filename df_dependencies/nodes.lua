@@ -6,7 +6,9 @@ local function select_required(...)
 		newdef[string.match(node, "(.-):")] = node
 	end
 	local ret = df_dependencies.select_required(newdef)
-	assert(minetest.registered_items[ret] ~= nil, "Node " .. ret .. " was returned by a selection call but is not registered.")
+	minetest.after(0, function()
+		assert(minetest.registered_items[ret] ~= nil, "Node " .. ret .. " was returned by a selection call but is not registered.")
+	end)
 	return ret
 end
 
@@ -17,7 +19,9 @@ local function select_optional(...)
 	end
 	local ret = df_dependencies.select_optional(newdef)
 	if ret ~= nil then
-		assert(minetest.registered_items[ret] ~= nil, "Node " .. ret .. " was returned by an optional selection call but is not registered.")
+		minetest.after(0, function()
+			assert(minetest.registered_items[ret] ~= nil, "Node " .. ret .. " was returned by an optional selection call but is not registered.")
+		end)
 	end
 end
 
@@ -84,3 +88,14 @@ df_dependencies.node_name_bed_top = select_required("beds:bed_top", "mcl_beds:be
 -- from "doors"
 df_dependencies.node_name_door_wood_a = select_required("doors:door_wood_a", "mcl_doors:wooden_door_b_1")
 df_dependencies.node_name_door_hidden = select_required("doors:hidden", "mcl_doors:wooden_door_t_1")
+
+
+-- from "stairs"
+
+df_dependencies.node_name_slab_goblin_cap_stem_wood = select_required("stairs:slab_goblin_cap_stem_wood", "mcl_stairs:slab_goblin_cap_stem_wood")
+df_dependencies.node_name_slab_slade_brick = select_required("stairs:slab_slade_brick", "mcl_stairs:slab_slade_brick")
+df_dependencies.node_name_stair_goblin_cap_stem_wood = select_required("stairs:stair_goblin_cap_stem_wood", "mcl_stairs:stair_goblin_cap_stem_wood")
+df_dependencies.node_name_stair_inner_slade_brick = select_required("stairs:stair_inner_slade_brick", "mcl_stairs:stair_slade_brick_inner")
+df_dependencies.node_name_stair_outer_slade_brick = select_required("stairs:stair_outer_slade_brick", "mcl_stairs:stair_slade_brick_outer")
+df_dependencies.node_name_stair_slade_block = select_required("stairs:stair_slade_block", "mcl_stairs:stair_slade_block")
+df_dependencies.node_name_stair_slade_brick = select_required("stairs:stair_slade_brick", "mcl_stairs:stair_slade_brick")

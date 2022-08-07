@@ -61,7 +61,7 @@ minetest.register_node("oil:oil_source", {
 	liquid_alternative_source = "oil:oil_source",
 	liquid_viscosity = 1,
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
-	groups = {liquid = 3},
+	groups = {liquid = 3, dig_by_piston=1},
 	sounds = oil_sounds,
 	_mcl_blast_resistance      = 100,
 	_mcl_hardness              = -1,
@@ -113,7 +113,7 @@ minetest.register_node("oil:oil_flowing", {
 	liquid_alternative_source = "oil:oil_source",
 	liquid_viscosity = 1,
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
-	groups = {liquid = 3, not_in_creative_inventory = 1},
+	groups = {liquid = 3, not_in_creative_inventory = 1, dig_by_piston=1},
 	sounds = oil_sounds,
 	_mcl_blast_resistance      = 100,
 	_mcl_hardness              = -1,
@@ -193,8 +193,8 @@ if minetest.get_modpath("dynamic_liquid") then
 
 end
 
-if minetest.get_modpath("bucket") then
-	bucket.register_liquid(
+if df_dependencies.bucket_register_liquid then
+	df_dependencies.bucket_register_liquid(
 		"oil:oil_source",
 		"oil:oil_flowing",
 		"oil:oil_bucket",

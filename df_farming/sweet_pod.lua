@@ -140,8 +140,6 @@ end
 ----------------------------------------------
 -- Syrup
 
--- TODO: mcl_core.register_liquid
-
 if df_dependencies.bucket_register_liquid then
 	minetest.register_node("df_farming:dwarven_syrup_source", {
 		description = S("Dwarven Syrup Source"),
@@ -187,7 +185,7 @@ if df_dependencies.bucket_register_liquid then
 		liquid_renewable = false,
 		liquid_range = 2,
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
-		groups = {liquid = 3, flammable = 2},
+		groups = {liquid = 3, flammable = 2, dig_by_piston=1},
 		sounds = df_farming.sounds.syrup,
 		_mcl_blast_resistance      = 100,
 		_mcl_hardness              = -1,
@@ -238,7 +236,7 @@ if df_dependencies.bucket_register_liquid then
 		liquid_renewable = false,
 		liquid_range = 2,
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
-		groups = {liquid = 3, flammable = 2, not_in_creative_inventory = 1},
+		groups = {liquid = 3, flammable = 2, not_in_creative_inventory = 1, dig_by_piston=1},
 		sounds = df_farming.sounds.syrup,
 		_mcl_blast_resistance      = 100,
 		_mcl_hardness              = -1,

@@ -35,7 +35,7 @@ if not minetest.get_modpath("stairs") then
 	n22 = nil
 end
 
-return {
+local schematic = {
 	yslice_prob = {},
 	size = {y = 10, x = 13, z = 13},
 	center_pos = {x=6, y=2, z=6},
@@ -314,3 +314,9 @@ return {
 		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
 }
 }
+
+for index, node in ipairs(schematic.data) do
+	assert(node.name ~= nil, "undefined node name for index " .. tostring(index) .. " in goblin_cap_bigger_hut schematic data")
+end
+
+return schematic

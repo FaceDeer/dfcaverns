@@ -23,7 +23,7 @@ if minetest.get_modpath("vessels") then
 	n18 = { name = "df_trees:glowing_bottle_red", force_place=true}
 end
 
-if not minetest.get_modpath("stairs") then
+if not df_dependencies.node_name_stair_goblin_cap_stem_wood then
 	-- replace stairs with air
 	n3 = n1
 	n20 = n1
@@ -31,7 +31,7 @@ if not minetest.get_modpath("stairs") then
 	n22 = n1
 end
 
-return {
+local schematic = {
 	yslice_prob = {},
 	size = {y = 9, x = 11, z = 11},
 	center_pos = {x=5, y=2, z=5},
@@ -246,3 +246,9 @@ return {
 		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
 }
 }
+
+for index, node in ipairs(schematic.data) do
+	assert(node.name ~= nil, "undefined node name for index " .. tostring(index) .. " in goblin_cap_big_hut schematic data")
+end
+
+return schematic

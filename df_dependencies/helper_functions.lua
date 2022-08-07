@@ -13,10 +13,18 @@ end
 
 
 df_dependencies.mods_required.bucket = true
+df_dependencies.mods_required.mcl_buckets = true
 if minetest.get_modpath("bucket") then
 	df_dependencies.bucket_register_liquid = bucket.register_liquid
-else
-	-- TODO
+elseif minetest.get_modpath("mcl_buckets") then
+	df_dependencies.bucket_register_liquid = function(source_liquid, flowing_liquid, bucket_node, texture, desc)
+		mcl_buckets.register_liquid({
+			bucketname = bucket_node,
+			source_take = {source_liquid},
+			source_place = source_liquid,
+			inventory_image = texture,
+			name = desc})
+		end
 end
 
 
@@ -135,20 +143,6 @@ df_dependencies.register_all_fences = function (name, override_def)
 		})
 	end
 	
-	if minetest.get_modpath("mcl_fences") then
-		local groups = deep_copy(node_def.groups or {})
-		groups.fence_wood = 1
-		mcl_fences.register_fence_and_fence_gate(name .. "_fence", 
-			S("@1 Fence", node_def.description),
-			S("@1 Fence Gate", node_def.description),
-			texture,
-			groups,
-			node_def._mcl_hardness or minetest.registered_nodes["mcl_core:wood"]._mcl_hardness,
-			node_def._mcl_blast_resistance or minetest.registered_nodes["mcl_core:wood"]._mcl_blast_resistance,
-			{"group:fence_wood"}
-		)
-	end
-	
 	if minetest.get_modpath("doors") then
 		doors.register_fencegate(material .. "_fence_gate", {
 			description = S("@1 Fence Gate", node_def.description),
@@ -165,6 +159,20 @@ df_dependencies.register_all_fences = function (name, override_def)
 				burntime = burntime * 2, -- ignoring four sticks
 			})
 		end
+	end
+	
+	if minetest.get_modpath("mcl_fences") then
+		local groups = deep_copy(node_def.groups or {})
+		groups.fence_wood = 1
+		mcl_fences.register_fence_and_fence_gate(name .. "_fence", 
+			S("@1 Fence", node_def.description),
+			S("@1 Fence Gate", node_def.description),
+			texture,
+			groups,
+			node_def._mcl_hardness or minetest.registered_nodes["mcl_core:wood"]._mcl_hardness,
+			node_def._mcl_blast_resistance or minetest.registered_nodes["mcl_core:wood"]._mcl_blast_resistance,
+			{"group:fence_wood"}
+		)
 	end
 end
 

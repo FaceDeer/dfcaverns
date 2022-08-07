@@ -3,6 +3,8 @@ local S = minetest.get_translator(minetest.get_current_modname())
 local select_required = df_dependencies.select_required
 local select_optional = df_dependencies.select_optional
 
+df_dependencies.mods_required.farming = true
+
 -- If the farming mod is installed, add the "straw" group to farming straw.
 -- This way goblin caps just need to check for group:straw to get cave straw as well
 local straw_def = minetest.registered_items["farming:straw"]
@@ -40,6 +42,8 @@ df_dependencies.texture_mineral_coal = select_required({default="default_mineral
 df_dependencies.texture_glass_bottle = select_required({vessels="vessels_glass_bottle.png",	mcl_potions="mcl_potions_potion_bottle.png"})
 df_dependencies.texture_meselamp = "dfcaverns_glow_mese.png"
 
+--------------------------------------- mapgen
+
 local prefix = "dfcaverns_"
 -- NOTE: These defaults are from df_caverns' config. Update them if those change.
 
@@ -58,15 +62,16 @@ if minetest.settings:get_bool(prefix.."enable_primordial", true) then
 end
 lowest_elevation = lowest_elevation - 193 -- add a little buffer space
 
-minetest.debug("lowest elevation: " .. tostring(lowest_elevation))
-
 df_dependencies.mods_required.mcl_init = true
 df_dependencies.mods_required.mcl_worlds = true
 df_dependencies.mods_required.mcl_strongholds = true
 df_dependencies.mods_required.mcl_compatibility = true
 df_dependencies.mods_required.mcl_mapgen = true
+
+local old_overworld_min
+
 if minetest.get_modpath("mcl_init") then -- Mineclone 2
-	local old_overworld_min = mcl_vars.mg_overworld_min -- remember this for weather control
+	old_overworld_min = mcl_vars.mg_overworld_min -- remember this for weather control
 	
 	mcl_vars.mg_overworld_min = lowest_elevation
 	mcl_vars.mg_bedrock_overworld_min = mcl_vars.mg_overworld_min
@@ -75,16 +80,7 @@ if minetest.get_modpath("mcl_init") then -- Mineclone 2
 	
 	-- Important note. This doesn't change the values for the various ores and mobs and biomes and whatnot that have already been registered.
 	-- to keep things consistent, add dependencies to
-	
-	if minetest.get_modpath("mcl_worlds") then
-		mcl_worlds.has_weather = function(pos)
-			-- Weather in the Overworld. No weather in the deep caverns
-			return pos.y <= mcl_vars.mg_overworld_max and pos.y >= old_overworld_min
-		end
-	end
 
---	minetest.debug(dump(mcl_vars))
-	
 	dofile(minetest.get_modpath(minetest.get_current_modname()).."/ores.lua")
 	
 	-- never mind - add dependency on mcl_strongholds and these will get generated before overworld_min gets changed.
@@ -95,6 +91,8 @@ if minetest.get_modpath("mcl_init") then -- Mineclone 2
 	--end
 end
 if minetest.get_modpath("mcl_compatibility") then -- Mineclone 5
+	old_overworld_min = mcl_vars.mg_overworld_min -- remember this for weather control
+
 	mcl_vars.mg_overworld_min = lowest_elevation
 	mcl_vars.mg_bedrock_overworld_min = mcl_vars.mg_overworld_min
 	mcl_vars.mg_bedrock_overworld_max = mcl_vars.mg_overworld_min+4
@@ -105,6 +103,8 @@ if minetest.get_modpath("mcl_compatibility") then -- Mineclone 5
 	mcl_vars.mg_realm_barrier_overworld_end_min = mcl_vars.mg_end_max-11
 end
 if minetest.get_modpath("mcl_mapgen") then -- Mineclone 5
+	old_overworld_min = mcl_mapgen.overworld.min -- remember this for weather control
+
 	mcl_mapgen.overworld.min = lowest_elevation
 	mcl_mapgen.overworld.bedrock_min = mcl_mapgen.overworld.min
 	mcl_mapgen.overworld.bedrock_max = mcl_mapgen.overworld.bedrock_min + (mcl_mapgen.bedrock_is_rough and 4 or 0)
@@ -118,7 +118,13 @@ if minetest.get_modpath("mcl_mapgen") then -- Mineclone 5
 		mcl_mapgen.on_settings_changed()
 	end
 end
---minetest.after(1, function()
---minetest.debug("mcl_vars="..dump(mcl_vars))
---minetest.debug("mcl_mapgen="..dump(mcl_mapgen))
---end)
+if minetest.get_modpath("mcl_worlds") then
+	local old_has_weather = mcl_worlds.has_weather
+	mcl_worlds.has_weather = function(pos)
+		-- No weather in the deep caverns
+		if pos.y >= lowest_elevation and pos.y <= old_overworld_min then
+			return false
+		end
+		return old_has_weather(pos)
+	end
+end

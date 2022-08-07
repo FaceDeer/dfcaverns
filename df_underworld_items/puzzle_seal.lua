@@ -245,6 +245,8 @@ minetest.register_node("df_underworld_items:puzzle_seal", puzzle_seal_def)
 --------------------------------------------------------------------------------
 -- Once the seal is opened, it turns into this and digs its way down through the slade.
 
+local tnt_boom = df_dependencies.tnt_boom
+
 local digging_seal_def = {
 	description = S("Active Slade Breacher"),
 	_doc_items_longdesc = nil,
@@ -310,7 +312,7 @@ local digging_seal_def = {
 		})
 		
 		if minetest.get_item_group(below_node.name, "slade") == 0 then
-			tnt.boom({x=pos.x, y=pos.y-2, z=pos.z}, {radius=3})
+			tnt_boom({x=pos.x, y=pos.y-2, z=pos.z}, {radius=3})
 			minetest.set_node(pos, {name=lava_source})
 			return
 		end
@@ -329,7 +331,7 @@ local digging_seal_def = {
 			minetest.place_schematic({x=pos.x-3, y=pos.y-2, z=pos.z-3}, df_underworld_items.seal_stair_schem, 270, {}, true)
 			node.param2 = 0
 		else
-			tnt.boom(pos, {radius=3})
+			tnt_boom(pos, {radius=3})
 			minetest.set_node(pos, {name=lava_source})
 			return
 		end

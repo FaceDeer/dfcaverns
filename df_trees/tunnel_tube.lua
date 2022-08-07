@@ -180,11 +180,21 @@ minetest.register_craft({
 
 -- TNT
 -----------------------------------------------------------------------------------------------------------
+
+local gunpowder = df_dependencies.node_name_gunpowder
+local tnt_ignite_sound = df_dependencies.soundfile_tnt_ignite
+local tnt_boom = df_dependencies.tnt_boom
+
 if df_trees.config.enable_tnt then
 
 	local tnt_radius = tonumber(minetest.settings:get("tnt_radius") or 3) * 2/3
 	local tnt_def = {radius = tnt_radius, damage_radius = tnt_radius * 2}
 	local torch_item = df_trees.node_names.torch
+	
+	local on_burn = function(pos)
+		minetest.swap_node(pos, {name = "df_trees:tunnel_tube_fruiting_body_burning"})
+		minetest.registered_nodes["df_trees:tunnel_tube_fruiting_body_burning"].on_construct(pos)
+	end
 	
 	minetest.register_node("df_trees:tunnel_tube_fruiting_body", {
 		description = S("Tunnel Tube Fruiting Body"),
@@ -204,11 +214,11 @@ if df_trees.config.enable_tnt then
 					rarity = 2,
 				},
 				{
-					items = {'df_trees:tunnel_tube_sapling', 'tnt:gunpowder'},
+					items = {'df_trees:tunnel_tube_sapling', gunpowder},
 					rarity = 2,
 				},
 				{
-					items = {'df_trees:tunnel_tube_sapling', 'tnt:gunpowder 2'},
+					items = {'df_trees:tunnel_tube_sapling', gunpowder .. ' 2'},
 					rarity = 2,
 				},
 			},
@@ -224,25 +234,22 @@ if df_trees.config.enable_tnt then
 			end
 		end,
 		on_blast = function(pos, intensity)
+			minetest.swap_node(pos, {name="air"})
 			minetest.after(0.1, function()
-				tnt.boom(pos, tnt_def)
+				tnt_boom(pos, tnt_def)
 			end)
 		end,
 		mesecons = {effector =
 			{action_on =
 				function(pos)
-					tnt.boom(pos, tnt_def)
+					minetest.swap_node(pos, {name="air"})
+					tnt_boom(pos, tnt_def)
 				end
 			}
 		},
-		on_burn = function(pos)
-			minetest.swap_node(pos, {name = "df_trees:tunnel_tube_fruiting_body_burning"})
-			minetest.registered_nodes["df_trees:tunnel_tube_fruiting_body_burning"].on_construct(pos)
-		end,
-		on_ignite = function(pos, igniter)
-			minetest.swap_node(pos, {name = "df_trees:tunnel_tube_fruiting_body_burning"})
-			minetest.registered_nodes["df_trees:tunnel_tube_fruiting_body_burning"].on_construct(pos)
-		end,
+		on_burn = on_burn,
+		on_ignite = on_burn,
+		_on_burn = on_burn,
 	})
 	
 	minetest.register_node("df_trees:tunnel_tube_fruiting_body_burning", {
@@ -258,12 +265,17 @@ if df_trees.config.enable_tnt then
 		_mcl_blast_resistance = 0,
 		_mcl_hardness = 2,
 		on_timer = function(pos, elapsed)
-			tnt.boom(pos, tnt_def)
+			minetest.swap_node(pos, {name="air"})
+			tnt_boom(pos, tnt_def)
 		end,
-		-- unaffected by explosions
-		on_blast = function() end,
+		on_blast = function(pos)
+			minetest.swap_node(pos, {name="air"})
+			minetest.after(0.1, function()
+				tnt_boom(pos, tnt_def)
+			end)
+		end,
 		on_construct = function(pos)
-			minetest.sound_play("tnt_ignite", {pos = pos})
+			minetest.sound_play(tnt_ignite_sound, {pos = pos})
 			minetest.get_node_timer(pos):start(4)
 		end,
 	})

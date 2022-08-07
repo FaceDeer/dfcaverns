@@ -72,7 +72,7 @@ local slade_wall_def = {
 	tiles = {"dfcaverns_slade_brick.png"},
 	walkable = true,
 	is_ground_content = false,
-	groups = { cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
+	groups = { cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, wall=1},
 	sounds = df_underworld_items.sounds.slade,
 	_mcl_blast_resistance = 1200,
 	_mcl_hardness = 50,

@@ -43,7 +43,8 @@ for _, tree in pairs(trees) do
 	setting("float", tree.name.."_delay_multiplier", tree.delay_multiplier, tree.name.." growth delay multiplier")
 end
 
-if minetest.get_modpath("tnt") then
+-- TODO: mineclone settings
+if df_dependencies.tnt_boom then
 	df_trees.config.enable_tnt = minetest.settings:get_bool("enable_tnt")
 	if df_trees.config.enable_tnt == nil then
 		-- Default to enabled when in singleplayer

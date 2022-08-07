@@ -181,3 +181,14 @@ df_dependencies.register_all_stairs_and_fences = function(name, override_def)
 	df_dependencies.register_more_stairs(name, override_def)
 	df_dependencies.register_all_fences(name, override_def)
 end
+
+df_dependencies.mods_required.tnt = true
+df_dependencies.mods_required.mcl_explosions = true
+
+if minetest.get_modpath("tnt") then
+	df_dependencies.tnt_boom = tnt.boom
+elseif minetest.get_modpath("mcl_explosions") then
+	df_dependencies.tnt_boom = function(pos, def)
+		mcl_explosions.explode(pos, def.radius)
+	end
+end

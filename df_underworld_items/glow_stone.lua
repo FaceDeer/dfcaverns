@@ -27,9 +27,10 @@ local glowstone_def = {
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
 }
+local tnt_boom = df_dependencies.tnt_boom
 if minetest.get_modpath("tnt") then
 	glowstone_def.on_dig = function(pos, node, digger)
-		tnt.boom(pos, {radius=3})
+		tnt_boom(pos, {radius=3})
 	end
 end
 minetest.register_node("df_underworld_items:glowstone", glowstone_def)

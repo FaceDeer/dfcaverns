@@ -145,6 +145,8 @@ minetest.register_abm({
 	end,
 })
 
+local tnt_boom = df_dependencies.tnt_boom
+
 if minetest.get_modpath("tnt") then
 	minetest.register_abm({
 		label = "mine_gas:gas ignition",
@@ -155,7 +157,7 @@ if minetest.get_modpath("tnt") then
 		catch_up = true,
 		action = function(pos, node)
 			if minetest.find_node_near(pos, 1, "air") then
-				tnt.boom(pos, {radius=1, damage_radius=6})
+				tnt_boom(pos, {radius=1, damage_radius=6})
 				-- One in a hundred explosions will spawn a gas wisp
 				if math.random() < 0.01 then
 					minetest.set_node(pos, {name="mine_gas:gas_wisp"})

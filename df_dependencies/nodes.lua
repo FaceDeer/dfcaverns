@@ -99,3 +99,8 @@ df_dependencies.node_name_stair_inner_slade_brick = select_required("stairs:stai
 df_dependencies.node_name_stair_outer_slade_brick = select_required("stairs:stair_outer_slade_brick", "mcl_stairs:stair_slade_brick_outer")
 df_dependencies.node_name_stair_slade_block = select_required("stairs:stair_slade_block", "mcl_stairs:stair_slade_block")
 df_dependencies.node_name_stair_slade_brick = select_required("stairs:stair_slade_brick", "mcl_stairs:stair_slade_brick")
+
+-- from "tnt"
+
+-- TODO: make optional
+df_dependencies.node_name_gunpowder = select_required("tnt:gunpowder", "mcl_mobitems:gunpowder")

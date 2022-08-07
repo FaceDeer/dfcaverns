@@ -7,8 +7,10 @@ minetest.register_node("df_trees:tower_cap_stem", {
 	_doc_items_usagehelp = df_trees.doc.tower_cap_usage,
 	tiles = {"dfcaverns_tower_cap.png"},
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, tower_cap = 1},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, tower_cap = 1, tower_cap_trunk = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 --cap
@@ -18,8 +20,10 @@ minetest.register_node("df_trees:tower_cap", {
 	_doc_items_usagehelp = df_trees.doc.tower_cap_usage,
 	tiles = {"dfcaverns_tower_cap.png"},
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, tower_cap = 1},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, tower_cap = 1, tower_cap_trunk = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 --gills
@@ -45,6 +49,8 @@ minetest.register_node("df_trees:tower_cap_gills", {
 			}
 		}
 	},
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 	after_place_node = df_trees.after_place_leaves,
 })
 
@@ -58,14 +64,7 @@ df_trees.register_leafdecay({
 minetest.register_craft({
 	output = 'df_trees:tower_cap_wood 4',
 	recipe = {
-		{'df_trees:tower_cap'},
-	}
-})
-
-minetest.register_craft({
-	output = 'df_trees:tower_cap_wood 4',
-	recipe = {
-		{'df_trees:tower_cap_stem'},
+		{'group:tower_cap_trunk'},
 	}
 })
 
@@ -79,6 +78,8 @@ minetest.register_node("df_trees:tower_cap_wood", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 2,
 })
 
 df_trees.register.all_stairs_and_fences("tower_cap_wood", {burntime = 7})
@@ -131,6 +132,8 @@ minetest.register_node("df_trees:tower_cap_sapling", {
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
 	sounds = df_trees.sounds.leaves,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 
 	on_construct = function(pos)
 		if df_trees.tower_cap_growth_permitted(pos) then

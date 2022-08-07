@@ -1,6 +1,10 @@
 # textdomain: df_underworld_items
 
 
+### ancient_lanterns.lua ###
+
+Ancient Lantern=
+
 ### crystals_amethyst.lua ###
 
 Glowing Amethyst Block=
@@ -45,8 +49,6 @@ Guardian Statue=
 Active Slade Breacher=
 Breach in the Slade=
 Inscribed Slade Block=
-Slade Block Slab=
-Slade Block Stair=
 Slade Capstone=
 Slade Puzzle Seal=
 Turn=
@@ -58,6 +60,4 @@ Slade Block=
 Slade Brick=
 Slade Sand=
 Slade Seal=
-Slade Slab=
-Slade Stair=
 Slade Wall=

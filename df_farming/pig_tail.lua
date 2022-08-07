@@ -48,6 +48,8 @@ local register_pig_tail = function(number)
 				},
 			},
 		},
+		_mcl_blast_resistance = 0.2,
+		_mcl_hardness = 0.2,
 	}
 	
 	if number < 8 then
@@ -138,6 +140,8 @@ if minetest.get_modpath("footprints") then
 		groups = {snappy = 3, flammable = 2, attached_node = 1},
 		drop = "",
 		sounds = df_farming.sounds.leaves,
+		_mcl_blast_resistance = 0.2,
+		_mcl_hardness = 0.2,
 	})
 	
 	footprints.register_trample_node("df_farming:pig_tail_5", {

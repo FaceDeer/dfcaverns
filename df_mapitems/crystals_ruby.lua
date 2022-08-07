@@ -8,6 +8,8 @@ minetest.register_node("df_mapitems:glow_ruby_ore", {
 	is_ground_content = false,
 	groups = {cracky=2},
 	sounds = df_mapitems.sounds.glass,
+	_mcl_blast_resistance = 1.5,
+	_mcl_hardness = 1.5,
 })
 
 minetest.register_node("df_mapitems:big_crystal", {
@@ -36,6 +38,8 @@ minetest.register_node("df_mapitems:big_crystal", {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, 3, 0.5},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_mapitems:med_crystal", {
@@ -64,6 +68,8 @@ minetest.register_node("df_mapitems:med_crystal", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 1.25, 0.25},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 
@@ -117,6 +123,8 @@ minetest.register_node("df_mapitems:big_crystal_30", {
 --			{-0.25, 2.0, -1.625, 0.25, 2.5, -1.125},
 		},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_mapitems:med_crystal_30", {
@@ -154,6 +162,8 @@ minetest.register_node("df_mapitems:med_crystal_30", {
 			{-0.25, 0.5, -0.9375, 0.25, 1.0, -0.4375},
 		},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_mapitems:big_crystal_30_45", {
@@ -191,6 +201,8 @@ minetest.register_node("df_mapitems:big_crystal_30_45", {
 			{0.5, 1.5, -1.5, 1.5, 2.5, -0.5},
 		},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 
@@ -229,6 +241,8 @@ minetest.register_node("df_mapitems:med_crystal_30_45", {
 			{0.25, 0.5, -0.75, 0.75, 1.0, -0.25},
 		},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_craft({

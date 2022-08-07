@@ -15,6 +15,8 @@ minetest.register_node("df_trees:goblin_cap_stem", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, goblin_cap = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 --cap
@@ -26,6 +28,8 @@ minetest.register_node("df_trees:goblin_cap", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, goblin_cap = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 --gills
@@ -53,6 +57,8 @@ minetest.register_node("df_trees:goblin_cap_gills", {
 	},
 	after_place_node = df_trees.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 df_trees.register_leafdecay({
@@ -86,6 +92,8 @@ minetest.register_node("df_trees:goblin_cap_wood", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_trees:goblin_cap_stem_wood", {
@@ -98,6 +106,8 @@ minetest.register_node("df_trees:goblin_cap_stem_wood", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 2,
 })
 
 df_trees.register.all_stairs_and_fences("goblin_cap_wood", {burntime = 12})
@@ -212,6 +222,8 @@ minetest.register_node("df_trees:goblin_cap_sapling", {
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
 	sounds = df_trees.sounds.leaves,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 
 	on_construct = function(pos)
 		if df_trees.goblin_cap_growth_permitted(pos) then

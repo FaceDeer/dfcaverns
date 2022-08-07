@@ -42,6 +42,8 @@ local register_dimple_cup = function(number)
 				},
 			},
 		},
+		_mcl_blast_resistance = 0.2,
+		_mcl_hardness = 0.2,
 	}
 	
 	if number < 4 then
@@ -77,6 +79,8 @@ local def = {
             {-8/16, -8/16, -8/16, 8/16, -8/16 + 4*4/16, 8/16},
         },
     },
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 }
 minetest.register_node(name, def)
 

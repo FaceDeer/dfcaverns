@@ -8,7 +8,7 @@ local n7 = { name = df_dependencies.node_name_stair_slade_brick, param2 = 1, for
 local n8 = { name = "df_underworld_items:slade_brick", force_place=true }
 local n9 = { name = df_dependencies.node_name_stair_slade_brick, param2 = 3, force_place=true }
 local n10 = { name = "df_underworld_items:slade_wall", force_place=true }
-local n11 = { name = "df_underworld_items:stonebrick_light_worn", prob=192 } -- 50% chance of being force-placed
+local n11 = { name = "df_underworld_items:ancient_lantern_slade_worn", prob=192 } -- 50% chance of being force-placed
 local n12 = { name = df_dependencies.node_name_stair_outer_slade_brick, param2 = 2, force_place=true }
 local n13 = { name = df_dependencies.node_name_stair_slade_brick, param2 = 2, force_place=true }
 local n14 = { name = df_dependencies.node_name_stair_outer_slade_brick, param2 = 3, force_place=true }

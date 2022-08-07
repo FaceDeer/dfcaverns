@@ -9,6 +9,8 @@ minetest.register_node("df_trees:black_cap_stem", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 5,
 })
 
 --cap
@@ -20,6 +22,8 @@ minetest.register_node("df_trees:black_cap", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 5,
 })
 
 --gills
@@ -47,6 +51,8 @@ minetest.register_node("df_trees:black_cap_gills", {
 	},
 	after_place_node = df_trees.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 df_trees.register_leafdecay({
@@ -97,6 +103,8 @@ minetest.register_node("df_trees:black_cap_wood", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 5,
+	_mcl_hardness = 5,
 })
 
 df_trees.register.all_stairs_and_fences("black_cap_wood", {burntime = 30})
@@ -149,6 +157,8 @@ minetest.register_node("df_trees:black_cap_sapling", {
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
 	sounds = df_trees.sounds.leaves,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
 
 	on_construct = function(pos)
 		if df_trees.black_cap_growth_permitted(pos) then

@@ -16,6 +16,8 @@ minetest.register_node("df_mapitems:veinstone", {
 		minetest.swap_node(pos, {name="df_mapitems:veinstone_pulse"})
 		minetest.get_node_timer(pos):start(2)
 	end,
+	_mcl_blast_resistance = 10,
+	_mcl_hardness = 3,
 })
 
 minetest.register_node("df_mapitems:veinstone_pulse", {
@@ -47,6 +49,8 @@ minetest.register_node("df_mapitems:veinstone_pulse", {
 		minetest.swap_node(pos, {name="df_mapitems:veinstone_refractory"})
 		minetest.get_node_timer(pos):start(12)
 	end,
+	_mcl_blast_resistance = 10,
+	_mcl_hardness = 3,
 })
 
 minetest.register_node("df_mapitems:veinstone_refractory", {
@@ -63,4 +67,6 @@ minetest.register_node("df_mapitems:veinstone_refractory", {
 	on_timer = function(pos, elapsed)
 		minetest.swap_node(pos, {name="df_mapitems:veinstone"})
 	end,
+	_mcl_blast_resistance = 10,
+	_mcl_hardness = 3,
 })

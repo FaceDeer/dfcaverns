@@ -24,6 +24,8 @@ local glowstone_def = {
 	drawtype = "glasslike",
 	drop = "",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
 }
 if minetest.get_modpath("tnt") then
 	glowstone_def.on_dig = function(pos, node, digger)

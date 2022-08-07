@@ -12,6 +12,8 @@ end
 local add_immortality = function(slade_def)
 	slade_def.groups.immortal = 1
 	slade_def.can_dig = server_diggable_only
+	slade_def._mcl_blast_resistance = 3600000
+	slade_def._mcl_hardness = -1
 	return slade_def
 end
 
@@ -23,6 +25,8 @@ local slade_def = {
 	groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
+	_mcl_blast_resistance = 1200,
+	_mcl_hardness = 50,
 	on_blast = function(pos, intensity)
 		if intensity > 3.0 then
 			minetest.set_node(pos, {name="df_underworld_items:slade_sand"})
@@ -43,6 +47,8 @@ local slade_brick_def = {
 	groups = { cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
+	_mcl_blast_resistance = 1200,
+	_mcl_hardness = 50,
 }
 if invulnerable then
 	add_immortality(slade_brick_def)
@@ -68,6 +74,8 @@ local slade_wall_def = {
 	is_ground_content = false,
 	groups = { cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = df_underworld_items.sounds.slade,
+	_mcl_blast_resistance = 1200,
+	_mcl_hardness = 50,
 }
 if invulnerable then
 	add_immortality(slade_wall_def)
@@ -83,6 +91,8 @@ minetest.register_node("df_underworld_items:slade_sand", {
 	is_ground_content = false,
 	groups = {crumbly = 3, level = 2, falling_node = 1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = df_underworld_items.sounds.slade_gravel,
+	_mcl_blast_resistance = 2000,
+	_mcl_hardness = 5,
 })
 
 local slade_block_def = {
@@ -93,6 +103,8 @@ local slade_block_def = {
 	groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
+	_mcl_blast_resistance = 1200,
+	_mcl_hardness = 50,
 }
 if invulnerable then
 	add_immortality(slade_block_def)
@@ -109,6 +121,8 @@ local slade_seal_def = {
 	groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1},
 	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
+	_mcl_blast_resistance = 1200,
+	_mcl_hardness = 50,
 }
 if invulnerable then
 	slade_seal_def.on_blast = function() end

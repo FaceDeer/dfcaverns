@@ -30,15 +30,19 @@ if invulnerable then
 	end
 end
 
+local slade_mcl_blast_resistance = 1200
+local slade_mcl_hardness = 50
 local slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3}
 if invulnerable then
 	slade_groups.immortal = 1
+	slade_mcl_blast_resistance = 3600000
+	slade_mcl_hardness = -1
 end
 
 local punch_fix = function(pos, node, puncher, pointed_thing)
 	local wielded = puncher:get_wielded_item()
 	if wielded:get_name() == mese_crystal_node then
-		minetest.set_node(pos, {name="df_underworld_items:stonebrick_light"})
+		minetest.set_node(pos, {name="df_underworld_items:ancient_lantern_slade"})
 		minetest.get_node_timer(pos):stop()
 		if not (creative and creative.is_enabled_for and creative.is_enabled_for(puncher:get_player_name())) then
 			wielded:take_item()
@@ -49,7 +53,7 @@ local punch_fix = function(pos, node, puncher, pointed_thing)
 	minetest.node_punch(pos, node, puncher, pointed_thing)
 end
 
-minetest.register_node("df_underworld_items:stonebrick_light", {
+minetest.register_node("df_underworld_items:ancient_lantern_slade", {
 	description = S("Ancient Lantern"),
 	paramtype2 = "facedir",
 	place_param2 = 0,
@@ -64,9 +68,11 @@ minetest.register_node("df_underworld_items:stonebrick_light", {
 		fixed = lantern_nodebox,
 	},
 	can_dig = can_dig,
+	_mcl_blast_resistance = slade_mcl_blast_resistance,
+	_mcl_hardness = slade_mcl_hardness,
 })
 
-minetest.register_node("df_underworld_items:stonebrick_light_worn", {
+minetest.register_node("df_underworld_items:ancient_lantern_slade_worn", {
 	description = S("Ancient Lantern"),
 	paramtype2 = "facedir",
 	place_param2 = 0,
@@ -80,11 +86,13 @@ minetest.register_node("df_underworld_items:stonebrick_light_worn", {
 		type = "fixed",
 		fixed = lantern_nodebox,
 	},
+	_mcl_blast_resistance = slade_mcl_blast_resistance,
+	_mcl_hardness = slade_mcl_hardness,
 	on_construct = function(pos)
 		minetest.get_node_timer(pos):start(math.random(100, 200))
 	end,
 	on_timer = function(pos, elapsed)
-		minetest.swap_node(pos, {name="df_underworld_items:stonebrick_light_burnt_out"})
+		minetest.swap_node(pos, {name="df_underworld_items:ancient_lantern_slade_burnt_out"})
 		if math.random() < 0.1 then
 			minetest.get_node_timer(pos):start(math.random(30, 60))
 		else
@@ -95,7 +103,7 @@ minetest.register_node("df_underworld_items:stonebrick_light_worn", {
 	can_dig = can_dig,
 })
 
-minetest.register_node("df_underworld_items:stonebrick_light_burnt_out", {
+minetest.register_node("df_underworld_items:ancient_lantern_slade_burnt_out", {
 	description = S("Ancient Lantern"),
 	paramtype2 = "facedir",
 	place_param2 = 0,
@@ -109,12 +117,14 @@ minetest.register_node("df_underworld_items:stonebrick_light_burnt_out", {
 		type = "fixed",
 		fixed = lantern_nodebox,
 	},
-	drops = "df_underworld_items:stonebrick_light_worn",
+	drops = "df_underworld_items:ancient_lantern_slade_worn",
+	_mcl_blast_resistance = slade_mcl_blast_resistance,
+	_mcl_hardness = slade_mcl_hardness,
 	on_construct = function(pos)
 		minetest.get_node_timer(pos):start(math.random(100, 200))
 	end,
 	on_timer = function(pos, elapsed)
-		minetest.swap_node(pos, {name="df_underworld_items:stonebrick_light_worn"})
+		minetest.swap_node(pos, {name="df_underworld_items:ancient_lantern_slade_worn"})
 		if math.random() < 0.1 then
 			minetest.get_node_timer(pos):start(math.random(300, 600))
 		else
@@ -126,7 +136,7 @@ minetest.register_node("df_underworld_items:stonebrick_light_burnt_out", {
 })
 
 --minetest.register_craft({
---	output = "df_underworld_items:stonebrick_light",
+--	output = "df_underworld_items:ancient_lantern_slade",
 --	type = "shapeless",
 --	recipe = {
 --		"group:df_underworld_items_ancient_lantern",

@@ -38,6 +38,8 @@ minetest.register_node("df_underworld_items:pit_plasma", {
 	is_ground_content = false,
 	light_source = minetest.LIGHT_MAX,
 	paramtype = "light",
+	_mcl_blast_resistance = 3600000,
+	_mcl_hardness = -1,
 })
 
 minetest.register_node("df_underworld_items:pit_plasma_flowing", {
@@ -87,6 +89,8 @@ minetest.register_node("df_underworld_items:pit_plasma_flowing", {
 	is_ground_content = false,
 	light_source = minetest.LIGHT_MAX,
 	paramtype = "light",
+	_mcl_blast_resistance = 3600000,
+	_mcl_hardness = -1,
 })
 
 if minetest.get_modpath("radiant_damage") and radiant_damage.override_radiant_damage then

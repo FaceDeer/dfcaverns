@@ -12,7 +12,9 @@ minetest.register_node("df_primordial_items:jungle_mushroom_trunk", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
-	on_place = minetest.rotate_node
+	on_place = minetest.rotate_node,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_primordial_items:jungle_mushroom_cap_1", {
@@ -37,6 +39,8 @@ minetest.register_node("df_primordial_items:jungle_mushroom_cap_1", {
 			}
 		}
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_primordial_items:jungle_mushroom_cap_2", {
@@ -61,6 +65,8 @@ minetest.register_node("df_primordial_items:jungle_mushroom_cap_2", {
 			}
 		}
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 1,
 })
 
 minetest.register_craftitem("df_primordial_items:diced_mushroom", {
@@ -107,6 +113,8 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 
 	on_construct = function(pos)
 		if df_primordial_items.jungle_mushroom_growth_permitted(pos) then

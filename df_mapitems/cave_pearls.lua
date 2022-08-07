@@ -22,4 +22,6 @@ minetest.register_node("df_mapitems:cave_pearls", {
 		}
 	},
 	on_place = df_mapitems.place_against_surface,
+	_mcl_hardness = 1.5,
+	_mcl_blast_resistance = 6,
 })

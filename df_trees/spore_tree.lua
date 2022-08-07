@@ -17,6 +17,8 @@ minetest.register_node("df_trees:spore_tree", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 
 	on_place = minetest.rotate_node,
 })
@@ -39,6 +41,8 @@ minetest.register_node("df_trees:spore_tree_wood", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 2,
 })
 
 df_trees.register.all_stairs_and_fences("spore_tree_wood", {burntime = 6})
@@ -91,6 +95,8 @@ minetest.register_node("df_trees:spore_tree_hyphae", {
 		}
 	},
 	sounds = df_trees.sounds.leaves,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 
 	after_place_node = df_trees.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
@@ -106,6 +112,8 @@ minetest.register_node("df_trees:spore_tree_fruiting_body", {
 	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, spore_tree_hyphae = 1},
 	walkable = false,
 	climbable = true,
+	_mcl_blast_resistance = 0.7,
+	_mcl_hardness = 0.7,
 	
 	drawtype = "nodebox",
 	paramtype = "light",
@@ -164,6 +172,8 @@ minetest.register_node("df_trees:spore_tree_sapling", {
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
 	sounds = df_trees.sounds.leaves,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 
 	on_construct = function(pos)
 		if df_trees.spore_tree_growth_permitted(pos) then
@@ -334,4 +344,6 @@ minetest.register_node("df_trees:spore_tree_ladder", {
 	groups = {choppy = 2, oddly_breakable_by_hand = 3, flammable = 2},
 	legacy_wallmounted = true,
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 1,
 })

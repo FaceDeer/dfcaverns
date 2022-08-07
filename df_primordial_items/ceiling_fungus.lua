@@ -15,6 +15,8 @@ minetest.register_node("df_primordial_items:glownode", {
 	groups = {cracky = 3, oddly_breakable_by_hand = 3},
 	sounds = df_primordial_items.sounds.glass,
 	light_source = minetest.LIGHT_MAX,
+	_mcl_blast_resistance = 0.3,
+	_mcl_hardness = 0.3,
 })
 
 minetest.register_node("df_primordial_items:glownode_stalk", {
@@ -26,7 +28,9 @@ minetest.register_node("df_primordial_items:glownode_stalk", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = df_primordial_items.sounds.wood,
-	on_place = minetest.rotate_node
+	on_place = minetest.rotate_node,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_primordial_items:glow_orb_hanging", {
@@ -47,6 +51,8 @@ minetest.register_node("df_primordial_items:glow_orb_hanging", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 local c_stalk = minetest.get_content_id("df_primordial_items:glownode_stalk")

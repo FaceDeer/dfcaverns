@@ -1,6 +1,10 @@
 # textdomain: df_underworld_items
 
 
+### ancient_lanterns.lua ###
+
+Ancient Lantern=
+
 ### crystals_amethyst.lua ###
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
@@ -62,10 +66,6 @@ Active Slade Breacher=Aktiver Slade Breacher
 Breach in the Slade=Brich den Slade ein
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Inscribed Slade Block=Beschrifteter Slade-Block
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-Slade Block Slab=Slade Block Platte
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-Slade Block Stair=Slade Block Treppe
 Slade Capstone=
 Slade Puzzle Seal=
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
@@ -78,7 +78,14 @@ Slade Block=
 Slade Brick=
 Slade Sand=
 Slade Seal=
+Slade Wall=
+
+
+##### not used anymore #####
+
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+Slade Block Slab=Slade Block Platte
+#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
+Slade Block Stair=Slade Block Treppe
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Slade Slab=Slade-Platte
-Slade Stair=
-Slade Wall=

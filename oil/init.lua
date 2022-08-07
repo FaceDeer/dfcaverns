@@ -63,6 +63,8 @@ minetest.register_node("oil:oil_source", {
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
 	groups = {liquid = 3},
 	sounds = oil_sounds,
+	_mcl_blast_resistance      = 100,
+	_mcl_hardness              = -1,
 })
 
 minetest.register_node("oil:oil_flowing", {
@@ -113,6 +115,8 @@ minetest.register_node("oil:oil_flowing", {
 	post_effect_color = {a = 250, r = 0, g = 0, b = 0},
 	groups = {liquid = 3, not_in_creative_inventory = 1},
 	sounds = oil_sounds,
+	_mcl_blast_resistance      = 100,
+	_mcl_hardness              = -1,
 })
 
 minetest.register_craft({

@@ -14,6 +14,8 @@ minetest.register_node("df_mapitems:glow_mese", {
 	use_texture_alpha = "blend",
 	drawtype = "glasslike",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 1.5,
+	_mcl_hardness = 1.5,
 })
 
 minetest.register_craft({
@@ -39,6 +41,8 @@ minetest.register_node("df_mapitems:mese_crystal", {
 	use_texture_alpha = "blend",
 	sunlight_propagates = true,
 	on_place = df_mapitems.place_against_surface,
+	_mcl_blast_resistance = 1.5,
+	_mcl_hardness = 1.5,
 })
 
 minetest.register_craft({

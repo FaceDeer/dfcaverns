@@ -43,6 +43,8 @@ minetest.register_node("df_trees:blood_thorn", {
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	after_dig_node = blood_thorn_after_dig,
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 1,
 
 	on_construct = function(pos)
 		minetest.get_node_timer(pos):start(math.random(blood_thorn_min_delay, blood_thorn_max_delay))
@@ -87,6 +89,8 @@ minetest.register_node("df_trees:blood_thorn_dead", {
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	after_dig_node = blood_thorn_after_dig,
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_trees:blood_thorn_spike", {
@@ -118,6 +122,8 @@ minetest.register_node("df_trees:blood_thorn_spike", {
 			{-0.0625, -0.0625, -0.5, 0.0625, 0.0625, -0.125}, -- tip
 		}
 	},
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_trees:blood_thorn_spike_dead", {
@@ -147,6 +153,8 @@ minetest.register_node("df_trees:blood_thorn_spike_dead", {
 			{-0.0625, -0.0625, -0.5, 0.0625, 0.0625, -0.125}, -- tip
 		}
 	},
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 0.8,
 })
 
 
@@ -174,6 +182,8 @@ minetest.register_node("df_trees:blood_thorn_wood", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 1,
 })
 
 df_trees.register.all_stairs_and_fences("blood_thorn_wood", {burntime = 40})

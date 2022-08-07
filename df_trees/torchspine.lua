@@ -116,6 +116,9 @@ minetest.register_node("df_trees:torchspine_1", {
 		type = "fixed",
 		fixed = stal_box_1,
 	},
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 2,
+
 	on_place = stal_on_place,
 	on_punch = function(pos, node, puncher)
 		if puncher:get_wielded_item():get_name() == torch_node then
@@ -152,6 +155,9 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 		type = "fixed",
 		fixed = stal_box_1,
 	},
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 2,
+
 	on_place = stal_on_place,
 	
 	on_timer = function(pos)
@@ -177,6 +183,9 @@ minetest.register_node("df_trees:torchspine_2", {
 		type = "fixed",
 		fixed = stal_box_2,
 	},
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 2,
+
 	drop = {
             max_items = 1,
             items = {
@@ -203,6 +212,9 @@ minetest.register_node("df_trees:torchspine_3", {
 		type = "fixed",
 		fixed = stal_box_3,
 	},
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 2,
+
 	drop = {
             max_items = 1,
             items = {
@@ -233,6 +245,9 @@ minetest.register_node("df_trees:torchspine_4", {
 		type = "fixed",
 		fixed = stal_box_4,
 	},
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 2,
+
 	drop = {
             max_items = 1,
             items = {
@@ -267,6 +282,9 @@ minetest.register_node("df_trees:torchspine_ember", {
 			{-0.0625 + x_disp, -0.5, -0.125 + z_disp, 0.125 + x_disp, -0.375, 0.0625 + z_disp},
 		}
 	},
+	_mcl_blast_resistance = 10,
+	_mcl_hardness = 1,
+
 	on_place = stal_on_place,
 	
 	on_construct = function(pos)

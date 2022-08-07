@@ -1,7 +1,7 @@
 # textdomain: df_dependencies
 
 
-### minetest_game.lua ###
+### helper_functions.lua ###
 
 @1 Fence=
 @1 Fence Gate=
@@ -9,3 +9,4 @@
 @1 Mese Post Light=
 @1 Slab=
 @1 Stair=
+Double @1 Slab=

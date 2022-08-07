@@ -21,8 +21,13 @@ df_trees.doc.fungiwood_usage = S("Fungiwood stalk is strong and very fine-graine
 df_trees.doc.goblin_cap_desc = S("Massive but squat, mature goblin cap mushrooms are the size of small cottages.")
 df_trees.doc.goblin_cap_usage = S("Goblin cap stem and cap material can be cut into wood of two different hues, a subdued cream and a bright orange-red.")
 
+if minetest.get_modpath("mcl_core") then
+df_trees.doc.nether_cap_desc = S("Icecaps have an unusual biochemistry that allows them to somehow subsist on ambient heat, in violation of all known laws of thermodynamics. They grow deep underground in frigid, icy caverns that should by all rights be volcanic.")
+df_trees.doc.nether_cap_usage = S("Icecap wood, in addition to being a beautiful blue hue, retains the odd heat-draining ability of living icecaps and is able to quickly freeze nearby water solid.")
+else
 df_trees.doc.nether_cap_desc = S("Nether caps have an unusual biochemistry that allows them to somehow subsist on ambient heat, in violation of all known laws of thermodynamics. They grow deep underground in frigid, icy caverns that should by all rights be volcanic.")
 df_trees.doc.nether_cap_usage = S("Nether cap wood, in addition to being a beautiful blue hue, retains the odd heat-draining ability of living nether caps and is able to quickly freeze nearby water solid.")
+end
 
 df_trees.doc.spore_tree_desc = S("Spore trees have a sturdy 'trunk' that supports a large spongy mesh of branching fibers, with embedded fruiting bodies that produce a copious amount of spores that gently rain down around the spore tree's base.")
 df_trees.doc.spore_tree_usage = S("Spore tree trunks can be cut into pale woody planks. The branching fibers and fruiting bodies are only useful as fuel.")

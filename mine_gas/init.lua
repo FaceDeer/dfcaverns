@@ -55,6 +55,8 @@ minetest.register_node("mine_gas:gas_seep", {
 	drop = df_dependencies.node_name_coal_lump,
 	sounds = df_dependencies.sound_stone(),
 	is_ground_content = true,
+	_mcl_blast_resistance = 5,
+	_mcl_hardness = 3,
 })
 
 minetest.register_on_dignode(function(pos, oldnode, digger)

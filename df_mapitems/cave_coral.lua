@@ -19,6 +19,8 @@ minetest.register_node("df_mapitems:cave_coral_3", {
 			minetest.set_node(pos, {name=coral_skeleton})
 		end
 	end,
+	_mcl_hardness = 1.5,
+	_mcl_blast_resistance = 6,
 })
 
 minetest.register_node("df_mapitems:cave_coral_2", {
@@ -37,6 +39,8 @@ minetest.register_node("df_mapitems:cave_coral_2", {
 			minetest.set_node(pos, {name=coral_skeleton})
 		end
 	end,
+	_mcl_hardness = 1.5,
+	_mcl_blast_resistance = 6,
 })
 
 minetest.register_node("df_mapitems:cave_coral_1", {
@@ -55,6 +59,8 @@ minetest.register_node("df_mapitems:cave_coral_1", {
 			minetest.set_node(pos, {name=coral_skeleton})
 		end
 	end,
+	_mcl_hardness = 1.5,
+	_mcl_blast_resistance = 6,
 })
 
 local coral_names = {"df_mapitems:cave_coral_1", "df_mapitems:cave_coral_2", "df_mapitems:cave_coral_3"}

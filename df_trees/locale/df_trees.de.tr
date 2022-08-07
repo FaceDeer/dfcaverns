@@ -48,6 +48,10 @@ Golden Spindlestems are a sign of rare and magical mineral deposits nearby. Thei
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Green Spindlestems are a sign of nearby copper deposits. Their glowing symbiotes can be extracted as a long-lived light source, though the glow is not strong.=Grüne Spindelstämme sind ein Zeichen für nahegelegene Kupfervorkommen. Ihre leuchtenden Symbioten können als langlebige Lichtquelle extrahiert werden, obwohl das Leuchten nicht stark ist.
 
+Icecap wood, in addition to being a beautiful blue hue, retains the odd heat-draining ability of living icecaps and is able to quickly freeze nearby water solid.=
+
+Icecaps have an unusual biochemistry that allows them to somehow subsist on ambient heat, in violation of all known laws of thermodynamics. They grow deep underground in frigid, icy caverns that should by all rights be volcanic.=
+
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Living blood thorn spikes remain harmful to creatures that touch them. If killed by bright light, they cause only passive damage to creatures that fall on them (as one would expect from an enormous spike).=Lebende Blutdornspitzen bleiben für Kreaturen, die sie berühren, schädlich. Wenn sie durch helles Licht getötet werden, verursachen sie nur passiven Schaden an Kreaturen, die auf sie fallen (wie man es von einer enormen Spitze erwarten würde).
 
@@ -155,6 +159,11 @@ Goblin Cap Stem Planks=Goblin Cap Stem Planken
 
 ### nether_cap.lua ###
 
+Icecap=
+Icecap Gills=
+Icecap Planks=
+Icecap Spawn=
+Icecap Stem=
 Nether Cap=
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Nether Cap Gills=Nether Cap Kiemen

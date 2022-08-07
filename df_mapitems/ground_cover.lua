@@ -53,6 +53,8 @@ minetest.register_node("df_mapitems:dirt_with_cave_moss", {
 		wet = farming_soil_wet
 	},
 	_dfcaverns_dead_node = dirt_node,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.6,
 })
 
 soil_type_spread("df_mapitems:cave_moss_spread", "df_mapitems:dirt_with_cave_moss", dirt_node)
@@ -74,6 +76,8 @@ minetest.register_node("df_mapitems:sand_scum", {
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},
 	sounds = df_mapitems.sounds.sandscum,
 	_dfcaverns_dead_node = sand_node,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
 })
 
 soil_type_spread("df_mapitems:sand_scum_spread", "df_mapitems:sand_scum", sand_node)
@@ -100,6 +104,8 @@ minetest.register_node("df_mapitems:dirt_with_pebble_fungus", {
 		wet = farming_soil_wet
 	},
 	_dfcaverns_dead_node = dirt_node,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.6,
 })
 
 soil_type_spread("df_mapitems:pebble_fungus_spread", "df_mapitems:dirt_with_pebble_fungus", dirt_node)
@@ -126,6 +132,8 @@ minetest.register_node("df_mapitems:dirt_with_stillworm", {
 		wet = farming_soil_wet
 	},
 	_dfcaverns_dead_node = dirt_node,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.6,
 })
 
 soil_type_spread("df_mapitems:stillworm_spread", "df_mapitems:dirt_with_stillworm", dirt_node)
@@ -149,6 +157,8 @@ minetest.register_node("df_mapitems:spongestone", {
 		wet = farming_soil_wet
 	},
 	_dfcaverns_dead_node = dirt_node,
+	_mcl_blast_resistance = 0.6,
+	_mcl_hardness = 0.6,
 })
 
 minetest.register_node("df_mapitems:rock_rot", {
@@ -165,6 +175,8 @@ minetest.register_node("df_mapitems:rock_rot", {
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},
 	sounds = df_mapitems.sounds.dirt,
 	_dfcaverns_dead_node = stone_node,
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 1,
 })
 
 soil_type_spread("df_mapitems:rock_rot_spread", "df_mapitems:rock_rot", stone_node)
@@ -186,6 +198,8 @@ minetest.register_node("df_mapitems:cobble_with_floor_fungus", {
 	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8, df_caverns_floor_fungus = 1},
 	_dfcaverns_dead_node = df_mapitems.node_name.cobble,
 	sounds = df_mapitems.sounds.floor_fungus,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 1.5,
 })
 
 minetest.register_node("df_mapitems:cobble_with_floor_fungus_fine", {
@@ -199,6 +213,8 @@ minetest.register_node("df_mapitems:cobble_with_floor_fungus_fine", {
 	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8, df_caverns_floor_fungus = 1},
 	_dfcaverns_dead_node = df_mapitems.node_name.cobble,
 	df_mapitems.sounds.floor_fungus,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 1.5,
 	on_timer = function(pos, elapsed)
 		minetest.swap_node(pos, {name="df_mapitems:cobble_with_floor_fungus"})
 	end,
@@ -219,7 +235,7 @@ minetest.register_abm{
 		if above_def and (above_def.buildable_to == true or above_def.walkable == false) then
 			minetest.swap_node(pos, {name="df_mapitems:cobble_with_floor_fungus_fine"})
 			if math.random() > 0.5 then
-				minetest.get_node_timer(pos):start(math.random(100, 1000))
+				minetest.get_node_timer(pos):start(math.random(1000, 10000))
 			end
 		end
 	end,
@@ -240,6 +256,8 @@ minetest.register_node("df_mapitems:ice_with_hoar_moss", {
 	groups = {cracky = 3, puts_out_fire = 1, cools_lava = 1, slippery = 2, light_sensitive_fungus = 8},
 	sounds = df_mapitems.sounds.glass,
 	_dfcaverns_dead_node = df_mapitems.node_name.ice,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
 })
 
 

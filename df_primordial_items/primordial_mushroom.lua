@@ -9,7 +9,9 @@ minetest.register_node("df_primordial_items:mushroom_trunk", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
-	on_place = minetest.rotate_node
+	on_place = minetest.rotate_node,
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 3,
 })
 
 minetest.register_node("df_primordial_items:mushroom_cap", {
@@ -21,7 +23,9 @@ minetest.register_node("df_primordial_items:mushroom_cap", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
-	on_place = minetest.rotate_node
+	on_place = minetest.rotate_node,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_primordial_items:mushroom_gills", {
@@ -56,6 +60,8 @@ minetest.register_node("df_primordial_items:mushroom_gills", {
 	},
 	after_place_node = df_primordial_items.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
@@ -91,6 +97,8 @@ minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
 	},
 	after_place_node = df_primordial_items.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 df_primordial_items.register_leafdecay({
@@ -108,6 +116,8 @@ minetest.register_node("df_primordial_items:primordial_mush_trunk_wood", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = df_primordial_items.sounds.wood,
+	_mcl_blast_resistance = 4,
+	_mcl_hardness = 3,
 })
 
 minetest.register_craft({
@@ -128,6 +138,8 @@ minetest.register_node("df_primordial_items:primordial_mush_cap_wood", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
 	sounds = df_primordial_items.sounds.wood,
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 2,
 })
 
 minetest.register_craft({
@@ -749,6 +761,8 @@ minetest.register_node("df_primordial_items:mush_sapling", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 	on_construct = function(pos)
 		if df_primordial_items.primordial_mushroom_growth_permitted(pos) then
 			minetest.get_node_timer(pos):start(math.random(

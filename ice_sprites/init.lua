@@ -49,6 +49,8 @@ minetest.register_node("ice_sprites:ice_sprite", {
 	},
 	light_source = 6,
 	floodable = true,
+	_mcl_blast_resistance = 0.1,
+	_mcl_hardness = 0.1,
 	on_place = function(itemstack, placer, pointed_thing)
 		local player_name = placer:get_player_name()
 		local pos = pointed_thing.above
@@ -82,9 +84,11 @@ minetest.register_node("ice_sprites:hidden_ice_sprite", {
 	pointable = false,
 	diggable = false,
 	buildable_to = true,
-	drop = "",
+	drop = "ice_sprites:ice_sprite",
 	groups = {not_in_creative_inventory = 1},
 	floodable = true,
+	_mcl_blast_resistance = 0.1,
+	_mcl_hardness = 0.1,
 	on_place = function(itemstack, placer, pointed_thing)
 		local player_name = placer:get_player_name()
 		local pos = pointed_thing.above
@@ -140,6 +144,8 @@ minetest.register_node("ice_sprites:ice_sprite_bottle", {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 	},
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
 	sounds = glass_sounds(),
 	on_rightclick = function(pos, node, player, itemstack, pointed_thing)
 		local lower_pos = {x = pos.x, y = pos.y + 1, z = pos.z}

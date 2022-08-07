@@ -18,6 +18,8 @@ minetest.register_node("df_mapitems:castle_coral", {
 	paramtype = "light",
 	groups = {cracky=2,},
 	sounds = df_mapitems.sounds.stone,
+	_mcl_hardness = 1.5,
+	_mcl_blast_resistance = 6,
 })
 
 minetest.register_node("df_mapitems:castle_coral_skeleton", {
@@ -33,6 +35,8 @@ minetest.register_node("df_mapitems:castle_coral_skeleton", {
 	is_ground_content = false,
 	groups = {cracky = 3},
 	sounds = df_mapitems.sounds.stone,
+	_mcl_hardness = 1.5,
+	_mcl_blast_resistance = 6,
 })
 
 local c_coral = minetest.get_content_id("df_mapitems:castle_coral")

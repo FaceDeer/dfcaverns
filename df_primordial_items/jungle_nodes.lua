@@ -22,6 +22,8 @@ minetest.register_node("df_primordial_items:fern_1", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:fern_2", {
@@ -43,6 +45,8 @@ minetest.register_node("df_primordial_items:fern_2", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 ---------------------------------------------------------
@@ -80,6 +84,8 @@ minetest.register_node("df_primordial_items:glow_plant_1", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:glow_plant_2", {
@@ -102,6 +108,8 @@ minetest.register_node("df_primordial_items:glow_plant_2", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:glow_plant_3", {
@@ -124,6 +132,8 @@ minetest.register_node("df_primordial_items:glow_plant_3", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 
@@ -148,6 +158,8 @@ minetest.register_node("df_primordial_items:jungle_grass_1", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:jungle_grass_2", {
@@ -169,6 +181,8 @@ minetest.register_node("df_primordial_items:jungle_grass_2", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:jungle_grass_3", {
@@ -190,12 +204,15 @@ minetest.register_node("df_primordial_items:jungle_grass_3", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 
 -----------------------------------------------------------------------------------------
 -- Ivy
 
+-- TODO: this is not actually used, find somewhere to put it
 minetest.register_node("df_primordial_items:jungle_ivy", {
 	description = S("Primordial Jungle Ivy"),
 	_doc_items_longdesc = df_primordial_items.doc.ivy_desc,
@@ -218,6 +235,8 @@ minetest.register_node("df_primordial_items:jungle_ivy", {
 --	selection_box = {
 --		type = "wallmounted",
 --	},
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 -------------------------------------------------------------------------------------
@@ -240,6 +259,8 @@ minetest.register_node("df_primordial_items:jungle_mushroom_1", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:jungle_mushroom_2", {
@@ -259,6 +280,8 @@ minetest.register_node("df_primordial_items:jungle_mushroom_2", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 ----------------------------------------------------------------------------------------
@@ -275,6 +298,8 @@ minetest.register_node("df_primordial_items:dirt_with_jungle_grass", {
 	is_ground_content = false,
 	drop = df_primordial_items.node_names.dirt,
 	sounds = df_primordial_items.sounds.dirt,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.6,
 })
 
 minetest.register_abm{
@@ -313,6 +338,8 @@ minetest.register_node("df_primordial_items:plant_matter", {
 			minetest.set_node(pos, {name="df_primordial_items:packed_roots"})
 		end
 	end,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_primordial_items:packed_roots", {
@@ -324,6 +351,8 @@ minetest.register_node("df_primordial_items:packed_roots", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
 	sounds = df_primordial_items.sounds.wood,
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 3,
 })
 
 
@@ -378,6 +407,8 @@ minetest.register_node("df_primordial_items:jungle_roots_1", {
 	walkable = false,
 	climbable = true,
 	is_ground_content = false,
+	_mcl_blast_resistance = 0.3,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:jungle_roots_2", {
@@ -396,6 +427,8 @@ minetest.register_node("df_primordial_items:jungle_roots_2", {
 	sunlight_propagates = true,
 	walkable = false,
 	climbable = true,
+	_mcl_blast_resistance = 0.3,
+	_mcl_hardness = 0.2,
 })
 
 --------------------------------------------------------------------------------
@@ -420,6 +453,8 @@ minetest.register_node("df_primordial_items:jungle_thorns", {
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
 	damage_per_second = 1,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.3,
 })
 
 

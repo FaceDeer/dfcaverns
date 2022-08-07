@@ -1,7 +1,7 @@
 # textdomain: df_dependencies
 
 
-### minetest_game.lua ###
+### helper_functions.lua ###
 
 @1 Fence=
 @1 Fence Gate=
@@ -11,4 +11,4 @@
 @1 Slab=@1 Lastra
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 @1 Stair=@1 Scala
-
+Double @1 Slab=

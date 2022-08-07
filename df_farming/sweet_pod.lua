@@ -24,6 +24,8 @@ local register_sweet_pod = function(number)
                 {-8/16, -8/16, -8/16, 8/16, -8/16 + (16/6)*number/16, 8/16},
             },
         },
+		_mcl_blast_resistance = 0.2,
+		_mcl_hardness = 0.2,
 		
 		on_timer = function(pos, elapsed)
 			df_farming.grow_underground_plant(pos, name, elapsed)
@@ -138,6 +140,8 @@ end
 ----------------------------------------------
 -- Syrup
 
+-- TODO: mcl_core.register_liquid
+
 if df_dependencies.bucket_register_liquid then
 	minetest.register_node("df_farming:dwarven_syrup_source", {
 		description = S("Dwarven Syrup Source"),
@@ -185,6 +189,8 @@ if df_dependencies.bucket_register_liquid then
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
 		groups = {liquid = 3, flammable = 2},
 		sounds = df_farming.sounds.syrup,
+		_mcl_blast_resistance      = 100,
+		_mcl_hardness              = -1,
 	})
 	
 	minetest.register_node("df_farming:dwarven_syrup_flowing", {
@@ -234,6 +240,8 @@ if df_dependencies.bucket_register_liquid then
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
 		groups = {liquid = 3, flammable = 2, not_in_creative_inventory = 1},
 		sounds = df_farming.sounds.syrup,
+		_mcl_blast_resistance      = 100,
+		_mcl_hardness              = -1,
 	})
 
 	df_farming.bucket_register_liquid(

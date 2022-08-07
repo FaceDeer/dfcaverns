@@ -48,6 +48,9 @@ local register_cave_wheat = function(number)
 				},
 			},
 		},
+		
+		_mcl_blast_resistance = 0.2,
+		_mcl_hardness = 0.2,
 	}
 	
 	if number < 8 then
@@ -166,6 +169,8 @@ minetest.register_node("df_farming:cave_straw", {
 	is_ground_content = false,
 	groups = {snappy=3, flammable=4, fall_damage_add_percent=-30, straw=1},
 	sounds = df_farming.sounds.leaves,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
 })
 
 minetest.register_craft({
@@ -206,6 +211,8 @@ if minetest.get_modpath("footprints") then
 		groups = {snappy = 3, flammable = 2, attached_node = 1},
 		drop = "",
 		sounds = df_farming.sounds.leaves,
+		_mcl_blast_resistance = 0.5,
+		_mcl_hardness = 0.5,
 	})
 	
 	footprints.register_trample_node("df_farming:cave_wheat_5", {

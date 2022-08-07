@@ -26,6 +26,8 @@ local register_quarry_bush = function(number)
                 {-8/16, -8/16, -8/16, 8/16, -8/16 + (16/5)*number/16, 8/16},
             },
         },
+		_mcl_blast_resistance = 0.2,
+		_mcl_hardness = 0.2,
 
 		on_timer = function(pos, elapsed)
 			df_farming.grow_underground_plant(pos, name, elapsed)

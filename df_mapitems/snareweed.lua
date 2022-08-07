@@ -13,6 +13,8 @@ minetest.register_node("df_mapitems:snareweed", {
 	light_source = 6,
 	groups = {crumbly = 3, soil = 1},
 	sounds = df_mapitems.sounds.dirt,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.6,
 })
 
 if df_mapitems.config.snareweed_damage then

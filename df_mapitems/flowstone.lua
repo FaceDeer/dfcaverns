@@ -12,6 +12,8 @@ df_mapitems.dry_stalagmite_ids = subterrane.register_stalagmite_nodes("df_mapite
 	groups = {cracky = 3, stone = 2},
 	sounds = df_mapitems.sounds.stone,
 	is_ground_content = false,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 1.5,
 })
 
 minetest.register_node("df_mapitems:dry_flowstone", {
@@ -24,6 +26,8 @@ minetest.register_node("df_mapitems:dry_flowstone", {
 	is_ground_content = false,
 	drop = df_mapitems.node_name.cobble,
 	sounds = df_mapitems.sounds.stone,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 1.5,
 })
 
 -----------------------------------------------
@@ -38,6 +42,8 @@ df_mapitems.wet_stalagmite_ids = subterrane.register_stalagmite_nodes("df_mapite
 	groups = {cracky = 3, stone = 2, subterrane_wet_dripstone = 1},
 	sounds = df_mapitems.sounds.stone,
 	is_ground_content = false,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 1.5,
 }, "df_mapitems:dry_stal")
 
 
@@ -51,6 +57,8 @@ minetest.register_node("df_mapitems:wet_flowstone", {
 	is_ground_content = false,
 	drop = df_mapitems.node_name.cobble,
 	sounds = df_mapitems.sounds.stone,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 1.5,
 })
 
 -----------------------------------------------
@@ -64,5 +72,7 @@ df_mapitems.icicle_ids = subterrane.register_stalagmite_nodes("df_mapitems:icicl
 	},
 	groups = {cracky = 3, puts_out_fire = 1, cools_lava = 1, slippery = 3},
 	sounds = df_mapitems.sounds.glass,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
 })
 

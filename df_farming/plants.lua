@@ -21,6 +21,8 @@ minetest.register_node("df_farming:dead_fungus", {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 0.5},
 	},
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_craft({
@@ -54,6 +56,8 @@ minetest.register_node("df_farming:cavern_fungi", {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 0.5},
 	},
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_craft({
@@ -165,6 +169,8 @@ df_farming.register_seed = function(name, description, image, stage_one, grow_ti
 			type = "fixed",
 			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
 		},
+		_mcl_blast_resistance = 0.2,
+		_mcl_hardness = 0.2,	
 		
 		on_place = function(itemstack, placer, pointed_thing)
 			return place_seed(itemstack, placer, pointed_thing, "df_farming:"..name)

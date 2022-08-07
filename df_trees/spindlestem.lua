@@ -80,6 +80,8 @@ minetest.register_node("df_trees:spindlestem_stem", {
 		}
 	},
 	on_place = stem_on_place,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_craft({
@@ -121,6 +123,8 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 				{-0.1875+disp, -0.3125, -0.1875+disp, 0.3125+disp, -0.1875, 0.3125+disp},
 			}
 		},
+		_mcl_blast_resistance = 2,
+		_mcl_hardness = 2,
 		
 		drop = {
             -- Maximum number of items to drop
@@ -202,7 +206,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 	})
 	
 	if vessels and light_level > 0 then
-		local tex = "dfcaverns_vessels_glowing_liquid.png^[multiply:#"..colour_code.."^vessels_glass_bottle.png"
+		local tex = "dfcaverns_vessels_glowing_liquid.png^[multiply:#"..colour_code.."^"..df_dependencies.texture_glass_bottle
 		local new_light = light_level + math.floor((minetest.LIGHT_MAX-light_level)/2)
 		
 		local groups = {vessel = 1, dig_immediate = 3, attached_node = 1}
@@ -228,6 +232,8 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 			groups = groups,
 			sounds = df_trees.sounds.glass,
 			light_source = new_light,
+			_mcl_blast_resistance = 0.5,
+			_mcl_hardness = 0.5,
 		})
 		
 		minetest.register_craft( {
@@ -271,6 +277,8 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 			{-0.0625 + 0.125, -0.5, -0.125 + 0.125, 0.125 + 0.125, -0.375, 0.0625 + 0.125},
 		}
 	},
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 	
 	on_place = stem_on_place,
 	on_construct = function(pos)

@@ -22,6 +22,8 @@ minetest.register_node("df_primordial_items:fungal_grass_1", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:fungal_grass_2", {
@@ -42,6 +44,8 @@ minetest.register_node("df_primordial_items:fungal_grass_2", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 -- Glowing
@@ -64,6 +68,8 @@ minetest.register_node("df_primordial_items:glow_orb", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:glow_orb_stalks", {
@@ -84,6 +90,8 @@ minetest.register_node("df_primordial_items:glow_orb_stalks", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:glow_pods", {
@@ -117,6 +125,8 @@ minetest.register_node("df_primordial_items:glow_pods", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 ------------------------------------------------------------------------------------
@@ -134,6 +144,8 @@ minetest.register_node("df_primordial_items:dirt_with_mycelium", {
 	drop = df_primordial_items.node_names.dirt,
 	sounds = df_primordial_items.sounds.dirt,
 	light_source = 3,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.6,
 })
 
 minetest.register_abm{

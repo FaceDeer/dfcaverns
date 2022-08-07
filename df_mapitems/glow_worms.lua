@@ -32,6 +32,8 @@ minetest.register_node("df_mapitems:glow_worm", {
 	buildable_to = true,
 	floodable = true,
 	visual_scale = 1.0,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 	after_place_node = function(pos, placer) 
 		if df_mapitems.config.glow_worm_delay_multiplier > 0 then
 			minetest.get_node_timer(pos):start(math.random(

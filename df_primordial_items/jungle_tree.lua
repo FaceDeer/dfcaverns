@@ -31,6 +31,8 @@ minetest.register_node("df_primordial_items:jungle_leaves", {
 	},
 	after_place_node = df_primordial_items.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:jungle_leaves_glowing", {
@@ -64,6 +66,8 @@ minetest.register_node("df_primordial_items:jungle_leaves_glowing", {
 	},
 	after_place_node = df_primordial_items.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 -- Trunk
@@ -77,7 +81,9 @@ minetest.register_node("df_primordial_items:jungle_tree", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_jungle_tree = 1},
 	sounds = df_primordial_items.sounds.wood,
-	on_place = minetest.rotate_node
+	on_place = minetest.rotate_node,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_primordial_items:jungle_tree_mossy", {
@@ -89,7 +95,9 @@ minetest.register_node("df_primordial_items:jungle_tree_mossy", {
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_jungle_tree = 1},
 	sounds = df_primordial_items.sounds.wood,
-	on_place = minetest.rotate_node
+	on_place = minetest.rotate_node,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_primordial_items:jungle_tree_glowing", {
@@ -102,7 +110,9 @@ minetest.register_node("df_primordial_items:jungle_tree_glowing", {
 	light_source = 4,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_jungle_tree = 1},
 	sounds = df_primordial_items.sounds.wood,
-	on_place = minetest.rotate_node
+	on_place = minetest.rotate_node,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 df_primordial_items.register_leafdecay({
@@ -238,6 +248,8 @@ minetest.register_node("df_primordial_items:jungletree_sapling", {
 	sounds = df_primordial_items.sounds.leaves,
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 	on_construct = function(pos)
 		if df_primordial_items.jungletree_growth_permitted(pos) then
 			minetest.get_node_timer(pos):start(math.random(

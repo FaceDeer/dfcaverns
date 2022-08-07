@@ -11,9 +11,13 @@ if invulnerable then
 	end
 end
 
+local slade_mcl_blast_resistance = 1200
+local slade_mcl_hardness = 50
 local slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, not_in_creative_inventory=1}
 if invulnerable then
 	slade_groups.immortal = 1
+	slade_mcl_blast_resistance = 3600000
+	slade_mcl_hardness = -1
 end
 
 local lava_source = df_underworld_items.nodes.lava_source
@@ -200,6 +204,8 @@ local puzzle_seal_def = {
 	},
 	is_ground_content = false,
 	can_dig = can_dig,
+	_mcl_blast_resistance = slade_mcl_blast_resistance,
+	_mcl_hardness = slade_mcl_hardness,
 	on_blast = function() end,
 	on_rotate = function() return false end,
 	on_construct = function(pos)
@@ -260,6 +266,8 @@ local digging_seal_def = {
 		fixed = {-0.625, -0.625, -0.625, 0.625, 0.625, 0.625},
 	},
 	is_ground_content = false,
+	_mcl_blast_resistance = 3600000,
+	_mcl_hardness = -1,
 	can_dig = can_dig,
 	on_blast = function() end,
 	on_rotate = function() return false end,
@@ -370,6 +378,8 @@ local inscription_block_def = {
 	groups = slade_groups,
 	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
+	_mcl_blast_resistance = slade_mcl_blast_resistance,
+	_mcl_hardness = slade_mcl_hardness,
 	can_dig = can_dig,
 	on_blast = function() end,
 	on_rotate = function() return false end,
@@ -408,6 +418,8 @@ local capstone_def = {
 	light_source = 8,
 	sounds = df_underworld_items.sounds.slade,
 	is_ground_content = false,
+	_mcl_blast_resistance = slade_mcl_blast_resistance,
+	_mcl_hardness = slade_mcl_hardness,
 	can_dig = can_dig,
 	on_blast = function() end,
 	on_rotate = function() return false end,

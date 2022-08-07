@@ -82,6 +82,8 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 			{-0.0625 + displace_x, -0.5, -0.125 + displace_z, 0.125 + displace_x, -0.375, 0.0625 + displace_z},
 		}
 	},
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,	
 	
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_spawn")
@@ -123,6 +125,8 @@ minetest.register_node("df_farming:plump_helmet_1", {
 			{-0.125 + displace_x, -0.4375, -0.1875 + displace_z, 0.1875 + displace_x, -0.3125, 0.125 + displace_z}, -- cap
 		}
 	},
+	_mcl_blast_resistance = 0.3,
+	_mcl_hardness = 0.3,	
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_1")
@@ -164,6 +168,9 @@ minetest.register_node("df_farming:plump_helmet_2", {
 			{-0.125 + displace_x, -0.3125, -0.1875 + displace_z, 0.1875 + displace_x, -0.0625, 0.125 + displace_z},  -- cap
 		}
 	},
+	_mcl_blast_resistance = 0.4,
+	_mcl_hardness = 0.4,	
+	
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_2")
 	end,
@@ -203,6 +210,9 @@ minetest.register_node("df_farming:plump_helmet_3", {
 			{-0.1875 + displace_x, -0.125, -0.25 + displace_z, 0.25 + displace_x, 0.1875, 0.1875 + displace_z}, -- cap
 		}
 	},
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
+
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_3")
 	end,
@@ -241,6 +251,9 @@ minetest.register_node("df_farming:plump_helmet_4", {
 			{-0.1875 + displace_x, 0.25, -0.25 + displace_z, 0.25 + displace_x, 0.3125, 0.1875 + displace_z}, -- cap rounding
 		}
 	},
+	_mcl_blast_resistance = 0.6,
+	_mcl_hardness = 0.6,
+
 	drop = {
 		max_items = 4,
 		items = {
@@ -297,6 +310,9 @@ minetest.register_node("df_farming:plump_helmet_4_picked", {
 			{-0.1875 + displace_x, 0.25, -0.25 + displace_z, 0.25 + displace_x, 0.3125, 0.1875 + displace_z}, -- cap rounding
 		}
 	},
+	_mcl_blast_resistance = 0.6,
+	_mcl_hardness = 0.6,
+
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_4_picked")
 	end,

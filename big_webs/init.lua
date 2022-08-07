@@ -165,6 +165,8 @@ minetest.register_node("big_webs:webbing", {
 			minetest.get_node_timer(web_pos):stop() -- no need to recheck
 		end	
 	end,
+	_mcl_blast_resistance = 1.0,
+	_mcl_hardness = 0.5,
 })
 
 minetest.register_node("big_webs:web_egg", {
@@ -193,4 +195,6 @@ minetest.register_node("big_webs:web_egg", {
 		minetest.set_node(pos, {name="air"})
 		generate_web(pos)
 	end,
+	_mcl_blast_resistance = 1.0,
+	_mcl_hardness = 0.5,
 })

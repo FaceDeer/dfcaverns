@@ -13,6 +13,8 @@ minetest.register_node("df_underworld_items:glow_amethyst", {
 	use_texture_alpha = "blend",
 	drawtype = "glasslike",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 2,
 })
 
 if minetest.get_modpath("radiant_damage") and radiant_damage.override_radiant_damage and radiant_damage.config.enable_mese_damage then

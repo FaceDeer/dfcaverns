@@ -1,30 +1,41 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
+local if_mineclone_installed = function(default, mineclone)
+	if minetest.get_modpath("mcl_core") then
+		return mineclone
+	end
+	return default
+end
+
 --stem
 minetest.register_node("df_trees:nether_cap_stem", {
-	description = S("Nether Cap Stem"),
+	description = if_mineclone_installed(S("Nether Cap Stem"), S("Icecap Stem")),
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_stem.png"},
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 0.7,
+	_mcl_hardness = 0.7,
 })
 
 --cap
 minetest.register_node("df_trees:nether_cap", {
-	description = S("Nether Cap"),
+	description = if_mineclone_installed(S("Nether Cap"), S("Icecap")),
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap.png"},
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
 	sounds = df_trees.sounds.nethercap_wood,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
 })
 
 --gills
 minetest.register_node("df_trees:nether_cap_gills", {
-	description = S("Nether Cap Gills"),
+	description = if_mineclone_installed(S("Nether Cap Gills"), S("Icecap Gills")),
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_gills.png"},
@@ -48,6 +59,8 @@ minetest.register_node("df_trees:nether_cap_gills", {
 	},
 	after_place_node = df_trees.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
+	_mcl_blast_resistance = 0.1,
+	_mcl_hardness = 0.1,
 })
 
 df_trees.register_leafdecay({
@@ -72,7 +85,7 @@ minetest.register_craft({
 })
 
 minetest.register_node("df_trees:nether_cap_wood", {
-	description = S("Nether Cap Planks"),
+	description = if_mineclone_installed(S("Nether Cap Planks"), S("Icecap Planks")),
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	paramtype2 = "facedir",
@@ -81,13 +94,15 @@ minetest.register_node("df_trees:nether_cap_wood", {
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, wood = 1, freezes_water = 1},
 	sounds = df_trees.sounds.wood,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.5,
 })
 
 df_trees.register.all_stairs_and_fences("nether_cap_wood")
 
 -- sapling
 minetest.register_node("df_trees:nether_cap_sapling", {
-	description = S("Nether Cap Spawn"),
+	description = if_mineclone_installed(S("Nether Cap Spawn"), S("Icecap Spawn")),
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	drawtype = "plantlike",
@@ -107,6 +122,8 @@ minetest.register_node("df_trees:nether_cap_sapling", {
 	groups = {snappy = 2, dig_immediate = 3,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
 	sounds = df_trees.sounds.leaves,
+	_mcl_blast_resistance = 0.1,
+	_mcl_hardness = 0.1,
 
 	on_construct = function(pos)
 		if df_trees.nether_cap_growth_permitted(pos) then

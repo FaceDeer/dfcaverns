@@ -16,6 +16,8 @@ minetest.register_node("df_mapitems:salt_crystal", {
 	sunlight_propagates = true,
 	is_ground_content = false,
 	on_place = df_mapitems.place_against_surface,
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_mapitems:salty_cobble", {
@@ -29,4 +31,6 @@ minetest.register_node("df_mapitems:salty_cobble", {
 	light_source = 2,
 	drop = df_mapitems.node_name.cobble,
 	sounds = df_mapitems.sounds.stone,
+	_mcl_blast_resistance = 6,
+	_mcl_hardness = 2,
 })

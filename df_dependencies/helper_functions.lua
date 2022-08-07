@@ -39,7 +39,8 @@ df_dependencies.mods_required.stairs = true
 df_dependencies.mods_required.moreblocks = true
 df_dependencies.mods_required.doors = true
 df_dependencies.mods_required.mcl_stairs = true
-
+df_dependencies.mods_required.mcl_fences = true
+df_dependencies.mods_required.mcl_core = true
 
 local node_name_to_stair_properties = function(name, override)
 	local mod = minetest.get_current_modname()
@@ -132,6 +133,20 @@ df_dependencies.register_all_fences = function (name, override_def)
 			groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
 			sounds = node_def.sounds
 		})
+	end
+	
+	if minetest.get_modpath("mcl_fences") then
+		local groups = deep_copy(node_def.groups or {})
+		groups.fence_wood = 1
+		mcl_fences.register_fence_and_fence_gate(name .. "_fence", 
+			S("@1 Fence", node_def.description),
+			S("@1 Fence Gate", node_def.description),
+			texture,
+			groups,
+			node_def._mcl_hardness or minetest.registered_nodes["mcl_core:wood"]._mcl_hardness,
+			node_def._mcl_blast_resistance or minetest.registered_nodes["mcl_core:wood"]._mcl_blast_resistance,
+			{"group:fence_wood"}
+		)
 	end
 	
 	if minetest.get_modpath("doors") then

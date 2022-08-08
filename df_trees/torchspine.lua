@@ -68,7 +68,7 @@ local grow_torchspine = function(pos)
 	local node_above_def = minetest.registered_nodes[node_above.name]
 	if not node_above_def.buildable_to then
 		-- don't grow, but do continue cycling the torch state
-		minetest.swap_node(pos, {name = "df_trees:torchspine_1", param2 = node.param2})
+		minetest.swap_node(pos, {name = "df_trees:torchspine_1", param2 = param2})
 		minetest.get_node_timer(pos):start(math.random(torchspine_min_delay, torchspine_max_delay))
 		return
 	end
@@ -85,7 +85,7 @@ local grow_torchspine = function(pos)
 	end
 	if height >= 4 then
 		-- don't grow, but do continue cycling the torch state
-		minetest.swap_node(pos, {name = "df_trees:torchspine_1", param2 = node.param2})
+		minetest.swap_node(pos, {name = "df_trees:torchspine_1", param2 = param2})
 		minetest.get_node_timer(pos):start(math.random(torchspine_min_delay, torchspine_max_delay))
 		return
 	end

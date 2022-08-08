@@ -110,7 +110,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
 	_mcl_blast_resistance = 0.2,

@@ -34,7 +34,7 @@ minetest.register_node("df_trees:tower_cap_gills", {
 	tiles = {"dfcaverns_tower_cap_gills.png"},
 	is_ground_content = false,
 	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, tower_cap = 1},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	drawtype = "plantlike",
 	paramtype = "light",
 	drop = {
@@ -51,10 +51,10 @@ minetest.register_node("df_trees:tower_cap_gills", {
 	},
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
-	after_place_node = df_trees.after_place_leaves,
+	after_place_node = df_dependencies.after_place_leaves,
 })
 
-df_trees.register_leafdecay({
+df_dependencies.register_leafdecay({
 	trunks = {"df_trees:tower_cap"}, -- don't need stem nodes here
 	leaves = {"df_trees:tower_cap_gills"},
 	radius = 1,	
@@ -77,12 +77,12 @@ minetest.register_node("df_trees:tower_cap_wood", {
 	tiles = {"dfcaverns_tower_cap_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 2,
 })
 
-df_trees.register.all_stairs_and_fences("tower_cap_wood", {burntime = 7})
+df_dependencies.register_all_stairs_and_fences("tower_cap_wood", {burntime = 7})
 
 minetest.register_craft({
 	type = "fuel",
@@ -131,7 +131,7 @@ minetest.register_node("df_trees:tower_cap_sapling", {
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
 

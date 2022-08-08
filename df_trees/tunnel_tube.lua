@@ -18,7 +18,7 @@ minetest.register_node("df_trees:tunnel_tube", {
 	is_ground_content = false,
 	paramtype = "light",
 	groups = {choppy = 3, tree = 1, oddly_breakable_by_hand=1, flammable = 2},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	on_place = minetest.rotate_node,
 	_mcl_blast_resistance = 2,
 	_mcl_hardness = 2,
@@ -46,7 +46,7 @@ minetest.register_node("df_trees:tunnel_tube_slant_bottom", {
 	paramtype = "light",
 	drop = "df_trees:tunnel_tube",
 	groups = {choppy = 3, tree = 1, oddly_breakable_by_hand=1, flammable = 2},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	on_place = minetest.rotate_node,
 	selection_box = {
 		type = "fixed",
@@ -78,7 +78,7 @@ minetest.register_node("df_trees:tunnel_tube_slant_top", {
 	paramtype = "light",
 	drop = "df_trees:tunnel_tube",
 	groups = {choppy = 3, tree = 1, oddly_breakable_by_hand=1, flammable = 2},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	on_place = minetest.rotate_node,
 	selection_box = {
 		type = "fixed",
@@ -110,7 +110,7 @@ minetest.register_node("df_trees:tunnel_tube_slant_full", {
 	paramtype = "light",
 	drop = "df_trees:tunnel_tube",
 	groups = {choppy = 3, tree = 1, oddly_breakable_by_hand=1, flammable = 2},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	on_place = minetest.rotate_node,
 	selection_box = {
 		type = "fixed",
@@ -140,7 +140,7 @@ minetest.register_craft({
 
 -- Paper
 minetest.register_craft({
-	output = df_trees.node_names.paper .. " 3",
+	output = df_dependencies.node_name_paper .. " 3",
 	type = "shapeless",
 	recipe = {'df_trees:tunnel_tube', 'bucket:bucket_water'},
 	replacements = {{"bucket:bucket_water", "bucket:bucket_empty"}},
@@ -155,12 +155,12 @@ minetest.register_node("df_trees:tunnel_tube_wood", {
 	tiles = {"dfcaverns_tunnel_tube_wood_top.png", "dfcaverns_tunnel_tube_wood_top.png", "dfcaverns_tunnel_tube_wood_side.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 10,
 	_mcl_hardness = 2,
 })
 
-df_trees.register.all_stairs_and_fences("tunnel_tube_wood", {burntime = 9})
+df_dependencies.register_all_stairs_and_fences("tunnel_tube_wood", {burntime = 9})
 
 minetest.register_craft({
 	type = "fuel",
@@ -189,7 +189,7 @@ if df_trees.config.enable_tnt then
 
 	local tnt_radius = tonumber(minetest.settings:get("tnt_radius") or 3) * 2/3
 	local tnt_def = {radius = tnt_radius, damage_radius = tnt_radius * 2}
-	local torch_item = df_trees.node_names.torch
+	local torch_item = df_dependencies.node_name_torch
 	
 	local on_burn = function(pos)
 		minetest.swap_node(pos, {name = "df_trees:tunnel_tube_fruiting_body_burning"})
@@ -204,7 +204,7 @@ if df_trees.config.enable_tnt then
 		paramtype2 = "facedir",
 		is_ground_content = false,
 		groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2, tnt = 1,},
-		sounds = df_trees.sounds.wood,
+		sounds = df_dependencies.sound_wood(),
 		on_place = minetest.rotate_node,
 		drop = {
 			max_items = 3,
@@ -261,7 +261,7 @@ if df_trees.config.enable_tnt then
 		groups = {not_in_creative_inventory = 1,},
 		light_source = 5,
 		drop = "",
-		sounds = df_trees.sounds.wood,
+		sounds = df_dependencies.sound_wood(),
 		_mcl_blast_resistance = 0,
 		_mcl_hardness = 2,
 		on_timer = function(pos, elapsed)
@@ -288,7 +288,7 @@ else
 		paramtype2 = "facedir",
 		is_ground_content = false,
 		groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2},
-		sounds = df_trees.sounds.wood,
+		sounds = df_dependencies.sound_wood(),
 		on_place = minetest.rotate_node,
 		_mcl_blast_resistance = 12,
 		_mcl_hardness = 2,
@@ -334,7 +334,7 @@ minetest.register_node("df_trees:tunnel_tube_sapling", {
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 10,
 	_mcl_hardness = 0.2,
 

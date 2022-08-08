@@ -64,7 +64,7 @@ minetest.register_node("df_trees:spindlestem_stem", {
 	_doc_items_usagehelp = df_trees.doc.spindlestem_usage,
 	is_ground_content = false,
 	groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	tiles = {
 		"dfcaverns_tower_cap.png",
 	},
@@ -100,7 +100,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 		_doc_items_longdesc = df_trees.doc["spindlestem_cap_"..item_suffix.."_desc"],
 		_doc_items_usagehelp = df_trees.doc["spindlestem_cap_"..item_suffix.."_usage"],
 		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1, not_in_creative_inventory = 1},
-		sounds = df_trees.sounds.wood,
+		sounds = df_dependencies.sound_wood(),
 		tiles = {
 			"dfcaverns_tower_cap.png^[multiply:#"..colour_code,
 			"dfcaverns_spindlestem_cap.png^[multiply:#"..colour_code,
@@ -230,7 +230,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 				fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}
 			},
 			groups = groups,
-			sounds = df_trees.sounds.glass,
+			sounds = df_dependencies.sound_glass(),
 			light_source = new_light,
 			_mcl_blast_resistance = 0.5,
 			_mcl_hardness = 0.5,
@@ -359,6 +359,10 @@ local c_green = minetest.get_content_id("df_trees:spindlestem_cap_green")
 local c_cyan = minetest.get_content_id("df_trees:spindlestem_cap_cyan")
 local c_golden = minetest.get_content_id("df_trees:spindlestem_cap_golden")
 
+local iron_nodes = df_dependencies.data_iron_containing_nodes
+local copper_nodes = df_dependencies.data_copper_containing_nodes
+local mese_nodes = df_dependencies.data_mese_containing_nodes
+
 get_spindlestem_cap_type = function(pos)
 	if minetest.find_node_near(pos, 15, "group:tower_cap") then
 		return c_white
@@ -367,9 +371,9 @@ get_spindlestem_cap_type = function(pos)
 		return c_red
 	end
 	
-	local iron = minetest.find_node_near(pos, 5, df_trees.iron_containing_nodes)
-	local copper = minetest.find_node_near(pos, 5, df_trees.copper_containing_nodes)
-	local mese = minetest.find_node_near(pos, 5, df_trees.mese_containing_nodes)
+	local iron = minetest.find_node_near(pos, 5, iron_nodes)
+	local copper = minetest.find_node_near(pos, 5, copper_nodes)
+	local mese = minetest.find_node_near(pos, 5, mese_nodes)
 	local possibilities = {}
 
 	if mese then table.insert(possibilities, c_golden) end

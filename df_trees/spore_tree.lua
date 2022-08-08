@@ -16,7 +16,7 @@ minetest.register_node("df_trees:spore_tree", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 2,
 	_mcl_hardness = 2,
 
@@ -40,12 +40,12 @@ minetest.register_node("df_trees:spore_tree_wood", {
 	tiles = {"dfcaverns_spore_tree_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 2,
 })
 
-df_trees.register.all_stairs_and_fences("spore_tree_wood", {burntime = 6})
+df_dependencies.register_all_stairs_and_fences("spore_tree_wood", {burntime = 6})
 
 minetest.register_craft({
 	type = "fuel",
@@ -94,11 +94,11 @@ minetest.register_node("df_trees:spore_tree_hyphae", {
 			{-0.5, -0.0625, -0.0625, 0.5, 0.0625, 0.0625},
 		}
 	},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
 
-	after_place_node = df_trees.after_place_leaves,
+	after_place_node = df_dependencies.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
@@ -139,13 +139,13 @@ minetest.register_node("df_trees:spore_tree_fruiting_body", {
 			}
 		}
 	},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 
-	after_place_node = df_trees.after_place_leaves,
+	after_place_node = df_dependencies.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
-df_trees.register_leafdecay({
+df_dependencies.register_leafdecay({
 	trunks = {"df_trees:spore_tree"},
 	leaves = {"df_trees:spore_tree_hyphae", "df_trees:spore_tree_fruiting_body"},
 	radius = 3,	
@@ -171,7 +171,7 @@ minetest.register_node("df_trees:spore_tree_sapling", {
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
 
@@ -343,7 +343,7 @@ minetest.register_node("df_trees:spore_tree_ladder", {
 	},
 	groups = {choppy = 2, oddly_breakable_by_hand = 3, flammable = 2},
 	legacy_wallmounted = true,
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 1,
 	_mcl_hardness = 1,
 })

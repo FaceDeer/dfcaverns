@@ -5,26 +5,26 @@ local n4 = { name = "df_trees:goblin_cap_gills" }
 local n5 = { name = "df_trees:goblin_cap_stem", force_place = true } -- walls, force place these
 local n6 = { name = "df_trees:goblin_cap_stem", prob = 198, force_place=true } -- possible window holes
 local n7 = { name = "df_trees:goblin_cap_stem_wood", force_place=true } -- internal floor
-local n8 = { name = df_trees.node_names.furnace, param2 = 2, force_place=true }
+local n8 = { name = df_dependencies.node_name_furnace, param2 = 2, force_place=true }
 local n9 = { name = "air", force_place=true } -- internal air
-local n10 = { name = df_trees.node_names.torch_wall, param2 = 3, force_place = true }
+local n10 = { name = df_dependencies.node_name_torch_wall, param2 = 3, force_place = true }
 local n12 = {name = df_dependencies.node_name_slab_goblin_cap_stem_wood, param2 = 2} -- porch top
-local n13 = { name = df_trees.node_names.door_wood_a or "air", param2 = 3, force_place = true }
-local n14 = { name = df_trees.node_names.door_hidden or "air", param2 = 3, force_place = true }
+local n13 = { name = df_dependencies.node_name_door_wood_a or "air", param2 = 3, force_place = true }
+local n14 = { name = df_dependencies.node_name_door_hidden or "air", param2 = 3, force_place = true }
 local n15 = n9 -- internal air, but could be a vessel shelf
-local n16 = { name = df_trees.node_names.bed_top or "air", param2 = 3, force_place = true }
-local n17 = { name = df_trees.node_names.bed_bottom or "air", param2 = 3, force_place = true }
-local n18 = { name = df_trees.node_names.chest, force_place = true }
-local n19 = { name = df_trees.node_names.torch_wall, param2 = 2, force_place = true }
+local n16 = { name = df_dependencies.node_name_bed_top or "air", param2 = 3, force_place = true }
+local n17 = { name = df_dependencies.node_name_bed_bottom or "air", param2 = 3, force_place = true }
+local n18 = { name = df_dependencies.node_name_chest, force_place = true }
+local n19 = { name = df_dependencies.node_name_torch_wall, param2 = 2, force_place = true }
 local n20 = {name = df_dependencies.node_name_stair_goblin_cap_stem_wood }
 local n21 = {name = df_dependencies.node_name_stair_goblin_cap_stem_wood, param2 = 2 }
 local n22 = {name = df_dependencies.node_name_slab_goblin_cap_stem_wood, param2 = 22}
 
-if df_trees.node_names.shelf then
+if df_dependencies.node_name_shelf then
 	-- replace torches with glowing bottles, add vessel shelf
 	n10 = { name = "df_trees:glowing_bottle_red", force_place=true}
 	n19 = n10
-	n15 = { name = df_trees.node_names.shelf, param2 = 3, force_place = true }
+	n15 = { name = df_dependencies.node_name_shelf, param2 = 3, force_place = true }
 end
 
 if not minetest.get_modpath("stairs") then

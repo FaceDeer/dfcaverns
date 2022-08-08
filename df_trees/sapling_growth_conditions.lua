@@ -1,8 +1,8 @@
 -- these methods should indicate whether a sapling placed at pos should bother attempting to grow.
 -- check soil conditions and biome here, for example.
 
-local stone_with_coal = df_trees.node_names.stone_with_coal
-local coalblock = df_trees.node_names.coalblock
+local stone_with_coal = df_dependencies.node_name_stone_with_coal
+local coalblock = df_dependencies.node_name_coalblock
 local is_coal = function(name)
 	return name == stone_with_coal or name == coalblock
 end

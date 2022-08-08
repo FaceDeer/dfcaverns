@@ -99,7 +99,7 @@ local grow_torchspine = function(pos)
 	end
 end
 
-local torch_node = df_trees.node_names.torch
+local torch_node = df_dependencies.node_name_torch
 
 minetest.register_node("df_trees:torchspine_1", {
 	description = S("Torchspine Tip"),
@@ -143,7 +143,7 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 	description = S("Torchspine Tip"),
 	_doc_items_longdesc = df_trees.doc.torchspine_desc,
 	_doc_items_usagehelp = df_trees.doc.torchspine_usage,
-	tiles = {df_trees.textures.gold_block, "dfcaverns_torchspine_1.5.png", "dfcaverns_torchspine_1_lit.png"},
+	tiles = {df_dependencies.texture_gold_block, "dfcaverns_torchspine_1.5.png", "dfcaverns_torchspine_1_lit.png"},
 	groups = {oddly_breakable_by_hand = 1, subterrane_stal_align = 1, flow_through = 1, torch = 1, fall_damage_add_percent = 150, smokey = 4, df_trees_torchspine = 1},
 	drawtype = "nodebox",
 	paramtype = "light",

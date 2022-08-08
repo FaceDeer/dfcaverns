@@ -156,7 +156,7 @@ minetest.register_craft({
 	}
 })
 
-df_trees.register.all_stairs_and_fences("fern_wood", {burntime=7})
+df_dependencies.register_all_stairs_and_fences("fern_wood", {burntime=7})
 
 minetest.register_node("df_primordial_items:giant_fern_leaves", {
 	description = S("Giant Fern Leaves"),

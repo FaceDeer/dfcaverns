@@ -50,7 +50,7 @@ df_dependencies.mods_required.mcl_stairs = true
 df_dependencies.mods_required.mcl_fences = true
 df_dependencies.mods_required.mcl_core = true
 
-local node_name_to_stair_properties = function(name, override)
+local node_name_to_stair_properties = function(name, override_def)
 	local mod = minetest.get_current_modname()
 
 	local node_def = minetest.registered_nodes[mod..":"..name]

@@ -15,7 +15,7 @@ minetest.register_node("df_trees:fungiwood", {
 	paramtype2 = "facedir",
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 3, oddly_breakable_by_hand = 1, flammable = 3},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 2,
 	_mcl_hardness = 2,
 
@@ -39,12 +39,12 @@ minetest.register_node("df_trees:fungiwood_wood", {
 	tiles = {"dfcaverns_fungiwood_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 2,
 })
 
-df_trees.register.all_stairs_and_fences("fungiwood_wood", {burntime = 7})
+df_dependencies.register_all_stairs_and_fences("fungiwood_wood", {burntime = 7})
 
 minetest.register_craft({
 	type = "fuel",
@@ -92,15 +92,15 @@ minetest.register_node("df_trees:fungiwood_shelf",{
 			{items = {"df_trees:fungiwood_shelf"}}
 		}
 	},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
 
-	after_place_node = df_trees.after_place_leaves,
+	after_place_node = df_dependencies.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
 })
 
-df_trees.register_leafdecay({
+df_dependencies.register_leafdecay({
 	trunks = {"df_trees:fungiwood"},
 	leaves = {"df_trees:fungiwood_shelf"},
 	radius = 5,
@@ -126,7 +126,7 @@ minetest.register_node("df_trees:fungiwood_sapling", {
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
 

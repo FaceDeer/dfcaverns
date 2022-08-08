@@ -40,7 +40,7 @@ minetest.register_node("df_trees:goblin_cap_gills", {
 	tiles = {"dfcaverns_goblin_cap_gills.png"},
 	is_ground_content = false,
 	groups = {snappy = 3, leafdecay = 1, flammable = 2, leaves = 1, goblin_cap = 1},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	drawtype = "plantlike",
 	paramtype = "light",
 	drop = {
@@ -55,13 +55,13 @@ minetest.register_node("df_trees:goblin_cap_gills", {
 			}
 		}
 	},
-	after_place_node = df_trees.after_place_leaves,
+	after_place_node = df_dependencies.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
 })
 
-df_trees.register_leafdecay({
+df_dependencies.register_leafdecay({
 	trunks = {"df_trees:goblin_cap"}, -- don't need stem nodes here
 	leaves = {"df_trees:goblin_cap_gills"},
 	radius = 1,	
@@ -91,7 +91,7 @@ minetest.register_node("df_trees:goblin_cap_wood", {
 	tiles = {"dfcaverns_goblin_cap_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 2,
 })
@@ -105,13 +105,13 @@ minetest.register_node("df_trees:goblin_cap_stem_wood", {
 	tiles = {"dfcaverns_goblin_cap_stem_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 2,
 })
 
-df_trees.register.all_stairs_and_fences("goblin_cap_wood", {burntime = 12})
-df_trees.register.all_stairs_and_fences("goblin_cap_stem_wood", {burntime = 7})
+df_dependencies.register_all_stairs_and_fences("goblin_cap_wood", {burntime = 12})
+df_dependencies.register_all_stairs_and_fences("goblin_cap_stem_wood", {burntime = 7})
 
 minetest.register_craft({
 	type = "fuel",
@@ -150,10 +150,10 @@ local bigger_goblin_cap_schem = dofile(modpath.."/schematics/goblin_cap_bigger.l
 local bigger_goblin_cap_hut_schem = dofile(modpath.."/schematics/goblin_cap_bigger_hut.lua")
 
 -- The hut has a chest and furnace near pos, use this to initialize it
-local chest_node = df_trees.node_names.chest
-local furnace_node = df_trees.node_names.furnace
-local gold_item = df_trees.node_names.gold_ingot
-local apple_item = df_trees.node_names.apple
+local chest_node = df_dependencies.node_name_chest
+local furnace_node = df_dependencies.node_name_furnace
+local gold_item = df_dependencies.node_name_gold_ingot
+local apple_item = df_dependencies.node_name_apple
 
 local chest_on_construct = minetest.registered_items[chest_node].on_construct
 local furnace_on_construct = minetest.registered_items[furnace_node].on_construct
@@ -221,7 +221,7 @@ minetest.register_node("df_trees:goblin_cap_sapling", {
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
 

@@ -39,7 +39,7 @@ minetest.register_node("df_trees:blood_thorn", {
 	paramtype = "light",
 	groups = {choppy = 3, tree = 1, flammable = 2, light_sensitive_fungus = 11},
 	_dfcaverns_dead_node = "df_trees:blood_thorn_dead",
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	after_dig_node = blood_thorn_after_dig,
@@ -85,7 +85,7 @@ minetest.register_node("df_trees:blood_thorn_dead", {
 	paramtype2 = "facedir",
 	paramtype = "light",
 	groups = {choppy = 3, tree = 1, flammable = 2},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	after_dig_node = blood_thorn_after_dig,
@@ -107,7 +107,7 @@ minetest.register_node("df_trees:blood_thorn_spike", {
 		},
 	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100, light_sensitive_fungus = 11},
 	_dfcaverns_dead_node = "df_trees:blood_thorn_spike_dead",
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	drawtype = "nodebox",
 	climbable = true,
 	is_ground_content = false,
@@ -139,7 +139,7 @@ minetest.register_node("df_trees:blood_thorn_spike_dead", {
 		"dfcaverns_blood_thorn_spike_front.png^[multiply:#804000"
 		},
 	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	drawtype = "nodebox",
 	climbable = true,
 	is_ground_content = false,
@@ -181,12 +181,12 @@ minetest.register_node("df_trees:blood_thorn_wood", {
 	tiles = {"dfcaverns_blood_thorn_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 2,
 	_mcl_hardness = 1,
 })
 
-df_trees.register.all_stairs_and_fences("blood_thorn_wood", {burntime = 40})
+df_dependencies.register_all_stairs_and_fences("blood_thorn_wood", {burntime = 40})
 
 minetest.register_craft({
 	type = "fuel",

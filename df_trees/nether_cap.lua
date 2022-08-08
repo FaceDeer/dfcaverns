@@ -15,7 +15,7 @@ minetest.register_node("df_trees:nether_cap_stem", {
 	tiles = {"dfcaverns_nether_cap_stem.png"},
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 0.7,
 	_mcl_hardness = 0.7,
 })
@@ -28,7 +28,7 @@ minetest.register_node("df_trees:nether_cap", {
 	tiles = {"dfcaverns_nether_cap.png"},
 	is_ground_content = false,
 	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
-	sounds = df_trees.sounds.nethercap_wood,
+	sounds = df_dependencies.sound_wood({footstep = {name = df_dependencies.soundfile_snow_footstep, gain = 0.2},}),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
 })
@@ -42,7 +42,7 @@ minetest.register_node("df_trees:nether_cap_gills", {
 	is_ground_content = false,
 	light_source = 6,
 	groups = {snappy = 3, leafdecay = 1, leaves = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, nether_cap = 1},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	drawtype = "plantlike",
 	paramtype = "light",
 	drop = {
@@ -57,13 +57,13 @@ minetest.register_node("df_trees:nether_cap_gills", {
 			}
 		}
 	},
-	after_place_node = df_trees.after_place_leaves,
+	after_place_node = df_dependencies.after_place_leaves,
 	place_param2 = 1, -- Prevent leafdecay for placed nodes
 	_mcl_blast_resistance = 0.1,
 	_mcl_hardness = 0.1,
 })
 
-df_trees.register_leafdecay({
+df_dependencies.register_leafdecay({
 	trunks = {"df_trees:nether_cap"}, -- don't need stem nodes here
 	leaves = {"df_trees:nether_cap_gills"},
 	radius = 1,	
@@ -93,12 +93,12 @@ minetest.register_node("df_trees:nether_cap_wood", {
 	tiles = {"dfcaverns_nether_cap_wood.png"},
 	is_ground_content = false,
 	groups = {choppy = 2, oddly_breakable_by_hand = 2, wood = 1, freezes_water = 1},
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
 })
 
-df_trees.register.all_stairs_and_fences("nether_cap_wood")
+df_dependencies.register_all_stairs_and_fences("nether_cap_wood")
 
 -- sapling
 minetest.register_node("df_trees:nether_cap_sapling", {
@@ -121,7 +121,7 @@ minetest.register_node("df_trees:nether_cap_sapling", {
 	},
 	groups = {snappy = 2, dig_immediate = 3,
 		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
-	sounds = df_trees.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.1,
 	_mcl_hardness = 0.1,
 
@@ -177,12 +177,12 @@ df_trees.spawn_nether_cap_vm = function(vi, area, data)
 	subterrane.giant_mushroom(vi, area, data, c_stem, c_cap, c_gills, stem_height, cap_radius)
 end
 
-local water = df_trees.node_names.water_source
-local river_water = df_trees.node_names.river_water_source
-local ice = df_trees.node_names.ice
-local water_flowing = df_trees.node_names.water_flowing
-local river_water_flowing = df_trees.node_names.river_water_flowing
-local snow = df_trees.node_names.snow
+local water = df_dependencies.node_name_water_source
+local river_water = df_dependencies.node_name_river_water_source
+local ice = df_dependencies.node_name_ice
+local water_flowing = df_dependencies.node_name_water_flowing
+local river_water_flowing = df_dependencies.node_name_river_water_flowing
+local snow = df_dependencies.node_name_snow
 
 minetest.register_abm{
 	label = "water freezing",

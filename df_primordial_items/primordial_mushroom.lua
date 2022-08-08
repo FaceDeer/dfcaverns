@@ -127,7 +127,7 @@ minetest.register_craft({
 	}
 })
 
-df_trees.register.all_stairs_and_fences("primordial_mush_trunk_wood", {burntime = 7})
+df_dependencies.register_all_stairs_and_fences("primordial_mush_trunk_wood", {burntime = 7})
 
 minetest.register_node("df_primordial_items:primordial_mush_cap_wood", {
 	description = S("Primordial Cap Wood"),
@@ -149,8 +149,7 @@ minetest.register_craft({
 	}
 })
 
-df_trees.register.all_stairs_and_fences("primordial_mush_cap_wood", {burntime=12})
-
+df_dependencies.register_all_stairs_and_fences("primordial_mush_cap_wood", {burntime=12})
 
 minetest.register_craft({
 	type = "fuel",

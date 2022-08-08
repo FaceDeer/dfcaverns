@@ -4,15 +4,15 @@ local n3 = {name = df_dependencies.node_name_slab_goblin_cap_stem_wood, param2 =
 local n4 = { name = "df_trees:goblin_cap_gills" }
 local n6 = { name = "df_trees:goblin_cap_stem", force_place=true } -- walls
 local n7 = { name = "df_trees:goblin_cap_stem_wood", force_place=true } -- internal floor
-local n8 = { name = df_trees.node_names.door_wood_a or "air", force_place=true }
-local n9 = { name = df_trees.node_names.door_hidden or "air", force_place=true }
-local n10 = { name = df_trees.node_names.furnace, param2 = 3, force_place=true }
+local n8 = { name = df_dependencies.node_name_door_wood_a or "air", force_place=true }
+local n9 = { name = df_dependencies.node_name_door_hidden or "air", force_place=true }
+local n10 = { name = df_dependencies.node_name_furnace, param2 = 3, force_place=true }
 local n11 = { name = "air", force_place=true } -- internal air
-local n12 = { name = df_trees.node_names.bed_bottom or "air", force_place=true }
+local n12 = { name = df_dependencies.node_name_bed_bottom or "air", force_place=true }
 local n13 = { name = "df_trees:goblin_cap_stem", prob = 198, force_place=true } -- possible window holes
-local n16 = { name = df_trees.node_names.chest, param2 = 3, force_place=true }
-local n17 = { name = df_trees.node_names.bed_top or "air", force_place=true }
-local n18 = { name = df_trees.node_names.torch_wall, param2 = 4, force_place=true }
+local n16 = { name = df_dependencies.node_name_chest, param2 = 3, force_place=true }
+local n17 = { name = df_dependencies.node_name_bed_top or "air", force_place=true }
+local n18 = { name = df_dependencies.node_name_torch_wall, param2 = 4, force_place=true }
 local n19 = { name = "df_trees:goblin_cap_stem" } -- base
 
 local n20 = {name = df_dependencies.node_name_stair_goblin_cap_stem_wood, param2 = 1 }

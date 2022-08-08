@@ -17,7 +17,6 @@ df_dependencies.select_required = function(def)
 	end
 	assert(count ~= 0, "Unable to find item for dependency set " .. dump(def))
 	assert(count == 1, "Found more than one item for dependency set " .. dump(def))
-	--assert(total == 2, "number of options other than two for " .. dump(def))
 	return ret
 end
 
@@ -36,6 +35,7 @@ dofile(modpath.."/nodes.lua")
 dofile(modpath.."/sounds.lua")
 dofile(modpath.."/helper_functions.lua")
 dofile(modpath.."/misc.lua")
+dofile(modpath.."/mapgen.lua")
 
 local mods_required = ""
 local mods_sorted = {}

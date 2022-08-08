@@ -7,6 +7,9 @@ local function select_required(...)
 	end
 	local ret = df_dependencies.select_required(newdef)
 	minetest.after(0, function()
+		-- "after" needs to be used here because some of these nodes actually get registered in DF Caverns itself
+		-- stair nodes, for example, depend on the stairs mod but get registered from here. Kind of weird but
+		-- one goes to war with the mods one has.
 		assert(minetest.registered_items[ret] ~= nil, "Node " .. ret .. " was returned by a selection call but is not registered.")
 	end)
 	return ret
@@ -42,7 +45,7 @@ df_dependencies.node_name_gravel = select_required("default:gravel", "mcl_core:g
 df_dependencies.node_name_ice = select_required("default:ice", "mcl_core:ice")
 df_dependencies.node_name_junglewood = select_required("default:junglewood", "mcl_core:junglewood")
 df_dependencies.node_name_lava_source = select_required("default:lava_source", "mcl_core:lava_source")
-df_dependencies.node_name_mese_crystal = select_required("default:mese_crystal", "mesecons:redstone") -- TODO make sure this is properly balanced. Also, mesecons mod conflict with non-mcl mesecons?
+df_dependencies.node_name_mese_crystal = select_required("default:mese_crystal", "mesecons:redstone")
 df_dependencies.node_name_mossycobble = select_required("default:mossycobble", "mcl_core:mossycobble")
 df_dependencies.node_name_obsidian = select_required("default:obsidian", "mcl_core:obsidian")
 df_dependencies.node_name_paper = select_required("default:paper", "mcl_core:paper")

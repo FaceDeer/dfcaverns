@@ -16,10 +16,10 @@ local lantern_nodebox = {
 	{-0.375, -0.375, -0.375, 0.375, 0.375, 0.375},
 }
 
-local mese_crystal_node = df_underworld_items.nodes.mese_crystal
-local brick_texture = "dfcaverns_slade_brick.png"--df_underworld_items.textures.stone_brick
-local lantern_texture = df_underworld_items.textures.meselamp
-local ancient_lantern_sound = df_underworld_items.sounds.slade
+local mese_crystal_node = df_dependencies.node_name_mese_crystal
+local brick_texture = "dfcaverns_slade_brick.png"
+local lantern_texture = df_dependencies.texture_meselamp
+local ancient_lantern_sound = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } })
 
 local invulnerable = df_underworld_items.config.invulnerable_slade and not minetest.settings:get_bool("creative_mode")
 

@@ -30,6 +30,10 @@ elseif minetest.get_modpath("mcl_core") then
 	df_dependencies.data_mese_containing_nodes = {} -- TODO
 end
 
+-- common nodes that can be found next to pit plasma, triggering matter degradation
+-- don't trigger on air, that's for sparkle generation
+df_dependencies.abm_pit_plasma_neighbors = {"group:stone", "group:lava", "group:water"}
+
 df_dependencies.texture_cobble = select_required({default="default_cobble.png", mcl_core="default_cobble.png"})
 df_dependencies.texture_coral_skeleton = select_required({default="default_coral_skeleton.png", mcl_ocean="mcl_ocean_dead_horn_coral_block.png"})
 df_dependencies.texture_dirt = select_required({default="default_dirt.png", mcl_core="default_dirt.png"})

@@ -19,7 +19,7 @@ local glowstone_def = {
 	},
 	is_ground_content = false,
 	groups = {cracky=3},
-	sounds = df_underworld_items.sounds.glass(),
+	sounds = df_dependencies.sound_glass(),
 	paramtype = "light",
 	drawtype = "glasslike",
 	drop = "",
@@ -28,7 +28,7 @@ local glowstone_def = {
 	_mcl_hardness = 0.5,
 }
 local tnt_boom = df_dependencies.tnt_boom
-if minetest.get_modpath("tnt") then
+if tnt_boom then
 	glowstone_def.on_dig = function(pos, node, digger)
 		tnt_boom(pos, {radius=3})
 	end

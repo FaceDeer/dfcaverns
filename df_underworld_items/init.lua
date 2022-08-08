@@ -5,7 +5,6 @@ df_underworld_items.S = minetest.get_translator(modname)
 local modpath = minetest.get_modpath(modname)
 
 dofile(modpath.."/config.lua")
-dofile(modpath.."/dependencies.lua")
 dofile(modpath.."/doc.lua")
 
 dofile(modpath.."/crystals_amethyst.lua")

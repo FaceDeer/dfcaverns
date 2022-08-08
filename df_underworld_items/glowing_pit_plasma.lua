@@ -1,6 +1,6 @@
 local S = df_underworld_items.S
 
-local lava_source = df_underworld_items.nodes.lava_source
+local lava_source = df_dependencies.node_name_lava_source
 
 minetest.register_node("df_underworld_items:pit_plasma", {
 	description = S("Glowing Pit Plasma"),
@@ -133,7 +133,7 @@ if df_underworld_items.config.destructive_pit_plasma then
 	minetest.register_abm({
 		label = "glowing pit matter degradation",
 		nodenames = {"group:pit_plasma"},
-		neighbors = df_underworld_items.abm_neighbors.pit_plasma,
+		neighbors = df_dependencies.abm_pit_plasma_neighbors,
 		interval = 2,
 		chance = 30,
 		catch_up = false,

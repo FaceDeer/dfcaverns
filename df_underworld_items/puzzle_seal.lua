@@ -20,7 +20,7 @@ if invulnerable then
 	slade_mcl_hardness = -1
 end
 
-local lava_source = df_underworld_items.nodes.lava_source
+local lava_source = df_dependencies.node_name_lava_source
 
 -- Ensures that the node is functioning correctly
 local ensure_meta = function(pos)
@@ -193,7 +193,7 @@ local puzzle_seal_def = {
 	paramtype2 = "facedir",
 	light_source = 8,
 	groups = slade_groups,
-	sounds = df_underworld_items.sounds.slade,
+	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.625, -0.625, -0.625, 0.625, 0.625, 0.625},
@@ -258,7 +258,7 @@ local digging_seal_def = {
 	paramtype2 = "facedir",
 	light_source = minetest.LIGHT_MAX,
 	groups = {immortal=1, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, not_in_creative_inventory=1},
-	sounds = df_underworld_items.sounds.slade,
+	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.625, -0.625, -0.625, 0.625, 0.625, 0.625},
@@ -378,7 +378,7 @@ local inscription_block_def = {
 	},
 	paramtype2 = "facedir",
 	groups = slade_groups,
-	sounds = df_underworld_items.sounds.slade,
+	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
 	_mcl_blast_resistance = slade_mcl_blast_resistance,
 	_mcl_hardness = slade_mcl_hardness,
@@ -418,7 +418,7 @@ local capstone_def = {
 	paramtype2 = "facedir",
 	groups = slade_groups,
 	light_source = 8,
-	sounds = df_underworld_items.sounds.slade,
+	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
 	_mcl_blast_resistance = slade_mcl_blast_resistance,
 	_mcl_hardness = slade_mcl_hardness,

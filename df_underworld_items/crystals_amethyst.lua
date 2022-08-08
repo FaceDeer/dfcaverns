@@ -7,7 +7,7 @@ minetest.register_node("df_underworld_items:glow_amethyst", {
 	tiles = {"dfcaverns_glow_amethyst.png"},
 	is_ground_content = false,
 	groups = {cracky=3, pit_plasma_resistant=1},
-	sounds = df_underworld_items.sounds.glass(),
+	sounds = df_dependencies.sound_glass(),
 	light_source = 6,
 	paramtype = "light",
 	use_texture_alpha = "blend",

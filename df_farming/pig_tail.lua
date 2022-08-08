@@ -19,7 +19,7 @@ local register_pig_tail = function(number)
 		floodable = true,
 		buildable_to = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flora = 1},
-		sounds = df_farming.sounds.leaves,
+		sounds = df_dependencies.sound_leaves(),
         selection_box = {
             type = "fixed",
             fixed = {
@@ -97,18 +97,18 @@ minetest.register_craftitem("df_farming:pig_tail_thread", {
 	groups = {flammable = 1, thread = 1},
 })
 
-if df_farming.node_names.wool_white then
+if df_dependencies.node_name_wool_white then
 	minetest.register_craft({
-		output = df_farming.node_names.wool_white,
+		output = df_dependencies.node_name_wool_white,
 		recipe = {
 			{"group:thread", "group:thread"},
 			{"group:thread", "group:thread"},
 		}
 	})
 end
-if df_farming.node_names.string then
+if df_dependencies.node_name_string then
 	minetest.register_craft({
-		output = df_farming.node_names.string .. " 2",
+		output = df_dependencies.node_name_string .. " 2",
 		recipe = {
 			{"group:thread"},
 			{"group:thread"},
@@ -139,7 +139,7 @@ if minetest.get_modpath("footprints") then
 		},
 		groups = {snappy = 3, flammable = 2, attached_node = 1},
 		drop = "",
-		sounds = df_farming.sounds.leaves,
+		sounds = df_dependencies.sound_leaves(),
 		_mcl_blast_resistance = 0.2,
 		_mcl_hardness = 0.2,
 	})

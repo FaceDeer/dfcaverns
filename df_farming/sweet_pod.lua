@@ -2,6 +2,11 @@ local S = minetest.get_translator(minetest.get_current_modname())
 
 local sweet_pod_grow_time = df_farming.config.plant_growth_time * df_farming.config.sweet_pod_delay_multiplier / 6
 
+local syrup_sound = df_dependencies.sound_water()
+if minetest.get_modpath("oil") then
+	syrup_sound.footstep = {name = "oil_oil_footstep", gain = 0.2}
+end
+
 local register_sweet_pod = function(number)
 	local name = "df_farming:sweet_pod_"..tostring(number)
 	local def = {
@@ -17,7 +22,7 @@ local register_sweet_pod = function(number)
 		buildable_to = true,
 		floodable = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flora = 1},
-		sounds = df_farming.sounds.leaves,
+		sounds = df_dependencies.sound_leaves(),
         selection_box = {
             type = "fixed",
             fixed = {
@@ -116,14 +121,14 @@ if minetest.get_modpath("cottages") then
 	recipe_registered = true
 end
 
-if minetest.registered_items[df_farming.node_names.mortar_pestle] ~= nil then
+if minetest.registered_items[df_dependencies.node_name_mortar_pestle] ~= nil then
 	minetest.register_craft({
 		type = "shapeless",
 		output = "df_farming:sugar",
 		recipe = {
-			"df_farming:sweet_pods", df_farming.node_names.mortar_pestle
+			"df_farming:sweet_pods", df_dependencies.node_name_mortar_pestle
 		},
-		replacements = {{"group:food_mortar_pestle", df_farming.node_names.mortar_pestle}},
+		replacements = {{"group:food_mortar_pestle", df_dependencies.node_name_mortar_pestle}},
 	})
 	recipe_registered = true
 end
@@ -186,7 +191,7 @@ if df_dependencies.bucket_register_liquid then
 		liquid_range = 2,
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
 		groups = {liquid = 3, flammable = 2, dig_by_piston=1},
-		sounds = df_farming.sounds.syrup,
+		sounds = syrup_sound,
 		_mcl_blast_resistance      = 100,
 		_mcl_hardness              = -1,
 	})
@@ -237,12 +242,12 @@ if df_dependencies.bucket_register_liquid then
 		liquid_range = 2,
 		post_effect_color = {a = 204, r = 179, g = 131, b = 88},
 		groups = {liquid = 3, flammable = 2, not_in_creative_inventory = 1, dig_by_piston=1},
-		sounds = df_farming.sounds.syrup,
+		sounds = syrup_sound,
 		_mcl_blast_resistance      = 100,
 		_mcl_hardness              = -1,
 	})
 
-	df_farming.bucket_register_liquid(
+	df_dependencies.bucket_register_liquid(
 		"df_farming:dwarven_syrup_source",
 		"df_farming:dwarven_syrup_flowing",
 		"df_farming:dwarven_syrup_bucket",
@@ -253,7 +258,7 @@ if df_dependencies.bucket_register_liquid then
 	if minetest.get_modpath("crafting") then
 		simplecrafting_lib.register("furnace", {
 			input = {
-				[df_farming.node_names.bucket] = 1,
+				[df_dependencies.node_name_bucket_empty] = 1,
 				["df_farming:sugar"] = 3,
 				["simplecrafting_lib:heat"] = 5,
 			},
@@ -263,7 +268,7 @@ if df_dependencies.bucket_register_liquid then
 		minetest.register_craft({
 			type = "shapeless",
 			output = "df_farming:dwarven_syrup_bucket",
-			recipe = {df_farming.node_names.bucket, "df_farming:sugar", "df_farming:sugar", "df_farming:sugar"},
+			recipe = {df_dependencies.node_name_bucket_empty, "df_farming:sugar", "df_farming:sugar", "df_farming:sugar"},
 		})
 	end
 	

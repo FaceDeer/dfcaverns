@@ -16,7 +16,7 @@ minetest.register_node("df_farming:dead_fungus", {
 	buildable_to = true,
 	floodable = true,
 	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, flow_through = 1, flora = 1},
-	sounds = df_farming.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 0.5},
@@ -51,7 +51,7 @@ minetest.register_node("df_farming:cavern_fungi", {
 	floodable = true,
 	light_source = 6,
 	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flow_through = 1, flora = 1},
-	sounds = df_farming.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.5, -0.5, -0.5, 0.5, 0.0, 0.5},
@@ -74,8 +74,8 @@ end
 
 -----------------------------------------------------------------------------------------
 
-local marginal = {[df_farming.node_names.dirt] = true, [df_farming.node_names.dirt_moss] = true, [df_farming.node_names.floor_fungus] = true}
-local growable = {[df_farming.node_names.dirt_wet] = true, [df_farming.node_names.dirt] = true, [df_farming.node_names.dirt_moss] = true, [df_farming.node_names.floor_fungus] = true}
+local marginal = {[df_dependencies.node_name_dirt] = true}
+local growable = {[df_dependencies.node_name_dirt_wet] = true, [df_dependencies.node_name_dirt] = true}
 
 df_farming.plant_timer = function(pos, plantname, elapsed)
 	local next_stage_time = minetest.registered_nodes[plantname]._dfcaverns_next_stage_time

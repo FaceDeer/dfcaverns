@@ -19,7 +19,7 @@ local register_cave_wheat = function(number)
 		buildable_to = true,
 		floodable = true,
 		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flora = 1},
-		sounds = df_farming.sounds.leaves,
+		sounds = df_dependencies.sound_leaves(),
         selection_box = {
             type = "fixed",
             fixed = {
@@ -132,15 +132,15 @@ if minetest.get_modpath("cottages") then
 	recipe_registered = true
 end
 
-if minetest.registered_items[df_farming.node_names.mortar_pestle] ~= nil then
+if minetest.registered_items[df_dependencies.node_name_mortar_pestle] ~= nil then
 	minetest.register_craft({
 		type = "shapeless",
 		output = "df_farming:cave_flour",
 		recipe = {
 			"df_farming:cave_wheat", "df_farming:cave_wheat", "df_farming:cave_wheat",
-			"df_farming:cave_wheat", df_farming.node_names.mortar_pestle
+			"df_farming:cave_wheat", df_dependencies.node_name_mortar_pestle
 		},
-		replacements = {{"group:food_mortar_pestle", df_farming.node_names.mortar_pestle}},
+		replacements = {{"group:food_mortar_pestle", df_dependencies.node_name_mortar_pestle}},
 	})
 	recipe_registered = true
 end
@@ -168,7 +168,7 @@ minetest.register_node("df_farming:cave_straw", {
 	tiles = {"dfcaverns_cave_straw.png"},
 	is_ground_content = false,
 	groups = {snappy=3, flammable=4, fall_damage_add_percent=-30, straw=1},
-	sounds = df_farming.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
 })
@@ -210,7 +210,7 @@ if minetest.get_modpath("footprints") then
 		},
 		groups = {snappy = 3, flammable = 2, attached_node = 1},
 		drop = "",
-		sounds = df_farming.sounds.leaves,
+		sounds = df_dependencies.sound_leaves(),
 		_mcl_blast_resistance = 0.5,
 		_mcl_hardness = 0.5,
 	})

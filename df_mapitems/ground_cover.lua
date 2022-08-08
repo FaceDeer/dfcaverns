@@ -18,21 +18,21 @@ local function soil_type_spread(label, node_to_spread, target_node)
 	}
 end
 
-local farming_soil = df_mapitems.node_name.farming_soil
-local farming_soil_wet = df_mapitems.node_name.farming_soil_wet
+local farming_soil = df_dependencies.node_name_dirt_furrowed
+local farming_soil_wet = df_dependencies.node_name_dirt_wet
 
 --------------------------------------------------
 -- Cave moss
 
 -- cyan/dark cyan
 
-local dirt_texture = df_mapitems.texture.dirt
-local sand_texture = df_mapitems.texture.sand
+local dirt_texture = df_dependencies.texture_dirt
+local sand_texture = df_dependencies.texture_sand
 
-local dirt_node = df_mapitems.node_name.dirt
-local sand_node = df_mapitems.node_name.sand
-local stone_node = df_mapitems.node_name.stone
-local cobble_node = df_mapitems.node_name.cobble
+local dirt_node = df_dependencies.node_name_dirt
+local sand_node = df_dependencies.node_name_sand
+local stone_node = df_dependencies.node_name_stone
+local cobble_node = df_dependencies.node_name_cobble
 
 minetest.register_node("df_mapitems:dirt_with_cave_moss", {
 	description = S("Dirt with Cave Moss"),
@@ -46,7 +46,7 @@ minetest.register_node("df_mapitems:dirt_with_cave_moss", {
 	light_source = 2,
 	paramtype = "light",
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},
-	sounds = df_mapitems.sounds.dirt_mossy,
+	sounds = df_dependencies.sound_dirt({footstep = {name = df_dependencies.soundfile_grass_footstep, gain = 0.25},}),
 	soil = {
 		base = "df_mapitems:dirt_with_cave_moss",
 		dry = farming_soil,
@@ -74,7 +74,7 @@ minetest.register_node("df_mapitems:sand_scum", {
 	light_source = 2,
 	paramtype = "light",
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},
-	sounds = df_mapitems.sounds.sandscum,
+	sounds = df_dependencies.sound_sand({footstep = {name = "dfcaverns_squish", gain = 0.25},}),
 	_dfcaverns_dead_node = sand_node,
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
@@ -97,7 +97,7 @@ minetest.register_node("df_mapitems:dirt_with_pebble_fungus", {
 	light_source = 2,
 	paramtype = "light",
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},
-	sounds = df_mapitems.sounds.dirt,
+	sounds = df_dependencies.sound_dirt(),
 	soil = {
 		base = "df_mapitems:dirt_with_pebble_fungus",
 		dry = farming_soil,
@@ -125,7 +125,7 @@ minetest.register_node("df_mapitems:dirt_with_stillworm", {
 	light_source = 2,
 	paramtype = "light",
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},
-	sounds = df_mapitems.sounds.dirt_mossy,
+	sounds = df_dependencies.sound_dirt({footstep = {name = df_dependencies.soundfile_grass_footstep, gain = 0.25},}),
 	soil = {
 		base = "df_mapitems:dirt_with_stillworm",
 		dry = farming_soil,
@@ -150,7 +150,7 @@ minetest.register_node("df_mapitems:spongestone", {
 	is_ground_content = false,
 	paramtype = "light",
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},
-	sounds = df_mapitems.sounds.dirt,
+	sounds = df_dependencies.sound_dirt(),
 	soil = {
 		base = "df_mapitems:spongestone",
 		dry = farming_soil,
@@ -165,15 +165,15 @@ minetest.register_node("df_mapitems:rock_rot", {
 	description = S("Rock Rot"),
 	_doc_items_longdesc = df_mapitems.doc.rock_rot_desc,
 	_doc_items_usagehelp = df_mapitems.doc.rock_rot_usage,
-	tiles = {df_mapitems.texture.stone .. "^dfcaverns_ground_cover_rock_rot.png", df_mapitems.texture.stone, 
-		{name = df_mapitems.texture.stone .. "^(dfcaverns_ground_cover_rock_rot.png^[mask:dfcaverns_ground_cover_side_mask.png)",
+	tiles = {df_dependencies.texture_stone .. "^dfcaverns_ground_cover_rock_rot.png", df_dependencies.texture_stone, 
+		{name = df_dependencies.texture_stone .. "^(dfcaverns_ground_cover_rock_rot.png^[mask:dfcaverns_ground_cover_side_mask.png)",
 			tileable_vertical = false}},
-	drop = df_mapitems.node_name.cobble,
+	drop = df_dependencies.node_name_cobble,
 	is_ground_content = false,
 	light_source = 2,
 	paramtype = "light",
 	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 8},
-	sounds = df_mapitems.sounds.dirt,
+	sounds = df_dependencies.sound_dirt(),
 	_dfcaverns_dead_node = stone_node,
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 1,
@@ -191,13 +191,13 @@ minetest.register_node("df_mapitems:cobble_with_floor_fungus", {
 	description = S("Cobblestone with Floor Fungus"),
 	_doc_items_longdesc = df_mapitems.doc.floor_fungus_desc,
 	_doc_items_usagehelp = df_mapitems.doc.floor_fungus_usage,
-	tiles = {df_mapitems.texture.cobble .. "^dfcaverns_floor_fungus.png"},
+	tiles = {df_dependencies.texture_cobble .. "^dfcaverns_floor_fungus.png"},
 	drop = cobble_node,
 	is_ground_content = false,
 	paramtype = "light",
 	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8, df_caverns_floor_fungus = 1},
-	_dfcaverns_dead_node = df_mapitems.node_name.cobble,
-	sounds = df_mapitems.sounds.floor_fungus,
+	_dfcaverns_dead_node = df_dependencies.node_name_cobble,
+	sounds = df_dependencies.sound_stone({footstep = {name = "dfcaverns_squish", gain = 0.25},}),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
 })
@@ -206,13 +206,13 @@ minetest.register_node("df_mapitems:cobble_with_floor_fungus_fine", {
 	description = S("Cobblestone with Floor Fungus"),
 	_doc_items_longdesc = df_mapitems.doc.floor_fungus_desc,
 	_doc_items_usagehelp = df_mapitems.doc.floor_fungus_usage,
-	tiles = {df_mapitems.texture.cobble .. "^dfcaverns_floor_fungus_fine.png"},
+	tiles = {df_dependencies.texture_cobble .. "^dfcaverns_floor_fungus_fine.png"},
 	drop = cobble_node,
 	is_ground_content = false,
 	paramtype = "light",
 	groups = {cracky = 3, stone = 2, slippery = 1, light_sensitive_fungus = 8, df_caverns_floor_fungus = 1},
-	_dfcaverns_dead_node = df_mapitems.node_name.cobble,
-	df_mapitems.sounds.floor_fungus,
+	_dfcaverns_dead_node = df_dependencies.node_name_cobble,
+	df_dependencies.sound_stone({footstep = {name = "dfcaverns_squish", gain = 0.25},}),
 	_mcl_blast_resistance = 6,
 	_mcl_hardness = 1.5,
 	on_timer = function(pos, elapsed)
@@ -248,14 +248,14 @@ minetest.register_node("df_mapitems:ice_with_hoar_moss", {
 	description = S("Ice with Hoar Moss"),
 	_doc_items_longdesc = df_mapitems.doc.hoar_moss_desc,
 	_doc_items_usagehelp = df_mapitems.doc.hoar_moss_usage,
-	tiles = {df_mapitems.texture.ice .. "^dfcaverns_hoar_moss.png"},
-	drop = df_mapitems.node_name.ice,
+	tiles = {df_dependencies.texture_ice .. "^dfcaverns_hoar_moss.png"},
+	drop = df_dependencies.node_name_ice,
 	paramtype = "light",
 	light_source = 2,
 	is_ground_content = false,
 	groups = {cracky = 3, puts_out_fire = 1, cools_lava = 1, slippery = 2, light_sensitive_fungus = 8},
-	sounds = df_mapitems.sounds.glass,
-	_dfcaverns_dead_node = df_mapitems.node_name.ice,
+	sounds = df_dependencies.sound_glass(),
+	_dfcaverns_dead_node = df_dependencies.node_name_ice,
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
 })
@@ -278,7 +278,7 @@ if minetest.get_modpath("footprints") then
 
 	footprints.register_trample_node("df_mapitems:sand_scum", {
 		trampled_node_def_override = {description = S("Sand Scum with Footprint"),},
-		hard_pack_node_name = df_mapitems.node_name.sand,
+		hard_pack_node_name = df_dependencies.node_name_sand,
 		footprint_opacity = 128,
 		hard_pack_probability = HARDPACK_PROBABILITY,
 		hard_pack_count = HARDPACK_COUNT * 0.5,

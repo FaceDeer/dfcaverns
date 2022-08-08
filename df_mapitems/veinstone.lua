@@ -4,13 +4,13 @@ minetest.register_node("df_mapitems:veinstone", {
 	description = S("Veinstone"),
 	_doc_items_longdesc = df_mapitems.doc.veinstone_desc,
 	_doc_items_usagehelp = df_mapitems.doc.veinstone_usage,
-	tiles = {df_mapitems.texture.stone .. "^dfcaverns_veins.png"},
+	tiles = {df_dependencies.texture_stone .. "^dfcaverns_veins.png"},
 	groups = {cracky = 3, stone = 1, lava_heatable = 1},
-	_magma_conduits_heats_to = df_mapitems.node_name.cobble,
+	_magma_conduits_heats_to = df_dependencies.node_name_cobble,
 	is_ground_content = false,
 	light_source = 2,
 	drop = "df_mapitems:veinstone",
-	sounds = df_mapitems.sounds.stone,
+	sounds = df_dependencies.sound_stone(),
 	on_punch = function(pos, node, puncher, pointed_thing)
         minetest.node_punch(pos, node, puncher, pointed_thing)
 		minetest.swap_node(pos, {name="df_mapitems:veinstone_pulse"})
@@ -24,13 +24,13 @@ minetest.register_node("df_mapitems:veinstone_pulse", {
 	description = S("Veinstone"),
 	_doc_items_longdesc = df_mapitems.doc.veinstone_desc,
 	_doc_items_usagehelp = df_mapitems.doc.veinstone_usage,
-	tiles = {df_mapitems.texture.stone .. "^dfcaverns_veins.png"},
+	tiles = {df_dependencies.texture_stone .. "^dfcaverns_veins.png"},
 	groups = {cracky = 3, stone = 1, lava_heatable = 1, not_in_creative_inventory = 1},
-	_magma_conduits_heats_to = df_mapitems.node_name.cobble,
+	_magma_conduits_heats_to = df_dependencies.node_name_cobble,
 	is_ground_content = false,
 	light_source = 8,
 	drop = "df_mapitems:veinstone",
-	sounds = df_mapitems.sounds.stone,
+	sounds = df_dependencies.sound_stone(),
 	on_timer = function(pos, elapsed)
 		local positions, count = minetest.find_nodes_in_area(vector.add(pos,1), vector.subtract(pos,1), "df_mapitems:veinstone")
 		if count["df_mapitems:veinstone"] == 0 then
@@ -57,13 +57,13 @@ minetest.register_node("df_mapitems:veinstone_refractory", {
 	description = S("Veinstone"),
 	_doc_items_longdesc = df_mapitems.doc.veinstone_desc,
 	_doc_items_usagehelp = df_mapitems.doc.veinstone_usage,
-	tiles = {df_mapitems.texture.stone .. "^dfcaverns_veins.png"},
+	tiles = {df_dependencies.texture_stone .. "^dfcaverns_veins.png"},
 	groups = {cracky = 3, stone = 1, lava_heatable = 1, not_in_creative_inventory = 1},
-	_magma_conduits_heats_to = df_mapitems.node_name.cobble,
+	_magma_conduits_heats_to = df_dependencies.node_name_cobble,
 	is_ground_content = false,
 	light_source = 1,
 	drop = "df_mapitems:veinstone",
-	sounds = df_mapitems.sounds.stone,
+	sounds = df_dependencies.sound_stone(),
 	on_timer = function(pos, elapsed)
 		minetest.swap_node(pos, {name="df_mapitems:veinstone"})
 	end,

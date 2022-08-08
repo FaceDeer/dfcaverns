@@ -17,7 +17,7 @@ minetest.register_node("df_mapitems:castle_coral", {
 	drop = "df_mapitems:castle_coral_skeleton",
 	paramtype = "light",
 	groups = {cracky=2,},
-	sounds = df_mapitems.sounds.stone,
+	sounds = df_dependencies.sound_stone(),
 	_mcl_hardness = 1.5,
 	_mcl_blast_resistance = 6,
 })
@@ -27,14 +27,14 @@ minetest.register_node("df_mapitems:castle_coral_skeleton", {
 	_doc_items_longdesc = df_mapitems.doc.castle_coral_desc,
 	_doc_items_usagehelp = df_mapitems.doc.castle_coral_usage,
 	tiles = {
-		df_mapitems.texture.coral_skeleton
+		df_dependencies.texture_coral_skeleton
 	},
 	drawtype = "mesh",
 	mesh = "octagonal_coral.obj",
 	paramtype = "light",
 	is_ground_content = false,
 	groups = {cracky = 3},
-	sounds = df_mapitems.sounds.stone,
+	sounds = df_dependencies.sound_stone(),
 	_mcl_hardness = 1.5,
 	_mcl_blast_resistance = 6,
 })
@@ -42,8 +42,8 @@ minetest.register_node("df_mapitems:castle_coral_skeleton", {
 local c_coral = minetest.get_content_id("df_mapitems:castle_coral")
 local c_coral_skeleton = minetest.get_content_id("df_mapitems:castle_coral_skeleton")
  
-local c_stone = df_mapitems.node_id.stone
-local c_water = df_mapitems.node_id.water
+local c_stone = minetest.get_content_id(df_dependencies.node_name_stone)
+local c_water = minetest.get_content_id(df_dependencies.node_name_water_source)
 
 df_mapitems.spawn_castle_coral = function(area, data, vi, iterations)
 	local run = math.random(2,4)

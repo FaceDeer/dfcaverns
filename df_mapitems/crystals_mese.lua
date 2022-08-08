@@ -7,7 +7,7 @@ minetest.register_node("df_mapitems:glow_mese", {
 	_doc_items_usagehelp = df_mapitems.doc.glow_mese_usage,
 	tiles = {"dfcaverns_glow_mese.png"},
 	groups = {cracky=3},
-	sounds = df_mapitems.sounds.glass,
+	sounds = df_dependencies.sound_glass(),
 	is_ground_content = false,
 	light_source = 13,
 	paramtype = "light",
@@ -37,7 +37,7 @@ minetest.register_node("df_mapitems:mese_crystal", {
 	mesh = "underch_crystal.obj",
 	light_source = 12,
 	is_ground_content = false,
-	sounds = df_mapitems.sounds.glass,
+	sounds = df_dependencies.sound_glass(),
 	use_texture_alpha = "blend",
 	sunlight_propagates = true,
 	on_place = df_mapitems.place_against_surface,
@@ -46,7 +46,7 @@ minetest.register_node("df_mapitems:mese_crystal", {
 })
 
 minetest.register_craft({
-	output = df_mapitems.node_name.mese_crystal .. ' 9',
+	output = df_dependencies.node_name_mese_crystal .. ' 9',
 	recipe = {
 		{'df_mapitems:mese_crystal'},
 	}

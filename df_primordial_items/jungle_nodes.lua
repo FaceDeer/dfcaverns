@@ -212,7 +212,6 @@ minetest.register_node("df_primordial_items:jungle_grass_3", {
 -----------------------------------------------------------------------------------------
 -- Ivy
 
--- TODO: this is not actually used, find somewhere to put it
 minetest.register_node("df_primordial_items:jungle_ivy", {
 	description = S("Primordial Jungle Ivy"),
 	_doc_items_longdesc = df_primordial_items.doc.ivy_desc,

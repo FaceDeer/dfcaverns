@@ -395,7 +395,7 @@ subterrane.register_layer({
 	columns = {
 		maximum_radius = 20,
 		minimum_radius = 5,
-		node = df_caverns.node_name.stone, -- no flowstone below the Sunless Sea, replace with something else
+		node = df_dependencies.node_name_stone, -- no flowstone below the Sunless Sea, replace with something else
 		weight = 0.5,
 		maximum_count = 60,
 		minimum_count = 10,

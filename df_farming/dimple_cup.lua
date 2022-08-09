@@ -71,7 +71,7 @@ local def = {
 	floodable = true,
 	is_ground_content = false,
 	buildable_to = true,
-	groups = {snappy = 3, flammable = 2, plant = 1, attached_node = 1, color_blue = 1, light_sensitive_fungus = 11, flower = 1, flora = 1},
+	groups = {snappy = 3, flammable = 2, plant = 1, attached_node = 1, color_blue = 1, basecolor_blue = 1, excolor_blue = 1, light_sensitive_fungus = 11, flower = 1, flora = 1},
 	sounds = df_dependencies.sound_leaves(),
     selection_box = {
         type = "fixed",

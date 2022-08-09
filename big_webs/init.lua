@@ -2,7 +2,7 @@ local modname = minetest.get_current_modname()
 local S = minetest.get_translator(modname)
 
 local sound
-if minetest.get_modpath("df_dependencies") then
+if df_dependencies.sound_leaves then
 	sound = df_dependencies.sound_leaves()
 end
 

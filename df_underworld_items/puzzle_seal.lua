@@ -44,14 +44,43 @@ local ensure_meta = function(pos)
 end
 
 local colour_groups = {
-	"color_black",	-- 0
-	"color_red",	-- 1
-	"color_orange",	-- 2
-	"color_yellow",	-- 3
-	"color_green",	-- 4
-	"color_blue",	-- 5
-	"color_violet",	-- 6
-	"color_white"}	-- 7
+	{"color_black", "basecolor_black", "excolor_black", "excolor_darkgrey", "color_dark_grey"},	-- 0
+	{"color_red", "basecolor_red", "excolor_red"},	-- 1
+	{"color_orange", "basecolor_orange", "excolor_orange"},	-- 2
+	{"color_yellow", "basecolor_yellow", "excolor_yellow"},	-- 3
+	{"color_green", "basecolor_green", "excolor_green", "excolor_lime", "color_dark_green"},	-- 4
+	{"color_blue", "basecolor_blue", "excolor_blue", "excolor_sky_blue"},	-- 5
+	{"color_violet", "excolor_violet",},	-- 6
+	{"color_white", "basecolor_white", "excolor_white", "excolor_lightgrey", "color_grey"},	-- 7
+}
+
+local cull_colour_groups = function()
+	local culled_colour_groups = {}
+	for _, groups in ipairs(colour_groups) do
+		local new_set = {}
+		for _, colour_group in pairs(groups) do
+			for itemname, def in pairs(minetest.registered_items) do
+				if minetest.get_item_group(itemname, colour_group) ~= 0 then
+					table.insert(new_set, colour_group)
+					break
+				end
+			end
+		end
+		assert(#new_set > 0, "Unsolvable puzzle seals due to lack of any registered items belonging to one of " .. dump(groups))
+		table.insert(culled_colour_groups, new_set)
+	end
+	colour_groups = culled_colour_groups
+end
+minetest.after(0, cull_colour_groups)
+
+local item_represents_number = function(itemname, number)
+	for _, group in pairs(colour_groups[number+1]) do
+		if minetest.get_item_group(itemname, group) ~= 0 then
+			return true
+		end
+	end
+	return false
+end
 
 local test_key = function(pos)
     local meta = minetest.get_meta(pos)
@@ -62,15 +91,13 @@ local test_key = function(pos)
 	local keystring = meta:get_string("key")
 	local key = minetest.deserialize(keystring)
 	local inv = meta:get_inventory()
-	
 	for offset = 0, 7 do
 		local valid
 		for i = 0, 7 do
 			valid = true
 			local keyval = (i + offset) % 8 + 1
-			local key_group = colour_groups[key[keyval]+1]
 			local item = inv:get_stack("main", i+1)
-			if minetest.get_item_group(item:get_name(), key_group) == 0 then
+			if not item_represents_number(item:get_name(), key[keyval]) then
 				valid = false
 				break
 			end
@@ -97,6 +124,7 @@ end
 --The danger is unleashed if you disturb this place.
 --This place is best shunned and left uninhabited.
 
+-- TODO: formspec needs Mineclone compatibility
 local formspec_prefix = "df_underworld_items_puzzle_seal:"
 local get_formspec = function(pos, unlocked)
 	local formspec = 
@@ -459,13 +487,21 @@ if invulnerable then
 		end
 	end
 end
-	
-n2 = { name = df_dependencies.node_name_stair_slade_block, param2 = 3 }
-n4 = { name = df_dependencies.node_name_stair_slade_block, param2 = 1 }
-n7 = { name = df_dependencies.node_name_stair_slade_block, param2 = 2 }
-n9 = { name = df_dependencies.node_name_stair_slade_block }
-n10 = { name = "stairs:slab_slade_block", param2 = 21 }
-n11 = { name = "stairs:slab_slade_block", param2 = 1 }
+
+if df_dependencies.node_name_stair_slade_block then
+	n2 = { name = df_dependencies.node_name_stair_slade_block, param2 = 3 }
+	n4 = { name = df_dependencies.node_name_stair_slade_block, param2 = 1 }
+	n7 = { name = df_dependencies.node_name_stair_slade_block, param2 = 2 }
+	n9 = { name = df_dependencies.node_name_stair_slade_block }
+	n11 = { name = df_dependencies.node_name_slab_slade_block, param2 = 1 }
+	n10 = { name = df_dependencies.node_name_slab_slade_block, param2 = 21 }
+
+	if df_dependencies.node_name_slab_slade_block_top then	
+	-- Mineclone slabs don't support full rotation, this is how to flip them over
+		n10.name = df_dependencies.node_name_slab_slade_block_top
+		n10.param2 = 1
+	end
+end
 
 
 df_underworld_items.seal_temple_schem = {

@@ -192,3 +192,11 @@ elseif minetest.get_modpath("mcl_explosions") then
 		mcl_explosions.explode(pos, def.radius)
 	end
 end
+
+df_dependencies.mods_required.mcl_formspec = true
+df_dependencies.get_itemslot_bg = function(X,Y,W,H)
+	return ""
+end
+if minetest.get_modpath("mcl_formspec") then
+	df_dependencies.get_itemslot_bg = mcl_formspec.get_itemslot_bg
+end

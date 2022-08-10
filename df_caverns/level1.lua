@@ -46,7 +46,7 @@ local get_biome = function(heat, humidity)
 	end
 end
 
-table.insert(df_caverns.get_biome_at_pos_list, function(pos, heat, humidity)
+df_caverns.register_biome_check(function(pos, heat, humidity)
 	if pos.y < df_caverns.config.level1_min or pos.y > df_caverns.config.ymax then
 		return nil
 	end

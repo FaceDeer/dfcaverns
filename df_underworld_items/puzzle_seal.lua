@@ -124,8 +124,8 @@ end
 --The danger is unleashed if you disturb this place.
 --This place is best shunned and left uninhabited.
 
--- TODO: formspec needs Mineclone compatibility
 local formspec_prefix = "df_underworld_items_puzzle_seal:"
+local itemslot_bg = df_dependencies.get_itemslot_bg
 local get_formspec = function(pos, unlocked)
 	local formspec = 
 		"size[8,8]"
@@ -133,13 +133,21 @@ local get_formspec = function(pos, unlocked)
 		.."image[5.8,0;2.5,4;dfcaverns_puzzle_inscription_background.png^[transformR180^dfcaverns_puzzle_inscription_2.png]"
 		.."container[2.25,0]"
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;0.25,0.25;1,1;0]"
+		..itemslot_bg(0.25,0.25,1,1)
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;1.25,0;1,1;1]"
+		..itemslot_bg(1.25,0,1,1)
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;2.25,0.25;1,1;2]"
+		..itemslot_bg(2.25,0.25,1,1)
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;2.5,1.25;1,1;3]"
+		..itemslot_bg(2.5,1.25,1,1)
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;2.25,2.25;1,1;4]"
+		..itemslot_bg(2.25,2.25,1,1)
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;1.25,2.5;1,1;5]"
+		..itemslot_bg(1.25,2.5,1,1)
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;0.25,2.25;1,1;6]"
+		..itemslot_bg(0.25,2.25,1,1)
 		.."list[nodemeta:"..pos.x..","..pos.y..","..pos.z..";main;0,1.25;1,1;7]"
+		..itemslot_bg(0,1.25,1,1)
 	if unlocked then
 		formspec = formspec .. "image_button[1.25,1.25;1,1;dfcaverns_seal.png;open;"..S("Turn").."]"
 	else
@@ -152,8 +160,11 @@ local get_formspec = function(pos, unlocked)
 --		.."box[0,0;1,5;#0A0000]box[0.1,0.1;0.8,4.8;#000000]box[0.1," .. 0.1 + 4.8*completion ..";0.8,".. 4.8*completion ..";#FFCC22]"
 --		.."container_end[]"
 		.."container[0,4]list[current_player;main;0,0;8,1;]listring[]"
-		.."list[current_player;main;0,1.25;8,3;8]container_end[]"
-	return formspec
+		..itemslot_bg(0,0,8,1)
+		.."list[current_player;main;0,1.25;8,3;8]"
+		..itemslot_bg(0,1.25,8,3)
+		.."container_end[]"
+		return formspec
 end
 local refresh_formspec = function(pos, player)
 	local player_name = player:get_player_name()

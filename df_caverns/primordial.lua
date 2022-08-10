@@ -29,7 +29,7 @@ local perlin_wave_primordial = {
 
 local giant_mycelium_timer_spread = tonumber(minetest.settings:get("dcaverns_giant_mycelium_timer_spread")) or 10
 
-table.insert(df_caverns.get_biome_at_pos_list, function(pos, heat, humidity)
+df_caverns.register_biome_check(function(pos, heat, humidity)
 	if pos.y < df_caverns.config.primordial_min or pos.y > df_caverns.config.primordial_max then
 		return nil
 	end

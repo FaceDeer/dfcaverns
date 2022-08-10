@@ -333,6 +333,14 @@ minetest.register_chatcommand("find_pit", {
 	end,
 })
 
+df_caverns.register_biome_check(function(pos, heat, humidity)
+	if pos.y > y_max or pos.y < y_min then
+		return
+	end
+	-- TODO: account for perlin noise
+	return "underworld"
+end)
+
 minetest.register_on_generated(function(minp, maxp, seed)
 
 	--if out of range of cave definition limits, abort

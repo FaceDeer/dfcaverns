@@ -99,7 +99,7 @@ local hot_zone_boundary = 70
 local middle_zone_boundary = 50
 local cool_zone_boundary = 30
 
-table.insert(df_caverns.get_biome_at_pos_list, function(pos, heat, humidity)
+df_caverns.register_biome_check(function(pos, heat, humidity)
 	if pos.y < df_caverns.config.sunless_sea_min or pos.y >= df_caverns.config.level3_min then
 		return nil
 	end

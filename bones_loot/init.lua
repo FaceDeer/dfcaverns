@@ -4,6 +4,53 @@ local dungeon_loot_path = minetest.get_modpath("dungeon_loot")
 
 bones_loot = {}
 
+local bones_formspec =
+	"size[8,9]" ..
+	"list[current_name;main;0,0.3;8,4;]" ..
+	"list[current_player;main;0,4.85;8,1;]" ..
+	"list[current_player;main;0,6.08;8,3;8]" ..
+	"listring[current_name;main]" ..
+	"listring[current_player;main]"
+if minetest.get_modpath("default") then
+	bones_formspec = bones_formspec .. default.get_hotbar_bg(0,4.85)
+end
+
+if minetest.get_modpath("bones") then
+	df_dependencies.node_name_bones = "bones:bones"
+else
+	minetest.register_node("bones_loot:bones", {
+		description = S("Bones"),
+		tiles = {
+			"bones_top.png^[transform2",
+			"bones_bottom.png",
+			"bones_side.png",
+			"bones_side.png",
+			"bones_rear.png",
+			"bones_front.png"
+		},
+		paramtype2 = "facedir",
+		groups = {oddly_diggable_by_hand=1},
+		sounds = df_dependencies.sound_gravel(),
+
+		can_dig = function(pos, player)
+			local inv = minetest.get_meta(pos):get_inventory()
+			return inv:is_empty("main")
+		end,
+	
+		on_construct = function(pos)
+			local meta = minetest.get_meta(pos)
+			meta:set_string("formspec", bones_formspec)
+		end,
+
+		on_blast = function(pos)
+		end,
+	})
+
+	df_dependencies.node_name_bones = "bones_loot:bones"
+end
+
+local bones_node = df_dependencies.node_name_bones
+
 local local_loot = {}
 local local_loot_register = function(t)
 	if t.name ~= nil then
@@ -104,19 +151,8 @@ bones_loot.get_loot = function(pos, loot_type, max_stacks, exclusive_loot_type)
 	return items
 end
 
-local bones_formspec =
-	"size[8,9]" ..
-	"list[current_name;main;0,0.3;8,4;]" ..
-	"list[current_player;main;0,4.85;8,1;]" ..
-	"list[current_player;main;0,6.08;8,3;8]" ..
-	"listring[current_name;main]" ..
-	"listring[current_player;main]"
-if minetest.get_modpath("default") then
-	bones_formspec = bones_formspec .. default.get_hotbar_bg(0,4.85)
-end
-
 bones_loot.place_bones = function(pos, loot_type, max_stacks, infotext, exclusive_loot_type)
-	minetest.set_node(pos, {name="bones:bones", param2 = math.random(1,4)-1})
+	minetest.set_node(pos, {name=bones_node, param2 = math.random(1,4)-1})
 	local meta = minetest.get_meta(pos)
 	if infotext == nil then
 		infotext = S("Someone's old bones")
@@ -137,7 +173,7 @@ end
 minetest.register_lbm({
 	label = "Repair underworld bones formspec",
 	name = "bones_loot:repair_underworld_bones_formspec",
-	nodenames = {"bones:bones"},	
+	nodenames = {bones_node},	
 	action = function(pos, node)
 		local meta = minetest.get_meta(pos)
 		if not meta:get("formspec") then

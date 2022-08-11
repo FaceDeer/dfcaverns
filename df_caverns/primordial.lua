@@ -194,6 +194,7 @@ local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_
 		local firefly_vi = vi + ystride * math.random(1, 5)
 		if data[firefly_vi] == c_air then
 			data[firefly_vi] = c_fireflies
+			minetest.get_node_timer(area:position(firefly_vi)):start(1)
 		end
 	end
 end
@@ -262,6 +263,7 @@ local jungle_warren_floor = function(abs_cracks, vi, area, data, data_param2)
 		local firefly_vi = vi + ystride * math.random(1, 5)
 		if data[firefly_vi] == c_air then
 			data[firefly_vi] = c_fireflies
+			minetest.get_node_timer(area:position(firefly_vi)):start(1)
 		end
 	end
 end

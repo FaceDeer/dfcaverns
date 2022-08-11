@@ -6,6 +6,7 @@ local modpath = minetest.get_modpath(modname)
 local S = minetest.get_translator(modname)
 
 local bones_loot_path = minetest.get_modpath("bones_loot")
+local bones_node = df_dependencies.node_name_bones
 local named_waypoints_path = minetest.get_modpath("named_waypoints")
 local name_generator_path = minetest.get_modpath("name_generator")
 

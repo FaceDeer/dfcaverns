@@ -93,7 +93,6 @@ df_dependencies.node_name_bed_top = select_required("beds:bed_top", "mcl_beds:be
 df_dependencies.node_name_door_wood_a = select_required("doors:door_wood_a", "mcl_doors:wooden_door_b_1")
 df_dependencies.node_name_door_hidden = select_required("doors:hidden", "mcl_doors:wooden_door_t_1")
 
-
 -- from "stairs"
 
 df_dependencies.node_name_slab_goblin_cap_stem_wood = select_required("stairs:slab_goblin_cap_stem_wood", "mcl_stairs:slab_goblin_cap_stem_wood")
@@ -110,3 +109,10 @@ df_dependencies.node_name_slab_slade_block_top = select_optional("mcl_stairs:sla
 
 -- TODO: make optional
 df_dependencies.node_name_gunpowder = select_required("tnt:gunpowder", "mcl_mobitems:gunpowder")
+
+local modpath = minetest.get_modpath(minetest.get_current_modname())
+
+if not df_dependencies.node_name_fireflies then
+	dofile(modpath.."/fireflies.lua")
+	df_dependencies.node_name_fireflies = "df_dependencies:firefly"
+end

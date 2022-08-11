@@ -103,7 +103,9 @@ df_caverns.register_biome_check(function(pos, heat, humidity)
 	if pos.y < df_caverns.config.sunless_sea_min or pos.y >= df_caverns.config.level3_min then
 		return nil
 	end
-	if heat > hot_zone_boundary then
+	if pos.y < sea_level then
+		return "sunless undersea"
+	elseif heat > hot_zone_boundary then
 		return "barren" -- hot zone
 	elseif heat > middle_zone_boundary then
 		return "fungispore"

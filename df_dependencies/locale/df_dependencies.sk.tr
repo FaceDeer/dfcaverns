@@ -3,10 +3,11 @@
 
 ### fireflies.lua ###
 
-Bug Net=
-Firefly=
-Firefly in a Bottle=
-Hidden Firefly=
+Bug Net=Sieťka na hmyz
+# textdomain: fireflies
+Firefly=Svetluška
+Firefly in a Bottle=Svetluška vo fľaši
+Hidden Firefly=Skrytá svetluška
 
 ### helper_functions.lua ###
 

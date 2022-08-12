@@ -3,10 +3,11 @@
 
 ### fireflies.lua ###
 
-Bug Net=
-Firefly=
-Firefly in a Bottle=
-Hidden Firefly=
+Bug Net=Jaring Pepijat
+# textdomain: fireflies
+Firefly=Kelip-Kelip
+Firefly in a Bottle=Kelip-Kelip dalam Botol
+Hidden Firefly=Kelip-Kelip Tersembunyi
 
 ### helper_functions.lua ###
 

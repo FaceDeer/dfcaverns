@@ -3,10 +3,11 @@
 
 ### fireflies.lua ###
 
-Bug Net=
-Firefly=
-Firefly in a Bottle=
-Hidden Firefly=
+Bug Net=虫取り網
+# textdomain: fireflies
+Firefly=ホタル
+Firefly in a Bottle=ホタルの入った瓶
+Hidden Firefly=隠されたホタル
 
 ### helper_functions.lua ###
 

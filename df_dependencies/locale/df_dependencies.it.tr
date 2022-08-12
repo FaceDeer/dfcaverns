@@ -1,6 +1,14 @@
 # textdomain: df_dependencies
 
 
+### fireflies.lua ###
+
+Bug Net=Retino
+# textdomain: fireflies
+Firefly=Lucciola
+Firefly in a Bottle=Lucciola imbottigliata
+Hidden Firefly=Lucciola nascosta
+
 ### helper_functions.lua ###
 
 @1 Fence=

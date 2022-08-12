@@ -1,6 +1,14 @@
 # textdomain: df_dependencies
 
 
+### fireflies.lua ###
+
+Bug Net=Insektennetz
+# textdomain: fireflies
+Firefly=Glühwürmchen
+Firefly in a Bottle=Glühwürmchen in einer Flasche
+Hidden Firefly=Verborgenes Glühwürmchen
+
 ### helper_functions.lua ###
 
 @1 Fence=

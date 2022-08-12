@@ -3,10 +3,11 @@
 
 ### fireflies.lua ###
 
-Bug Net=
-Firefly=
-Firefly in a Bottle=
-Hidden Firefly=
+Bug Net=Rede de Insetos
+# textdomain: fireflies
+Firefly=Vaga-lume
+Firefly in a Bottle=Vaga-lume em uma garrafa
+Hidden Firefly=Vaga-lume escondido
 
 ### helper_functions.lua ###
 

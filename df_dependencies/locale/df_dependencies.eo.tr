@@ -3,10 +3,11 @@
 
 ### fireflies.lua ###
 
-Bug Net=
-Firefly=
-Firefly in a Bottle=
-Hidden Firefly=
+Bug Net=Insekta Reto
+# textdomain: fireflies
+Firefly=Lampiro
+Firefly in a Bottle=Lampiro en Botelo
+Hidden Firefly=Kaŝita Lampiro
 
 ### helper_functions.lua ###
 

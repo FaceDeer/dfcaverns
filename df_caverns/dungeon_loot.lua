@@ -139,7 +139,6 @@ bones_loot.register_loot({
 })
 
 for flower_name, _ in pairs(mcl_flowers.registered_simple_flowers) do
-	minetest.debug("registering " .. flower_name)
 	bones_loot.register_loot({
 		{name = flower_name, chance = 0.1, count = {1,1}, types = {"underworld_warrior"}},
 	})

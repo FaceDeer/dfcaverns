@@ -5,12 +5,15 @@ local dungeon_loot_path = minetest.get_modpath("dungeon_loot")
 bones_loot = {}
 
 local bones_formspec =
-	"size[8,9]" ..
-	"list[current_name;main;0,0.3;8,4;]" ..
-	"list[current_player;main;0,4.85;8,1;]" ..
-	"list[current_player;main;0,6.08;8,3;8]" ..
-	"listring[current_name;main]" ..
-	"listring[current_player;main]"
+	"size[8,9]"
+	.."list[current_name;main;0,0.3;8,4;]"
+	.."list[current_player;main;0,4.85;8,1;]"
+	.."list[current_player;main;0,6.08;8,3;8]"
+	.."listring[current_name;main]"
+	.."listring[current_player;main]"
+	..df_dependencies.get_itemslot_bg(0,0.3,8,4)
+	..df_dependencies.get_itemslot_bg(0,4.85,8,1)
+	..df_dependencies.get_itemslot_bg(0,6.08,8,3)
 if minetest.get_modpath("default") then
 	bones_formspec = bones_formspec .. default.get_hotbar_bg(0,4.85)
 end

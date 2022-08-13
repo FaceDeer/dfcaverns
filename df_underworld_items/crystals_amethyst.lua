@@ -6,7 +6,7 @@ minetest.register_node("df_underworld_items:glow_amethyst", {
 	_doc_items_usagehelp = df_underworld_items.doc.glow_amethyst_usage,
 	tiles = {"dfcaverns_glow_amethyst.png"},
 	is_ground_content = false,
-	groups = {cracky=3, pit_plasma_resistant=1, pickaxey = 4, building_block = 1, material_stone=1},
+	groups = {cracky=3, pit_plasma_resistant=1, pickaxey = 4, building_block = 1,}, -- deliberately not in material_stone group to keep pit plasma ABM efficient
 	sounds = df_dependencies.sound_glass(),
 	light_source = 6,
 	paramtype = "light",

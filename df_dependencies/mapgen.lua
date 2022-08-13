@@ -35,7 +35,7 @@ if minetest.get_modpath("mcl_init") then -- Mineclone 2
 	mcl_vars.mg_end_max = mcl_vars.mg_overworld_min - 2000
 	
 	-- Important note. This doesn't change the values for the various ores and mobs and biomes and whatnot that have already been registered.
-	-- to keep things consistent, add dependencies to
+	-- TODO
 
 	dofile(minetest.get_modpath(minetest.get_current_modname()).."/ores.lua")
 	
@@ -74,6 +74,10 @@ if minetest.get_modpath("mcl_mapgen") then -- Mineclone 5
 
 	if mcl_mapgen.on_settings_changed then
 		mcl_mapgen.on_settings_changed()
+	else
+		minetest.log("error", "The installed version of the mcl_mapgen mod (part of Mineclone 5) "
+		.."does not have an mcl_mapgen.on_settings_changed method. This will likely result in "
+		.."altitudes below the original bedrock being inaccessible to players.")
 	end
 end
 if minetest.get_modpath("mcl_worlds") then

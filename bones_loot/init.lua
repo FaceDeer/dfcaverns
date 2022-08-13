@@ -32,7 +32,7 @@ else
 			"bones_front.png"
 		},
 		paramtype2 = "facedir",
-		groups = {oddly_diggable_by_hand=1, handy=1},
+		groups = {oddly_diggable_by_hand=1, handy=1, container=2},
 		sounds = df_dependencies.sound_gravel(),
 		_mcl_hardness = 1.5,
 		_mcl_blast_resistance = 6,
@@ -44,10 +44,24 @@ else
 		on_construct = function(pos)
 			local meta = minetest.get_meta(pos)
 			meta:set_string("formspec", bones_formspec)
+			local inv = meta:get_inventory()
+			inv:set_size("main", 8*4)
 		end,
 
 		on_blast = function(pos)
-		end,
+			local drops = {}
+			local n = 0
+			for i = 1, inv:get_size("main") do
+				local stack = inv:get_stack("main", i)
+				if stack:get_count() > 0 then
+					drops[n+1] = stack:to_table()
+					n = n + 1
+				end
+			end	
+			drops[#drops+1] = "bones_loot:bones"
+			minetest.remove_node(pos)
+			return drops
+		end
 	})
 
 	df_dependencies.node_name_bones = "bones_loot:bones"

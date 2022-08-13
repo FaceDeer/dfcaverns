@@ -98,7 +98,16 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 	end,
 })
 
-local plump_helmet_groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, food = 1, digtron_on_place=1, flora = 1, fire_encouragement=60,fire_flammability=100,destroy_by_lava_flow=1,dig_by_piston=1,compostability=65}
+local plump_helmet_groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, digtron_on_place=1, flora = 1, fire_encouragement=30,fire_flammability=100,destroy_by_lava_flow=1,dig_by_piston=1,compostability=65}
+local get_plump_helmet_groups = function(eatable)
+	local ret = {}
+	for key, val in pairs(plump_helmet_groups) do
+		ret[key]=val
+	end
+	ret.eatable = eatable
+	ret.food = eatable
+	return ret
+end
 
 minetest.register_node("df_farming:plump_helmet_1", {
 	description = S("Plump Helmet"),
@@ -109,7 +118,7 @@ minetest.register_node("df_farming:plump_helmet_1", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:5:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = plump_helmet_groups,
+	groups = get_plump_helmet_groups(1),
 	_dfcaverns_next_stage = "df_farming:plump_helmet_2",
 	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
@@ -152,7 +161,7 @@ minetest.register_node("df_farming:plump_helmet_2", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:15:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = plump_helmet_groups,
+	groups = get_plump_helmet_groups(2),
 	_dfcaverns_next_stage = "df_farming:plump_helmet_3",
 	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
@@ -194,7 +203,7 @@ minetest.register_node("df_farming:plump_helmet_3", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:35:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = plump_helmet_groups,
+	groups = get_plump_helmet_groups(3),
 	_dfcaverns_next_stage = "df_farming:plump_helmet_4",
 	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
@@ -236,7 +245,7 @@ minetest.register_node("df_farming:plump_helmet_4", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:40:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = plump_helmet_groups,
+	groups = get_plump_helmet_groups(4),
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -288,6 +297,8 @@ minetest.register_node("df_farming:plump_helmet_4", {
 local picked_groups = {}
 for key, val in pairs(plump_helmet_groups) do
 	picked_groups[key]=val
+	picked_groups.eatable=4
+	picked_groups.food=4
 end
 picked_groups.not_in_creative_inventory = nil
 -- Need a separate picked type to prevent it from giving infinite spawn by just placing and re-harvesting

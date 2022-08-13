@@ -74,7 +74,7 @@ minetest.register_craftitem("df_primordial_items:diced_mushroom", {
 	_doc_items_longdesc = df_primordial_items.doc.big_mushroom_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.big_mushroom_usage,
 	inventory_image = "dfcaverns_mush_diced_giant_mushroom.png",
-	groups = {food = 1, dfcaverns_cookable = 1},
+	groups = {food = 1, dfcaverns_cookable = 1, eatable=1, plant=1},
 	sound = {eat = {name = "df_farming_gummy_chew", gain = 1.0}},
 	on_use = minetest.item_eat(1),
 	_hunger_ng = {satiates = 1},

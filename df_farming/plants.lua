@@ -15,7 +15,7 @@ minetest.register_node("df_farming:dead_fungus", {
 	is_ground_content = false,
 	buildable_to = true,
 	floodable = true,
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, flow_through = 1, flora = 1},
+	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, flow_through = 1, flora = 1, fire_encouragement=60,fire_flammability=100,destroy_by_lava_flow=1,dig_by_piston=1, compostability=65, handy=1, hoey=1},
 	sounds = df_dependencies.sound_leaves(),
 	selection_box = {
 		type = "fixed",
@@ -50,7 +50,7 @@ minetest.register_node("df_farming:cavern_fungi", {
 	buildable_to = true,
 	floodable = true,
 	light_source = 6,
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flow_through = 1, flora = 1},
+	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flow_through = 1, flora = 1, fire_encouragement=50,fire_flammability=60,destroy_by_lava_flow=1,dig_by_piston=1, compostability=65, handy=1, hoey=1},
 	sounds = df_dependencies.sound_leaves(),
 	selection_box = {
 		type = "fixed",
@@ -157,7 +157,7 @@ df_farming.register_seed = function(name, description, image, stage_one, grow_ti
 		wield_image = image,
 		drawtype = "signlike",
 		paramtype2 = "wallmounted",
-		groups = {seed = 1, snappy = 3, attached_node = 1, flammable = 2, dfcaverns_cookable = 1, digtron_on_place=1},
+		groups = {seed = 1, snappy = 3, attached_node = 1, dfcaverns_cookable = 1, digtron_on_place=1,destroy_by_lava_flow=1,dig_by_piston=1, handy=1, hoey=1},
 		_dfcaverns_next_stage = stage_one,
 		_dfcaverns_next_stage_time = grow_time,
 		paramtype = "light",

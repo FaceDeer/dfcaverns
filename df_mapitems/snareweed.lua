@@ -11,7 +11,7 @@ minetest.register_node("df_mapitems:snareweed", {
 	is_ground_content = false,
 	drop = df_dependencies.node_name_dirt,
 	light_source = 6,
-	groups = {crumbly = 3, soil = 1},
+	groups = {crumbly = 3, soil = 1, handy=1,shovely=1, dirt=1,},
 	sounds = df_dependencies.sound_dirt(),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.6,

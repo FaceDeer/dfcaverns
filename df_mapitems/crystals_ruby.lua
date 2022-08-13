@@ -6,7 +6,7 @@ minetest.register_node("df_mapitems:glow_ruby_ore", {
 	_doc_items_usagehelp = df_mapitems.doc.glow_ruby_ore_usage,
 	tiles = {"dfcaverns_glow_ruby_ore.png"},
 	is_ground_content = false,
-	groups = {cracky=2},
+	groups = {cracky=2, pickaxey=3, material_stone=1},
 	sounds = df_dependencies.sound_glass(),
 	_mcl_blast_resistance = 1.5,
 	_mcl_hardness = 1.5,
@@ -28,7 +28,7 @@ minetest.register_node("df_mapitems:big_crystal", {
 	is_ground_content = false,
 	sunlight_propagates = true,
 	light_source = 12,
-	groups = {cracky=2, dfcaverns_big_crystal = 1},
+	groups = {cracky=2, dfcaverns_big_crystal = 1, pickaxey=5, material_stone=1, enderman_takable=1},
 	sounds = df_dependencies.sound_glass(),
 	selection_box = {
 		type = "fixed",
@@ -58,7 +58,7 @@ minetest.register_node("df_mapitems:med_crystal", {
 	is_ground_content = false,
 	sunlight_propagates = true,
 	light_source = 12,
-	groups = {cracky=2, dfcaverns_big_crystal = 1},
+	groups = {cracky=2, dfcaverns_big_crystal = 1, pickaxey=5, material_stone=1},
 	sounds = df_dependencies.sound_glass(),
 	selection_box = {
 		type = "fixed",
@@ -90,7 +90,7 @@ minetest.register_node("df_mapitems:big_crystal_30", {
 	is_ground_content = false,
 	light_source = 12,
 	drop = "df_mapitems:big_crystal",
-	groups = {cracky=2, dfcaverns_big_crystal = 1},
+	groups = {cracky=2, dfcaverns_big_crystal = 1, pickaxey=5, material_stone=1, enderman_takable=1},
 	sounds = df_dependencies.sound_glass(),
 	selection_box = {
 		type = "fixed",
@@ -144,7 +144,7 @@ minetest.register_node("df_mapitems:med_crystal_30", {
 	is_ground_content = false,
 	light_source = 12,
 	drop = "df_mapitems:med_crystal",
-	groups = {cracky=2, dfcaverns_big_crystal = 1},
+	groups = {cracky=2, dfcaverns_big_crystal = 1, pickaxey=5, material_stone=1},
 	sounds = df_dependencies.sound_glass(),
 	selection_box = {
 		type = "fixed",
@@ -183,7 +183,7 @@ minetest.register_node("df_mapitems:big_crystal_30_45", {
 	is_ground_content = false,
 	light_source = 12,
 	drop = "df_mapitems:big_crystal",
-	groups = {cracky=2, dfcaverns_big_crystal = 1},
+	groups = {cracky=2, dfcaverns_big_crystal = 1, pickaxey=5, material_stone=1, enderman_takable=1},
 	sounds = df_dependencies.sound_glass(),
 	selection_box = {
 		type = "fixed",
@@ -223,7 +223,7 @@ minetest.register_node("df_mapitems:med_crystal_30_45", {
 	is_ground_content = false,
 	light_source = 12,
 	drop = "df_mapitems:med_crystal",
-	groups = {cracky=2, dfcaverns_big_crystal = 1},
+	groups = {cracky=2, dfcaverns_big_crystal = 1, pickaxey=5, material_stone=1},
 	sounds = df_dependencies.sound_glass(),
 	selection_box = {
 		type = "fixed",

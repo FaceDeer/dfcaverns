@@ -18,7 +18,7 @@ local register_cave_wheat = function(number)
 		is_ground_content = false,
 		buildable_to = true,
 		floodable = true,
-		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flora = 1},
+		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flora = 1, handy=1, swordy=1, hoey=1, destroy_by_lava_flow=1,dig_by_piston=1},
 		sounds = df_dependencies.sound_leaves(),
         selection_box = {
             type = "fixed",
@@ -167,7 +167,7 @@ minetest.register_node("df_farming:cave_straw", {
 	description = S("Cave Straw"),
 	tiles = {"dfcaverns_cave_straw.png"},
 	is_ground_content = false,
-	groups = {snappy=3, flammable=4, fall_damage_add_percent=-30, straw=1},
+	groups = {snappy=3, flammable=4, straw=1, handy=1,hoey=1, compostability=85, flammable=2, fire_encouragement=60, fire_flammability=20, building_block=1, fall_damage_add_percent=-80, enderman_takable=1},
 	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,
@@ -208,7 +208,7 @@ if minetest.get_modpath("footprints") then
 				{-0.5, -0.5, -0.5, 0.5, -3 / 8, 0.5}
 			},
 		},
-		groups = {snappy = 3, flammable = 2, attached_node = 1},
+		groups = {snappy = 3, flammable = 2, attached_node = 1, handy=1, hoey=1, compostability=85, fire_encouragement=60, fire_flammability=20, fall_damage_add_percent=-30, destroy_by_lava_flow=1,dig_by_piston=1},
 		drop = "",
 		sounds = df_dependencies.sound_leaves(),
 		_mcl_blast_resistance = 0.5,

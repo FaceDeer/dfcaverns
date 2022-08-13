@@ -12,7 +12,7 @@ minetest.register_node("df_mapitems:cave_coral_3", {
 	light_source = 3,
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {cracky = 3, dfcaverns_cave_coral = 1},
+	groups = {cracky = 3, dfcaverns_cave_coral = 1, pickaxey = 1, building_block = 1, coral=1, coral_block=1},
 	sounds = df_dependencies.sound_stone(),
 	on_timer = function(pos)
 		if minetest.find_node_near(pos, 1, {water_source}) == nil then
@@ -32,7 +32,7 @@ minetest.register_node("df_mapitems:cave_coral_2", {
 	light_source = 2,
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {cracky = 3, dfcaverns_cave_coral = 1},
+	groups = {cracky = 3, dfcaverns_cave_coral = 1, pickaxey = 1, building_block = 1, coral=1, coral_block=1},
 	sounds = df_dependencies.sound_stone(),
 	on_timer = function(pos)
 		if minetest.find_node_near(pos, 1, {water_source}) == nil then
@@ -52,7 +52,7 @@ minetest.register_node("df_mapitems:cave_coral_1", {
 	light_source = 1,
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {cracky = 3, dfcaverns_cave_coral = 1},
+	groups = {cracky = 3, dfcaverns_cave_coral = 1, pickaxey = 1, building_block = 1, coral=1, coral_block=1},
 	sounds = df_dependencies.sound_stone(),
 	on_timer = function(pos)
 		if minetest.find_node_near(pos, 1, {water_source}) == nil then

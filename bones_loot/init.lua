@@ -32,9 +32,10 @@ else
 			"bones_front.png"
 		},
 		paramtype2 = "facedir",
-		groups = {oddly_diggable_by_hand=1},
+		groups = {oddly_diggable_by_hand=1, handy=1},
 		sounds = df_dependencies.sound_gravel(),
-
+		_mcl_hardness = 1.5,
+		_mcl_blast_resistance = 6,
 		can_dig = function(pos, player)
 			local inv = minetest.get_meta(pos):get_inventory()
 			return inv:is_empty("main")

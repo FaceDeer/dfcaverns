@@ -24,13 +24,15 @@ minetest.register_node("df_dependencies:firefly", {
 	sunlight_propagates = true,
 	buildable_to = true,
 	walkable = false,
-	groups = {catchable = 1},
+	groups = {catchable = 1, destroy_by_lava_flow=1},
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.1, -0.1, -0.1, 0.1, 0.1, 0.1},
 	},
 	light_source = 6,
 	floodable = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 	on_place = function(itemstack, placer, pointed_thing)
 		local player_name = placer:get_player_name()
 		local pos = pointed_thing.above
@@ -64,8 +66,10 @@ minetest.register_node("df_dependencies:hidden_firefly", {
 	diggable = false,
 	buildable_to = true,
 	drop = "",
-	groups = {not_in_creative_inventory = 1},
+	groups = {not_in_creative_inventory = 1, destroy_by_lava_flow=1},
 	floodable = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 	on_place = function(itemstack, placer, pointed_thing)
 		local player_name = placer:get_player_name()
 		local pos = pointed_thing.above
@@ -144,7 +148,7 @@ minetest.register_node("df_dependencies:firefly_bottle", {
 	sunlight_propagates = true,
 	light_source = 9,
 	walkable = false,
-	groups = {vessel = 1, dig_immediate = 3, attached_node = 1},
+	groups = {vessel = 1, dig_immediate = 3, attached_node = 1, material_glass = 1, destroy_by_lava_flow=1},
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}

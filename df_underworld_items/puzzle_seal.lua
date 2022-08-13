@@ -13,7 +13,7 @@ end
 
 local slade_mcl_blast_resistance = 1200
 local slade_mcl_hardness = 50
-local slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, not_in_creative_inventory=1}
+local slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, not_in_creative_inventory=1,creative_breakable=1, building_block=1, material_stone=1}
 if invulnerable then
 	slade_groups.immortal = 1
 	slade_mcl_blast_resistance = 3600000
@@ -296,7 +296,7 @@ local digging_seal_def = {
 	paramtype = "light",
 	paramtype2 = "facedir",
 	light_source = minetest.LIGHT_MAX,
-	groups = {immortal=1, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, not_in_creative_inventory=1},
+	groups = {immortal=1, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, not_in_creative_inventory=1,building_block=1, material_stone=1},
 	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	selection_box = {
 		type = "fixed",

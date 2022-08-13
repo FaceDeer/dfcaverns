@@ -18,7 +18,7 @@ local register_pig_tail = function(number)
 		is_ground_content = false,
 		floodable = true,
 		buildable_to = true,
-		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flora = 1},
+		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flora = 1, fire_encouragement=60,fire_flammability=100, compostability=70, handy=1,shearsy=1,hoey=1, destroy_by_lava_flow=1,dig_by_piston=1},
 		sounds = df_dependencies.sound_leaves(),
         selection_box = {
             type = "fixed",
@@ -35,11 +35,11 @@ local register_pig_tail = function(number)
 			max_items = 1,
 			items = {
 				{
-					items = {'df_farming:pig_tail_seed 2', 'df_farming:pig_tail_thread 2'},
+					items = {'df_farming:pig_tail_seed 2', 'df_farming:pig_tail_thread 3'},
 					rarity = 9-number,
 				},
 				{
-					items = {'df_farming:pig_tail_seed 1', 'df_farming:pig_tail_thread'},
+					items = {'df_farming:pig_tail_seed 1', 'df_farming:pig_tail_thread 2'},
 					rarity = 9-number,
 				},
 				{
@@ -137,7 +137,7 @@ if minetest.get_modpath("footprints") then
 				{-0.5, -0.5, -0.5, 0.5, -3 / 8, 0.5}
 			},
 		},
-		groups = {snappy = 3, flammable = 2, attached_node = 1},
+		groups = {snappy = 3, flammable = 2, attached_node = 1, handy=1, hoey=1, compostability=85, fire_encouragement=60, fire_flammability=20, fall_damage_add_percent=-30, destroy_by_lava_flow=1,dig_by_piston=1},
 		drop = "",
 		sounds = df_dependencies.sound_leaves(),
 		_mcl_blast_resistance = 0.2,

@@ -14,7 +14,7 @@ minetest.register_node("df_trees:fungiwood", {
 	tiles = {"dfcaverns_fungiwood.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 3, oddly_breakable_by_hand = 1, flammable = 3},
+	groups = {tree = 1, choppy = 3, oddly_breakable_by_hand = 1, flammable = 3, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 2,
 	_mcl_hardness = 2,
@@ -38,7 +38,7 @@ minetest.register_node("df_trees:fungiwood_wood", {
 	place_param2 = 0,
 	tiles = {"dfcaverns_fungiwood_wood.png"},
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
 	sounds = df_dependencies.sound_wood(),
 	_mcl_blast_resistance = 3,
 	_mcl_hardness = 2,
@@ -84,7 +84,7 @@ minetest.register_node("df_trees:fungiwood_shelf",{
 		}
 	},
 	is_ground_content = false,
-	groups = {snappy = 3, leafdecay = 5, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 5, flammable = 2, leaves = 1,handy=1, hoey=1, shearsy=1, swordy=1, deco_block=1, dig_by_piston=1, fire_encouragement=15, fire_flammability=30, compostability=30},
 	drop = {
 		max_items = 1,
 		items = {
@@ -125,7 +125,7 @@ minetest.register_node("df_trees:fungiwood_sapling", {
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
-		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
+		attached_node = 1, sapling = 1, light_sensitive_fungus = 11, dig_immediate=3,dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1, compostability=30},
 	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,

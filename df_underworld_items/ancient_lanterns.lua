@@ -32,7 +32,7 @@ end
 
 local slade_mcl_blast_resistance = 1200
 local slade_mcl_hardness = 50
-local slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3}
+local slade_groups = {stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, creative_breakable=1, building_block=1, material_stone=1}
 if invulnerable then
 	slade_groups.immortal = 1
 	slade_mcl_blast_resistance = 3600000

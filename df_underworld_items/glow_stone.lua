@@ -18,7 +18,7 @@ local glowstone_def = {
 		},
 	},
 	is_ground_content = false,
-	groups = {cracky=3},
+	groups = {cracky=3, pickaxey = 1, building_block = 1, material_stone =1},
 	sounds = df_dependencies.sound_glass(),
 	paramtype = "light",
 	drawtype = "glasslike",

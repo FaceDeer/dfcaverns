@@ -63,7 +63,7 @@ minetest.register_node("df_trees:spindlestem_stem", {
 	_doc_items_longdesc = df_trees.doc.spindlestem_desc,
 	_doc_items_usagehelp = df_trees.doc.spindlestem_usage,
 	is_ground_content = false,
-	groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1},
+	groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 	sounds = df_dependencies.sound_wood(),
 	tiles = {
 		"dfcaverns_tower_cap.png",
@@ -99,7 +99,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 		is_ground_content = false,
 		_doc_items_longdesc = df_trees.doc["spindlestem_cap_"..item_suffix.."_desc"],
 		_doc_items_usagehelp = df_trees.doc["spindlestem_cap_"..item_suffix.."_usage"],
-		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1, not_in_creative_inventory = 1},
+		groups = {wood = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, spindlestem = 1, not_in_creative_inventory = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 		sounds = df_dependencies.sound_wood(),
 		tiles = {
 			"dfcaverns_tower_cap.png^[multiply:#"..colour_code,
@@ -209,7 +209,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 		local tex = "dfcaverns_vessels_glowing_liquid.png^[multiply:#"..colour_code.."^"..df_dependencies.texture_glass_bottle
 		local new_light = light_level + math.floor((minetest.LIGHT_MAX-light_level)/2)
 		
-		local groups = {vessel = 1, dig_immediate = 3, attached_node = 1}
+		local groups = {vessel = 1, dig_immediate = 3, attached_node = 1, material_glass = 1, destroy_by_lava_flow=1}
 		if extract_color_group then
 			groups[extract_color_group] = 1
 		end
@@ -264,7 +264,7 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 	tiles = {
 		"dfcaverns_tower_cap.png",
 	},
-	groups = {snappy = 3, flammable = 2, plant = 1, attached_node = 1, light_sensitive_fungus = 11, digtron_on_place=1},
+	groups = {snappy = 3, flammable = 2, plant = 1, attached_node = 1, light_sensitive_fungus = 11, digtron_on_place=1, dig_immediate=3,dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1, compostability=30},
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",

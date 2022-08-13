@@ -39,7 +39,7 @@ minetest.register_node("mine_gas:gas", {
 	post_effect_color = {a = 20, r = 20, g = 20, b = 250},
 	tiles = {"mine_gas.png^[opacity:28"},
 	use_texture_alpha = "blend",
-	groups = {not_in_creative_inventory=1, ropes_can_extend_into=1},
+	groups = {not_in_creative_inventory=1, ropes_can_extend_into=1, not_solid=1, not_opaque=1},
 	paramtype = "light",
 	drop = {},
 	sunlight_propagates = true,
@@ -51,7 +51,7 @@ minetest.register_node("mine_gas:gas_seep", {
 	_doc_items_longdesc = seep_desc,
 	_doc_items_usagehelp = seep_usage,
 	tiles = {df_dependencies.texture_stone.."^"..df_dependencies.texture_mineral_coal.."^[combine:16x80:0,-16=crack_anylength.png"},
-	groups = {cracky = 3},
+	groups = {cracky = 3, pickaxey=1, building_block=1, material_stone=1},
 	drop = df_dependencies.node_name_coal_lump,
 	sounds = df_dependencies.sound_stone(),
 	is_ground_content = true,
@@ -150,7 +150,7 @@ local tnt_boom = df_dependencies.tnt_boom
 if minetest.get_modpath("tnt") then
 	minetest.register_abm({
 		label = "mine_gas:gas ignition",
-		nodenames = {"group:torch", "group:igniter"},
+		nodenames = {"group:torch", "group:igniter", "group:fire"}, -- checking for ignition sources because there will be fewer than there are gas nodes
 		neighbors = {"mine_gas:gas"},
 		interval = 1.0,
 		chance = 1,

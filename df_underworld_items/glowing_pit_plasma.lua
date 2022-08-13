@@ -19,7 +19,7 @@ minetest.register_node("df_underworld_items:pit_plasma", {
 		},
 	},
 	
-	groups={pit_plasma=1, pit_plasma_resistant=1},
+	groups={pit_plasma=1, pit_plasma_resistant=1,destroys_items=1, set_on_fire=15, fire_damage=1, liquid=1},
 	walkable = false,
 	pointable = false,
 	diggable = false,
@@ -69,7 +69,7 @@ minetest.register_node("df_underworld_items:pit_plasma_flowing", {
 			},
 		},
 	},
-	groups={pit_plasma=1, pit_plasma_resistant=1, not_in_creative_inventory=1},
+	groups={pit_plasma=1, pit_plasma_resistant=1, not_in_creative_inventory=1,destroys_items=1, set_on_fire=15, fire_damage=1, liquid=1},
 	walkable = false,
 	pointable = false,
 	diggable = false,

@@ -139,7 +139,7 @@ minetest.register_node("ice_sprites:ice_sprite_bottle", {
 	light_source = 9,
 	is_ground_content = false,
 	walkable = false,
-	groups = {dig_immediate = 3, attached_node = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1},
+	groups = {dig_immediate = 3, attached_node = 1, puts_out_fire = 1, cools_lava = 1, freezes_water = 1, material_glass=1},
 	selection_box = {
 		type = "fixed",
 		fixed = {-0.25, -0.5, -0.25, 0.25, 0.3, 0.25}

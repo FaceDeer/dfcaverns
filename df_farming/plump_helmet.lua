@@ -67,7 +67,7 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 	},
-	groups = {snappy = 3, flammable = 2, plant = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, digtron_on_place=1, flora = 1},
+	groups = {snappy = 3, plant = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, digtron_on_place=1, flora = 1, destroy_by_lava_flow=1,dig_by_piston=1, handy=1, hoey=1},
 	_dfcaverns_next_stage = "df_farming:plump_helmet_1",
 	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
@@ -98,6 +98,8 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 	end,
 })
 
+local plump_helmet_groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, food = 1, digtron_on_place=1, flora = 1, fire_encouragement=60,fire_flammability=100,destroy_by_lava_flow=1,dig_by_piston=1,compostability=65}
+
 minetest.register_node("df_farming:plump_helmet_1", {
 	description = S("Plump Helmet"),
 	_doc_items_longdesc = df_farming.doc.plump_helmet_desc,
@@ -107,7 +109,7 @@ minetest.register_node("df_farming:plump_helmet_1", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:5:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, food = 1, digtron_on_place=1, flora = 1},
+	groups = plump_helmet_groups,
 	_dfcaverns_next_stage = "df_farming:plump_helmet_2",
 	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
@@ -150,7 +152,7 @@ minetest.register_node("df_farming:plump_helmet_2", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:15:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, food = 2, digtron_on_place=1, flora = 1},
+	groups = plump_helmet_groups,
 	_dfcaverns_next_stage = "df_farming:plump_helmet_3",
 	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
@@ -192,7 +194,7 @@ minetest.register_node("df_farming:plump_helmet_3", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:35:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, food = 3, digtron_on_place=1, flora = 1},
+	groups = plump_helmet_groups,
 	_dfcaverns_next_stage = "df_farming:plump_helmet_4",
 	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
@@ -234,7 +236,7 @@ minetest.register_node("df_farming:plump_helmet_4", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:40:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, food = 4, digtron_on_place=1, flora = 1},
+	groups = plump_helmet_groups,
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
@@ -283,6 +285,11 @@ minetest.register_node("df_farming:plump_helmet_4", {
 	_hunger_ng = {satiates = 4},
 })
 
+local picked_groups = {}
+for key, val in pairs(plump_helmet_groups) do
+	picked_groups[key]=val
+end
+picked_groups.not_in_creative_inventory = nil
 -- Need a separate picked type to prevent it from giving infinite spawn by just placing and re-harvesting
 minetest.register_node("df_farming:plump_helmet_4_picked", {
 	description = S("Plump Helmet"),
@@ -293,7 +300,7 @@ minetest.register_node("df_farming:plump_helmet_4_picked", {
 		"dfcaverns_plump_helmet_cap.png",
 		"dfcaverns_plump_helmet_cap.png^[lowpart:40:dfcaverns_plump_helmet_stem.png",
 	},
-	groups = {snappy = 3, flammable = 2, plant = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, food = 4, digtron_on_place=1, flora = 1},
+	groups = picked_groups,
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",

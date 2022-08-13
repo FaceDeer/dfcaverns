@@ -338,7 +338,6 @@ df_caverns.register_biome_check(function(pos, heat, humidity)
 	if pos.y > y_max or pos.y < y_min then
 		return
 	end
-	-- TODO: account for perlin noise
 	return "underworld"
 end)
 
@@ -560,7 +559,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 			if floor_height < ceiling_height then
 				local zone = math.abs(nvals_zone[index2d])
-				if math.random() < zone then -- bones are more common in the built-up areas
+				if math.random() < zone/2 then -- bones are more common in the built-up areas
 					local floor_node = minetest.get_node({x=x, y=floor_height, z=z})
 					local floor_node_def = minetest.registered_nodes[floor_node.name]
 					if floor_node_def and not floor_node_def.buildable_to then
@@ -571,7 +570,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							if target_node.name == "air" then
 								bones_loot.place_bones(target_pos, "underworld_warrior", math.random(3, 10), nil, true)
 								break
-							elseif target_node.name == "bones:bones" then
+							elseif target_node.name == bones_node then
 								-- don't stack bones on bones, it looks silly
 								break
 							end

@@ -131,7 +131,6 @@ minetest.register_craft({
 ----------------------------
 -- Spawn
 
--- TODO: make use of the variant trunk and leaf nodes
 local c_leaves = minetest.get_content_id("df_primordial_items:jungle_leaves")
 local c_leaves_glow  = minetest.get_content_id("df_primordial_items:jungle_leaves_glowing")
 local c_trunk  = minetest.get_content_id("df_primordial_items:jungle_tree")

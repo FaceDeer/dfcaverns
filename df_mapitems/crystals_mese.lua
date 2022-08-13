@@ -46,7 +46,7 @@ minetest.register_node("df_mapitems:mese_crystal", {
 })
 
 minetest.register_craft({
-	output = df_dependencies.node_name_mese_crystal .. ' 9',
+	output = df_dependencies.node_name_mese_crystal .. ' 18',
 	recipe = {
 		{'df_mapitems:mese_crystal'},
 	}

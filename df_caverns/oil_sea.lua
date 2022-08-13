@@ -50,7 +50,6 @@ df_caverns.register_biome_check(function(pos, heat, humidity)
 	if pos.y > y_max or pos.y < y_min then
 		return
 	end
-	-- TODO: account for perlin noise
 	return "oil_sea"
 end)
 

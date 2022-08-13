@@ -191,6 +191,27 @@ if df_trees.config.enable_tnt then
 	local tnt_def = {radius = tnt_radius, damage_radius = tnt_radius * 2}
 	local torch_item = df_dependencies.node_name_torch
 	
+	local drop_items = {
+			max_items = 1,
+			items = {
+				{
+					items = {'df_trees:tunnel_tube_sapling'},
+					rarity = 2,
+				},
+			}
+		}
+	if gunpowder then
+		drop_items.max_items = 3
+		table.insert(drop_items.items, {
+					items = {'df_trees:tunnel_tube_sapling', gunpowder},
+					rarity = 2,
+				})
+		table.insert(drop_items.items, {
+					items = {'df_trees:tunnel_tube_sapling', gunpowder .. ' 2'},
+					rarity = 2,
+				})
+	end
+
 	local on_burn = function(pos)
 		minetest.swap_node(pos, {name = "df_trees:tunnel_tube_fruiting_body_burning"})
 		minetest.registered_nodes["df_trees:tunnel_tube_fruiting_body_burning"].on_construct(pos)
@@ -206,23 +227,7 @@ if df_trees.config.enable_tnt then
 		groups = {choppy = 3, oddly_breakable_by_hand=1, flammable = 2, tnt = 1, handy=1, hoey=1, shearsy=1, swordy=1, deco_block=1, dig_by_piston=1, fire_encouragement=15, fire_flammability=30},
 		sounds = df_dependencies.sound_wood(),
 		on_place = minetest.rotate_node,
-		drop = {
-			max_items = 3,
-			items = {
-				{
-					items = {'df_trees:tunnel_tube_sapling'},
-					rarity = 2,
-				},
-				{
-					items = {'df_trees:tunnel_tube_sapling', gunpowder},
-					rarity = 2,
-				},
-				{
-					items = {'df_trees:tunnel_tube_sapling', gunpowder .. ' 2'},
-					rarity = 2,
-				},
-			},
-		},
+		drop = drop_items,
 		_mcl_blast_resistance = 12,
 		_mcl_hardness = 2,
 		

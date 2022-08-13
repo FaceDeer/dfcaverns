@@ -46,7 +46,7 @@ df_dependencies.node_name_gravel = select_required("default:gravel", "mcl_core:g
 df_dependencies.node_name_ice = select_required("default:ice", "mcl_core:ice")
 df_dependencies.node_name_junglewood = select_required("default:junglewood", "mcl_core:junglewood")
 df_dependencies.node_name_lava_source = select_required("default:lava_source", "mcl_core:lava_source")
-df_dependencies.node_name_mese_crystal = select_required("default:mese_crystal", "mesecons:redstone")
+df_dependencies.node_name_mese_crystal = select_required("default:mese_crystal", "mesecons:wire_00000000_off") --make sure default:mese_crystal is first, so that default will be checked for before mesecons is checked for.
 df_dependencies.node_name_mossycobble = select_required("default:mossycobble", "mcl_core:mossycobble")
 df_dependencies.node_name_obsidian = select_required("default:obsidian", "mcl_core:obsidian")
 df_dependencies.node_name_paper = select_required("default:paper", "mcl_core:paper")
@@ -107,8 +107,7 @@ df_dependencies.node_name_slab_slade_block_top = select_optional("mcl_stairs:sla
 
 -- from "tnt"
 
--- TODO: make optional
-df_dependencies.node_name_gunpowder = select_required("tnt:gunpowder", "mcl_mobitems:gunpowder")
+df_dependencies.node_name_gunpowder = select_optional("tnt:gunpowder", "mcl_mobitems:gunpowder")
 
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 

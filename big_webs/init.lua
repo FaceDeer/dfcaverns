@@ -24,7 +24,7 @@ local anchor_groups = {"group:soil", "group:stone", "group:tree", "group:wood", 
 
 local in_anchor_group = function(name)
 	for _, group in pairs(anchor_groups) do
-		if minetest.get_item_group(name, group:strsub(7)) then
+		if minetest.get_item_group(name, string.sub(group, 7)) then
 			return true
 		end
 	end

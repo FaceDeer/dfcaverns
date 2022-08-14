@@ -21,6 +21,13 @@ end
 if minetest.get_modpath("bones") then
 	df_dependencies.node_name_bones = "bones:bones"
 else
+
+	local function drop_item_stack(pos, stack)
+		if not stack or stack:is_empty() then return end
+		local drop_offset = vector.new(math.random() - 0.5, 0, math.random() - 0.5)
+		minetest.add_item(vector.add(pos, drop_offset), stack)
+	end
+
 	minetest.register_node("bones_loot:bones", {
 		description = S("Bones"),
 		tiles = {
@@ -48,19 +55,16 @@ else
 			inv:set_size("main", 8*4)
 		end,
 
-		on_blast = function(pos)
-			local drops = {}
-			local n = 0
+		on_blast = function(pos, intensity)
+			local meta = minetest.get_meta(pos)
+			local inv = meta:get_inventory()
 			for i = 1, inv:get_size("main") do
-				local stack = inv:get_stack("main", i)
-				if stack:get_count() > 0 then
-					drops[n+1] = stack:to_table()
-					n = n + 1
-				end
-			end	
-			drops[#drops+1] = "bones_loot:bones"
+				drop_item_stack(pos, inv:get_stack("main", i))
+			end
+			meta:from_table()
 			minetest.remove_node(pos)
-			return drops
+			if math.random(1, math.floor((intensity or 1) * 2)) ~= 1 then return end
+			drop_item_stack(pos, "bones_loot:bones")
 		end
 	})
 

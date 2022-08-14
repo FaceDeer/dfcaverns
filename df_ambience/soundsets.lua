@@ -138,7 +138,7 @@ df_ambience.add_set({
 	frequency = 0.025,
 	nodes = {"df_underworld_items:slade"},
 	sounds = {
-		{name = "dfcaverns_whispers", gain = 0.25},
+		{name = "dfcaverns_whispers", gain = 0.15},
 	},
 	sound_check = function(def)
 		return def.biome == "underworld"

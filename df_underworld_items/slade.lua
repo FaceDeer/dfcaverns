@@ -17,7 +17,7 @@ local add_immortality = function(slade_def)
 	return slade_def
 end
 
-local slade_groups = {cracky=3, stone=1, level=3, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1,creative_breakable=1, building_block=1, material_stone=1}
+local slade_groups = {cracky=3, stone=1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1,creative_breakable=1, building_block=1, material_stone=1}
 
 local slade_def = {
 	description = S("Slade"),
@@ -27,10 +27,10 @@ local slade_def = {
 	groups = slade_groups,
 	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
-	_mcl_blast_resistance = 1200,
-	_mcl_hardness = 50,
+	_mcl_blast_resistance = 8,
+	_mcl_hardness = 5,
 	on_blast = function(pos, intensity)
-		if intensity > 3.0 then
+		if intensity >= 1.0 then
 			minetest.set_node(pos, {name="df_underworld_items:slade_sand"})
 			minetest.check_for_falling(pos)
 		end
@@ -38,6 +38,8 @@ local slade_def = {
 }
 if invulnerable then
 	add_immortality(slade_def)
+	slade_def._mcl_blast_resistance = 8
+	slade_def._mcl_hardness = 5
 end
 minetest.register_node("df_underworld_items:slade", slade_def)
 
@@ -88,16 +90,15 @@ if invulnerable then
 end
 minetest.register_node("df_underworld_items:slade_wall", slade_wall_def)
 
--- TODO: ensure that explosives turn slade into slade sand in MCL too
 minetest.register_node("df_underworld_items:slade_sand", {
 	description = S("Slade Sand"),
 	_doc_items_longdesc = df_underworld_items.doc.slade_desc,
 	_doc_items_usagehelp = df_underworld_items.doc.slade_usage,
 	tiles = {"dfcaverns_slade_sand.png"},
 	is_ground_content = false,
-	groups = {crumbly = 3, level = 2, falling_node = 1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1,building_block=1, material_sand=1, crush_after_fall=1, falling_node_damage=1},
+	groups = {crumbly = 3, falling_node = 1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1,handy=1,shovely=3, sand=1, enderman_takable=1, building_block=1, material_sand=1, crush_after_fall=1, falling_node_damage=1},
 	sounds = df_dependencies.sound_gravel({footstep = {name = df_dependencies.soundfile_gravel_footstep, gain = 0.45},}),
-	_mcl_blast_resistance = 2000,
+	_mcl_blast_resistance = 8,
 	_mcl_hardness = 5,
 })
 

@@ -60,7 +60,7 @@ hunter_statue.register_hunter_statue = function(node_name, statue_def)
 	
 	if statue_def.tnt_vulnerable then
 		def.on_blast = function(pos, intensity)
-			if intensity > 3.0 then
+			if intensity >= 1.0 then
 				minetest.set_node(pos, {name= statue_def.tnt_debris or "air"})
 				minetest.check_for_falling(pos)
 			end

@@ -13,7 +13,7 @@ local fourtyfivedegrees = math.pi/4
 local sixtydegrees = math.pi/3
 
 local default_sounds
-if default and default.node_sound_stone_defaults then
+if minetest.get_modpath("default") then
 	default_sounds = default.node_sound_stone_defaults()
 end
 

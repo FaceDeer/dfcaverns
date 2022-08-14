@@ -1,6 +1,6 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
-local vessels = minetest.get_modpath("vessels")
+local glass_bottle = df_dependencies.node_name_glass_bottle
 
 -- pre-declare
 local get_spindlestem_cap_type
@@ -205,7 +205,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 		burntime = 10,
 	})
 	
-	if vessels and light_level > 0 then
+	if glass_bottle and light_level > 0 then
 		local tex = "dfcaverns_vessels_glowing_liquid.png^[multiply:#"..colour_code.."^"..df_dependencies.texture_glass_bottle
 		local new_light = light_level + math.floor((minetest.LIGHT_MAX-light_level)/2)
 		
@@ -240,15 +240,15 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 			output = "df_trees:glowing_bottle_"..item_suffix.." 3",
 			type = "shapeless",
 			recipe = {
-				"vessels:glass_bottle",
-				"vessels:glass_bottle",
-				"vessels:glass_bottle",
+				glass_bottle,
+				glass_bottle,
+				glass_bottle,
 				cap_item_harvested,
 			}
 		})
 
 		minetest.register_craft( {
-			output = "vessels:glass_bottle",
+			output = glass_bottle,
 			type = "shapeless",
 			recipe = {
 				"df_trees:glowing_bottle_"..item_suffix,

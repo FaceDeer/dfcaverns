@@ -1,13 +1,13 @@
 if minetest.get_modpath("chasms") then
 df_ambience.add_set({
-	frequency = 0.05,
+	frequency = 0.03,
 	sounds = {
 		{name = "dfcaverns_long_bird_song_slow", gain = 0.5},
 		{name = "dfcaverns_crow_slow", gain = 0.5},
 		{name = "dfcaverns_bird_noise", gain = 0.5},
 	},
 	sound_check = function(def)
-		if chasms.is_in_chasm_without_taper(def.pos) then return true end
+		if chasms.is_in_chasm(def.pos) then return true end
 	end,
 })
 end
@@ -26,7 +26,7 @@ df_ambience.add_set({
 })
 
 df_ambience.add_set({
-	frequency = 0.075,
+	frequency = 0.025,
 	nodes = {"df_mapitems:dirt_with_cave_moss", "df_trees:tower_cap_stem", "df_trees:tower_cap_gills", "df_trees:tower_cap"},
 	sounds = {
 		{name = "dfcaverns_exotic_creature_song", gain = 0.5},

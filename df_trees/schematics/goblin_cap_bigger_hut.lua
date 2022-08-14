@@ -27,14 +27,6 @@ if df_dependencies.node_name_shelf then
 	n15 = { name = df_dependencies.node_name_shelf, param2 = 3, force_place = true }
 end
 
-if not minetest.get_modpath("stairs") then
-	-- replace stairs with air
-	n12 = nil
-	n20 = nil
-	n21 = nil
-	n22 = nil
-end
-
 local schematic = {
 	yslice_prob = {},
 	size = {y = 10, x = 13, z = 13},

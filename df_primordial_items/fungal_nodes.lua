@@ -137,7 +137,7 @@ minetest.register_node("df_primordial_items:dirt_with_mycelium", {
 	_doc_items_longdesc = df_primordial_items.doc.dirt_with_mycelium_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.dirt_with_mycelium_usage,
 	tiles = {"dfcaverns_mush_soil.png"},
-	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 13, handy=1,shovely=1, dirt=2, building_block=1},
+	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 13, handy=1,shovely=1, dirt=2, building_block=1, opaque=1},
 	_dfcaverns_dead_node = df_dependencies.node_name_dirt,
 	is_ground_content = false,
 	paramtype = "light",

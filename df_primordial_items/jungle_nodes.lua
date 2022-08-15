@@ -294,7 +294,7 @@ minetest.register_node("df_primordial_items:dirt_with_jungle_grass", {
 	_doc_items_usagehelp = df_primordial_items.doc.dirt_with_jungle_grass_usage,
 	tiles = {"dfcaverns_jungle_plant_grass_node_01.png"},
 	paramtype = "light",
-	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 13, handy=1,shovely=1, dirt=2, building_block=1},
+	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 13, handy=1,shovely=1, dirt=2, building_block=1, opaque=1},
 	_dfcaverns_dead_node = df_dependencies.node_name_dirt,
 	is_ground_content = false,
 	drop = df_dependencies.node_name_dirt,
@@ -324,7 +324,6 @@ minetest.register_node("df_primordial_items:plant_matter", {
 	_doc_items_usagehelp = df_primordial_items.doc.plant_matter_usage,
 	tiles = {"dfcaverns_jungle_plant_matter_01.png"},
 	is_ground_content = false,
-	paramtype = "light",
 	groups = {crumbly = 3, soil = 1, flammable = 1, handy=1,shovely=1, dirt=2, building_block=1, fire_encouragement=1, fire_flammability=1},
 	sounds = df_dependencies.sound_dirt(),
 	on_timer = function(pos, elapsed)

@@ -51,6 +51,7 @@ df_mapitems.spawn_castle_coral = function(area, data, vi, iterations)
 	local zstride = area.zstride
 	local ystride = area.ystride
 	while run > 0 do
+		-- TODO should this be checking for not-water instead of stone?
 		if math.random() > 0.95 or data[index] == c_stone or not area:containsi(index) then return end
 		data[index] = c_coral
 		if iterations > 2 then

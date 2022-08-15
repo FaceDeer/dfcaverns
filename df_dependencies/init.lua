@@ -31,6 +31,7 @@ df_dependencies.select_optional = function(def)
 	return ret
 end
 
+dofile(modpath.."/config.lua")
 dofile(modpath.."/sounds.lua")
 dofile(modpath.."/helper_functions.lua")
 dofile(modpath.."/nodes.lua")

@@ -1,17 +1,13 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
+local required_nodes = {}
 local function select_required(...)
 	local newdef = {}
 	for _, node in pairs({...}) do
 		newdef[string.match(node, "(.-):")] = node
 	end
 	local ret = df_dependencies.select_required(newdef)
-	minetest.after(0, function()
-		-- "after" needs to be used here because some of these nodes actually get registered in DF Caverns itself
-		-- stair nodes, for example, depend on the stairs mod but get registered from here. Kind of weird but
-		-- one goes to war with the mods one has.
-		assert(minetest.registered_items[ret] ~= nil, "Node " .. ret .. " was returned by a selection call but is not registered.")
-	end)
+	table.insert(required_nodes, ret)
 	return ret
 end
 
@@ -21,13 +17,25 @@ local function select_optional(...)
 		newdef[string.match(node, "(.-):")] = node
 	end
 	local ret = df_dependencies.select_optional(newdef)
-	if ret ~= nil then
-		minetest.after(0, function()
-			assert(minetest.registered_items[ret] ~= nil, "Node " .. ret .. " was returned by an optional selection call but is not registered.")
-		end)
-	end
+	table.insert(required_nodes, ret)
 	return ret
 end
+
+
+minetest.after(0, function()
+	-- "after" needs to be used here because some of these nodes actually get registered in DF Caverns itself
+	-- stair nodes, for example, depend on the stairs mod but get registered from here. Kind of weird but
+	-- one goes to war with the mods one has.
+	local problem_nodes = {}
+	for _, node_name in pairs(required_nodes) do
+		if minetest.registered_items[node_name] == nil then
+			table.insert(problem_nodes, node_name)
+		end
+	end
+	
+	assert(#problem_nodes == 0, "Nodes " .. table.concat(problem_nodes, ", ") .. " were returned by a selection call but are not registered.")
+end)
+
 
 df_dependencies.node_name_apple = select_required("default:apple", "mcl_core:apple")
 df_dependencies.node_name_chest = select_required("default:chest", "mcl_chests:chest")

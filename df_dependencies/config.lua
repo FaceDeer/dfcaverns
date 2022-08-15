@@ -1,6 +1,8 @@
 local CONFIG_FILE_PREFIX = "dfcaverns_"
 
-df_caverns.config = {}
+local config = {}
+df_dependencies.config = config
+
 
 local print_settingtypes = false
 
@@ -16,7 +18,7 @@ local function setting(stype, name, default, description)
 	if value == nil then
 		value = default
 	end
-	df_caverns.config[name] = value
+	config[name] = value
 	
 	if print_settingtypes then
 		minetest.debug(CONFIG_FILE_PREFIX..name.." ("..description..") "..stype.." "..tostring(default))
@@ -38,14 +40,14 @@ setting("int", "level3_min", -2112, "Upper limit of the sunless seas")
 setting("int", "sunless_sea_min", -2512, "Lower limit of the sunless seas")
 
 setting("bool", "enable_oil_sea", true, "Enable oil sea")
-df_caverns.config.enable_oil_sea = df_caverns.config.enable_oil_sea and minetest.get_modpath("oil") ~= nil
+config.enable_oil_sea = config.enable_oil_sea and minetest.get_modpath("oil") ~= nil
 setting("int", "oil_sea_level", -2700, "Oil sea level")
 
 setting("bool", "enable_lava_sea", true, "Enable magma sea")
 setting("int", "lava_sea_level", -2900, "Lava sea level")
 
 setting("bool", "enable_underworld", true, "Enable underworld")
-df_caverns.config.enable_underworld = df_caverns.config.enable_underworld and minetest.get_modpath("df_underworld_items") ~= nil
+config.enable_underworld = config.enable_underworld and minetest.get_modpath("df_underworld_items") ~= nil
 setting("int", "underworld_level", -3200, "Underworld level")
 setting("int", "underworld_glowing_pit_mapblocks", 8, "Average pit spacing measured in mapblocks")
 

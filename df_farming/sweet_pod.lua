@@ -24,7 +24,7 @@ local register_sweet_pod = function(number)
                 {-8/16, -8/16, -8/16, 8/16, -8/16 + (16/6)*number/16, 8/16},
             },
         },
-		
+
 		on_timer = function(pos, elapsed)
 			df_farming.grow_underground_plant(pos, name, elapsed)
 		end,
@@ -47,12 +47,12 @@ local register_sweet_pod = function(number)
 			},
 		},
 	}
-	
+
 	if number < 6 then
 		def._dfcaverns_next_stage = "df_farming:sweet_pod_"..tostring(number+1)
 		def._dfcaverns_next_stage_time = sweet_pod_grow_time
 	end
-	
+
 	minetest.register_node(name, def)
 end
 
@@ -186,7 +186,7 @@ if minetest.get_modpath("bucket") then
 		groups = {liquid = 3, flammable = 2},
 		sounds = df_farming.sounds.water,
 	})
-	
+
 	minetest.register_node("df_farming:dwarven_syrup_flowing", {
 		description = S("Flowing Dwarven Syrup"),
 		_doc_items_longdesc = df_farming.doc.sweet_pod_syrup_desc,
@@ -243,8 +243,8 @@ if minetest.get_modpath("bucket") then
 		"dfcaverns_bucket_dwarven_syrup.png",
 		S("Dwarven Syrup Bucket")
 	)
-	
-	if minetest.get_modpath("crafting") then
+
+	if minetest.get_modpath("simplecrafting_lib") then
 		simplecrafting_lib.register("furnace", {
 			input = {
 				[df_farming.node_names.bucket] = 1,
@@ -260,7 +260,7 @@ if minetest.get_modpath("bucket") then
 			recipe = {df_farming.node_names.bucket, "df_farming:sugar", "df_farming:sugar", "df_farming:sugar"},
 		})
 	end
-	
+
 	if minetest.get_modpath("dynamic_liquid") then
 		dynamic_liquid.liquid_abm("df_farming:dwarven_syrup_source", "df_farming:dwarven_syrup_flowing", 5)
 	end

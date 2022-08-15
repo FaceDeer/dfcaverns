@@ -110,8 +110,8 @@ local extend_ores = function()
 		localseed = localseed + 1 -- increment this every time it's called to ensure different distributions
 		-- same seed makes the noise patterns overlap.
 		-- one produces widespread smaller clusters, other produces larger clusters at the peaks of the noise in addition to the smaller ones
-		register_scattered_internal(ore, cluster_size, cluster_scarcity_cuberoot, 0, ymin)
-		register_scattered_internal(ore, cluster_size*2, cluster_scarcity_cuberoot, 0.25, ymax)
+		register_scattered_internal(ore, cluster_size, cluster_scarcity_cuberoot, 0, ymin, ymax)
+		register_scattered_internal(ore, cluster_size*2, cluster_scarcity_cuberoot, 0.25, ymin, ymax)
 	end
 
 	if ores_registered["mcl_core:diorite"] then
@@ -160,12 +160,27 @@ local extend_ores = function()
 		end
 	end
 	
+	if ores_registered["mcl_core:stone_with_diamond"] then
+		register_scattered("mcl_core:stone_with_diamond", 2, 18, config.sunless_sea_min, config.level2_min)
+		if config.enable_oil_sea then
+			register_scattered("mcl_core:stone_with_diamond", 3, 18, config.oil_sea_level-200, config.oil_sea_level+200)
+		end
+		if config.enable_primordial then
+			register_scattered("mcl_core:stone_with_diamond", 3, 15, config.primordial_min, config.primordial_max)
+		end
+	end
 	
-	--"mcl_core:stone_with_diamond"
 	if ores_registered["mcl_core:stone_with_gold"] then
 		register_scattered("mcl_core:stone_with_gold", 2, 18)
+		if config.enable_primordial then
+			register_scattered("mcl_core:stone_with_gold", 3, 15, config.primordial_min, config.primordial_max)
+		end
 	end
-	--"mcl_copper:stone_with_copper"
+
+	if ores_registered["mcl_core:stone_with_copper"] then
+		register_scattered("mcl_core:stone_with_copper", 3, 18)
+	end
+
 
 	-- more blobs
 	--"mcl_deepslate:deepslate"

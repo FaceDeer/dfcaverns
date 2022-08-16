@@ -37,7 +37,7 @@ minetest.register_node("df_trees:blood_thorn", {
 		"dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png"},
 	paramtype2 = "facedir",
 	paramtype = "light",
-	groups = {choppy = 3, tree = 1, flammable = 2, light_sensitive_fungus = 11, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+	groups = {choppy = 3, tree = 1, flammable = 2, light_sensitive_fungus = 11, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5, opaque=1},
 	_dfcaverns_dead_node = "df_trees:blood_thorn_dead",
 	sounds = df_dependencies.sound_wood(),
 	is_ground_content = false,

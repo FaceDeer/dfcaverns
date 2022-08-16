@@ -154,7 +154,7 @@ df_ambience.add_set({
 	sounds = {
 		{name = "dfcaverns_drums", gain = 0.3},
 		{name = "dfcaverns_frog", gain = 0.5},
-		jungle_bird, jungle_bird,
+		jungle_bird, jungle_bird, -- double up the birds to make them more common
 	},
 	sound_check = function(def)
 		return def.biome == "primordial jungle"

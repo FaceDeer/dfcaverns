@@ -97,7 +97,7 @@ df_ambience.add_set({
 	end,
 })
 
--- blackcap left silent
+-- blackcap left silent, torchspines make their own noise
 
 -- Sunless sea
 

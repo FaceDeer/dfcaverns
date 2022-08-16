@@ -3,6 +3,7 @@ local S = minetest.get_translator(minetest.get_current_modname())
 local torchspine_min_delay = df_trees.config.blood_thorn_delay_multiplier*df_trees.config.tree_min_growth_delay
 local torchspine_max_delay = df_trees.config.blood_thorn_delay_multiplier*df_trees.config.tree_max_growth_delay
 
+local looped_node_sound_modpath = minetest.get_modpath("looped_node_sound")
 
 -- Rather than make this whole mod depend on subterrane just for this, I copied and pasted a chunk of stalactite code.
 local x_disp = 0.125
@@ -130,6 +131,7 @@ minetest.register_node("df_trees:torchspine_1", {
 		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
 		if above_def and above_def.buildable_to then
 			minetest.swap_node(pos, {name="df_trees:torchspine_1_lit", param2=minetest.get_node(pos).param2})
+			minetest.sound_play({pos = pos}, {name="dfcaverns_torchspine_ignite"}, true)
 		end
 		minetest.get_node_timer(pos):start(math.random(torchspine_min_delay, torchspine_max_delay))
 	end,
@@ -168,6 +170,15 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 		minetest.get_node_timer(pos):stop()
 	end,
 })
+
+if looped_node_sound_modpath then
+	looped_node_sound.register({
+		node_list = {"df_trees:torchspine_1_lit"},
+		sound = "dfcaverns_torchspine_loop",
+		max_gain = 0.5,
+		gain_per_node = 0.05,
+	})
+end
 
 minetest.register_node("df_trees:torchspine_2", {
 	description = S("Torchspine"),
@@ -299,6 +310,7 @@ minetest.register_node("df_trees:torchspine_ember", {
 	on_timer = function(pos)
 		minetest.swap_node(pos, {name="df_trees:torchspine_1", param2=minetest.get_node(pos).param2})
 		minetest.get_node_timer(pos):start(math.random(torchspine_min_delay, torchspine_max_delay))
+		minetest.sound_play({pos = pos}, {name="dfcaverns_torchspine_ignite"}, true)
 	end,
 })
 
@@ -359,10 +371,8 @@ df_trees.spawn_torchspine_vm = function(vi, area, data, data_param2, height, lit
 	
 	local pos = area:position(vi)
 	pos.y = pos.y+height-1
-	minetest.after(10, function()
-		local node = minetest.get_node(pos)
-		minetest.get_node_timer(pos):start(math.random()*3000)
-	end)
+	local node = minetest.get_node(pos)
+	minetest.get_node_timer(pos):start(math.random()*3000)
 end
 
 minetest.register_lbm({

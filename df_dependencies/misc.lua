@@ -46,3 +46,11 @@ df_dependencies.texture_wood = select_required({default="default_wood.png", mcl_
 df_dependencies.texture_mineral_coal = select_required({default="default_mineral_coal.png",	mcl_core="mcl_core_coal_ore.png"}) -- MCL's coal texture isn't transparent, but is only used with gas seeps and should work fine that way
 df_dependencies.texture_glass_bottle = select_required({vessels="vessels_glass_bottle.png",	mcl_potions="mcl_potions_potion_bottle.png"})
 df_dependencies.texture_meselamp = "dfcaverns_glow_mese.png"
+
+
+df_dependencies.nethercap_name = S("Nethercap")
+if minetest.get_modpath("mcl_mapgen_core") then
+	-- since there's a whole layer called the Nether in Mineclone and it has its own mushrooms, rename
+	-- nethercaps when that's present to avoid confusion.
+	df_dependencies.nethercap_name = S("Icecap")
+end

@@ -1,15 +1,10 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
-local if_mineclone_installed = function(default, mineclone)
-	if minetest.get_modpath("mcl_core") then
-		return mineclone
-	end
-	return default
-end
+local nethercap_name = df_dependencies.nethercap_name
 
 --stem
 minetest.register_node("df_trees:nether_cap_stem", {
-	description = if_mineclone_installed(S("Nether Cap Stem"), S("Icecap Stem")),
+	description = S("@1 Stem", nethercap_name),
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_stem.png"},
@@ -22,7 +17,7 @@ minetest.register_node("df_trees:nether_cap_stem", {
 
 --cap
 minetest.register_node("df_trees:nether_cap", {
-	description = if_mineclone_installed(S("Nether Cap"), S("Icecap")),
+	description = nethercap_name,
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap.png"},
@@ -35,7 +30,7 @@ minetest.register_node("df_trees:nether_cap", {
 
 --gills
 minetest.register_node("df_trees:nether_cap_gills", {
-	description = if_mineclone_installed(S("Nether Cap Gills"), S("Icecap Gills")),
+	description = S("@1 Gills", nethercap_name),
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	tiles = {"dfcaverns_nether_cap_gills.png"},
@@ -85,7 +80,7 @@ minetest.register_craft({
 })
 
 minetest.register_node("df_trees:nether_cap_wood", {
-	description = if_mineclone_installed(S("Nether Cap Planks"), S("Icecap Planks")),
+	description = S("@1 Planks", nethercap_name),
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	paramtype2 = "facedir",
@@ -102,7 +97,7 @@ df_dependencies.register_all_stairs_and_fences("nether_cap_wood")
 
 -- sapling
 minetest.register_node("df_trees:nether_cap_sapling", {
-	description = if_mineclone_installed(S("Nether Cap Spawn"), S("Icecap Spawn")),
+	description = S("@1 Spawn", nethercap_name),
 	_doc_items_longdesc = df_trees.doc.nether_cap_desc,
 	_doc_items_usagehelp = df_trees.doc.nether_cap_usage,
 	drawtype = "plantlike",

@@ -50,7 +50,7 @@ local list_mods_required = function()
 	end
 	minetest.debug(mods_required)
 end
-list_mods_required()
+--list_mods_required()
 
 -- This mod is meant to only exist at initialization time. Other mods should make copies of anything it points to for their own use.
 minetest.after(1, function() df_dependencies = nil end)

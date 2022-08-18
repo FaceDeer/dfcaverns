@@ -26,7 +26,7 @@ df_ambience.add_set({
 })
 
 df_ambience.add_set({
-	frequency = 0.025,
+	frequency = 0.050,
 	nodes = {"df_mapitems:dirt_with_cave_moss", "df_trees:tower_cap_stem", "df_trees:tower_cap_gills", "df_trees:tower_cap"},
 	sounds = {
 		{name = "dfcaverns_exotic_creature_song", gain = 0.5},

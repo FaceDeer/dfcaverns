@@ -306,14 +306,14 @@ minetest.register_node("df_primordial_items:dirt_with_jungle_grass", {
 minetest.register_abm{
 	label = "df_primordial_items:jungle_grass_spread",
 	nodenames = {df_dependencies.node_name_dirt},
-	neighbors = {"df_mapitems:dirt_with_jungle_grass"},
+	neighbors = {"df_primordial_items:dirt_with_jungle_grass"},
 	interval = 60,
 	chance = 50,
 	catch_up = true,
 	action = function(pos)
 		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
 		if above_def and (above_def.buildable_to == true or above_def.walkable == false) then
-			minetest.swap_node(pos, {name="df_mapitems:dirt_with_jungle_grass"})
+			minetest.swap_node(pos, {name="df_primordial_items:dirt_with_jungle_grass"})
 		end
 	end,
 }

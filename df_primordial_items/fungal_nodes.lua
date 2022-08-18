@@ -151,12 +151,12 @@ minetest.register_node("df_primordial_items:dirt_with_mycelium", {
 minetest.register_abm{
 	label = "df_primordial_items:dirt_with_mycelium_spread",
 	nodenames = {df_dependencies.node_name_dirt},
-	neighbors = {"df_mapitems:dirt_with_mycelium"},
+	neighbors = {"df_primordial_items:dirt_with_mycelium"},
 	interval = 60,
 	chance = 50,
 	catch_up = true,
 	action = function(pos)
-		minetest.swap_node(pos, {name="df_mapitems:dirt_with_mycelium"})
+		minetest.swap_node(pos, {name="df_primordial_items:dirt_with_mycelium"})
 	end,
 }
 

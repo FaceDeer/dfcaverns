@@ -18,7 +18,7 @@ df_achievements.test_list = function(player_name, target_achievement, unlocked, 
 		end
 	end
 	if none_missing then
-		awards.unlock(player_name, target_achievement)
+		minetest.after(4, function() awards.unlock(player_name, target_achievement) end)
 	end
 end
 

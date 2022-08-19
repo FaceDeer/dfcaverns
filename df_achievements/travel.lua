@@ -15,6 +15,7 @@ node_types.blackcap = {"df_trees:black_cap", "df_trees:black_cap_stem", "df_tree
 node_types.primordial_jungle = {"df_primordial_items:giant_fern_leaves", "df_primordial_items:giant_fern_tree", "df_primordial_items:giant_fern_tree_slant_bottom", "df_primordial_items:giant_fern_tree_slant_full", "df_primordial_items:giant_fern_tree_slant_top", "df_primordial_items:jungle_leaves", "df_primordial_items:jungle_leaves_glowing", "df_primordial_items:jungle_mushroom_cap_1", "df_primordial_items:jungle_mushroom_cap_2", "df_primordial_items:jungle_mushroom_trunk",  "df_primordial_items:jungle_tree", "df_primordial_items:jungle_tree_glowing", "df_primordial_items:jungle_tree_mossy", "df_primordial_items:packed_roots", "df_primordial_items:plant_matter", }
 node_types.primordial_fungus = {"df_primordial_items:giant_hypha_root", "df_primordial_items:giant_hypha", "df_primordial_items:mushroom_cap", "df_primordial_items:mushroom_gills", "df_primordial_items:mushroom_gills_glowing", "df_primordial_items:mushroom_trunk", "df_primordial_items:glownode", "df_primordial_items:glownode_stalk",}
 node_types.other = {"oil:oil_source", "df_underworld_items:slade", lava_node, "df_underworld_items:glow_amethyst"}
+node_types.sunless_sea = {"df_mapitems:castle_coral", "df_mapitems:cave_coral_1", "df_mapitems:cave_coral_2", "df_mapitems:cave_coral_3", "df_mapitems:snareweed"}
 
 local all_nodes = {}
 for _, nodes in pairs(node_types) do
@@ -86,8 +87,16 @@ minetest.register_globalstep(function(dtime)
 				awards.unlock(player_name, "dfcaverns_visit_blood_thorn")
 			elseif biome == "blackcap" and check_nodes(node_types.blackcap, totals) then
 				awards.unlock(player_name, "dfcaverns_visit_black_cap")
-			elseif (biome == "fungispore" and (check_nodes(node_types.fungiwood, totals) or check_nodes(node_types.sporetree, totals))) or 
-				(biome == "towergoblin" and (check_nodes(node_types.towercap, totals) or check_nodes(node_types.goblincap, totals)))
+			elseif
+				(biome == "fungispore" and (
+					check_nodes(node_types.fungiwood, totals) or
+					check_nodes(node_types.sporetree, totals)))
+				or 
+				(biome == "towergoblin" and (
+					check_nodes(node_types.towercap, totals) or
+					check_nodes(node_types.goblincap, totals)))
+				or
+				check_nodes(node_types.sunless_sea, totals)
 				then
 					awards.unlock(player_name, "dfcaverns_visit_sunless_sea")
 			elseif biome == "oil_sea" and (totals["oil:oil_source"] or 0) > 1 then
@@ -122,7 +131,7 @@ minetest.register_globalstep(function(dtime)
 			if pos_y < -30 then -- ignore pits when near the surface
 				local nearest_pit = pit_caves.get_nearest_pit(pos)
 				nearest_pit.location.y = pos_y -- for the distance check
-				if pos_y >= nearest_pit.depth and pos_y <= nearest_pit.top and vector.distance(pos, nearest_pit.location) <= 30 then
+				if pos_y >= nearest_pit.depth and pos_y <= nearest_pit.top and vector.distance(pos, nearest_pit.location) <= 20 then
 					awards.unlock(player_name, "dfcaverns_visit_pit")
 				end
 			end	

@@ -19,7 +19,7 @@ minetest.register_node("df_mapitems:veinstone", {
         minetest.node_punch(pos, node, puncher, pointed_thing)
 		minetest.swap_node(pos, {name="df_mapitems:veinstone_pulse"})
 		minetest.get_node_timer(pos):start(2)
-		minetest.sound_play({pos = pos}, {name="dfcaverns_slow_heartbeat", gain=0.5})
+		minetest.sound_play({name="dfcaverns_slow_heartbeat", gain=0.5}, {pos = pos})
 		df_mapitems.on_veinstone_punched(pos, node, puncher, pointed_thing)
 	end,
 	_mcl_blast_resistance = 10,
@@ -49,7 +49,7 @@ minetest.register_node("df_mapitems:veinstone_pulse", {
 			positions = {[1] = minetest.find_node_near(pos, 4, "df_mapitems:veinstone")}
 		end
 		if (positions[1] ~= nil) then
-			minetest.sound_play({pos = pos}, {name="dfcaverns_slow_heartbeat", gain=0.5})
+			minetest.sound_play({name="dfcaverns_slow_heartbeat", gain=0.5}, {pos = pos})
 		end
 		for _, neighbor_pos in pairs(positions) do
 			minetest.swap_node(neighbor_pos, {name="df_mapitems:veinstone_pulse"})

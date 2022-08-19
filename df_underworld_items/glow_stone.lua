@@ -30,7 +30,9 @@ local glowstone_def = {
 local tnt_boom = df_dependencies.tnt_boom
 if tnt_boom then
 	glowstone_def.on_dig = function(pos, node, digger)
-		tnt_boom(pos, {radius=3})
+		if minetest.node_dig(pos, node, digger) then
+			tnt_boom(pos, {radius=3})
+		end	
 	end
 end
 minetest.register_node("df_underworld_items:glowstone", glowstone_def)

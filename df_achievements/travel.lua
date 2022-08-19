@@ -14,7 +14,7 @@ node_types.bloodthorn = {"df_trees:blood_thorn", "df_trees:blood_thorn_spike"}
 node_types.blackcap = {"df_trees:black_cap", "df_trees:black_cap_stem", "df_trees:black_cap_gills", "df_trees:torchspine_1", "df_trees:torchspine_1_lit", "df_trees:torchspine_2", "df_trees:torchspine_3", "df_trees:torchspine_4"}
 node_types.primordial_jungle = {"df_primordial_items:giant_fern_leaves", "df_primordial_items:giant_fern_tree", "df_primordial_items:giant_fern_tree_slant_bottom", "df_primordial_items:giant_fern_tree_slant_full", "df_primordial_items:giant_fern_tree_slant_top", "df_primordial_items:jungle_leaves", "df_primordial_items:jungle_leaves_glowing", "df_primordial_items:jungle_mushroom_cap_1", "df_primordial_items:jungle_mushroom_cap_2", "df_primordial_items:jungle_mushroom_trunk",  "df_primordial_items:jungle_tree", "df_primordial_items:jungle_tree_glowing", "df_primordial_items:jungle_tree_mossy", "df_primordial_items:packed_roots", "df_primordial_items:plant_matter", }
 node_types.primordial_fungus = {"df_primordial_items:giant_hypha_root", "df_primordial_items:giant_hypha", "df_primordial_items:mushroom_cap", "df_primordial_items:mushroom_gills", "df_primordial_items:mushroom_gills_glowing", "df_primordial_items:mushroom_trunk", "df_primordial_items:glownode", "df_primordial_items:glownode_stalk",}
-node_types.other = {"oil:oil", "df_underworld_items:slade", lava_node, "df_underworld_items:glow_amethyst"}
+node_types.other = {"oil:oil_source", "df_underworld_items:slade", lava_node, "df_underworld_items:glow_amethyst"}
 
 local all_nodes = {}
 for _, nodes in pairs(node_types) do
@@ -65,12 +65,11 @@ minetest.register_globalstep(function(dtime)
 		player_name = player:get_player_name()
 		player_awards = awards.player(player_name)
 		if player_awards.unlocked["dfcaverns_visit_all_caverns"] ~= "dfcaverns_visit_all_caverns" or
-			player_awards.unlocked["dfcaverns_visit_glowing_pit"] ~= "dfcaverns_visit_glowing_pit" or
-			player_awards.unlocked["dfcaverns_visit_underworld_ruins"] ~= "dfcaverns_visit_underworld_ruins" then
+			player_awards.unlocked["dfcaverns_visit_glowing_pit"] ~= "dfcaverns_visit_glowing_pit" then
 			player_data = get_player_data(player)
 			biome = player_data.biome
 			totals = player_data.totals
-					
+			
 			if biome == "towercap" and check_nodes(node_types.towercap, totals) then
 				awards.unlock(player_name, "dfcaverns_visit_tower_cap")
 			elseif biome == "fungiwood" and check_nodes(node_types.fungiwood, totals) then
@@ -91,7 +90,7 @@ minetest.register_globalstep(function(dtime)
 				(biome == "towergoblin" and (check_nodes(node_types.towercap, totals) or check_nodes(node_types.goblincap, totals)))
 				then
 					awards.unlock(player_name, "dfcaverns_visit_sunless_sea")
-			elseif biome == "oil_sea" and (totals["oil:oil"] or 0) > 1 then
+			elseif biome == "oil_sea" and (totals["oil:oil_source"] or 0) > 1 then
 				awards.unlock(player_name, "dfcaverns_visit_oil_sea")			
 			elseif biome == "underworld" then
 				if (totals["df_underworld_items:slade"] or 0) > 1 then
@@ -112,9 +111,10 @@ minetest.register_globalstep(function(dtime)
 				awards.unlock(player_name, "dfcaverns_visit_primordial_fungal")
 			elseif biome == "primordial jungle" and check_nodes(node_types.primordial_jungle, totals) then
 				awards.unlock(player_name, "dfcaverns_visit_primordial_jungle")
-			elseif biome == "chasm" then
-				awards.unlock(player_name, "dfcaverns_visit_chasm")
 			end
+		end
+		if player_awards.unlocked["dfcaverns_visit_chasm"] ~= "dfcaverns_visit_chasm" and chasms.is_in_chasm(player:get_pos()) then
+			awards.unlock(player_name, "dfcaverns_visit_chasm")
 		end
 		if player_awards.unlocked["dfcaverns_visit_pit"] ~= "dfcaverns_visit_pit" then
 			local pos = player:get_pos()

@@ -70,8 +70,8 @@ awards.register_on_unlock(function(player_name, def)
 	test_list(player_name, "dfcaverns_plant_all_upper_trees", unlocked, all_upper_trees)
 end)
 
-for achievement, def in pairs(plant_node_achievements) do
-	awards.register_achievement(achievement, {
+for _, def in pairs(plant_node_achievements) do
+	awards.register_achievement(def.achievement, {
 		title = def.title,
 		description = def.desc,
 		--icon = def.icon,

@@ -2,6 +2,10 @@ local S = df_underworld_items.S
 
 local named_waypoints_path = minetest.get_modpath("named_waypoints")
 
+-- override these to allow achievements to be recorded without requiring a dependency
+df_underworld_items.slade_breacher_triggered = function(pos, player) end
+df_underworld_items.puzzle_seal_solved = function(pos, player) end -- player can be nil
+
 local invulnerable = df_underworld_items.config.invulnerable_slade and not minetest.settings:get_bool("creative_mode")
 
 local can_dig
@@ -82,12 +86,12 @@ local item_represents_number = function(itemname, number)
 	return false
 end
 
-local test_key = function(pos)
+local test_key = function(pos, player)
     local meta = minetest.get_meta(pos)
 	if not meta:contains("key") then
 		return false
 	end
-		
+	
 	local keystring = meta:get_string("key")
 	local key = minetest.deserialize(keystring)
 	local inv = meta:get_inventory()
@@ -105,6 +109,7 @@ local test_key = function(pos)
 		if valid then
 			local unlocked = meta:get_int("unlocked")
 			if unlocked == 0 then
+				df_underworld_items.puzzle_seal_solved(pos, player)
 				meta:set_int("unlocked", 1)
 			end
 			return true
@@ -168,7 +173,7 @@ local get_formspec = function(pos, unlocked)
 end
 local refresh_formspec = function(pos, player)
 	local player_name = player:get_player_name()
-	local unlocked = test_key(pos)
+	local unlocked = test_key(pos, player)
 	local formspec = get_formspec(pos, unlocked)
 	minetest.show_formspec(player_name, formspec_prefix..minetest.pos_to_string(pos), formspec)
 end
@@ -398,6 +403,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		minetest.set_node(pos, {name="df_underworld_items:digging_seal", param2 = math.random(1,4)-1})
 		minetest.get_node_timer(pos):start(4)
 		minetest.close_formspec(player:get_player_name(), formname)
+		df_underworld_items.slade_breacher_triggered(pos, player)
 	end
 end)
 

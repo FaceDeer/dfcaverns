@@ -1,3 +1,5 @@
+ice_sprites = {}
+
 local modname = minetest.get_current_modname()
 local S = minetest.get_translator(modname)
 

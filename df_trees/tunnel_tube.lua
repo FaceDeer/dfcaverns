@@ -350,6 +350,7 @@ minetest.register_node("df_trees:tunnel_tube_sapling", {
 				df_trees.config.tunnel_tube_delay_multiplier*df_trees.config.tree_max_growth_delay))
 		end
 	end,
+
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,

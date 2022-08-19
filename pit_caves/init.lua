@@ -1,3 +1,5 @@
+pit_caves = {}
+
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 local S = minetest.get_translator(minetest.get_current_modname())
 
@@ -69,6 +71,8 @@ local get_pit = function(pos)
 	math.randomseed(next_seed)
 	return {location = location, depth = depth, top = top}
 end
+
+pit_caves.get_nearest_pit = get_pit
 
 local perlin_params = {
 	offset = 0,

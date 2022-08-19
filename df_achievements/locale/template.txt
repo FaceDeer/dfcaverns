@@ -1,0 +1,116 @@
+# textdomain: df_achievements
+
+
+### farming.lua ###
+
+Plant @1=
+Plant All Farmable Underground Plants=
+Plant All Fungal Tree Types=
+Plant All Primordial Tree Types=
+Plant All Underground Tree Types=
+Plant Black Cap=
+Plant Blood Thorn=
+Plant Cave Wheat=
+Plant Dimple Cup=
+Plant Fungiwood=
+Plant Goblin Cap=
+Plant Pig Tail=
+Plant Plump Helmet=
+Plant Primordial Fern=
+Plant Primordial Jungle Mushroom=
+Plant Primordial Jungle Tree=
+Plant Primordial Mushroom=
+Plant Primordial Mycelium=
+Plant Quarry Bush=
+Plant Spindlestem=
+Plant Spore Tree=
+Plant Sweet Pod=
+Plant Torchspine=
+Plant Tower Cap=
+Plant Tunnel Tube=
+
+### farming.lua ###
+### init.lua ###
+
+=
+
+### init.lua ###
+
+Capture an Ice Sprite=
+Collect Cave Pearls=
+Collect Giant Crystals=
+Destroy a Gas Seep=
+Detonate Mine Gas=
+Discover Castle Coral=
+Discover Giant Webbing=
+Get Attacked by an Underworld Guardian=
+Loot Ancient Warrior Bones=
+Punch Veinstone=
+Repair 100 Ancient Lanterns=
+Repair an Ancient Lantern=
+Solve a Puzzle Seal=
+Trigger a Slade Breacher=
+
+You've captured an ice sprite and placed it in a bottle. It dances and sparkles and sheds light through the frosted glass. Pretty.=
+
+
+### travel.lua ###
+
+Discover @1s=
+Discover All Fungal Cavern Types=
+Discover All Overworld Cavern Types=
+Discover All Underground Cavern Types=
+Discover Black Caps=
+Discover Bloodthorns=
+Discover Fungiwood=
+Discover Goblin Caps=
+Discover Spore Trees=
+Discover Tower Caps=
+Discover Tunnel Tubes=
+Discover Underworld Ruins=
+Discover a Deep Chasm=
+Discover a Deep Sinkhole=
+Discover a Glowing Pit=
+Discover a cavern containing oil deep underground.=
+Discover a cavern where @1s grow in the wild.=
+Discover a cavern where Black Caps grow in the wild.=
+Discover a cavern where Bloodthorns grow in the wild.=
+Discover a cavern where Fungiwoods grow in the wild.=
+Discover a cavern where Goblin Caps grow in the wild.=
+Discover a cavern where Spore Trees grow in the wild.=
+Discover a cavern where Tower Caps grow in the wild.=
+Discover a cavern where Tunnel Tubes grow in the wild.=
+Discover a deep natural sinkhole.=
+Discover a gigantic underground natural chasm.=
+
+Discover a glowing pit in the slade foundations of the world.=
+
+Discover all Primordial Cavern Types=
+Discover all major kinds of giant cavern environment.=
+
+Discover all of the major types of cavern below the foundations of the world.=
+
+Discover all of the major types of cavern environments above the foundations of the world.=
+
+Discover ancient ruins made of slade in the Underworld.=
+Discover examples of all of the fungal cavern biomes.=
+Discover the Magma Sea=
+Discover the Oil Sea=
+Discover the Primordial Fungus=
+Discover the Primordial Jungle=
+Discover the Sunless Sea=
+Discover the Underworld=
+
+Discover the ancient caverns at the foundations of the world.=
+
+Discover the fungus-ridden caverns below the foundations of the world.=
+
+Discover the giant caverns to which all water from the surface ultimately drain.=
+
+Discover the lost jungles below the foundations of the world.=
+
+Discover the sea of magma that volcanoes draw from.=
+Got Beneath the Slade=
+
+Somehow get beneath the impenetrable layer of slade that borders the Underworld.=
+

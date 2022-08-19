@@ -47,6 +47,9 @@ minetest.register_node("df_trees:blood_thorn", {
 	_mcl_hardness = 1,
 
 	on_construct = function(pos)
+		if not df_trees.blood_thorn_growth_permitted(pos) then
+			return
+		end
 		minetest.get_node_timer(pos):start(math.random(blood_thorn_min_delay, blood_thorn_max_delay))
 	end,
 	on_destruct = function(pos)
@@ -234,10 +237,6 @@ function df_trees.grow_blood_thorn(pos, node)
 		return
 	end
 	
-	if not df_trees.blood_thorn_growth_permitted(pos) then
-		return
-	end
-
 	local height = 0
 	local max_height = max_bloodthorn_height(pos)
 	while node.name == "df_trees:blood_thorn" and height < max_height do

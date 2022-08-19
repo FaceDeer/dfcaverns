@@ -39,6 +39,9 @@ if invulnerable then
 	slade_mcl_hardness = -1
 end
 
+-- override this to allow achievements to be recorded without requiring a dependency
+df_underworld_items.ancient_lantern_fixed = function(pos, player) end
+
 local punch_fix = function(pos, node, puncher, pointed_thing)
 	local wielded = puncher:get_wielded_item()
 	if wielded:get_name() == mese_crystal_node then

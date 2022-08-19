@@ -2,6 +2,9 @@ local S = minetest.get_translator(minetest.get_current_modname())
 
 hunter_statue = {}
 
+-- override this to allow achievements to be recorded without requiring a dependency
+hunter_statue.player_punched = function(node_name, pos, player) end
+
 local statue_box = {
 	type = "fixed",
 	fixed = {
@@ -119,6 +122,7 @@ hunter_statue.register_hunter_statue = function(node_name, statue_def)
 					nearest_player:add_velocity(vector.multiply(vector.direction(pos, nearest_pos), knockback))
 					nearest_player:set_hp(math.max(nearest_player:get_hp() - damage*armour_multiplier, 0))
 					minetest.sound_play({name="hunter_statue_thud"}, {pos = nearest_pos})
+					hunter_statue.player_punched(node_name, pos, nearest_player)
 					return
 				end
 				local player_dir = vector.direction(pos, nearest_pos)

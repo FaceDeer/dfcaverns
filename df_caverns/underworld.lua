@@ -310,6 +310,8 @@ local get_pit = function(pos)
 	return {location = location, radius = radius, variance = variance, depth = depth}
 end
 
+df_caverns.get_nearest_glowing_pit = get_pit
+
 local perlin_pit = {
 	offset = 0,
 	scale = 1,

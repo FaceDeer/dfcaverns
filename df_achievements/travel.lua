@@ -173,58 +173,60 @@ end)
 
 --biomes
 
+local cavern_background = "dfcaverns_awards_cavern_backgroundx32.png^dfcaverns_awards_cavern_background_stalactitex32.png^dfcaverns_awards_cavern_background_platformx32.png"
+
 awards.register_achievement("dfcaverns_visit_tower_cap", {
 	title = S("Discover Tower Caps"),
 	description = S("Discover a cavern where Tower Caps grow in the wild."),
-	--icon =,
+	icon =cavern_background.."^dfcaverns_awards_cavern_towercapx32.png",
 })
 
 awards.register_achievement("dfcaverns_visit_fungiwood", {
 	title = S("Discover Fungiwood"),
 	description = S("Discover a cavern where Fungiwoods grow in the wild."),
-	--icon =,
+	icon =cavern_background.."^dfcaverns_awards_cavern_fungiwoodx32.png",
 })
 
 awards.register_achievement("dfcaverns_visit_goblin_cap", {
 	title = S("Discover Goblin Caps"),
 	description = S("Discover a cavern where Goblin Caps grow in the wild."),
-	--icon =,
+	icon =cavern_background.."^dfcaverns_awards_cavern_goblincapx32.png",
 })
 
 awards.register_achievement("dfcaverns_visit_spore_tree", {
 	title = S("Discover Spore Trees"),
 	description = S("Discover a cavern where Spore Trees grow in the wild."),
-	--icon =,
+	icon =cavern_background.."^dfcaverns_awards_cavern_sporetreesx32.png",
 })
 
 awards.register_achievement("dfcaverns_visit_tunnel_tube", {
 	title = S("Discover Tunnel Tubes"),
 	description = S("Discover a cavern where Tunnel Tubes grow in the wild."),
-	--icon =,
+	icon =cavern_background.."^dfcaverns_awards_cavern_tunneltubex32.png",
 })
 
 awards.register_achievement("dfcaverns_visit_nethercap", {
 	title = S("Discover @1s", nethercap_name),
 	description = S("Discover a cavern where @1s grow in the wild.", nethercap_name),
-	--icon =,
+	icon =cavern_background.."^dfcaverns_awards_cavern_nethercapx32.png",
 })
 
 awards.register_achievement("dfcaverns_visit_blood_thorn", {
 	title = S("Discover Bloodthorns"),
 	description = S("Discover a cavern where Bloodthorns grow in the wild."),
-	--icon =,
+	icon =cavern_background.."^dfcaverns_awards_cavern_bloodthornx32.png",
 })
 
 awards.register_achievement("dfcaverns_visit_black_cap", {
 	title = S("Discover Black Caps"),
 	description = S("Discover a cavern where Black Caps grow in the wild."),
-	--icon =,
+	icon =cavern_background.."^dfcaverns_awards_cavern_blackcapx32.png",
 })
 
 awards.register_achievement("dfcaverns_visit_sunless_sea", {
 	title = S("Discover the Sunless Sea"),
 	description = S("Discover the giant caverns to which all water from the surface ultimately drain."),
-	--icon =,
+	icon =cavern_background.."^dfcaverns_awards_cavern_seax32.png^dfcaverns_awards_cavern_towercapx32.png^dfcaverns_awards_cavern_fungiwoodx32.png^dfcaverns_awards_cavern_goblincapx32.png^dfcaverns_awards_cavern_sporetreesx32.png",
 })
 
 awards.register_achievement("dfcaverns_visit_all_upper_biomes", {

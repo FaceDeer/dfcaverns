@@ -12,7 +12,7 @@ for itemname, def in pairs(minetest.registered_items) do
 		awards.register_achievement("dfcaverns_meal_"..meal_name, {
 			title = S("Eat @1", meal_desc),
 			description = S("One of the many delights that can be crafted only from fungal growths found deep underground."),
-			icon = image,
+			icon = "dfcaverns_awards_backgroundx32.png^" .. image .. "^dfcaverns_awards_foregroundx32.png",
 			trigger = {
 				type = "eat",
 				item = itemname,
@@ -45,7 +45,7 @@ if minetest.get_modpath("df_primordial_items") then
 	awards.register_achievement("dfcaverns_primordial_fruit", {
 		title = S("Eat a Primordial Fruit"),
 		description = S(""),
-		--icon =,
+		icon ="dfcaverns_awards_backgroundx32.png^dfcaverns_primordial_fruit.png^dfcaverns_awards_foregroundx32.png",
 		trigger = {
 			type = "eat",
 			item = "df_primordial_items:primordial_fruit",
@@ -56,7 +56,7 @@ if minetest.get_modpath("df_primordial_items") then
 	awards.register_achievement("dfcaverns_glowtato", {
 		title = S("Eat a Glowtato"),
 		description = S(""),
-		--icon =,
+		icon ="dfcaverns_awards_backgroundx32.png^dfcaverns_glowtato.png^dfcaverns_awards_foregroundx32.png",
 		trigger = {
 			type = "eat",
 			item = "df_primordial_items:glowtato",

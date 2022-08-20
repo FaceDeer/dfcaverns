@@ -1,31 +1,42 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 local nethercap_name = df_dependencies.nethercap_name
 
+local hoe_texture = df_dependencies.texture_tool_steelhoe
+local soil_texture = df_dependencies.texture_farming_soil
+local ice_texture = df_dependencies.texture_ice
+local coal_ore = "(".. df_dependencies.texture_stone .."^".. df_dependencies.texture_mineral_coal ..")"
+
+local make_texture = function(plant_texture, bg_tex)
+	bg_tex = bg_tex or soil_texture
+	plant_texture = plant_texture or "dfcaverns_black_cap_sapling.png"
+	return "dfcaverns_awards_backgroundx32.png^[combine:32x32:3,4="..bg_tex.."^[combine:32x32:3,2="..plant_texture.."^[combine:32x32:14,13="..hoe_texture.."^dfcaverns_awards_foregroundx32.png"
+end
+
 -- forestry
 
 local plant_node_achievements =
 {
-	["df_trees:black_cap_sapling"] = {achievement="dfcaverns_plant_black_cap", title=S("Plant Black Cap"), desc=S(""), icon=""},
-	["df_trees:fungiwood_sapling"] = {achievement="dfcaverns_plant_fungiwood", title=S("Plant Fungiwood"), desc=S(""), icon=""},
-	["df_trees:goblin_cap_sapling"] = {achievement="dfcaverns_plant_goblin_cap", title=S("Plant Goblin Cap"), desc=S(""), icon=""},
-	["df_trees:nether_cap_sapling"] = {achievement="dfcaverns_plant_nethercap", title=S("Plant @1", nethercap_name), desc=S(""), icon=""},
-	["df_trees:spore_tree_sapling"] = {achievement="dfcaverns_plant_spore_tree", title=S("Plant Spore Tree"), desc=S(""), icon=""},
-	["df_trees:tower_cap_sapling"] = {achievement="dfcaverns_plant_tower_cap", title=S("Plant Tower Cap"), desc=S(""), icon=""},
-	["df_trees:tunnel_tube_sapling"] = {achievement="dfcaverns_plant_tunnel_tube", title=S("Plant Tunnel Tube"), desc=S(""), icon=""},
-	["df_trees:torchspine_ember"] = {achievement="dfcaverns_plant_torchspine", title=S("Plant Torchspine"), desc=S(""), icon=""},
-	["df_trees:spindlestem_seedling"] = {achievement="dfcaverns_plant_spindlestem", title=S("Plant Spindlestem"), desc=S(""), icon=""},
-	["df_trees:blood_thorn"] = {achievement="dfcaverns_plant_bloodthorn", title=S("Plant Bloodthorn"), desc=S(""), icon=""},
-	["df_primordial_items:giant_hypha_apical_meristem"] = {achievement="dfcaverns_plant_giant_mycelium", title=S("Plant Primordial Mycelium"), desc=S(""), icon=""},
-	["df_primordial_items:fern_sapling"] = {achievement="dfcaverns_plant_primordial_fern", title=S("Plant Primordial Fern"), desc=S(""), icon=""},
-	["df_primordial_items:jungle_mushroom_sapling"] = {achievement="dfcaverns_plant_primordial_jungle_mushroom", title=S("Plant Primordial Jungle Mushroom"), desc=S(""), icon=""},
-	["df_primordial_items:jungletree_sapling"] = {achievement="dfcaverns_plant_primordial_jungletree", title=S("Plant Primordial Jungle Tree"), desc=S(""), icon=""},
-	["df_primordial_items:mush_sapling"] = {achievement="dfcaverns_plant_primordial_mushroom", title=S("Plant Primordial Mushroom"), desc=S(""), icon=""},
-	["df_farming:cave_wheat_seed"] = {achievement="dfcaverns_plant_cave_wheat", title=S("Plant Cave Wheat"), desc=S(""), icon=""},
-	["df_farming:dimple_cup_seed"] = {achievement="dfcaverns_plant_dimple_cup", title=S("Plant Dimple Cup"), desc=S(""), icon=""},
-	["df_farming:pig_tail_seed"] = {achievement="dfcaverns_plant_pig_tail", title=S("Plant Pig Tail"), desc=S(""), icon=""},
-	["df_farming:plump_helmet_spawn"] = {achievement="dfcaverns_plant_plump_helmet", title=S("Plant Plump Helmet"), desc=S(""), icon=""},
-	["df_farming:quarry_bush_seed"] = {achievement="dfcaverns_plant_quarry_bush", title=S("Plant Quarry Bush"), desc=S(""), icon=""},
-	["df_farming:sweet_pod_seed"] = {achievement="dfcaverns_plant_sweet_pod", title=S("Plant Sweet Pod"), desc=S(""), icon=""},
+	["df_trees:black_cap_sapling"] = {achievement="dfcaverns_plant_black_cap", title=S("Plant Black Cap"), desc=S(""), icon=make_texture("dfcaverns_black_cap_sapling.png", coal_ore)},
+	["df_trees:fungiwood_sapling"] = {achievement="dfcaverns_plant_fungiwood", title=S("Plant Fungiwood"), desc=S(""), icon=make_texture("dfcaverns_fungiwood_sapling.png")},
+	["df_trees:goblin_cap_sapling"] = {achievement="dfcaverns_plant_goblin_cap", title=S("Plant Goblin Cap"), desc=S(""), icon=make_texture("dfcaverns_goblin_cap_sapling.png")},
+	["df_trees:nether_cap_sapling"] = {achievement="dfcaverns_plant_nethercap", title=S("Plant @1", nethercap_name), desc=S(""), icon=make_texture("dfcaverns_nether_cap_sapling.png", ice_texture)},
+	["df_trees:spore_tree_sapling"] = {achievement="dfcaverns_plant_spore_tree", title=S("Plant Spore Tree"), desc=S(""), icon=make_texture("dfcaverns_spore_tree_sapling.png")},
+	["df_trees:tower_cap_sapling"] = {achievement="dfcaverns_plant_tower_cap", title=S("Plant Tower Cap"), desc=S(""), icon=make_texture("dfcaverns_tower_cap_sapling.png")},
+	["df_trees:tunnel_tube_sapling"] = {achievement="dfcaverns_plant_tunnel_tube", title=S("Plant Tunnel Tube"), desc=S(""), icon=make_texture("dfcaverns_tunnel_tube_sapling.png")},
+	["df_trees:torchspine_ember"] = {achievement="dfcaverns_plant_torchspine", title=S("Plant Torchspine"), desc=S(""), icon=make_texture("dfcaverns_torchspine_achievement.png")},
+	["df_trees:spindlestem_seedling"] = {achievement="dfcaverns_plant_spindlestem", title=S("Plant Spindlestem"), desc=S(""), icon=make_texture("dfcaverns_spindlestem_achievement.png")},
+	["df_trees:blood_thorn"] = {achievement="dfcaverns_plant_bloodthorn", title=S("Plant Bloodthorn"), desc=S(""), icon=make_texture("dfcaverns_bloodthorn_achievement.png")},
+	["df_primordial_items:giant_hypha_apical_meristem"] = {achievement="dfcaverns_plant_giant_mycelium", title=S("Plant Primordial Mycelium"), desc=S(""), icon=make_texture("dfcaverns_mush_soil.png")},
+	["df_primordial_items:fern_sapling"] = {achievement="dfcaverns_plant_primordial_fern", title=S("Plant Primordial Fern"), desc=S(""), icon=make_texture("dfcaverns_jungle_fern_03.png")},
+	["df_primordial_items:jungle_mushroom_sapling"] = {achievement="dfcaverns_plant_primordial_jungle_mushroom", title=S("Plant Primordial Jungle Mushroom"), desc=S(""), icon=make_texture("dfcaverns_jungle_mushroom_02.png")},
+	["df_primordial_items:jungletree_sapling"] = {achievement="dfcaverns_plant_primordial_jungletree", title=S("Plant Primordial Jungle Tree"), desc=S(""), icon=make_texture("dfcaverns_jungle_sapling.png")},
+	["df_primordial_items:mush_sapling"] = {achievement="dfcaverns_plant_primordial_mushroom", title=S("Plant Primordial Mushroom"), desc=S(""), icon=make_texture("dfcaverns_mush_sapling.png")},
+	["df_farming:cave_wheat_seed"] = {achievement="dfcaverns_plant_cave_wheat", title=S("Plant Cave Wheat"), desc=S(""), icon=make_texture("dfcaverns_cave_wheat_8.png")},
+	["df_farming:dimple_cup_seed"] = {achievement="dfcaverns_plant_dimple_cup", title=S("Plant Dimple Cup"), desc=S(""), icon=make_texture("dfcaverns_dimple_cup_4.png")},
+	["df_farming:pig_tail_seed"] = {achievement="dfcaverns_plant_pig_tail", title=S("Plant Pig Tail"), desc=S(""), icon=make_texture("dfcaverns_pig_tail_8.png")},
+	["df_farming:plump_helmet_spawn"] = {achievement="dfcaverns_plant_plump_helmet", title=S("Plant Plump Helmet"), desc=S(""), icon=make_texture("dfcaverns_plump_helmet_achievement.png")},
+	["df_farming:quarry_bush_seed"] = {achievement="dfcaverns_plant_quarry_bush", title=S("Plant Quarry Bush"), desc=S(""), icon=make_texture("dfcaverns_quarry_bush_5.png")},
+	["df_farming:sweet_pod_seed"] = {achievement="dfcaverns_plant_sweet_pod", title=S("Plant Sweet Pod"), desc=S(""), icon=make_texture("dfcaverns_sweet_pod_6.png")},
 }
 
 minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
@@ -74,7 +85,7 @@ for _, def in pairs(plant_node_achievements) do
 	awards.register_achievement(def.achievement, {
 		title = def.title,
 		description = def.desc,
-		--icon = def.icon,
+		icon = def.icon,
 	})
 end
 

@@ -1,3 +1,11 @@
+if not minetest.get_modpath("awards") then
+	minetest.log("warning", "[df_achievements] the df_achievements mod was installed but the [awards] mod was not."
+		.. " df_achievements depends on awards, but it is listed as an optional dependency so that installing the"
+		.. " dfcaverns modpack won't automatically enable it. If you want df_achievements to function please"
+		.. " install awards as well, otherwise you should disable df_achievements.")
+	return
+end
+
 df_achievements = {}
 
 local S = minetest.get_translator(minetest.get_current_modname())

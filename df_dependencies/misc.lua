@@ -47,6 +47,8 @@ df_dependencies.texture_mineral_coal = select_required({default="default_mineral
 df_dependencies.texture_glass_bottle = select_required({vessels="vessels_glass_bottle.png",	mcl_potions="mcl_potions_potion_bottle.png"})
 df_dependencies.texture_meselamp = "dfcaverns_glow_mese.png"
 
+df_dependencies.texture_tool_steelhoe = select_required({default="farming_tool_steelhoe.png", mcl_farming="farming_tool_steelhoe.png"})
+df_dependencies.texture_farming_soil = select_required({default="(default_dirt.png^farming_soil.png)",  mcl_farming="mcl_farming_farmland_dry.png"})
 
 df_dependencies.nethercap_name = S("Nethercap")
 if minetest.get_modpath("mcl_mapgen_core") then

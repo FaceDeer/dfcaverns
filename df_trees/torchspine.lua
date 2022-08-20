@@ -9,6 +9,15 @@ local looped_node_sound_modpath = minetest.get_modpath("looped_node_sound")
 local x_disp = 0.125
 local z_disp = 0.125
 
+local function copy_pointed_thing(pointed_thing)
+	return {
+		type  = pointed_thing.type,
+		above = pointed_thing.above and vector.copy(pointed_thing.above),
+		under = pointed_thing.under and vector.copy(pointed_thing.under),
+		ref   = pointed_thing.ref,
+	}
+end
+
 local stal_on_place = function(itemstack, placer, pointed_thing)
 	local pt = pointed_thing
 	-- check if pointing at a node
@@ -45,8 +54,24 @@ local stal_on_place = function(itemstack, placer, pointed_thing)
 	end
 
 	-- add the node and remove 1 item from the itemstack
+	local newnode= {name = itemstack:get_name(), param2 = new_param2, param1=0}
+	local oldnode= minetest.get_node(pt.above)
 	minetest.add_node(pt.above, {name = itemstack:get_name(), param2 = new_param2})
-	if not minetest.settings:get_bool("creative_mode", false) then
+	
+	-- Run script hook
+	local take_item = true
+	for _, callback in ipairs(core.registered_on_placenodes) do
+		-- Deepcopy pos, node and pointed_thing because callback can modify them
+		local place_to_copy = vector.copy(pt.above)
+		local newnode_copy = {name=newnode.name, param1=newnode.param1, param2=newnode.param2}
+		local oldnode_copy = {name=oldnode.name, param1=oldnode.param1, param2=oldnode.param2}
+		local pointed_thing_copy = copy_pointed_thing(pointed_thing)
+		if callback(place_to_copy, newnode_copy, placer, oldnode_copy, itemstack, pointed_thing_copy) then
+			take_item = false
+		end
+	end
+	
+	if (not minetest.settings:get_bool("creative_mode", false)) and take_item then
 		itemstack:take_item()
 	end
 	return itemstack

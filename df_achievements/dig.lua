@@ -1,5 +1,10 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
+local steel_pick = df_dependencies.texture_tool_steelpick
+local steel_shovel = df_dependencies.texture_tool_steelshovel
+
+local crossed_pick_and_shovel = "((("..steel_shovel.."^[transformFX)^"..steel_pick..")^[resize:32x32)"
+
 awards.register_achievement("dfcaverns_destroyed_gas_seep", {
 	title = S("Destroy a Gas Seep"),
 	description = S(""),
@@ -127,7 +132,7 @@ awards.register_achievement("dfcaverns_glow_stone", {
 awards.register_achievement("dfcaverns_prospector", {
 	title = S("Deep Prospector"),
 	description = S(""),
-	--icon =,
+	icon = "dfcaverns_awards_backgroundx32.png^"..crossed_pick_and_shovel.."^dfcaverns_awards_foregroundx32.png",
 })
 
 

@@ -48,6 +48,8 @@ df_dependencies.texture_glass_bottle = select_required({vessels="vessels_glass_b
 df_dependencies.texture_meselamp = "dfcaverns_glow_mese.png"
 
 df_dependencies.texture_tool_steelhoe = select_required({default="farming_tool_steelhoe.png", mcl_farming="farming_tool_steelhoe.png"})
+df_dependencies.texture_tool_steelpick = select_required({default="default_tool_steelpick.png", mcl_farming="default_tool_steelpick.png"})
+df_dependencies.texture_tool_steelshovel = select_required({default="default_tool_steelshovel.png", mcl_farming="default_tool_steelshovel.png"})
 df_dependencies.texture_farming_soil = select_required({default="(default_dirt.png^farming_soil.png)",  mcl_farming="mcl_farming_farmland_dry.png"})
 
 df_dependencies.nethercap_name = S("Nethercap")

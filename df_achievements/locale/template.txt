@@ -1,6 +1,28 @@
 # textdomain: df_achievements
 
 
+### dig.lua ###
+
+"Collect" Lightseam Stone=
+Collect Castle Coral=
+Collect Cave Coral=
+Collect Cave Pearls=
+Collect Flawless Mese Crystal Block=
+Collect Giant Red Crystal=
+Collect Giant Webbing=
+Collect Glow Worms=
+Collect Glowing Amethyst=
+Collect Luminous Salt Crystal=
+Deep Prospector=
+Destroy a Gas Seep=
+
+### dig.lua ###
+### farming.lua ###
+### food.lua ###
+### misc.lua ###
+
+=
+
 ### farming.lua ###
 
 Plant @1=
@@ -9,7 +31,7 @@ Plant All Fungal Tree Types=
 Plant All Primordial Tree Types=
 Plant All Underground Tree Types=
 Plant Black Cap=
-Plant Blood Thorn=
+Plant Bloodthorn=
 Plant Cave Wheat=
 Plant Dimple Cup=
 Plant Fungiwood=
@@ -29,21 +51,25 @@ Plant Torchspine=
 Plant Tower Cap=
 Plant Tunnel Tube=
 
-### farming.lua ###
-### init.lua ###
+### food.lua ###
 
-=
+Dwarven Gourmand=
+Eat @1=
+Eat Diced Mushroom=
+Eat a Glowtato=
+Eat a Primordial Fruit=
 
-### init.lua ###
+Eat one of each of the various meals that can be cooked from underground ingredients.=
+
+One of the many delights that can be crafted only from fungal growths found deep underground.=
+
+
+### misc.lua ###
 
 Capture an Ice Sprite=
-Collect Cave Pearls=
-Collect Giant Crystals=
-Destroy a Gas Seep=
 Detonate Mine Gas=
-Discover Castle Coral=
-Discover Giant Webbing=
 Get Attacked by an Underworld Guardian=
+Loot 100 Ancient Warrior Bones=
 Loot Ancient Warrior Bones=
 Punch Veinstone=
 Repair 100 Ancient Lanterns=
@@ -51,7 +77,7 @@ Repair an Ancient Lantern=
 Solve a Puzzle Seal=
 Trigger a Slade Breacher=
 
-You've captured an ice sprite and placed it in a bottle. It dances and sparkles and sheds light through the frosted glass. Pretty.=
+You've captured an ice sprite and placed it in a bottle. It dances and sparkles and sheds light through the frosted glass while making a faint tinkling sound. Pretty.=
 
 
 ### travel.lua ###
@@ -67,7 +93,6 @@ Discover Goblin Caps=
 Discover Spore Trees=
 Discover Tower Caps=
 Discover Tunnel Tubes=
-Discover Underworld Ruins=
 Discover a Deep Chasm=
 Discover a Deep Sinkhole=
 Discover a Glowing Pit=
@@ -90,9 +115,8 @@ Discover all major kinds of giant cavern environment.=
 
 Discover all of the major types of cavern below the foundations of the world.=
 
-Discover all of the major types of cavern environments above the foundations of the world.=
+Discover all of the major types of cavern environments between the Sunless Sea and the foundations of the world.=
 
-Discover ancient ruins made of slade in the Underworld.=
 Discover examples of all of the fungal cavern biomes.=
 Discover the Magma Sea=
 Discover the Oil Sea=
@@ -110,7 +134,3 @@ Discover the giant caverns to which all water from the surface ultimately drain.
 Discover the lost jungles below the foundations of the world.=
 
 Discover the sea of magma that volcanoes draw from.=
-Got Beneath the Slade=
-
-Somehow get beneath the impenetrable layer of slade that borders the Underworld.=
-

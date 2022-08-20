@@ -36,9 +36,9 @@ awards.register_on_unlock(function(player_name, def)
 end)
 
 awards.register_achievement("dfcaverns_gourmand", {
-	title = S("Subterranean Gourmand"),
+	title = S("Dwarven Gourmand"),
 	description = S("Eat one of each of the various meals that can be cooked from underground ingredients."),
-	--icon =,
+	icon ="dfcaverns_awards_backgroundx32.png^dfcaverns_gourmand_achievement.png^dfcaverns_awards_foregroundx32.png",
 })
 
 if minetest.get_modpath("df_primordial_items") then

@@ -51,6 +51,7 @@ local punch_fix = function(pos, node, puncher, pointed_thing)
 			wielded:take_item()
 			puncher:set_wielded_item(wielded)
 		end
+		df_underworld_items.ancient_lantern_fixed(pos, puncher)
 		return
 	end
 	minetest.node_punch(pos, node, puncher, pointed_thing)

@@ -8,7 +8,6 @@ local coal_ore = "(".. df_dependencies.texture_stone .."^".. df_dependencies.tex
 
 local make_texture = function(plant_texture, bg_tex)
 	bg_tex = bg_tex or soil_texture
-	plant_texture = plant_texture or "dfcaverns_black_cap_sapling.png"
 	return "dfcaverns_awards_backgroundx32.png^[combine:32x32:3,4="..bg_tex.."^[combine:32x32:3,2="..plant_texture.."^[combine:32x32:14,13="..hoe_texture.."^dfcaverns_awards_foregroundx32.png"
 end
 
@@ -23,7 +22,7 @@ local plant_node_achievements =
 	["df_trees:spore_tree_sapling"] = {achievement="dfcaverns_plant_spore_tree", title=S("Plant Spore Tree"), desc=S(""), icon=make_texture("dfcaverns_spore_tree_sapling.png")},
 	["df_trees:tower_cap_sapling"] = {achievement="dfcaverns_plant_tower_cap", title=S("Plant Tower Cap"), desc=S(""), icon=make_texture("dfcaverns_tower_cap_sapling.png")},
 	["df_trees:tunnel_tube_sapling"] = {achievement="dfcaverns_plant_tunnel_tube", title=S("Plant Tunnel Tube"), desc=S(""), icon=make_texture("dfcaverns_tunnel_tube_sapling.png")},
-	["df_trees:torchspine_ember"] = {achievement="dfcaverns_plant_torchspine", title=S("Plant Torchspine"), desc=S(""), icon=make_texture("dfcaverns_torchspine_achievement.png")},
+	["df_trees:torchspine_ember"] = {achievement="dfcaverns_plant_torchspine", title=S("Plant Torchspine"), desc=S(""), icon=make_texture("dfcaverns_torchspine_achievement.png", coal_ore)},
 	["df_trees:spindlestem_seedling"] = {achievement="dfcaverns_plant_spindlestem", title=S("Plant Spindlestem"), desc=S(""), icon=make_texture("dfcaverns_spindlestem_achievement.png")},
 	["df_trees:blood_thorn"] = {achievement="dfcaverns_plant_bloodthorn", title=S("Plant Bloodthorn"), desc=S(""), icon=make_texture("dfcaverns_bloodthorn_achievement.png")},
 	["df_primordial_items:giant_hypha_apical_meristem"] = {achievement="dfcaverns_plant_giant_mycelium", title=S("Plant Primordial Mycelium"), desc=S(""), icon=make_texture("dfcaverns_mush_soil.png")},

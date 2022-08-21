@@ -7,28 +7,71 @@ if not minetest.get_modpath("awards") then
 end
 
 df_achievements = {}
+local achievement_parents = {}
+df_achievements.get_child_achievement_count = function(parent_achievement)
+	return #achievement_parents[parent_achievement]
+end
 
-local S = minetest.get_translator(minetest.get_current_modname())
-local nethercap_name = df_dependencies.nethercap_name
+local register_achievement_old = awards.register_achievement
+awards.register_achievement = function(achievement_name, achievement_def, ...)
+	register_achievement_old(achievement_name, achievement_def, ...)
+	
+	if achievement_def._dfcaverns_achievements then
+		for _, parent_achievement in pairs(achievement_def._dfcaverns_achievements) do
+			local parent_source_list = achievement_parents[parent_achievement] or {}
+			achievement_parents[parent_achievement] = parent_source_list
+			table.insert(parent_source_list, achievement_name)
+			minetest.debug(achievement_name .. " added to list for " .. parent_achievement)
+		end
+	end
+end
+
+
+-- used to track the progress of achievements that are based off of other achievements
+awards.register_trigger("dfcaverns_achievements", {
+	type="counted_key",
+	progress = "@1/@2", -- awards seems to use a conflicting syntax with internationalization, ick. Avoid words here.
+	get_key = function(self, def)
+		return def.trigger.achievement_name
+	end,
+})
 
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 
--- used in a few places in this mod
-df_achievements.test_list = function(player_name, target_achievement, unlocked, target_list)
-	if unlocked[target_achievement] == target_achievement then
-		return
+
+
+awards.register_on_unlock(function(player_name, def)
+	local def_dfcaverns_achievements = def._dfcaverns_achievements
+	if not def_dfcaverns_achievements then return end
+	local player_awards = awards.player(player_name)
+	if not player_awards then return end	
+	local unlocked = player_awards.unlocked
+	if not unlocked then return end
+	--local player = minetest.get_player_by_name(player_name)
+	--if not player then return end
+	
+	-- the achievement that just got unlocked had one or more "parent" achievements associated with it.
+	for _, achievement_parent in pairs(def_dfcaverns_achievements) do
+		minetest.debug("updating achievement type " .. achievement_parent)
+		--if unlocked[achievement_parent] ~= achievement_parent then -- this should theoretically never fail
+			player_awards.dfcaverns_achievements = player_awards.dfcaverns_achievements or {}
+			local source_list = achievement_parents[achievement_parent]
+			local total = #source_list
+			local count = 0
+			for _, source_achievement in pairs(source_list) do
+				if unlocked[source_achievement] == source_achievement then count = count + 1 end
+			end
+			player_awards.dfcaverns_achievements[achievement_parent] = count
+			minetest.debug(dump(player_awards))
+			awards.save()
+			if count >= total then
+				minetest.after(4, awards.unlock, player_name, achievement_parent)
+			end			
+		--end
 	end
-	local none_missing = true
-	for _, achievement in pairs(target_list) do
-		if unlocked[achievement] ~= achievement then
-			none_missing = false
-			break
-		end
-	end
-	if none_missing then
-		minetest.after(4, function() awards.unlock(player_name, target_achievement) end)
-	end
-end
+end)
+
+
 
 dofile(modpath.."/travel.lua")
 dofile(modpath.."/farming.lua")

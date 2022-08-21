@@ -1,7 +1,5 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
-local all_meals = {}
-
 for itemname, def in pairs(minetest.registered_items) do
 	--"df_farming:"..item_name.."_"..recipe_type.name.."_meal"
 	if string.sub(itemname, 1, 11) == "df_farming:" and string.sub(itemname, -5, -1) == "_meal" then
@@ -18,8 +16,8 @@ for itemname, def in pairs(minetest.registered_items) do
 				item = itemname,
 				target = 1
 			},
+			_dfcaverns_achievements = {"dfcaverns_gourmand"},
 		})
-		table.insert(all_meals, "dfcaverns_meal_"..meal_name)
 	end
 end
 
@@ -32,26 +30,19 @@ awards.register_achievement("dfcaverns_meal_dwarven_bread", {
 		type = "eat",
 		item = "df_farming:cave_bread",
 		target = 1,
-	}
+	},
+	_dfcaverns_achievements = {"dfcaverns_gourmand"},
 })
-table.insert(all_meals, "dfcaverns_meal_dwarven_bread")
-
-local test_list = df_achievements.test_list
---    name is the player name
---    def is the award def.
-awards.register_on_unlock(function(player_name, def)
-	local player_awards = awards.player(player_name)
-	if not player_awards or not player_awards.unlocked then
-		return
-	end
-	local unlocked = player_awards.unlocked
-	test_list(player_name, "dfcaverns_gourmand", unlocked, all_meals)
-end)
 
 awards.register_achievement("dfcaverns_gourmand", {
 	title = S("Dwarven Gourmand"),
 	description = S("Eat one of each of the various meals that can be cooked from underground ingredients."),
 	icon ="dfcaverns_awards_backgroundx32.png^dfcaverns_prepared_food28x32.png^dfcaverns_gourmand_achievement.png^dfcaverns_awards_foregroundx32.png",
+	trigger = {
+		type="dfcaverns_achievements",
+		achievement_name="dfcaverns_gourmand",
+		target=df_achievements.get_child_achievement_count("dfcaverns_gourmand"),
+	}
 })
 
 if minetest.get_modpath("df_primordial_items") then

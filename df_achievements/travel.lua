@@ -59,18 +59,22 @@ minetest.register_globalstep(function(dtime)
 
 	local player_name
 	local player_awards
+	local unlocked
 	local player_data
+	local biome
+	local totals
 
 	-- loop through players
 	for _, player in pairs(minetest.get_connected_players()) do
 		player_name = player:get_player_name()
 		player_awards = awards.player(player_name)
-		if player_awards.unlocked["dfcaverns_visit_all_caverns"] ~= "dfcaverns_visit_all_caverns" or
-			player_awards.unlocked["dfcaverns_visit_glowing_pit"] ~= "dfcaverns_visit_glowing_pit" then
+		unlocked = player_awards.unlocked or {}
+		
+		if unlocked["dfcaverns_visit_all_caverns"] ~= "dfcaverns_visit_all_caverns" or
+			unlocked["dfcaverns_visit_glowing_pit"] ~= "dfcaverns_visit_glowing_pit" then
 			player_data = get_player_data(player)
 			biome = player_data.biome
 			totals = player_data.totals
-			
 			if biome == "towercap" and check_nodes(node_types.towercap, totals) then
 				awards.unlock(player_name, "dfcaverns_visit_tower_cap")
 			elseif biome == "fungiwood" and check_nodes(node_types.fungiwood, totals) then
@@ -106,7 +110,7 @@ minetest.register_globalstep(function(dtime)
 					awards.unlock(player_name, "dfcaverns_visit_underworld")
 				end
 				if (totals["df_underworld_items:glow_amethyst"] or 0) > 1 and
-					player_awards.unlocked["dfcaverns_visit_glowing_pit"] ~= "dfcaverns_visit_glowing_pit" then
+					unlocked["dfcaverns_visit_glowing_pit"] ~= "dfcaverns_visit_glowing_pit" then
 					local player_pos = player:get_pos()
 					local pit = df_caverns.get_nearest_glowing_pit(player_pos)
 					pit.location.y = player_pos.y
@@ -122,10 +126,10 @@ minetest.register_globalstep(function(dtime)
 				awards.unlock(player_name, "dfcaverns_visit_primordial_jungle")
 			end
 		end
-		if player_awards.unlocked["dfcaverns_visit_chasm"] ~= "dfcaverns_visit_chasm" and chasms.is_in_chasm(player:get_pos()) then
+		if unlocked["dfcaverns_visit_chasm"] ~= "dfcaverns_visit_chasm" and chasms.is_in_chasm(player:get_pos()) then
 			awards.unlock(player_name, "dfcaverns_visit_chasm")
 		end
-		if player_awards.unlocked["dfcaverns_visit_pit"] ~= "dfcaverns_visit_pit" then
+		if unlocked["dfcaverns_visit_pit"] ~= "dfcaverns_visit_pit" then
 			local pos = player:get_pos()
 			local pos_y = pos.y
 			if pos_y < -30 then -- ignore pits when near the surface

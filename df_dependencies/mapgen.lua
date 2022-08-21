@@ -37,7 +37,10 @@ df_dependencies.mods_required.mcl_mapgen = true
 
 local old_overworld_min
 
+local ores_extended = false
 local extend_ores = function()
+	if ores_extended then return end -- should only do this once.
+	ores_extended = true
 	local ores_registered = {}
 	for key, val in pairs(minetest.registered_ores) do
 		ores_registered[val.ore] = true
@@ -75,16 +78,19 @@ local extend_ores = function()
 		local blob_copy = deep_copy(stone_blobs)
 		blob_copy.ore = ore
 		blob_copy.clust_num_ores = cluster_size
+		blob_copy.clust_size = math.ceil(math.sqrt(cluster_size))
+		blob_copy.clust_scarcity = cluster_scarcity_cuberoot*cluster_scarcity_cuberoot*cluster_scarcity_cuberoot
 		blob_copy.seed = localseed
-		blob_copy.cluster_scarcity = cluster_scarcity_cuberoot*cluster_scarcity_cuberoot*cluster_scarcity_cuberoot
 		blob_copy.y_min = ymin or stone_blobs.y_min
 		blob_copy.y_max = ymax or stone_blobs.y_max
+		--minetest.debug(dump(blob_copy))
+		minetest.register_ore(blob_copy)
 	end
 
 	local scattered_ore = {
 		wherein        = wherein_stonelike,
 		ore_type       = "scatter",
-		ore            = "mcl_core:stone_with_coal",
+		--ore            = "mcl_core:stone_with_coal",
 		clust_scarcity = 525*3,
 		clust_num_ores = 5,
 		clust_size     = 3,
@@ -94,24 +100,27 @@ local extend_ores = function()
 		noise_threshold= 0,
 	}
 
-	local register_scattered_internal = function(ore, cluster_size, cluster_scarcity_cuberoot, threshold, ymin, ymax)
+	local register_scattered_internal = function(ore, cluster_size, cluster_scarcity_cuberoot, threshold, ymin, ymax, wherein)
 		local scattered_copy = deep_copy(scattered_ore)
 		scattered_copy.ore = ore
-		scattered_copy.cluster_size = cluster_size*cluster_size*cluster_size
-		scattered_copy.clust_num_ores = math.ceil(scattered_copy.cluster_size/3)
+		scattered_copy.clust_size = cluster_size*cluster_size*cluster_size
+		scattered_copy.clust_scarcity = cluster_scarcity_cuberoot*cluster_scarcity_cuberoot*cluster_scarcity_cuberoot
+		scattered_copy.clust_num_ores = math.ceil(scattered_copy.clust_size/3)
 		scattered_copy.seed = localseed
-		scattered_copy.cluster_scarcity = cluster_scarcity_cuberoot*cluster_scarcity_cuberoot*cluster_scarcity_cuberoot
 		scattered_copy.threshold = threshold
 		scattered_copy.y_min = ymin or scattered_ore.y_min
 		scattered_copy.y_max = ymax or scattered_ore.y_max
+		scattered_copy.wherein = wherein or scattered_ore.wherein
+		--minetest.debug(dump(scattered_copy))
+		minetest.register_ore(scattered_copy)
 	end
-	local register_scattered = function(ore, cluster_size, cluster_scarcity_cuberoot, ymin, ymax)
+	local register_scattered = function(ore, cluster_size, cluster_scarcity_cuberoot, ymin, ymax, wherein)
 		assert(not (ymin and ymax) or ymin < ymax, "Elevation parameter error for register_scattered")
 		localseed = localseed + 1 -- increment this every time it's called to ensure different distributions
 		-- same seed makes the noise patterns overlap.
 		-- one produces widespread smaller clusters, other produces larger clusters at the peaks of the noise in addition to the smaller ones
-		register_scattered_internal(ore, cluster_size, cluster_scarcity_cuberoot, 0, ymin, ymax)
-		register_scattered_internal(ore, cluster_size*2, cluster_scarcity_cuberoot, 0.25, ymin, ymax)
+		register_scattered_internal(ore, cluster_size, cluster_scarcity_cuberoot, 0, ymin, ymax, wherein)
+		register_scattered_internal(ore, cluster_size*2, cluster_scarcity_cuberoot, 0.25, ymin, ymax, wherein)
 	end
 
 	if ores_registered["mcl_core:diorite"] then
@@ -130,7 +139,10 @@ local extend_ores = function()
 		table.insert(wherein_stonelike, "mcl_core:granite")
 	end
 	if ores_registered["mcl_core:dirt"] then
-		register_blob("mcl_core:dirt", 33, 15)
+		register_blob("mcl_core:dirt", 33, 15, config.sunless_sea_min)
+		if config.enable_primordial then
+			register_blob("mcl_core:dirt", 33, 15, config.primordial_min, config.primoridal_max)
+		end
 	end
 	if ores_registered["mcl_core:gravel"] then
 		register_blob("mcl_core:gravel", 33, 14)
@@ -181,18 +193,21 @@ local extend_ores = function()
 		register_scattered("mcl_core:stone_with_copper", 3, 18)
 	end
 
+	if ores_registered["mcl_deepslate:deepslate"] then
+		register_blob("mcl_deepslate:deepslate", 33, 15, lowest_elevation, config.sunless_sea_min) -- it's called deepslate, so put it deep
+	end
+	if ores_registered["mcl_deepslate:tuff"] then
+		register_blob("mcl_deepslate:tuff", 33, 15, lowest_elevation, config.sunless_sea_min)
+	end
 
-	-- more blobs
-	--"mcl_deepslate:deepslate"
-	--"mcl_deepslate:tuff"
-
-	-- apparently very rare
-	--"mcl_deepslate:deepslate_with_emerald"
-	--"mcl_core:stone_with_emerald"
+	if ores_registered["mcl_deepslate:deepslate_with_emerald"] then
+		register_scattered("mcl_deepslate:deepslate_with_emerald", 1, 25, lowest_elevation, config.sunless_sea_min, "mcl_deepslate:deepslate")
+	end
+	if ores_registered["mcl_core:stone_with_emerald"] then
+		register_scattered("mcl_core:stone_with_emerald", 1, 25, lowest_elevation, config.sunless_sea_min)
+	end
 
 end
-
-
 
 if minetest.get_modpath("mcl_init") then -- Mineclone 2
 	
@@ -203,9 +218,11 @@ if minetest.get_modpath("mcl_init") then -- Mineclone 2
 	mcl_vars.mg_lava_overworld_max = mcl_vars.mg_overworld_min + 10
 	mcl_vars.mg_end_max = mcl_vars.mg_overworld_min - 2000
 
-	if minetest.settings:get_bool("mcl_generate_ores", true) then
+	-- shouldn't need to worry about the setting, extend_ores checks if the ores
+	-- have already been registered.
+	--if minetest.settings:get_bool("mcl_generate_ores", true) then
 		extend_ores()
-	end
+	--end
 
 	df_dependencies.mods_required.mcl_structures = true
 	-- never mind - add dependency on mcl_strongholds and these will get generated before overworld_min gets changed.
@@ -248,6 +265,8 @@ if minetest.get_modpath("mcl_mapgen") then -- Mineclone 5
 		.."does not have an mcl_mapgen.on_settings_changed method. This will likely result in "
 		.."altitudes below the original bedrock being inaccessible to players.")
 	end
+	
+	extend_ores()
 end
 if minetest.get_modpath("mcl_worlds") then
 	local old_has_weather = mcl_worlds.has_weather

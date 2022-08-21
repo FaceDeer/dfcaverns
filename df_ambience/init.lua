@@ -95,6 +95,8 @@ minetest.register_globalstep(function(dtime)
 	timer = 0
 
 	local player_name
+	local number
+	local ambience
 
 	-- loop through players
 	for _, player in pairs(minetest.get_connected_players()) do

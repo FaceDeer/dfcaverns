@@ -66,7 +66,7 @@ minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack
 	local achievement = plant_node_achievements[newnode.name]
 	if not achievement then return end
 	local achievement_name = achievement.achievement
-	if not player_awards or player_awards.unlocked[achievement_name] ~= achievement_name then
+	if not player_awards.unlocked or player_awards.unlocked[achievement_name] ~= achievement_name then
 		-- all of the growable plants in DFCaverns are timer-based. If you place
 		-- a seedling or seed and the resulting node has a timer running, then
 		-- it's passed the checks to see if it was placed in a growable area.

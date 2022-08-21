@@ -16,7 +16,7 @@ looped_node_sound.register = function(def)
 	local max_hear_distance = def.max_hear_distance or 32
 
 	-- Update sound for player
-	function update_player_sound(player)
+	local function update_player_sound(player)
 		local player_name = player:get_player_name()
 		-- Search for nodes in radius around player
 		local ppos = player:get_pos()

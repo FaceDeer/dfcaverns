@@ -10,6 +10,9 @@ df_achievements = {}
 
 local old_awards_version = false
 if awards.run_trigger_callbacks then
+	-- older versions of awards crash when attempting to use newer versions of triggers
+	-- this "run_trigger_callbacks" API call is present in those older versions, so using that
+	-- as a fingerprint to discover them
 	old_awards_version = true
 else
 	-- used to track the progress of achievements that are based off of other achievements
@@ -37,6 +40,8 @@ awards.register_achievement = function(achievement_name, achievement_def, ...)
 		achievement_def.trigger = nil
 	end
 
+	-- The achievement being registered has "parent" achievements that progress when it is unlocked,
+	-- track that here
 	if achievement_def._dfcaverns_achievements then
 		for _, parent_achievement in pairs(achievement_def._dfcaverns_achievements) do
 			local parent_source_list = achievement_parents[parent_achievement] or {}

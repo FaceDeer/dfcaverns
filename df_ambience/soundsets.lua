@@ -114,7 +114,7 @@ df_ambience.add_set({
 
 
 -- Oil sea
--- No soundset here, gas seeps make noise and that's valuable information for the player so don't disorient them with random noises
+-- No soundset here
 
 -- Lava sea
 
@@ -125,6 +125,7 @@ df_ambience.add_set({
 	nodes = {lava_source},
 	sounds = {
 		{name = "dfcaverns_massive_digging", gain = 1.0},
+		{name = "dfcaverns_avalanche", gain = 1.0},
 	},	
 	sound_check = function(def)
 		return df_caverns.get_biome(def.pos) == "lava_sea"

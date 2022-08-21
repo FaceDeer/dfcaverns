@@ -5,10 +5,12 @@ local steel_shovel = df_dependencies.texture_tool_steelshovel
 
 local crossed_pick_and_shovel = "((("..steel_shovel.."^[transformFX)^"..steel_pick..")^[resize:32x32)"
 
+local gas_seep = "(("..df_dependencies.texture_stone.."^"..df_dependencies.texture_mineral_coal.."^[combine:16x80:0,-16=crack_anylength.png)^[resize:32x32)"
+
 awards.register_achievement("dfcaverns_destroyed_gas_seep", {
 	title = S("Destroy a Gas Seep"),
 	description = S(""),
-	--icon =,
+	icon = "dfcaverns_awards_backgroundx32.png^" .. gas_seep .."^dfcaverns_awards_foregroundx32.png",
 	trigger = {
 		type = "dig",
 		node = "mine_gas:gas_seep",
@@ -66,7 +68,7 @@ awards.register_achievement("dfcaverns_castle_coral", {
 awards.register_achievement("dfcaverns_ruby_crystals", {
 	title = S("Collect Giant Red Crystal"),
 	description = S(""),
-	--icon =,
+	icon ="dfcaverns_awards_backgroundx32.png^dfcaverns_big_red_crystal_achievement.png^dfcaverns_awards_foregroundx32.png",
 	trigger = {
 		type = "dig",
 		node = "group:dfcaverns_big_crystal",

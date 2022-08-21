@@ -23,6 +23,19 @@ for itemname, def in pairs(minetest.registered_items) do
 	end
 end
 
+local bread_def = minetest.registered_items["df_farming:cave_bread"]
+awards.register_achievement("dfcaverns_meal_dwarven_bread", {
+	title = S("Eat @1", bread_def.description),
+	description = S(""),
+	icon = "dfcaverns_awards_backgroundx32.png^dfcaverns_prepared_food13x32.png^dfcaverns_awards_foregroundx32.png",
+	trigger = {
+		type = "eat",
+		item = "df_farming:cave_bread",
+		target = 1,
+	}
+})
+table.insert(all_meals, "dfcaverns_meal_dwarven_bread")
+
 local test_list = df_achievements.test_list
 --    name is the player name
 --    def is the award def.
@@ -38,7 +51,7 @@ end)
 awards.register_achievement("dfcaverns_gourmand", {
 	title = S("Dwarven Gourmand"),
 	description = S("Eat one of each of the various meals that can be cooked from underground ingredients."),
-	icon ="dfcaverns_awards_backgroundx32.png^dfcaverns_gourmand_achievement.png^dfcaverns_awards_foregroundx32.png",
+	icon ="dfcaverns_awards_backgroundx32.png^dfcaverns_prepared_food28x32.png^dfcaverns_gourmand_achievement.png^dfcaverns_awards_foregroundx32.png",
 })
 
 if minetest.get_modpath("df_primordial_items") then

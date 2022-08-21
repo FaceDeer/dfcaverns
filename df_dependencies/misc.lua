@@ -52,6 +52,8 @@ df_dependencies.texture_tool_steelpick = select_required({default="default_tool_
 df_dependencies.texture_tool_steelshovel = select_required({default="default_tool_steelshovel.png", mcl_farming="default_tool_steelshovel.png"})
 df_dependencies.texture_farming_soil = select_required({default="(default_dirt.png^farming_soil.png)",  mcl_farming="mcl_farming_farmland_dry.png"})
 
+df_dependencies.texture_mapping_kit = select_required({default="map_mapping_kit.png", mcl_maps="mcl_maps_map_filled.png"})
+
 df_dependencies.nethercap_name = S("Nethercap")
 if minetest.get_modpath("mcl_mapgen_core") then
 	-- since there's a whole layer called the Nether in Mineclone and it has its own mushrooms, rename

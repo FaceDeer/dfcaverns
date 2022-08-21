@@ -7,6 +7,22 @@ if not minetest.get_modpath("awards") then
 end
 
 df_achievements = {}
+
+local old_awards_version = false
+if awards.run_trigger_callbacks then
+	old_awards_version = true
+else
+	-- used to track the progress of achievements that are based off of other achievements
+	awards.register_trigger("dfcaverns_achievements", {
+		type="counted_key",
+		progress = "@1/@2", -- awards seems to use a conflicting syntax with internationalization, ick. Avoid words here.
+		get_key = function(self, def)
+			return def.trigger.achievement_name
+		end,
+	})
+end
+
+
 local achievement_parents = {}
 df_achievements.get_child_achievement_count = function(parent_achievement)
 	return #achievement_parents[parent_achievement]
@@ -14,31 +30,25 @@ end
 
 local register_achievement_old = awards.register_achievement
 awards.register_achievement = function(achievement_name, achievement_def, ...)
-	register_achievement_old(achievement_name, achievement_def, ...)
-	
+	if old_awards_version and achievement_def.trigger and achievement_def.trigger.type=="dfcaverns_achievements" then
+		-- there's a significant difference between how triggers work
+		-- in older versions of the awards mod. The new version of the trigger doesn't
+		-- work with the old. For now, strip them out.
+		achievement_def.trigger = nil
+	end
+
 	if achievement_def._dfcaverns_achievements then
 		for _, parent_achievement in pairs(achievement_def._dfcaverns_achievements) do
 			local parent_source_list = achievement_parents[parent_achievement] or {}
 			achievement_parents[parent_achievement] = parent_source_list
 			table.insert(parent_source_list, achievement_name)
-			minetest.debug(achievement_name .. " added to list for " .. parent_achievement)
 		end
 	end
+
+	register_achievement_old(achievement_name, achievement_def, ...)
 end
 
-
--- used to track the progress of achievements that are based off of other achievements
-awards.register_trigger("dfcaverns_achievements", {
-	type="counted_key",
-	progress = "@1/@2", -- awards seems to use a conflicting syntax with internationalization, ick. Avoid words here.
-	get_key = function(self, def)
-		return def.trigger.achievement_name
-	end,
-})
-
 local modpath = minetest.get_modpath(minetest.get_current_modname())
-
-
 
 awards.register_on_unlock(function(player_name, def)
 	local def_dfcaverns_achievements = def._dfcaverns_achievements

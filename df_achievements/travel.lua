@@ -180,6 +180,7 @@ awards.register_achievement("dfcaverns_visit_tower_cap", {
 	description = S("Discover a cavern where Tower Caps grow in the wild."),
 	icon =cavern_background.."^dfcaverns_awards_cavern_towercapx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 awards.register_achievement("dfcaverns_visit_fungiwood", {
@@ -187,6 +188,7 @@ awards.register_achievement("dfcaverns_visit_fungiwood", {
 	description = S("Discover a cavern where Fungiwoods grow in the wild."),
 	icon =cavern_background.."^dfcaverns_awards_cavern_fungiwoodx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 awards.register_achievement("dfcaverns_visit_goblin_cap", {
@@ -194,6 +196,7 @@ awards.register_achievement("dfcaverns_visit_goblin_cap", {
 	description = S("Discover a cavern where Goblin Caps grow in the wild."),
 	icon =cavern_background.."^dfcaverns_awards_cavern_goblincapx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 awards.register_achievement("dfcaverns_visit_spore_tree", {
@@ -201,6 +204,7 @@ awards.register_achievement("dfcaverns_visit_spore_tree", {
 	description = S("Discover a cavern where Spore Trees grow in the wild."),
 	icon =cavern_background.."^dfcaverns_awards_cavern_sporetreesx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 awards.register_achievement("dfcaverns_visit_tunnel_tube", {
@@ -208,6 +212,7 @@ awards.register_achievement("dfcaverns_visit_tunnel_tube", {
 	description = S("Discover a cavern where Tunnel Tubes grow in the wild."),
 	icon =cavern_background.."^dfcaverns_awards_cavern_tunneltubex32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 awards.register_achievement("dfcaverns_visit_nethercap", {
@@ -215,6 +220,7 @@ awards.register_achievement("dfcaverns_visit_nethercap", {
 	description = S("Discover a cavern where @1s grow in the wild.", nethercap_name),
 	icon =cavern_background.."^dfcaverns_awards_cavern_nethercapx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 awards.register_achievement("dfcaverns_visit_blood_thorn", {
@@ -222,6 +228,7 @@ awards.register_achievement("dfcaverns_visit_blood_thorn", {
 	description = S("Discover a cavern where Bloodthorns grow in the wild."),
 	icon =cavern_background.."^dfcaverns_awards_cavern_bloodthornx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 awards.register_achievement("dfcaverns_visit_black_cap", {
@@ -229,6 +236,7 @@ awards.register_achievement("dfcaverns_visit_black_cap", {
 	description = S("Discover a cavern where Black Caps grow in the wild."),
 	icon =cavern_background.."^dfcaverns_awards_cavern_blackcapx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 awards.register_achievement("dfcaverns_visit_sunless_sea", {
@@ -236,6 +244,7 @@ awards.register_achievement("dfcaverns_visit_sunless_sea", {
 	description = S("Discover the giant caverns to which all water from the surface ultimately drain."),
 	icon =cavern_background.."^dfcaverns_awards_cavern_seax32.png^dfcaverns_awards_cavern_towercapx32.png^dfcaverns_awards_cavern_fungiwoodx32.png^dfcaverns_awards_cavern_goblincapx32.png^dfcaverns_awards_cavern_sporetreesx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 
@@ -245,6 +254,7 @@ awards.register_achievement("dfcaverns_visit_oil_sea", {
 	description = S("Discover a cavern containing oil deep underground."),
 	icon =cavern_background.."^dfcaverns_awards_cavern_oilx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_middle_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 2,
 })
 
 awards.register_achievement("dfcaverns_visit_lava_sea", {
@@ -252,6 +262,7 @@ awards.register_achievement("dfcaverns_visit_lava_sea", {
 	description = S("Discover the sea of magma that volcanoes draw from."),
 	icon = cavern_background.."^dfcaverns_awards_cavern_lavax32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_middle_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 2,
 })
 
 awards.register_achievement("dfcaverns_visit_underworld", {
@@ -259,6 +270,7 @@ awards.register_achievement("dfcaverns_visit_underworld", {
 	description = S("Discover the ancient caverns at the foundations of the world."),
 	icon ="dfcaverns_awards_cavern_underworldx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_middle_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 2,
 })
 
 
@@ -269,6 +281,7 @@ awards.register_achievement("dfcaverns_visit_primordial_jungle", {
 	icon = "dfcaverns_awards_cavern_backgroundx32.png^(dfcaverns_awards_cavern_background_stalactitex32.png^[multiply:#127a0b)^dfcaverns_awards_cavern_background_platformx32.png^dfcaverns_awards_cavern_junglex32.png^dfcaverns_awards_foregroundx32.png",
 	secret = true,
 	_dfcaverns_achievements = {"dfcaverns_visit_all_primordial_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 3,
 })
 
 awards.register_achievement("dfcaverns_visit_primordial_fungal", {
@@ -277,6 +290,7 @@ awards.register_achievement("dfcaverns_visit_primordial_fungal", {
 	icon = cavern_background .. "^dfcaverns_awards_cavern_fungalx32.png^dfcaverns_awards_cavern_primordial_mushx32.png^dfcaverns_awards_foregroundx32.png",
 	secret = true,
 	_dfcaverns_achievements = {"dfcaverns_visit_all_primordial_biomes", "dfcaverns_visit_all_caverns"},
+	difficulty = 3,
 })
 
 local stone_background = "([combine:32x32:0,0=" .. df_dependencies.texture_cobble .. ":0,16=" .. df_dependencies.texture_cobble
@@ -288,6 +302,7 @@ awards.register_achievement("dfcaverns_visit_chasm", {
 	description = S("Discover a gigantic underground natural chasm."),
 	icon = stone_background .. "^dfcaverns_awards_cavern_chasmx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 awards.register_achievement("dfcaverns_visit_pit", {
@@ -295,6 +310,7 @@ awards.register_achievement("dfcaverns_visit_pit", {
 	description = S("Discover a deep natural sinkhole."),
 	icon = stone_background .. "^dfcaverns_awards_cavern_pitx32.png^dfcaverns_awards_foregroundx32.png",
 	_dfcaverns_achievements = {"dfcaverns_visit_all_caverns"},
+	difficulty = 1,
 })
 
 
@@ -303,6 +319,7 @@ awards.register_achievement("dfcaverns_visit_all_upper_biomes", {
 	title = S("Discover All Fungal Cavern Types"),
 	description = S("Discover examples of all of the fungal cavern biomes."),
 	icon = "dfcaverns_awards_backgroundx32.png^"..df_dependencies.texture_mapping_kit.."^dfcaverns_awards_foregroundx32.png",
+	difficulty = 1 / df_achievements.get_child_achievement_count("dfcaverns_visit_all_upper_biomes"),
 	trigger = {
 		type="dfcaverns_achievements",
 		achievement_name="dfcaverns_visit_all_upper_biomes",
@@ -314,6 +331,7 @@ awards.register_achievement("dfcaverns_visit_all_middle_biomes", {
 	title = S("Discover All Overworld Cavern Types"),
 	description = S("Discover all of the major types of cavern environments between the Sunless Sea and the foundations of the world."),
 	icon = "dfcaverns_awards_backgroundx32.png^"..df_dependencies.texture_mapping_kit.."^dfcaverns_awards_foregroundx32.png",
+	difficulty = 2 / df_achievements.get_child_achievement_count("dfcaverns_visit_all_middle_biomes"),
 	trigger = {
 		type="dfcaverns_achievements",
 		achievement_name="dfcaverns_visit_all_middle_biomes",
@@ -325,6 +343,7 @@ awards.register_achievement("dfcaverns_visit_all_primordial_biomes", {
 	title = S("Discover all Primordial Cavern Types"),
 	description = S("Discover all of the major types of cavern below the foundations of the world."),
 	icon = "dfcaverns_awards_backgroundx32.png^"..df_dependencies.texture_mapping_kit.."^dfcaverns_awards_foregroundx32.png",
+	difficulty = 3 / df_achievements.get_child_achievement_count("dfcaverns_visit_all_primordial_biomes"),
 	secret = true,
 	trigger = {
 		type="dfcaverns_achievements",
@@ -337,6 +356,7 @@ awards.register_achievement("dfcaverns_visit_all_caverns", {
 	title = S("Discover All Underground Cavern Types"),
 	description = S("Discover all major kinds of giant cavern environment."),
 	icon = "dfcaverns_awards_backgroundx32.png^"..df_dependencies.texture_mapping_kit.."^dfcaverns_awards_foregroundx32.png",
+	difficulty = 4 / df_achievements.get_child_achievement_count("dfcaverns_visit_all_caverns"),
 	trigger = {
 		type="dfcaverns_achievements",
 		achievement_name="dfcaverns_visit_all_caverns",
@@ -350,5 +370,6 @@ awards.register_achievement("dfcaverns_visit_glowing_pit", {
 	title = S("Discover a Glowing Pit"),
 	description = S("Discover a glowing pit in the slade foundations of the world."),
 	icon ="dfcaverns_pit_plasma_static.png^dfcaverns_awards_foregroundx32.png",
+	difficulty = 2,
 	secret = true,
 })

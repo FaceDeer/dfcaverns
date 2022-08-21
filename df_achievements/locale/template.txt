@@ -4,6 +4,9 @@
 ### dig.lua ###
 
 "Collect" Lightseam Stone=
+
+Attempt to collect a piece of Lightseam, a strange glowing mineral found deep underground.=
+
 Collect Castle Coral=
 Collect Cave Coral=
 Collect Cave Pearls=
@@ -13,11 +16,28 @@ Collect Giant Webbing=
 Collect Glow Worms=
 Collect Glowing Amethyst=
 Collect Luminous Salt Crystal=
+
+Collect a block of glowing amethyst crystal from the Underworld.=
+
+Collect a flawless Mese crystal block from the Magma Sea.=
+
+Collect a luminous salt crystal from the dry caverns where Bloodthorns live.=
+
+Collect a piece of Castle Coral from the Sunless Sea.=
+Collect a piece of Cave Coral from the Sunless Sea.=
+Collect a piece of giant webbing found in a cave.=
+
+Collect one of the giant red crystals found in large barren caverns.=
+
+Collect some cave pearls from the wall of a cave.=
+Collect various different exotic items from various caverns.=
 Deep Prospector=
 Destroy a Gas Seep=
 
+Plug a crack that mine gas is seeping out of to make the caves just a little bit safer.=
+
+
 ### dig.lua ###
-### farming.lua ###
 ### food.lua ###
 ### misc.lua ###
 
@@ -27,9 +47,9 @@ Destroy a Gas Seep=
 
 Plant @1=
 Plant All Farmable Underground Plants=
-Plant All Fungal Tree Types=
-Plant All Primordial Tree Types=
-Plant All Underground Tree Types=
+Plant All Fungal Trees=
+Plant All Primordial Trees=
+Plant All Underground Trees=
 Plant Black Cap=
 Plant Bloodthorn=
 Plant Cave Wheat=
@@ -50,6 +70,16 @@ Plant Sweet Pod=
 Plant Torchspine=
 Plant Tower Cap=
 Plant Tunnel Tube=
+Plant a @1 in a place where it can grow.=
+
+Plant one of every kind of 'tree' found in the caverns above the Sunless Sea.=
+
+Plant one of every kind of 'tree' found in the caverns beneath the surface.=
+
+Plant one of every kind of 'tree' from the Primordial caverns.=
+
+Plant one of every kind of small farmable plant found in the caverns beneath the surface.=
+
 
 ### food.lua ###
 
@@ -59,25 +89,39 @@ Eat Diced Mushroom=
 Eat a Glowtato=
 Eat a Primordial Fruit=
 
-Eat one of each of the various meals that can be cooked from underground ingredients.=
+Eat one of each of the various meals that can be cooked or crafted from underground ingredients.=
+
+Eat one of the strange fruits found only deep underground in the Primordial caverns.=
+
+It's a basic staple of the underground, but at least it's not Plump Helmet.=
 
 One of the many delights that can be crafted only from fungal growths found deep underground.=
+
+Slightly less prestigious than the Primordial Fruit, but still rare and exotic compared to surface world fare.=
 
 
 ### misc.lua ###
 
+Activating a puzzle seal has produced a breach in the slade foundations of the world.=
+
 Capture an Ice Sprite=
+Decipher the code of the ancients. Do you dare turn the key?=
 Detonate Mine Gas=
 Get Attacked by an Underworld Guardian=
 Loot 100 Ancient Warrior Bones=
 Loot Ancient Warrior Bones=
 Punch Veinstone=
+Punch a vein to hear the heartbeat of the stone.=
 Repair 100 Ancient Lanterns=
 Repair an Ancient Lantern=
 Solve a Puzzle Seal=
 Trigger a Slade Breacher=
 
+You may not be able to build new ones, but at least you can get the old ones shining brightly again.=
+
 You've captured an ice sprite and placed it in a bottle. It dances and sparkles and sheds light through the frosted glass while making a faint tinkling sound. Pretty.=
+
+You've discovered something important about those mysterious slade statues in the Underworld.=
 
 
 ### travel.lua ###

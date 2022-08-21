@@ -33,7 +33,7 @@ awards.register_achievement = function(achievement_name, achievement_def, ...)
 	if old_awards_version and achievement_def.trigger and achievement_def.trigger.type=="dfcaverns_achievements" then
 		-- there's a significant difference between how triggers work
 		-- in older versions of the awards mod. The new version of the trigger doesn't
-		-- work with the old. For now, strip them out.
+		-- work with the old. Rather than do a bunch of work to support old versions, strip them out.
 		achievement_def.trigger = nil
 	end
 

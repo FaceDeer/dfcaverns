@@ -6,6 +6,7 @@ if df_dependencies.node_name_glass_bottle then
 		title = S("Capture an Ice Sprite"),
 		description = S("You've captured an ice sprite and placed it in a bottle. It dances and sparkles and sheds light through the frosted glass while making a faint tinkling sound. Pretty."),
 		icon = "dfcaverns_awards_backgroundx32.png^ice_sprites_bottle.png^dfcaverns_awards_foregroundx32.png",
+		difficulty = 2,
 		trigger = {
 			type = "craft",
 			item = "ice_sprites:ice_sprite_bottle",
@@ -19,7 +20,8 @@ df_mapitems.on_veinstone_punched = function(pos, node, puncher, pointed_thing)
 end
 awards.register_achievement("dfcaverns_punched_veinstone", {
 	title = S("Punch Veinstone"),
-	description = S(""),
+	description = S("Punch a vein to hear the heartbeat of the stone."),
+	difficulty = 2,
 	icon = "dfcaverns_awards_backgroundx32.png^((".. df_dependencies.texture_stone .. "^dfcaverns_veins.png)^[resize:32x32)^dfcaverns_awards_foregroundx32.png",
 })
 
@@ -32,7 +34,8 @@ if minetest.get_modpath("df_underworld_items") then
 		end
 		awards.register_achievement("dfcaverns_attacked_by_guardian_statue", {
 			title = S("Get Attacked by an Underworld Guardian"),
-			description = S(""),
+			difficulty = 2,
+			description = S("You've discovered something important about those mysterious slade statues in the Underworld."),
 			icon = "dfcaverns_awards_backgroundx32.png^dfcaverns_guardian_achievement.png^dfcaverns_awards_foregroundx32.png",
 			secret=true,
 		})
@@ -44,7 +47,8 @@ if minetest.get_modpath("df_underworld_items") then
 	end 
 	awards.register_achievement("dfcaverns_solved_puzzle_seal", {
 		title = S("Solve a Puzzle Seal"),
-		description = S(""),
+		difficulty = 4,
+		description = S("Decipher the code of the ancients. Do you dare turn the key?"),
 		icon = "dfcaverns_puzzle_seal_solvedx32.png^dfcaverns_awards_foregroundx32.png",
 	})
 	
@@ -53,7 +57,8 @@ if minetest.get_modpath("df_underworld_items") then
 	end
 	awards.register_achievement("dfcaverns_triggered_slade_breacher", {
 		title = S("Trigger a Slade Breacher"),
-		description = S(""),
+		difficulty = 1,
+		description = S("Activating a puzzle seal has produced a breach in the slade foundations of the world."),
 		icon = "dfcaverns_puzzle_seal_activex32.png^dfcaverns_awards_foregroundx32.png",
 		secret=true,
 	})
@@ -63,7 +68,8 @@ if minetest.get_modpath("df_underworld_items") then
 	end
 	awards.register_achievement("dfcaverns_repaired_lantern", {
 		title = S("Repair an Ancient Lantern"),
-		description = S(""),
+		difficulty = 2,
+		description = S("You may not be able to build new ones, but at least you can get the old ones shining brightly again."),
 		icon = "dfcaverns_awards_backgroundx32.png^((dfcaverns_slade_brick.png^(" .. df_dependencies.texture_meselamp .. "^[mask:dfcaverns_lantern_mask.png))^[resize:32x32)^dfcaverns_awards_foregroundx32.png",
 		secret=true,
 	})

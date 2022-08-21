@@ -16,47 +16,47 @@ end
 local plant_node_achievements =
 {
 	["df_trees:black_cap_sapling"] = {achievement="dfcaverns_plant_black_cap",
-		title=S("Plant Black Cap"), desc=S(""), icon=make_texture("dfcaverns_black_cap_sapling.png", coal_ore), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Black Cap"), icon=make_texture("dfcaverns_black_cap_sapling.png", coal_ore), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_trees:fungiwood_sapling"] = {achievement="dfcaverns_plant_fungiwood",
-		title=S("Plant Fungiwood"), desc=S(""), icon=make_texture("dfcaverns_fungiwood_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Fungiwood"), icon=make_texture("dfcaverns_fungiwood_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_trees:goblin_cap_sapling"] = {achievement="dfcaverns_plant_goblin_cap",
-		title=S("Plant Goblin Cap"), desc=S(""), icon=make_texture("dfcaverns_goblin_cap_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Goblin Cap"), icon=make_texture("dfcaverns_goblin_cap_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_trees:nether_cap_sapling"] = {achievement="dfcaverns_plant_nethercap",
-		title=S("Plant @1", nethercap_name), desc=S(""), icon=make_texture("dfcaverns_nether_cap_sapling.png", ice_texture), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant @1", nethercap_name), icon=make_texture("dfcaverns_nether_cap_sapling.png", ice_texture), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_trees:spore_tree_sapling"] = {achievement="dfcaverns_plant_spore_tree",
-		title=S("Plant Spore Tree"), desc=S(""), icon=make_texture("dfcaverns_spore_tree_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Spore Tree"), icon=make_texture("dfcaverns_spore_tree_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_trees:tower_cap_sapling"] = {achievement="dfcaverns_plant_tower_cap",
-		title=S("Plant Tower Cap"), desc=S(""), icon=make_texture("dfcaverns_tower_cap_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Tower Cap"), icon=make_texture("dfcaverns_tower_cap_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_trees:tunnel_tube_sapling"] = {achievement="dfcaverns_plant_tunnel_tube",
-		title=S("Plant Tunnel Tube"), desc=S(""), icon=make_texture("dfcaverns_tunnel_tube_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Tunnel Tube"), icon=make_texture("dfcaverns_tunnel_tube_sapling.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_trees:torchspine_ember"] = {achievement="dfcaverns_plant_torchspine",
-		title=S("Plant Torchspine"), desc=S(""), icon=make_texture("dfcaverns_torchspine_achievement.png", coal_ore), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Torchspine"), icon=make_texture("dfcaverns_torchspine_achievement.png", coal_ore), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_trees:spindlestem_seedling"] = {achievement="dfcaverns_plant_spindlestem",
-		title=S("Plant Spindlestem"), desc=S(""), icon=make_texture("dfcaverns_spindlestem_achievement.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Spindlestem"), icon=make_texture("dfcaverns_spindlestem_achievement.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_trees:blood_thorn"] = {achievement="dfcaverns_plant_bloodthorn",
-		title=S("Plant Bloodthorn"), desc=S(""), icon=make_texture("dfcaverns_bloodthorn_achievement.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Bloodthorn"), icon=make_texture("dfcaverns_bloodthorn_achievement.png"), _dfcaverns_achievements={"dfcaverns_plant_all_upper_trees", "dfcaverns_plant_all_underground_trees"}, difficulty = 1,},
 	["df_primordial_items:giant_hypha_apical_meristem"] = {achievement="dfcaverns_plant_giant_mycelium",
-		title=S("Plant Primordial Mycelium"), desc=S(""), icon=make_texture("dfcaverns_mush_soil.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Primordial Mycelium"), icon=make_texture("dfcaverns_mush_soil.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}, difficulty = 3,},
 	["df_primordial_items:fern_sapling"] = {achievement="dfcaverns_plant_primordial_fern",
-		title=S("Plant Primordial Fern"), desc=S(""), icon=make_texture("dfcaverns_jungle_fern_03.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Primordial Fern"), icon=make_texture("dfcaverns_jungle_fern_03.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}, difficulty = 3,},
 	["df_primordial_items:jungle_mushroom_sapling"] = {achievement="dfcaverns_plant_primordial_jungle_mushroom",
-		title=S("Plant Primordial Jungle Mushroom"), desc=S(""), icon=make_texture("dfcaverns_jungle_mushroom_02.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Primordial Jungle Mushroom"), icon=make_texture("dfcaverns_jungle_mushroom_02.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}, difficulty = 3,},
 	["df_primordial_items:jungletree_sapling"] = {achievement="dfcaverns_plant_primordial_jungletree",
-		title=S("Plant Primordial Jungle Tree"), desc=S(""), icon=make_texture("dfcaverns_jungle_sapling.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Primordial Jungle Tree"), icon=make_texture("dfcaverns_jungle_sapling.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}, difficulty = 3,},
 	["df_primordial_items:mush_sapling"] = {achievement="dfcaverns_plant_primordial_mushroom",
-		title=S("Plant Primordial Mushroom"), desc=S(""), icon=make_texture("dfcaverns_mush_sapling.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}},
+		title=S("Plant Primordial Mushroom"), icon=make_texture("dfcaverns_mush_sapling.png"), secret = true, _dfcaverns_achievements={"dfcaverns_plant_all_primordial", "dfcaverns_plant_all_underground_trees"}, difficulty = 3,},
 	["df_farming:cave_wheat_seed"] = {achievement="dfcaverns_plant_cave_wheat",
-		title=S("Plant Cave Wheat"), desc=S(""), icon=make_texture("dfcaverns_cave_wheat_8.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}},
+		title=S("Plant Cave Wheat"), icon=make_texture("dfcaverns_cave_wheat_8.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}, difficulty = 1,},
 	["df_farming:dimple_cup_seed"] = {achievement="dfcaverns_plant_dimple_cup",
-		title=S("Plant Dimple Cup"), desc=S(""), icon=make_texture("dfcaverns_dimple_cup_4.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}},
+		title=S("Plant Dimple Cup"), icon=make_texture("dfcaverns_dimple_cup_4.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}, difficulty = 1,},
 	["df_farming:pig_tail_seed"] = {achievement="dfcaverns_plant_pig_tail",
-		title=S("Plant Pig Tail"), desc=S(""), icon=make_texture("dfcaverns_pig_tail_8.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}},
+		title=S("Plant Pig Tail"), icon=make_texture("dfcaverns_pig_tail_8.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}, difficulty = 1,},
 	["df_farming:plump_helmet_spawn"] = {achievement="dfcaverns_plant_plump_helmet",
-		title=S("Plant Plump Helmet"), desc=S(""), icon=make_texture("dfcaverns_plump_helmet_achievement.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}},
+		title=S("Plant Plump Helmet"), icon=make_texture("dfcaverns_plump_helmet_achievement.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}, difficulty = 1,},
 	["df_farming:quarry_bush_seed"] = {achievement="dfcaverns_plant_quarry_bush",
-		title=S("Plant Quarry Bush"), desc=S(""), icon=make_texture("dfcaverns_quarry_bush_5.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}},
+		title=S("Plant Quarry Bush"), icon=make_texture("dfcaverns_quarry_bush_5.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}, difficulty = 1,},
 	["df_farming:sweet_pod_seed"] = {achievement="dfcaverns_plant_sweet_pod",
-		title=S("Plant Sweet Pod"), desc=S(""), icon=make_texture("dfcaverns_sweet_pod_6.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}},
+		title=S("Plant Sweet Pod"), icon=make_texture("dfcaverns_sweet_pod_6.png"), _dfcaverns_achievements={"dfcaverns_plant_all_farmables"}, difficulty = 1,},
 }
 
 minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
@@ -76,10 +76,10 @@ minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack
 	end
 end)
 
-for _, def in pairs(plant_node_achievements) do
+for seed_item, def in pairs(plant_node_achievements) do
 	awards.register_achievement(def.achievement, {
 		title = def.title,
-		description = def.desc,
+		description = S("Plant a @1 in a place where it can grow.", minetest.registered_items[seed_item].description),
 		icon = def.icon,
 		secret = def.secret,
 		_dfcaverns_achievements = def._dfcaverns_achievements,
@@ -92,6 +92,7 @@ awards.register_achievement("dfcaverns_plant_all_upper_trees", {
 	icon = "dfcaverns_awards_backgroundx32.png^"
 		.."(dfcaverns_awards_cavern_towercapx32.png^dfcaverns_awards_cavern_fungiwoodx32.png^dfcaverns_awards_cavern_goblincapx32.png)^[transformFX"
 		.."^[combine:32x32:16,15="..hoe_texture.."^dfcaverns_awards_foregroundx32.png",
+	difficulty = 1 / df_achievements.get_child_achievement_count("dfcaverns_plant_all_upper_trees"),
 	trigger = {
 		type="dfcaverns_achievements",
 		achievement_name="dfcaverns_plant_all_upper_trees",
@@ -106,6 +107,7 @@ awards.register_achievement("dfcaverns_plant_all_primordial", {
 		.."(dfcaverns_awards_cavern_primordial_mushx32.png^dfcaverns_awards_cavern_junglex32.png)^[transformFX"
 		.."^[combine:32x32:16,15="..hoe_texture.."^dfcaverns_awards_foregroundx32.png",
 	secret = true,
+	difficulty = 3 / df_achievements.get_child_achievement_count("dfcaverns_plant_all_primordial"),
 	trigger = {
 		type="dfcaverns_achievements",
 		achievement_name="dfcaverns_plant_all_primordial",
@@ -120,6 +122,7 @@ awards.register_achievement("dfcaverns_plant_all_underground_trees", {
 		.."(dfcaverns_awards_cavern_towercapx32.png^dfcaverns_awards_cavern_fungiwoodx32.png^dfcaverns_awards_cavern_goblincapx32.png)^[transformFX"
 		.. "^dfcaverns_awards_cavern_primordial_mushx32.png^dfcaverns_awards_cavern_junglex32.png"
 		.."^[combine:32x32:16,15="..hoe_texture.."^dfcaverns_awards_foregroundx32.png",
+	difficulty = 4 / df_achievements.get_child_achievement_count("dfcaverns_plant_all_underground_trees"),
 	trigger = {
 		type="dfcaverns_achievements",
 		achievement_name="dfcaverns_plant_all_underground_trees",
@@ -141,6 +144,7 @@ awards.register_achievement("dfcaverns_plant_all_farmables", {
 		.."^[combine:32x32:0,16=dfcaverns_sweet_pod_6.png"
 		.."^[combine:32x32:16,16=dfcaverns_quarry_bush_5.png"		
 		.."^[combine:32x32:16,15="..hoe_texture.."^dfcaverns_awards_foregroundx32.png",
+	difficulty = 1 / df_achievements.get_child_achievement_count("dfcaverns_plant_all_farmables"),
 	trigger = {
 		type="dfcaverns_achievements",
 		achievement_name="dfcaverns_plant_all_farmables",

@@ -93,6 +93,15 @@ df_farming.plant_timer = function(pos, plantname, elapsed)
 	end
 end
 
+local function copy_pointed_thing(pointed_thing)
+	return {
+		type  = pointed_thing.type,
+		above = pointed_thing.above and vector.copy(pointed_thing.above),
+		under = pointed_thing.under and vector.copy(pointed_thing.under),
+		ref   = pointed_thing.ref,
+	}
+end
+
 local place_seed = function(itemstack, placer, pointed_thing, plantname)
 	local pt = pointed_thing
 	-- check if pointing at a node
@@ -134,13 +143,30 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 	end
 	
 	-- add the node and remove 1 item from the itemstack
+	local newnode= {name = itemstack:get_name(), param2 = 1, param1=0}
+	local oldnode= minetest.get_node(pt.above)
 	minetest.add_node(pt.above, {name = plantname, param2 = 1})
+	
 	local growth_permitted_function = df_farming.growth_permitted[plantname]
 	if not growth_permitted_function or growth_permitted_function(pt.above) then
 		df_farming.plant_timer(pt.above, plantname)
 	else
 		minetest.get_node_timer(pt.above):stop() -- make sure no old timers are running on this node
 	end
+	
+	-- Run script hook
+	local take_item = true
+	for _, callback in ipairs(core.registered_on_placenodes) do
+		-- Deepcopy pos, node and pointed_thing because callback can modify them
+		local place_to_copy = vector.copy(pt.above)
+		local newnode_copy = {name=newnode.name, param1=newnode.param1, param2=newnode.param2}
+		local oldnode_copy = {name=oldnode.name, param1=oldnode.param1, param2=oldnode.param2}
+		local pointed_thing_copy = copy_pointed_thing(pointed_thing)
+		if callback(place_to_copy, newnode_copy, placer, oldnode_copy, itemstack, pointed_thing_copy) then
+			take_item = false
+		end
+	end	
+	
 	if not minetest.settings:get_bool("creative_mode", false) then
 		itemstack:take_item()
 	end

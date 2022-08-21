@@ -5,6 +5,15 @@ local displace_z = 0.125
 
 local plump_helmet_grow_time = df_farming.config.plant_growth_time * df_farming.config.plump_helmet_delay_multiplier / 4
 
+local function copy_pointed_thing(pointed_thing)
+	return {
+		type  = pointed_thing.type,
+		above = pointed_thing.above and vector.copy(pointed_thing.above),
+		under = pointed_thing.under and vector.copy(pointed_thing.under),
+		ref   = pointed_thing.ref,
+	}
+end
+
 local plump_helmet_on_place =  function(itemstack, placer, pointed_thing, plantname)
 	local pt = pointed_thing
 	-- check if pointing at a node
@@ -46,11 +55,26 @@ local plump_helmet_on_place =  function(itemstack, placer, pointed_thing, plantn
 	end
 
 	-- add the node and remove 1 item from the itemstack
+	local newnode= {name = itemstack:get_name(), param2 = new_param2, param1=0}
+	local oldnode= minetest.get_node(pt.above)
 	minetest.add_node(pt.above, {name = plantname, param2 = math.random(0,3)})
 	
 	local growth_permitted_function = df_farming.growth_permitted["df_farming:plump_helmet_spawn"] -- use the same permitted function for all plump helmets
 	if not growth_permitted_function or growth_permitted_function(pt.above) then
 		df_farming.plant_timer(pt.above, plantname)
+	end
+
+	-- Run script hook
+	local take_item = true
+	for _, callback in ipairs(core.registered_on_placenodes) do
+		-- Deepcopy pos, node and pointed_thing because callback can modify them
+		local place_to_copy = vector.copy(pt.above)
+		local newnode_copy = {name=newnode.name, param1=newnode.param1, param2=newnode.param2}
+		local oldnode_copy = {name=oldnode.name, param1=oldnode.param1, param2=oldnode.param2}
+		local pointed_thing_copy = copy_pointed_thing(pointed_thing)
+		if callback(place_to_copy, newnode_copy, placer, oldnode_copy, itemstack, pointed_thing_copy) then
+			take_item = false
+		end
 	end
 
 	if not minetest.settings:get_bool("creative_mode", false) then

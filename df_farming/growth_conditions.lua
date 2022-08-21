@@ -1,27 +1,13 @@
 df_farming.growth_permitted = {}
--- The defaults here are very boring on account of how the farming code already
--- checks soil conditions. Other mods can insert biome checks and whatnot here.
 
-df_farming.growth_permitted["df_farming:cave_wheat_seed"] = function(pos)
-	return true
+local growable = {[df_dependencies.node_name_dirt_wet] = true, [df_dependencies.node_name_dirt] = true}
+local check_farm_plant_soil = function(pos)
+	return growable[minetest.get_node({x=pos.x, y=pos.y-1, z=pos.z}).name]
 end
 
-df_farming.growth_permitted["df_farming:dimple_cup_seed"] = function(pos)
-	return true
-end
-
-df_farming.growth_permitted["df_farming:pig_tail_seed"] = function(pos)
-	return true
-end
-
-df_farming.growth_permitted["df_farming:quarry_bush_seed"] = function(pos)
-	return true
-end
-
-df_farming.growth_permitted["df_farming:sweet_pod_seed"] = function(pos)
-	return true
-end
-
-df_farming.growth_permitted["df_farming:plump_helmet_spawn"] = function(pos)
-	return true
-end
+df_farming.growth_permitted["df_farming:cave_wheat_seed"] = check_farm_plant_soil
+df_farming.growth_permitted["df_farming:dimple_cup_seed"] = check_farm_plant_soil
+df_farming.growth_permitted["df_farming:pig_tail_seed"] = check_farm_plant_soil
+df_farming.growth_permitted["df_farming:quarry_bush_seed"] = check_farm_plant_soil
+df_farming.growth_permitted["df_farming:sweet_pod_seed"] = check_farm_plant_soil
+df_farming.growth_permitted["df_farming:plump_helmet_spawn"] = check_farm_plant_soil

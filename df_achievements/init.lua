@@ -57,27 +57,21 @@ awards.register_on_unlock(function(player_name, def)
 	if not player_awards then return end	
 	local unlocked = player_awards.unlocked
 	if not unlocked then return end
-	--local player = minetest.get_player_by_name(player_name)
-	--if not player then return end
 	
 	-- the achievement that just got unlocked had one or more "parent" achievements associated with it.
 	for _, achievement_parent in pairs(def_dfcaverns_achievements) do
-		minetest.debug("updating achievement type " .. achievement_parent)
-		--if unlocked[achievement_parent] ~= achievement_parent then -- this should theoretically never fail
-			player_awards.dfcaverns_achievements = player_awards.dfcaverns_achievements or {}
-			local source_list = achievement_parents[achievement_parent]
-			local total = #source_list
-			local count = 0
-			for _, source_achievement in pairs(source_list) do
-				if unlocked[source_achievement] == source_achievement then count = count + 1 end
-			end
-			player_awards.dfcaverns_achievements[achievement_parent] = count
-			minetest.debug(dump(player_awards))
-			awards.save()
-			if count >= total then
-				minetest.after(4, awards.unlock, player_name, achievement_parent)
-			end			
-		--end
+		player_awards.dfcaverns_achievements = player_awards.dfcaverns_achievements or {}
+		local source_list = achievement_parents[achievement_parent]
+		local total = #source_list
+		local count = 0
+		for _, source_achievement in pairs(source_list) do
+			if unlocked[source_achievement] == source_achievement then count = count + 1 end
+		end
+		player_awards.dfcaverns_achievements[achievement_parent] = count
+		awards.save()
+		if count >= total then
+			minetest.after(4, awards.unlock, player_name, achievement_parent)
+		end			
 	end
 end)
 

@@ -139,36 +139,6 @@ minetest.register_globalstep(function(dtime)
 	end
 end)
 
-local upper_biome_achievements = {"dfcaverns_visit_tower_cap", "dfcaverns_visit_fungiwood", "dfcaverns_visit_goblin_cap", "dfcaverns_visit_spore_tree", "dfcaverns_visit_tunnel_tube", "dfcaverns_visit_nethercap", "dfcaverns_visit_blood_thorn", "dfcaverns_visit_black_cap", "dfcaverns_visit_sunless_sea"}
-
-local middle_biome_achievements = {"dfcaverns_visit_oil_sea", "dfcaverns_visit_lava_sea", "dfcaverns_visit_underworld"}
-
-local primordial_biome_achievements = {"dfcaverns_visit_primordial_jungle", "dfcaverns_visit_primordial_fungal"}
-
-local all_caverns = {"dfcaverns_visit_all_upper_biomes", "dfcaverns_visit_all_middle_biomes", "dfcaverns_visit_all_primordial_biomes", "dfcaverns_visit_chasm", "dfcaverns_visit_pit"}
-
-local test_list = df_achievements.test_list
-
---    name is the player name
---    def is the award def.
-awards.register_on_unlock(function(player_name, def)
-	local player_awards = awards.player(player_name)
-	if not player_awards or not player_awards.unlocked then
-		return
-	end
-	local unlocked = player_awards.unlocked
-	test_list(player_name, "dfcaverns_visit_all_upper_biomes", unlocked, upper_biome_achievements)
-	test_list(player_name, "dfcaverns_visit_all_middle_biomes", unlocked, middle_biome_achievements)
-	test_list(player_name, "dfcaverns_visit_all_primordial_biomes", unlocked, primordial_biome_achievements)
-	test_list(player_name, "dfcaverns_visit_all_caverns", unlocked, all_caverns)
-end)
-
-
---awards.unlock(name, award)
---	local data  = awards.players[name]
---	local awdef = awards.def[award]
--- 	data.unlocked[award] == award
-
 -- travelogue
 
 --biomes

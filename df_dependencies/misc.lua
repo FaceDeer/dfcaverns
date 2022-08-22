@@ -25,8 +25,22 @@ if minetest.get_modpath("default") then
 	df_dependencies.data_copper_containing_nodes = {"default:stone_with_copper", "default:copperblock"}
 	df_dependencies.data_mese_containing_nodes = {"default:stone_with_mese", "default:mese"}
 elseif minetest.get_modpath("mcl_core") then
-	df_dependencies.data_iron_containing_nodes = {"mcl_core:stone_with_iron", "mcl_core:ironblock"}
-	df_dependencies.data_copper_containing_nodes = {"mcl_core:stone_with_copper", "mcl_copper:block", "mcl_copper:block_raw", "mcl_copper:block_exposed", "mcl_copper:block_oxidized", "mcl_copper:block_weathered"}
+	df_dependencies.data_iron_containing_nodes = {}
+	minetest.after(0, function()
+		for nodename, _ in pairs(minetest.registered_nodes) do
+			if string.find(nodename, "iron") then
+				table.insert(df_dependencies.data_iron_containing_nodes, nodename)
+			end
+		end
+	end)
+	df_dependencies.data_copper_containing_nodes = {}
+	minetest.after(0, function()
+		for nodename, _ in pairs(minetest.registered_nodes) do
+			if string.find(nodename, "copper") then
+				table.insert(df_dependencies.data_copper_containing_nodes, nodename)
+			end
+		end
+	end)
 	df_dependencies.data_mese_containing_nodes = {"mcl_deepslate:deepslate_with_redstone", "mcl_deepslate:deepslate_with_redstone_lit",
 		"mcl_core:stone_with_redstone", "mcl_core:stone_with_redstone_lit", "group:mesecon_conductor_craftable", "group:mesecon", "group:mesecon_effector_off"}
 end

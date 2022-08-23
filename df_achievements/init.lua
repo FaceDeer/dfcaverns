@@ -14,6 +14,16 @@ if awards.run_trigger_callbacks then
 	-- this "run_trigger_callbacks" API call is present in those older versions, so using that
 	-- as a fingerprint to discover them
 	old_awards_version = true
+	
+	minetest.register_on_dignode(function(pos, oldnode, digger)
+		-- the old version of awards doesn't handle groups when triggering dug nodes, use this to hack around that
+		local node_name = oldnode.name
+		if minetest.get_item_group(node_name, "dfcaverns_big_crystal") > 0 then
+			awards.unlock(digger:get_player_name(), "dfcaverns_ruby_crystals")
+		elseif minetest.get_item_group(node_name, "dfcaverns_cave_coral") > 0 then
+			awards.unlock(digger:get_player_name(), "dfcaverns_cave_coral")
+		end
+	end)	
 else
 	-- used to track the progress of achievements that are based off of other achievements
 	awards.register_trigger("dfcaverns_achievements", {

@@ -356,9 +356,12 @@ local digging_seal_def = {
 		})
 		
 		if minetest.get_item_group(below_node.name, "slade") == 0 then
-			tnt_boom({x=pos.x, y=pos.y-2, z=pos.z}, {radius=3})
 			if df_underworld_items.config.enable_slade_drill then
-				minetest.item_drop("df_underworld_items:slade_drill", nil, pos)
+				minetest.set_node(pos, {name="air"})
+				if tnt_boom then
+					tnt_boom({x=pos.x, y=pos.y-2, z=pos.z}, {radius=3})
+				end
+				minetest.add_item(pos, "df_underworld_items:slade_drill")
 			else
 				minetest.set_node(pos, {name=lava_source})
 			end
@@ -379,7 +382,9 @@ local digging_seal_def = {
 			minetest.place_schematic({x=pos.x-3, y=pos.y-2, z=pos.z-3}, df_underworld_items.seal_stair_schem, 270, {}, true)
 			node.param2 = 0
 		else
-			tnt_boom(pos, {radius=3})
+			if tnt_boom then
+				tnt_boom(pos, {radius=3})
+			end
 			minetest.set_node(pos, {name=lava_source})
 			return
 		end

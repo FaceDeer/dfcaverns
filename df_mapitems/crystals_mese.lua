@@ -1,4 +1,4 @@
-local S = df_mapitems.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 --glowing mese crystal blocks
 minetest.register_node("df_mapitems:glow_mese", {

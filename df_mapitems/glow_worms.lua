@@ -1,4 +1,4 @@
-local S = df_mapitems.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local growth_multiplier = 1
 if minetest.get_modpath("df_farming") then

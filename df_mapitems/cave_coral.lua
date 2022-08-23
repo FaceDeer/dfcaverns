@@ -1,4 +1,4 @@
-local S = df_mapitems.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local water_source = df_dependencies.node_name_water_source
 local coral_skeleton = df_dependencies.node_name_coral_skeleton

@@ -42,6 +42,10 @@ These stones are highly volatile and should not be disturbed.=Queste pietre sono
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 This block of Slade, carved by an unknown hand, is engraved with mysterious symbols. Most of the engraving's meaning is lost to the mists of time but one frament in the oldest known language can be translated: "This place is not a place of honor."=Questo blocco di Slade, scolpito da una mano sconosciuta, è inciso con simboli misteriosi. La maggior parte del significato dell'incisione si perde nella notte dei tempi, ma un frammento nella più antica lingua conosciuta può essere tradotto: "Questo posto non è un posto d'onore".
 
+This shard of a spent slade breacher doesn't appear to have been intended as a portable tool, but it can be used as one.=
+
+Use this on a target to unleash the energies used to dig through the foundations of the world.=
+
 
 ### glow_stone.lua ###
 
@@ -77,3 +81,7 @@ Slade Sand=
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Slade Seal=Sigillo Slade
 Slade Wall=
+
+### slade_drill.lua ###
+
+Slade Drill=

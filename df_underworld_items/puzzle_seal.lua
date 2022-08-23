@@ -1,4 +1,4 @@
-local S = df_underworld_items.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local named_waypoints_path = minetest.get_modpath("named_waypoints")
 
@@ -357,7 +357,11 @@ local digging_seal_def = {
 		
 		if minetest.get_item_group(below_node.name, "slade") == 0 then
 			tnt_boom({x=pos.x, y=pos.y-2, z=pos.z}, {radius=3})
-			minetest.set_node(pos, {name=lava_source})
+			if df_underworld_items.config.enable_slade_drill then
+				minetest.item_drop("df_underworld_items:slade_drill", nil, pos)
+			else
+				minetest.set_node(pos, {name=lava_source})
+			end
 			return
 		end
 		

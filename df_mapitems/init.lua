@@ -1,7 +1,6 @@
 df_mapitems = {}
 
 local modname = minetest.get_current_modname()
-df_mapitems.S = minetest.get_translator(modname)
 local modpath = minetest.get_modpath(modname)
 
 --load companion lua files

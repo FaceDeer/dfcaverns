@@ -1,4 +1,4 @@
-local S = df_underworld_items.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local invulnerable = df_underworld_items.config.invulnerable_slade and not minetest.settings:get_bool("creative_mode")
 

@@ -1,4 +1,4 @@
-local S = df_underworld_items.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 minetest.register_node("df_underworld_items:glow_amethyst", {
 	description = S("Glowing Amethyst Block"),

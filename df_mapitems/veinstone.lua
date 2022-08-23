@@ -1,4 +1,4 @@
-local S = df_mapitems.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 -- overridden to trigger an achievement, without making achievements a dependency of this mod
 df_mapitems.on_veinstone_punched = function()

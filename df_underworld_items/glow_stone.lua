@@ -1,4 +1,4 @@
-local S = df_underworld_items.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local glowstone_def = {
 	_doc_items_longdesc = df_underworld_items.doc.glowstone_desc,

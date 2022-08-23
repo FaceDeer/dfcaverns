@@ -1,6 +1,6 @@
 if minetest.get_modpath("hunter_statue") and df_underworld_items.config.underworld_hunter_statues then
 
-	local S = df_underworld_items.S
+	local S = minetest.get_translator(minetest.get_current_modname())
 
 	hunter_statue.register_hunter_statue("df_underworld_items:hunter_statue", {
 		description = S("Guardian Statue"),

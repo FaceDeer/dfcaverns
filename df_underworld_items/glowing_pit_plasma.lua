@@ -1,4 +1,4 @@
-local S = df_underworld_items.S
+local S = minetest.get_translator(minetest.get_current_modname())
 
 local lava_source = df_dependencies.node_name_lava_source
 

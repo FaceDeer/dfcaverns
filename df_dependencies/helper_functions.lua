@@ -189,7 +189,8 @@ if minetest.get_modpath("tnt") then
 	df_dependencies.tnt_boom = tnt.boom
 elseif minetest.get_modpath("mcl_explosions") then
 	df_dependencies.tnt_boom = function(pos, def)
-		mcl_explosions.explode(pos, def.radius)
+		local strength = def.radius * 5
+		mcl_explosions.explode(pos, strength)
 	end
 end
 

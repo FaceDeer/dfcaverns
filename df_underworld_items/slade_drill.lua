@@ -7,7 +7,7 @@ local check_timeout = function(user)
 	local player_name = user:get_player_name()
 	local curr_time = minetest.get_gametime() -- minetest.get_us_time() for microsecond precision
 	local last_used = use_timeout[player_name]
-	if not last_used or curr_time > last_used + 1 then
+	if not last_used or curr_time > last_used then
 		use_timeout[player_name] = curr_time
 		return true
 	end

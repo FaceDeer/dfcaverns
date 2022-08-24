@@ -12,8 +12,6 @@ end
 local add_immortality = function(slade_def)
 	slade_def.groups.immortal = 1
 	slade_def.can_dig = server_diggable_only
-	slade_def._mcl_blast_resistance = 3600000
-	slade_def._mcl_hardness = -1
 	return slade_def
 end
 
@@ -51,8 +49,8 @@ local slade_brick_def = {
 	groups = slade_groups,
 	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	is_ground_content = false,
-	_mcl_blast_resistance = 1200,
-	_mcl_hardness = 50,
+	_mcl_blast_resistance = 8,
+	_mcl_hardness = 5,
 }
 if invulnerable then
 	add_immortality(slade_brick_def)
@@ -82,8 +80,8 @@ local slade_wall_def = {
 	is_ground_content = false,
 	groups = slade_wall_groups,
 	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
-	_mcl_blast_resistance = 1200,
-	_mcl_hardness = 50,
+	_mcl_blast_resistance = 8,
+	_mcl_hardness = 5,
 }
 if invulnerable then
 	add_immortality(slade_wall_def)
@@ -99,7 +97,7 @@ minetest.register_node("df_underworld_items:slade_sand", {
 	groups = {crumbly = 3, falling_node = 1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1,handy=1,shovely=3, sand=1, enderman_takable=1, building_block=1, material_sand=1, crush_after_fall=1, falling_node_damage=1},
 	sounds = df_dependencies.sound_gravel({footstep = {name = df_dependencies.soundfile_gravel_footstep, gain = 0.45},}),
 	_mcl_blast_resistance = 8,
-	_mcl_hardness = 5,
+	_mcl_hardness = 3,
 })
 
 local slade_block_def = {
@@ -137,7 +135,15 @@ if invulnerable then
 end
 minetest.register_node("df_underworld_items:slade_seal", slade_seal_def)
 
-
+minetest.register_craft({
+	type = "shapeless",
+	output = "df_underworld_items:slade_brick",
+	recipe = {
+		"df_underworld_items:slade_sand",
+		df_dependencies.node_name_bucket_lava,
+	},
+	replacements = {{df_dependencies.node_name_bucket_lava, df_dependencies.node_name_bucket_empty}},
+})
 
 minetest.register_abm{
 	label = "slade seal scratching",

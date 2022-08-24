@@ -81,6 +81,7 @@ df_dependencies.node_name_dirt_wet = select_required("farming:soil_wet", "mcl_fa
 df_dependencies.node_name_string = select_required("farming:string", "mcl_mobitems:string")
 
 df_dependencies.node_name_bucket_empty = select_required("bucket:bucket_empty", "mcl_buckets:bucket_empty")
+df_dependencies.node_name_bucket_lava = select_required("bucket:bucket_lava", "mcl_buckets:bucket_lava")
 
 -- from "wool"
 

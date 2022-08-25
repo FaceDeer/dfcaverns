@@ -1,5 +1,15 @@
 looped_node_sound = {}
 
+--looped_node_sound.register({
+--	node_list = {},
+--	sound = <SimpleSoundSpec>,
+--	radius = ,
+--	cycle_time =,
+--	gain_per_node =,
+--	max_gain =,
+--	max_hear_distance =,	
+--})
+
 looped_node_sound.register = function(def)
 	local handles = {}
 	local timer = 0

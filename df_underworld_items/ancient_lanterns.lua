@@ -47,7 +47,7 @@ local punch_fix = function(pos, node, puncher, pointed_thing)
 	if wielded:get_name() == mese_crystal_node then
 		minetest.set_node(pos, {name="df_underworld_items:ancient_lantern_slade"})
 		minetest.get_node_timer(pos):stop()
-		if not (creative and creative.is_enabled_for and creative.is_enabled_for(puncher:get_player_name())) then
+		if not minetest.is_creative_enabled(puncher:get_player_name()) then
 			wielded:take_item()
 			puncher:set_wielded_item(wielded)
 		end

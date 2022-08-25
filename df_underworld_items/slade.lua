@@ -57,7 +57,9 @@ if invulnerable then
 end
 minetest.register_node("df_underworld_items:slade_brick", slade_brick_def)
 
-local slade_wall_groups = {wall=1}
+-- can't use "wall=1" because MCL has special handling for nodes in that group that explodes if it tries handling this one.
+-- fortunately minetest_game walls also connect to group fence, so this should be fine.
+local slade_wall_groups = {fence=1}
 for key, val in pairs(slade_groups) do
 	slade_wall_groups[key]=val
 end

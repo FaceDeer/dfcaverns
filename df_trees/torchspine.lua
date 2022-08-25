@@ -71,7 +71,7 @@ local stal_on_place = function(itemstack, placer, pointed_thing)
 		end
 	end
 	
-	if (not minetest.settings:get_bool("creative_mode", false)) and take_item then
+	if not minetest.is_creative_enabled(placer:get_player_name()) and take_item then
 		itemstack:take_item()
 	end
 	return itemstack

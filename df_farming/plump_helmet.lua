@@ -55,9 +55,10 @@ local plump_helmet_on_place =  function(itemstack, placer, pointed_thing, plantn
 	end
 
 	-- add the node and remove 1 item from the itemstack
-	local newnode= {name = itemstack:get_name(), param2 = new_param2, param1=0}
+	local new_param2 = math.random(0,3)
+	local newnode= {name = plantname, param2 = new_param2, param1=0}
 	local oldnode= minetest.get_node(pt.above)
-	minetest.add_node(pt.above, {name = plantname, param2 = math.random(0,3)})
+	minetest.add_node(pt.above, newnode)
 	
 	local growth_permitted_function = df_farming.growth_permitted["df_farming:plump_helmet_spawn"] -- use the same permitted function for all plump helmets
 	if not growth_permitted_function or growth_permitted_function(pt.above) then

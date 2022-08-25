@@ -45,11 +45,8 @@ Plug a crack that mine gas is seeping out of to make the caves just a little bit
 
 ### farming.lua ###
 
+Fungal Arborist=
 Plant @1=
-Plant All Farmable Underground Plants=
-Plant All Fungal Trees=
-Plant All Primordial Trees=
-Plant All Underground Trees=
 Plant Black Cap=
 Plant Bloodthorn=
 Plant Cave Wheat=
@@ -80,6 +77,9 @@ Plant one of every kind of 'tree' from the Primordial caverns.=
 
 Plant one of every kind of small farmable plant found in the caverns beneath the surface.=
 
+Primordial Arborist=
+Underground Arborist=
+Underground Farmer=
 
 ### food.lua ###
 

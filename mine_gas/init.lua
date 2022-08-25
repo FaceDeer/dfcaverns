@@ -122,6 +122,8 @@ minetest.register_abm({
 	end,
 })
 
+local soundfile_cool_lava = df_dependencies.soundfile_cool_lava
+
 minetest.register_abm({
 	label = "mine_gas:gas snuffing torches",
 	nodenames = {"group:torch"},
@@ -138,7 +140,7 @@ minetest.register_abm({
 	        end
 			minetest.set_node(pos, {name="mine_gas:gas"})
 			minetest.sound_play(
-				df_dependencies.soundfile_cool_lava,
+				soundfile_cool_lava,
 				{pos = pos, max_hear_distance = 16, gain = 0.1}
 			)
 		end	
@@ -147,7 +149,7 @@ minetest.register_abm({
 
 local tnt_boom = df_dependencies.tnt_boom
 
-if minetest.get_modpath("tnt") then
+if tnt_boom then
 	minetest.register_abm({
 		label = "mine_gas:gas ignition",
 		nodenames = {"group:torch", "group:igniter", "group:fire"}, -- checking for ignition sources because there will be fewer than there are gas nodes

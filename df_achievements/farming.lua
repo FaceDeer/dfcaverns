@@ -87,7 +87,7 @@ for seed_item, def in pairs(plant_node_achievements) do
 end
 
 awards.register_achievement("dfcaverns_plant_all_upper_trees", {
-	title = S("Plant All Fungal Trees"),
+	title = S("Fungal Arborist"),
 	description = S("Plant one of every kind of 'tree' found in the caverns above the Sunless Sea."),
 	icon = "dfcaverns_awards_backgroundx32.png^"
 		.."(dfcaverns_awards_cavern_towercapx32.png^dfcaverns_awards_cavern_fungiwoodx32.png^dfcaverns_awards_cavern_goblincapx32.png)^[transformFX"
@@ -101,7 +101,7 @@ awards.register_achievement("dfcaverns_plant_all_upper_trees", {
 })
 
 awards.register_achievement("dfcaverns_plant_all_primordial", {
-	title = S("Plant All Primordial Trees"),
+	title = S("Primordial Arborist"),
 	description = S("Plant one of every kind of 'tree' from the Primordial caverns."),
 	icon = "dfcaverns_awards_backgroundx32.png^"
 		.."(dfcaverns_awards_cavern_primordial_mushx32.png^dfcaverns_awards_cavern_junglex32.png)^[transformFX"
@@ -116,7 +116,7 @@ awards.register_achievement("dfcaverns_plant_all_primordial", {
 })
 
 awards.register_achievement("dfcaverns_plant_all_underground_trees", {
-	title = S("Plant All Underground Trees"),
+	title = S("Underground Arborist"),
 	description = S("Plant one of every kind of 'tree' found in the caverns beneath the surface."),
 	icon = "dfcaverns_awards_backgroundx32.png^"
 		.."(dfcaverns_awards_cavern_towercapx32.png^dfcaverns_awards_cavern_fungiwoodx32.png^dfcaverns_awards_cavern_goblincapx32.png)^[transformFX"
@@ -131,7 +131,7 @@ awards.register_achievement("dfcaverns_plant_all_underground_trees", {
 })
 
 awards.register_achievement("dfcaverns_plant_all_farmables", {
-	title = S("Plant All Farmable Underground Plants"),
+	title = S("Underground Farmer"),
 	description = S("Plant one of every kind of small farmable plant found in the caverns beneath the surface."),
 	icon = "dfcaverns_awards_backgroundx32.png"
 		.."^[combine:32x32:0,0="..soil_texture

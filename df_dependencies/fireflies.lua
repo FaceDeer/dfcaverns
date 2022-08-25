@@ -182,8 +182,6 @@ minetest.register_node("df_dependencies:firefly_bottle", {
 
 minetest.register_craft( {
 	output = "df_dependencies:firefly_bottle",
-	recipe = {
-		{"df_dependencies:firefly"},
-		{bottle}
-	}
+	type = "shapeless",
+	recipe = {"df_dependencies:firefly", bottle},
 })

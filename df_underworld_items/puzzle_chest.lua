@@ -78,13 +78,13 @@ local show_formspec = function(pos, node, clicker, itemstack, pointed_thing)
 		formspec = formspec
 			.. "list["..nodemeta..";main;0.6,4.7;8,1;]"
 		if meta:get_string("solved") ~= "true" then
-			-- TODO play opening sound
+			minetest.sound_play("dfcaverns_puzzle_chest_open", {pos = pos})
 			meta:set_string("solved", "true")
 			local old_node = minetest.get_node(pos)
 			minetest.swap_node(pos, {name="df_underworld_items:puzzle_chest_opened", param2=old_node.param2})
 		end
 	elseif meta:get_string("solved") == "true" then
-		-- TODO play closing sound
+		minetest.sound_play("dfcaverns_puzzle_chest_close", {pos = pos})
 		meta:set_string("solved", "")
 		local old_node = minetest.get_node(pos)
 		minetest.swap_node(pos, {name="df_underworld_items:puzzle_chest_closed", param2=old_node.param2})
@@ -117,7 +117,15 @@ minetest.register_node("df_underworld_items:puzzle_chest_closed", {
 	description = S("Puzzle Chest"),
 	_doc_items_longdesc = df_underworld_items.doc.puzzle_chest_desc,
 	_doc_items_usagehelp = df_underworld_items.doc.puzzle_chest_usage,
-	tiles = {"default_stone.png"},
+	tiles = {
+		"dfcaverns_slade_block.png^dfcaverns_chest_mask_top.png",
+		"dfcaverns_slade_block.png^dfcaverns_chest_mask_top.png",
+		"dfcaverns_slade_block.png^dfcaverns_chest_mask_side.png",
+		"dfcaverns_slade_block.png^dfcaverns_chest_mask_side.png",
+		"dfcaverns_slade_block.png^dfcaverns_chest_mask_side.png",
+		"dfcaverns_slade_block.png^dfcaverns_chest_mask_side.png^dfcaverns_chest_lock_plate.png^dfcaverns_chest_lock_colours.png",
+	},
+	paramtype2="facedir",
 	is_ground_content = false,
 	groups = {stone=1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, building_block=1, material_stone=1},
 	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
@@ -137,8 +145,19 @@ minetest.register_node("df_underworld_items:puzzle_chest_opened", {
 	description = S("Puzzle Chest"),
 	_doc_items_longdesc = df_underworld_items.doc.puzzle_chest_desc,
 	_doc_items_usagehelp = df_underworld_items.doc.puzzle_chest_usage,
-	tiles = {"dfcaverns_glow_amethyst.png"},
+	tiles = {
+		{name = "dfcaverns_slade_block.png^dfcaverns_chest_mask_top.png", backface_culling = true},
+		{name = "dfcaverns_slade_block.png^dfcaverns_chest_mask_top.png", backface_culling = true},
+		{name = "dfcaverns_slade_block.png^dfcaverns_chest_mask_side.png", backface_culling = true},
+		{name = "dfcaverns_slade_block.png^dfcaverns_chest_mask_side.png", backface_culling = true},
+		{name = "dfcaverns_slade_block.png^dfcaverns_chest_mask_side.png^dfcaverns_chest_lock_plate.png^dfcaverns_chest_lock_colours.png", backface_culling = true},
+		{name = "([combine:16x32:0,0=dfcaverns_slade_block.png:0,16=dfcaverns_slade_block.png)^dfcaverns_chest_mask_interior.png", backface_culling = true},
+	},	
 	is_ground_content = false,
+	mesh = "dfcaverns_chest_open.obj",
+	drawtype= "mesh",
+	visual = "mesh",
+	paramtype2="facedir",
 	groups = {stone=1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, building_block=1, material_stone=1, not_in_creative_inventory=1},
 	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	_mcl_blast_resistance = 1200,

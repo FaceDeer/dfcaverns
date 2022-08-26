@@ -1,5 +1,9 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
+local sum_square = function(input)
+	return {input[1] + input[2], input[3] + input[4], input[1] + input[3], input[2] + input[4]}
+end
+
 local initialize = function(pos, meta)
 	if not meta:contains("key") then
 		local inv = meta:get_inventory()
@@ -10,6 +14,13 @@ local initialize = function(pos, meta)
 		local key = {math.random(0,7), math.random(0,7), math.random(0,7), math.random(0,7)}
 		math.randomseed(next_seed)
 		local state = {math.random(0,7), math.random(0,7), math.random(0,7), math.random(0,7)}
+		local key_sum = sum_square(key)
+		local state_sum = sum_square(state)
+		if (key_sum[1] == state_sum[1] and key_sum[2] == state_sum[2] and key_sum[3] == state_sum[3] and key_sum[4] == state_sum[4]) then
+			-- if we randomly start off solved change one of the states to make it unsolved.
+			-- lucky player gets an easy one.
+			state[1] = (state[1] + 1) % 8
+		end
 		meta:set_string("key", minetest.serialize(key))
 		meta:set_string("state", minetest.serialize(state))
 		meta:mark_as_private("key")
@@ -20,18 +31,16 @@ end
 -- 1 2
 -- 3 4
 
-local sum_square = function(input)
-	return {input[1] + input[2], input[3] + input[4], input[1] + input[3], input[2] + input[4]}
-end
-
 local formspec_dial = function(identifier, state)
+	-- TODO replace label with image[]
+	-- TODO replace buttons with image buttons?
 	return "label[0.5,0;"..tostring(state).."]"
-		.. "button[0,0.25;0.5,0.5;"..identifier.."-;←]"
-		.. "button[1.5,0.25;0.5,0.5;"..identifier.."+;→]"
+		.. "button[0,0.25;0.5,0.5;"..identifier.."-;<]"
+		.. "button[1.5,0.25;0.5,0.5;"..identifier.."+;>]"
 end
 
 local formspec_bar = function(horizontal, state, key)
-	--return "label[0,0;" .. tostring(state) .. "/" .. tostring(key) .. "]"
+	-- TODO replace boxes with image[]
 	if horizontal then
 		return "box[0,0;".. tostring(key/14 * 2) ..",1;#222222ff]box[0,0.1;".. tostring(state/14 * 2)..",0.8;#ff00ffff]"
 	end
@@ -68,6 +77,17 @@ local show_formspec = function(pos, node, clicker, itemstack, pointed_thing)
 		local nodemeta = "nodemeta:"..pos.x..","..pos.y..","..pos.z
 		formspec = formspec
 			.. "list["..nodemeta..";main;0.6,4.7;8,1;]"
+		if meta:get_string("solved") ~= "true" then
+			-- TODO play opening sound
+			meta:set_string("solved", "true")
+			local old_node = minetest.get_node(pos)
+			minetest.swap_node(pos, {name="df_underworld_items:puzzle_chest_opened", param2=old_node.param2})
+		end
+	elseif meta:get_string("solved") == "true" then
+		-- TODO play closing sound
+		meta:set_string("solved", "")
+		local old_node = minetest.get_node(pos)
+		minetest.swap_node(pos, {name="df_underworld_items:puzzle_chest_closed", param2=old_node.param2})
 	end
 
 	minetest.show_formspec(playername, formname, formspec)
@@ -75,7 +95,6 @@ end
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if string.sub(formname, 1, prefix_len) ~= prefix then return end
-	--minetest.debug(dump(fields))
 	if fields.quit then return end
 	local pos = minetest.string_to_pos(string.sub(formname, prefix_len+1, -1))
 	local meta = minetest.get_meta(pos)
@@ -94,21 +113,16 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 end)
 
 
-minetest.register_node("df_underworld_items:puzzle_chest", {
+minetest.register_node("df_underworld_items:puzzle_chest_closed", {
 	description = S("Puzzle Chest"),
 	_doc_items_longdesc = df_underworld_items.doc.puzzle_chest_desc,
 	_doc_items_usagehelp = df_underworld_items.doc.puzzle_chest_usage,
-	tiles = {"dfcaverns_glow_amethyst.png"},
+	tiles = {"default_stone.png"},
 	is_ground_content = false,
-	groups = {cracky=3, pit_plasma_resistant=1, pickaxey = 4, building_block = 1,}, -- deliberately not in material_stone group to keep pit plasma ABM efficient
-	sounds = df_dependencies.sound_glass(),
-	light_source = 6,
-	paramtype = "light",
-	use_texture_alpha = "blend",
-	drawtype = "glasslike",
-	sunlight_propagates = true,
-	_mcl_blast_resistance = 6,
-	_mcl_hardness = 2,
+	groups = {stone=1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, building_block=1, material_stone=1},
+	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	_mcl_blast_resistance = 1200,
+	_mcl_hardness = 50,
 	
 	on_rightclick = show_formspec,
 	can_dig = function(pos, player)
@@ -119,3 +133,22 @@ minetest.register_node("df_underworld_items:puzzle_chest", {
 	end,
 })
 
+minetest.register_node("df_underworld_items:puzzle_chest_opened", {
+	description = S("Puzzle Chest"),
+	_doc_items_longdesc = df_underworld_items.doc.puzzle_chest_desc,
+	_doc_items_usagehelp = df_underworld_items.doc.puzzle_chest_usage,
+	tiles = {"dfcaverns_glow_amethyst.png"},
+	is_ground_content = false,
+	groups = {stone=1, slade=1, pit_plasma_resistant=1, mese_radiation_shield=1, cracky = 3, building_block=1, material_stone=1, not_in_creative_inventory=1},
+	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
+	_mcl_blast_resistance = 1200,
+	_mcl_hardness = 50,
+	
+	on_rightclick = show_formspec,
+	can_dig = function(pos, player)
+		local meta = minetest.get_meta(pos)
+		initialize(pos, meta)
+		local inv = meta:get_inventory()
+		return inv:is_empty("main")
+	end,
+})

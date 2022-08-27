@@ -19,6 +19,9 @@ local n8 = { name = df_dependencies.node_name_stair_slade_brick, param2 = 2, for
 local n9 = { name = df_dependencies.node_name_stair_slade_brick, force_place=false, place_on_condition=mapgen_helper.buildable_to }
 local n14 = { name = df_dependencies.node_name_stair_slade_brick, param2 = 1, force_place=false, place_on_condition=mapgen_helper.buildable_to }
 
+
+local n18 = { name = "df_underworld_items:puzzle_chest_closed", param2 = 1, prob=192 } -- 50% chance of being force-placed.
+
 return {
 	name = "df_caverns:small_building",
 	size = {x = 11, y = 9, z = 7},
@@ -46,7 +49,7 @@ return {
 		n2, n2, n2, n2, n1, n1, n1, n2, n2, n2, n2, n2, n2, n2, n2, n1, n1, 
 		n1, n2, n2, n2, n2, n2, n2, n2, n2, n1, n1, n1, n2, n2, n2, n2, n2, 
 		n2, n2, n2, n1, n1, n1, n2, n3, n3, n3, n3, n3, n3, n3, n1, n1, n1, 
-		n10, n10, n10, n10, n10, n10, n10, n4, n1, n1, n1, n10, n10, n10, 
+		n10, n10, n10, n10, n10, n10, n18, n4, n1, n1, n1, n10, n10, n10, 
 		n10, n10, n10, n10, n4, n1, n1, n1, n1, n11, n12, n12, n12, n12, n12, 
 		n13, n1, n1, n2, n2, n2, n2, n2, n2, n2, n2, n2, n1, n1, n2, n2, n2, 
 		n2, n2, n2, n2, n2, n2, n1, n1, n9, n2, n2, n2, n2, n2, n2, n2, n2, 

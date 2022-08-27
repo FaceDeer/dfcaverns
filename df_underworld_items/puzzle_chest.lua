@@ -47,6 +47,8 @@ end
 local prefix = "df_underworld_items:puzzle_chest"
 local prefix_len = string.len("df_underworld_items:puzzle_chest")
 
+local itemslot_bg = df_dependencies.get_itemslot_bg_padded
+
 local show_formspec = function(pos, node, clicker, itemstack, pointed_thing)
 	local meta = minetest.get_meta(pos)
 	initialize(pos, meta)
@@ -69,10 +71,12 @@ local show_formspec = function(pos, node, clicker, itemstack, pointed_thing)
 		.. "container[1,2.75]" .. formspec_bar(false, state_sum[3], key_sum[3]) .. "container_end[]"		
 		.. "container[4,2.75]" .. formspec_bar(false, state_sum[4], key_sum[4]) .. "container_end[]"
 		.. "container_end[]"
+		.. itemslot_bg(0.6,6.7,8,4,0.25)
 		.. "list[current_player;main;0.6,6.7;8,4;]"
 	if solved then
 		local nodemeta = "nodemeta:"..pos.x..","..pos.y..","..pos.z
 		formspec = formspec
+			.. itemslot_bg(0.6,5.4,8,1,0.25)
 			.. "list["..nodemeta..";main;0.6,5.4;8,1;]"
 			.. "listring[]"
 		if meta:get_string("solved") ~= "true" then

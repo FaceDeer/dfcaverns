@@ -195,9 +195,18 @@ elseif minetest.get_modpath("mcl_explosions") then
 end
 
 df_dependencies.mods_required.mcl_formspec = true
-df_dependencies.get_itemslot_bg = function(X,Y,W,H)
-	return ""
-end
+df_dependencies.get_itemslot_bg = function(X,Y,W,H) return "" end
+df_dependencies.get_itemslot_bg_padded = function(X,Y,W,H) return "" end
 if minetest.get_modpath("mcl_formspec") then
 	df_dependencies.get_itemslot_bg = mcl_formspec.get_itemslot_bg
+	
+	df_dependencies.get_itemslot_bg_padded = function(x,y,w,h, padding)
+		local out = ""
+		for i = 0, w - 1, 1 do
+			for j = 0, h - 1, 1 do
+				out = out .."image["..x+i+(i*padding)..","..y+j+(j*padding)..";1,1;mcl_formspec_itemslot.png]"
+			end
+		end
+		return out
+	end
 end

@@ -58,6 +58,8 @@ local colour_groups = {
 	{"color_white", "basecolor_white", "excolor_white", "excolor_lightgrey", "color_grey"},	-- 7
 }
 
+df_underworld_items.colour_items = {}
+
 local cull_colour_groups = function()
 	local culled_colour_groups = {}
 	for _, groups in ipairs(colour_groups) do
@@ -74,6 +76,22 @@ local cull_colour_groups = function()
 		table.insert(culled_colour_groups, new_set)
 	end
 	colour_groups = culled_colour_groups
+	
+	-- collect a list of all items with useful colour groups
+	-- to be used for treasure generation
+	local colour_item_set = {}
+	for itemname, def in pairs(minetest.registered_items) do
+		for _, groups in ipairs(colour_groups) do
+			for _, colour in ipairs(groups) do
+				if minetest.get_item_group(itemname, colour) ~= 0 then
+					colour_item_set[itemname] = true
+				end
+			end
+		end
+	end
+	for colour_item, _ in pairs(colour_item_set) do
+		table.insert(df_underworld_items.colour_items, colour_item)
+	end
 end
 minetest.after(0, cull_colour_groups)
 

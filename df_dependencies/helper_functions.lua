@@ -204,7 +204,7 @@ if minetest.get_modpath("mcl_formspec") then
 		local out = ""
 		for i = 0, w - 1, 1 do
 			for j = 0, h - 1, 1 do
-				out = out .."image["..x+i+(i*padding)..","..y+j+(j*padding)..";1,1;mcl_formspec_itemslot.png]"
+				out = out .. mcl_formspec.get_itemslot_bg(x+i+(i*padding), y+j+(j*padding), 1, 1)
 			end
 		end
 		return out

@@ -7,14 +7,7 @@ end
 local initialize = function(pos, meta)
 	if not meta:contains("key") then
 		local inv = meta:get_inventory()
-		inv:set_size("main", 8)
-		
-		for i = 1, math.random(1,8) do
-			local item = ItemStack(df_underworld_items.colour_items[math.random(1,#df_underworld_items.colour_items)])
-			--item:set_count(math.random(1,4))
-			inv:add_item("main", item)
-		end
-		
+		inv:set_size("main", 8)		
 		local next_seed = math.random() * 2^21
 		math.randomseed(pos.x + pos.y^8 + pos.z^16)
 		-- Key is consistent with location
@@ -81,6 +74,7 @@ local show_formspec = function(pos, node, clicker, itemstack, pointed_thing)
 		local nodemeta = "nodemeta:"..pos.x..","..pos.y..","..pos.z
 		formspec = formspec
 			.. "list["..nodemeta..";main;0.6,5.4;8,1;]"
+			.. "listring[]"
 		if meta:get_string("solved") ~= "true" then
 			minetest.sound_play("dfcaverns_puzzle_chest_open", {pos = pos})
 			meta:set_string("solved", "true")

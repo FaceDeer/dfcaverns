@@ -490,6 +490,21 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							end)
 						elseif building.building_type == "small building" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, small_building_schematic, building.rotation)
+							local pos = building.pos
+							minetest.after(1, function()
+								local puzzle_chest = minetest.find_node_near(pos, 4, {"df_underworld_items:puzzle_chest_closed"}, true)
+								if puzzle_chest then
+									local def = minetest.registered_nodes["df_underworld_items:puzzle_chest_closed"]
+									def.can_dig(puzzle_chest) -- initializes the inventory
+									local meta = minetest.get_meta(puzzle_chest)
+									local inv = meta:get_inventory()
+									for i = 1, math.random(1,8) do
+										local item = ItemStack(df_underworld_items.colour_items[math.random(1,#df_underworld_items.colour_items)])
+										--item:set_count(math.random(1,4))
+										inv:add_item("main", item)
+									end
+								end								
+							end)
 						elseif building.building_type == "medium building" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, medium_building_schematic, building.rotation)
 							if name_generator_path then

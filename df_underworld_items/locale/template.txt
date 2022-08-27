@@ -48,6 +48,10 @@ Glowing Pit Plasma=
 
 Guardian Statue=
 
+### puzzle_chest.lua ###
+
+Puzzle Chest=
+
 ### puzzle_seal.lua ###
 
 Active Slade Breacher=

@@ -9,6 +9,7 @@ minetest.register_craftitem("df_primordial_items:primordial_fruit", {
 	sound = {eat = {name = "df_farming_gummy_chew", gain = 1.0}},
 	on_use = minetest.item_eat(8),
 	_hunger_ng = {heals = 8},
+	_mcl_saturation = 12,
 })
 
 minetest.register_craftitem("df_primordial_items:glowtato", {
@@ -20,4 +21,5 @@ minetest.register_craftitem("df_primordial_items:glowtato", {
 	groups = {food = 8, dfcaverns_cookable = 1, eatable=8, plant=1},
 	on_use = minetest.item_eat(8),
 	_hunger_ng = {satiates = 8},
+	_mcl_saturation = 8,
 })

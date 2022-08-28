@@ -78,6 +78,7 @@ minetest.register_craftitem("df_primordial_items:diced_mushroom", {
 	sound = {eat = {name = "df_farming_gummy_chew", gain = 1.0}},
 	on_use = minetest.item_eat(1),
 	_hunger_ng = {satiates = 1},
+	_mcl_saturation = 0.5,
 })
 
 minetest.register_craft({

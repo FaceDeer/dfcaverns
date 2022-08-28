@@ -99,6 +99,7 @@ for _, def in pairs(recipes) do
 		on_use = minetest.item_eat(recipe_type.value),
 		groups = {food = recipe_type.value, eatable=recipe_type.value},
 		_hunger_ng = {satiates = recipe_type.value},
+		_mcl_saturation = recipe_type.value, -- TODO: make this more interesting
 	})
 
 	minetest.register_craft({

@@ -170,6 +170,7 @@ minetest.register_node("df_farming:plump_helmet_1", {
 
 	on_use = minetest.item_eat(1),
 	_hunger_ng = {satiates = 1},
+	_mcl_saturation = 0.5,
 
 	on_timer = function(pos, elapsed)
 		df_farming.grow_underground_plant(pos, "df_farming:plump_helmet_1", elapsed)
@@ -213,6 +214,7 @@ minetest.register_node("df_farming:plump_helmet_2", {
 	
 	on_use = minetest.item_eat(2),
 	_hunger_ng = {satiates = 2},
+	_mcl_saturation = 0.7,
 
 	on_timer = function(pos, elapsed)
 		df_farming.grow_underground_plant(pos, "df_farming:plump_helmet_2", elapsed)
@@ -255,6 +257,7 @@ minetest.register_node("df_farming:plump_helmet_3", {
 	
 	on_use = minetest.item_eat(3),
 	_hunger_ng = {satiates = 3},
+	_mcl_saturation = 0.9,
 
 	on_timer = function(pos, elapsed)
 		df_farming.grow_underground_plant(pos, "df_farming:plump_helmet_3", elapsed)
@@ -317,6 +320,7 @@ minetest.register_node("df_farming:plump_helmet_4", {
 	
 	on_use = minetest.item_eat(4),
 	_hunger_ng = {satiates = 4},
+	_mcl_saturation = 1,
 })
 
 local picked_groups = {}
@@ -362,6 +366,7 @@ minetest.register_node("df_farming:plump_helmet_4_picked", {
 	
 	on_use = minetest.item_eat(4),
 	_hunger_ng = {satiates = 4},
+	_mcl_saturation = 1,
 })
 
 local place_list = {

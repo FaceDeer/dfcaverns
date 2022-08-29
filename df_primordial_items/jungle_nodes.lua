@@ -3,6 +3,8 @@ local S = minetest.get_translator(minetest.get_current_modname())
 ----------------------------------------------------
 -- Ferns
 
+local jungle_plant_groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13, handy=1, swordy=1, hoey=1, destroy_by_lava_flow=1,dig_by_piston=1, compostability = 30}
+
 minetest.register_node("df_primordial_items:fern_1", {
 	description = S("Primordial Fern"),
 	_doc_items_longdesc = df_primordial_items.doc.fern_desc,
@@ -10,8 +12,8 @@ minetest.register_node("df_primordial_items:fern_1", {
 	tiles = {"dfcaverns_jungle_fern_01.png"},
 	inventory_image = "dfcaverns_jungle_fern_01.png",
 	wield_image = "dfcaverns_jungle_fern_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dry_shrub,
+	groups = jungle_plant_groups,
+	_dfcaverns_dead_node = df_dependencies.node_name_dry_shrub,
 	visual_scale = 1.69,
 	paramtype = "light",
 	drawtype = "plantlike",
@@ -19,9 +21,11 @@ minetest.register_node("df_primordial_items:fern_1", {
 	is_ground_content = false,
 	walkable = false,
 	floodable = true,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:fern_2", {
@@ -32,17 +36,19 @@ minetest.register_node("df_primordial_items:fern_2", {
 	visual_scale = 1.69,
 	inventory_image = "dfcaverns_jungle_fern_02.png",
 	wield_image = "dfcaverns_jungle_fern_02.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dry_shrub,
+	groups = jungle_plant_groups,
+	_dfcaverns_dead_node = df_dependencies.node_name_dry_shrub,
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,
 	floodable = true,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 ---------------------------------------------------------
@@ -55,8 +61,8 @@ minetest.register_node("df_primordial_items:glow_plant_1", {
 	tiles = {"dfcaverns_jungle_flower_01.png"},
 	inventory_image = "dfcaverns_jungle_flower_01.png",
 	wield_image = "dfcaverns_jungle_flower_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dry_shrub,
+	groups = jungle_plant_groups,
+	_dfcaverns_dead_node = df_dependencies.node_name_dry_shrub,
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -77,9 +83,11 @@ minetest.register_node("df_primordial_items:glow_plant_1", {
 			},
 		},
 	},
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:glow_plant_2", {
@@ -89,8 +97,8 @@ minetest.register_node("df_primordial_items:glow_plant_2", {
 	tiles = {"dfcaverns_jungle_glow_plant_01.png"},
 	inventory_image = "dfcaverns_jungle_glow_plant_01.png",
 	wield_image = "dfcaverns_jungle_glow_plant_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dry_shrub,
+	groups = jungle_plant_groups,
+	_dfcaverns_dead_node = df_dependencies.node_name_dry_shrub,
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -99,9 +107,11 @@ minetest.register_node("df_primordial_items:glow_plant_2", {
 	floodable = true,
 	drop = "df_primordial_items:glowtato",
 	light_source = 6,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:glow_plant_3", {
@@ -111,8 +121,8 @@ minetest.register_node("df_primordial_items:glow_plant_3", {
 	tiles = {"dfcaverns_jungle_glow_plant_02.png"},
 	inventory_image = "dfcaverns_jungle_glow_plant_02.png",
 	wield_image = "dfcaverns_jungle_glow_plant_02.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dry_shrub,
+	groups = jungle_plant_groups,
+	_dfcaverns_dead_node = df_dependencies.node_name_dry_shrub,
 	paramtype = "light",
 	drawtype = "plantlike",
 	drop = "df_primordial_items:glowtato 2",
@@ -121,9 +131,11 @@ minetest.register_node("df_primordial_items:glow_plant_3", {
 	walkable = false,
 	floodable = true,
 	light_source = 6,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 
@@ -137,17 +149,19 @@ minetest.register_node("df_primordial_items:jungle_grass_1", {
 	tiles = {"dfcaverns_jungle_grass_01.png"},
 	inventory_image = "dfcaverns_jungle_grass_01.png",
 	wield_image = "dfcaverns_jungle_grass_01.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dry_grass_3,
+	groups = jungle_plant_groups,
+	_dfcaverns_dead_node = df_dependencies.node_name_dry_grass_3,
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,
 	floodable = true,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:jungle_grass_2", {
@@ -157,8 +171,8 @@ minetest.register_node("df_primordial_items:jungle_grass_2", {
 	tiles = {"dfcaverns_jungle_grass_02.png"},
 	inventory_image = "dfcaverns_jungle_grass_02.png",
 	wield_image = "dfcaverns_jungle_grass_02.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dry_grass_4,
+	groups = jungle_plant_groups,
+	_dfcaverns_dead_node = df_dependencies.node_name_dry_grass_4,
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -166,9 +180,11 @@ minetest.register_node("df_primordial_items:jungle_grass_2", {
 	walkable = false,
 	floodable = true,
 	place_param2 = 3,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:jungle_grass_3", {
@@ -178,8 +194,8 @@ minetest.register_node("df_primordial_items:jungle_grass_3", {
 	tiles = {"dfcaverns_jungle_grass_03.png"},
 	inventory_image = "dfcaverns_jungle_grass_03.png",
 	wield_image = "dfcaverns_jungle_grass_03.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dry_grass_4,
+	groups = jungle_plant_groups,
+	_dfcaverns_dead_node = df_dependencies.node_name_dry_grass_4,
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
@@ -187,9 +203,11 @@ minetest.register_node("df_primordial_items:jungle_grass_3", {
 	walkable = false,
 	floodable = true,
 	place_param2 = 3,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 
@@ -203,13 +221,13 @@ minetest.register_node("df_primordial_items:jungle_ivy", {
 	tiles = {"dfcaverns_jungle_ivy_01.png"},
 	inventory_image = "dfcaverns_jungle_ivy_01.png",
 	wield_image = "dfcaverns_jungle_ivy_01.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1, handy=1,axey=1,shearsy=1,swordy=1, flammable=2,deco_block=1,destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=15, fire_flammability=100, compostability=50},
 	paramtype = "light",
 	drawtype = "plantlike",
 	place_param2 = 3,
 	--paramtype2 = "wallmouinted",
 	--drawtype = "signlike",
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
 	is_ground_content = false,
@@ -218,6 +236,8 @@ minetest.register_node("df_primordial_items:jungle_ivy", {
 --	selection_box = {
 --		type = "wallmounted",
 --	},
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 -------------------------------------------------------------------------------------
@@ -230,16 +250,18 @@ minetest.register_node("df_primordial_items:jungle_mushroom_1", {
 	tiles = {"dfcaverns_jungle_mushroom_01.png^[multiply:#f3df2a"},
 	inventory_image = "dfcaverns_jungle_mushroom_01.png^[multiply:#f3df2a",
 	wield_image = "dfcaverns_jungle_mushroom_01.png^[multiply:#f3df2a",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 11},
+	groups = jungle_plant_groups,
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,
 	floodable = true,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:jungle_mushroom_2", {
@@ -249,16 +271,18 @@ minetest.register_node("df_primordial_items:jungle_mushroom_2", {
 	tiles = {"dfcaverns_jungle_mushroom_02.png"},
 	inventory_image = "dfcaverns_jungle_mushroom_02.png",
 	wield_image = "dfcaverns_jungle_mushroom_02.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 11},
+	groups = jungle_plant_groups,
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,
 	floodable = true,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
 ----------------------------------------------------------------------------------------
@@ -270,24 +294,26 @@ minetest.register_node("df_primordial_items:dirt_with_jungle_grass", {
 	_doc_items_usagehelp = df_primordial_items.doc.dirt_with_jungle_grass_usage,
 	tiles = {"dfcaverns_jungle_plant_grass_node_01.png"},
 	paramtype = "light",
-	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dirt,
+	groups = {crumbly = 3, soil = 1, light_sensitive_fungus = 13, handy=1,shovely=1, dirt=2, building_block=1, opaque=1},
+	_dfcaverns_dead_node = df_dependencies.node_name_dirt,
 	is_ground_content = false,
-	drop = df_primordial_items.node_names.dirt,
-	sounds = df_primordial_items.sounds.dirt,
+	drop = df_dependencies.node_name_dirt,
+	sounds = df_dependencies.sound_dirt(),
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.6,
 })
 
 minetest.register_abm{
 	label = "df_primordial_items:jungle_grass_spread",
-	nodenames = {df_primordial_items.node_names.dirt},
-	neighbors = {"df_mapitems:dirt_with_jungle_grass"},
+	nodenames = {df_dependencies.node_name_dirt},
+	neighbors = {"df_primordial_items:dirt_with_jungle_grass"},
 	interval = 60,
 	chance = 50,
 	catch_up = true,
 	action = function(pos)
 		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
 		if above_def and (above_def.buildable_to == true or above_def.walkable == false) then
-			minetest.swap_node(pos, {name="df_mapitems:dirt_with_jungle_grass"})
+			minetest.swap_node(pos, {name="df_primordial_items:dirt_with_jungle_grass"})
 		end
 	end,
 }
@@ -298,9 +324,8 @@ minetest.register_node("df_primordial_items:plant_matter", {
 	_doc_items_usagehelp = df_primordial_items.doc.plant_matter_usage,
 	tiles = {"dfcaverns_jungle_plant_matter_01.png"},
 	is_ground_content = false,
-	paramtype = "light",
-	groups = {crumbly = 3, soil = 1, flammable = 1},
-	sounds = df_primordial_items.sounds.dirt,
+	groups = {crumbly = 3, soil = 1, flammable = 1, handy=1,shovely=1, dirt=2, building_block=1, fire_encouragement=1, fire_flammability=1},
+	sounds = df_dependencies.sound_dirt(),
 	on_timer = function(pos, elapsed)
 		if elapsed > 130 then
 			-- the timer triggered more than ten seconds after it was suppposed to,
@@ -313,6 +338,8 @@ minetest.register_node("df_primordial_items:plant_matter", {
 			minetest.set_node(pos, {name="df_primordial_items:packed_roots"})
 		end
 	end,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_primordial_items:packed_roots", {
@@ -322,8 +349,10 @@ minetest.register_node("df_primordial_items:packed_roots", {
 	tiles = {"dfcaverns_jungle_plant_packed_roots_01.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-	sounds = df_primordial_items.sounds.wood,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, handy=1,axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+	sounds = df_dependencies.sound_wood(),
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 3,
 })
 
 
@@ -369,15 +398,17 @@ minetest.register_node("df_primordial_items:jungle_roots_1", {
 	tiles = {"dfcaverns_jungle_root_01.png"},
 	inventory_image = "dfcaverns_jungle_root_01.png",
 	wield_image = "dfcaverns_jungle_root_01.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1, handy=1,axey=1,shearsy=1,swordy=1, deco_block=1,destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=3, fire_flammability=10, compostability=50},
 	paramtype = "light",
 	drawtype = "plantlike",
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
 	walkable = false,
 	climbable = true,
 	is_ground_content = false,
+	_mcl_blast_resistance = 0.3,
+	_mcl_hardness = 0.2,
 })
 
 minetest.register_node("df_primordial_items:jungle_roots_2", {
@@ -387,15 +418,17 @@ minetest.register_node("df_primordial_items:jungle_roots_2", {
 	tiles = {"dfcaverns_jungle_root_02.png"},
 	inventory_image = "dfcaverns_jungle_root_02.png",
 	wield_image = "dfcaverns_jungle_root_02.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1, handy=1,axey=1,shearsy=1,swordy=1, deco_block=1,destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=3, fire_flammability=10, compostability=50},
 	paramtype = "light",
 	drawtype = "plantlike",
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	is_ground_content = false,
 	sunlight_propagates = true,
 	walkable = false,
 	climbable = true,
+	_mcl_blast_resistance = 0.3,
+	_mcl_hardness = 0.2,
 })
 
 --------------------------------------------------------------------------------
@@ -409,17 +442,19 @@ minetest.register_node("df_primordial_items:jungle_thorns", {
 	visual_scale = 1.41,
 	inventory_image = "dfcaverns_jungle_thorns_01.png",
 	wield_image = "dfcaverns_jungle_thorns_01.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, primordial_jungle_plant = 1},
+	groups = {snappy = 3, flora = 1, flammable = 1, primordial_jungle_plant = 1, handy=1, swordy=1, hoey=1, destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=30, fire_flammability=100, compostability=50},
 	paramtype = "light",
 	drawtype = "plantlike",
 	walkable = false,
 	floodable = true,
 	is_ground_content = false,
 	place_param2 = 3,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
 	damage_per_second = 1,
+	_mcl_blast_resistance = 0.5,
+	_mcl_hardness = 0.3,
 })
 
 

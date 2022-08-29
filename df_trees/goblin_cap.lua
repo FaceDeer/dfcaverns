@@ -13,8 +13,10 @@ minetest.register_node("df_trees:goblin_cap_stem", {
 	_doc_items_usagehelp = df_trees.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap_stem.png"},
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, goblin_cap = 1},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, goblin_cap = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 --cap
@@ -24,8 +26,10 @@ minetest.register_node("df_trees:goblin_cap", {
 	_doc_items_usagehelp = df_trees.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap.png"},
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, goblin_cap = 1},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, goblin_cap = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 --gills
@@ -35,8 +39,8 @@ minetest.register_node("df_trees:goblin_cap_gills", {
 	_doc_items_usagehelp = df_trees.doc.goblin_cap_usage,
 	tiles = {"dfcaverns_goblin_cap_gills.png"},
 	is_ground_content = false,
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, goblin_cap = 1},
-	sounds = df_trees.sounds.leaves,
+	groups = {snappy = 3, leafdecay = 1, flammable = 2, leaves = 1, goblin_cap = 1,handy=1, hoey=1, shearsy=1, swordy=1, deco_block=1, dig_by_piston=1, fire_encouragement=15, fire_flammability=30, compostability=30},
+	sounds = df_dependencies.sound_leaves(),
 	drawtype = "plantlike",
 	paramtype = "light",
 	drop = {
@@ -51,10 +55,13 @@ minetest.register_node("df_trees:goblin_cap_gills", {
 			}
 		}
 	},
-	after_place_node = df_trees.after_place_leaves,
+	after_place_node = df_dependencies.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
-df_trees.register_leafdecay({
+df_dependencies.register_leafdecay({
 	trunks = {"df_trees:goblin_cap"}, -- don't need stem nodes here
 	leaves = {"df_trees:goblin_cap_gills"},
 	radius = 1,	
@@ -83,8 +90,10 @@ minetest.register_node("df_trees:goblin_cap_wood", {
 	place_param2 = 0,
 	tiles = {"dfcaverns_goblin_cap_wood.png"},
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
+	sounds = df_dependencies.sound_wood(),
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 2,
 })
 
 minetest.register_node("df_trees:goblin_cap_stem_wood", {
@@ -95,14 +104,14 @@ minetest.register_node("df_trees:goblin_cap_stem_wood", {
 	place_param2 = 0,
 	tiles = {"dfcaverns_goblin_cap_stem_wood.png"},
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
+	sounds = df_dependencies.sound_wood(),
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 2,
 })
 
-df_trees.register.all_stairs("goblin_cap_wood")
-df_trees.register.all_fences("goblin_cap_wood", {burntime = 12})
-df_trees.register.all_stairs("goblin_cap_stem_wood")
-df_trees.register.all_fences("goblin_cap_stem_wood", {burntime = 7})
+df_dependencies.register_all_stairs_and_fences("goblin_cap_wood", {burntime = 12})
+df_dependencies.register_all_stairs_and_fences("goblin_cap_stem_wood", {burntime = 7})
 
 minetest.register_craft({
 	type = "fuel",
@@ -141,10 +150,10 @@ local bigger_goblin_cap_schem = dofile(modpath.."/schematics/goblin_cap_bigger.l
 local bigger_goblin_cap_hut_schem = dofile(modpath.."/schematics/goblin_cap_bigger_hut.lua")
 
 -- The hut has a chest and furnace near pos, use this to initialize it
-local chest_node = df_trees.node_names.chest
-local furnace_node = df_trees.node_names.furnace
-local gold_item = df_trees.node_names.gold_ingot
-local apple_item = df_trees.node_names.apple
+local chest_node = df_dependencies.node_name_chest
+local furnace_node = df_dependencies.node_name_furnace
+local gold_item = df_dependencies.node_name_gold_ingot
+local apple_item = df_dependencies.node_name_apple
 
 local chest_on_construct = minetest.registered_items[chest_node].on_construct
 local furnace_on_construct = minetest.registered_items[furnace_node].on_construct
@@ -211,8 +220,10 @@ minetest.register_node("df_trees:goblin_cap_sapling", {
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
 	},
 	groups = {snappy = 2, dig_immediate = 3, flammable = 2,
-		attached_node = 1, sapling = 1, light_sensitive_fungus = 11},
-	sounds = df_trees.sounds.leaves,
+		attached_node = 1, sapling = 1, light_sensitive_fungus = 11, dig_immediate=3,dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1, compostability=30},
+	sounds = df_dependencies.sound_leaves(),
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 
 	on_construct = function(pos)
 		if df_trees.goblin_cap_growth_permitted(pos) then
@@ -247,23 +258,6 @@ minetest.register_node("df_trees:goblin_cap_sapling", {
 local c_stem = minetest.get_content_id("df_trees:goblin_cap_stem")
 local c_cap  = minetest.get_content_id("df_trees:goblin_cap")
 local c_gills  = minetest.get_content_id("df_trees:goblin_cap_gills")
-
--- If the farming mod is installed, add the "straw" group to farming straw.
--- This way we just need to check for group:straw to get cave straw as well, without 
--- needing a df_farming dependency for this mod.
-if minetest.get_modpath("farming") then
-	local straw_def = minetest.registered_items["farming:straw"]
-	if straw_def then
-		local new_groups = {}
-		for group, val in pairs(straw_def.groups) do
-			new_groups[group] = val
-		end
-		new_groups.straw = 1
-		minetest.override_item("farming:straw", {
-			groups = new_groups
-		})
-	end
-end
 
 df_trees.spawn_goblin_cap = function(pos)
 	if math.random() < 0.1 then

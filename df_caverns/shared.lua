@@ -23,11 +23,14 @@ local c_webs_egg = df_caverns.node_id.big_webs_egg
 
 df_caverns.data_param2 = {} -- shared among all mapgens to reduce memory clutter
 
-df_caverns.get_biome_at_pos_list = {} -- a list of methods of the form function(pos, heat, humidity) to allow modpack-wide queries about what should grow where
+local get_biome_at_pos_list = {} -- a list of methods of the form function(pos, heat, humidity) to allow modpack-wide queries about what should grow where
+df_caverns.register_biome_check = function(func)
+	table.insert(get_biome_at_pos_list, func)
+end
 df_caverns.get_biome = function(pos)
 	local heat = minetest.get_heat(pos)
 	local humidity = minetest.get_humidity(pos)
-	for _, val in pairs(df_caverns.get_biome_at_pos_list) do
+	for _, val in pairs(get_biome_at_pos_list) do
 		local biome = val(pos, heat, humidity)
 		if biome ~= nil then
 			return biome

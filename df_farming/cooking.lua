@@ -1,5 +1,6 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
+local bucket_empty = df_dependencies.node_name_bucket_empty
 
 local chomp = {eat = {name = "df_farming_chomp_crunch", gain = 1.0}}
 local crisp = {eat = {name = "df_farming_crisp_chew", gain = 1.0}}
@@ -16,7 +17,7 @@ local recipes = {
 {recipe = {"df_farming:cave_wheat_seed", "df_farming:cave_wheat_seed", "df_farming:pig_tail_seed", "df_farming:plump_helmet_spawn"}, name=S("Cave Wheat Seed Risotto"), image="dfcaverns_prepared_food14x16.png", sound = gummy},
 {recipe = {"df_farming:sweet_pod_seed", "group:food_flour"}, name=S("Sweet Pod Spore Dumplings"), image="dfcaverns_prepared_food09x16.png", sound = mushy},
 {recipe = {"df_farming:sweet_pod_seed", "group:food_flour", "group:sugar"}, name=S("Sweet Pod Spore Single Crust Pie"), image="dfcaverns_prepared_food05x16.png", sound = mushy},
-{recipe = {"df_farming:sweet_pod_seed", "group:sugar", "group:food_flour", "df_farming:dwarven_syrup_bucket"}, replacements={{"df_farming:dwarven_syrup_bucket", "bucket:bucket_empty"}}, name=S("Sweet Pod Spore Brule"), image="dfcaverns_prepared_food22x16.png", sound = soft},
+{recipe = {"df_farming:sweet_pod_seed", "group:sugar", "group:food_flour", "df_farming:dwarven_syrup_bucket"}, replacements={{"df_farming:dwarven_syrup_bucket", bucket_empty}}, name=S("Sweet Pod Spore Brule"), image="dfcaverns_prepared_food22x16.png", sound = soft},
 {recipe = {"df_farming:sugar", "group:food_flour"}, name=S("Sweet Pod Sugar Cookie"), image="dfcaverns_prepared_food02x16.png", sound = crisp},
 {recipe = {"df_farming:sugar", "group:food_flour", "df_farming:quarry_bush_leaves"}, name=S("Sweet Pod Sugar Gingerbread"), image="dfcaverns_prepared_food21x16.png", sound = chomp},
 {recipe = {"df_farming:sugar", "group:sugar", "group:food_flour", "group:food_flour"}, name=S("Sweet Pod Sugar Roll"), image="dfcaverns_prepared_food25x16.png", sound = crisp},
@@ -36,11 +37,11 @@ local recipes = {
 {recipe = {"df_farming:dimple_cup_seed", "group:food_flour", "group:sugar"}, name=S("Dimple Cup Spore Scone"), image="dfcaverns_prepared_food32x16.png", sound = chomp},
 {recipe = {"df_farming:dimple_cup_seed", "df_farming:sweet_pod_seed", "df_farming:quarry_bush_seed", "group:food_flour"}, name=S("Dimple Cup Spore Roll"), image="dfcaverns_prepared_food31x16.png", sound = soft},
 {recipe = {"df_farming:pig_tail_seed", "df_farming:cave_bread"}, name=S("Pig Tail Spore Sandwich"), image="dfcaverns_prepared_food20x16.png", sound = soft},
-{recipe = {"df_farming:pig_tail_seed", "df_farming:pig_tail_seed", "df_farming:dwarven_syrup_bucket"}, name=S("Pig Tail Spore Tofu"), replacements={{"df_farming:dwarven_syrup_bucket", "bucket:bucket_empty"}}, image="dfcaverns_prepared_food30x16.png", sound = gummy},
+{recipe = {"df_farming:pig_tail_seed", "df_farming:pig_tail_seed", "df_farming:dwarven_syrup_bucket"}, name=S("Pig Tail Spore Tofu"), replacements={{"df_farming:dwarven_syrup_bucket", bucket_empty}}, image="dfcaverns_prepared_food30x16.png", sound = gummy},
 {recipe = {"df_farming:pig_tail_seed", "df_farming:sweet_pod_seed", "group:food_flour", "group:food_flour"}, name=S("Pig Tail Spore Casserole"), image="dfcaverns_prepared_food34x16.png", sound = mushy},
-{recipe = {"df_farming:dwarven_syrup_bucket", "df_farming:dwarven_syrup_bucket"}, replacements={{"df_farming:dwarven_syrup_bucket", "bucket:bucket_empty"}, {"df_farming:dwarven_syrup_bucket", "bucket:bucket_empty"}}, name=S("Dwarven Syrup Taffy"), image="dfcaverns_prepared_food19x16.png", sound = gummy},
-{recipe = {"df_farming:dwarven_syrup_bucket", "group:sugar", "group:plump_helmet"}, replacements={{"df_farming:dwarven_syrup_bucket", "bucket:bucket_empty"}}, name=S("Dwarven Syrup Jellies"), image="dfcaverns_prepared_food06x16.png", sound = gummy},
-{recipe = {"df_farming:dwarven_syrup_bucket", "group:food_flour", "group:sugar", "df_farming:quarry_bush_seed"}, replacements={{"df_farming:dwarven_syrup_bucket", "bucket:bucket_empty"}}, name=S("Dwarven Syrup Delight"), image="dfcaverns_prepared_food24x16.png", sound = mushy},
+{recipe = {"df_farming:dwarven_syrup_bucket", "df_farming:dwarven_syrup_bucket"}, replacements={{"df_farming:dwarven_syrup_bucket", bucket_empty}, {"df_farming:dwarven_syrup_bucket", bucket_empty}}, name=S("Dwarven Syrup Taffy"), image="dfcaverns_prepared_food19x16.png", sound = gummy},
+{recipe = {"df_farming:dwarven_syrup_bucket", "group:sugar", "group:plump_helmet"}, replacements={{"df_farming:dwarven_syrup_bucket", bucket_empty}}, name=S("Dwarven Syrup Jellies"), image="dfcaverns_prepared_food06x16.png", sound = gummy},
+{recipe = {"df_farming:dwarven_syrup_bucket", "group:food_flour", "group:sugar", "df_farming:quarry_bush_seed"}, replacements={{"df_farming:dwarven_syrup_bucket", bucket_empty}}, name=S("Dwarven Syrup Delight"), image="dfcaverns_prepared_food24x16.png", sound = mushy},
 }
 
 local complexity = {[2]={name="simple", value=4}, [3]={name="medium", value=6}, [4]={name="complex", value=8}}
@@ -96,8 +97,9 @@ for _, def in pairs(recipes) do
 		inventory_image = def.image,
 		sound = def.sound,
 		on_use = minetest.item_eat(recipe_type.value),
-		groups = {food = recipe_type.value},
+		groups = {food = recipe_type.value, eatable=recipe_type.value},
 		_hunger_ng = {satiates = recipe_type.value},
+		_mcl_saturation = recipe_type.value, -- TODO: make this more interesting
 	})
 
 	minetest.register_craft({

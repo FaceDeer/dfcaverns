@@ -34,7 +34,7 @@ minetest.register_node("df_primordial_items:giant_hypha_root", {
 	light_source = 2,
 	is_ground_content = false,
 	climbable = true,
-	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
+	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, handy=1,axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=1, fire_flammability=1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	drop = {
 		max_items = 1,
@@ -48,6 +48,8 @@ minetest.register_node("df_primordial_items:giant_hypha_root", {
 			},
 		},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 minetest.register_node("df_primordial_items:giant_hypha", {
 	description = S("Giant Hypha"),
@@ -65,7 +67,7 @@ minetest.register_node("df_primordial_items:giant_hypha", {
 	light_source = 2,
 	is_ground_content = false,
 	climbable = true,
-	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1},
+	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, handy=1,axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=1, fire_flammability=1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	drop = {
 		max_items = 1,
@@ -79,6 +81,8 @@ minetest.register_node("df_primordial_items:giant_hypha", {
 			},
 		},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 })
 
 minetest.register_craftitem("df_primordial_items:mycelial_fibers", {
@@ -316,9 +320,11 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 	paramtype = "light",
 
 	is_ground_content = false,
-	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, light_sensitive_fungus = 13},
+	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, light_sensitive_fungus = 13, handy=1,axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=1, fire_flammability=1},
 	_dfcaverns_dead_node = "df_primordial_items:giant_hypha_root",
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 	on_construct = function(pos)
 		if df_primordial_items.giant_mycelium_growth_permitted(pos) then
 			minetest.get_node_timer(pos):start(math.random(min_growth_delay, max_growth_delay))
@@ -405,7 +411,9 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {
 	paramtype = "light",
 
 	is_ground_content = false,
-	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, not_in_creative_inventory = 1, light_sensitive_fungus = 13},
+	groups = {oddly_breakable_by_hand = 1, choppy = 2, hypha = 1, not_in_creative_inventory = 1, light_sensitive_fungus = 13, handy=1,axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=1, fire_flammability=1},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 2,
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_timer = function(pos, elapsed)
 		grow_mycelium_immediately(pos)

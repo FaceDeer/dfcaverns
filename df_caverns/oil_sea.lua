@@ -46,6 +46,13 @@ local c_lava_set
 local y_max = median + 2*wave_mult + 2*ceiling_mult + ceiling_displace
 local y_min = median - 2*wave_mult + 2*floor_mult + floor_displace
 
+df_caverns.register_biome_check(function(pos, heat, humidity)
+	if pos.y > y_max or pos.y < y_min then
+		return
+	end
+	return "oil_sea"
+end)
+
 minetest.register_on_generated(function(minp, maxp, seed)
 	--if out of range of cave definition limits, abort
 	if minp.y > y_max or maxp.y < y_min then
@@ -115,7 +122,7 @@ end)
 minetest.register_ore({
 	ore_type       = "scatter",
 	ore            = "mine_gas:gas_seep",
-	wherein        = "default:stone",
+	wherein        = df_dependencies.node_name_stone,
 	clust_scarcity = 32 * 32 * 32,
 	clust_num_ores = 27,
 	clust_size     = 6,

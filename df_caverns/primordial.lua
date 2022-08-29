@@ -29,7 +29,7 @@ local perlin_wave_primordial = {
 
 local giant_mycelium_timer_spread = tonumber(minetest.settings:get("dcaverns_giant_mycelium_timer_spread")) or 10
 
-table.insert(df_caverns.get_biome_at_pos_list, function(pos, heat, humidity)
+df_caverns.register_biome_check(function(pos, heat, humidity)
 	if pos.y < df_caverns.config.primordial_min or pos.y > df_caverns.config.primordial_max then
 		return nil
 	end
@@ -194,6 +194,7 @@ local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_
 		local firefly_vi = vi + ystride * math.random(1, 5)
 		if data[firefly_vi] == c_air then
 			data[firefly_vi] = c_fireflies
+			minetest.get_node_timer(area:position(firefly_vi)):start(1)
 		end
 	end
 end
@@ -262,6 +263,7 @@ local jungle_warren_floor = function(abs_cracks, vi, area, data, data_param2)
 		local firefly_vi = vi + ystride * math.random(1, 5)
 		if data[firefly_vi] == c_air then
 			data[firefly_vi] = c_fireflies
+			minetest.get_node_timer(area:position(firefly_vi)):start(1)
 		end
 	end
 end
@@ -395,7 +397,7 @@ subterrane.register_layer({
 	columns = {
 		maximum_radius = 20,
 		minimum_radius = 5,
-		node = "default:stone", -- no flowstone below the Sunless Sea, replace with something else
+		node = df_dependencies.node_name_stone, -- no flowstone below the Sunless Sea, replace with something else
 		weight = 0.5,
 		maximum_count = 60,
 		minimum_count = 10,

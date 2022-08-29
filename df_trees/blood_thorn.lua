@@ -37,14 +37,19 @@ minetest.register_node("df_trees:blood_thorn", {
 		"dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png", "dfcaverns_blood_thorn_side.png"},
 	paramtype2 = "facedir",
 	paramtype = "light",
-	groups = {choppy = 3, tree = 1, flammable = 2, light_sensitive_fungus = 11},
+	groups = {choppy = 3, tree = 1, flammable = 2, light_sensitive_fungus = 11, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5, opaque=1},
 	_dfcaverns_dead_node = "df_trees:blood_thorn_dead",
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	after_dig_node = blood_thorn_after_dig,
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 1,
 
 	on_construct = function(pos)
+		if not df_trees.blood_thorn_growth_permitted(pos) then
+			return
+		end
 		minetest.get_node_timer(pos):start(math.random(blood_thorn_min_delay, blood_thorn_max_delay))
 	end,
 	on_destruct = function(pos)
@@ -82,11 +87,13 @@ minetest.register_node("df_trees:blood_thorn_dead", {
 		"dfcaverns_blood_thorn_side.png^[multiply:#804000"},
 	paramtype2 = "facedir",
 	paramtype = "light",
-	groups = {choppy = 3, tree = 1, flammable = 2},
-	sounds = df_trees.sounds.wood,
+	groups = {choppy = 3, tree = 1, flammable = 2, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+	sounds = df_dependencies.sound_wood(),
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	after_dig_node = blood_thorn_after_dig,
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_trees:blood_thorn_spike", {
@@ -101,9 +108,9 @@ minetest.register_node("df_trees:blood_thorn_spike", {
 		"dfcaverns_blood_thorn_spike_front.png",
 		"dfcaverns_blood_thorn_spike_front.png"
 		},
-	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100, light_sensitive_fungus = 11},
+	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100, light_sensitive_fungus = 11, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 	_dfcaverns_dead_node = "df_trees:blood_thorn_spike_dead",
-	sounds = df_trees.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	drawtype = "nodebox",
 	climbable = true,
 	is_ground_content = false,
@@ -118,6 +125,8 @@ minetest.register_node("df_trees:blood_thorn_spike", {
 			{-0.0625, -0.0625, -0.5, 0.0625, 0.0625, -0.125}, -- tip
 		}
 	},
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_trees:blood_thorn_spike_dead", {
@@ -132,8 +141,8 @@ minetest.register_node("df_trees:blood_thorn_spike_dead", {
 		"dfcaverns_blood_thorn_spike_front.png^[multiply:#804000",
 		"dfcaverns_blood_thorn_spike_front.png^[multiply:#804000"
 		},
-	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100},
-	sounds = df_trees.sounds.wood,
+	groups = {choppy = 3, flammable = 2, fall_damage_add_percent=100, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+	sounds = df_dependencies.sound_wood(),
 	drawtype = "nodebox",
 	climbable = true,
 	is_ground_content = false,
@@ -147,6 +156,8 @@ minetest.register_node("df_trees:blood_thorn_spike_dead", {
 			{-0.0625, -0.0625, -0.5, 0.0625, 0.0625, -0.125}, -- tip
 		}
 	},
+	_mcl_blast_resistance = 1,
+	_mcl_hardness = 0.8,
 })
 
 
@@ -172,12 +183,13 @@ minetest.register_node("df_trees:blood_thorn_wood", {
 	place_param2 = 0,
 	tiles = {"dfcaverns_blood_thorn_wood.png"},
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_trees.sounds.wood,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=20},
+	sounds = df_dependencies.sound_wood(),
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 1,
 })
 
-df_trees.register.all_stairs("blood_thorn_wood")
-df_trees.register.all_fences("blood_thorn_wood", {burntime = 40})
+df_dependencies.register_all_stairs_and_fences("blood_thorn_wood", {burntime = 40})
 
 minetest.register_craft({
 	type = "fuel",
@@ -225,10 +237,6 @@ function df_trees.grow_blood_thorn(pos, node)
 		return
 	end
 	
-	if not df_trees.blood_thorn_growth_permitted(pos) then
-		return
-	end
-
 	local height = 0
 	local max_height = max_bloodthorn_height(pos)
 	while node.name == "df_trees:blood_thorn" and height < max_height do

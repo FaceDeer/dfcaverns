@@ -8,13 +8,15 @@ minetest.register_node("df_primordial_items:giant_fern_tree", {
 	_doc_items_longdesc = df_primordial_items.doc.giant_fern_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.giant_fern_usage,
 	tiles = {"dfcaverns_jungle_fern_stem.png","dfcaverns_jungle_fern_stem.png","dfcaverns_jungle_fern_bark.png",},
-	groups = {tree=1, choppy=2, oddly_breakable_by_hand=1, flammable= 2, fern_stem = 1},
+	groups = {tree=1, choppy=2, oddly_breakable_by_hand=1, flammable= 2, fern_stem = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 	is_ground_content = false,
 	paramtype = "light",
 	paramtype2 = "facedir",
-	sounds = df_primordial_items.sounds.wood,
+	sounds = df_dependencies.sound_wood(),
 	sunlight_propagates = true,
 	on_place = minetest.rotate_node,
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_primordial_items:giant_fern_tree_slant_bottom", {
@@ -34,8 +36,8 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_bottom", {
 	mesh = "dfcaverns_fern_slant.obj",
 	paramtype = "light",
 	drop = "df_primordial_items:giant_fern_tree",
-	groups = {choppy = 2, tree = 1, oddly_breakable_by_hand=1, flammable = 2, fern_stem = 1},
-	sounds = df_primordial_items.sounds.wood,
+	groups = {choppy = 2, tree = 1, oddly_breakable_by_hand=1, flammable = 2, fern_stem = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+	sounds = df_dependencies.sound_wood(),
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	selection_box = {
@@ -52,6 +54,8 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_bottom", {
 			{-0.5, 0.0, -0.875, 0.5, 0.5, 0.125},
 		},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_primordial_items:giant_fern_tree_slant_top", {
@@ -71,8 +75,8 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_top", {
 	mesh = "dfcaverns_fern_slant_2.obj",
 	paramtype = "light",
 	drop = "df_primordial_items:giant_fern_tree",
-	groups = {choppy = 2, tree = 1, oddly_breakable_by_hand=1, flammable = 2, fern_stem = 1},
-	sounds = df_primordial_items.sounds.wood,
+	groups = {choppy = 2, tree = 1, oddly_breakable_by_hand=1, flammable = 2, fern_stem = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+	sounds = df_dependencies.sound_wood(),
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	selection_box = {
@@ -89,6 +93,8 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_top", {
 			{-0.5, 0.0, -0.375, 0.5, 0.5, 0.625},
 		},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_primordial_items:giant_fern_tree_slant_full", {
@@ -108,8 +114,8 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_full", {
 	mesh = "dfcaverns_fern_slant_full.obj",
 	paramtype = "light",
 	drop = "df_primordial_items:giant_fern_tree",
-	groups = {choppy = 2, tree = 1, oddly_breakable_by_hand=1, flammable = 2, fern_stem = 1},
-	sounds = df_primordial_items.sounds.wood,
+	groups = {choppy = 2, tree = 1, oddly_breakable_by_hand=1, flammable = 2, fern_stem = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+	sounds = df_dependencies.sound_wood(),
 	is_ground_content = false,
 	on_place = minetest.rotate_node,
 	selection_box = {
@@ -126,6 +132,8 @@ minetest.register_node("df_primordial_items:giant_fern_tree_slant_full", {
 			{-0.5, 0, -1.25, 0.5, 0.5, -0.25},
 		},
 	},
+	_mcl_blast_resistance = 2,
+	_mcl_hardness = 1,
 })
 
 minetest.register_node("df_primordial_items:fern_wood", {
@@ -133,10 +141,12 @@ minetest.register_node("df_primordial_items:fern_wood", {
 	_doc_items_longdesc = df_primordial_items.doc.giant_fern_desc,
 	_doc_items_usagehelp = df_primordial_items.doc.giant_fern_usage,
 	paramtype2 = "facedir",
-	tiles = {"default_wood.png^[multiply:#10FF10"},
+	tiles = {df_dependencies.texture_wood .. "^[multiply:#10FF10"},
 	is_ground_content = false,
-	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1},
-	sounds = df_primordial_items.sounds.wood,
+	groups = {choppy = 2, oddly_breakable_by_hand = 2, flammable = 2, wood = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=10},
+	sounds = df_dependencies.sound_wood(),
+	_mcl_blast_resistance = 3,
+	_mcl_hardness = 1,
 })
 
 minetest.register_craft({
@@ -146,8 +156,7 @@ minetest.register_craft({
 	}
 })
 
-df_trees.register.all_stairs("fern_wood")
-df_trees.register.all_fences("fern_wood", {burntime=7})
+df_dependencies.register_all_stairs_and_fences("fern_wood", {burntime=7})
 
 minetest.register_node("df_primordial_items:giant_fern_leaves", {
 	description = S("Giant Fern Leaves"),
@@ -157,17 +166,18 @@ minetest.register_node("df_primordial_items:giant_fern_leaves", {
 	visual_scale = 1.41,
 	inventory_image = "dfcaverns_jungle_fern_leaves_01.png",
 	wield_image = "dfcaverns_jungle_fern_leaves_01.png",
-	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
+	groups = {snappy = 3, leafdecay = 2, flammable = 2, leaves = 1, handy=1, hoey=1, shearsy=1, swordy=1, deco_block=1, dig_by_piston=1, fire_encouragement=15, fire_flammability=30, compostability=30},
 	is_ground_content = false,
 	paramtype = "light",
 	drawtype = "plantlike",
 	buildable_to = true,
 	walkable = false,
 	waving = 2,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
-	after_place_node = df_primordial_items.after_place_leaves,
+	after_place_node = df_dependencies.after_place_leaves,
+	place_param2 = 1, -- Prevent leafdecay for placed nodes
 	drop = {
 		max_items = 1,
 		items = {
@@ -181,9 +191,11 @@ minetest.register_node("df_primordial_items:giant_fern_leaves", {
 			}
 		}
 	},
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 })
 
-df_primordial_items.register_leafdecay({
+df_dependencies.register_leafdecay({
 	trunks = {"df_primordial_items:giant_fern_tree_slant_full", "df_primordial_items:giant_fern_tree_slant_top", "df_primordial_items:giant_fern_tree_slant_bottom", "df_primordial_items:giant_fern_tree"},
 	leaves = {"df_primordial_items:giant_fern_leaves"},
 	radius = 2,
@@ -292,8 +304,8 @@ minetest.register_node("df_primordial_items:fern_sapling", {
 	tiles = {"dfcaverns_jungle_fern_03.png"},
 	inventory_image = "dfcaverns_jungle_fern_03.png",
 	wield_image = "dfcaverns_jungle_fern_03.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 13},
-	_dfcaverns_dead_node = df_primordial_items.node_names.dry_shrub,
+	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 13, attached_node=1,dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1, compostability=30,dig_immediate=3},
+	_dfcaverns_dead_node = df_dependencies.node_name_dry_shrub,
 	selection_box = {
 		type = "fixed",
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
@@ -303,9 +315,11 @@ minetest.register_node("df_primordial_items:fern_sapling", {
 	buildable_to = true,
 	is_ground_content = false,
 	walkable = false,
-	sounds = df_primordial_items.sounds.leaves,
+	sounds = df_dependencies.sound_leaves(),
 	use_texture_alpha = "clip",
 	sunlight_propagates = true,
+	_mcl_blast_resistance = 0.2,
+	_mcl_hardness = 0.2,
 	on_construct = function(pos)
 		if df_primordial_items.giant_fern_growth_permitted(pos) then
 			minetest.get_node_timer(pos):start(math.random(

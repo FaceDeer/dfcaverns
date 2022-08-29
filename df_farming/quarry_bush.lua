@@ -18,7 +18,7 @@ local register_quarry_bush = function(number)
 		buildable_to = true,
 		is_ground_content = false,
 		floodable = true,
-		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11,  flora = 1, fire_encouragement=60,fire_flammability=100, compostability=50, handy=1,shearsy=1,hoey=1, destroy_by_lava_flow=1,dig_by_piston=1},
+		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, fire_encouragement=60,fire_flammability=100, compostability=50, handy=1,shearsy=1,hoey=1, destroy_by_lava_flow=1,dig_by_piston=1},
 		sounds = df_dependencies.sound_leaves(),
         selection_box = {
             type = "fixed",

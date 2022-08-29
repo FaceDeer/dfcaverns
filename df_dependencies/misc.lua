@@ -49,24 +49,24 @@ end
 -- don't trigger on air, that's for sparkle generation
 df_dependencies.abm_pit_plasma_neighbors = {"group:stone", "group:lava", "group:water", "group:material_stone"}
 
-df_dependencies.texture_cobble = select_required({default="default_cobble.png", mcl_core="default_cobble.png"})
-df_dependencies.texture_coral_skeleton = select_required({default="default_coral_skeleton.png", mcl_ocean="mcl_ocean_dead_horn_coral_block.png"})
-df_dependencies.texture_dirt = select_required({default="default_dirt.png", mcl_core="default_dirt.png"})
-df_dependencies.texture_gold_block = select_required({default="default_gold_block.png", mcl_core="default_gold_block.png"})
-df_dependencies.texture_ice = select_required({default="default_ice.png", mcl_core="default_ice.png"})
-df_dependencies.texture_sand = select_required({default="default_sand.png", mcl_core="default_sand.png"})
-df_dependencies.texture_stone = select_required({default="default_stone.png", mcl_core="default_stone.png"})
-df_dependencies.texture_wood = select_required({default="default_wood.png", mcl_core="default_wood.png"})
-df_dependencies.texture_mineral_coal = select_required({default="default_mineral_coal.png",	mcl_core="mcl_core_coal_ore.png"}) -- MCL's coal texture isn't transparent, but is only used with gas seeps and should work fine that way
-df_dependencies.texture_glass_bottle = select_required({vessels="vessels_glass_bottle.png",	mcl_potions="mcl_potions_potion_bottle.png"})
+df_dependencies.texture_cobble = select_required({{"default", "default_cobble.png"}, {"mcl_core", "default_cobble.png"}})
+df_dependencies.texture_coral_skeleton = select_required({{"default", "default_coral_skeleton.png"}, {"mcl_ocean", "mcl_ocean_dead_horn_coral_block.png"}})
+df_dependencies.texture_dirt = select_required({{"default", "default_dirt.png"}, {"mcl_core", "default_dirt.png"}})
+df_dependencies.texture_gold_block = select_required({{"default", "default_gold_block.png"}, {"mcl_core", "default_gold_block.png"}})
+df_dependencies.texture_ice = select_required({{"default", "default_ice.png"}, {"mcl_core", "default_ice.png"}})
+df_dependencies.texture_sand = select_required({{"default", "default_sand.png"}, {"mcl_core", "default_sand.png"}})
+df_dependencies.texture_stone = select_required({{"default", "default_stone.png"}, {"mcl_core", "default_stone.png"}})
+df_dependencies.texture_wood = select_required({{"default", "default_wood.png"}, {"mcl_core", "default_wood.png"}})
+df_dependencies.texture_mineral_coal = select_required({{"default", "default_mineral_coal.png"}, {"mcl_core", "mcl_core_coal_ore.png"}}) -- MCL's coal texture isn't transparent, but is only used with gas seeps and should work fine that way
+df_dependencies.texture_glass_bottle = select_required({{"vessels", "vessels_glass_bottle.png"}, {"mcl_potions", "mcl_potions_potion_bottle.png"}})
 df_dependencies.texture_meselamp = "dfcaverns_glow_mese.png"
 
-df_dependencies.texture_tool_steelhoe = select_required({default="farming_tool_steelhoe.png", mcl_farming="farming_tool_steelhoe.png"})
-df_dependencies.texture_tool_steelpick = select_required({default="default_tool_steelpick.png", mcl_farming="default_tool_steelpick.png"})
-df_dependencies.texture_tool_steelshovel = select_required({default="default_tool_steelshovel.png", mcl_farming="default_tool_steelshovel.png"})
-df_dependencies.texture_farming_soil = select_required({default="(default_dirt.png^farming_soil.png)",  mcl_farming="mcl_farming_farmland_dry.png"})
+df_dependencies.texture_tool_steelhoe = select_required({{"default", "farming_tool_steelhoe.png"}, {"mcl_farming", "farming_tool_steelhoe.png"}})
+df_dependencies.texture_tool_steelpick = select_required({{"default", "default_tool_steelpick.png"}, {"mcl_farming", "default_tool_steelpick.png"}})
+df_dependencies.texture_tool_steelshovel = select_required({{"default", "default_tool_steelshovel.png"}, {"mcl_farming", "default_tool_steelshovel.png"}})
+df_dependencies.texture_farming_soil = select_required({{"default", "(default_dirt.png^farming_soil.png)"}, {"mcl_farming", "mcl_farming_farmland_dry.png"}})
 
-df_dependencies.texture_mapping_kit = select_required({default="map_mapping_kit.png", mcl_maps="mcl_maps_map_filled.png"})
+df_dependencies.texture_mapping_kit = select_required({{"default", "map_mapping_kit.png"}, {"mcl_maps", "mcl_maps_map_filled.png"}})
 
 df_dependencies.nethercap_name = S("Nethercap")
 if minetest.get_modpath("mcl_mapgen_core") then

@@ -18,7 +18,7 @@ local register_cave_wheat = function(number)
 		is_ground_content = false,
 		buildable_to = true,
 		floodable = true,
-		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flora = 1, handy=1, swordy=1, hoey=1, destroy_by_lava_flow=1,dig_by_piston=1},
+		groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, handy=1, swordy=1, hoey=1, destroy_by_lava_flow=1,dig_by_piston=1},
 		sounds = df_dependencies.sound_leaves(),
         selection_box = {
             type = "fixed",

@@ -92,7 +92,7 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 	tiles = {
 		"dfcaverns_plump_helmet_cap.png",
 	},
-	groups = {snappy = 3, plant = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, digtron_on_place=1, flora = 1, destroy_by_lava_flow=1,dig_by_piston=1, handy=1, hoey=1},
+	groups = {snappy = 3, plant = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, digtron_on_place=1, destroy_by_lava_flow=1,dig_by_piston=1, handy=1, hoey=1},
 	_dfcaverns_next_stage = "df_farming:plump_helmet_1",
 	_dfcaverns_next_stage_time = plump_helmet_grow_time,
 	drawtype = "nodebox",
@@ -123,7 +123,7 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 	end,
 })
 
-local plump_helmet_groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, digtron_on_place=1, flora = 1, fire_encouragement=30,fire_flammability=100,destroy_by_lava_flow=1,dig_by_piston=1,compostability=65}
+local plump_helmet_groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, dfcaverns_cookable = 1, plump_helmet = 1, digtron_on_place=1, fire_encouragement=30,fire_flammability=100,destroy_by_lava_flow=1,dig_by_piston=1,compostability=65}
 local get_plump_helmet_groups = function(eatable)
 	local ret = {}
 	for key, val in pairs(plump_helmet_groups) do

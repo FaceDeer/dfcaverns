@@ -35,7 +35,7 @@ minetest.register_node("df_primordial_items:mushroom_gills", {
 	tiles = {"dfcaverns_mush_gills.png"},
 	inventory_image = "dfcaverns_mush_gills.png",
 	wield_image = "dfcaverns_mush_gills.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, leaves = 1, leafdecay = 8,handy=1, hoey=1, shearsy=1, swordy=1, deco_block=1, dig_by_piston=1, fire_encouragement=15, fire_flammability=30, compostability=30},
+	groups = {snappy = 3, flammable = 1, leaves = 1, leafdecay = 8,handy=1, hoey=1, shearsy=1, swordy=1, deco_block=1, dig_by_piston=1, fire_encouragement=15, fire_flammability=30, compostability=30},
 	paramtype = "light",
 	drawtype = "plantlike",
 	waving = 2,
@@ -71,7 +71,7 @@ minetest.register_node("df_primordial_items:mushroom_gills_glowing", {
 	tiles = {"dfcaverns_mush_gills_glow.png"},
 	inventory_image = "dfcaverns_mush_gills_glow.png",
 	wield_image = "dfcaverns_mush_gills_glow.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, leaves = 1, leafdecay = 8,handy=1, hoey=1, shearsy=1, swordy=1, deco_block=1, dig_by_piston=1, fire_encouragement=15, fire_flammability=30, compostability=30},
+	groups = {snappy = 3, flammable = 1, leaves = 1, leafdecay = 8,handy=1, hoey=1, shearsy=1, swordy=1, deco_block=1, dig_by_piston=1, fire_encouragement=15, fire_flammability=30, compostability=30},
 	paramtype = "light",
 	drawtype = "plantlike",
 	waving = 2,
@@ -747,7 +747,7 @@ minetest.register_node("df_primordial_items:mush_sapling", {
 	tiles = {"dfcaverns_mush_sapling.png"},
 	inventory_image = "dfcaverns_mush_sapling.png",
 	wield_image = "dfcaverns_mush_sapling.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 11, dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1, compostability=30,dig_immediate=3},
+	groups = {snappy = 3, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 11, dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1, compostability=30,dig_immediate=3},
 	selection_box = {
 		type = "fixed",
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}

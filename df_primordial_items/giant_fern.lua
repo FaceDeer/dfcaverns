@@ -304,7 +304,7 @@ minetest.register_node("df_primordial_items:fern_sapling", {
 	tiles = {"dfcaverns_jungle_fern_03.png"},
 	inventory_image = "dfcaverns_jungle_fern_03.png",
 	wield_image = "dfcaverns_jungle_fern_03.png",
-	groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 13, attached_node=1,dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1, compostability=30,dig_immediate=3},
+	groups = {snappy = 3, attached_node = 1, flammable = 1, sapling = 1, light_sensitive_fungus = 13, attached_node=1,dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1, compostability=30,dig_immediate=3},
 	_dfcaverns_dead_node = df_dependencies.node_name_dry_shrub,
 	selection_box = {
 		type = "fixed",

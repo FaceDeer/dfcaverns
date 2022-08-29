@@ -15,7 +15,7 @@ minetest.register_node("df_farming:dead_fungus", {
 	is_ground_content = false,
 	buildable_to = true,
 	floodable = true,
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, flow_through = 1, flora = 1, fire_encouragement=60,fire_flammability=100,destroy_by_lava_flow=1,dig_by_piston=1, compostability=65, handy=1, hoey=1},
+	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, flow_through = 1, fire_encouragement=60,fire_flammability=100,destroy_by_lava_flow=1,dig_by_piston=1, compostability=65, handy=1, hoey=1},
 	sounds = df_dependencies.sound_leaves(),
 	selection_box = {
 		type = "fixed",
@@ -50,7 +50,7 @@ minetest.register_node("df_farming:cavern_fungi", {
 	buildable_to = true,
 	floodable = true,
 	light_source = 6,
-	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flow_through = 1, flora = 1, fire_encouragement=50,fire_flammability=60,destroy_by_lava_flow=1,dig_by_piston=1, compostability=65, handy=1, hoey=1},
+	groups = {snappy = 3, flammable = 2, plant = 1, not_in_creative_inventory = 1, attached_node = 1, light_sensitive_fungus = 11, flow_through = 1, fire_encouragement=50,fire_flammability=60,destroy_by_lava_flow=1,dig_by_piston=1, compostability=65, handy=1, hoey=1},
 	sounds = df_dependencies.sound_leaves(),
 	selection_box = {
 		type = "fixed",

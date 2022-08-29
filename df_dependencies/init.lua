@@ -4,25 +4,24 @@ local modpath = minetest.get_modpath(minetest.get_current_modname())
 df_dependencies.mods_required = {}
 
 df_dependencies.select_required = function(def)
-	local count = 0
-	local total = 0
 	local ret
-	for mod, item in pairs(def) do
-		total = total + 1
+	for _, dependency in ipairs(def) do
+		mod = dependency[1]
+		item = dependency[2]
 		df_dependencies.mods_required[mod] = true
 		if minetest.get_modpath(mod) then
-			count = count + 1
 			ret = item
 		end
 	end
-	assert(count ~= 0, "Unable to find item for dependency set " .. dump(def))
-	assert(count == 1, "Found more than one item for dependency set " .. dump(def))
+	assert(ret, "Unable to find item for dependency set " .. dump(def))
 	return ret
 end
 
 df_dependencies.select_optional = function(def)
 	local ret
-	for mod, item in pairs(def) do
+	for _, dependency in ipairs(def) do
+		mod = dependency[1]
+		item = dependency[2]
 		df_dependencies.mods_required[mod] = true
 		if minetest.get_modpath(mod) then
 			ret = item

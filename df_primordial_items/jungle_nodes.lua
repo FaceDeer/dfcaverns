@@ -3,7 +3,7 @@ local S = minetest.get_translator(minetest.get_current_modname())
 ----------------------------------------------------
 -- Ferns
 
-local jungle_plant_groups = {snappy = 3, flora = 1, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13, handy=1, swordy=1, hoey=1, destroy_by_lava_flow=1,dig_by_piston=1, compostability = 30}
+local jungle_plant_groups = {snappy = 3, attached_node = 1, flammable = 1, primordial_jungle_plant = 1, light_sensitive_fungus = 13, handy=1, swordy=1, hoey=1, destroy_by_lava_flow=1,dig_by_piston=1, compostability = 30}
 
 minetest.register_node("df_primordial_items:fern_1", {
 	description = S("Primordial Fern"),
@@ -221,7 +221,7 @@ minetest.register_node("df_primordial_items:jungle_ivy", {
 	tiles = {"dfcaverns_jungle_ivy_01.png"},
 	inventory_image = "dfcaverns_jungle_ivy_01.png",
 	wield_image = "dfcaverns_jungle_ivy_01.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1, handy=1,axey=1,shearsy=1,swordy=1, flammable=2,deco_block=1,destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=15, fire_flammability=100, compostability=50},
+	groups = {snappy = 3, flammable = 1, vines = 1, handy=1,axey=1,shearsy=1,swordy=1, flammable=2,deco_block=1,destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=15, fire_flammability=100, compostability=50},
 	paramtype = "light",
 	drawtype = "plantlike",
 	place_param2 = 3,
@@ -398,7 +398,7 @@ minetest.register_node("df_primordial_items:jungle_roots_1", {
 	tiles = {"dfcaverns_jungle_root_01.png"},
 	inventory_image = "dfcaverns_jungle_root_01.png",
 	wield_image = "dfcaverns_jungle_root_01.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1, handy=1,axey=1,shearsy=1,swordy=1, deco_block=1,destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=3, fire_flammability=10, compostability=50},
+	groups = {snappy = 3, flammable = 1, vines = 1, handy=1,axey=1,shearsy=1,swordy=1, deco_block=1,destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=3, fire_flammability=10, compostability=50},
 	paramtype = "light",
 	drawtype = "plantlike",
 	sounds = df_dependencies.sound_leaves(),
@@ -418,7 +418,7 @@ minetest.register_node("df_primordial_items:jungle_roots_2", {
 	tiles = {"dfcaverns_jungle_root_02.png"},
 	inventory_image = "dfcaverns_jungle_root_02.png",
 	wield_image = "dfcaverns_jungle_root_02.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, vines = 1, handy=1,axey=1,shearsy=1,swordy=1, deco_block=1,destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=3, fire_flammability=10, compostability=50},
+	groups = {snappy = 3, flammable = 1, vines = 1, handy=1,axey=1,shearsy=1,swordy=1, deco_block=1,destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=3, fire_flammability=10, compostability=50},
 	paramtype = "light",
 	drawtype = "plantlike",
 	sounds = df_dependencies.sound_leaves(),
@@ -442,7 +442,7 @@ minetest.register_node("df_primordial_items:jungle_thorns", {
 	visual_scale = 1.41,
 	inventory_image = "dfcaverns_jungle_thorns_01.png",
 	wield_image = "dfcaverns_jungle_thorns_01.png",
-	groups = {snappy = 3, flora = 1, flammable = 1, primordial_jungle_plant = 1, handy=1, swordy=1, hoey=1, destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=30, fire_flammability=100, compostability=50},
+	groups = {snappy = 3, flammable = 1, primordial_jungle_plant = 1, handy=1, swordy=1, hoey=1, destroy_by_lava_flow=1,dig_by_piston=1, fire_encouragement=30, fire_flammability=100, compostability=50},
 	paramtype = "light",
 	drawtype = "plantlike",
 	walkable = false,

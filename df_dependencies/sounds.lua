@@ -31,8 +31,8 @@ else
 	assert(false, "One of [default] or [mcl_sounds] must be active")
 end
 
-df_dependencies.soundfile_grass_footstep = select_required({default="default_grass_footstep", mcl_sounds="default_grass_footstep"})
-df_dependencies.soundfile_snow_footstep = select_required({default="default_snow_footstep", mcl_sounds="pedology_snow_soft_footstep"})
-df_dependencies.soundfile_gravel_footstep = select_required({default="default_gravel_footstep", mcl_sounds="default_gravel_footstep"})
-df_dependencies.soundfile_cool_lava = select_required({default="default_cool_lava", mcl_sounds="default_cool_lava"})
-df_dependencies.soundfile_tnt_ignite = select_required({default="tnt_ignite", mcl_tnt="tnt_ignite"})
+df_dependencies.soundfile_grass_footstep = select_required({{"default", "default_grass_footstep"}, {"mcl_sounds", "default_grass_footstep"}})
+df_dependencies.soundfile_snow_footstep = select_required({{"default", "default_snow_footstep"}, {"mcl_sounds", "pedology_snow_soft_footstep"}})
+df_dependencies.soundfile_gravel_footstep = select_required({{"default", "default_gravel_footstep"}, {"mcl_sounds", "default_gravel_footstep"}})
+df_dependencies.soundfile_cool_lava = select_required({{"default", "default_cool_lava"}, {"mcl_sounds", "default_cool_lava"}})
+df_dependencies.soundfile_tnt_ignite = select_required({{"default", "tnt_ignite"}, {"mcl_tnt", "tnt_ignite"}})

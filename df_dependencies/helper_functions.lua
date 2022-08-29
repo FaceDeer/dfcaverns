@@ -65,7 +65,7 @@ end
 
 df_dependencies.register_stairs = function(name, override_def)
 	local mod, node_copy = node_name_to_stair_properties(name, override_def)
-	if minetest.get_modpath("stairs") then
+	if minetest.get_modpath("stairs") and stairs.register_stair_and_slab then
 		stairs.register_stair_and_slab(
 			name,
 			mod ..":" .. name,
@@ -76,7 +76,7 @@ df_dependencies.register_stairs = function(name, override_def)
 			node_copy.sounds
 		)
 	end
-	if minetest.get_modpath("mcl_stairs") then
+	if minetest.get_modpath("mcl_stairs") and mcl_stairs.register_stair_and_slab_simple then
 		mcl_stairs.register_stair_and_slab_simple(
 			name,
 			mod ..":" .. name,
@@ -89,7 +89,7 @@ end
 
 df_dependencies.register_more_stairs = function(name, override_def)
 	local mod, node_copy = node_name_to_stair_properties(name, override_def)
-	if minetest.get_modpath("moreblocks") then
+	if minetest.get_modpath("moreblocks") and stairsplus.register_all then
 		stairsplus:register_all(mod, name, mod..":"..name, node_copy)
 	end
 end
@@ -104,46 +104,52 @@ df_dependencies.register_all_fences = function (name, override_def)
 	local texture = override_def.texture or node_def.tiles[1]
 	
 	if minetest.get_modpath("default") then
-		default.register_fence(material .. "_fence", {
-			description = S("@1 Fence", node_def.description),
-			texture = texture,
-			material = material,
-			groups = deep_copy(node_def.groups or {}), -- the default register_fence function modifies the groups table passed in, so send a copy instead to be on the safe side.
-			sounds = node_def.sounds
-		})
-		if burntime then
-			minetest.register_craft({
-				type = "fuel",
-				recipe = material .. "_fence",
-				burntime = burntime, -- ignoring two sticks
+		if default.register_fence then
+			default.register_fence(material .. "_fence", {
+				description = S("@1 Fence", node_def.description),
+				texture = texture,
+				material = material,
+				groups = deep_copy(node_def.groups or {}), -- the default register_fence function modifies the groups table passed in, so send a copy instead to be on the safe side.
+				sounds = node_def.sounds
 			})
+			if burntime then
+				minetest.register_craft({
+					type = "fuel",
+					recipe = material .. "_fence",
+					burntime = burntime, -- ignoring two sticks
+				})
+			end
+		end
+		
+		if default.register_fence_rail then
+			default.register_fence_rail(material .. "_fence_rail", {
+				description = S("@1 Fence Rail", node_def.description),
+				texture = texture,
+				material = material,
+				groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
+				sounds = node_def.sounds
+			})
+			if burntime then
+				minetest.register_craft({
+					type = "fuel",
+					recipe = material .. "_fence_rail",
+					burntime = burntime * 4/16,
+				})
+			end
 		end
 
-		default.register_fence_rail(material .. "_fence_rail", {
-			description = S("@1 Fence Rail", node_def.description),
-			texture = texture,
-			material = material,
-			groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
-			sounds = node_def.sounds
-		})
-		if burntime then
-			minetest.register_craft({
-				type = "fuel",
-				recipe = material .. "_fence_rail",
-				burntime = burntime * 4/16,
+		if default.register_mesepost then
+			default.register_mesepost(material .. "_mese_light", {
+				description = S("@1 Mese Post Light", node_def.description),
+				texture = texture,
+				material = material,
+				groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
+				sounds = node_def.sounds
 			})
 		end
-
-		default.register_mesepost(material .. "_mese_light", {
-			description = S("@1 Mese Post Light", node_def.description),
-			texture = texture,
-			material = material,
-			groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
-			sounds = node_def.sounds
-		})
 	end
 	
-	if minetest.get_modpath("doors") then
+	if minetest.get_modpath("doors") and doors.register_fencegate then
 		doors.register_fencegate(material .. "_fence_gate", {
 			description = S("@1 Fence Gate", node_def.description),
 			texture = texture,
@@ -161,7 +167,7 @@ df_dependencies.register_all_fences = function (name, override_def)
 		end
 	end
 	
-	if minetest.get_modpath("mcl_fences") then
+	if minetest.get_modpath("mcl_fences") and mcl_fences.register_fence_and_fence_gate then
 		local groups = deep_copy(node_def.groups or {})
 		groups.fence_wood = 1
 		mcl_fences.register_fence_and_fence_gate(name .. "_fence", 

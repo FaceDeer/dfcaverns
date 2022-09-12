@@ -78,6 +78,11 @@ end
 local c_air = minetest.get_content_id("air")
 local c_web
 
+local log_location
+if mapgen_helper.log_location_enabled then
+	log_location = mapgen_helper.log_first_location
+end
+
 local big_webs_path = minetest.get_modpath("big_webs")
 if big_webs_path then
 	c_web = minetest.get_content_id("big_webs:webbing")
@@ -145,13 +150,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					webs = webs or calculate_web_array(minp, maxp) -- only calculate webs when we know we're in a chasm
 					if webs[y + z*z_displace] and math.random() < 0.85 then -- random holes in the web
 						data[i] = c_web
-						minetest.get_node_timer({x=x,y=y,z=z}):start(1) -- this timer will check for unsupported webs
+						local web_pos = vector.new(x,y,z)
+						minetest.get_node_timer(web_pos):start(1) -- this timer will check for unsupported webs
+						if log_location then log_location("chasm_web", web_pos) end
 					else
 						data[i] = c_air
 					end
 				else
 					data[i] = c_air
 				end
+				if log_location then log_location("chasm", vector.new(x,y,z)) end
 			end
 		end
 	end

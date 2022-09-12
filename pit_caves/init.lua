@@ -1,3 +1,5 @@
+pit_caves = {}
+
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 local S = minetest.get_translator(minetest.get_current_modname())
 
@@ -26,6 +28,11 @@ if minetest.get_modpath("default") then
 	if seal_ocean then
 		water_node = "default:water_source"
 	end
+end
+
+local log_location
+if minetest.get_modpath("mapgen_helper") and mapgen_helper.log_location_enabled then
+	log_location = mapgen_helper.log_first_location
 end
 
 local ignore
@@ -64,6 +71,8 @@ local get_pit = function(pos)
 	math.randomseed(next_seed)
 	return {location = location, depth = depth, top = top}
 end
+
+pit_caves.get_nearest_pit = get_pit
 
 local perlin_params = {
 	offset = 0,
@@ -137,6 +146,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 						data[vi] = c_gravel
 					else
 						data[vi] = c_air
+						if log_location then log_location("pit_cave", vector.new(x,y,z)) end
 					end
 				end
 			end

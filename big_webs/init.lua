@@ -1,7 +1,10 @@
 local modname = minetest.get_current_modname()
 local S = minetest.get_translator(modname)
 
-local default_path = minetest.get_modpath("default")
+local sound
+if df_dependencies.sound_leaves then
+	sound = df_dependencies.sound_leaves()
+end
 
 local get_node_box = function(connector_thickness)
 	return {
@@ -17,15 +20,17 @@ local get_node_box = function(connector_thickness)
 	}
 end
 
+local anchor_groups = {"group:soil", "group:stone", "group:tree", "group:wood", "group:webbing", "group:solid"}
+
 local in_anchor_group = function(name)
-	return
-		minetest.get_item_group(name, "soil") > 0 or
-		minetest.get_item_group(name, "stone") > 0 or
-		minetest.get_item_group(name, "tree") > 0 or
-		minetest.get_item_group(name, "leaves") > 0 or
-		minetest.get_item_group(name, "sand") > 0 or
-		minetest.get_item_group(name, "wood") > 0 or
-		name == "ignore"
+	for _, group in pairs(anchor_groups) do
+		if minetest.get_item_group(name, string.sub(group, 7)) then
+			return true
+		end
+	end
+	if name == "ignore" then
+		return true
+	end
 end
 
 local cardinal_directions = {
@@ -71,12 +76,6 @@ local get_web_nodes = function(pos, webs, anchors)
 		end		
 	end	
 end
-
-local sound
-if default_path then
-	sound = default.node_sound_leaves_defaults()
-end
-
 
 local web_line = function(pos, dir, distance)
 	local anchored
@@ -128,7 +127,7 @@ minetest.register_node("big_webs:webbing", {
 		{name="big_webs.png"},
 	},
 	use_texture_alpha = "blend",
-    connects_to = {"group:soil", "group:stone", "group:tree", "group:leaves", "group:sand", "group:wood", "group:webbing"},
+    connects_to = anchor_groups,
     connect_sides = { "top", "bottom", "front", "left", "back", "right" },
 	drawtype = "nodebox",
 	node_box = get_node_box(0.0625),
@@ -138,8 +137,7 @@ minetest.register_node("big_webs:webbing", {
 	paramtype = "light",
 	is_ground_content = false,
 	climbable = true,
-	floodable = true,
-	groups = {snappy = 2, choppy = 2, webbing = 1, flammable=1, fall_damage_add_percent=-100, bouncy=20},
+	groups = {snappy = 2, choppy = 2, webbing = 1, shearsy = 1,  swordy=1, flammable=1, destroy_by_lava_flow=1, fall_damage_add_percent=-100, bouncy=20},
 	sounds = sound,
 	on_construct = function(pos)
 		minetest.get_node_timer(pos):start(30)
@@ -168,6 +166,8 @@ minetest.register_node("big_webs:webbing", {
 			minetest.get_node_timer(web_pos):stop() -- no need to recheck
 		end	
 	end,
+	_mcl_blast_resistance = 1.0,
+	_mcl_hardness = 0.5,
 })
 
 minetest.register_node("big_webs:web_egg", {
@@ -176,7 +176,7 @@ minetest.register_node("big_webs:web_egg", {
 		{name="big_webs.png"},
 	},
 	use_texture_alpha = "blend",
-    connects_to = {"group:soil", "group:stone", "group:tree", "group:leaves", "group:sand", "group:wood", "group:webbing"},
+    connects_to = anchor_groups,
     connect_sides = { "top", "bottom", "front", "left", "back", "right" },
 	drawtype = "nodebox",
 	node_box = get_node_box(0.0625),
@@ -196,4 +196,6 @@ minetest.register_node("big_webs:web_egg", {
 		minetest.set_node(pos, {name="air"})
 		generate_web(pos)
 	end,
+	_mcl_blast_resistance = 1.0,
+	_mcl_hardness = 0.5,
 })

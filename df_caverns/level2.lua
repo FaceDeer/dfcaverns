@@ -16,6 +16,10 @@ local c_pearls = df_caverns.node_id.pearls
 
 local chasms_path = minetest.get_modpath("chasms")
 
+local log_location
+if mapgen_helper.log_location_enabled then
+	log_location = mapgen_helper.log_first_location
+end
 
 local wall_vein_perlin_params = {
 	offset = 0,
@@ -42,6 +46,13 @@ local get_biome = function(heat, humidity)
 		return "tunneltube"
 	end
 end
+
+df_caverns.register_biome_check(function(pos, heat, humidity)
+	if pos.y < df_caverns.config.level2_min or pos.y >= df_caverns.config.level1_min then
+		return nil
+	end
+	return get_biome(heat, humidity)	
+end)
 
 local goblin_cap_shrublist
 local tunnel_tube_shrublist
@@ -161,6 +172,7 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 					if data[vi] == c_air and math.abs(vein_noise[vein_area:transform(area, vi)]) < 0.02 then
 						data[vi] = c_veinstone
 					end
+					if log_location then log_location("level2_veinstone", area:position(vi)) end
 				end
 			end
 			if data[vi] == c_air and y <= subsea_level then
@@ -182,18 +194,24 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		if minp.y < subsea_level and area:get_y(vi) < subsea_level and flooded_caverns then
 			-- underwater floor
 			df_caverns.flooded_cavern_floor(abs_cracks, vert_rand, vi, area, data)
+			if log_location then log_location("level2_flooded_"..biome_name, area:position(vi)) end
 		elseif biome_name == "barren" then
 			if flooded_caverns then
 				df_caverns.wet_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+				if log_location then log_location("level2_barren_wet", area:position(vi)) end
 			else
 				df_caverns.dry_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+				if log_location then log_location("level2_barren_dry", area:position(vi)) end
 			end
 		elseif biome_name == "goblincap" then
-			goblin_cap_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)			
+			goblin_cap_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+			if log_location then log_location("level2_goblincap", area:position(vi)) end
 		elseif biome_name == "sporetree" then
 			spore_tree_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)			
+			if log_location then log_location("level2_sporetree", area:position(vi)) end
 		elseif biome_name == "tunneltube" then
 			tunnel_tube_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
+			if log_location then log_location("level2_tunneltube", area:position(vi)) end
 		end
 	end
 
@@ -296,6 +314,12 @@ local decorate_level_2 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 		local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
 
+		if log_location then
+			local flood_name = ""
+			if flooded_caverns then flood_name = "_flooded" end
+			log_location("level2_warren_"..biome_name..flood_name, area:position(vi))
+		end
+	
 		if not (flooded_caverns and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
 			if flooded_caverns or biome_name ~= "barren" then		
 				-- we're in flooded areas or are not barren

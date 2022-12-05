@@ -60,6 +60,7 @@ local plant_node_achievements =
 }
 
 minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
+	if placer == nil then return end
 	local player_name = placer:get_player_name()
 	if player_name == nil then return end
 	local player_awards = awards.player(player_name)

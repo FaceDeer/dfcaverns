@@ -82,6 +82,7 @@ df_farming.plant_timer = function(pos, plantname, elapsed)
 	if not next_stage_time then return end
 	
 	local growable_factor = df_farming.growth_factor(plantname, pos) or 1
+	if growable_factor == true then growable_factor = 1 end -- backwards compatibility in case other mods are overriding growth factor to "true/false"
 
 	next_stage_time = (next_stage_time + math.random(next_stage_time * -0.1, next_stage_time * 0.1)) / growable_factor
 

@@ -2,6 +2,7 @@ df_farming.growth_permitted = {}
 
 local growable = {
 	[df_dependencies.node_name_dirt_wet] = 1,
+	[df_dependencies.node_name_dirt_furrowed] = 0.2,
 	[df_dependencies.node_name_dirt] = 0.2,
 }
 local sand = {

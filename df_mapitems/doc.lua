@@ -36,7 +36,7 @@ df_mapitems.doc.glow_worms_usage = S("Glow worms can be harvested and used as a 
 df_mapitems.doc.snareweed_desc = S("A nasty kelp-like plant that grows in patches on the floor of the Sunless Sea. Its reflective patches draw in the unwary and then its prickly barbs catch and hold small creatures.")
 df_mapitems.doc.snareweed_usage = S("Snareweed has no practical use, its fibers disintegrate when they dry.")
 
-df_mapitems.doc.cave_coral_desc = S("A rare form of coral found only deep underground in the Sunless Sea, cave coral grows hanging from the ceilings of flooded caverns.")
+df_mapitems.doc.cave_coral_desc = S("A rare form of coral found only deep underground in the Sunless Sea, cave coral grows where dripstone dips into the water to deliver the minerals needed for its skeletal structure.")
 df_mapitems.doc.cave_coral_usage = S("Aside from their aesthetic beauty, cave corals can be harvested for simple building materials.")
 
 df_mapitems.doc.flowstone_desc = S("Flowstone is a carbonate-rich rock formation deposited by flowing water. It consists of minerals that the water dissolved earlier as it widens cracks and fissures into caves.")

@@ -188,7 +188,7 @@ The distinguishing feature of the Sunless Sea is the vast expanse of water to be
 
 Below the surface of the water Snareweed can be found, a dangerous kelp-like growth that uses bioluminescence and reflective patches to lure cave fish close enough to snag with their barbs. Swimming through Snareweed is a painful experience. Deeper down are craggy towers of softly glowing Cave Coral.
 
-This is the last stop for the living world. Caverns continue to stretch below but nothing grows below.
+This is the last stop for the living world. Caverns continue to stretch downward but nothing grows below.
 
 # Lakes of Oil
 

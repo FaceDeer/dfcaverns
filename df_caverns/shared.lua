@@ -20,8 +20,14 @@ local c_water = df_caverns.node_id.water
 local c_wet_flowstone = df_caverns.node_id.wet_flowstone
 local c_webs = df_caverns.node_id.big_webs
 local c_webs_egg = df_caverns.node_id.big_webs_egg
+local c_bubblesponge = df_caverns.node_id.bubblesponge
 
 df_caverns.data_param2 = {} -- shared among all mapgens to reduce memory clutter
+
+local log_location
+if mapgen_helper.log_location_enabled then
+	log_location = mapgen_helper.log_first_location
+end
 
 local get_biome_at_pos_list = {} -- a list of methods of the form function(pos, heat, humidity) to allow modpack-wide queries about what should grow where
 df_caverns.register_biome_check = function(func)
@@ -114,7 +120,17 @@ df_caverns.flooded_cavern_floor = function(abs_cracks, vert_rand, vi, area, data
 	if abs_cracks < 0.25 then
 		data[vi] = c_mossycobble
 	elseif data[vi-ystride] ~= c_water then
-		data[vi] = c_sand_scum
+
+		if c_bubblesponge and abs_cracks > 0.5 and math.random() < 0.01 then
+			local vi_above = vi + ystride
+			if data[vi_above] == c_water then
+				data[vi] = c_bubblesponge
+				minetest.get_node_timer(area:position(vi)):set(1, bubblesponge.config.growth_seconds * 6) -- immediate growth
+				if log_location then log_location("flooded_bubblesponge", area:position(vi_above)) end
+			end
+		else
+			data[vi] = c_sand_scum
+		end
 	end
 	
 	-- put in only the large stalagmites that won't get in the way of the water
@@ -123,6 +139,7 @@ df_caverns.flooded_cavern_floor = function(abs_cracks, vert_rand, vi, area, data
 			subterrane.big_stalagmite(vi+ystride, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
 		end
 	end
+	
 end
 
 df_caverns.dry_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)

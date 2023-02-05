@@ -35,6 +35,10 @@ if minetest.get_modpath("df_farming") then
 	df_caverns.node_id.dead_fungus = minetest.get_content_id("df_farming:dead_fungus")
 end
 
+if minetest.get_modpath("bubblesponge") then
+	df_caverns.node_id.bubblesponge = minetest.get_content_id("bubblesponge:stem")
+end
+
 df_caverns.node_id.air = minetest.get_content_id("air")
 
 df_caverns.node_id.cobble_fungus = minetest.get_content_id("df_mapitems:cobble_with_floor_fungus")

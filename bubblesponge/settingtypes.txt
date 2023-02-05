@@ -1,0 +1,3 @@
+bubblesponge_uses (Number of uses provided by a bubblesponge) int 30 2 1000
+bubblesponge_growth_seconds (Number of seconds between each bubblesponge stem growing a new frond) int 1000 1 100000
+bubblesponge_y_max (Maximum altitude at which bubblesponge will grow) int -300

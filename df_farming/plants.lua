@@ -74,18 +74,17 @@ end
 
 -----------------------------------------------------------------------------------------
 
-local marginal = {[df_dependencies.node_name_dirt] = true}
-local growable = {[df_dependencies.node_name_dirt_wet] = true, [df_dependencies.node_name_dirt] = true}
+--local marginal = {[df_dependencies.node_name_dirt] = true}
+--local growable = {[df_dependencies.node_name_dirt_wet] = true, [df_dependencies.node_name_dirt] = true}
 
 df_farming.plant_timer = function(pos, plantname, elapsed)
 	local next_stage_time = minetest.registered_nodes[plantname]._dfcaverns_next_stage_time
 	if not next_stage_time then return end
 	
-	next_stage_time = next_stage_time + math.random(next_stage_time * -0.1, next_stage_time * 0.1)
-	local below = minetest.get_node(vector.add(pos, {x=0, y=-1, z=0}))
-	if marginal[below.name] then
-		next_stage_time = next_stage_time * 5
-	end
+	local growable_factor = df_farming.growth_factor(plantname, pos) or 1
+
+	next_stage_time = (next_stage_time + math.random(next_stage_time * -0.1, next_stage_time * 0.1)) / growable_factor
+
 	if elapsed ~= nil then
 		minetest.get_node_timer(pos):set(next_stage_time, elapsed-next_stage_time)
 	else
@@ -142,17 +141,17 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 		return itemstack
 	end
 	
+	-- if the plant can't grow here, don't permit the seed to be placed
+	local growth_permitted_function = df_farming.growth_permitted[plantname]
+	if not growth_permitted_function or not growth_permitted_function(pt.above) then
+		return itemstack
+	end
+
 	-- add the node and remove 1 item from the itemstack
 	local newnode= {name = itemstack:get_name(), param2 = 1, param1=0}
-	local oldnode= minetest.get_node(pt.above)
+	local oldnode= above
 	minetest.add_node(pt.above, {name = plantname, param2 = 1})
-	
-	local growth_permitted_function = df_farming.growth_permitted[plantname]
-	if not growth_permitted_function or growth_permitted_function(pt.above) then
-		df_farming.plant_timer(pt.above, plantname)
-	else
-		minetest.get_node_timer(pt.above):stop() -- make sure no old timers are running on this node
-	end
+	df_farming.plant_timer(pt.above, plantname)
 	
 	-- Run script hook
 	local take_item = true
@@ -226,14 +225,14 @@ df_farming.grow_underground_plant = function(pos, plant_name, elapsed)
 	local node_def = minetest.registered_nodes[plant_name]
 	local next_stage = node_def._dfcaverns_next_stage
 	if next_stage then
-		local soil = minetest.get_node(vector.add(pos, {x=0, y=-1, z=0})).name
-		if growable[soil] then
+		if df_farming.growth_factor(plant_name, pos) then
 			local next_def = minetest.registered_nodes[next_stage]
 			local node = minetest.get_node(pos)
 			minetest.swap_node(pos, {name=next_stage, param2 = next_def.place_param2 or node.param2})
 			df_farming.plant_timer(pos, next_stage, elapsed)
 		else
-			df_farming.plant_timer(pos, plant_name) -- reset timer, check again later
+			df_farming.plant_timer(pos, plant_name) -- not growable substrate. Since the seed was allowed it once *was* growable,
+													-- so maybe it will be again some day. reset timer, check again later
 		end
 	end
 end

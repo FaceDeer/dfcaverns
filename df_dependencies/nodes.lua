@@ -77,6 +77,8 @@ df_dependencies.node_name_copperblock = select_required({"default:copperblock", 
 
 df_dependencies.node_name_dirt_furrowed = select_required({"farming:soil", "mcl_farming:soil"})
 df_dependencies.node_name_dirt_wet = select_required({"farming:soil_wet", "mcl_farming:soil_wet"})
+df_dependencies.node_name_desert_sand_soil_wet = select_required({"farming:desert_sand_soil_wet", "mcl_core:redsand"}) -- TODO: this is much easier in MCL due to the lack of wetted sand, see if there's a way to fix this
+df_dependencies.node_name_desert_sand_soil_dry = select_required({"farming:desert_sand_soil", "mcl_core:redsand"})
 --df_dependencies.node_name_mortar_pestle = select_optional({"farming:mortar_pestle"}) -- TODO where did this go?
 df_dependencies.node_name_string = select_required({"farming:string", "mcl_mobitems:string"})
 

@@ -7,6 +7,7 @@
 
 Attempt to collect a piece of Lightseam, a strange glowing mineral found deep underground.=
 
+Collect Bubblesponge Frond=
 Collect Castle Coral=
 Collect Cave Coral=
 Collect Cave Pearls=
@@ -25,6 +26,7 @@ Collect a luminous salt crystal from the dry caverns where Bloodthorns live.=
 
 Collect a piece of Castle Coral from the Sunless Sea.=
 Collect a piece of Cave Coral from the Sunless Sea.=
+Collect a piece of bubblesponge.=
 Collect a piece of giant webbing found in a cave.=
 
 Collect one of the giant red crystals found in large barren caverns.=

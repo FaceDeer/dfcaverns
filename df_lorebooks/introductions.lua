@@ -3,7 +3,7 @@ local S = minetest.get_translator(minetest.get_current_modname())
 -- Introductory entries:
 
 df_lorebooks.register_lorebook({
-	title = "lorebooks:theo_1",
+	title = "lorebooks:theo1",
 	desc = S("Dr. Theodore Banks"),
 	inv_img = "lorebooks_science.png",
 	text = S([[I, Dr. Theodore Banks, have been commissioned by her most Royal Highness Queen Isabella of Aragon to lead an expedition into the vast underground caverns in search of valuable resources to mine. My team consists of experienced engineers and labourers, all of whom are well-equipped and trained to face the challenges that lie ahead.

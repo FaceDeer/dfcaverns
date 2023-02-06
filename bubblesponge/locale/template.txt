@@ -1,0 +1,17 @@
+# textdomain: bubblesponge
+
+
+### init.lua ###
+
+A bundle of fronds harvested from a bubblesponge.=
+A frond harvested from a bubblesponge.=
+Bubblesponge Bundle=
+Bubblesponge Frond=
+Bubblesponge Trunk=
+
+If you're underwater and you're running out of breath you can squeeze a lungful of air from a wielded Bubblesponge frond=
+
+If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this frond has @1 uses before it becomes empty.=
+
+The trunk of a massive sponge. Bubblesponges grow deep underwater in caverns and their fronds have uniquely helpful properties for divers.=
+

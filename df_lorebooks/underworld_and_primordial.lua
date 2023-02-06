@@ -201,7 +201,22 @@ df_lorebooks.register_lorebook({
 	title = "lorebooks:puzzle_seals",
 	desc = S(""),
 	inv_img = "lorebooks_science.png",
-	text = S([[]]),
+	text = S([[Dear Members of the Royal Adventurers Society,
+
+I write to you today with the most exciting discovery of my time exploring the underworld. I have come across a mysterious octagonal slade seal that is built into a square platform and surrounded by four intricately engraved slade obelisks.
+
+This seal has some kind of puzzle or combination lock built into it, with eight small alcoves meant to hold some kind of items or keys. Every few seconds, the seal emits a quiet chiming sound, and a number of ghostly glowing sparks appear briefly floating in the air overhead.
+
+I have spent several days pondering this seal and its puzzle, and I have noticed that the sparks emitted by the seal continuously repeat a sequence of 8 numbers. This recurring pattern of 8 reminds me of other things I've discovered in my exploration of the underworld.
+
+I am determined to solve the puzzle of this octagonal seal and uncover the secrets that it holds. I will not rest until I have figured out the combination and unlocked the hidden knowledge that lies within.
+
+Please keep me in your thoughts as I continue my quest to unravel the mysteries of the underworld.
+
+Yours sincerely,
+Sir Reginald Sterling
+
+Addendum: I have solved the puzzle of the seal and I am no longer certain that I was right to do so. My obsession drives me. The foundation of the world has been pierced, a passage is opened beneath the slade. Though every sensible thought tells me otherwise, I must explore below.]]),
 	author = S("Sir Reginald Sterling"),
 	date = "",
 })
@@ -213,7 +228,18 @@ df_lorebooks.register_lorebook({
 	title = "lorebooks:grid_passages",
 	desc = S(""),
 	inv_img = "lorebooks_science.png",
-	text = S([[]]),
+	text = S([[Dear Royal Adventurers Society,
+
+It is with great trepidation that I write to you today to report on my latest findings in the underworld. After successfully traversing the slade, I was struck by the eerie transformation of what was once a floor into an impenetrable ceiling.
+
+As I ventured further, I discovered a mysterious grid pattern of narrow passages carved through the rock, following the undersurface of the slade. The walls of these passages show no signs of tool markings that I can recognize and it seems as though something was down here searching for any flaws or breaches in the slade.
+
+This has left me with a sense of unease, as I fear that my passage through the slade may have opened the way for whatever was down here. I have taken steps to build a wall obstructing my entrance passage and will continue to explore these grid passages, seeking my own path further downward into the unknown.
+
+I must emphasize that caution is of the utmost importance in these treacherous caverns, and I advise all future explorers to be vigilant and prepared for the unexpected.
+
+Yours in exploration,
+Sir Reginald Sterling.]]),
 	author = S("Sir Reginald Sterling"),
 	date = "",
 })
@@ -224,7 +250,18 @@ df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_fungus",
 	desc = S(""),
 	inv_img = "lorebooks_science.png",
-	text = S([[]]),
+	text = S([[Dear Members of the Royal Adventurers Society,
+
+I am writing to report on the discovery of a new type of vast cavern beneath the Slade, a place that truly defies description. I have come across a world unlike any other, a world of giant purple-capped mushrooms that tower over me, their vast size and beauty a testament to the mysterious powers that exist in these depths.
+
+The mushrooms themselves are a sight to behold, their caps a deep shade of purple, some of them far bigger than even the Tower Caps that I have encountered on my journey. Hanging strands dangle beneath their caps, creating an otherworldly landscape that is both eerie and enchanting.
+
+In this strange new world, I have also encountered smaller fungi that have produced glowing orb-shaped growths, and enormous glowing orbs hang from stalks on the ceiling. The soft light they cast creates an almost dream-like atmosphere, and I can hardly believe that I am here in this place, surrounded by such wondrous sights.
+
+I have taken numerous sketches and notes of this new discovery, and I am eager to share them with all of you. I am filled with excitement and a sense of awe, and I cannot wait to see what other wonders the underworld holds.
+
+Sincerely,
+Sir Reginald Sterling.]]),
 	author = S("Sir Reginald Sterling"),
 	date = "",
 })
@@ -235,7 +272,18 @@ df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_mycelium",
 	desc = S(""),
 	inv_img = "lorebooks_science.png",
-	text = S([[]]),
+	text = S([[Dear Royal Adventurers Society,
+
+I hope this letter finds you well. I am writing to report on my latest discovery in the Underworld. As I traveled deeper among the massive purple-capped mushrooms, I stumbled upon a new type of giant fungus that is truly unlike anything I have ever seen.
+
+This new fungus takes the form of an enormous twisting tube that grows along the surface of the soil, occasionally branching or forming loops. Its roots extend down into the soil to draw nutrients, and it is unlike any other type of fungus that I have encountered. The tube itself is incredibly tough and resilient, and I found that hacking a piece out of it could sometimes produce a cutting capable of sprouting anew.
+
+However, after much consideration, I have decided not to bring a sample of this back to the surface world. While I have a desire for trophies, my experiences in the Underworld have given me a sense of caution. I do not wish to bring back anything that may pose a risk to the world above.
+
+I will continue to explore this strange and wondrous place and report back on any other discoveries that I make.
+
+Yours sincerely,
+Sir Reginald Sterling]]),
 	author = S("Sir Reginald Sterling"),
 	date = "",
 })
@@ -245,7 +293,21 @@ df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_jungle",
 	desc = S(""),
 	inv_img = "lorebooks_science.png",
-	text = S([[]]),
+	text = S([[Dear Members of the Royal Adventurers Society,
+
+I hope this letter finds you in good health and high spirits. I am writing to you today to share with you my latest discovery in the Underworld. It is a truly remarkable place, unlike anything I have encountered thus far.
+
+The cavern is lined with enormous veins of glowing stone that light the chambers to almost the brightness of daylight. The light is an astonishing hue that gives the entire space a magical and otherworldly quality. The cavern is teeming with life and is filled with a profusion of green plant life and strange jungle trees. These trees are covered in phosphorescent lichens that cling to their bark, and it is a breathtaking sight to behold.
+
+In addition to the amazing vegetation, there are also fireflies that blink in the shadows and roots and vines that hang from the ceilings. While there are treacherous patches of thorns to watch out for, there are also plants that bear the most delicious and heavenly fruits that I have ever tasted. It is a truly magical and wondrous place.
+
+I must say that this discovery has left me in awe. The beauty and complexity of this ecosystem is simply stunning and it is clear that this is a place that holds many secrets yet to be uncovered.
+
+I will continue to explore this wondrous place and document all that I find. I am confident that this discovery will be of great interest to the Society and I look forward to sharing my findings with you in person upon my return.
+
+Yours in Adventure,
+
+Sir Reginald Sterling]]),
 	author = S("Sir Reginald Sterling"),
 	date = "",
 })
@@ -256,7 +318,18 @@ df_lorebooks.register_lorebook({
 	title = "lorebooks:giant_ferns",
 	desc = S(""),
 	inv_img = "lorebooks_science.png",
-	text = S([[]]),
+	text = S([[Dear Members of the Royal Adventurers Society,
+
+I write to you from the depths of the Underworld, where I have discovered a most unusual form of plant life in the jungle caverns. Giant fern fronds, twenty feet tall or more, are the most prominent feature in some regions of the underground jungle. I have never seen anything like them before, and the sheer size of these fronds is truly remarkable.
+
+I must admit, I never imagined that I would be considering the structural properties of "fern wood", but after all the fungal wood I have encountered in my journey, I shouldn't be all that surprised. The fronds are tough and fibrous, and I am considering bringing a sample back to the surface world for further study.
+
+However, what strikes me most about these ferns is the way they are distributed throughout the jungle. Some regions of the underground jungle have a preponderance of trees, while others are dominated by ferns. I am at a loss to explain why this is the case. Further exploration may shed light on this phenomenon, but for now I can only conjecture.
+
+Please know that I remain vigilant and continue to explore the wonders of this subterranean world.
+
+Sincerely,
+Sir Reginald Sterling]]),
 	author = S("Sir Reginald Sterling"),
 	date = "",
 })
@@ -267,7 +340,16 @@ df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_jungle_mushrooms",
 	desc = S(""),
 	inv_img = "lorebooks_science.png",
-	text = S([[]]),
+	text = S([[Dear Members of the Royal Adventurers Society,
+
+I hope this letter finds you well. I am writing to share with you my latest discovery in my explorations of the underworld.
+
+As I ventured through the jungle caverns, I came across giant mushrooms growing amongst the lush vegetation and towering trees. Although I have encountered giant mushrooms before, the concept of "giant mushroom" has been redefined so much by my experiences that these smaller versions almost went unnoticed in the shadows of the forest. They stand at a mere ten to fifteen feet tall, but their unique feature is that the flesh of their caps is actually edible. Although it is not the most appetizing in taste or nutrition, it is a welcome addition to my diet on my journey.
+
+I remain vigilant in my exploration and will continue to bring back the wonders of the underworld to the surface world.
+
+Best regards,
+Sir Reginald Sterling.]]),
 	author = S("Sir Reginald Sterling"),
 	date = "",
 })
@@ -278,7 +360,20 @@ df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_vegetable_matter",
 	desc = S(""),
 	inv_img = "lorebooks_science.png",
-	text = S([[]]),
+	text = S([[Dear Members of the Royal Adventurers Society,
+
+I hope this letter finds you well. I am writing to share with you my latest discovery in the Underworld. My journey has taken me to yet another exotic and alien place, where I have come across the largest plants I have ever seen.
+
+At first, I thought that the towering jungle trees that dominated these caverns were the largest plants in this strange environment, but they are mere toothpicks compared to what I have found now. I initially thought that the massive green stalagmites and columns that dominated these caverns were dripstone formations, much like those above the surface, with their wet surfaces merely cloaked by moss or algae. But there is no water here to penetrate the underworld.
+
+After investigating one of these formations I discovered that these columns are not dripstone, but a strange and alien sort of tree. I was shocked to find that the vegetal mass continued as deep as I could dig, and after six feet of digging I reached twisted woody roots that formed an underlying structural substrate.
+
+I have never seen anything like them before. I am fascinated by these towering trees and plan to investigate them further, but I wanted to share this discovery with you immediately.
+
+I look forward to sharing more news from my journey as it unfolds.
+
+Yours sincerely,
+Sir Reginald Sterling.]]),
 	author = S("Sir Reginald Sterling"),
 	date = "",
 })

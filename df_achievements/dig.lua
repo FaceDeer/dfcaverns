@@ -19,17 +19,33 @@ awards.register_achievement("dfcaverns_destroyed_gas_seep", {
 	},
 })
 
-awards.register_achievement("dfcaverns_giant_web", {
-	title = S("Collect Giant Webbing"),
-	description = S("Collect a piece of giant webbing found in a cave."),
-	icon ="dfcaverns_awards_backgroundx32.png^big_webs_item.png^dfcaverns_awards_foregroundx32.png",
-	difficulty = 1,
-	trigger = {
-		type = "dig",
-		node = "big_webs:webbing",
-		target = 1
-	},
-})
+if minetest.get_modpath("big_webs") then
+	awards.register_achievement("dfcaverns_giant_web", {
+		title = S("Collect Giant Webbing"),
+		description = S("Collect a piece of giant webbing found in a cave."),
+		icon ="dfcaverns_awards_backgroundx32.png^big_webs_item.png^dfcaverns_awards_foregroundx32.png",
+		difficulty = 1,
+		trigger = {
+			type = "dig",
+			node = "big_webs:webbing",
+			target = 1
+		},
+	})
+end
+
+if minetest.get_modpath("bubblesponge") then
+	awards.register_achievement("dfcaverns_bubblesponge", {
+		title = S("Collect Bubblesponge Frond"),
+		description = S("Collect a piece of bubblesponge."),
+		icon ="dfcaverns_awards_backgroundx32.png^bubblesponge_frond.png^dfcaverns_awards_foregroundx32.png",
+		difficulty = 1,
+		trigger = {
+			type = "dig",
+			node = "bubblesponge:frond",
+			target = 1
+		},
+	})
+end
 
 -- too common
 --awards.register_achievement("dfcaverns_glow_worms", {

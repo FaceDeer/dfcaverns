@@ -66,7 +66,7 @@ Their stems and caps provide ample quantities of woody material when cut down an
 
 df_lorebooks.register_lorebook({
 	title = "df_lorebooks:nether_cap",
-	desc = S("Nether Cap"),
+	desc = S("Marvelous Nether Cap"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today, my team and I made a fascinating discovery in the deep caverns - the existence of Nether Cap mushrooms. These mushrooms possess an unusual biochemistry that allows them to subsist on ambient heat, in violation of all known laws of thermodynamics. We found them growing in frigid, icy caverns that should, by all rights, be simmering in the heat welling up from below.
 
@@ -79,7 +79,7 @@ Furthermore, the Nether Cap mushroom is also a valuable tool for understanding t
 
 df_lorebooks.register_lorebook({
 	title = "df_lorebooks:nether_cap_2",
-	desc = S("Nether Cap"),
+	desc = S("Infuriating Nether Cap"),
 	inv_img = "lorebooks_science.png",
 	text = S([[I have just encountered the Nether cap mushrooms, and I have to admit that my scientific mind is thoroughly flummoxed by them. These enormous blue mushrooms grow deep underground, in caverns that geologically speaking, should be extremely hot. But instead of generating heat, the Nether cap mushrooms are somehow capable of absorbing it.
 
@@ -105,7 +105,7 @@ However, this adaptation also makes them a potential hazard. I would advise agai
 end
 df_lorebooks.register_lorebook({
 	title = "df_lorebooks:tunnel_tube",
-	desc = S("Tunnel Tube"),
+	desc = S("Tunnel Tube Ecology"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today, I had the opportunity to study a particularly fascinating species of subterranean fungus, the Tunnel Tube. These towering growths, typically standing between 10 to 20 feet tall, are characterized by a hollow curved trunk that supports a large fruiting body at the top. The trunk of the Tunnel Tube is a striking purple hue and can be cut and processed to produce sheets of a woody material.]]),
 	text2 = tt_text2,
@@ -116,7 +116,7 @@ df_lorebooks.register_lorebook({
 
 df_lorebooks.register_lorebook({
 	title = "df_lorebooks:tunnel_tube_2",
-	desc = S("Tunnel Tube"),
+	desc = S("Tunnel Tube Resources"),
 	inv_img = "lorebooks_science.png",
 	text = S([[I have been conducting experiments on the Tunnel Tubes, a species of fungi that can be found growing deep underground in the caverns. I have successfully harvested the fruiting bodies of the Tunnel Tubes and have been experimenting with refining a gunpowder-like explosive from them. This explosive has shown great potential in mining and construction, but I must note that my experiments were cut short due to several casualties among my crew caused by careless detonations.
 	
@@ -144,7 +144,7 @@ It's important to note that while these fungi may be useful, they can also be da
 
 df_lorebooks.register_lorebook({
 	title = "df_lorebooks:spindlestem",
-	desc = S("Spindlestem"),
+	desc = S("Spindlestem Lanterns"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today, I had the opportunity to study the Spindlestem mushrooms, a common and useful resource for underground travelers. These mushrooms are too big to easily pluck by hand, but too small to be called a proper tree. Despite their thinness, they can grow quite tall and their stem is surprisingly sturdy. They can be used as a wood substitute in many crafting recipes.
 
@@ -157,7 +157,7 @@ The brightness of this light varies with the colour of the cap, but even the dim
 
 df_lorebooks.register_lorebook({
 	title = "df_lorebooks:spindlestem_2",
-	desc = S("Spindlestem"),
+	desc = S("Spindlestem as Mineral Marker"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today, while conducting a survey of the subterranean fungi, I made a discovery that I found to be quite interesting. As I was observing a group of Spindlestem mushrooms, I noticed that their caps were emitting a red glow. Being an experienced geologist, I immediately suspected that this might be an indication of nearby iron deposits.
 
@@ -173,7 +173,7 @@ It's a shame that Professor Amelia Rose, whose journal entry about Spindlestems 
 
 df_lorebooks.register_lorebook({
 	title = "df_lorebooks:spindlestem_3",
-	desc = S("Spindlestem"),
+	desc = S("Spindlestem Complexities"),
 	inv_img = "lorebooks_science.png",
 	text = S([[It appears that Dr. Banks' log on Spindlestems has caused some confusion and I would like to set the record straight. While it is true that the microorganisms living within the caps of Spindlestems are affected by the trace minerals present in the water where they grow, there are other factors at play that he seems to have overlooked.
 
@@ -189,7 +189,7 @@ On a final note, I would like to point out that the extract of Spindlestems, whi
 
 df_lorebooks.register_lorebook({
 	title = "df_lorebooks:spindlestem_4",
-	desc = S("Spindlestem"),
+	desc = S("Blasted Spindlestems"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 

@@ -109,7 +109,7 @@ However, it is a delicate creature that cannot withstand bright light and will d
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:floor_fungus",
-	desc = S("Floor Fungus"),
+	desc = S("Ecology of Floor Fungus"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I had the opportunity to observe and study a most peculiar fungus, known as Floor Fungus. This thin and slick growth can be found in the cracks of broken rocks, subsisting on the smallest of nutrients in harsh underground environments. It's a remarkable example of the resilience of life, adapting to the challenging conditions in these caverns.
 
@@ -122,7 +122,7 @@ This discovery only deepens my appreciation for the rich and diverse life that e
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:floor_fungus_2",
-	desc = S("Floor Fungus"),
+	desc = S("The Scourge of Floor Fungus"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I encountered the floor fungus, a peculiar form of subterranean mold that spreads through the cracks of broken rock. Despite its ubiquity in harsh underground environments, I cannot help but feel horrified by its resilience. This insidious growth has the potential to cause immense harm if it were to contaminate the foundations of surface structures and constructions.
 
@@ -168,7 +168,7 @@ I must admit, I was pleasantly surprised to find that walking on this pebble fun
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:rock_rot",
-	desc = S("Rock Rot and Spongestone"),
+	desc = S("The Ecology of Rock Rot and Spongestone"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I encountered a truly remarkable and somewhat terrifying organism- Rock Rot. This aggressive form of lichen seems to have an insatiable appetite for solid rock, eating away at its surface and leaving it rough and spongy. Over time, the rock becomes so riddled with pores and cavities that it is no longer recognizable as such, and is instead referred to as "Spongestone".
 
@@ -181,7 +181,7 @@ Despite my admiration for Rock Rot and its role in the creation of Spongestone, 
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:rock_rot_2",
-	desc = S("Rock Rot and Spongestone"),
+	desc = S("Mineral Extraction by Rock Rot"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I was examining the spongestone formation created by rock rot and I must admit, I was impressed by its potential. It is a well-known fact that rock rot is a highly aggressive form of lichen that eats into solid rock and transforms it into something that can barely be called "rock" anymore. The end result, spongestone, is a porous and spongy material that can provide a rich source of minerals.
 

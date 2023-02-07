@@ -4,6 +4,8 @@ df_lorebooks = {}
 
 local S = minetest.get_translator(minetest.get_current_modname())
 
+dofile(modpath.."/nodes.lua")
+
 -- Splits strings into chunks that are approximately length long, dividing at the nearest pattern to the first length mark.
 function splitString(str, length, splitmark)
     if #str <= length then
@@ -30,35 +32,22 @@ end
 
 local lorebooks = {}
 
+df_lorebooks.lorebooks = lorebooks
+
 
 df_lorebooks.register_lorebook = function(def)
 
-	if lorebooks[def.title] then
-		minetest.debug("duplicate title " .. def.title)
+	if lorebooks[def.desc] then
+		minetest.debug("duplicate title " .. def.desc)
 	end
-	lorebooks[def.title] = def
+	lorebooks[def.desc] = def
 
---	minetest.register_craftitem(def.title, {
---		description = def.desc,
---		inventory_image = def.inv_img,
---		groups = {book = 1},
---	on_use = function(itemstack, user, pointed_thing)
---		lorebooks.read_book(user, def.title, def.desc, def.text, def.text2, def.author, def.date)
---		return
---	end
---	})
---
---	minetest.register_craft({
---		type = "shapeless",
---		output = def.title .. " 2",
---		recipe = {def.title, "default:book"}
---	})
 end
 
 dofile(modpath.."/ecology_sunless_sea.lua")
 dofile(modpath.."/ecology_flora.lua")
 dofile(modpath.."/ecology_trees.lua")
-dofile(modpath.."/fauna_ice_sprites.lua")
+dofile(modpath.."/ecology_ice_sprites.lua")
 dofile(modpath.."/geology_the_great_caverns.lua")
 dofile(modpath.."/introductions.lua")
 dofile(modpath.."/underworld_and_primordial.lua")

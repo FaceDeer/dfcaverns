@@ -4,7 +4,7 @@ local S = minetest.get_translator(minetest.get_current_modname())
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:theo1",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Introducing Dr. Theodore Banks"),
 	inv_img = "lorebooks_science.png",
 	text = S([[I, Dr. Theodore Banks, have been commissioned by her most Royal Highness Queen Isabella of Aragon to lead an expedition into the vast underground caverns in search of valuable resources to mine. My team consists of experienced engineers and labourers, all of whom are well-equipped and trained to face the challenges that lie ahead.
 
@@ -19,7 +19,7 @@ I look forward to the challenges and adventures that lie ahead. With the help of
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:theo2",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("First Steps of Dr. Theodore Banks"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dr. Theodore Banks' Exploration Log:
 
@@ -39,7 +39,7 @@ Dr. Theodore Banks, Geologist and Leader of the Expedition.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:rose1",
-	desc = S("Professor Amelia Rose"),
+	desc = S("Introducing Professor Amelia Rose"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Journal,
 
@@ -61,7 +61,7 @@ Professor Amelia Rose.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:rose2",
-	desc = S("Professor Amelia Rose"),
+	desc = S("First Steps of Professor Amelia Rose"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Journal,
 
@@ -81,7 +81,7 @@ Professor Amelia Rose.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:sterling1",
-	desc = S("Sir Reginald Sterling"),
+	desc = S("Introducing Sir Reginald Sterling"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -101,7 +101,7 @@ Sir Sterling.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:sterling2",
-	desc = S("Sir Reginald Sterling"),
+	desc = S("First Steps of Sir Reginald Sterling"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 

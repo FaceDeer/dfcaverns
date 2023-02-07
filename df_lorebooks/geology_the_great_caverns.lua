@@ -4,7 +4,7 @@ local S = minetest.get_translator(minetest.get_current_modname())
 --Speleothems introduction
 df_lorebooks.register_lorebook({
 	title = "lorebooks:speleothems",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Speleothems"),
 	inv_img = "lorebooks_science.png",
 	text = S([[It has previously been established that a great many of the conduits and cavities that lead deep into the stone foundations of the world are carved not by pick or claw, or by any shifting and cracking of the firmament, but rather by the weak but inexorable corrosive power of mere water. Over the aeons, trickles of water passing through pores too tiny even to be seen erode away miniscule portions of matter.
 
@@ -21,7 +21,7 @@ Where the flow of water follows the walls and floors rather than dripping down f
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:surface_tunnels",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Twisting Tunnels"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today's exploration took us deep into the caverns beneath the surface world. As we progressed, I was reminded of the intricate network of passages that make up the bedrock of this world.
 
@@ -39,7 +39,7 @@ The significance of these passages cannot be overstated. They provide a glimpse 
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:cavern_types",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("A Heirarchy of Caverns"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today, I had the opportunity to delve deeper into the caverns beneath the surface of the world. As I explored, I was struck by the sheer diversity of the caves and tunnels that have been carved out by eons of erosion. There is truly a sort of hierarchy in the form taken by these underground features.
 
@@ -57,7 +57,7 @@ And finally, there are the vast caverns that are hundreds or even thousands of m
 --Vertical shafts
 df_lorebooks.register_lorebook({
 	title = "lorebooks:shafts",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Sinkholes and Shafts"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today's expedition took us deep into the heart of the world's foundation and the incredible geological wonders that reside within. As we descended, I was struck by the sight of the sinkholes that have formed over time due to erosive forces working upon weak spots in the rock layers. These sinkholes are truly a marvel of nature and can descend for thousands of meters, offering access to regions that would be virtually impossible to reach otherwise. The sight of the sun shining down from the surface into the depths is truly breathtaking and serves as a reminder of the incredible forces that have shaped our world.
 
@@ -71,7 +71,7 @@ I must stress the importance of caution when exploring these sinkholes, as the w
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:chasms",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Great Chasms"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Not all vast open spaces underground are the result of aeons of erosion by water or magma. The foundations of the world shift from time to time, causing deep faults to split open in the rock. Yawning underground chasms can be found in this region oriented along the north-south axis, some of them stretching for kilometers both in length and depth. They cross through multiple cavern layers and are an environment in their own right. Chasms can be a convenient way of traveling long distances if they happen to lead in the correct direction and can also be a convenient way of falling to your death. We have had to construct more than a few bridges to make our way from one side to the other.
 
@@ -86,7 +86,7 @@ The great extent of chasms makes them hospitable to small flying creatures, and 
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:giant_speleothems",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Towering Speleothems"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I had the privilege of exploring one of the most incredible geological wonders I have ever encountered. Deep within the caverns of the underworld lies a region of gigantic stalactites and stalagmites, some reaching up to twenty meters in girth. These speleothems are truly awe-inspiring and I can hardly believe that they have formed over eons of mineral deposits and slow dripping water.
 
@@ -103,7 +103,7 @@ I have collected samples of the mineral deposits from the formations for further
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:mine_gas",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Mine Gas"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I explored the depths of the world beneath the Sunless Sea and discovered a dangerous but fascinating new substance - mine gas. This explosive and unbreatheable vapor originates from the ancient organic remnants of life that have been pressed and baked into minerals. Coal and oil are well known forms of this substance, but the gaseous form is far more volatile and can pose a significant threat to those exploring the deep caverns.
 
@@ -118,7 +118,7 @@ Additionally, mine gas mixed with breathable air can explode violently when expo
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:gas_wisps",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Gas Wisps"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I encountered the mysterious blue flames known as gas wisps. These self-sustaining flames are found flickering on the edges of oil lakes and are able to burn without the presence of oxygen. Despite my attempts, I have been unable to capture or perform any tests on these wisps as they seem to disappear when deprived of access to mine gas.
 
@@ -132,7 +132,7 @@ I have noticed that the presence of gas wisps is often an indicator of a high co
 --oil sea
 df_lorebooks.register_lorebook({
 	title = "lorebooks:oil_sea",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("The Oil Seas"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I had the opportunity to explore one of the more unique geological features of the underground caverns: the lakes of oil. These vast reservoirs of liquid are found in giant cavities that are believed to have formed from pressure separating and forcing open the seams of the rock, rather than from erosion.
 
@@ -148,7 +148,7 @@ Despite these challenges, the lakes of oil are a unique and fascinating geologic
 --magma sea
 df_lorebooks.register_lorebook({
 	title = "lorebooks:magma_sea",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("The Magma Sea"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I ventured into the depths of the Magma Sea, a region where the very foundation of our world lies. The journey to reach this region was a perilous one, and I was only able to make it because of the advanced protective gear I was equipped with.
 
@@ -164,7 +164,7 @@ However, the dangers in this region are not to be underestimated, as the heat ca
 --sunless sea
 df_lorebooks.register_lorebook({
 	title = "lorebooks:sunless_sea",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("The Sunless Sea"),
 	inv_img = "lorebooks_science.png",
 	text = S([[The Sunless Sea is an awe-inspiring place, a true marvel of the underground world. The water that fills these caverns, so vast and broad that it would make even the grandest of lakes seem small in comparison, is the ultimate destination for all the streams and rivers that flow down from above. The ceilings are held aloft by massive columns of cave coral, supporting the weight of the worlds above and creating a stunning visual spectacle.
 
@@ -181,7 +181,7 @@ This abundance of water does make penetrating to deeper elevations difficult, ho
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:volcanoes",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Volcanoes"),
 	inv_img = "lorebooks_science.png",
 	text = S([[It is well known to the layperson what a volcano looks like - a great conical pile of rock, a mountain, with a crater at its peak that sometimes spews smoke and fire and coats its flanks with fresh grey ash. However, this is only the tip of the proverbial iceberg. The surface vent of a volcano is merely the uppermost extent of a deep upwelling of magma, channelled through a pipe that rises from a source kilometers below. Magma rises through this narrow, twisting pipe - pushed from below by immense heat and pressure - and the mountain that forms is only the trace encrustations of what overflows.
 
@@ -197,7 +197,7 @@ What is the ultimate source of a volcano's magma? This is a mystery that will re
 --Cave pearls
 df_lorebooks.register_lorebook({
 	title = "lorebooks:cave_pearls",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Cave Pearls"),
 	inv_img = "lorebooks_science.png",
 	text = S([[During my explorations of the underground world, I have come across a truly fascinating form of mineral deposit known as cave pearls. These delicate, glowing formations can be found studding the walls of tunnels in various locations and are characterized by their calcium-rich composition. The source of their faint luminescence is still a mystery to me, but it is possible that some form of phosphorescent microorganisms may be involved in their creation.
 
@@ -210,7 +210,7 @@ However, despite their practicality, it is the origin of these cave pearls that 
 -- giant ruby crystals
 df_lorebooks.register_lorebook({
 	title = "lorebooks:ruby_crystals",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Ruby Crystals"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I have encountered something truly remarkable in one of the hotter caverns. Growing from the floors and ceilings are clusters of large red hexagonal crystals, some larger than a man is tall, each glowing with an inner light. The crystals have a quartz-like composition but the red color and luminosity suggest that there is an unknown impurity present. I speculate that these crystals grow from smaller crystals embedded in veins of ore in the rock, but further investigation is needed to confirm this theory. These magnificent formations are unlike anything I have seen before, and I am eager to study them in greater detail. However, the extreme heat of the caverns presents a challenge for conducting any in-depth analysis. Nevertheless, I will not let this deter me from uncovering the secrets of these incredible crystals.]]),
 	author = S("Dr. Theodore Banks"),
@@ -219,7 +219,7 @@ df_lorebooks.register_lorebook({
 -- veinstone
 df_lorebooks.register_lorebook({
 	title = "lorebooks:veinstone",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Veinstone"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I had the displeasure of encountering Veinstone, one of the most unnerving mineral formations I have come across in my explorations. This mineral forms a web-like pattern of ridges on the inner surface of some large and otherwise-barren caverns, with a reddish pattern of mineral inclusions and a faint internal glow.
 
@@ -234,7 +234,7 @@ In conclusion, Veinstone remains one of the most unique and fascinating mineral 
 -- pink salt crystals
 df_lorebooks.register_lorebook({
 	title = "lorebooks:salt_crystals",
-	desc = S("Dr. Theodore Banks"),
+	desc = S("Salt Crystals"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Today I ventured into the hot, dry, sandy caverns where bloodthorns grow. It is an inhospitable environment, but one that holds unique geological wonders. Along the cracks and seams where water enters these caverns, I found encrustations of salt. The water that seeps in is immediately siphoned away by the thirsty air and vegetation, leaving behind the minerals it carried with it. These salt crystals have a pinkish hue and a faint inherent glow that suggest similar impurities to the larger quartz crystals found in similarly hot places, but in a much less impressive form. The salt crystals are a testament to the harsh environment and the relentless processes that shape and change the underground world. Further study of these minerals could provide insights into the geological history of these caverns.]]),
 	author = S("Dr. Theodore Banks"),

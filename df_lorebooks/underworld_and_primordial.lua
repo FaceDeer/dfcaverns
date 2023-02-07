@@ -51,7 +51,7 @@ Sir Reginald Sterling]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:oubliettes_and_lanterns",
-	desc = S(""),
+	desc = S("Oubliettes and Lanterns"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -84,7 +84,7 @@ Sir Reginald Sterling.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:underworld_towns",
-	desc = S(""),
+	desc = S("Underworld Ruins"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -110,7 +110,7 @@ Sir Reginald Sterling.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:lightseams",
-	desc = S(""),
+	desc = S("Lightseams"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -132,7 +132,7 @@ Sir Reginald Sterling]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:ancient_warriors",
-	desc = S(""),
+	desc = S("Ancient Warriors"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -153,7 +153,7 @@ Sir Reginald Sterling]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:guardian_statues",
-	desc = S(""),
+	desc = S("Guardian Statues"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear members of the Royal Adventurers Society,
 
@@ -177,7 +177,7 @@ Sir Reginald Sterling]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:glowing_pits_and_amethyst",
-	desc = S(""),
+	desc = S("Glowing Pits and Amethyst Crystals"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear members of the Royal Adventurers Society,
 
@@ -199,7 +199,7 @@ Sir Reginald Sterling.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:puzzle_seals",
-	desc = S(""),
+	desc = S("Puzzle Seals"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -226,7 +226,7 @@ Addendum: I have solved the puzzle of the seal and I am no longer certain that I
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:grid_passages",
-	desc = S(""),
+	desc = S("Grid Passages Beneath the Slade"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Royal Adventurers Society,
 
@@ -248,7 +248,7 @@ Sir Reginald Sterling.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_fungus",
-	desc = S(""),
+	desc = S("Primordial Mushrooms"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -270,7 +270,7 @@ Sir Reginald Sterling.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_mycelium",
-	desc = S(""),
+	desc = S("Primordial Fungal Growths"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Royal Adventurers Society,
 
@@ -291,7 +291,7 @@ Sir Reginald Sterling]]),
 -- primordial jungle
 df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_jungle",
-	desc = S(""),
+	desc = S("Primordial Jungle"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -316,7 +316,7 @@ Sir Reginald Sterling]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:giant_ferns",
-	desc = S(""),
+	desc = S("Giant Ferns"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -338,7 +338,7 @@ Sir Reginald Sterling]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_jungle_mushrooms",
-	desc = S(""),
+	desc = S("Primordial Jungle Mushrooms"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 
@@ -358,7 +358,7 @@ Sir Reginald Sterling.]]),
 
 df_lorebooks.register_lorebook({
 	title = "lorebooks:primordial_vegetable_matter",
-	desc = S(""),
+	desc = S("Primordial Vegetable Matter"),
 	inv_img = "lorebooks_science.png",
 	text = S([[Dear Members of the Royal Adventurers Society,
 

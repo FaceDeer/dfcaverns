@@ -1,0 +1,7 @@
+# textdomain: collectible_lore
+
+
+### items.lua ###
+
+Cairn=
+Collectible Ledger=

@@ -1,9 +1,10 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:underworld",
-	desc = S("The Underworld"),
-	inv_img = "lorebooks_science.png",
+local base = 300
+
+collectible_lore.register_lorebook({
+	id = "ster underworld",
+	title = S("The Underworld"),
 	text = S([[Dear Members of the Royal Adventurer's Society,
 
 Greetings from the depths of the unknown! I hope this letter finds you all well and with an unquenchable thirst for adventure, as I have discovered something truly extraordinary down here.
@@ -20,17 +21,15 @@ So, my friends, I invite you to join me on this incredible journey. Come, let us
 
 Yours,
 Sir Reginald Sterling]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+	sort = base + 0,
 })
 
 -------
 -- slade
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:slade",
-	desc = S("Slade"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster slade",
+	title = S("Slade"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I write to you today from the heart of the earth, where I have made a most remarkable discovery. Amidst the endless labyrinth of twisting tunnels and deadly caverns, I have encountered a mysterious form of bedrock that I have dubbed "Slade."
@@ -43,16 +42,14 @@ This discovery only adds to the wonder and intrigue of the underworld that I hav
 
 Yours in exploration,
 Sir Reginald Sterling]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+	sort = base + 1,
 })
 
 -- oubliettes and lanterns
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:oubliettes_and_lanterns",
-	desc = S("Oubliettes and Lanterns"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster oubliettes",
+	title = S("Oubliettes and Lanterns"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I am writing to you from the heart of the Underworld, where I have made a truly remarkable discovery. Scattered throughout the caverns, there are areas rich with strange slade structures, each more mysterious than the last.
@@ -75,17 +72,15 @@ Having compared many of the carvings I find a common set of verses that I have t
 Obviously these people, while advanced in some ways, still managed to succumb to some ancient threat that they could not overcome. Or perhaps that they expended the last of their strength in overcoming. I have reserved a supply of dynamite and ammunition on the off chance that whatever it may be remains a danger to this day. I look forward to finding it, and to a trophy like no other to hang in my study upon my return!
 
 Yours truly,
-Sir Reginald Sterling.]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+Sir Reginald Sterling]]),
+	sort = base + 2,
 })
 
 -- "towns"
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:underworld_towns",
-	desc = S("Underworld Ruins"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster underworld ruins",
+	title = S("Underworld Ruins"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I write to you today with the latest update on my journey through the mysterious Underworld. My travels have led me to an ancient empty town, the likes of which I have never seen before.
@@ -101,17 +96,15 @@ Inside, I found only faded flowers and small satchels of colourful dyes. No grea
 I am eager to continue my journey through the Underworld, and I will keep you all updated on my findings.
 
 Yours sincerely,
-Sir Reginald Sterling.]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+Sir Reginald Sterling]]),
+	sort = base + 3,
 })
 
 -- lightseams
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:lightseams",
-	desc = S("Lightseams"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster underworld lightseams",
+	title = S("Lightseams"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I hope this letter finds you well. I am writing to you from deep within the Underworld, where my explorations continue to uncover more and more mysteries. It has come to my attention that there is an aspect of these caverns that I have overlooked in my previous reports, and I feel it is my duty to correct that oversight.
@@ -124,16 +117,14 @@ I hope this letter has been of interest, and I will continue to keep you all inf
 
 Yours in adventure,
 Sir Reginald Sterling]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+	sort = base + 4,
 })
 
 -- bones/ancient warriors
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:ancient_warriors",
-	desc = S("Ancient Warriors"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster warriors",
+	title = S("Ancient Warriors"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I write to you today with a heavy heart, for I have come across a site within the underworld that has left a profound impact upon me. Amidst the treacherous tunnels and caverns lies a battlefield, one that has long since been abandoned by the living but is still guarded by the fallen. The sight of so many ancient warriors, their bones now mere remnants of their former selves, serves as a haunting reminder of the toll that war can take on even the bravest of souls.
@@ -144,17 +135,15 @@ I share these thoughts with you in the hopes that others may find comfort in the
 
 Yours sincerely,
 Sir Reginald Sterling]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+	sort = base + 5,
 })
 
 
 -- guardian statues
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:guardian_statues",
-	desc = S("Guardian Statues"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster statues",
+	title = S("Guardian Statues"),
 	text = S([[Dear members of the Royal Adventurers Society,
 
 I hope this letter finds you in good health and high spirits. I write to you today with a story of caution and excitement, as I have recently come face to face with one of the underworld's most fearsome guardians.
@@ -166,19 +155,16 @@ I was thrown from the ruins and only survived thanks to one of my porters breaki
 I implore all future adventurers to exercise caution when exploring the underworld, and to be aware of the potential dangers lurking in the shadows. I have survived this attack but others may not be so lucky.
 
 Yours in adventure,
-
 Sir Reginald Sterling]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+	sort = base + 6,
 })
 
 
 -- glowing pits and amethyst crystal
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:glowing_pits_and_amethyst",
-	desc = S("Glowing Pits and Amethyst Crystals"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster pits",
+	title = S("Glowing Pits and Amethyst Crystals"),
 	text = S([[Dear members of the Royal Adventurers Society,
 
 I write to you with a report on a recent discovery made during my explorations of the Underworld. I have come across a magnificent and fearsome feature that is unlike anything I have encountered before. A massive pit descends straight into the slade, its sides lined with a thick encrustation of glowing amethyst-hued crystals. The sight of these crystals is breathtaking, and they give off an eerie light that illuminates the surrounding area with a purplish hue.
@@ -190,17 +176,15 @@ I have decided to leave this pit untouched, for it appears to hold a fearsome po
 This pit is a true marvel of nature, and I implore anyone who dares to venture into the Underworld to take caution when approaching it. The combination of its beauty and danger makes it a truly unique and unforgettable experience.
 
 Sincerely,
-Sir Reginald Sterling.]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+Sir Reginald Sterling]]),
+	sort = base + 7,
 })
 
 -- seals
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:puzzle_seals",
-	desc = S("Puzzle Seals"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster seals",
+	title = S("Puzzle Seals"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I write to you today with the most exciting discovery of my time exploring the underworld. I have come across a mysterious octagonal slade seal that is built into a square platform and surrounded by four intricately engraved slade obelisks.
@@ -217,17 +201,15 @@ Yours sincerely,
 Sir Reginald Sterling
 
 Addendum: I have solved the puzzle of the seal and I am no longer certain that I was right to do so. My obsession drives me. The foundation of the world has been pierced, a passage is opened beneath the slade. Though every sensible thought tells me otherwise, I must explore below.]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+	sort = base + 8,
 })
 
 -------
 -- Grid passages
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:grid_passages",
-	desc = S("Grid Passages Beneath the Slade"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster grid passages",
+	title = S("Grid Passages Beneath the Slade"),
 	text = S([[Dear Royal Adventurers Society,
 
 It is with great trepidation that I write to you today to report on my latest findings in the underworld. After successfully traversing the slade, I was struck by the eerie transformation of what was once a floor into an impenetrable ceiling.
@@ -239,17 +221,15 @@ This has left me with a sense of unease, as I fear that my passage through the s
 I must emphasize that caution is of the utmost importance in these treacherous caverns, and I advise all future explorers to be vigilant and prepared for the unexpected.
 
 Yours in exploration,
-Sir Reginald Sterling.]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+Sir Reginald Sterling]]),
+	sort = base + 9,
 })
 
 -- primordial fungus
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:primordial_fungus",
-	desc = S("Primordial Mushrooms"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster primordial mushrooms",
+	title = S("Primordial Mushrooms"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I am writing to report on the discovery of a new type of vast cavern beneath the Slade, a place that truly defies description. I have come across a world unlike any other, a world of giant purple-capped mushrooms that tower over me, their vast size and beauty a testament to the mysterious powers that exist in these depths.
@@ -261,17 +241,15 @@ In this strange new world, I have also encountered smaller fungi that have produ
 I have taken numerous sketches and notes of this new discovery, and I am eager to share them with all of you. I am filled with excitement and a sense of awe, and I cannot wait to see what other wonders the underworld holds.
 
 Sincerely,
-Sir Reginald Sterling.]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+Sir Reginald Sterling]]),
+	sort = base + 10,
 })
 
 -- primordial mycelium
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:primordial_mycelium",
-	desc = S("Primordial Fungal Growths"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster mycelium",
+	title = S("Primordial Fungal Growths"),
 	text = S([[Dear Royal Adventurers Society,
 
 I hope this letter finds you well. I am writing to report on my latest discovery in the Underworld. As I traveled deeper among the massive purple-capped mushrooms, I stumbled upon a new type of giant fungus that is truly unlike anything I have ever seen.
@@ -284,15 +262,13 @@ I will continue to explore this strange and wondrous place and report back on an
 
 Yours sincerely,
 Sir Reginald Sterling]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+	sort = base + 11,
 })
 
 -- primordial jungle
-df_lorebooks.register_lorebook({
-	title = "lorebooks:primordial_jungle",
-	desc = S("Primordial Jungle"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster jungle",
+	title = S("Primordial Jungle"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I hope this letter finds you in good health and high spirits. I am writing to you today to share with you my latest discovery in the Underworld. It is a truly remarkable place, unlike anything I have encountered thus far.
@@ -306,18 +282,15 @@ I must say that this discovery has left me in awe. The beauty and complexity of 
 I will continue to explore this wondrous place and document all that I find. I am confident that this discovery will be of great interest to the Society and I look forward to sharing my findings with you in person upon my return.
 
 Yours in Adventure,
-
 Sir Reginald Sterling]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+	sort = base + 12,
 })
 
 -- ferns
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:giant_ferns",
-	desc = S("Giant Ferns"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster ferns",
+	title = S("Giant Ferns"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I write to you from the depths of the Underworld, where I have discovered a most unusual form of plant life in the jungle caverns. Giant fern fronds, twenty feet tall or more, are the most prominent feature in some regions of the underground jungle. I have never seen anything like them before, and the sheer size of these fronds is truly remarkable.
@@ -330,16 +303,14 @@ Please know that I remain vigilant and continue to explore the wonders of this s
 
 Sincerely,
 Sir Reginald Sterling]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+	sort = base + 13,
 })
 
 -- jungle mushrooms
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:primordial_jungle_mushrooms",
-	desc = S("Primordial Jungle Mushrooms"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster jungle mushrooms",
+	title = S("Primordial Jungle Mushrooms"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I hope this letter finds you well. I am writing to share with you my latest discovery in my explorations of the underworld.
@@ -349,17 +320,15 @@ As I ventured through the jungle caverns, I came across giant mushrooms growing 
 I remain vigilant in my exploration and will continue to bring back the wonders of the underworld to the surface world.
 
 Best regards,
-Sir Reginald Sterling.]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+Sir Reginald Sterling]]),
+	sort = base + 14,
 })
 
 -- primordial vegetable matter
 
-df_lorebooks.register_lorebook({
-	title = "lorebooks:primordial_vegetable_matter",
-	desc = S("Primordial Vegetable Matter"),
-	inv_img = "lorebooks_science.png",
+collectible_lore.register_lorebook({
+	id = "ster vegetable matter",
+	title = S("Primordial Vegetable Matter"),
 	text = S([[Dear Members of the Royal Adventurers Society,
 
 I hope this letter finds you well. I am writing to share with you my latest discovery in the Underworld. My journey has taken me to yet another exotic and alien place, where I have come across the largest plants I have ever seen.
@@ -373,7 +342,6 @@ I have never seen anything like them before. I am fascinated by these towering t
 I look forward to sharing more news from my journey as it unfolds.
 
 Yours sincerely,
-Sir Reginald Sterling.]]),
-	author = S("Sir Reginald Sterling"),
-	date = "",
+Sir Reginald Sterling]]),
+	sort = base + 15,
 })

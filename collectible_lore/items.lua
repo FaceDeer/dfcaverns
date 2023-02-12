@@ -20,7 +20,10 @@ local set_cairn_looted_by_list = function(pos, list)
 	modmeta:set_string("cairn_" .. minetest.pos_to_string(pos), minetest.serialize(list))
 end
 
-local cairn_loot = function(pos, player_name)
+local cairn_loot = function(pos, player)
+	local player_name = player:get_player_name()
+	if not player_name then return end
+
 	local list = get_cairn_looted_by_list(pos)
 	if list[player_name] then
 		return false
@@ -31,6 +34,11 @@ local cairn_loot = function(pos, player_name)
 	minetest.debug("unlocked " .. lore_id)
 	list[player_name] = true
 	set_cairn_looted_by_list(pos, list)
+	
+	local leftover = player:get_inventory():add_item("main", "collectible_lore:satchel")
+	if not leftover:is_empty() then
+		minetest.item_drop(leftover, player, vector.add(pos, vector.new(0,1,0)))
+	end	
 	return true
 end
 
@@ -65,10 +73,7 @@ minetest.register_node("collectible_lore:cairn", {
 		}
 	},
 	on_rightclick = function(pos, node, clicker, itemstack, pointed_thing)
-		local player_name = clicker:get_player_name()
-		if player_name then
-			cairn_loot(pos, player_name)
-		end
+		cairn_loot(pos, clicker)
 	end,
 	
 	is_ground_content = true,
@@ -149,9 +154,9 @@ local get_formspec_for_player = function(player_name)
 	return table.concat(form)
 end
 
-minetest.register_craftitem("collectible_lore:ledger", {
-	description = S("Collectible Ledger"),
-	inventory_image = "collectible_lore_ledger.png",
+minetest.register_craftitem("collectible_lore:satchel", {
+	description = S("Collectibles Satchel"),
+	inventory_image = "collectible_lore_satchel.png",
 	stack_max = 99,
 	on_use = function(itemstack, user, pointed_thing)
 		local player_name = user:get_player_name()

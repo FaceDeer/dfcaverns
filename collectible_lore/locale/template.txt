@@ -3,5 +3,6 @@
 
 ### items.lua ###
 
+<Locked>=
 Cairn=
-Collectible Ledger=
+Collectibles Satchel=

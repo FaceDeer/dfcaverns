@@ -206,6 +206,7 @@ I write to you today to express my frustration with the abundance of Spindlestem
 
 It is perhaps a petty thing to write a missive containing nothing but a short complaint directed at this most base and useless of of fungus, but one must give vent at times. These caverns are filled with wonders and yet these tedious growths clutter them. They are hardly worth the time to write about, which gives me such annoyance that I find I must regardless.]]),
 	author = S("Sir Reginald Sterling"),
+	sort = base + 12,
 })
 
 collectible_lore.register_lorebook({

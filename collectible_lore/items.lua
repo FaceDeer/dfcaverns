@@ -1,6 +1,13 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 local modmeta =  minetest.get_mod_storage()
 
+local cairn_area = AreaStore()
+
+local existing_area = modmeta:get("areastore_cairn")
+if existing_area then
+	cairn_area:from_string(existing_area)
+end
+
 local get_cairn_looted_by_list = function(pos)
 	local loot_list_string = modmeta:get("cairn_" .. minetest.pos_to_string(pos))
 	if not loot_list_string then
@@ -27,6 +34,8 @@ local cairn_loot = function(pos, player_name)
 	return true
 end
 
+
+local range = 10
 
 minetest.register_node("collectible_lore:cairn", {
 	description = S("Cairn"),
@@ -61,7 +70,43 @@ minetest.register_node("collectible_lore:cairn", {
 			cairn_loot(pos, player_name)
 		end
 	end,
+	
+	is_ground_content = true,
+	groups = {cracky = 3},
+	can_dig = function(pos, player)
+		return minetest.check_player_privs(player, {server = true})
+	end,
+	on_destruct = function(pos)
+		modmeta:set_string("cairn_" .. minetest.pos_to_string(pos), "")
+		local this_cairn = cairn_area:get_areas_for_pos(pos)
+		for index, data in pairs(this_cairn) do
+			minetest.debug("removing " .. dump(index))
+			cairn_area:remove_area(index)
+			modmeta:set_string("areastore_cairn", cairn_area:to_string())
+		end
+	end,
+	on_construct = function(pos)
+		local nearby = cairn_area:get_areas_in_area(vector.subtract(pos, range/2), vector.add(pos, range/2))
+		if next(nearby) then
+			minetest.debug("Cairn placed too close to other cairns. Placed at: " .. minetest.pos_to_string(pos) .."\nnearby:\n" .. dump(nearby))
+		end
+		cairn_area:insert_area(pos, pos, "")
+		modmeta:set_string("areastore_cairn", cairn_area:to_string())
+	end,
 })
+
+collectible_lore.get_nearby_cairns = function(pos)
+	local nearby = cairn_area:get_areas_in_area(vector.subtract(pos, range/2), vector.add(pos, range/2))
+	if next(nearby) then
+		return nearby
+	end
+	return nil
+end
+
+collectible_lore.place_cairn = function(pos)
+	cairn_area:insert_area(pos, pos, "")
+	modmeta:set_string("areastore_cairn", cairn_area:to_string())
+end
 
 local player_state = {}
 
@@ -106,7 +151,7 @@ end
 
 minetest.register_craftitem("collectible_lore:ledger", {
 	description = S("Collectible Ledger"),
-	inventory_image = "df_lorebooks_ledger.png",
+	inventory_image = "collectible_lore_ledger.png",
 	stack_max = 99,
 	on_use = function(itemstack, user, pointed_thing)
 		local player_name = user:get_player_name()

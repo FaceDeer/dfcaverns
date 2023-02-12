@@ -35,7 +35,6 @@ Dr. Theodore Banks]]),
 	sort = base + 1,
 })
 
-
 --The Great Caverns general morphology (major caverns, warrens)
 
 collectible_lore.register_lorebook({
@@ -200,8 +199,6 @@ Signed,
 Dr. Theodore Banks]]),
 	sort = base + 11,
 })
-
-
 
 --Cave pearls
 collectible_lore.register_lorebook({

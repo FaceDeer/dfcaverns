@@ -1,8 +1,19 @@
 # textdomain: collectible_lore
 
 
+### init.lua ###
+
+Administrative control of collectibles=
+error parsing command=
+
 ### items.lua ###
 
-<Locked>=
+<Not found yet>=
 Cairn=
+Collected: @1/@2=
 Collectibles Satchel=
+You've already collected the contents of this cairn.=
+You've found a collectible item of lore titled:@n@1=
+
+You've found all of the collectible items contained in cairns like this one=
+

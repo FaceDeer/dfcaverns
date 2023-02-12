@@ -73,26 +73,26 @@ Professor Amelia Rose]]),
 
 collectible_lore.register_lorebook({
 	id = "rose nether cap",
-	title = S("Marvelous Nether Cap"),
-	text = S([[Today, my team and I made a fascinating discovery in the deep caverns - the existence of Nether Cap mushrooms. These mushrooms possess an unusual biochemistry that allows them to subsist on ambient heat, in violation of all known laws of thermodynamics. We found them growing in frigid, icy caverns that should, by all rights, be simmering in the heat welling up from below.
+	title = S("Marvelous @1", df_dependencies.nethercap_name),
+	text = S([[Today, my team and I made a fascinating discovery in the deep caverns - the existence of @1 mushrooms. These mushrooms possess an unusual biochemistry that allows them to subsist on ambient heat, in violation of all known laws of thermodynamics. We found them growing in frigid, icy caverns that should, by all rights, be simmering in the heat welling up from below.
 
-The Nether Cap mushroom is a true marvel of nature. The wood of the mushroom, in addition to being a beautiful blue hue, retains the odd heat-draining ability of living Nether Caps and is able to quickly freeze nearby water solid. This makes it an incredibly unique and valuable resource, as it could have a wide range of industrial and scientific applications.
+The @2 mushroom is a true marvel of nature. The wood of the mushroom, in addition to being a beautiful blue hue, retains the odd heat-draining ability of living @3 and is able to quickly freeze nearby water solid. This makes it an incredibly unique and valuable resource, as it could have a wide range of industrial and scientific applications.
 
-Furthermore, the Nether Cap mushroom is also a valuable tool for understanding the underground ecosystem. The discovery of this species challenges our current understanding of how organisms can survive and thrive in extreme environments. It is clear that there is still much to learn about the deep caverns and the life that lives within them.
+Furthermore, the @4 mushroom is also a valuable tool for understanding the underground ecosystem. The discovery of this species challenges our current understanding of how organisms can survive and thrive in extreme environments. It is clear that there is still much to learn about the deep caverns and the life that lives within them.
 
 Sincerely,
-Professor Amelia Rose]]),
+Professor Amelia Rose]], df_dependencies.nethercap_name, df_dependencies.nethercap_name, df_dependencies.nethercap_name, df_dependencies.nethercap_name),
 	sort = base + 5,
 })
 
 collectible_lore.register_lorebook({
 	id = "banks nether cap",
-	title = S("Infuriating Nether Cap"),
-	text = S([[I have just encountered the Nether cap mushrooms, and I have to admit that my scientific mind is thoroughly flummoxed by them. These enormous blue mushrooms grow deep underground, in caverns that geologically speaking, should be extremely hot. But instead of generating heat, the Nether cap mushrooms are somehow capable of absorbing it.
+	title = S("Infuriating @1", df_dependencies.nethercap_name),
+	text = S([[I have just encountered the @1 mushrooms, and I have to admit that my scientific mind is thoroughly flummoxed by them. These enormous blue mushrooms grow deep underground, in caverns that geologically speaking, should be extremely hot. But instead of generating heat, the @2 mushrooms are somehow capable of absorbing it.
 
 This is beyond comprehension, as it defies the laws of thermodynamics. It is simply not possible for a biological organism to feed directly on heat. But yet, here they are. The caverns that they are found in are frigid and icy, which only adds to the confusion.
 
-To make matters worse, the wood of the Nether cap somehow retains this heat-sapping ability even after it's cut. I have never seen anything like it before, and I must admit that I am at a loss for an explanation.
+To make matters worse, the wood of the @3 somehow retains this heat-sapping ability even after it's cut. I have never seen anything like it before, and I must admit that I am at a loss for an explanation.
 
 At times like this, it can be difficult to be a man of science. I would love to exterminate this species and put an end to this absurdity, but of course, that is not the way of science. We must study, we must observe, and we must learn. I will have to gather more data and try to make sense of what I am seeing.
 
@@ -101,23 +101,21 @@ Despite my frustration, I must admit that these mushrooms are a remarkable disco
 It is frustrating, but the life of a scientist is not always easy. We must be willing to accept that sometimes, our predictions are wrong and that there are things that we simply cannot explain. But that's what makes this journey so exciting. We never know what new wonders await us in the depths of these caverns.
 
 Signed,
-Dr. Theodore Banks]]),
+Dr. Theodore Banks]], df_dependencies.nethercap_name, df_dependencies.nethercap_name, df_dependencies.nethercap_name),
 	sort = base + 6,
 })
 
-
-local tt_text2 = ""
-if df_trees.config.enable_tnt then
-	S([[One of the most interesting adaptations of the Tunnel Tube is its method of spore dispersal. The fruiting bodies of these fungi accumulate high-energy compounds that, when ignited, produce a vigorous detonation that flings their spores great distances. This adaptation allows them to spread their spores in the still air of the caverns they grow in.
-
-However, this adaptation also makes them a potential hazard. I would advise against making a campfire in a cavern that is home to Tunnel Tubes, as the explosive nature of these fungi could cause unexpected and potentially dangerous consequences.]])
-end
 collectible_lore.register_lorebook({
 	id = "rose tunnel tube",
 	title = S("Tunnel Tube Ecology"),
-	text = S([[Today, I had the opportunity to study a particularly fascinating species of subterranean fungus, the Tunnel Tube. These towering growths, typically standing between 10 to 20 feet tall, are characterized by a hollow curved trunk that supports a large fruiting body at the top. The trunk of the Tunnel Tube is a striking purple hue and can be cut and processed to produce sheets of a woody material.]]),
-	text2 = tt_text2,
-	author = S("Professor Amelia Rose"),
+	text = S([[Today, I had the opportunity to study a particularly fascinating species of subterranean fungus, the Tunnel Tube. These towering growths, typically standing between 10 to 20 feet tall, are characterized by a hollow curved trunk that supports a large fruiting body at the top. The trunk of the Tunnel Tube is a striking purple hue and can be cut and processed to produce sheets of a woody material.
+
+One of the most interesting adaptations of the Tunnel Tube is its method of spore dispersal. The fruiting bodies of these fungi accumulate high-energy compounds that, when ignited, produce a vigorous detonation that flings their spores great distances. This adaptation allows them to spread their spores in the still air of the caverns they grow in.
+
+However, this adaptation also makes them a potential hazard. I would advise against making a campfire in a cavern that is home to Tunnel Tubes, as the explosive nature of these fungi could cause unexpected and potentially dangerous consequences.
+
+Sincerely,
+Professor Amelia Rose]]),
 	sort = base + 7,
 })
 
@@ -204,8 +202,10 @@ collectible_lore.register_lorebook({
 
 I write to you today to express my frustration with the abundance of Spindlestem mushrooms throughout the caverns I have explored. These blasted mushrooms are everywhere, making it difficult to determine one's location within the caverns based on the local flora. Their inedibility only adds to my disappointment.
 
-It is perhaps a petty thing to write a missive containing nothing but a short complaint directed at this most base and useless of of fungus, but one must give vent at times. These caverns are filled with wonders and yet these tedious growths clutter them. They are hardly worth the time to write about, which gives me such annoyance that I find I must regardless.]]),
-	author = S("Sir Reginald Sterling"),
+It is perhaps a petty thing to write a missive containing nothing but a short complaint directed at this most base and useless of of fungus, but one must give vent at times. These caverns are filled with wonders and yet these tedious growths clutter them. They are hardly worth the time to write about, which gives me such annoyance that I find I must regardless.
+
+Yours,
+Sir Reginald Sterling]]),
 	sort = base + 12,
 })
 

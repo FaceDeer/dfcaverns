@@ -66,7 +66,6 @@ collectible_lore.register_lorebook = function(def)
 	table.sort(collectible_lore.lorebooks, collectible_lore_sort)
 end
 
-
 minetest.register_chatcommand("collectible", {
         params = "[collect|uncollect|clear|show] <player_name> <id>",  -- Short parameter description
         description = S("Administrative control of collectibles"),

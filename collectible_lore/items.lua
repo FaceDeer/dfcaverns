@@ -85,6 +85,12 @@ local cairn_loot = function(pos, player)
 	return true
 end
 
+local function drop_item_stack(pos, stack)
+	if not stack or stack:is_empty() then return end
+	local drop_offset = vector.new(math.random() - 0.5, 0, math.random() - 0.5)
+	minetest.add_item(vector.add(pos, drop_offset), stack)
+end
+
 minetest.register_node("collectible_lore:cairn", {
 	description = S("Cairn"),
 	_doc_items_longdesc = S("A cairn of rocks constructed by a previous explorer to protect documents and supplies."),

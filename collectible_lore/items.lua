@@ -1,7 +1,7 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 local modmeta =  minetest.get_mod_storage()
 
-local cairn_spacing = tonumber(minetest.settings:get("collectible_lore_cairn_spacing")) or 500
+local cairn_spacing = tonumber(minetest.settings:get("collectible_lore_cairn_spacing")) or 300
 local torch_node = {name=df_dependencies.node_name_torch, param2=1}
 collectible_lore.get_light_node = function()
 	return torch_node

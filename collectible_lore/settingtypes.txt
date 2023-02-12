@@ -1,1 +1,1 @@
-collectible_lore_cairn_spacing (Minimum distance between collectible cairns) int 500
+collectible_lore_cairn_spacing (Minimum distance between collectible cairns) int 300

@@ -13,10 +13,20 @@ Administrative control of collectibles=
 ### items.lua ###
 
 <not found yet>=
+
+A cairn of rocks constructed by a previous explorer to protect documents and supplies.=
+
+A satchel containing various documents you've recovered in your travels.=
+
 Cairn=
 Collected: @1/@2=
 Collectibles Satchel=
 Exit=
+
+The documents and lore you've unlocked are not tied to a specific satchel, any satchel will let you view your personal collection.=
+
+The first time you discover a cairn like this, it may reveal to you some new record or piece of lore. Afterward it can be used as a public storage location.=
+
 View=
 You've already collected the lore hidden in this cairn.=
 You've found a collectible item of lore titled:@n@1=

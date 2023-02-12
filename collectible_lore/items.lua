@@ -87,6 +87,8 @@ end
 
 minetest.register_node("collectible_lore:cairn", {
 	description = S("Cairn"),
+	_doc_items_longdesc = S("A cairn of rocks constructed by a previous explorer to protect documents and supplies."),
+	_doc_items_usagehelp = S("The first time you discover a cairn like this, it may reveal to you some new record or piece of lore. Afterward it can be used as a public storage location."),
 	drawtype = "nodebox",
 	tiles = {df_dependencies.texture_cobble, df_dependencies.texture_cobble, df_dependencies.texture_cobble .. "^(collectible_lore_cairn_marker.png^[opacity:100)"},
 	is_ground_content = true,
@@ -138,8 +140,8 @@ minetest.register_node("collectible_lore:cairn", {
 		local inv = meta:get_inventory()
 		inv:set_size("main", 8*4)
 
-		local nearby = cairn_area:get_areas_in_area(vector.subtract(pos, cairn_spacing/2), vector.add(pos, cairn_spacing/2))
-		if next(nearby) then
+		local nearby = collectible_lore.are_cairns_close_to_pos(pos)
+		if nearby then
 			minetest.log("error", "Cairn placed too close to other cairns. Placed at: " .. minetest.pos_to_string(pos))
 			for _,data in pairs(nearby) do
 				minetest.log("error", "nearby: " .. minetest.pos_to_string(data.min))
@@ -173,13 +175,16 @@ collectible_lore.get_nearby_cairns = function(pos, spacing)
 	return nil
 end
 
-collectible_lore.place_cairn = function(pos)
+collectible_lore.are_cairns_close_to_pos = function(pos)
 	local nearby = collectible_lore.get_nearby_cairns(pos, cairn_spacing)
-	if nearby then return end
+	if nearby then return nearby end
+	return false
+end
+
+collectible_lore.place_cairn = function(pos)
+	if collectible_lore.are_cairns_close_to_pos(pos) then return end
 	minetest.set_node(pos, {name="collectible_lore:cairn"})
-	local def = minetest.registered_nodes["collectible_lore:cairn"]
-	def.on_construct(pos)
-	--minetest.set_node({x=pos.x, y=pos.y+1, z=pos.z}, {name=torch_node_name})
+	--minetest.debug("placed " .. minetest.pos_to_string(pos))
 end
 
 local player_state = {}
@@ -230,6 +235,8 @@ end
 
 minetest.register_craftitem("collectible_lore:satchel", {
 	description = S("Collectibles Satchel"),
+	_doc_items_longdesc = S("A satchel containing various documents you've recovered in your travels."),
+	_doc_items_usagehelp = S("The documents and lore you've unlocked are not tied to a specific satchel, any satchel will let you view your personal collection."),
 	inventory_image = "collectible_lore_satchel.png",
 	stack_max = 99,
 	on_use = function(itemstack, user, pointed_thing)

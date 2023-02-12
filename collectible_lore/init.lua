@@ -1,7 +1,27 @@
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 local S = minetest.get_translator(minetest.get_current_modname())
+local modmeta =  minetest.get_mod_storage()
 
 collectible_lore = {}
+
+collectible_lore.get_player_unlocks = function(player_name)
+	local unlocks_string = modmeta:get("player_" .. player_name)
+	if unlocks_string == nil then
+		return {}
+	else
+		return minetest.deserialize(unlocks_string)
+	end
+end
+
+local set_player_unlocks = function(player_name, unlocks_table)
+	modmeta:set_string("player_" .. player_name, minetest.serialize(unlocks_table))
+end
+
+collectible_lore.unlock = function(player_name, id)
+	local unlocks = collectible_lore.get_player_unlocks(player_name)
+	unlocks[id] = true
+	set_player_unlocks(player_name, unlocks)
+end
 
 dofile(modpath.."/items.lua")
 
@@ -33,3 +53,4 @@ collectible_lore.register_lorebook = function(def)
 	table.insert(collectible_lore.lorebooks, def)
 	table.sort(collectible_lore.lorebooks, collectible_lore_sort)
 end
+

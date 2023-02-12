@@ -358,7 +358,7 @@ collectible_lore.register_lorebook({
 	id = "rose bubblesponge",
 	title = S("Bubblesponge"),
 	inv_img = "lorebooks_science.png",
-	text = S([[Today, I had the privilege of discovering the fascinating and unusual Bubblesponges in the Sunless Sea. These large yellow sponges are unlike anything I have ever seen before, growing in large bodies of water deep underground.
+	text = S([[Today, I had the privilege of discovering the fascinating and unusual Bubblesponges in the Sunless Sea. These large yellow sponges are unlike anything I have ever seen before, only growing in large bodies of water deep underground.
 
 What makes these sponges truly remarkable is their ability to absorb and store such large amounts of oxygen from the surrounding water. A diver can actually bite down on one of these sponges and take a lungful of air. This is an incredibly useful property, as it enables divers to explore the Sunless Sea without having to constantly resurface for air.
 

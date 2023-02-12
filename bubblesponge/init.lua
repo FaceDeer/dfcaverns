@@ -107,6 +107,19 @@ minetest.register_node("bubblesponge:stem", {
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	tiles = {"bubblesponge_bubblesponge.png"},
 	use_texture_alpha = "clip",
+	drop = {
+		max_items = 2,
+		items = {
+			{
+				rarity = 10, -- occasionally split the stem to allow farming
+                items = {"bubblesponge:stem"},
+            },
+			{
+				rarity = 1,
+                items = {"bubblesponge:stem"},
+            },
+		},
+	},	
 	drawtype = "normal",
 	paramtype = "light",
 	is_ground_content = false,

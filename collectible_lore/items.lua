@@ -90,7 +90,7 @@ minetest.register_node("collectible_lore:cairn", {
 	_doc_items_longdesc = S("A cairn of rocks constructed by a previous explorer to protect documents and supplies."),
 	_doc_items_usagehelp = S("The first time you discover a cairn like this, it may reveal to you some new record or piece of lore. Afterward it can be used as a public storage location."),
 	drawtype = "nodebox",
-	tiles = {df_dependencies.texture_cobble, df_dependencies.texture_cobble, df_dependencies.texture_cobble .. "^(collectible_lore_cairn_marker.png^[opacity:100)"},
+	tiles = {df_dependencies.texture_cobble, df_dependencies.texture_cobble, df_dependencies.texture_cobble .. "^(collectible_lore_cairn_marker.png^[multiply:#100000^[opacity:128)"},
 	is_ground_content = true,
 	groups = {cracky = 3, container=2},
 	_mcl_hardness = 1.5,
@@ -243,6 +243,15 @@ minetest.register_craftitem("collectible_lore:satchel", {
 		local player_name = user:get_player_name()
 		minetest.show_formspec(player_name, "collectible_lore:formspec", get_formspec_for_player(player_name))
 	end
+})
+
+minetest.register_craft({
+    output = "collectible_lore:satchel",
+    recipe = {
+        {"", df_dependencies.node_name_string, ""},
+        {df_dependencies.node_name_string, "", df_dependencies.node_name_string},
+        {df_dependencies.node_name_wool_white, df_dependencies.node_name_wool_white, df_dependencies.node_name_wool_white},
+    },
 })
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)

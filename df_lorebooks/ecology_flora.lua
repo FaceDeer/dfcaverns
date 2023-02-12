@@ -157,7 +157,7 @@ Professor Amelia Rose]]),
 collectible_lore.register_lorebook({
 	id = "rose sand scum",
 	title = S("Sand scum"),
-	text = S([[Today, I encountered something new down here in the caverns, something I never expected to find: Sand Scum. It's a crust of algae that grows on wet sand and, apparently, it's able to survive by utilizing the light from other organisms.
+	text = S([[Today, I encountered something new down here in the caverns: Sand Scum. It's a crust of algae that grows on wet sand and, apparently, it's able to survive by utilizing the bioluminescent light from other organisms.
 
 To be honest, I have to admit that I'm at a loss for words when it comes to Sand Scum. I have tried my best to find something interesting to say about it, but unfortunately, I have failed. It's just not that exciting of a discovery. I suppose it's a good indicator of the diversity of life that can be found in even the harshest environments, but that's about the extent of my thoughts on the matter.
 

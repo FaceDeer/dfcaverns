@@ -5,6 +5,14 @@ local modmeta =  minetest.get_mod_storage()
 collectible_lore = {}
 collectible_lore.lorebooks = {}
 
+local ids = {}
+
+on_collected_callbacks = {}
+
+collectible_lore.register_on_collected = function(callback)
+	table.insert(on_collected_callbacks, callback)
+end
+
 collectible_lore.get_player_collected = function(player_name)
 	local collected_string = modmeta:get("player_" .. player_name)
 	if collected_string == nil then
@@ -27,9 +35,18 @@ collectible_lore.get_player_uncollected_list = function(player_name)
 end
 
 local set_collected = function(player_name, id, state)
+	if not ids[id] then
+		minetest.log("error", "[collectible_lore] Setting state for unknown collectible id " .. id .. " for player " .. player_name)
+		state = nil
+	end
 	local collected = collectible_lore.get_player_collected(player_name)
-	collected[id] = state
-	modmeta:set_string("player_" .. player_name, minetest.serialize(collected))
+	if collected[id] ~= state then
+		collected[id] = state
+		modmeta:set_string("player_" .. player_name, minetest.serialize(collected))
+		for _, callback in ipairs(on_collected_callbacks) do
+			callback(player_name, id, state, collected)
+		end
+	end
 end
 
 collectible_lore.collect = function(player_name, id)
@@ -49,8 +66,6 @@ local collectible_lore_sort = function(first, second)
 	end
 	return false
 end
-
-local ids = {}
 
 collectible_lore.register_lorebook = function(def)
 	if def.id == nil then

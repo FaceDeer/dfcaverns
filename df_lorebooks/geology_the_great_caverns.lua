@@ -19,8 +19,6 @@ Dr. Theodore Banks]]),
 	sort = base + 0,
 })
 
-
-
 collectible_lore.register_lorebook({
 	id = "banks tunnels",
 	title = S("Twisting Tunnels"),

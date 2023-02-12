@@ -107,6 +107,7 @@ Slightly less prestigious than the Primordial Fruit, but still rare and exotic c
 Activating a puzzle seal has produced a breach in the slade foundations of the world.=
 
 Capture an Ice Sprite=
+Collect All Lore=
 Decipher the code of the ancients. Do you dare turn the key?=
 Detonate Mine Gas=
 Get Attacked by an Underworld Guardian=
@@ -124,6 +125,8 @@ You may not be able to build new ones, but at least you can get the old ones shi
 You've captured an ice sprite and placed it in a bottle. It dances and sparkles and sheds light through the frosted glass while making a faint tinkling sound. Pretty.=
 
 You've discovered something important about those mysterious slade statues in the Underworld.=
+
+You've searched the world top to bottom for cairns containing lore and your collection is now complete.=
 
 
 ### travel.lua ###

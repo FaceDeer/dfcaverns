@@ -1,6 +1,6 @@
 if not minetest.get_modpath("df_lorebooks") then return end
 
-local foundations = {"group:stone", "group:dirt", "group:soil"}
+local foundations = {"group:stone", "group:dirt", "group:soil", "group:sand"}
 
 minetest.register_on_generated(function(minp, maxp, blockseed)
 	if maxp.y > 0 or maxp.y < df_caverns.config.primordial_min then return end

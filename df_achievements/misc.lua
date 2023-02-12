@@ -82,6 +82,23 @@ if minetest.get_modpath("df_underworld_items") then
 
 end
 
+if minetest.get_modpath("df_lorebooks") then
+	collectible_lore.register_on_collected(function(player_name, id, state, collected)
+		local count = 0
+		for id, val in pairs(collected) do
+			if val then count = count + 1 end
+		end
+		if count >= #(collectible_lore.lorebooks) then
+			awards.unlock(player_name, "dfcaverns_all_lorebooks_found")
+		end
+	end)
+	awards.register_achievement("dfcaverns_all_lorebooks_found", {
+		title = S("Collect All Lore"),
+		difficulty = 4,
+		description = S("You've searched the world top to bottom for cairns containing lore and your collection is now complete."),
+		icon = "dfcaverns_awards_backgroundx32.png^dfcaverns_awards_lore_cairnsx32.png^dfcaverns_awards_foregroundx32.png",
+	})
+end
 
 -- can't think of an easy way to detect these
 --awards.register_achievement("dfcaverns_torch_detonated_mine_gas", {

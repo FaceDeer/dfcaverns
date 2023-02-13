@@ -1,7 +1,7 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 local modmeta =  minetest.get_mod_storage()
 
-local cairn_spacing = tonumber(minetest.settings:get("collectible_lore_cairn_spacing")) or 300
+local cairn_spacing = tonumber(minetest.settings:get("collectible_lore_cairn_spacing")) or 100
 local torch_node = {name=df_dependencies.node_name_torch, param2=1}
 collectible_lore.get_light_node = function()
 	return torch_node
@@ -174,7 +174,7 @@ minetest.register_node("collectible_lore:cairn", {
 })
 
 collectible_lore.get_nearby_cairns = function(pos, spacing)
-	local nearby = cairn_area:get_areas_in_area(vector.subtract(pos, spacing/2), vector.add(pos, spacing/2))
+	local nearby = cairn_area:get_areas_in_area(vector.subtract(pos, spacing), vector.add(pos, spacing))
 	if next(nearby) then
 		return nearby
 	end
@@ -279,6 +279,14 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
+function tour(player, loc_list)
+	local pop = table.remove(loc_list)
+	if pop then
+		player:set_pos(pop)
+		minetest.after(10, tour, player, loc_list)
+	end
+end
+
 minetest.register_chatcommand("cairn_locations", {
         params = "<range>",  -- Short parameter description
         description = S("Administrative control of collectibles"),
@@ -288,8 +296,11 @@ minetest.register_chatcommand("cairn_locations", {
 			local player = minetest.get_player_by_name(name)
 			local player_pos = player:get_pos()
 			local cairn_locations = cairn_area:get_areas_in_area(vector.subtract(player_pos, range), vector.add(player_pos, range))
+			--local loc_list = {}
 			for _, data in pairs(cairn_locations) do
-				minetest.chat_send_player(name, minetest.pos_to_string(data.min))			
+				minetest.chat_send_player(name, minetest.pos_to_string(data.min))
+				--table.insert(loc_list, data.min)
 			end
+			--tour(player, loc_list)
 		end,
     })

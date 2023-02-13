@@ -288,6 +288,8 @@ local dfcaverns_mods = {
 	"df_underworld_items:",
 	"ice_sprites:",
 	"mine_gas:",
+	"bubblesponge:",
+	"collectible_lore:", -- cairns
 }
 
 df_caverns.is_ground_content = function(c_node)

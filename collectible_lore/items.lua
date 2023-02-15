@@ -76,7 +76,7 @@ local cairn_loot = function(pos, player)
 		minetest.chat_send_player(player_name, S("You've found all of the collectible items contained in cairns like this one"))
 		minetest.show_formspec(player_name, "collectible_lore:cairn_inventory", get_cairn_formspec(pos))
 		return false
-	end	
+	end
 	
 	local leftover = player:get_inventory():add_item("main", "collectible_lore:satchel")
 	if not leftover:is_empty() then
@@ -244,7 +244,6 @@ minetest.register_craftitem("collectible_lore:satchel", {
 	_doc_items_longdesc = S("A satchel containing various documents you've recovered in your travels."),
 	_doc_items_usagehelp = S("The documents and lore you've unlocked are not tied to a specific satchel, any satchel will let you view your personal collection."),
 	inventory_image = "collectible_lore_satchel.png",
-	stack_max = 99,
 	on_use = function(itemstack, user, pointed_thing)
 		local player_name = user:get_player_name()
 		minetest.show_formspec(player_name, "collectible_lore:formspec", get_formspec_for_player(player_name))

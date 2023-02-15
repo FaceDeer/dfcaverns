@@ -172,7 +172,7 @@ minetest.register_node("bubblesponge:frond", {
     walkable = false,
     buildable_to = true,
     groups = {snappy=3, oddly_breakable_by_hand = 1, handy = 1, not_in_creatove_inventory=1},
-    sounds = default.node_sound_leaves_defaults(),
+    sounds = df_dependencies.sound_leaves(),
 	drop = "bubblesponge:tank",
 })
 

@@ -1,6 +1,6 @@
 local S = minetest.get_translator(minetest.get_current_modname())
 
-local base = 100
+local base = 300
 
 --Speleothems introduction
 collectible_lore.register_lorebook({

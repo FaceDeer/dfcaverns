@@ -1,6 +1,24 @@
 # textdomain: df_lorebooks
 
 
+### art.lua ###
+
+A Towercap, By Amelia Rose=
+Bloodthorn, By Amelia Rose=
+Cavern Layers, By Dr. Theodore Banks=
+Chasm Wall, By Amelia Rose=
+Coral Glow, By Amelia Rose=
+Destination of Life, By Amelia Rose=
+Forest of Dust, By Amelia Rose=
+Fungiwood, By Amelia Rose=
+Goblin Cap, By Amelia Rose=
+Portal to Another World, By Amelia Rose=
+The Cold Path, By Amelia Rose=
+Torches in the Dark, By Amelia Rose=
+Tunnel, By Amelia Rose=
+Underworld Seal, By Sir Reginald Sterling=
+Underworld Stele, By Sir Reginald Sterling=
+
 ### ecology_flora.lua ###
 
 Amid the darkness deep and true,@nWhere most would fear to venture, too,@nA world of wonders I did find,@nA place to let my heart unwind.@n@nThe caves and tunnels underground,@nA world so different, yet profound,@nA place where life still finds a way,@nAnd flourishes, night and day.@n@nThe spindlestems, they glow so bright,@nA sight that takes my breath away,@nAnd in their caps, the secrets kept,@nOf minerals and secrets kept.@n@nThe dimple cups, with midnight hue,@nA dye so rich, it's hard to view,@nA treasure trove of beauty rare,@nA gift from depths beyond compare.@n@nPig tails twist and twine with grace,@nA fibrous mass of form and space,@nThe thread they give, a wondrous sight,@nA cloth of strength, both day and night.@n@nThe plump helmets, thick and round,@nA staple food, both there and found,@nA sustenance, a common treat,@nA delight, both crisp and sweet.@n@nThe quarry bushes, zingy blades,@nA spicy flavor, well-made,@nThe nodules, the rock nuts sweet,@nA taste that can't be beat.@n@nThe sweet pods, with their sugary treat,@nA delight for both man and beast,@nA gift from life, so rich and true,@nA treasure trove, so rare and few.@n@nThis world, so hidden, far below,@nA world of life, in ebb and flow,@nA world I've found, a world so dear,@nA place I hold so very near.@n@n	-- Professor Amelia Rose=
@@ -259,18 +277,3 @@ Puzzle Seals=
 Slade=
 The Underworld=
 Underworld Ruins=
-
-### watercolours.lua ###
-
-A Towercap, By Amelia Rose=
-Bloodthorn, By Amelia Rose=
-Chasm Wall, By Amelia Rose=
-Coral Glow, By Amelia Rose=
-Destination of Life, By Amelia Rose=
-Forest of Dust, By Amelia Rose=
-Fungiwood, By Amelia Rose=
-Goblin Cap, By Amelia Rose=
-Sunset Sans Sun, By Amelia Rose=
-The Cold Path, By Amelia Rose=
-Torches in the Dark, By Amelia Rose=
-Tunnel, By Amelia Rose=

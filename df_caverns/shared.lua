@@ -124,8 +124,8 @@ df_caverns.flooded_cavern_floor = function(abs_cracks, vert_rand, vi, area, data
 		if c_bubblesponge and abs_cracks > 0.5 and math.random() < 0.01 then
 			local vi_above = vi + ystride
 			if data[vi_above] == c_water then
-				data[vi] = c_bubblesponge
-				minetest.get_node_timer(area:position(vi)):set(1, bubblesponge.config.growth_seconds * 6) -- immediate growth
+				data[vi_above] = c_bubblesponge
+				minetest.get_node_timer(area:position(vi_above)):set(1, bubblesponge.config.growth_seconds * 6) -- immediate growth
 				if log_location then log_location("flooded_bubblesponge", area:position(vi_above)) end
 			end
 		else

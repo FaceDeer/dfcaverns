@@ -41,7 +41,7 @@ df_farming.doc.plump_helmet_desc = S("Plump helmets are a thick, fleshy mushroom
 df_farming.doc.plump_helmet_usage = S("While they can be eaten fresh, they can be monotonous fare and are perhaps better appreciated as part of a more complex prepared dish.")
 
 df_farming.doc.quarry_bush_desc = S("A rare breed of fungus from deep underground that produces a bushy cluster of rumpled gray 'blades'. The biological function of these blades is not known, as quarry bushes reproduce via hard-shelled nodules that grow down at the blade's base.")
-df_farming.doc.quarry_bush_usage = S("Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are edible with processing.")
+df_farming.doc.quarry_bush_usage = S("Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are edible with processing. They only grow in sandy soil.")
 df_farming.doc.quarry_bush_leaves_desc = S("The dried blades of a quarry bush add a welcome zing to recipes containing otherwise-bland subterranean foodstuffs, but they're too spicy to be eaten on their own.")
 df_farming.doc.quarry_bush_leaves_usage = S("Quarry bush leaves can be used as an ingredient in foodstuffs.")
 

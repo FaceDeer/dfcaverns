@@ -40,7 +40,7 @@ local ensure_meta = function(pos)
 		meta:set_string("key", minetest.serialize(key))
 		meta:mark_as_private("key")
 	end
-	
+
 	local timer = minetest.get_node_timer(pos)
 	if not timer:is_started() then
 		timer:start(4)
@@ -76,7 +76,7 @@ local cull_colour_groups = function()
 		table.insert(culled_colour_groups, new_set)
 	end
 	colour_groups = culled_colour_groups
-	
+
 	-- collect a list of all items with useful colour groups
 	-- to be used for treasure generation
 	local colour_item_set = {}
@@ -109,7 +109,7 @@ local test_key = function(pos, player)
 	if not meta:contains("key") then
 		return false
 	end
-	
+
 	local keystring = meta:get_string("key")
 	local key = minetest.deserialize(keystring)
 	local inv = meta:get_inventory()
@@ -150,7 +150,7 @@ end
 local formspec_prefix = "df_underworld_items_puzzle_seal:"
 local itemslot_bg = df_dependencies.get_itemslot_bg
 local get_formspec = function(pos, unlocked)
-	local formspec = 
+	local formspec =
 		"size[8,8]"
 		.."image[0,0;2.5,4;dfcaverns_puzzle_inscription_background.png^dfcaverns_puzzle_inscription_1.png]"
 		.."image[5.8,0;2.5,4;dfcaverns_puzzle_inscription_background.png^[transformR180^dfcaverns_puzzle_inscription_2.png]"
@@ -176,7 +176,7 @@ local get_formspec = function(pos, unlocked)
 	else
 		formspec = formspec .. "image[1.25,1.25;1,1;dfcaverns_seal.png]"
 	end
-	
+
 	formspec = formspec
 		.."container_end[]"
 --		.."container[5,0.5]"
@@ -277,7 +277,7 @@ local puzzle_seal_def = {
 		ensure_meta(pos)
 		refresh_formspec(pos, clicker)
 	end,
-	on_timer = function(pos, elapsed)	
+	on_timer = function(pos, elapsed)
 		local meta = minetest.get_meta(pos)
 		local unlocked = meta:get_int("unlocked")
 		if unlocked > 0 then
@@ -352,7 +352,7 @@ local digging_seal_def = {
 			gain = 1.0,
 			max_hear_distance = 32,
 		})
-		
+
 		local minpos = vector.add(pos, {x=0, y=-1, z=0})
 		minetest.add_particlespawner({
 			amount = 100,
@@ -372,7 +372,7 @@ local digging_seal_def = {
 			collision_removal = true,
 			glow = 15,
 		})
-		
+
 		if minetest.get_item_group(below_node.name, "slade") == 0 then
 			if df_underworld_items.config.enable_slade_drill then
 				minetest.set_node(pos, {name="air"})
@@ -385,7 +385,7 @@ local digging_seal_def = {
 			end
 			return
 		end
-		
+
 		local rot = node.param2
 		if rot == 0 then
 			minetest.place_schematic({x=pos.x-3, y=pos.y-2, z=pos.z-3}, df_underworld_items.seal_stair_schem, 0, {}, true)
@@ -420,7 +420,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	if formname:sub(1,prefix_len) ~= formspec_prefix or not fields.open then
 		return
 	end
-	local pos_string = formname:sub(prefix_len+1)	
+	local pos_string = formname:sub(prefix_len+1)
 	local pos = minetest.string_to_pos(pos_string)
 	if test_key(pos) then
 		if named_waypoints_path then
@@ -525,7 +525,7 @@ df_dependencies.register_stairs("slade_block")
 
 if invulnerable then
 	for name, def in pairs(minetest.registered_nodes) do
-		if (name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_block") or 
+		if (name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_block") or
 			name:sub(1,11) == "mcl_stairs:" and name:sub(-11) == "slade_block" then
 				minetest.override_item(name, {can_dig = can_dig})
 		end
@@ -540,7 +540,7 @@ if df_dependencies.node_name_stair_slade_block then
 	n11 = { name = df_dependencies.node_name_slab_slade_block, param2 = 1 }
 	n10 = { name = df_dependencies.node_name_slab_slade_block, param2 = 21 }
 
-	if df_dependencies.node_name_slab_slade_block_top then	
+	if df_dependencies.node_name_slab_slade_block_top then
 	-- Mineclone slabs don't support full rotation, this is how to flip them over
 		n10.name = df_dependencies.node_name_slab_slade_block_top
 		n10.param2 = 1
@@ -551,35 +551,35 @@ end
 df_underworld_items.seal_temple_schem = {
 	size = {y = 6, x = 7, z = 7},
 	data = {
-		n15, n2, n3, n3, n3, n4, n14, n14, n3, n3, n3, n3, n3, n15, n13, n3, n3, 
-		n3, n3, n3, n13, n16, n3, n3, n3, n3, n3, n16, n6, n6, n6, n6, n6, n6, 
-		n6, n6, n6, n6, n6, n6, n6, n6, n7, n3, n3, n3, n3, n3, n7, n3, n3, 
-		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, 
-		n3, n3, n6, n3, n3, n3, n3, n3, n6, n6, n6, n6, n6, n6, n6, n6, n3, 
-		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, 
-		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n6, n3, n3, n3, n3, n3, n6, 
-		n6, n6, n3, n3, n3, n6, n6, n3, n3, n3, n8, n3, n3, n3, n3, n3, n3, 
-		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, 
-		n3, n6, n3, n3, n3, n3, n3, n6, n6, n6, n3, n3, n3, n6, n6, n3, n3, 
-		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, 
-		n3, n3, n3, n3, n3, n3, n3, n3, n3, n6, n3, n3, n3, n3, n3, n6, n6, 
-		n6, n3, n3, n3, n6, n6, n9, n3, n3, n3, n3, n3, n9, n3, n3, n3, n3, 
-		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, 
-		n6, n3, n3, n3, n3, n3, n6, n6, n6, n6, n6, n6, n6, n6, n12, n2, n3, 
-		n3, n3, n4, n12, n14, n3, n3, n3, n3, n3, n15, n13, n3, n3, n3, n3, n3, 
-		n12, n16, n3, n3, n3, n3, n3, n16, n6, n6, n6, n6, n6, n6, n6, n6, n6, 
-		n6, n6, n6, n6, n6, 
+		n15, n2, n3, n3, n3, n4, n14, n14, n3, n3, n3, n3, n3, n15, n13, n3, n3,
+		n3, n3, n3, n13, n16, n3, n3, n3, n3, n3, n16, n6, n6, n6, n6, n6, n6,
+		n6, n6, n6, n6, n6, n6, n6, n6, n7, n3, n3, n3, n3, n3, n7, n3, n3,
+		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3,
+		n3, n3, n6, n3, n3, n3, n3, n3, n6, n6, n6, n6, n6, n6, n6, n6, n3,
+		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3,
+		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n6, n3, n3, n3, n3, n3, n6,
+		n6, n6, n3, n3, n3, n6, n6, n3, n3, n3, n8, n3, n3, n3, n3, n3, n3,
+		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3,
+		n3, n6, n3, n3, n3, n3, n3, n6, n6, n6, n3, n3, n3, n6, n6, n3, n3,
+		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3,
+		n3, n3, n3, n3, n3, n3, n3, n3, n3, n6, n3, n3, n3, n3, n3, n6, n6,
+		n6, n3, n3, n3, n6, n6, n9, n3, n3, n3, n3, n3, n9, n3, n3, n3, n3,
+		n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3, n3,
+		n6, n3, n3, n3, n3, n3, n6, n6, n6, n6, n6, n6, n6, n6, n12, n2, n3,
+		n3, n3, n4, n12, n14, n3, n3, n3, n3, n3, n15, n13, n3, n3, n3, n3, n3,
+		n12, n16, n3, n3, n3, n3, n3, n16, n6, n6, n6, n6, n6, n6, n6, n6, n6,
+		n6, n6, n6, n6, n6,
 	}
 }
 
 df_underworld_items.seal_stair_schem = {
 	size = {y = 2, x = 7, z = 7},
 	data = {
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n10, 
-		n3, n3, n3, n1, n1, n3, n11, n1, n10, n3, n1, n1, n11, n3, n3, n3, n3, 
-		n1, n1, n3, n3, n3, n3, n3, n1, n1, n3, n3, n3, n3, n3, n1, n1, n3, 
-		n3, n3, n3, n3, n1, n1, n3, n3, n3, n3, n3, n1, n1, n3, n3, n3, n3, 
-		n3, n1, n1, n3, n3, n3, n3, n3, n1, n1, n3, n3, n3, n3, n3, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n10,
+		n3, n3, n3, n1, n1, n3, n11, n1, n10, n3, n1, n1, n11, n3, n3, n3, n3,
+		n1, n1, n3, n3, n3, n3, n3, n1, n1, n3, n3, n3, n3, n3, n1, n1, n3,
+		n3, n3, n3, n3, n1, n1, n3, n3, n3, n3, n3, n1, n1, n3, n3, n3, n3,
+		n3, n1, n1, n3, n3, n3, n3, n3, n1, n1, n3, n3, n3, n3, n3, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
 	}
 }

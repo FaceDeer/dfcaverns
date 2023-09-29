@@ -32,7 +32,7 @@ minetest.after(0, function()
 			table.insert(problem_nodes, node_name)
 		end
 	end
-	
+
 	assert(#problem_nodes == 0, "Nodes " .. table.concat(problem_nodes, ", ") .. " were returned by a selection call but are not registered.")
 end)
 

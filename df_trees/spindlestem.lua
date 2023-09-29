@@ -56,7 +56,7 @@ local stem_on_place = function(itemstack, placer, pointed_thing)
 	local newnode= {name = itemstack:get_name(), param2 = new_param2, param1=0}
 	local oldnode= minetest.get_node(pt.above)
 	minetest.add_node(pt.above, newnode)
-	
+
 	-- Run script hook
 	local take_item = true
 	for _, callback in ipairs(core.registered_on_placenodes) do
@@ -69,7 +69,7 @@ local stem_on_place = function(itemstack, placer, pointed_thing)
 			take_item = false
 		end
 	end
-	
+
 	if not minetest.is_creative_enabled(placer:get_player_name()) and take_item then
 		itemstack:take_item()
 	end
@@ -119,7 +119,7 @@ minetest.register_craft({
 local register_spindlestem_type = function(item_suffix, colour_name, colour_code, light_level, extract_color_group)
 	local cap_item = "df_trees:spindlestem_cap_"..item_suffix
 	local cap_item_harvested = "df_trees:spindlestem_cap_harvested_"..item_suffix
-	
+
 	local cap_def = {
 		description = S("@1 Spindlestem Cap", colour_name),
 		is_ground_content = false,
@@ -151,7 +151,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 		},
 		_mcl_blast_resistance = 2,
 		_mcl_hardness = 2,
-		
+
 		drop = {
             -- Maximum number of items to drop
             max_items = 1,
@@ -175,7 +175,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
                 },
             },
         },
-		
+
 		on_place = stem_on_place,
 		on_timer = function(pos, elapsed)
 			local meta = minetest.get_meta(pos)
@@ -185,7 +185,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 				delay = growth_delay() -- compatibility code to ensure no crash for previous version
 			end
 			local node = minetest.get_node(pos)
-		
+
 			while height > 0 and elapsed >= delay do
 				elapsed = elapsed - delay
 				local this_pos = pos
@@ -200,7 +200,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 				minetest.set_node(pos, {name=cap_item, param2 = node.param2})
 				height = height - 1
 			end
-			
+
 			if height > 0 then
 				meta = minetest.get_meta(pos)
 				meta:set_int("spindlestem_to_grow", height)
@@ -209,7 +209,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 			end
 		end,
 	}
-	
+
 	local cap_def_harvested = {}
 	for key, val in pairs(cap_def) do
 		cap_def_harvested[key] = val
@@ -221,7 +221,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 	cap_def_harvested.drop = nil -- harvested caps shouldn't drop spawn
 	cap_def_harvested.on_timer = nil -- harvested caps shouldn't grow, just in case a timer and node metadata are set up where it's placed
 	cap_def_harvested.groups.not_in_creative_inventory = nil
-		
+
 	minetest.register_node(cap_item, cap_def)
 	minetest.register_node(cap_item_harvested, cap_def_harvested)
 
@@ -230,16 +230,16 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 		recipe = cap_item_harvested,
 		burntime = 10,
 	})
-	
+
 	if glass_bottle and light_level > 0 then
 		local tex = "dfcaverns_vessels_glowing_liquid.png^[multiply:#"..colour_code.."^"..df_dependencies.texture_glass_bottle
 		local new_light = light_level + math.floor((minetest.LIGHT_MAX-light_level)/2)
-		
+
 		local groups = {vessel = 1, dig_immediate = 3, attached_node = 1, material_glass = 1, destroy_by_lava_flow=1}
 		if extract_color_group then
 			groups[extract_color_group] = 1
 		end
-		
+
 		minetest.register_node("df_trees:glowing_bottle_"..item_suffix, {
 			description = S("@1 Spindlestem Extract", colour_name),
 			drawtype = "plantlike",
@@ -261,7 +261,7 @@ local register_spindlestem_type = function(item_suffix, colour_name, colour_code
 			_mcl_blast_resistance = 0.5,
 			_mcl_hardness = 0.5,
 		})
-		
+
 		minetest.register_craft( {
 			output = "df_trees:glowing_bottle_"..item_suffix.." 3",
 			type = "shapeless",
@@ -305,7 +305,7 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 	},
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
-	
+
 	on_place = stem_on_place,
 	on_construct = function(pos)
 		if df_trees.spindlestem_growth_permitted(pos) then
@@ -315,7 +315,7 @@ minetest.register_node("df_trees:spindlestem_seedling", {
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
-	
+
 	on_timer = function(pos, elapsed)
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
@@ -328,8 +328,8 @@ df_trees.spawn_spindlestem = function(pos)
 	local cap_item = minetest.get_name_from_content_id(get_spindlestem_cap_type(pos))
 	local node = minetest.get_node(pos)
 	minetest.set_node(pos, {name=cap_item, param2 = node.param2})
-	local disp = {x=3, y=3, z=3}
-	local nearby = minetest.find_nodes_in_area(vector.add(pos, disp), vector.subtract(pos, disp), {"group:spindlestem"})
+	local range = {x=3, y=3, z=3}
+	local nearby = minetest.find_nodes_in_area(vector.add(pos, range), vector.subtract(pos, range), {"group:spindlestem"})
 	local count = #nearby
 	local height = math.random(1,3)
 	if count > 10 then height = height + 2 end -- if there are a lot of nearby spindlestems, grow taller
@@ -353,12 +353,12 @@ local c_stem = minetest.get_content_id("df_trees:spindlestem_stem")
 
 df_trees.spawn_spindlestem_vm = function(vi, area, data, data_param2, c_cap)
 	if data[vi] ~= c_air then return end
-	
+
 	if c_cap == nil then
 		-- note: this won't account for rock removed by subterrane, so may not be entirely accurate. Good enough!
 		c_cap = get_spindlestem_cap_type(area:position(vi))
 	end
-	
+
 	local stem_height = math.random(1,3)
 	local param2 = math.random(1,4)-1
 	local i = 0
@@ -396,7 +396,7 @@ get_spindlestem_cap_type = function(pos)
 	if minetest.find_node_near(pos, 15, "group:goblin_cap") then
 		return c_red
 	end
-	
+
 	local iron = minetest.find_node_near(pos, 5, iron_nodes)
 	local copper = minetest.find_node_near(pos, 5, copper_nodes)
 	local mese = minetest.find_node_near(pos, 5, mese_nodes)
@@ -411,5 +411,5 @@ get_spindlestem_cap_type = function(pos)
 	else
 		local pick = math.random(1, #possibilities)
 		return possibilities[pick]
-	end	
+	end
 end

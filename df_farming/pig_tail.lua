@@ -26,11 +26,11 @@ local register_pig_tail = function(number)
                 {-8/16, -8/16, -8/16, 8/16, -8/16 + 2*number/16, 8/16},
             },
         },
-		
+
 		on_timer = function(pos, elapsed)
 			df_farming.grow_underground_plant(pos, name, elapsed)
 		end,
-		
+
 		drop = {
 			max_items = 1,
 			items = {
@@ -51,12 +51,12 @@ local register_pig_tail = function(number)
 		_mcl_blast_resistance = 0.2,
 		_mcl_hardness = 0.2,
 	}
-	
+
 	if number < 8 then
 		def._dfcaverns_next_stage_time = pig_tail_grow_time
 		def._dfcaverns_next_stage = "df_farming:pig_tail_"..tostring(number+1)
 	end
-	
+
 	minetest.register_node(name, def)
 end
 
@@ -143,7 +143,7 @@ if minetest.get_modpath("footprints") then
 		_mcl_blast_resistance = 0.2,
 		_mcl_hardness = 0.2,
 	})
-	
+
 	footprints.register_trample_node("df_farming:pig_tail_5", {
 		trampled_node_name = "df_farming:pig_tail_trampled",
 		randomize_trampled_param2 = true,

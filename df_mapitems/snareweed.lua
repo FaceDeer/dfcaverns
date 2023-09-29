@@ -19,7 +19,7 @@ minetest.register_node("df_mapitems:snareweed", {
 
 if df_mapitems.config.snareweed_damage then
 	local timer = 0
-	
+
 	minetest.register_globalstep(function(dtime)
 		timer = timer + dtime
 		if timer >= 1 then
@@ -39,7 +39,7 @@ if df_mapitems.config.snareweed_damage then
 				end
 			end
 		end
-	end)	
+	end)
 end
 
 
@@ -64,7 +64,7 @@ df_mapitems.place_snareweed = function(area, data, bi, param2_data)
 end
 
 df_mapitems.place_snareweed_patch = function(area, data, bi, param2_data, radius)
-	local pos = area:position(bi)	
+	local pos = area:position(bi)
 	for li in area:iterp(vector.add(pos, -radius), vector.add(pos, radius)) do
 		local adjacent = li + area.ystride
 		local node_type = data[li]

@@ -64,7 +64,7 @@ df_primordial_items.spawn_ceiling_spire_vm = function(vi, area, data)
 
 	local ystride = area.ystride
 	local zstride = area.zstride
-	
+
 	for i = 0, spire_height do
 		if data[vi-i*ystride] == c_air then
 			data[vi-i*ystride] = c_stalk
@@ -74,7 +74,7 @@ df_primordial_items.spawn_ceiling_spire_vm = function(vi, area, data)
 	if data[bottom] == c_air then
 		data[bottom] = c_node
 	end
-	
+
 	if spire_height > 4 then -- thicken it all up
 		for i = 0, math.floor(spire_height/2) do
 			local current_vi = vi-i*ystride
@@ -91,7 +91,7 @@ df_primordial_items.spawn_ceiling_spire_vm = function(vi, area, data)
 				data[current_vi-zstride] = c_stalk
 			end
 		end
-		
+
 		if spire_height > 7 then
 			bottom = bottom-ystride
 			if data[bottom] == c_air then
@@ -113,5 +113,5 @@ df_primordial_items.spawn_ceiling_spire_vm = function(vi, area, data)
 				data[bottom-zstride] = c_node
 			end
 		end
-	end	
+	end
 end

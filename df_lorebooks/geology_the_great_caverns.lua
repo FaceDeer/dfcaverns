@@ -65,7 +65,7 @@ I must stress the importance of caution when exploring these sinkholes, as the w
 
 Signed,
 Dr. Theodore Banks]]),
-	sort = base + 3,	
+	sort = base + 3,
 })
 --Chasms
 
@@ -112,7 +112,7 @@ Additionally, mine gas mixed with breathable air can explode violently when expo
 
 Signed,
 Dr. Theodore Banks]]),
-	sort = base + 6,	
+	sort = base + 6,
 })
 
 --gas wisps

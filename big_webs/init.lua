@@ -73,8 +73,8 @@ local get_web_nodes = function(pos, webs, anchors)
 			end
 		elseif in_anchor_group(check_node.name) then
 			anchors[minetest.hash_node_position(check_pos)] = true
-		end		
-	end	
+		end
+	end
 end
 
 local web_line = function(pos, dir, distance)
@@ -164,7 +164,7 @@ minetest.register_node("big_webs:webbing", {
 				minetest.item_drop(ItemStack("big_webs:webbing"), nil, web_pos)
 			end
 			minetest.get_node_timer(web_pos):stop() -- no need to recheck
-		end	
+		end
 	end,
 	_mcl_blast_resistance = 1.0,
 	_mcl_hardness = 0.5,

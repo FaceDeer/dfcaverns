@@ -35,7 +35,7 @@ df_underworld_items.underworld_shard = function(data, area, vi, x_slant, z_slant
 	if z_slant == nil then z_slant = math.random(-1,1) end
 	if rotated == nil then rotated = math.random() > 0.5 end
 	if length == nil then length = math.random(4, 12) end
-	
+
 	length = math.ceil(length/2) * 2 -- make it an even multiple of 2
 
 	local xstride, ystride, zstride
@@ -47,16 +47,16 @@ df_underworld_items.underworld_shard = function(data, area, vi, x_slant, z_slant
 		xstride = 1
 		zstride = area.zstride
 	end
-	
+
 	-- bottom end
 	safe_write(data, area, vi, c_amethyst)
 	safe_write(data, area, vi+xstride, c_amethyst)
-	
+
 	for i = 1, length do
 		vi = vi + ystride
-		
+
 		safe_write(data, area, vi-xstride, c_amethyst)
-		
+
 		safe_write(data, area, vi+zstride, c_amethyst)
 		safe_write(data, area, vi, c_amethyst)
 		safe_write(data, area, vi-zstride, c_amethyst)
@@ -73,7 +73,7 @@ df_underworld_items.underworld_shard = function(data, area, vi, x_slant, z_slant
 	end
 
 	vi = vi + ystride
-	
+
 	safe_write(data, area, vi, c_amethyst)
 	safe_write(data, area, vi+xstride, c_amethyst)
 end

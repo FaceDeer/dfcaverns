@@ -127,7 +127,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_sapling", {
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
-	
+
 	on_timer = function(pos)
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
@@ -147,14 +147,14 @@ df_primordial_items.spawn_jungle_mushroom = function(pos)
 	local stem_height = math.random(1,3)
 	local cap_radius = math.random(2,3)
 	local maxy = y + stem_height + 3
-	
+
 	local c_cap
 	if math.random() > 0.5 then
 		c_cap = c_cap_1
 	else
 		c_cap = c_cap_2
 	end
-	
+
 	local vm = minetest.get_voxel_manip()
 	local minp, maxp = vm:read_from_map(
 		{x = x - cap_radius, y = y, z = z - cap_radius},
@@ -164,7 +164,7 @@ df_primordial_items.spawn_jungle_mushroom = function(pos)
 	local data = vm:get_data()
 
 	subterrane.giant_mushroom(area:indexp(pos), area, data, c_stem, c_cap, c_air, stem_height, cap_radius)
-	
+
 	vm:set_data(data)
 	vm:write_to_map()
 	vm:update_map()

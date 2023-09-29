@@ -116,19 +116,19 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	if minp.y >= maxy or maxp.y <= miny then
 		return
 	end
-	
+
 	-- check if webs are present
 	local webs
 	local webs_present = false
 	if big_webs_path then
-		local seed = math.random()*10000000
+		local web_seed = math.random()*10000000
 		math.randomseed(minp.y + z_displace*minp.z) -- use consistent seeds across the x axis
 		if math.random() < web_probability then
 			webs_present = true
 		end
-		math.randomseed(seed)
+		math.randomseed(web_seed)
 	end
-	
+
 	local vm, emin, emax = minetest.get_mapgen_object("voxelmanip")
 	vm:get_data(data)
 
@@ -163,7 +163,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			end
 		end
 	end
-	
+
 	vm:set_data(data)
 	vm:calc_lighting()
 	vm:write_to_map()

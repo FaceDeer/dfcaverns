@@ -11,6 +11,6 @@ return {
 	size = {y = 2, x = 2, z = 3},
 	center_pos = {x = 1, y = 1, z = 1},
 	data = {
-		n1, n1, n2, n3, n1, n1, n4, n4, n1, n1, n5, n6, 
+		n1, n1, n2, n3, n1, n1, n4, n4, n1, n1, n5, n6,
 	}
 }

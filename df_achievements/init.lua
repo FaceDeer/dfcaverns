@@ -14,7 +14,7 @@ if awards.run_trigger_callbacks then
 	-- this "run_trigger_callbacks" API call is present in those older versions, so using that
 	-- as a fingerprint to discover them
 	old_awards_version = true
-	
+
 	minetest.register_on_dignode(function(pos, oldnode, digger)
 		-- the old version of awards doesn't handle groups when triggering dug nodes, use this to hack around that
 		local node_name = oldnode.name
@@ -23,7 +23,7 @@ if awards.run_trigger_callbacks then
 		elseif minetest.get_item_group(node_name, "dfcaverns_cave_coral") > 0 then
 			awards.unlock(digger:get_player_name(), "dfcaverns_cave_coral")
 		end
-	end)	
+	end)
 else
 	-- used to track the progress of achievements that are based off of other achievements
 	awards.register_trigger("dfcaverns_achievements", {
@@ -69,10 +69,10 @@ awards.register_on_unlock(function(player_name, def)
 	local def_dfcaverns_achievements = def._dfcaverns_achievements
 	if not def_dfcaverns_achievements then return end
 	local player_awards = awards.player(player_name)
-	if not player_awards then return end	
+	if not player_awards then return end
 	local unlocked = player_awards.unlocked
 	if not unlocked then return end
-	
+
 	-- the achievement that just got unlocked had one or more "parent" achievements associated with it.
 	for _, achievement_parent in pairs(def_dfcaverns_achievements) do
 		player_awards.dfcaverns_achievements = player_awards.dfcaverns_achievements or {}
@@ -86,7 +86,7 @@ awards.register_on_unlock(function(player_name, def)
 		awards.save()
 		if count >= total then
 			minetest.after(4, awards.unlock, player_name, achievement_parent)
-		end			
+		end
 	end
 end)
 

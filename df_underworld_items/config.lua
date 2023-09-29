@@ -17,10 +17,10 @@ local function setting(stype, name, default, description)
 		value = default
 	end
 	df_underworld_items.config[name] = value
-	
+
 	if print_settingtypes then
 		minetest.debug(CONFIG_FILE_PREFIX..name.." ("..description..") "..stype.." "..tostring(default))
-	end	
+	end
 end
 
 setting("bool", "invulnerable_slade", true, "Slade is invulnerable to players")

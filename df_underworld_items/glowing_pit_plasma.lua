@@ -18,7 +18,7 @@ minetest.register_node("df_underworld_items:pit_plasma", {
 			},
 		},
 	},
-	
+
 	groups={pit_plasma=1, pit_plasma_resistant=1,destroys_items=1, set_on_fire=15, fire_damage=1, liquid=1},
 	walkable = false,
 	pointable = false,
@@ -161,7 +161,7 @@ if df_underworld_items.config.destructive_pit_plasma then
 			end
 			if sparkle_pos then
 				sparkle(sparkle_pos)
-			end		
+			end
 		end,
 	})
 end

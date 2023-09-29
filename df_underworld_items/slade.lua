@@ -171,9 +171,9 @@ df_dependencies.register_stairs("slade_brick")
 
 if invulnerable then
 	for name, def in pairs(minetest.registered_nodes) do
-		if (name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_block") or 
+		if (name:sub(1,7) == "stairs:" and name:sub(-11) == "slade_block") or
 			name:sub(1,11) == "mcl_stairs:" and name:sub(-11) == "slade_brick" then
-				minetest.override_item(name, {can_dig = server_diggable_only})			
+				minetest.override_item(name, {can_dig = server_diggable_only})
 		end
 	end
 end

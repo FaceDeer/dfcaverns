@@ -48,7 +48,7 @@ local extend_ores = function()
 
 	local wherein_stonelike = {"mcl_core:stone"}
 	local localseed = 12345
-	
+
 	local stone_blobs = {
 		wherein = wherein_stonelike,
 		clust_scarcity = 1000,
@@ -72,7 +72,7 @@ local extend_ores = function()
 			scale = 1
 		},
 	}
-	
+
 	local register_blob = function(ore, cluster_size, cluster_scarcity_cuberoot, ymin, ymax)
 		localseed = localseed + 1 -- increment this every time it's called to ensure different distributions
 		local blob_copy = deep_copy(stone_blobs)
@@ -157,21 +157,21 @@ local extend_ores = function()
 			register_blob("mcl_core:stone_with_coal", 80, 10, config.oil_sea_level-200, config.oil_sea_level+200) -- tons of coal in the oil sea
 		end
 	end
-	
+
 	if ores_registered["mcl_core:stone_with_lapis"] then
 		register_scattered("mcl_core:stone_with_lapis", 3, 25, config.sunless_sea_min, config.level3_min) -- Lapis is an ocean gem, I decided
 		if config.enable_primordial then
 			register_scattered("mcl_core:stone_with_lapis", 3, 25, config.primordial_min, config.primordial_max)
 		end
 	end
-	
+
 	if ores_registered["mcl_core:stone_with_redstone"] then
 		register_scattered("mcl_core:stone_with_redstone", 3, 15, config.level3_min, config.level2_min) -- Level 3 is the most magical, scatter redstone there
 		if config.enable_lava_sea then
 			register_scattered("mcl_core:stone_with_redstone", 4, 15, config.lava_sea_level-200, config.lava_sea_level+100) -- and of course plenty of redstone in the lava sea
 		end
 	end
-	
+
 	if ores_registered["mcl_core:stone_with_diamond"] then
 		register_scattered("mcl_core:stone_with_diamond", 2, 18, config.sunless_sea_min, config.level2_min)
 		if config.enable_oil_sea then
@@ -181,7 +181,7 @@ local extend_ores = function()
 			register_scattered("mcl_core:stone_with_diamond", 3, 15, config.primordial_min, config.primordial_max)
 		end
 	end
-	
+
 	if ores_registered["mcl_core:stone_with_gold"] then
 		register_scattered("mcl_core:stone_with_gold", 2, 18)
 		if config.enable_primordial then
@@ -210,9 +210,9 @@ local extend_ores = function()
 end
 
 if minetest.get_modpath("mcl_init") then -- Mineclone 2
-	
+
 	old_overworld_min = mcl_vars.mg_overworld_min -- remember this for weather control
-	
+
 	mcl_vars.mg_overworld_min = lowest_elevation
 	mcl_vars.mg_bedrock_overworld_min = mcl_vars.mg_overworld_min
 	mcl_vars.mg_lava_overworld_max = mcl_vars.mg_overworld_min + 10
@@ -229,7 +229,7 @@ if minetest.get_modpath("mcl_init") then -- Mineclone 2
 	--if minetest.get_modpath("mcl_structures") and minetest.get_modpath("mcl_strongholds") then
 	--	local elevation_delta = old_overworld_min - lowest_elevation
 	--	local strongholds = mcl_structures.get_structure_data("stronghold")
-	--	mcl_structures.register_structure_data("stronghold", strongholds)	
+	--	mcl_structures.register_structure_data("stronghold", strongholds)
 	--end
 end
 if minetest.get_modpath("mcl_compatibility") then -- Mineclone 5
@@ -253,7 +253,7 @@ if minetest.get_modpath("mcl_mapgen") then -- Mineclone 5
 	mcl_mapgen.overworld.lava_max = mcl_mapgen.overworld.min+6
 	mcl_mapgen.overworld.railcorridors_height_min = -50
 	mcl_mapgen.overworld.railcorridors_height_max = -2
-	
+
 	mcl_mapgen.end_.max = mcl_mapgen.overworld.min - 2000
 	mcl_mapgen.realm_barrier_overworld_end_max = mcl_mapgen.end_.max
 	mcl_mapgen.realm_barrier_overworld_end_min = mcl_mapgen.end_.max - 11
@@ -265,7 +265,7 @@ if minetest.get_modpath("mcl_mapgen") then -- Mineclone 5
 		.."does not have an mcl_mapgen.on_settings_changed method. This will likely result in "
 		.."altitudes below the original bedrock being inaccessible to players.")
 	end
-	
+
 	extend_ores()
 end
 if minetest.get_modpath("mcl_worlds") then

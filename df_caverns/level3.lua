@@ -98,7 +98,7 @@ local black_cap_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, d
 	else
 		data[vi] = c_cobble_fungus
 	end
-	
+
 	if abs_cracks < 0.1 then
 		df_caverns.stalagmites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
 	elseif abs_cracks < 0.15 and math.random() < 0.3 then
@@ -127,7 +127,7 @@ local nether_cap_cavern_floor = function(cracks, abs_cracks, vert_rand, vi, area
 			end
 		end
 	end
-	
+
 	if cracks < -0.3 then
 		data[vi] = c_silver_sand
 		if  math.random() < 0.025 then
@@ -149,7 +149,7 @@ local nether_cap_cavern_floor = function(cracks, abs_cracks, vert_rand, vi, area
 				data[vi + 2*ystride] = c_ice
 			end
 		end
-	end	
+	end
 end
 
 local nether_cap_cavern_ceiling = function(abs_cracks, vert_rand, vi, area, data, data_param2)
@@ -166,7 +166,7 @@ local nether_cap_cavern_ceiling = function(abs_cracks, vert_rand, vi, area, data
 				subterrane.stalactite(vi-ystride, area, data, data_param2, param2, math.floor(height*0.5), df_mapitems.dry_stalagmite_ids)
 			end
 		end
-	end	
+	end
 	if c_sprite and abs_cracks < 0.5 and math.random() < 0.02 then
 		local sprite_vi = vi-ystride*math.random(1,5)
 		if data[sprite_vi] == c_air and area:containsi(sprite_vi) then
@@ -221,7 +221,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	local nvals_cave = node_arrays.nvals_cave
 	local cave_area = node_arrays.cave_area
 	local cavern_def = node_arrays.cavern_def
-	
+
 	-- Partly fill flooded caverns and warrens
 	if minp.y <= subsea_level then
 		for vi, x, y, z in area:iterp_yxz(area.MinEdge, area.MaxEdge) do
@@ -230,8 +230,8 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				if data[vi] == c_air and y <= subsea_level then
 					data[vi] = c_water
 				end
-				
-				if (mapgen_helper.is_pos_within_box({x=x, y=y, z=z}, minp, maxp)) then				
+
+				if (mapgen_helper.is_pos_within_box({x=x, y=y, z=z}, minp, maxp)) then
 					local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 					local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 					if biome_name == "blackcap" then
@@ -249,10 +249,10 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			end
 		end
 	end
-	
+
 	---------------------------------------------------------
 	-- Cavern floors
-	
+
 	for _, vi in ipairs(node_arrays.cavern_floor_nodes) do
 		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
@@ -293,15 +293,15 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			if log_location then log_location("level3_blackcap", area:position(vi)) end
 		elseif biome_name == "bloodnether" then
 			if flooded_caverns then
-				nether_cap_cavern_floor(cracks, abs_cracks, vert_rand, vi, area, data, data_param2)				
+				nether_cap_cavern_floor(cracks, abs_cracks, vert_rand, vi, area, data, data_param2)
 				if log_location then log_location("level3_nethercap", area:position(vi)) end
 			else
-				blood_thorn_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)		
+				blood_thorn_cavern_floor(abs_cracks, vert_rand, vi, area, data, data_param2)
 				if log_location then log_location("level3_bloodthorn", area:position(vi)) end
 			end
 		end
 	end
-	
+
 	--------------------------------------
 	-- Cavern ceilings
 
@@ -318,7 +318,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		elseif biome_name == "blackcap" then
 			if abs_cracks < 0.1 then
 				df_caverns.stalactites(abs_cracks, vert_rand, vi, area, data, data_param2, false)
-			end	
+			end
 			if math.random() < 0.25 then
 				data[vi] = c_stone_with_coal
 			end
@@ -363,7 +363,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			end
 		end
 	end
-	
+
 
 	----------------------------------------------
 	-- Tunnel floors
@@ -374,7 +374,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
 
 		if not (flooded_caverns and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
-			if flooded_caverns or biome_name == "blackcap" then		
+			if flooded_caverns or biome_name == "blackcap" then
 				-- we're in flooded areas or are not barren
 				df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 			else
@@ -382,17 +382,17 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			end
 		end
 	end
-	
+
 	------------------------------------------------------
 	-- Tunnel ceiling
-	
+
 	for _, vi in ipairs(node_arrays.tunnel_ceiling_nodes) do
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local humidity = humiditymap[index2d]
 		local biome_name = get_biome(heatmap[index2d], humidity)
 		local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
 		local ystride = area.ystride
-		
+
 		if not (flooded_caverns and minp.y < subsea_level and area:get_y(vi) < subsea_level) then
 			if flooded_caverns or biome_name == "blackcap" then
 				-- we're in flooded areas or are not barren
@@ -415,11 +415,11 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 				if cracks > 0.7 and data[vi-ystride*2] == c_water then
 					data[vi-ystride*2] = c_air
 				end
-			end			
+			end
 		end
 	end
 
-	
+
 	------------------------------------------------------
 	-- Warren ceiling
 
@@ -427,13 +427,13 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 		local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
-		
+
 		if log_location then
 			local flood_name = ""
 			if flooded_caverns then flood_name = "_flooded" end
 			log_location("level3_warren_"..biome_name..flood_name, area:position(vi))
 		end
-		
+
 		if flooded_caverns and minp.y < subsea_level and area:get_y(vi) < subsea_level then
 			-- underwater ceiling, do nothing
 		elseif biome_name == "bloodnether" and flooded_caverns then
@@ -466,12 +466,12 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 
 	----------------------------------------------
 	-- Warren floors
-	
+
 	for _, vi in ipairs(node_arrays.warren_floor_nodes) do
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local biome_name = get_biome(heatmap[index2d], humiditymap[index2d])
 		local flooded_caverns = nvals_cave[vi] < 0 -- this indicates if we're in the "flooded" set of caves or not.
-		
+
 		if minp.y < subsea_level and area:get_y(vi) < subsea_level and flooded_caverns then
 			-- underwater floor, do nothing
 		elseif biome_name == "bloodnether" and flooded_caverns then
@@ -506,7 +506,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			end
 		end
 	end
-	
+
 	----------------------------------------------
 	-- Column material override for dry and icy biomes
 	for _, vi in ipairs(node_arrays.column_nodes) do
@@ -540,7 +540,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 		elseif biome_name == "barren" and not flooded_caverns and data[vi] == c_wet_flowstone then
 			data[vi] = c_dry_flowstone
 		end
-		
+
 		if chasms_path then
 			local pos = area:position(vi)
 			if chasms.is_in_chasm_without_taper(pos) then
@@ -552,7 +552,7 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 			end
 		end
 
-		
+
 	end
 
 	vm:set_param2_data(data_param2)

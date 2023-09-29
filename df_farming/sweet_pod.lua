@@ -31,7 +31,7 @@ local register_sweet_pod = function(number)
         },
 		_mcl_blast_resistance = 0.2,
 		_mcl_hardness = 0.2,
-		
+
 		on_timer = function(pos, elapsed)
 			df_farming.grow_underground_plant(pos, name, elapsed)
 		end,
@@ -54,12 +54,12 @@ local register_sweet_pod = function(number)
 			},
 		},
 	}
-	
+
 	if number < 6 then
 		def._dfcaverns_next_stage = "df_farming:sweet_pod_"..tostring(number+1)
 		def._dfcaverns_next_stage_time = sweet_pod_grow_time
 	end
-	
+
 	minetest.register_node(name, def)
 end
 
@@ -195,7 +195,7 @@ if df_dependencies.bucket_register_liquid then
 		_mcl_blast_resistance      = 100,
 		_mcl_hardness              = -1,
 	})
-	
+
 	minetest.register_node("df_farming:dwarven_syrup_flowing", {
 		description = S("Flowing Dwarven Syrup"),
 		_doc_items_longdesc = df_farming.doc.sweet_pod_syrup_desc,
@@ -254,7 +254,7 @@ if df_dependencies.bucket_register_liquid then
 		"dfcaverns_bucket_dwarven_syrup.png",
 		S("Dwarven Syrup Bucket")
 	)
-	
+
 	if minetest.get_modpath("crafting") then
 		simplecrafting_lib.register("furnace", {
 			input = {
@@ -271,7 +271,7 @@ if df_dependencies.bucket_register_liquid then
 			recipe = {df_dependencies.node_name_bucket_empty, "df_farming:sugar", "df_farming:sugar", "df_farming:sugar"},
 		})
 	end
-	
+
 	if minetest.get_modpath("dynamic_liquid") then
 		dynamic_liquid.liquid_abm("df_farming:dwarven_syrup_source", "df_farming:dwarven_syrup_flowing", 5)
 	end

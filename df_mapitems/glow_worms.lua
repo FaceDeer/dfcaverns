@@ -34,7 +34,7 @@ minetest.register_node("df_mapitems:glow_worm", {
 	visual_scale = 1.0,
 	_mcl_blast_resistance = 0.2,
 	_mcl_hardness = 0.2,
-	after_place_node = function(pos, placer) 
+	after_place_node = function(pos, placer)
 		if df_mapitems.config.glow_worm_delay_multiplier > 0 then
 			minetest.get_node_timer(pos):start(math.random(
 				df_mapitems.config.glow_worm_delay_multiplier * growth_multiplier * 0.75,
@@ -48,7 +48,7 @@ minetest.register_node("df_mapitems:glow_worm", {
 			if math.random() > 0.5 then
 				minetest.get_node_timer(below):start(math.random(
 				df_mapitems.config.glow_worm_delay_multiplier * growth_multiplier * 0.75,
-				df_mapitems.config.glow_worm_delay_multiplier * growth_multiplier * 1.25))			
+				df_mapitems.config.glow_worm_delay_multiplier * growth_multiplier * 1.25))
 			end
 		end
 	end,

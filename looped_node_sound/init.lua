@@ -7,13 +7,13 @@ looped_node_sound = {}
 --	cycle_time =,
 --	gain_per_node =,
 --	max_gain =,
---	max_hear_distance =,	
+--	max_hear_distance =,
 --})
 
 looped_node_sound.register = function(def)
 	local handles = {}
 	local timer = 0
-	
+
 	-- Parameters
 	local radius = def.radius or 8 -- node search radius around player
 	local cycle = def.cycle_time or 3 -- Cycle time for sound updates

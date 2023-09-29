@@ -38,7 +38,7 @@ if named_waypoints_path then
 		local setting_item_required = minetest.settings:get("dfcaverns_underworld_hud_item_required")
 		if setting_item_required == nil or setting_item_required == "" then
 			setting_item_required = "map:mapping_kit"
-		end	
+		end
 		item_required = setting_item_required
 	end
 
@@ -47,8 +47,8 @@ if named_waypoints_path then
 		default_color = 0xFF88FF,
 		discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_discovery_range")) or 60,
 		visibility_requires_item = item_required,
-	}	
-	
+	}
+
 	if minetest.settings:get_bool("dfcaverns_show_pits_in_hud", true) then
 		pit_waypoint_def.visibility_volume_radius = tonumber(minetest.settings:get("dfcaverns_pit_visibility_range")) or 500
 		pit_waypoint_def.on_discovery = named_waypoints.default_discovery_popup
@@ -70,14 +70,14 @@ if named_waypoints_path then
 
 	if name_generator_path then
 		name_generator.parse_lines(io.lines(modpath.."/underworld_names.cfg"))
-		
+
 		name_pit = function()
 			return name_generator.generate("glowing_pits")
 		end
 		name_ruin = function()
 			return name_generator.generate("underworld_ruins")
 		end
-		
+
 		local underworld_ruin_def = {
 			default_name = S("Ancient ruin"),
 			discovery_volume_radius = tonumber(minetest.settings:get("dfcaverns_ruin_discovery_range")) or 40,
@@ -171,10 +171,10 @@ local get_buildings = function(emin, emax, nvals_zone)
 	local buildings = {}
 	for x = emin.x, emax.x do
 		for z = emin.z, emax.z do
-		
+
 			local index2d = mapgen_helper.index2d(emin, emax, x, z)
 			local zone = math.abs(nvals_zone[index2d])
-			
+
 			if zone > oubliette_threshold and zone < town_threshold then
 				-- oubliette zone
 				--zone = (zone - oubliette_threshold)/(town_threshold-oubliette_threshold) -- turn this into a 0-1 spread
@@ -195,7 +195,7 @@ local get_buildings = function(emin, emax, nvals_zone)
 							building_type = building_type,
 							bounding_box = {minpos={x=x-2, z=z-2}, maxpos={x=x+2, z=z+2}},
 							priority = math.floor(building_val * 10000000) % 1000, -- indended to allow for deterministic removal of overlapping buildings
-						}						
+						}
 					)
 				end
 			elseif zone > town_threshold then
@@ -203,12 +203,12 @@ local get_buildings = function(emin, emax, nvals_zone)
 				local building_val = local_random(x, z)
 				if building_val > 0.9925 then
 					building_val = (building_val - 0.9925)/0.0075
-	
+
 					local building_type
 					local bounding_box
 					local priority = math.floor(building_val * 10000000) % 1000
 					local rotation = (priority % 4) * 90
-	
+
 					if building_val < 0.75 then
 						building_type = "small building"
 						local boundmin, boundmax = mapgen_helper.get_schematic_bounding_box({x=x, y=0, z=z}, small_building_schematic, rotation)
@@ -216,13 +216,13 @@ local get_buildings = function(emin, emax, nvals_zone)
 					elseif building_val < 0.85 then
 						building_type = "medium building"
 						local boundmin, boundmax = mapgen_helper.get_schematic_bounding_box({x=x, y=0, z=z}, medium_building_schematic, rotation)
-						bounding_box = {minpos=boundmin, maxpos=boundmax}					
+						bounding_box = {minpos=boundmin, maxpos=boundmax}
 					else
 						building_type = "small slab"
 						local boundmin, boundmax = mapgen_helper.get_schematic_bounding_box({x=x, y=0, z=z}, small_slab_schematic, rotation)
-						bounding_box = {minpos=boundmin, maxpos=boundmax}						
+						bounding_box = {minpos=boundmin, maxpos=boundmax}
 					end
-					
+
 					table.insert(buildings,
 						{
 							pos = {x=x, y=0, z=z}, -- y to be determined later
@@ -236,7 +236,7 @@ local get_buildings = function(emin, emax, nvals_zone)
 			end
 		end
 	end
-	
+
 	-- eliminate overlapping buildings
 	local building_count = table.getn(buildings)
 	local overlap_count = 0
@@ -249,7 +249,7 @@ local get_buildings = function(emin, emax, nvals_zone)
 				curr_building.bounding_box.maxpos,
 				test_building.bounding_box.minpos,
 				test_building.bounding_box.maxpos) then
-				
+
 				if curr_building.priority < test_building.priority then -- this makes elimination of overlapping buildings deterministic
 					buildings[i] = nil
 					j=building_count+1
@@ -260,19 +260,19 @@ local get_buildings = function(emin, emax, nvals_zone)
 			end
 		end
 	end
-	
+
 	if building_count > 50 and overlap_count > building_count * 2/3 then
 		minetest.log("warning", "[df_caverns] underworld mapgen generated " ..
 			tostring(building_count) .. " buildings and " .. tostring(overlap_count) ..
 			" were eliminated as overlapping, if this happens a lot consider reducing building" ..
 			" generation probability to improve efficiency.")
 	end
-	
+
 	local compacted_buildings = {}
 	for _, building in pairs(buildings) do
 		compacted_buildings[minetest.hash_node_position(building.pos)] = building
 	end
-	
+
 	return compacted_buildings
 end
 
@@ -314,7 +314,7 @@ local get_pit = function(pos)
 	local variance_multiplier = math.random()
 	local radius = variance_multiplier * (radius_pit_max - 15) + 15
 	local variance = radius_pit_variance/2 + radius_pit_variance*variance_multiplier/2
-	local depth = math.random(plasma_depth_min, plasma_depth_max)	
+	local depth = math.random(plasma_depth_min, plasma_depth_max)
 	math.randomseed(next_seed)
 	return {location = location, radius = radius, variance = variance, depth = depth}
 end
@@ -364,27 +364,27 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local vm, data, data_param2, area = mapgen_helper.mapgen_vm_data_param2()
 	local emin = area.MinEdge
 	local emax = area.MaxEdge
-	
+
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:underworld_cave", emin, emax, perlin_cave) --cave noise for structure
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:underworld_wave", emin, emax, perlin_wave) --cave noise for structure
 	local nvals_zone = mapgen_helper.perlin2d("df_caverns:underworld_zone", emin, emax, perlin_zone) --building zones
-	
+
 	local pit = get_pit(minp)
 	--minetest.chat_send_all(minetest.pos_to_string(pit.location))
 
 	local buildings = get_buildings(emin, emax, nvals_zone)
-	
+
 	local pit_uninitialized = true
 	local nvals_pit, area_pit
-	
+
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
 		if y > y_min then
 			local index2d = mapgen_helper.index2d(emin, emax, x, z)
 			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 			local wave = nvals_wave[index2d] * wave_mult
-			
+
 			local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
-			
+
 			if named_waypoints_path and floor_height == y and pit and pit.location.x == x and pit.location.z == z then
 				named_waypoints.add_waypoint("glowing_pits", {x=x, y=y, z=z}, {name=name_pit()})
 			end
@@ -393,7 +393,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local ceiling_height =  math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 			if (y == underside_height or y == underside_height - 1) and (x % 8 == 0 or z % 8 == 0) then
 				data[vi] = c_air
-			elseif y < floor_height and y > underside_height then 
+			elseif y < floor_height and y > underside_height then
 				data[vi] = c_slade
 				if	pit and
 					pit.location.x - radius_pit_max - radius_pit_variance < maxp.x and
@@ -439,7 +439,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			local wave = nvals_wave[index2d] * wave_mult
 			local floor_height = math.floor(abs_cave * floor_mult + median + floor_displace + wave)
 			local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-	
+
 			if ceiling_height > floor_height + 5 and ceiling_height < maxp.y and ceiling_height > minp.y then
 				local vi = area:index(x, ceiling_height, z)
 				if (
@@ -457,7 +457,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	-- buildings
 	for x = emin.x + 5, emax.x - 5 do
 		for z = emin.z + 5, emax.z - 5 do
-		
+
 			local skip = false
 			if	pit and
 				pit.location.x - radius_pit_max - radius_pit_variance < x and
@@ -476,7 +476,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local wave = nvals_wave[index2d] * wave_mult
 				local floor_height = math.floor(abs_cave * floor_mult + median + floor_displace + wave)
 				local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-				
+
 				if ceiling_height > floor_height and floor_height <= maxp.y and floor_height >= minp.y  then
 					local building = buildings[minetest.hash_node_position({x=x,y=0,z=z})]
 					if building ~= nil then
@@ -506,7 +506,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 									local def = minetest.registered_nodes["df_underworld_items:puzzle_chest_closed"]
 									def.can_dig(puzzle_chest) -- initializes the inventory
 									df_caverns.populate_puzzle_chest(puzzle_chest)
-								end								
+								end
 							end)
 						elseif building.building_type == "medium building" then
 							mapgen_helper.place_schematic_on_data(data, data_param2, area, building.pos, medium_building_schematic, building.rotation)
@@ -522,18 +522,18 @@ minetest.register_on_generated(function(minp, maxp, seed)
 							minetest.log("error", "unrecognized underworld building type: " .. tostring(building.building_type))
 						end
 					end
-				end	
+				end
 			end
 		end
 	end
-	
+
 	-- puzzle seal
-	local puzzle_seal = nil	
+	local puzzle_seal = nil
 	if pit_uninitialized and math.random() < 0.05 then
 		local index2d = mapgen_helper.index2d(emin, emax, minp.x + 3, minp.z + 3)
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 		local wave = nvals_wave[index2d] * wave_mult
-			
+
 		local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
 		local underside_height = math.floor(y_min + math.abs(wave) / 5)
 
@@ -556,7 +556,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	vm:update_liquids()
 	--write it to world
 	vm:write_to_map()
-	
+
 	if puzzle_seal ~= nil then
 		if named_waypoints_path then
 			named_waypoints.add_waypoint("puzzle_seals", puzzle_seal)
@@ -567,7 +567,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local node_def = minetest.registered_nodes[node_name]
 		node_def.on_construct(puzzle_seal)
 	end
-	
+
 	if bones_loot_path then
 		for i = 1, 30 do
 			local x = math.random(minp.x, maxp.x)
@@ -601,7 +601,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			end
 		end
 	end
-	
+
 	if hunters_enabled then
 		local x = math.random(minp.x, maxp.x)
 		local z = math.random(minp.z, maxp.z)
@@ -620,9 +620,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				end
 			end
 		end
-		
+
 	end
-	
+
 	local time_taken = os.clock() - t_start -- how long this chunk took, in seconds
 	mapgen_helper.record_time("df_caverns underworld", time_taken)
 end)

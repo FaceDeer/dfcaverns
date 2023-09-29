@@ -164,7 +164,7 @@ local c_fireflies = df_caverns.node_id.fireflies
 local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_param2)
 	local ystride = area.ystride
 	local humidityfactor = humidity/100
-	
+
 	if log_location then
 		local pos = area:position(vi)
 		log_location("primordial_jungle", pos)
@@ -189,7 +189,7 @@ local jungle_cavern_floor = function(abs_cracks, humidity, vi, area, data, data_
 	elseif rand < 0.3 then
 		data[vi+ystride] = jungle_plants[math.random(1,#jungle_plants)]
 	end
-	
+
 	if c_fireflies and math.random() < 0.01 then
 		local firefly_vi = vi + ystride * math.random(1, 5)
 		if data[firefly_vi] == c_air then
@@ -258,7 +258,7 @@ local jungle_warren_floor = function(abs_cracks, vi, area, data, data_param2)
 	elseif abs_cracks < 1 then
 		data[vi] = c_dirt
 	end
-	
+
 	if c_fireflies and math.random() < 0.005 then
 		local firefly_vi = vi + ystride * math.random(1, 5)
 		if data[firefly_vi] == c_air then
@@ -277,20 +277,20 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	local cave_area = node_arrays.cave_area
 	local nvals_cave = node_arrays.nvals_cave
-	
+
 	local humiditymap = minetest.get_mapgen_object("humiditymap")
 
-	
+
 	---------------------------------------------------------
 	-- Cavern floors
-	
+
 	for _, vi in ipairs(node_arrays.cavern_floor_nodes) do
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
 		local humidity = humiditymap[index2d]
 		local jungle = nvals_cave[vi] < 0
-		
+
 		if jungle then
 			jungle_cavern_floor(abs_cracks, humidity, vi, area, data, data_param2)
 		else
@@ -298,7 +298,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 			if log_location then log_location("primordial_mushrooms", area:position(vi)) end
 		end
 	end
-	
+
 	--------------------------------------
 	-- Cavern ceilings
 
@@ -314,19 +314,19 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 			mushroom_cavern_ceiling(abs_cracks, humidity, vi, area, data, data_param2)
 		end
 	end
-	
+
 		----------------------------------------------
 	-- Tunnel floors
-	
+
 --	for _, vi in ipairs(node_arrays.tunnel_floor_nodes) do
 --	end
-	
+
 	------------------------------------------------------
 	-- Tunnel ceiling
-	
+
 --	for _, vi in ipairs(node_arrays.tunnel_ceiling_nodes) do
 --	end
-	
+
 	------------------------------------------------------
 	-- Warren ceiling
 
@@ -335,7 +335,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
 		local jungle = nvals_cave[vi] < 0
-		
+
 		if jungle then
 			jungle_warren_ceiling(abs_cracks, vi, area, data, data_param2)
 		else
@@ -346,13 +346,13 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 
 	----------------------------------------------
 	-- Warren floors
-	
+
 	for _, vi in ipairs(node_arrays.warren_floor_nodes) do
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local cracks = nvals_cracks[index2d]
 		local abs_cracks = math.abs(cracks)
 		local jungle = nvals_cave[vi] < 0
-		
+
 		if jungle then
 			jungle_warren_floor(abs_cracks, vi, area, data, data_param2)
 			if log_location then log_location("primordial_jungle_warren", area:position(vi)) end
@@ -377,7 +377,7 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 				if data[rand_vi] == c_air then
 					data[rand_vi] = c_giant_mycelium
 					minetest.get_node_timer(area:position(rand_vi)):start(math.random(1,giant_mycelium_timer_spread))
-				end				
+				end
 			end
 		end
 	end

@@ -199,22 +199,22 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 
 	local minp_below = minp.y <= sea_level
 	local maxp_above = maxp.y > sea_level
-	
+
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:sunless_sea", minp, maxp, perlin_cave_rivers) --cave noise for structure
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:sunless_sea_wave", minp, maxp, perlin_wave_rivers) --cave noise for structure
-	
+
 	local skip_next = false -- mapgen is proceeding upward on the y axis,
 		--if this is true it skips a step to allow for things to be placed above the floor
-	
+
 	-- creates "river" caverns
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
-		if not skip_next then		
+		if not skip_next then
 			if y < y_max_river and y > y_min_river then
 				local index2d = mapgen_helper.index2d(minp, maxp, x, z)
 				local abs_cave = math.abs(nvals_cave[index2d])
 				local wave = nvals_wave[index2d] * wave_mult
 				local cracks = nvals_cracks[index2d]
-				
+
 				local ripple = cracks * ((y - y_min_river) / (y_max_river - y_min_river)) * ripple_mult
 
 				-- above floor and below ceiling
@@ -225,7 +225,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				if y <= floor_height and y > floor_height - 3 and y < sea_level + 5 and data[vi] == c_lava then
 					data[vi] = c_obsidian
 				end
-				
+
 				if y == floor_height and y < sea_level and not mapgen_helper.buildable_to(data[vi]) then
 					if cracks > 0.2 then
 						data[vi] = c_sand
@@ -243,7 +243,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 					df_caverns.glow_worm_cavern_ceiling(math.abs(cracks),
 						mapgen_helper.xz_consistent_randomi(area, vi), vi, area, data, data_param2)
 				end
-				
+
 				-- Deal with lava
 				if y >= ceiling_height and y < ceiling_height + 5 and y > sea_level - 5 and data[vi] == c_lava then
 					data[vi] = c_obsidian
@@ -253,7 +253,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 			skip_next = false
 		end
 	end
-	
+
 	if minp.y <= sea_level then
 		for vi, x, y, z in area:iterp_yxz(area.MinEdge, area.MaxEdge) do
 			-- convert all air below sea level into water
@@ -263,10 +263,10 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		end
 	end
 
-	
+
 	---------------------------------------------------------
 	-- Cavern floors
-	
+
 	for _, vi in ipairs(node_arrays.cavern_floor_nodes) do
 		local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 		local heat = heatmap[index2d]
@@ -274,7 +274,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		local abs_cracks = math.abs(cracks)
 		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
 		local y = area:get_y(vi)
-		
+
 		-- The vertically squished aspect of these caverns produces too many very thin shelves, this blunts them
 		if mapgen_helper.buildable_to(data[vi-area.ystride]) then
 			if y <= sea_level then
@@ -282,8 +282,8 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 			else
 				data[vi] = c_air
 			end
-		end	
-		
+		end
+
 		-- extra test is needed because the rivers can remove nodes that Subterrane marked as floor.
 		if not mapgen_helper.buildable_to(data[vi]) then
 			if y >= sea_level  then
@@ -317,7 +317,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 			end
 		end
 	end
-	
+
 	--------------------------------------
 	-- Cavern ceilings
 
@@ -328,7 +328,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		local abs_cracks = math.abs(cracks)
 		local vert_rand = mapgen_helper.xz_consistent_randomi(area, vi)
 		local y = area:get_y(vi)
-		
+
 		if y > sea_level and not mapgen_helper.buildable_to(data[vi]) then
 			if heat > hot_zone_boundary then
 				hot_zone_ceiling(abs_cracks, vert_rand, vi, area, data, data_param2)
@@ -340,19 +340,19 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 		end
 
 	end
-	
+
 		----------------------------------------------
 	-- Tunnel floors
-	
+
 	for _, vi in ipairs(node_arrays.tunnel_floor_nodes) do
 		if area:get_y(vi) >= sea_level and not mapgen_helper.buildable_to(data[vi]) then
 			df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
 		end
 	end
-	
+
 	------------------------------------------------------
 	-- Tunnel ceiling
-	
+
 	for _, vi in ipairs(node_arrays.tunnel_ceiling_nodes) do
 		if area:get_y(vi) > sea_level and not mapgen_helper.buildable_to(data[vi]) then
 			df_caverns.tunnel_ceiling(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
@@ -366,10 +366,10 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				if cracks > 0.8 and data[vi-ystride*2] == c_water then
 					data[vi-ystride*2] = c_air
 				end
-			end	
+			end
 		end
 	end
-	
+
 	------------------------------------------------------
 	-- Warren ceiling
 
@@ -386,13 +386,13 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				if cracks > 0.8 and data[vi-ystride*2] == c_water then
 					data[vi-ystride*2] = c_air
 				end
-			end	
+			end
 		end
 	end
 
 	----------------------------------------------
 	-- Warren floors
-	
+
 	for _, vi in ipairs(node_arrays.warren_floor_nodes) do
 		if area:get_y(vi) >= sea_level and not mapgen_helper.buildable_to(data[vi]) then
 			df_caverns.tunnel_floor(minp, maxp, area, vi, nvals_cracks, data, data_param2, true)
@@ -414,7 +414,7 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 				data_param2[vi] = math.random(1,4)-1
 				minetest.get_node_timer(area:position(vi)):start(math.random(10, 60))
 			end
-			
+
 			if chasms_path then
 				local pos = area:position(vi)
 				if chasms.is_in_chasm(pos) then

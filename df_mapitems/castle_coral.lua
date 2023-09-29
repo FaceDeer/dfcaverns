@@ -41,7 +41,7 @@ minetest.register_node("df_mapitems:castle_coral_skeleton", {
 
 local c_coral = minetest.get_content_id("df_mapitems:castle_coral")
 local c_coral_skeleton = minetest.get_content_id("df_mapitems:castle_coral_skeleton")
- 
+
 local c_stone = minetest.get_content_id(df_dependencies.node_name_stone)
 local c_water = minetest.get_content_id(df_dependencies.node_name_water_source)
 
@@ -76,7 +76,7 @@ df_mapitems.spawn_castle_coral = function(area, data, vi, iterations)
 
 	local newiterations = iterations - 1
 	if newiterations == 0 then return end
-	
+
 	if math.random() > 0.5 then
 		df_mapitems.spawn_castle_coral(area, data, index + 1 - ystride, newiterations)
 		df_mapitems.spawn_castle_coral(area, data, index - 1 - ystride, newiterations)

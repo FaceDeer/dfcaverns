@@ -10,7 +10,7 @@ df_mapitems.place_against_surface = function(itemstack, placer, pointed_thing)
 	if pointed_thing.type ~= "node" then
 		return itemstack
 	end
-	
+
 	local under_pos = pointed_thing.under
 	local above_pos = pointed_thing.above
 
@@ -26,7 +26,7 @@ df_mapitems.place_against_surface = function(itemstack, placer, pointed_thing)
 	local above_name = above_node.name
 	local under_def = minetest.registered_nodes[under_name]
 	local above_def = minetest.registered_nodes[above_name]
-	
+
 	-- return if any of the nodes is not registered
 	if not under_def or not above_def then
 		return itemstack
@@ -90,7 +90,7 @@ local is_valid_mounting_node = function(c_node)
 	return false
 end
 
---facing +x: 16, 17, 18, 19, 
+--facing +x: 16, 17, 18, 19,
 --facing -x: 12, 13, 14, 15
 --facing +z: 8, 9, 10, 11
 --facing -z: 4, 5, 6, 7

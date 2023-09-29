@@ -366,7 +366,7 @@ if minetest.get_modpath("footprints") then
 		hard_pack_node_name = "footprints:trail",
 		hard_pack_probability = HARDPACK_PROBABILITY,
 		hard_pack_count = HARDPACK_COUNT,
-	})	
+	})
 	footprints.register_trample_node("df_primordial_items:plant_matter", {
 		trampled_node_def_override = {description = S("Primordial Plant Matter with Footprint"),},
 		footprint_opacity = 128,
@@ -458,10 +458,10 @@ minetest.register_node("df_primordial_items:jungle_thorns", {
 })
 
 
--- TODO I had an idea to make thorns grow into mazes naturally using cellular automata rules, but it turned out to be 
+-- TODO I had an idea to make thorns grow into mazes naturally using cellular automata rules, but it turned out to be
 -- complicated and probably not worth it right now. Deal with it later.
 
---local thorn_dir = 
+--local thorn_dir =
 --{
 --	{x=1,y=0,z=1},
 --	{x=-1,y=0,z=-1},
@@ -494,7 +494,7 @@ minetest.register_node("df_primordial_items:jungle_thorns", {
 --			end
 --			return
 --		end
---	
+--
 --		local dir = thorn_dir[math.random(#thorn_dir)]
 --		local target_pos = vector.add(dir, pos)
 --		-- This gets the corners of the target zone

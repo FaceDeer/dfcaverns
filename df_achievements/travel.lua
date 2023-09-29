@@ -29,12 +29,12 @@ local get_player_data = function(player)
 	-- get head level node at player position
 	local pos = player:get_pos()
 	if not pos then return end
-	
+
 	-- get all set nodes around player
 	local ps, cn = minetest.find_nodes_in_area(
 		{x = pos.x - radius, y = pos.y - radius, z = pos.z - radius},
 		{x = pos.x + radius, y = pos.y + radius, z = pos.z + radius}, all_nodes)
-		
+
 	return {
 		pos = pos,
 		biome = df_caverns.get_biome(pos) or "",
@@ -69,7 +69,7 @@ minetest.register_globalstep(function(dtime)
 		player_name = player:get_player_name()
 		player_awards = awards.player(player_name)
 		unlocked = player_awards.unlocked or {}
-		
+
 		if unlocked["dfcaverns_visit_all_caverns"] ~= "dfcaverns_visit_all_caverns" or
 			unlocked["dfcaverns_visit_glowing_pit"] ~= "dfcaverns_visit_glowing_pit" then
 			player_data = get_player_data(player)
@@ -95,7 +95,7 @@ minetest.register_globalstep(function(dtime)
 				(biome == "fungispore" and (
 					check_nodes(node_types.fungiwood, totals) or
 					check_nodes(node_types.sporetree, totals)))
-				or 
+				or
 				(biome == "towergoblin" and (
 					check_nodes(node_types.towercap, totals) or
 					check_nodes(node_types.goblincap, totals)))
@@ -104,7 +104,7 @@ minetest.register_globalstep(function(dtime)
 				then
 					awards.unlock(player_name, "dfcaverns_visit_sunless_sea")
 			elseif biome == "oil_sea" and (totals["oil:oil_source"] or 0) > 1 then
-				awards.unlock(player_name, "dfcaverns_visit_oil_sea")			
+				awards.unlock(player_name, "dfcaverns_visit_oil_sea")
 			elseif biome == "underworld" then
 				if (totals["df_underworld_items:slade"] or 0) > 1 then
 					awards.unlock(player_name, "dfcaverns_visit_underworld")
@@ -116,10 +116,10 @@ minetest.register_globalstep(function(dtime)
 					pit.location.y = player_pos.y
 					if vector.distance(player_pos, pit.location) <= pit.radius+10 then
 						awards.unlock(player_name, "dfcaverns_visit_glowing_pit")
-					end					
+					end
 				end
 			elseif biome == "lava_sea" and (totals[lava_node] or 0) > 1 then
-				awards.unlock(player_name, "dfcaverns_visit_lava_sea")			
+				awards.unlock(player_name, "dfcaverns_visit_lava_sea")
 			elseif biome == "primordial fungus" and check_nodes(node_types.primordial_fungus, totals) then
 				awards.unlock(player_name, "dfcaverns_visit_primordial_fungal")
 			elseif biome == "primordial jungle" and check_nodes(node_types.primordial_jungle, totals) then
@@ -138,7 +138,7 @@ minetest.register_globalstep(function(dtime)
 				if pos_y >= nearest_pit.depth and pos_y <= nearest_pit.top and vector.distance(pos, nearest_pit.location) <= 20 then
 					awards.unlock(player_name, "dfcaverns_visit_pit")
 				end
-			end	
+			end
 		end
 	end
 end)

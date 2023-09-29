@@ -143,7 +143,7 @@ awards.register_achievement("dfcaverns_plant_all_farmables", {
 		.."^[combine:32x32:16,0=dfcaverns_dimple_cup_4.png"
 		.."^[combine:32x32:8,8=dfcaverns_plump_helmet_achievement.png"
 		.."^[combine:32x32:0,16=dfcaverns_sweet_pod_6.png"
-		.."^[combine:32x32:16,16=dfcaverns_quarry_bush_5.png"		
+		.."^[combine:32x32:16,16=dfcaverns_quarry_bush_5.png"
 		.."^[combine:32x32:16,15="..hoe_texture.."^dfcaverns_awards_foregroundx32.png",
 	difficulty = 1 / df_achievements.get_child_achievement_count("dfcaverns_plant_all_farmables"),
 	trigger = {

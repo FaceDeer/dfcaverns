@@ -237,9 +237,9 @@ local fern_4_nodes_tall = {
 	size = {y = 4, x = 3, z = 4},
 	center_pos = {y = 0, x = 1, z = 3},
 	data = {
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n1, n1, n1, n1, n1, 
-		n1, n2, n1, n2, n1, n1, n1, n1, n1, n1, n2, n3, n2, n1, n4, n1, n1, 
-		n1, n1, n1, n6, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n1, n1, n1, n1, n1,
+		n1, n2, n1, n2, n1, n1, n1, n1, n1, n1, n2, n3, n2, n1, n4, n1, n1,
+		n1, n1, n1, n6, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
 	}
 }
 
@@ -247,10 +247,10 @@ local fern_5_nodes_tall = {
 	size = {y = 5, x = 3, z = 4},
 	center_pos = {y = 0, x = 1, z = 3},
 	data = {
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n2, n1, n2, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n2, n3, n2, n1, n4, n1, n1, n1, n1, n1, n5, n1, n2, n6, n2, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, 
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n2, n1, n2, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n2, n3, n2, n1, n4, n1, n1, n1, n1, n1, n5, n1, n2, n6, n2,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1,
 	}
 }
 
@@ -258,14 +258,14 @@ local fern_6_nodes_tall = {
 	size = {y = 6, x = 5, z = 4},
 	center_pos = {y = 0, x = 2, z = 3},
 	data = {
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n2, n1, n2, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n2, n2, n3, n2, n2, n1, n1, n4, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n5, n1, n1, n1, n2, n5, n2, n1, n2, n2, 
-		n6, n2, n2, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, 
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n2, n1, n2, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n2, n2, n3, n2, n2, n1, n1, n4, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n5, n1, n1, n1, n2, n5, n2, n1, n2, n2,
+		n6, n2, n2, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1,
 	}
 }
 
@@ -273,20 +273,20 @@ local fern_9_nodes_tall = {
 	size = {y = 9, x = 5, z = 5},
 	center_pos = {y = 0, x = 2, z = 4},
 	data = {
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n2, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n2, n2, n3, n2, n2, n1, n1, n4, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n2, n2, n3, n2, n2, n2, n2, n6, n2, n2, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n5, n1, n1, n1, n1, 
-		n5, n1, n1, n1, n2, n5, n2, n1, n1, n2, n6, n2, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, 
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n2, n1, n2, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n2, n2, n3, n2, n2, n1, n1, n4, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n2, n2, n3, n2, n2, n2, n2, n6, n2, n2, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n5, n1, n1, n1, n1,
+		n5, n1, n1, n1, n2, n5, n2, n1, n1, n2, n6, n2, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1,
 	}
 }
 

@@ -170,5 +170,5 @@ if minetest.get_modpath("footprints") then
 		hard_pack_node_name = "footprints:trail",
 		hard_pack_probability = HARDPACK_PROBABILITY,
 		hard_pack_count = HARDPACK_COUNT,
-	})	
+	})
 end

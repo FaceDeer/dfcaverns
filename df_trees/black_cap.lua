@@ -58,7 +58,7 @@ minetest.register_node("df_trees:black_cap_gills", {
 df_dependencies.register_leafdecay({
 	trunks = {"df_trees:black_cap"}, -- don't need stem nodes here
 	leaves = {"df_trees:black_cap_gills"},
-	radius = 1,	
+	radius = 1,
 })
 
 -- Wood
@@ -170,7 +170,7 @@ minetest.register_node("df_trees:black_cap_sapling", {
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
-	
+
 	on_timer = function(pos)
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
@@ -199,7 +199,7 @@ df_trees.spawn_black_cap = function(pos)
 	local data = vm:get_data()
 
 	subterrane.giant_mushroom(area:indexp(pos), area, data, c_stem, c_cap, c_gills, stem_height, cap_radius)
-	
+
 	vm:set_data(data)
 	vm:write_to_map()
 	vm:update_map()
@@ -208,7 +208,7 @@ end
 df_trees.spawn_black_cap_vm = function(vi, area, data)
 	local stem_height = math.random(1,5)
 	local cap_radius = math.random(2,3)
-	
+
 	subterrane.giant_mushroom(vi, area, data, c_stem, c_cap, c_gills, stem_height, cap_radius)
 end
 

@@ -318,7 +318,7 @@ end
 df_mapitems.place_big_crystal_cluster = function(area, data, data_param2, vi, radius, ceiling)
 	local y
 	if ceiling then y = -1 else y = 1 end
-	local pos = area:position(vi)	
+	local pos = area:position(vi)
 	for li in area:iterp(vector.add(pos, -radius), vector.add(pos, radius)) do
 		local adjacent = li + y*area.ystride
 		if math.random() > 0.5  and data[li] == c_stone and data[adjacent] == c_air then

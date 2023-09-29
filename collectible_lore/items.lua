@@ -15,7 +15,7 @@ end
 
 local get_itemslot_bg = df_dependencies.get_itemslot_bg
 
-function get_cairn_formspec(pos)
+local function get_cairn_formspec(pos)
 	local spos = pos.x .. "," .. pos.y .. "," .. pos.z
 	local formspec =
 		"size[8,9]"
@@ -58,7 +58,7 @@ local cairn_loot = function(pos, player)
 		return false
 	end
 	list[player_name] = true
-	
+
 	local uncollected = collectible_lore.get_player_uncollected_list(player_name)
 	--minetest.debug(dump(uncollected))
 	if next(uncollected) then
@@ -77,11 +77,11 @@ local cairn_loot = function(pos, player)
 		minetest.show_formspec(player_name, "collectible_lore:cairn_inventory", get_cairn_formspec(pos))
 		return false
 	end
-	
+
 	local leftover = player:get_inventory():add_item("main", "collectible_lore:satchel")
 	if not leftover:is_empty() then
 		minetest.item_drop(leftover, player, vector.add(pos, vector.new(0,1,0)))
-	end	
+	end
 	return true
 end
 
@@ -235,7 +235,7 @@ local get_formspec_for_player = function(player_name)
 	end
 	table.insert(form, "label[0.5,7.5;" .. S("Collected: @1/@2", collected_count, #(collectible_lore.lorebooks)) .. "]")
 	table.insert(form, "button_exit[2.75,7.3;2,0.4;exit;"..S("Exit") .. "]")
-	
+
 	return table.concat(form)
 end
 
@@ -278,7 +278,7 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-function tour(player, loc_list)
+local function tour(player, loc_list)
 	local pop = table.remove(loc_list)
 	if pop then
 		player:set_pos(pop)

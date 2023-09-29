@@ -125,7 +125,7 @@ local find_mycelium_growth_targets = function(pos)
 	local pos_x = pos.x
 	local pos_y = pos.y
 	local pos_z = pos.z
-	
+
 	for x = -1, 1 do
 		for y = -1, 1 do
 			for z = -1, 1 do
@@ -267,7 +267,7 @@ local find_mycelium_growth_targets = function(pos)
 	then
 		table.insert(valid_targets, {x=pos_x, y=pos_y, z=pos_z+1})
 	end
-	
+
 	return valid_targets
 end
 
@@ -275,11 +275,11 @@ local grow_mycelium = function(pos, meristem_name)
 	local new_meristems = {}
 	-- Can we grow? If so, pick a random direction and add a new meristem there
 	local targets = find_mycelium_growth_targets(pos)
-	
+
 	if targets == nil then
 		return nil -- We hit the edge of the known world, pause!
 	end
-	
+
 	local target_count = #targets
 	if target_count > 0 then
 		local target = targets[math.random(1,target_count)]
@@ -337,7 +337,7 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
 		end
-	
+
 		if elapsed > max_growth_delay then
 			-- We've been unloaded for a while, need to do multiple growth iterations.
 			local iterations = math.floor(elapsed / avg_growth_delay) -- the number of iterations we've missed
@@ -373,14 +373,14 @@ minetest.register_node("df_primordial_items:giant_hypha_apical_meristem", {
 					minetest.get_node_timer(newpos):start(math.random(min_growth_delay,max_growth_delay))
 				end
 			end
-		end		
+		end
 	end,
 })
 
 -- this version grows instantly, it is meant for mapgen usage.
 
-local grow_mycelium_immediately = function(pos)
-	local stack = {pos}
+local grow_mycelium_immediately = function(pos_spawn)
+	local stack = {pos_spawn}
 	while #stack > 0 do
 		local pos = table.remove(stack)
 		if not (df_farming and df_farming.kill_if_sunlit(pos)) then
@@ -394,7 +394,7 @@ local grow_mycelium_immediately = function(pos)
 				minetest.get_node_timer(pos):start(math.random(10,60))
 			end
 		end
-	end	
+	end
 end
 
 minetest.register_node("df_primordial_items:giant_hypha_apical_mapgen", {

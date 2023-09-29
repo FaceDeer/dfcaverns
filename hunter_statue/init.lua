@@ -39,13 +39,13 @@ local test_array = {
 --	damage = 8
 --	knockback = 16
 --	tnt_vulnerable = false
---	tnt_debris = 
+--	tnt_debris =
 --	hunters_allowed_here = -- function(pos)
---	other_overrides = 
+--	other_overrides =
 --}
 
 hunter_statue.register_hunter_statue = function(node_name, statue_def)
-	
+
 	local def = {
 		description = statue_def.description or S("Hunter Statue"),
 	--		_doc_items_longdesc = long_description,
@@ -60,7 +60,7 @@ hunter_statue.register_hunter_statue = function(node_name, statue_def)
 		groups = statue_def.groups or {falling_node = 1},
 		sounds = statue_def.sounds or default_sounds,
 	}
-	
+
 	if statue_def.tnt_vulnerable then
 		def.on_blast = function(pos, intensity)
 			if intensity >= 1.0 then
@@ -69,19 +69,19 @@ hunter_statue.register_hunter_statue = function(node_name, statue_def)
 			end
 		end
 	end
-	
+
 	if statue_def.other_overrides then
 		for k, v in pairs(statue_def.other_overrides) do
 			def[k] = v
 		end
 	end
-	
+
 	local knockback = statue_def.knockback or 16
 	local damage = statue_def.damage or 8
 	local hunters_allowed_here = statue_def.hunters_allowed_here
-	
+
 	minetest.register_node(node_name, def)
-	
+
 	minetest.register_abm({
 		label = node_name .. " ABM",
 		nodenames = {node_name},
@@ -109,9 +109,9 @@ hunter_statue.register_hunter_statue = function(node_name, statue_def)
 						nearest_player = player
 						nearest_pos = player_pos
 					end
-				end				
+				end
 			end
-			
+
 			if nearest_player then
 				if nearest_distance < 2 then
 					local armour_multiplier = 1

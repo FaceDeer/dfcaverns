@@ -126,7 +126,7 @@ df_ambience.add_set({
 	sounds = {
 		{name = "dfcaverns_massive_digging", gain = 1.0},
 		{name = "dfcaverns_avalanche", gain = 1.0},
-	},	
+	},
 	sound_check = function(def)
 		return df_caverns.get_biome(def.pos) == "lava_sea"
 	end,

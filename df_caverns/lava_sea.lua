@@ -65,29 +65,29 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	if minp.y > y_max or maxp.y < y_min then
 		return
 	end
-	
+
 	local t_start = os.clock()
 
 	math.randomseed(minp.x + minp.y*2^8 + minp.z*2^16 + seed) -- make decorations consistent between runs
-	
+
 	local vm, data, data_param2, area = mapgen_helper.mapgen_vm_data_param2()
-	
+
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:lava_cave", minp, maxp, perlin_cave)
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:lava_wave", minp, maxp, perlin_wave)
 	local nvals_mese = mapgen_helper.perlin2d("df_caverns:lava_mese", minp, maxp, perlin_mese)
 	local nvals_lavasurface = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
-	
+
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
 		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
 
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 		local wave = nvals_wave[index2d] * wave_mult
 		local lava = nvals_lavasurface[index2d]
-		
+
 		local floor_height = math.floor(abs_cave * floor_mult + floor_displace + median + wave)
 		local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
 		local lava_height = math.floor(median + lava * 2)
-		
+
 		if y >= floor_height - 2 and y >= ceiling_height and y < ceiling_height + 2 and y <= lava_height + 2 and not mapgen_helper.buildable_to(data[vi]) then
 			data[vi] = c_obsidian -- obsidian ceiling
 		elseif y > floor_height and y < ceiling_height then
@@ -109,7 +109,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		for z = minp.z + 1, maxp.z -1 do
 			local index2d = mapgen_helper.index2d(minp, maxp, x, z)
 			local mese_intensity = math.abs(nvals_mese[index2d])
-					
+
 			local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 			local wave = nvals_wave[index2d] * wave_mult
 			local floor_height = math.floor(abs_cave * floor_mult + floor_displace + median + wave)
@@ -117,7 +117,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 
 			local lava = nvals_lavasurface[index2d]
 			local lava_height = math.floor(median + lava * 2)
-		
+
 			if mese_intensity > 0.65 and ceiling_height > lava_height + 1 and ceiling_height > floor_height + 1 and ceiling_height <= maxp.y and ceiling_height >= minp.y then
 				local vi = area:index(x, ceiling_height, z)
 				if not mapgen_helper.buildable_to(data[vi]) then
@@ -139,19 +139,19 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			end
 		end
 	end
-			
-		
+
+
 	--send data back to voxelmanip
 	vm:set_data(data)
 	vm:set_param2_data(data_param2)
 	--calc lighting
 	vm:set_lighting({day = 0, night = 0})
 	vm:calc_lighting()
-	
+
 	vm:update_liquids()
 	--write it to world
 	vm:write_to_map()
-	
+
 	local time_taken = os.clock() - t_start -- how long this chunk took, in seconds
 	mapgen_helper.record_time("df_caverns lava sea", time_taken)
 end)

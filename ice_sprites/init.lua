@@ -19,9 +19,9 @@ if minetest.get_modpath("doc") then
 		end
 		ice_sprite_bottle_desc = S("A bottle containing a captured ice sprite.")
 		ice_sprite_bottle_usage = S("Ice sprites radiate both light and freezing cold.")
-	end	
+	end
 end
-	
+
 minetest.register_node("ice_sprites:ice_sprite", {
 	description = S("Ice Sprite"),
 	_doc_items_longdesc = ice_sprite_desc,

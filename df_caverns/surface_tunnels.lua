@@ -10,8 +10,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	--if out of range of cave definition limits, abort
 	if minp.y > y_max or maxp.y < y_min then
 		return
-	end	
-	
+	end
+
 	local t_start = os.clock()
 
 	local vm, data, data_param2, area = mapgen_helper.mapgen_vm_data_param2()
@@ -21,18 +21,18 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local emaxp = {x=maxp.x, y=area.MaxEdge.y, z=maxp.z}
 	local minp_y = minp.y
 	local maxp_y = maxp.y
-	
+
 	local humiditymap = minetest.get_mapgen_object("humiditymap")
 	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 
 	local previous_y = eminp.y-1
-	
+
 	local previous_potential_floor_vi
 	local previous_potential_floor_y
 	local previous_node
-	
+
 	for vi, x, y, z in area:iterp_yxz(eminp, emaxp) do
-		
+
 		if y < previous_y then
 			-- we've started a new column, initialize everything
 			previous_potential_floor_vi = nil
@@ -40,7 +40,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			previous_node = nil
 		end
 		previous_y = y
-		
+
 		local current_node = data[vi]
 		if previous_node and y < y_max then
 			if current_node == c_air and previous_node == c_stone then
@@ -66,9 +66,9 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			end
 		end
 		previous_node = current_node
-		
+
 	end
-	
+
 	if data_changed then
 		--send data back to voxelmanip
 		vm:set_data(data)
@@ -76,12 +76,12 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		--calc lighting
 		vm:set_lighting({day = 0, night = 0})
 		vm:calc_lighting()
-	
+
 		vm:update_liquids()
 		--write it to world
 		vm:write_to_map()
 	end
-	
+
 	local time_taken = os.clock() - t_start -- how long this chunk took, in seconds
 	mapgen_helper.record_time("df_caverns surface tunnels", time_taken)
 end)

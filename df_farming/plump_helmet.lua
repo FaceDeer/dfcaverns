@@ -59,7 +59,7 @@ local plump_helmet_on_place =  function(itemstack, placer, pointed_thing, plantn
 	local newnode= {name = plantname, param2 = new_param2, param1=0}
 	local oldnode= minetest.get_node(pt.above)
 	minetest.add_node(pt.above, newnode)
-	
+
 	local growth_permitted_function = df_farming.growth_permitted["df_farming:plump_helmet_spawn"] -- use the same permitted function for all plump helmets
 	if not growth_permitted_function or growth_permitted_function(pt.above) then
 		df_farming.plant_timer(pt.above, plantname)
@@ -108,16 +108,16 @@ minetest.register_node("df_farming:plump_helmet_spawn", {
 		}
 	},
 	_mcl_blast_resistance = 0.2,
-	_mcl_hardness = 0.2,	
-	
+	_mcl_hardness = 0.2,
+
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_spawn")
 	end,
-	
+
 	on_timer = function(pos, elapsed)
 		df_farming.grow_underground_plant(pos, "df_farming:plump_helmet_spawn", elapsed)
 	end,
-	
+
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
@@ -162,7 +162,7 @@ minetest.register_node("df_farming:plump_helmet_1", {
 		}
 	},
 	_mcl_blast_resistance = 0.3,
-	_mcl_hardness = 0.3,	
+	_mcl_hardness = 0.3,
 
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_1")
@@ -206,12 +206,12 @@ minetest.register_node("df_farming:plump_helmet_2", {
 		}
 	},
 	_mcl_blast_resistance = 0.4,
-	_mcl_hardness = 0.4,	
-	
+	_mcl_hardness = 0.4,
+
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_2")
 	end,
-	
+
 	on_use = minetest.item_eat(2),
 	_hunger_ng = {satiates = 2},
 	_mcl_saturation = 0.7,
@@ -254,7 +254,7 @@ minetest.register_node("df_farming:plump_helmet_3", {
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_3")
 	end,
-	
+
 	on_use = minetest.item_eat(3),
 	_hunger_ng = {satiates = 3},
 	_mcl_saturation = 0.9,
@@ -317,7 +317,7 @@ minetest.register_node("df_farming:plump_helmet_4", {
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_4")
 	end,
-	
+
 	on_use = minetest.item_eat(4),
 	_hunger_ng = {satiates = 4},
 	_mcl_saturation = 1,
@@ -363,7 +363,7 @@ minetest.register_node("df_farming:plump_helmet_4_picked", {
 	on_place = function(itemstack, placer, pointed_thing)
 		return plump_helmet_on_place(itemstack, placer, pointed_thing, "df_farming:plump_helmet_4_picked")
 	end,
-	
+
 	on_use = minetest.item_eat(4),
 	_hunger_ng = {satiates = 4},
 	_mcl_saturation = 1,

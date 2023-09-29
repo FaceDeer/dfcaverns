@@ -6,7 +6,7 @@ for itemname, def in pairs(minetest.registered_items) do
 		local meal_name = string.sub(itemname, 12, -1)
 		local meal_desc = def.description
 		local image = string.sub(def.inventory_image, 1, -7) .. "32.png"
-	
+
 		awards.register_achievement("dfcaverns_meal_"..meal_name, {
 			title = S("Eat @1", meal_desc),
 			description = S("One of the many delights that can be crafted only from fungal growths found deep underground."),

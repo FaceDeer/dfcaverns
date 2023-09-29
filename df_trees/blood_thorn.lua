@@ -63,7 +63,7 @@ minetest.register_node("df_trees:blood_thorn", {
 			below_node = minetest.get_node(below)
 		end
 	end,
-	
+
 	on_timer = function(pos, elapsed)
 		while elapsed > blood_thorn_max_delay do
 			-- catch up if the block was unloaded for a long time
@@ -76,7 +76,7 @@ minetest.register_node("df_trees:blood_thorn", {
 			minetest.get_node_timer(pos):start(math.random(blood_thorn_min_delay, blood_thorn_max_delay))
 		end
 	end,
-	
+
 })
 
 minetest.register_node("df_trees:blood_thorn_dead", {
@@ -231,12 +231,12 @@ function df_trees.grow_blood_thorn(pos, node)
 	if df_farming and df_farming.kill_if_sunlit(pos) then
 		return
 	end
-	
+
 	-- node is tipped over
 	if node.param2 >= 4 then
 		return
 	end
-	
+
 	local height = 0
 	local max_height = max_bloodthorn_height(pos)
 	while node.name == "df_trees:blood_thorn" and height < max_height do
@@ -249,7 +249,7 @@ function df_trees.grow_blood_thorn(pos, node)
 	end
 
 	minetest.set_node(pos, {name = "df_trees:blood_thorn"})
-	
+
 	local dir = spike_directions[math.random(1,4)]
 	local spike_pos = vector.add(pos, dir.dir)
 	if minetest.get_node(spike_pos).name == "air" then
@@ -320,8 +320,8 @@ df_trees.spawn_blood_thorn_vm = function(vi, area, data, data_param2, height)
 		local node_id = data[vi]
 		if node_id == c_air or node_id == c_ignore then
 			data[vi] = c_blood_thorn
-			
-			for i = 1, 2 do
+
+			for j = 1, 2 do
 				local facedir = math.random(1,4)-1
 				local spike_vi = vi + facedir_to_increment(facedir, area)
 				if data[spike_vi] == c_air or data[spike_vi] == c_ignore then
@@ -335,8 +335,3 @@ df_trees.spawn_blood_thorn_vm = function(vi, area, data, data_param2, height)
 		vi = vi + area.ystride
 	end
 end
-
-
-
-
-	

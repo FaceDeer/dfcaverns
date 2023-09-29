@@ -47,7 +47,7 @@ else
 			local inv = minetest.get_meta(pos):get_inventory()
 			return inv:is_empty("main")
 		end,
-	
+
 		on_construct = function(pos)
 			local meta = minetest.get_meta(pos)
 			meta:set_string("formspec", bones_formspec)
@@ -111,7 +111,7 @@ local get_loot_list = function(pos, loot_type, exclusive_loot_type)
 	else
 		loot_table = local_loot
 	end
-	
+
 	local item_list = {}
 	local pos_y = pos.y
 	for _, loot in ipairs(loot_table) do
@@ -138,7 +138,7 @@ end
 bones_loot.get_loot = function(pos, loot_type, max_stacks, exclusive_loot_type)
 	local item_list = get_loot_list(pos, loot_type, exclusive_loot_type)
 	shuffle(item_list)
-	
+
 	-- apply chances / randomized amounts and collect resulting items
 	local items = {}
 	for _, loot in ipairs(item_list) do
@@ -149,7 +149,7 @@ bones_loot.get_loot = function(pos, loot_type, max_stacks, exclusive_loot_type)
 				if loot.count ~= nil then
 					amount = math.random(loot.count[1], loot.count[2])
 				end
-			
+
 				if itemdef.tool_capabilities then
 					for n = 1, amount do
 						local wear = math.random(0.20 * 65535, 0.75 * 65535) -- 20% to 75% wear
@@ -169,7 +169,7 @@ bones_loot.get_loot = function(pos, loot_type, max_stacks, exclusive_loot_type)
 			end
 		end
 		if max_stacks <= 0 then break end
-	end	
+	end
 	return items
 end
 
@@ -181,7 +181,7 @@ bones_loot.place_bones = function(pos, loot_type, max_stacks, infotext, exclusiv
 	end
 	meta:set_string("infotext", infotext)
 	meta:set_string("formspec", bones_formspec)
-	
+
 	if max_stacks and max_stacks > 0 then
 		local loot = bones_loot.get_loot(pos, loot_type, max_stacks, exclusive_loot_type)
 		local inv = meta:get_inventory()
@@ -195,11 +195,11 @@ end
 minetest.register_lbm({
 	label = "Repair underworld bones formspec",
 	name = "bones_loot:repair_underworld_bones_formspec",
-	nodenames = {bones_node},	
+	nodenames = {bones_node},
 	action = function(pos, node)
 		local meta = minetest.get_meta(pos)
 		if not meta:get("formspec") then
 			meta:set_string("formspec", bones_formspec)
-		end	
+		end
 	end,
 })

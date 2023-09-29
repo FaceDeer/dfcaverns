@@ -44,14 +44,14 @@ if minetest.get_modpath("df_underworld_items") then
 	df_underworld_items.puzzle_seal_solved = function(pos, player)
 		if player == nil then return end
 		awards.unlock(player:get_player_name(), "dfcaverns_solved_puzzle_seal")
-	end 
+	end
 	awards.register_achievement("dfcaverns_solved_puzzle_seal", {
 		title = S("Solve a Puzzle Seal"),
 		difficulty = 4,
 		description = S("Decipher the code of the ancients. Do you dare turn the key?"),
 		icon = "dfcaverns_puzzle_seal_solvedx32.png^dfcaverns_awards_foregroundx32.png",
 	})
-	
+
 	df_underworld_items.slade_breacher_triggered = function(pos, player)
 		awards.unlock(player:get_player_name(), "dfcaverns_triggered_slade_breacher")
 	end
@@ -62,7 +62,7 @@ if minetest.get_modpath("df_underworld_items") then
 		icon = "dfcaverns_puzzle_seal_activex32.png^dfcaverns_awards_foregroundx32.png",
 		secret=true,
 	})
-	
+
 	df_underworld_items.ancient_lantern_fixed = function(pos, player)
 		awards.unlock(player:get_player_name(), "dfcaverns_repaired_lantern")
 	end
@@ -85,7 +85,7 @@ end
 if minetest.get_modpath("df_lorebooks") then
 	collectible_lore.register_on_collected(function(player_name, id, state, collected)
 		local count = 0
-		for id, val in pairs(collected) do
+		for _id, val in pairs(collected) do
 			if val then count = count + 1 end
 		end
 		if count >= #(collectible_lore.lorebooks) then

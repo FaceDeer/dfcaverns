@@ -17,10 +17,10 @@ local function setting(stype, name, default, description)
 		value = default
 	end
 	df_mapitems.config[name] = value
-	
+
 	if print_settingtypes then
 		minetest.debug(CONFIG_FILE_PREFIX..name.." ("..description..") "..stype.." "..tostring(default))
-	end	
+	end
 end
 
 setting("float", "glow_worm_delay_multiplier", 10.0, "glow worm growth delay multiplier")

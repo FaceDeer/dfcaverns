@@ -55,7 +55,7 @@ local node_name_to_stair_properties = function(name, override_def)
 
 	local node_def = minetest.registered_nodes[mod..":"..name]
 	override_def = override_def or {}
-		
+
 	local node_copy = deep_copy(node_def)
 	for index, value in pairs(override_def) do
 		node_copy[index] = value
@@ -98,11 +98,11 @@ df_dependencies.register_all_fences = function (name, override_def)
 	local mod, node_def = node_name_to_stair_properties(name, override_def)
 
 	override_def = override_def or {}
-	
+
 	local material = override_def.material or mod..":"..name
 	local burntime = override_def.burntime
 	local texture = override_def.texture or node_def.tiles[1]
-	
+
 	if minetest.get_modpath("default") then
 		if default.register_fence then
 			default.register_fence(material .. "_fence", {
@@ -120,7 +120,7 @@ df_dependencies.register_all_fences = function (name, override_def)
 				})
 			end
 		end
-		
+
 		if default.register_fence_rail then
 			default.register_fence_rail(material .. "_fence_rail", {
 				description = S("@1 Fence Rail", node_def.description),
@@ -148,7 +148,7 @@ df_dependencies.register_all_fences = function (name, override_def)
 			})
 		end
 	end
-	
+
 	if minetest.get_modpath("doors") and doors.register_fencegate then
 		doors.register_fencegate(material .. "_fence_gate", {
 			description = S("@1 Fence Gate", node_def.description),
@@ -157,7 +157,7 @@ df_dependencies.register_all_fences = function (name, override_def)
 			groups = deep_copy(node_def.groups or {}), -- the default register_fence_rail function modifies the groups table passed in, so send a copy instead to be on the safe side.
 			sounds = node_def.sounds
 		})
-		
+
 		if burntime then
 			minetest.register_craft({
 				type = "fuel",
@@ -166,11 +166,11 @@ df_dependencies.register_all_fences = function (name, override_def)
 			})
 		end
 	end
-	
+
 	if minetest.get_modpath("mcl_fences") and mcl_fences.register_fence_and_fence_gate then
 		local groups = deep_copy(node_def.groups or {})
 		groups.fence_wood = 1
-		mcl_fences.register_fence_and_fence_gate(name .. "_fence", 
+		mcl_fences.register_fence_and_fence_gate(name .. "_fence",
 			S("@1 Fence", node_def.description),
 			S("@1 Fence Gate", node_def.description),
 			texture,
@@ -205,7 +205,7 @@ df_dependencies.get_itemslot_bg = function(X,Y,W,H) return "" end
 df_dependencies.get_itemslot_bg_padded = function(X,Y,W,H) return "" end
 if minetest.get_modpath("mcl_formspec") then
 	df_dependencies.get_itemslot_bg = mcl_formspec.get_itemslot_bg
-	
+
 	df_dependencies.get_itemslot_bg_padded = function(x,y,w,h, padding)
 		local out = ""
 		for i = 0, w - 1, 1 do

@@ -62,10 +62,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	local t_start = os.clock()
 
 	local vm, data, area = mapgen_helper.mapgen_vm_data()
-	
+
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:oil_cave", minp, maxp, perlin_cave)
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:oil_wave", minp, maxp, perlin_wave)
-	
+
 	if c_lava_set == nil then
 		c_lava_set = {}
 		for name, def in pairs(minetest.registered_nodes) do
@@ -74,16 +74,16 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			end
 		end
 	end
-	
+
 	for vi, x, y, z in area:iterp_yxz(minp, maxp) do
 		local index2d = mapgen_helper.index2d(minp, maxp, x, z)
 
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 		local wave = nvals_wave[index2d] * wave_mult
-		
+
 		local floor_height = math.floor(abs_cave * floor_mult + floor_displace + median + wave)
 		local ceiling_height = math.floor(abs_cave * ceiling_mult + median + ceiling_displace + wave)
-	
+
 		if y > floor_height - 5 and y < ceiling_height + 5 then
 			if c_lava_set[data[vi]] then
 				data[vi] = c_obsidian
@@ -101,20 +101,20 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				if log_location then log_location("oil_sea", area:position(vi)) end
 			end
 		end
-		
+
 	end
 
-		
+
 	--send data back to voxelmanip
 	vm:set_data(data)
 	--calc lighting
 	vm:set_lighting({day = 0, night = 0})
 	vm:calc_lighting()
-	
+
 	vm:update_liquids()
 	--write it to world
 	vm:write_to_map()
-	
+
 	local time_taken = os.clock() - t_start -- how long this chunk took, in seconds
 	mapgen_helper.record_time("df_caverns oil sea", time_taken)
 end)

@@ -57,7 +57,7 @@ local stal_on_place = function(itemstack, placer, pointed_thing)
 	local newnode= {name = itemstack:get_name(), param2 = new_param2, param1=0}
 	local oldnode= minetest.get_node(pt.above)
 	minetest.add_node(pt.above, {name = itemstack:get_name(), param2 = new_param2})
-	
+
 	-- Run script hook
 	local take_item = true
 	for _, callback in ipairs(core.registered_on_placenodes) do
@@ -70,7 +70,7 @@ local stal_on_place = function(itemstack, placer, pointed_thing)
 			take_item = false
 		end
 	end
-	
+
 	if not minetest.is_creative_enabled(placer:get_player_name()) and take_item then
 		itemstack:take_item()
 	end
@@ -85,11 +85,11 @@ local stal_box_4 = {{-0.375+x_disp, -0.5, -0.375+z_disp, 0.375+x_disp, 0.5, 0.37
 local torchspine_list = {"df_trees:torchspine_1","df_trees:torchspine_2","df_trees:torchspine_3","df_trees:torchspine_4"}
 local grow_torchspine = function(pos)
 	local param2 = minetest.get_node(pos).param2
-	
+
 	if param2 > 3 then
 		return -- tipped over, don't grow
 	end
-	
+
 	local node_above = minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z})
 	local node_above_def = minetest.registered_nodes[node_above.name]
 	if not node_above_def.buildable_to then
@@ -151,7 +151,7 @@ minetest.register_node("df_trees:torchspine_1", {
 			minetest.swap_node(pos, {name = "df_trees:torchspine_1_lit", param2 = node.param2})
 		end
 	end,
-	
+
 	on_timer = function(pos)
 		local above_def = minetest.registered_nodes[minetest.get_node({x=pos.x, y=pos.y+1, z=pos.z}).name]
 		if above_def and above_def.buildable_to then
@@ -160,7 +160,7 @@ minetest.register_node("df_trees:torchspine_1", {
 		end
 		minetest.get_node_timer(pos):start(math.random(torchspine_min_delay, torchspine_max_delay))
 	end,
-	
+
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
@@ -186,11 +186,11 @@ minetest.register_node("df_trees:torchspine_1_lit", {
 	_mcl_hardness = 2,
 
 	on_place = stal_on_place,
-	
+
 	on_timer = function(pos)
 		grow_torchspine(pos)
 	end,
-	
+
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
@@ -322,7 +322,7 @@ minetest.register_node("df_trees:torchspine_ember", {
 	_mcl_hardness = 1,
 
 	on_place = stal_on_place,
-	
+
 	on_construct = function(pos)
 		if df_trees.torchspine_growth_permitted(pos) then
 			minetest.get_node_timer(pos):start(math.random(torchspine_min_delay, torchspine_max_delay))
@@ -331,7 +331,7 @@ minetest.register_node("df_trees:torchspine_ember", {
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
-	
+
 	on_timer = function(pos)
 		minetest.swap_node(pos, {name="df_trees:torchspine_1", param2=minetest.get_node(pos).param2})
 		minetest.get_node_timer(pos):start(math.random(torchspine_min_delay, torchspine_max_delay))
@@ -346,14 +346,15 @@ df_trees.spawn_torchspine = function(pos)
 	local vm = minetest.get_voxel_manip()
 	local minp, maxp = vm:read_from_map(
 		{x = x, y = y, z = z},
-		{x = x, y = y+height-1, z = z}
+		{x = x, y = y+stem_height-1, z = z}
 	)
 	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
 	local data_param2 = vm:get_param2_data()
+	local vi = area:index(pos)
 
-	df_trees.spawn_torchspine_vm(vi, area, data, data_param2, height)
-	
+	df_trees.spawn_torchspine_vm(vi, area, data, data_param2, stem_height)
+
 	vm:set_data(data)
 	vm:write_to_map()
 	vm:update_map()
@@ -380,20 +381,20 @@ df_trees.spawn_torchspine_vm = function(vi, area, data, data_param2, height, lit
 	local param2 = math.random(0,3)
 	local list
 	if lit then list = torchspine_lit_c else list = torchspine_c end
-	
+
 	for i = 0, height-1 do
 		if not minetest.registered_nodes[minetest.get_name_from_content_id(data[vi + area.ystride*i])].buildable_to then
 			height = i
 			break
 		end
 	end
-	
+
 	for i = 0, height-1 do
 		local index = vi + area.ystride*i
 		data[index] = list[height-i]
 		data_param2[index] = param2
 	end
-	
+
 	local pos = area:position(vi)
 	pos.y = pos.y+height-1
 	local node = minetest.get_node(pos)

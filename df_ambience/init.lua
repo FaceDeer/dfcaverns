@@ -40,7 +40,7 @@ local get_player_data = function(player, name)
 	if not pos then return end
 	local prop = player:get_properties()
 	local eyeh = prop.eye_height or 1.47 -- eye level with fallback
-	
+
 	pos.y = pos.y + eyeh
 	local nod_head = pplus and name and playerplus[name]
 			and playerplus[name].nod_head or minetest.get_node(pos).name
@@ -50,7 +50,7 @@ local get_player_data = function(player, name)
 	local ps, cn = minetest.find_nodes_in_area(
 		{x = pos.x - radius, y = pos.y - radius, z = pos.z - radius},
 		{x = pos.x + radius, y = pos.y + radius, z = pos.z + radius}, set_nodes)
-		
+
 	return {
 		pos = pos,
 		head_node = nod_head,
@@ -76,11 +76,11 @@ local get_ambience = function(player, name)
 		if random() < set.frequency then
 			local check_passed
 			local sound_check = set.sound_check
-			local set_nodes = set.nodes
-			if sound_check or set_nodes then
+			local nodes = set.nodes
+			if sound_check or nodes then
 				player_data = player_data or get_player_data(player, name)
 			end
-			if ((not set_nodes) or check_nodes(player_data.totals, set_nodes)) and
+			if ((not nodes) or check_nodes(player_data.totals, nodes)) and
 				((not sound_check) or sound_check(player_data)) then
 				return set
 			end

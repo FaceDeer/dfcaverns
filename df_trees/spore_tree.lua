@@ -83,7 +83,7 @@ minetest.register_node("df_trees:spore_tree_hyphae", {
 	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1, spore_tree_hyphae = 1,handy=1, hoey=1, shearsy=1, swordy=1, deco_block=1, dig_by_piston=1, fire_encouragement=15, fire_flammability=30, compostability=30},
 	walkable = false,
 	climbable = true,
-	
+
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {
@@ -114,19 +114,19 @@ minetest.register_node("df_trees:spore_tree_fruiting_body", {
 	climbable = true,
 	_mcl_blast_resistance = 0.7,
 	_mcl_hardness = 0.7,
-	
+
 	drawtype = "nodebox",
 	paramtype = "light",
 	node_box = {
 		type = "fixed",
 		fixed = {
-			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625}, 
-			{-0.0625, -0.0625, -0.5, 0.0625, 0.0625, 0.5}, 
-			{-0.5, -0.0625, -0.0625, 0.5, 0.0625, 0.0625}, 
+			{-0.0625, -0.5, -0.0625, 0.0625, 0.5, 0.0625},
+			{-0.0625, -0.0625, -0.5, 0.0625, 0.0625, 0.5},
+			{-0.5, -0.0625, -0.0625, 0.5, 0.0625, 0.0625},
 			{-0.25, -0.25, -0.25, 0.25, 0.25, 0.25},
 		}
 	},
-	
+
 	drop = {
 		max_items = 1,
 		items = {
@@ -148,7 +148,7 @@ minetest.register_node("df_trees:spore_tree_fruiting_body", {
 df_dependencies.register_leafdecay({
 	trunks = {"df_trees:spore_tree"},
 	leaves = {"df_trees:spore_tree_hyphae", "df_trees:spore_tree_fruiting_body"},
-	radius = 3,	
+	radius = 3,
 })
 
 minetest.register_node("df_trees:spore_tree_sapling", {
@@ -185,7 +185,7 @@ minetest.register_node("df_trees:spore_tree_sapling", {
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
-	
+
 	on_timer = function(pos)
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
@@ -201,16 +201,14 @@ local c_spore_pod = minetest.get_content_id("df_trees:spore_tree_fruiting_body")
 local c_tree = minetest.get_content_id("df_trees:spore_tree")
 local c_spore_frond = minetest.get_content_id("df_trees:spore_tree_hyphae")
 
-df_trees.spawn_spore_tree_vm = function(vi, area, data, data_param2, height, size, iters, has_fruiting_bodies)
+df_trees.spawn_spore_tree_vm = function(vi_spawn, area, data, data_param2, height, size, iters, has_fruiting_bodies)
 	if height == nil then height = math.random(3,6) end
 	if size == nil then size = 2 end
 	if iters == nil then iters = 10 end
 	if has_fruiting_bodies == nil then has_fruiting_bodies = math.random() < 0.5 end
 
-	local pos = area:position(vi)
+	local pos = area:position(vi_spawn)
 	local x, y, z = pos.x, pos.y, pos.z
-	
-	local has_fruiting_bodies = true
 
 	-- Trunk
 	for yy = y, y + height - 1 do

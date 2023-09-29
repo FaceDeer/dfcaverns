@@ -167,11 +167,11 @@ if minetest.get_modpath("dynamic_liquid") then
 							minetest.swap_node(pos, next_node)
 						end
 					end
-				end				
+				end
 			end
 		end,
 	})
-	
+
 	-- If oil is wandering around on top of a layer of water that isn't full, drop it down
 	-- into the water layer. This helps drive the system toward a more static state with a flat-looking surface.
 	minetest.register_abm({
@@ -208,7 +208,7 @@ if df_dependencies.bucket_register_liquid then
 		burntime = 370, -- same as coalblock
 		replacements = {{"oil:oil_bucket", bucket_empty}},
 	})
-	
+
 	if minetest.get_modpath("basic_materials") then
 		minetest.register_craft({
 			type = "cooking",

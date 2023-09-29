@@ -7,7 +7,7 @@ collectible_lore.register_lorebook({
 	id = "rose fungiwood",
 	title = S("Fungiwood"),
 	text = S([[Today we came across a truly extraordinary discovery. As we were exploring one of the deeper caverns, we stumbled upon a forest of enormous fungi. These towering structures, which I have named Fungiwood, stood at least twenty to thirty feet tall, with a central stalk that was incredibly strong and fine-grained. The spore-producing 'shelves' that surrounded the stalk were thin and irregular, but not particularly useful for either building or as a food source.
-	
+
 However, the central stalk proved to be an invaluable discovery. When cut, it produces smooth yellow-tinted lumber that is perfect for crafting. It is no wonder that so many carved wooden objects from the deeps are made from this Fungiwood. I have collected samples of the lumber and will study it further to see if it has any other unique properties. This discovery opens up a whole new realm of possibilities for subterranean exploration and commerce.
 
 Sincerely,
@@ -23,7 +23,7 @@ collectible_lore.register_lorebook({
 When harvested the central stalk of a blood thorn can be cut into planks and used as wood. It has a purple-red hue that may or may not appeal, depending on one's artistic tastes.
 
 Despite their fearsome reputation, I must admit, I was struck by the tenacity of these plants. The spikes can remain living even after they're severed from the parent stalk, continuing to drain anything they come into contact with. Even if killed by bright light they can still cause damage to creatures that fall on them.
-	
+
 	But as I took notes and observed the blood thorns, I found it difficult to appreciate this species of plant. Its ruthless nature and actively harmful spines left me feeling uneasy, and I couldn't help but walk cautiously in its presence.
 
 Sincerely,
@@ -123,7 +123,7 @@ collectible_lore.register_lorebook({
 	id = "banks tunnel tube",
 	title = S("Tunnel Tube Resources"),
 	text = S([[I have been conducting experiments on the Tunnel Tubes, a species of fungi that can be found growing deep underground in the caverns. I have successfully harvested the fruiting bodies of the Tunnel Tubes and have been experimenting with refining a gunpowder-like explosive from them. This explosive has shown great potential in mining and construction, but I must note that my experiments were cut short due to several casualties among my crew caused by careless detonations.
-	
+
 In addition to the explosive potential of the Tunnel Tubes, I have also discovered that the wood produced from their trunks has a unique cross-grained texture that makes it incredibly strong and flexible. This could have a wide range of uses in construction and carpentry. However, I must mention that the purple hue of the wood is unfortunately unpleasant and I have yet to devise a way to bleach the wood to make it more appealing.
 
 Overall, the Tunnel Tubes have a lot of potential for industrial use, but we must be careful in handling them and make sure to take proper safety precautions when working with them. I will continue my experiments and report any further findings.

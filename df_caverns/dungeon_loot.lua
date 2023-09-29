@@ -67,12 +67,12 @@ bones_loot.register_loot({
 	{name = "vessels:steel_bottle", chance = 0.4, count = {1,3}, types = {"underworld_warrior"}},
 	{name = "vessels:glass_bottle", chance = 0.2, count = {1,2}, types = {"underworld_warrior"}},
 	{name = "vessels:glass_fragments", chance = 0.1, count = {1,4}, types = {"underworld_warrior"}},
-	
+
 	{name = "default:book", chance = 0.05, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "default:paper", chance = 0.1, count = {1,6}, types = {"underworld_warrior"}},
 	{name = "default:skeleton_key", chance = 0.05, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "default:torch", chance = 0.75, count = {1,10}, types = {"underworld_warrior"}},
-	
+
 	{name = "default:pick_bronze",    chance = 0.15, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "default:pick_steel",     chance = 0.1, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "default:pick_mese",      chance = 0.05, count = {1,1}, types = {"underworld_warrior"}},
@@ -89,7 +89,7 @@ bones_loot.register_loot({
 	{name = "default:sword_steel",    chance = 0.75, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "default:sword_mese",     chance = 0.35, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "default:sword_diamond",  chance = 0.35, count = {1,1}, types = {"underworld_warrior"}},
-	
+
 	{name = "default:coal_lump",             chance = 0.5, count = {1,5}, types = {"underworld_warrior"}},
 	{name = "default:mese_crystal",          chance = 0.1, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "default:diamond",               chance = 0.1, count = {1,1}, types = {"underworld_warrior"}},
@@ -97,7 +97,7 @@ bones_loot.register_loot({
 	{name = "default:copper_ingot",          chance = 0.1, count = {1,2}, types = {"underworld_warrior"}},
 	{name = "default:bronze_ingot",          chance = 0.2, count = {1,5}, types = {"underworld_warrior"}},
 	{name = "default:gold_ingot",            chance = 0.3, count = {1,3}, types = {"underworld_warrior"}},
-	{name = "default:mese_crystal_fragment", chance = 0.4, count = {1,5}, types = {"underworld_warrior"}}, 
+	{name = "default:mese_crystal_fragment", chance = 0.4, count = {1,5}, types = {"underworld_warrior"}},
 	{name = "default:obsidian_shard",        chance = 0.4, count = {1,3}, types = {"underworld_warrior"}},
 	{name = "default:flint",                 chance = 0.3, count = {1,1}, types = {"underworld_warrior"}},
 	{name = "default:sign_wall_wood",  chance = 0.1, count = {1,4}, types = {"underworld_warrior"}},
@@ -156,4 +156,4 @@ if df_caverns.config.enable_lava_sea then
 	bones_loot.register_loot({name = "df_mapitems:mese_crystal", chance = 0.25, count = {1, 2}, types = {"underworld_warrior"}})
 end
 
-end 
+end

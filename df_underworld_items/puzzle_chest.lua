@@ -7,7 +7,7 @@ end
 local initialize = function(pos, meta)
 	if not meta:contains("key") then
 		local inv = meta:get_inventory()
-		inv:set_size("main", 8)		
+		inv:set_size("main", 8)
 		local next_seed = math.random() * 2^21
 		math.randomseed(pos.x + pos.y^8 + pos.z^16)
 		-- Key is consistent with location
@@ -66,9 +66,9 @@ local show_formspec = function(pos, node, clicker, itemstack, pointed_thing)
 		.. "container[3,0]" .. formspec_dial("dial2", state[2]) .. "container_end[]"
 		.. "container[0,1.5]" .. formspec_dial("dial3", state[3]) .. "container_end[]"
 		.. "container[3,1.5]" .. formspec_dial("dial4", state[4]) .. "container_end[]"
-		.. "container[6.1,0]" .. formspec_bar(true, state_sum[1], key_sum[1]) .. "container_end[]"		
-		.. "container[6.1,1.5]" .. formspec_bar(true, state_sum[2], key_sum[2]) .. "container_end[]"		
-		.. "container[1,2.75]" .. formspec_bar(false, state_sum[3], key_sum[3]) .. "container_end[]"		
+		.. "container[6.1,0]" .. formspec_bar(true, state_sum[1], key_sum[1]) .. "container_end[]"
+		.. "container[6.1,1.5]" .. formspec_bar(true, state_sum[2], key_sum[2]) .. "container_end[]"
+		.. "container[1,2.75]" .. formspec_bar(false, state_sum[3], key_sum[3]) .. "container_end[]"
 		.. "container[4,2.75]" .. formspec_bar(false, state_sum[4], key_sum[4]) .. "container_end[]"
 		.. "container_end[]"
 		.. itemslot_bg(0.6,6.7,8,4,0.25)
@@ -139,7 +139,7 @@ minetest.register_node("df_underworld_items:puzzle_chest_closed", {
 	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	_mcl_blast_resistance = 1200,
 	_mcl_hardness = 50,
-	
+
 	on_rightclick = show_formspec,
 	can_dig = puzzle_chest_can_dig,
 })
@@ -166,7 +166,7 @@ minetest.register_node("df_underworld_items:puzzle_chest_opened", {
 	sounds = df_dependencies.sound_stone({ footstep = { name = "bedrock2_step", gain = 1 } }),
 	_mcl_blast_resistance = 1200,
 	_mcl_hardness = 50,
-	
+
 	on_rightclick = show_formspec,
 	can_dig = puzzle_chest_can_dig,
 })

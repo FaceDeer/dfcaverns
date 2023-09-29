@@ -57,7 +57,7 @@ local slade_drill_def = {
 				drill_particles(pointed_thing.above)
 				return itemstack
 			end
-		end	
+		end
 	end,
 }
 

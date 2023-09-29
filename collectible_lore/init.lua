@@ -7,7 +7,7 @@ collectible_lore.lorebooks = {}
 
 local ids = {}
 
-on_collected_callbacks = {}
+local on_collected_callbacks = {}
 
 collectible_lore.register_on_collected = function(callback)
 	table.insert(on_collected_callbacks, callback)
@@ -69,7 +69,7 @@ end
 
 collectible_lore.register_lorebook = function(def)
 	if def.id == nil then
-		minetest.log("error", "[collectible_lore] nil id for def " .. dump(def))		
+		minetest.log("error", "[collectible_lore] nil id for def " .. dump(def))
 		return false
 	end
 	if ids[def.id] then
@@ -101,7 +101,7 @@ minetest.register_chatcommand("collectible", {
 				minetest.chat_send_player(name, dump(collectible_lore.get_player_collected(second)))
 				return
 			end
-			
+
 			minetest.chat_send_player(name, S("error parsing command"))
 		end,
     })

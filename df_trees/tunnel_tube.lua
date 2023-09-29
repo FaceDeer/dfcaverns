@@ -22,7 +22,7 @@ minetest.register_node("df_trees:tunnel_tube", {
 	on_place = minetest.rotate_node,
 	_mcl_blast_resistance = 2,
 	_mcl_hardness = 2,
-	
+
 	node_box = {
 		type = "fixed",
 		fixed = {
@@ -190,7 +190,7 @@ if df_trees.config.enable_tnt then
 	local tnt_radius = tonumber(minetest.settings:get("tnt_radius") or 3) * 2/3
 	local tnt_def = {radius = tnt_radius, damage_radius = tnt_radius * 2}
 	local torch_item = df_dependencies.node_name_torch
-	
+
 	local drop_items = {
 			max_items = 1,
 			items = {
@@ -216,7 +216,7 @@ if df_trees.config.enable_tnt then
 		minetest.swap_node(pos, {name = "df_trees:tunnel_tube_fruiting_body_burning"})
 		minetest.registered_nodes["df_trees:tunnel_tube_fruiting_body_burning"].on_construct(pos)
 	end
-	
+
 	minetest.register_node("df_trees:tunnel_tube_fruiting_body", {
 		description = S("Tunnel Tube Fruiting Body"),
 		_doc_items_longdesc = df_trees.doc.tunnel_tube_desc,
@@ -230,7 +230,7 @@ if df_trees.config.enable_tnt then
 		drop = drop_items,
 		_mcl_blast_resistance = 12,
 		_mcl_hardness = 2,
-		
+
 		on_punch = function(pos, node, puncher)
 			if puncher:get_wielded_item():get_name() == torch_item then
 				minetest.swap_node(pos, {name = "df_trees:tunnel_tube_fruiting_body_burning"})
@@ -256,7 +256,7 @@ if df_trees.config.enable_tnt then
 		on_ignite = on_burn,
 		_on_burn = on_burn,
 	})
-	
+
 	minetest.register_node("df_trees:tunnel_tube_fruiting_body_burning", {
 		description = S("Tunnel Tube Fruiting Body"),
 		_doc_items_longdesc = df_trees.doc.tunnel_tube_desc,
@@ -297,7 +297,7 @@ else
 		on_place = minetest.rotate_node,
 		_mcl_blast_resistance = 12,
 		_mcl_hardness = 2,
-		
+
 		drop = {
 			max_items = 3,
 			items = {
@@ -354,7 +354,7 @@ minetest.register_node("df_trees:tunnel_tube_sapling", {
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
-	
+
 	on_timer = function(pos)
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
@@ -398,7 +398,7 @@ df_trees.spawn_tunnel_tube = function(pos)
 	vm:set_data(data)
 	vm:set_param2_data(param2_data)
 	vm:write_to_map()
-	vm:update_map()	
+	vm:update_map()
 end
 
 local c_air = minetest.get_content_id("air")

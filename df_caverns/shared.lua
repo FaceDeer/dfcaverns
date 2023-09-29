@@ -84,15 +84,15 @@ df_caverns.stalagmites = function(abs_cracks, vert_rand, vi, area, data, data_pa
 		stalagmite_ids = df_mapitems.wet_stalagmite_ids
 	else
 		flowstone = c_dry_flowstone
-		stalagmite_ids = df_mapitems.dry_stalagmite_ids	
+		stalagmite_ids = df_mapitems.dry_stalagmite_ids
 	end
-	
+
 	local height_mult = 1
 	local ystride = area.ystride
 	if reverse_sign then
 		ystride = - ystride
 		height_mult = -1
-	end		
+	end
 
 	if vert_rand < 0.004 then
 		if reverse_sign then
@@ -132,14 +132,14 @@ df_caverns.flooded_cavern_floor = function(abs_cracks, vert_rand, vi, area, data
 			data[vi] = c_sand_scum
 		end
 	end
-	
+
 	-- put in only the large stalagmites that won't get in the way of the water
 	if abs_cracks < 0.1 then
 		if vert_rand < 0.004 then
 			subterrane.big_stalagmite(vi+ystride, area, data, 6, 15, c_wet_flowstone, c_wet_flowstone, c_wet_flowstone)
 		end
 	end
-	
+
 end
 
 df_caverns.dry_cavern_floor = function(abs_cracks, vert_rand, vi, area, data, data_param2)
@@ -198,7 +198,7 @@ df_caverns.tunnel_floor = function(minp, maxp, area, vi, nvals_cracks, data, dat
 			subterrane.stalagmite(vi+ystride, area, data, data_param2, param2, height, df_mapitems.wet_stalagmite_ids)
 			data[vi] = c_wet_flowstone
 		elseif dirt_node and abs_cracks > 0.5 and data[vi-ystride] ~= c_air then
-			data[vi] = dirt_node		
+			data[vi] = dirt_node
 		end
 	else
 		if abs_cracks < 0.025 and data[vi+ystride] == c_air and not dont_build_speleothems_on[data[vi]] then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
@@ -220,7 +220,7 @@ df_caverns.tunnel_ceiling = function(minp, maxp, area, vi, nvals_cracks, data, d
 	local index2d = mapgen_helper.index2di(minp, maxp, area, vi)
 	local cracks = nvals_cracks[index2d]
 	local abs_cracks = math.abs(cracks)
-	 
+
 	if wet then
 		if abs_cracks < 0.05 and data[vi-ystride] == c_air and not dont_build_speleothems_on[data[vi]] then -- make sure data[vi] is not already flowstone. Stalagmites from lower levels are acting as base for further stalagmites
 			local param2 = abs_cracks*1000000 - math.floor(abs_cracks*1000000/4)*4
@@ -272,7 +272,7 @@ df_caverns.place_shrub = function(vi, area, data, param2_data, shrub_list)
 	if shrub_list == nil then
 		return
 	end
-	
+
 	local shrub = shrub_list[math.random(#shrub_list)]
 	shrub(vi, area, data, param2_data)
 end

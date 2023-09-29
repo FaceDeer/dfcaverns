@@ -16,7 +16,7 @@ if minetest.get_modpath("doc") then
 	if minetest.get_modpath("tnt") then
 		gas_usage = gas_usage .. " " .. S("When exposed to air and an ignition source it can produce a deadly explosion.")
 	end
-	
+
 	seep_desc = S("Some coal deposits have cracks that seep a steady flow of mine gas.")
 	seep_usage = S("Mining out such a deposit seals the crack.")
 end
@@ -98,11 +98,11 @@ minetest.register_abm({
 			next_node = minetest.get_node(next_pos)
 			if next_node.name == "air" then
 				minetest.swap_node(next_pos, gas_node)
-				minetest.swap_node(pos, next_node)			
+				minetest.swap_node(pos, next_node)
 			else
 				local dir = directions[math.random(1,4)]
-				local next_pos = vector.add(pos, dir)
-				local next_node = minetest.get_node(next_pos)
+				next_pos = vector.add(pos, dir)
+				next_node = minetest.get_node(next_pos)
 				if next_node.name == "air" or  minetest.get_item_group(next_node.name, "liquid") > 0 then
 					if next_node.name == "air" or math.random() < 0.5 then -- gas never "climbs" above air.
 						minetest.swap_node(next_pos, gas_node)
@@ -143,7 +143,7 @@ minetest.register_abm({
 				soundfile_cool_lava,
 				{pos = pos, max_hear_distance = 16, gain = 0.1}
 			)
-		end	
+		end
 	end,
 })
 
@@ -164,7 +164,7 @@ if tnt_boom then
 				if math.random() < 0.01 then
 					minetest.set_node(pos, {name="mine_gas:gas_wisp"})
 				end
-			end	
+			end
 		end,
 	})
 end
@@ -210,6 +210,6 @@ minetest.register_abm({
 					{pos = pos, max_hear_distance = 8, gain = 0.05}
 				)
 			end
-		end	
+		end
 	end,
 })

@@ -32,7 +32,7 @@ if tnt_boom then
 	glowstone_def.on_dig = function(pos, node, digger)
 		if minetest.node_dig(pos, node, digger) then
 			tnt_boom(pos, {radius=3})
-		end	
+		end
 	end
 end
 minetest.register_node("df_underworld_items:glowstone", glowstone_def)

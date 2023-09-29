@@ -15,10 +15,10 @@ return {
 	size = {x = 3, y = 9, z = 3},
 	center_pos = {x = 1, y = 7, z = 1},
 	data = {
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n2, n3, n4, n1, n1, n1, n1, n5, n1, n1, 
-		n5, n1, n1, n5, n1, n1, n5, n1, n1, n5, n1, n1, n5, n1, n1, n6, n1, 
-		n7, n5, n8, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, 
-		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n9, n10, n11, 
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n2, n3, n4, n1, n1, n1, n1, n5, n1, n1,
+		n5, n1, n1, n5, n1, n1, n5, n1, n1, n5, n1, n1, n5, n1, n1, n6, n1,
+		n7, n5, n8, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n1,
+		n1, n1, n1, n1, n1, n1, n1, n1, n1, n1, n9, n10, n11,
 	},
 }

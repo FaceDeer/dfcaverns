@@ -67,7 +67,7 @@ local get_pit = function(pos)
 	local location = scatter_2d(corner_xz, pit_region_size, 0)
 	local depth = math.floor(math.random() * (max_depth - min_depth) + min_depth)
 	local top = math.floor(math.random() * (max_top - min_top) + min_top)
-	
+
 	math.randomseed(next_seed)
 	return {location = location, depth = depth, top = top}
 end
@@ -90,24 +90,24 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 
 	local pit = get_pit(minp)
-	
+
 	if pit == nil then
 		return -- no pit in this map region
 	end
-	
+
 	local location_x = pit.location.x
 	local location_z = pit.location.z
-	
+
 	-- early out if the pit is too far away to matter
 	-- The plus 20 is because the noise being added will generally be in the 0-20 range, see the "distance" calculation below
-	if	location_x - 20 > maxp.x or 
-		location_x + 20 < minp.x or 
+	if	location_x - 20 > maxp.x or
+		location_x + 20 < minp.x or
 		location_z - 20 > maxp.z or
 		location_z + 20 < minp.z
 	then
 		return
 	end
-	
+
 	local top = pit.top
 	local depth = pit.depth
 
@@ -128,7 +128,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 
 	local nvals_perlin = mapgen_helper.perlin3d("pit_caves:pit", emin, emax, perlin_params)
-		
+
 	for vi, x, y, z in area:iterp_xyz(emin, emax) do
 		if not (ignore and ignore(data[vi])) then
 			local distance_perturbation = (nvals_perlin[vi]+1)*10
@@ -140,7 +140,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 					-- taper the top end
 					distance = distance - ((taper_min - y)/2)
 				end
-			
+
 				if distance < pit_radius then
 					if y < depth + 20 and data[vi] ~= c_air then
 						data[vi] = c_gravel
@@ -152,7 +152,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 			end
 		end
 	end
-	
+
 	--send data back to voxelmanip
 	vm:set_data(data)
 	--calc lighting
@@ -165,14 +165,6 @@ end)
 
 ----------------------------------------------------------------------------------------------
 -- Debugging and sightseeing commands
-
-function round(val, decimal)
-  if (decimal) then
-    return math.floor( (val * 10^decimal) + 0.5) / (10^decimal)
-  else
-    return math.floor(val+0.5)
-  end
-end
 
 local send_pit_state = function(pos, name)
 	local pit = get_pit(pos)

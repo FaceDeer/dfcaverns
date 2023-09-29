@@ -80,7 +80,7 @@ end
 df_farming.plant_timer = function(pos, plantname, elapsed)
 	local next_stage_time = minetest.registered_nodes[plantname]._dfcaverns_next_stage_time
 	if not next_stage_time then return end
-	
+
 	local growable_factor = df_farming.growth_factor(plantname, pos) or 1
 	if growable_factor == true then growable_factor = 1 end -- backwards compatibility in case other mods are overriding growth factor to "true/false"
 
@@ -141,7 +141,7 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 	if not minetest.registered_nodes[above.name].buildable_to then
 		return itemstack
 	end
-	
+
 	-- if the plant can't grow here, don't permit the seed to be placed
 	local growth_permitted_function = df_farming.growth_permitted[plantname]
 	if not growth_permitted_function or not growth_permitted_function(pt.above) then
@@ -153,7 +153,7 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 	local oldnode= above
 	minetest.add_node(pt.above, {name = plantname, param2 = 1})
 	df_farming.plant_timer(pt.above, plantname)
-	
+
 	-- Run script hook
 	local take_item = true
 	for _, callback in ipairs(core.registered_on_placenodes) do
@@ -165,8 +165,8 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 		if callback(place_to_copy, newnode_copy, placer, oldnode_copy, itemstack, pointed_thing_copy) then
 			take_item = false
 		end
-	end	
-	
+	end
+
 	if not minetest.is_creative_enabled(placer:get_player_name()) then
 		itemstack:take_item()
 	end
@@ -196,21 +196,21 @@ df_farming.register_seed = function(name, description, image, stage_one, grow_ti
 			fixed = {-0.5, -0.5, -0.5, 0.5, -5/16, 0.5},
 		},
 		_mcl_blast_resistance = 0.2,
-		_mcl_hardness = 0.2,	
-		
+		_mcl_hardness = 0.2,
+
 		on_place = function(itemstack, placer, pointed_thing)
 			return place_seed(itemstack, placer, pointed_thing, "df_farming:"..name)
 		end,
-		
+
 		on_timer = function(pos, elapsed)
 			df_farming.grow_underground_plant(pos, "df_farming:"..name, elapsed)
 		end,
-		
+
 		on_destruct = function(pos)
 			minetest.get_node_timer(pos):stop()
 		end,
 	}
-	
+
 	minetest.register_node("df_farming:"..name, def)
 	minetest.register_craft({
 		type = "fuel",
@@ -248,10 +248,10 @@ if df_farming.config.light_kills_fungus then
 		end
 		local node_def = minetest.registered_nodes[node.name]
 		local light_sensitive_fungus_level = node_def.groups.light_sensitive_fungus
-		
+
 		-- This should never be the case, but I've received a report of it happening anyway in the ABM so guarding against it.
 		if not light_sensitive_fungus_level then return false end
-		
+
 		local dead_node = node_def._dfcaverns_dead_node or "df_farming:dead_fungus"
 		-- 11 is the value adjacent to a torch
 		local light_level = minetest.get_node_light(pos, 0.5) -- check at 0.5 to get how bright it would be here at noon,

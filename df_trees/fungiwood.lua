@@ -2,7 +2,7 @@
 -- Fungiwood
 
 -- fine grain
--- Max trunk height 	8 
+-- Max trunk height 	8
 -- depth 1-2
 
 local S = minetest.get_translator(minetest.get_current_modname())
@@ -140,7 +140,7 @@ minetest.register_node("df_trees:fungiwood_sapling", {
 	on_destruct = function(pos)
 		minetest.get_node_timer(pos):stop()
 	end,
-	
+
 	on_timer = function(pos)
 		if df_farming and df_farming.kill_if_sunlit(pos) then
 			return
@@ -175,14 +175,14 @@ function df_trees.spawn_fungiwood(pos)
 	vm:update_map()
 end
 
-df_trees.spawn_fungiwood_vm = function(vi, area, data, height)
+df_trees.spawn_fungiwood_vm = function(vi_spawn, area, data, height)
 	if height == nil then height = math.random(6, 10) end
-	local pos = area:position(vi)
+	local pos = area:position(vi_spawn)
 	local x = pos.x
 	local y = pos.y
 	local z = pos.z
 	local maxy = y + height -- Trunk top
-	
+
 	-- Upper branches layer
 	local dev = 3
 	for yy = maxy - 2, maxy do

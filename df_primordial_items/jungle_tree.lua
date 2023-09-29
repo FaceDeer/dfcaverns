@@ -140,7 +140,7 @@ local c_trunk_glow = minetest.get_content_id("df_primordial_items:jungle_tree_gl
 df_primordial_items.spawn_jungle_tree = function(pos)
 	local x, y, z = pos.x, pos.y, pos.z
 	local height = math.random(8,14)
-	
+
 	local vm = minetest.get_voxel_manip()
 	local minp, maxp = vm:read_from_map(
 		{x = x - 2, y = y - 2, z = z - 2},
@@ -149,9 +149,9 @@ df_primordial_items.spawn_jungle_tree = function(pos)
 	local area = VoxelArea:new({MinEdge = minp, MaxEdge = maxp})
 	local data = vm:get_data()
 	local vi = area:indexp(pos)
-	
+
 	df_primordial_items.spawn_jungle_tree_vm(height, vi, area, data)
-	
+
 	vm:set_data(data)
 	vm:write_to_map()
 	vm:update_map()
@@ -187,7 +187,7 @@ df_primordial_items.spawn_jungle_tree_vm = function(height, vi, area, data)
 		end
 		roots_done[root_column] = true
 	end
-	
+
 	-- puts a trunk node in the center and surrounds it with leaves
 	local branch = function(bi, glow)
 		local trunknode, leafnode
@@ -210,7 +210,7 @@ df_primordial_items.spawn_jungle_tree_vm = function(height, vi, area, data)
 			end
 		end
 	end
-	
+
 	for i = 0, height-2 do
 		local y_index = vi + i * ystride
 		if buildable_to(data[y_index]) then
@@ -220,10 +220,10 @@ df_primordial_items.spawn_jungle_tree_vm = function(height, vi, area, data)
 		end
 		if i > 4 then
 			local branch_index = y_index + math.random(-1,1) + math.random(-1,1)*zstride
-			branch(branch_index)			
+			branch(branch_index)
 		end
 	end
-	branch(vi + (height-1)*ystride) -- topper	
+	branch(vi + (height-1)*ystride) -- topper
 end
 
 minetest.register_node("df_primordial_items:jungletree_sapling", {

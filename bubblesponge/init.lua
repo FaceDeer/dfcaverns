@@ -20,10 +20,10 @@ local function setting(stype, name, default, description)
 		value = default
 	end
 	config[name] = value
-	
+
 	if print_settingtypes then
 		minetest.debug(CONFIG_FILE_PREFIX..name.." ("..description..") "..stype.." "..tostring(default))
-	end	
+	end
 end
 
 setting("int", "uses", 30, "Number of uses for a bubblesponge")
@@ -59,7 +59,7 @@ minetest.register_tool("bubblesponge:tank", {
 	wield_image = "bubblesponge_frond.png",
 	stack_max = 1,
 	groups = {bubblesponge_tank = 1},
-	
+
 	on_place = function(itemstack, user, pointed_thing)
 		return use_airtank(itemstack, user)
 	end,
@@ -78,7 +78,7 @@ minetest.register_tool("bubblesponge:bundle", {
 	wield_image = "bubblesponge_bundle.png",
 	stack_max = 1,
 	groups = {bubblesponge_tank = 1},
-	
+
 	on_place = function(itemstack, user, pointed_thing)
 		return use_airtank(itemstack, user)
 	end,
@@ -119,27 +119,27 @@ minetest.register_node("bubblesponge:stem", {
                 items = {"bubblesponge:stem"},
             },
 		},
-	},	
+	},
 	drawtype = "normal",
 	paramtype = "light",
 	is_ground_content = false,
 	light_source = 6,
-	
+
 	on_timer = function(pos, elapsed)
 		local timer = minetest.get_node_timer(pos)
 		elapsed = elapsed - config.growth_seconds
 		timer:set(config.growth_seconds, elapsed)
-		
+
 		if pos.y > config.y_max then
 			return
 		end
-		
+
 		pos.y = pos.y + 1
-		
+
 		if minetest.find_node_near(pos, 4, "air", true) then
 			return
 		end
-				
+
 		local tries = 0
 		while tries < 3 do
 			local this_node = minetest.get_node(pos).name
@@ -152,7 +152,7 @@ minetest.register_node("bubblesponge:stem", {
 			end
 		end
 	end,
-	
+
 	on_construct = function(pos)
 		minetest.get_node_timer(pos):start(config.growth_seconds + math.random(-0.1, 0.1)*config.growth_seconds)
 		--minetest.get_node_timer(pos):set(1, config.growth_seconds * 6) -- immediate growth

@@ -1,6 +1,5 @@
 pit_caves = {}
 
-local modpath = minetest.get_modpath(minetest.get_current_modname())
 local S = minetest.get_translator(minetest.get_current_modname())
 
 local min_depth = tonumber(minetest.settings:get("pit_caves_min_bottom") or -2500)

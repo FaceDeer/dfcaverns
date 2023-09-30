@@ -533,9 +533,7 @@ minetest.register_on_generated(function(minp, maxp, seed)
 		local index2d = mapgen_helper.index2d(emin, emax, minp.x + 3, minp.z + 3)
 		local abs_cave = math.abs(nvals_cave[index2d]) -- range is from 0 to approximately 2, with 0 being connected and 2s being islands
 		local wave = nvals_wave[index2d] * wave_mult
-
 		local floor_height =  math.floor(abs_cave * floor_mult + median + floor_displace + wave)
-		local underside_height = math.floor(y_min + math.abs(wave) / 5)
 
 		if floor_height < maxp.y and floor_height > minp.y then
 			for plat_vi in area:iter(minp.x, floor_height-6, minp.z, minp.x+6, floor_height, minp.z+6) do

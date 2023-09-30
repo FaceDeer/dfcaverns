@@ -167,7 +167,7 @@ local place_seed = function(itemstack, placer, pointed_thing, plantname)
 		end
 	end
 
-	if not minetest.is_creative_enabled(placer:get_player_name()) then
+	if take_item and not minetest.is_creative_enabled(placer:get_player_name()) then
 		itemstack:take_item()
 	end
 	return itemstack

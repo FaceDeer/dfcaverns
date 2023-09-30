@@ -142,7 +142,6 @@ minetest.register_node("bubblesponge:stem", {
 
 		local tries = 0
 		while tries < 3 do
-			local this_node = minetest.get_node(pos).name
 			if minetest.get_node(pos).name == water_node then
 				minetest.set_node(pos, {name = "bubblesponge:frond"})
 				return

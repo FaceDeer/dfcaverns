@@ -154,7 +154,6 @@ end
 
 local c_jungle_dirt = df_caverns.node_id.jungle_dirt
 local c_plant_matter = df_caverns.node_id.plant_matter
-local c_packed_roots = df_caverns.node_id.packed_roots
 local c_glowstone = df_caverns.node_id.glowstone
 local c_ivy = df_caverns.node_id.ivy
 local c_root_2 = df_caverns.node_id.root_2
@@ -275,7 +274,6 @@ local decorate_primordial = function(minp, maxp, seed, vm, node_arrays, area, da
 	local data_param2 = df_caverns.data_param2
 	vm:get_param2_data(data_param2)
 	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
-	local cave_area = node_arrays.cave_area
 	local nvals_cave = node_arrays.nvals_cave
 
 	local humiditymap = minetest.get_mapgen_object("humiditymap")

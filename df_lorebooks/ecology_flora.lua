@@ -78,14 +78,6 @@ Professor Amelia Rose]]),
 	sort = base + 4,
 })
 
-local ss_text = ""
-if minetest.get_modpath("cottages") then
-	ss_text = S("When milled, sweet pods produce a granular pink-tinted sugary substance.")
-else
-	ss_text = S("When dried in an oven, sweet pods produce a granular pink-tinted sugary substance.")
-end
-ss_text = ss_text .. " " .. S("Crushing them in a bucket squeezes out a flavorful syrup.")
-
 collectible_lore.register_lorebook({
 	id = "rose sweet pod",
 	title = S("Sweet Pod"),

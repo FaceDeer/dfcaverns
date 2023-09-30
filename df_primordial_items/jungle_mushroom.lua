@@ -10,7 +10,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_trunk", {
 	tiles = {"dfcaverns_jungle_mushroom_stem.png", "dfcaverns_jungle_mushroom_stem.png", "dfcaverns_jungle_mushroom_stem_02.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, handy=1,axey=1, tree=1, flammable=2, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_place = minetest.rotate_node,
 	_mcl_blast_resistance = 2,
@@ -24,7 +24,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_cap_1", {
 	tiles = {"dfcaverns_jungle_mushroom_top_02.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1, handy=1,axey=1, tree=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5, compostability=30},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5, compostability=30},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_place = minetest.rotate_node,
 	drop = {
@@ -50,7 +50,7 @@ minetest.register_node("df_primordial_items:jungle_mushroom_cap_2", {
 	tiles = {"dfcaverns_jungle_mushroom_top_01.png"},
 	paramtype2 = "facedir",
 	is_ground_content = false,
-	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1, handy=1,axey=1, tree=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5, compostability=30},
+	groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 1, flammable = 2, primordial_mushroom_cap = 1, handy=1,axey=1, building_block=1, material_wood=1, fire_encouragement=5, fire_flammability=5, compostability=30},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	on_place = minetest.rotate_node,
 	drop = {

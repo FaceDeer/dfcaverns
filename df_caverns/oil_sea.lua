@@ -5,7 +5,6 @@ end
 local c_oil = df_caverns.node_id.oil
 local c_gas = df_caverns.node_id.gas
 local c_gas_wisp = df_caverns.node_id.gas_wisp
-local c_lava = df_caverns.node_id.lava
 local c_obsidian = df_caverns.node_id.obsidian
 
 local log_location

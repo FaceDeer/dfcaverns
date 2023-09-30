@@ -12,7 +12,7 @@ local statue_box = {
 	},
 }
 
-local fourtyfivedegrees = math.pi/4
+--local fourtyfivedegrees = math.pi/4
 local sixtydegrees = math.pi/3
 
 local default_sounds

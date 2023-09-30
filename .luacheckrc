@@ -1,7 +1,6 @@
 read_globals = {
 	"minetest",
 	"ItemStack",
-	"VoxelArea",
 	"AreaStore",
 	table = {fields = {"copy", "indexof"}},
 	"vector",
@@ -11,6 +10,7 @@ read_globals = {
 }
 
 globals = {
+	"VoxelArea",
 	"awards",
 	"big_webs",
 	"bones_loot",
@@ -63,4 +63,4 @@ globals = {
 
 max_line_length = false
 unused_args = false
-unused = false
+unused = true

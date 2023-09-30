@@ -74,7 +74,6 @@ local get_ambience = function(player, name)
 	-- loop through sets in order and choose first that meets its conditions
 	for _, set in ipairs(registered_sets) do
 		if random() < set.frequency then
-			local check_passed
 			local sound_check = set.sound_check
 			local nodes = set.nodes
 			if sound_check or nodes then

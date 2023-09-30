@@ -278,13 +278,13 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	end
 end)
 
-local function tour(player, loc_list)
-	local pop = table.remove(loc_list)
-	if pop then
-		player:set_pos(pop)
-		minetest.after(10, tour, player, loc_list)
-	end
-end
+--local function tour(player, loc_list)
+--	local pop = table.remove(loc_list)
+--	if pop then
+--		player:set_pos(pop)
+--		minetest.after(10, tour, player, loc_list)
+--	end
+--end
 
 minetest.register_chatcommand("cairn_locations", {
         params = "<range>",  -- Short parameter description

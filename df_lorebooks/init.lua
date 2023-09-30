@@ -1,7 +1,5 @@
 local modpath = minetest.get_modpath(minetest.get_current_modname())
 
-local S = minetest.get_translator(minetest.get_current_modname())
-
 local torch_node = {name=df_dependencies.node_name_torch, param2=1}
 collectible_lore.get_light_node = function()
 	local selection = math.random()

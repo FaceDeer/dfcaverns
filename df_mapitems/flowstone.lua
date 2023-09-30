@@ -70,7 +70,7 @@ df_mapitems.icicle_ids = subterrane.register_stalagmite_nodes("df_mapitems:icicl
 	tiles = {
 		df_dependencies.texture_ice,
 	},
-	groups = {cracky = 3, puts_out_fire = 1, cools_lava = 1, slippery = 3, pickaxey=1, building_block=1, handy=1, slippery=3, building_block=1, ice=1},
+	groups = {cracky = 3, puts_out_fire = 1, cools_lava = 1, slippery = 3, pickaxey=1, building_block=1, handy=1, ice=1},
 	sounds = df_dependencies.sound_glass(),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,

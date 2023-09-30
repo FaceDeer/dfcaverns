@@ -168,7 +168,7 @@ minetest.register_node("df_farming:cave_straw", {
 	description = S("Cave Straw"),
 	tiles = {"dfcaverns_cave_straw.png"},
 	is_ground_content = false,
-	groups = {snappy=3, flammable=4, straw=1, handy=1,hoey=1, compostability=85, flammable=2, fire_encouragement=60, fire_flammability=20, building_block=1, fall_damage_add_percent=-80, enderman_takable=1},
+	groups = {snappy=3, flammable=4, straw=1, handy=1,hoey=1, compostability=85, fire_encouragement=60, fire_flammability=20, building_block=1, fall_damage_add_percent=-80, enderman_takable=1},
 	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.5,
 	_mcl_hardness = 0.5,

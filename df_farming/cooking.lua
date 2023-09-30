@@ -76,7 +76,7 @@ for index1 = 1, table.getn(recipes)-1 do
 		assert(not identical, "recipes " .. recipes[index1].name .. " and " .. recipes[index2].name .. " have identical ingredients!")
 	end
 end
-local ingredient_count = {}
+--local ingredient_count = {}
 --for _, recipe_entry in pairs(recipes) do
 --	for _, item in pairs(recipe_entry.recipe) do
 --		ingredient_count[item] = (ingredient_count[item] or 0) + 1

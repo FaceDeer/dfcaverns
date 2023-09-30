@@ -8,7 +8,6 @@ local c_ice = df_caverns.node_id.ice
 local c_hoar_moss = df_caverns.node_id.hoar_moss
 local c_gravel = df_caverns.node_id.gravel
 local c_oil = df_caverns.node_id.oil
-local c_cobble_fungus_fine = df_caverns.node_id.cobble_fungus_fine
 local c_cobble_fungus = df_caverns.node_id.cobble_fungus
 local c_cobble = df_caverns.node_id.cobble
 local c_wet_flowstone = df_caverns.node_id.wet_flowstone
@@ -219,7 +218,6 @@ local decorate_level_3 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	vm:get_param2_data(data_param2)
 	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	local nvals_cave = node_arrays.nvals_cave
-	local cave_area = node_arrays.cave_area
 	local cavern_def = node_arrays.cavern_def
 
 	-- Partly fill flooded caverns and warrens

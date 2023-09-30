@@ -397,7 +397,6 @@ df_trees.spawn_torchspine_vm = function(vi, area, data, data_param2, height, lit
 
 	local pos = area:position(vi)
 	pos.y = pos.y+height-1
-	local node = minetest.get_node(pos)
 	minetest.get_node_timer(pos):start(math.random()*3000)
 end
 

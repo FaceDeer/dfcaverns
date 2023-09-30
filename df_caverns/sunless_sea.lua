@@ -197,9 +197,6 @@ local decorate_sunless_sea = function(minp, maxp, seed, vm, node_arrays, area, d
 	vm:get_param2_data(data_param2)
 	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 
-	local minp_below = minp.y <= sea_level
-	local maxp_above = maxp.y > sea_level
-
 	local nvals_cave = mapgen_helper.perlin2d("df_caverns:sunless_sea", minp, maxp, perlin_cave_rivers) --cave noise for structure
 	local nvals_wave = mapgen_helper.perlin2d("df_caverns:sunless_sea_wave", minp, maxp, perlin_wave_rivers) --cave noise for structure
 

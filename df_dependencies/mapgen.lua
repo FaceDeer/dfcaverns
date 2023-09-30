@@ -1,5 +1,3 @@
-local S = minetest.get_translator(minetest.get_current_modname())
-
 local function deep_copy(table_in)
 	local table_out = {}
 	for index, value in pairs(table_in) do

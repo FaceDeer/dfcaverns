@@ -37,18 +37,18 @@ dofile(modpath.."/nodes.lua")
 dofile(modpath.."/misc.lua")
 dofile(modpath.."/mapgen.lua")
 
-local list_mods_required = function()
-	local mods_required = ""
-	local mods_sorted = {}
-	for mod, _ in pairs(df_dependencies.mods_required) do
-		table.insert(mods_sorted, mod)
-	end
-	table.sort(mods_sorted)
-	for _, mod in ipairs(mods_sorted) do
-		mods_required = mods_required .. ", " .. mod
-	end
-	minetest.debug(mods_required)
-end
+--local list_mods_required = function()
+--	local mods_required = ""
+--	local mods_sorted = {}
+--	for mod, _ in pairs(df_dependencies.mods_required) do
+--		table.insert(mods_sorted, mod)
+--	end
+--	table.sort(mods_sorted)
+--	for _, mod in ipairs(mods_sorted) do
+--		mods_required = mods_required .. ", " .. mod
+--	end
+--	minetest.debug(mods_required)
+--end
 --list_mods_required()
 
 -- This mod is meant to only exist at initialization time. Other mods should make copies of anything it points to for their own use.

@@ -59,8 +59,6 @@ minetest.register_abm({
 			minetest.swap_node(next_pos, node)
 			minetest.swap_node(pos, next_node)
 		end
-		pos = next_pos
-
 	end,
 })
 

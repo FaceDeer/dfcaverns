@@ -115,7 +115,7 @@ minetest.register_node("df_trees:nether_cap_sapling", {
 		fixed = {-4 / 16, -0.5, -4 / 16, 4 / 16, 7 / 16, 4 / 16}
 	},
 	groups = {snappy = 2, dig_immediate = 3,
-		attached_node = 1, sapling = 1, light_sensitive_fungus = 11, dig_immediate=3,dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1},
+		attached_node = 1, sapling = 1, light_sensitive_fungus = 11, dig_by_piston=1,destroy_by_lava_flow=1,deco_block=1},
 	sounds = df_dependencies.sound_leaves(),
 	_mcl_blast_resistance = 0.1,
 	_mcl_hardness = 0.1,

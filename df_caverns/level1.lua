@@ -105,7 +105,6 @@ local decorate_level_1 = function(minp, maxp, seed, vm, node_arrays, area, data)
 	vm:get_param2_data(data_param2)
 	local nvals_cracks = mapgen_helper.perlin2d("df_cavern:cracks", minp, maxp, df_caverns.np_cracks)
 	local nvals_cave = node_arrays.nvals_cave
-	local cave_area = node_arrays.cave_area
 
 	-- Partly fill flooded caverns and warrens
 	if minp.y <= subsea_level then

@@ -1,5 +1,3 @@
-local S = minetest.get_translator(minetest.get_current_modname())
-
 local required_nodes = {}
 local function select_required(def)
 	local newdef = {}

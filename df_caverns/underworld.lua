@@ -455,8 +455,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 	end
 
 	-- buildings
-	for x = emin.x + 5, emax.x - 5 do
-		for z = emin.z + 5, emax.z - 5 do
+	for x = minp.x + 5, maxp.x - 5 do
+		for z = minp.z + 5, maxp.z - 5 do
 
 			local skip = false
 			if	pit and

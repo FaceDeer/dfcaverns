@@ -102,7 +102,7 @@ local water_node = df_dependencies.node_name_water_source
 minetest.register_node("bubblesponge:stem", {
 	description = S("Bubblesponge Trunk"),
 	_doc_items_longdesc = S("The trunk of a massive sponge. Bubblesponges grow deep underwater in caverns and their fronds have uniquely helpful properties for divers."),
-	_doc_items_usagehelp = S("If you're underwater and you're running out of breath you can squeeze a lungful of air from a wielded Bubblesponge frond"),
+	_doc_items_usagehelp = S("If you're underwater and you're running out of breath you can squeeze a lungful of air from a wielded Bubblesponge frond."),
 	groups = {oddly_breakable_by_hand = 1, handy = 1},
 	sounds = df_trees.node_sound_tree_soft_fungus_defaults(),
 	tiles = {"bubblesponge_bubblesponge.png"},

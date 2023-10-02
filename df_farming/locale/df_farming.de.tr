@@ -24,15 +24,15 @@ Cave Wheat Flour Biscuit=Höhlenweizenmehlkeks
 Cave Wheat Flour Bun=Höhlenweizenmehlbrötchen
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Cave Wheat Flour Pancake=Höhlenweizenmehlpfannkuchen
-Cave Wheat Seed Loaf=
-Cave Wheat Seed Puffs=
+Cave Wheat Seed Loaf=Höhlenweizensamenbrot
+Cave Wheat Seed Puffs=Höhlenweizensamen-Puffs
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Cave Wheat Seed Risotto=Höhlenweizensamen-Risotto
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Dimple Cup Spore Flatbread=Dimple Cup Spore Fladenbrot
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Dimple Cup Spore Roll=Dimple Cup Sporenrolle
-Dimple Cup Spore Scone=
+Dimple Cup Spore Scone=Dimple Cup Sporen Scone
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Dwarven Syrup Delight=Zwergensirup-Freude
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
@@ -57,24 +57,24 @@ Plump Helmet Spawn Soup=Pralle Helmlaichsuppe
 Plump Helmet Sprout Stew=Praller Helmsprosseneintopf
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Plump Helmet Stalk Sausage=Pralle Helmstielwurst
-Quarry Bush Leaf Croissant=
+Quarry Bush Leaf Croissant=Quarry Bush Blätter Croissant
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Quarry Bush Leaf Spicy Bun=Steinbruch Bush Leaf Spicy Bun
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Rock Nut Bread=Steinnussbrot
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Rock Nut Cake=Steinnusskuchen
-Rock Nut Cookie=
+Rock Nut Cookie=Felsnusskeks
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Stuffed Quarry Bush Leaf=Gefülltes Steinbruch-Buschblatt
-Sweet Pod Spore Brule=
+Sweet Pod Spore Brule=Süße Schote Sporen Brule
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-Sweet Pod Spore Dumplings=Sweet Pod Sporenknödel
-Sweet Pod Spore Single Crust Pie=
-Sweet Pod Sugar Cookie=
+Sweet Pod Spore Dumplings=Süße Schote Sporenknödel
+Sweet Pod Spore Single Crust Pie=Süße Schote Sporen Einzelkrusten-Pastete
+Sweet Pod Sugar Cookie=Süße Schote Zuckerkeks
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-Sweet Pod Sugar Gingerbread=Sweet Pod Sugar Lebkuchen
-Sweet Pod Sugar Roll=
+Sweet Pod Sugar Gingerbread=Süße Schote Sugar Lebkuchen
+Sweet Pod Sugar Roll=Süße Schote Zuckerröllchen
 
 ### dimple_cup.lua ###
 
@@ -135,7 +135,7 @@ Pig tails are a fibrous fungal growth that's most notable for its twisting stalk
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Plump helmets are a thick, fleshy mushroom that's edible picked straight from the ground. They form a staple diet for both lost cave explorers and the fauna that preys on them.=Pralle Helme sind dicke, fleischige Pilze, die essbar direkt vom Boden gepflückt werden. Sie bilden eine Grundnahrungsmittel sowohl für verlorene Höhlenforscher als auch für die Fauna, die ihnen nachjagt.
 
-Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are edible with processing. They only grow in sandy soil.=
+Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are edible with processing. They only grow in sandy soil.=Quarry-Buschblätter und Knötchen (genannt 'Felsnüsse') können geerntet und nach der Verarbeitung gegessen werden. Sie wachsen nur in sandigem Boden.
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Quarry bush leaves can be used as an ingredient in foodstuffs.=Steinbruch Buschblätter können als Zutat in Lebensmitteln verwendet werden.
@@ -213,7 +213,7 @@ Plump Helmet Spawn=Praller Helmlaich
 Quarry Bush=Steinbruch Bush
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Quarry Bush Leaves=Steinbruch Bush Blätter
-Rock Nuts=
+Rock Nuts=Felsnüsse
 
 ### sweet_pod.lua ###
 
@@ -231,11 +231,3 @@ Sweet Pod Spores=Süße Schotensporen
 Sweet Pod Sugar=Süßer Schotenzucker
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Sweet Pods=Süße Schoten
-
-
-##### not used anymore #####
-
-
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are edible with processing.=Steinbruchbuschblätter und Knötchen (sogenannte Steinnüsse) können geerntet werden und sind bei der Verarbeitung essbar.
-

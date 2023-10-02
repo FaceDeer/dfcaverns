@@ -52,7 +52,7 @@ A highly aggressive form of lichen that eats into solid rock, turning its upper 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 A nasty kelp-like plant that grows in patches on the floor of the Sunless Sea. Its reflective patches draw in the unwary and then its prickly barbs catch and hold small creatures.=Eine böse Seetang-ähnliche Pflanze, die in Flecken auf dem Boden des sonnenlosen Meeres wächst. Seine reflektierenden Flecken ziehen Unachtsame an und dann fangen und halten seine stacheligen Widerhaken kleine Kreaturen.
 
-A rare form of coral found only deep underground in the Sunless Sea, cave coral grows where dripstone dips into the water to deliver the minerals needed for its skeletal structure.=
+A rare form of coral found only deep underground in the Sunless Sea, cave coral grows where dripstone dips into the water to deliver the minerals needed for its skeletal structure.=Eine seltene Form von Koralle, die nur tief unter der Erde in der Sonnenlosen See vorkommt. Höhlenkorallen wachsen dort, wo Tropfstein ins Wasser eintaucht, um die für ihre Skelettstruktur benötigten Mineralien zu liefern.
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Although a strong mineral matrix remains, spongestone has enough organic content that it can be used as soil for farming.=Obwohl eine starke Mineralmatrix verbleibt, hat Schwammstein einen ausreichenden organischen Gehalt, um als Boden für die Landwirtschaft verwendet zu werden.
@@ -201,7 +201,7 @@ Dirt with Stillworm=Dreck mit Stillworm
 Dirt with Stillworm and Footprint=Schmutz mit Stillworm und Footprint
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Ice with Hoar Moss=Eis mit Hoar Moss
-Rock Rot=
+Rock Rot=Steinfäule
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Sand Scum=Sandschaum
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
@@ -213,16 +213,8 @@ Spongestone with Footprint=Schwammstein mit Fußabdruck
 
 ### snareweed.lua ###
 
-Snareweed=
+Snareweed=Fallstrickkraut
 
 ### veinstone.lua ###
 
-Veinstone=
-
-
-##### not used anymore #####
-
-
-#WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
-A rare form of coral found only deep underground in the Sunless Sea, cave coral grows hanging from the ceilings of flooded caverns.=Eine seltene Form von Korallen, die nur tief unter der Erde im sonnenlosen Meer zu finden ist. Höhlenkorallen wachsen an den Decken überfluteter Höhlen.
-
+Veinstone=Adernstein

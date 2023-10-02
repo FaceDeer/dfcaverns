@@ -1,0 +1,35 @@
+# textdomain: collectible_lore
+
+
+### init.lua ###
+
+error parsing command=Fehler beim Parsen des Befehls
+
+### init.lua ###
+### items.lua ###
+
+Administrative control of collectibles=Verwaltung von Sammelobjekten
+
+### items.lua ###
+
+<not found yet>=<noch nicht gefunden>
+
+A cairn of rocks constructed by a previous explorer to protect documents and supplies.=Ein Steinhaufen, den ein früherer Forscher errichtet hat, um Dokumente und Vorräte zu schützen.
+
+A satchel containing various documents you've recovered in your travels.=Eine Tasche, die verschiedene Dokumente enthält, die Sie auf Ihren Reisen gefunden haben.
+
+Cairn=Steinhaufen
+Collected: @1/@2=Gesammelt: @1/@2
+Collectibles Satchel=Sammelobjekte-Tasche
+Exit=Beenden
+
+The documents and lore you've unlocked are not tied to a specific satchel, any satchel will let you view your personal collection.=Die Dokumente und Geschichten, die Sie freigeschaltet haben, sind nicht an eine bestimmte Tasche gebunden. Jede Tasche ermöglicht es Ihnen, Ihre persönliche Sammlung anzusehen.
+
+The first time you discover a cairn like this, it may reveal to you some new record or piece of lore. Afterward it can be used as a public storage location.=Wenn Sie zum ersten Mal einen solchen Steinhaufen entdecken, kann er Ihnen möglicherweise einen neuen Eintrag oder eine Geschichte offenbaren. Danach kann er als öffentlicher Lagerort verwendet werden.
+
+View=Ansehen
+You've already collected the lore hidden in this cairn.= Sie haben bereits die in diesem Steinhaufen versteckte Geschichte gesammelt.
+You've found a collectible item of lore titled:@n@1=Sie haben ein Sammelobjekt der Geschichte mit dem Titel: @n@1 gefunden
+
+You've found all of the collectible items contained in cairns like this one.=Sie haben alle Sammelobjekte in Steinhaufen wie diesem gefunden.
+

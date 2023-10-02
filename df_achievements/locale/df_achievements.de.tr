@@ -1,0 +1,185 @@
+# textdomain: df_achievements
+
+
+### dig.lua ###
+
+"Collect" Lightseam Stone=Versuche ein Stück Lichtspaltstein
+
+Attempt to collect a piece of Lightseam, a strange glowing mineral found deep underground.=Versuch, ein Stück Lichtnaht, ein seltsames leuchtendes Mineral, das tief unter der Erde gefunden wird, zu sammeln.
+
+Collect Bubblesponge Frond=Sammle Blasenschwammfarn
+Collect Castle Coral=Sammle Schlosskoralle
+Collect Cave Coral=Sammle Höhlentang
+Collect Cave Pearls=Sammle Höhlenperlen
+Collect Flawless Mese Crystal Block=Sammle ein makelloses Mesekristallblock
+Collect Giant Red Crystal=Sammle Riesenroten Kristall
+Collect Giant Webbing=Sammle Riesennetz
+Collect Glow Worms=Sammle Glühwürmer
+Collect Glowing Amethyst=Sammle Leuchtenden Amethyst
+Collect Luminous Salt Crystal=Sammlung von Leuchtendem Salzkristall
+
+Collect a block of glowing amethyst crystal from the Underworld.=Sammle einen Block glühenden Amethystkristalls aus der Unterwelt.
+
+Collect a flawless Mese crystal block from the Magma Sea.=Sammle einen makellosen Mesekristallblock aus dem Magma-Meer.
+
+Collect a luminous salt crystal from the dry caverns where Bloodthorns live.=Sammle einen leuchtenden Salzkristall aus den trockenen Höhlen, wo Blutdornen leben.
+
+Collect a piece of Castle Coral from the Sunless Sea.=Sammle ein Stück Schlosskoralle aus der Lichtlosen See.
+Collect a piece of Cave Coral from the Sunless Sea.=Sammle ein Stück Höhlentang aus der Lichtlosen See.
+Collect a piece of bubblesponge.=Sammle ein Stück Blasenschwamm.
+Collect a piece of giant webbing found in a cave.=Sammle ein Stück Riesennetz aus einer Höhle.
+
+Collect one of the giant red crystals found in large barren caverns.=Sammle einen der Riesenroten Kristalle, die in großen kargen Höhlen zu finden sind.
+
+Collect some cave pearls from the wall of a cave.=Sammle einige Höhlenperlen von der Wand einer Höhle.
+Collect various different exotic items from various caverns.=Sammle verschiedene exotische Gegenstände aus verschiedenen Höhlen.
+Deep Prospector=Tieftauch-Spezialist
+Destroy a Gas Seep=Zerstöre eine Gasaustrittsstelle
+
+Plug a crack that mine gas is seeping out of to make the caves just a little bit safer.=Verschließe einen Riss, aus dem Gas austritt, um die Höhlen etwas sicherer zu machen.
+
+
+### dig.lua ###
+### food.lua ###
+### misc.lua ###
+
+=
+
+### farming.lua ###
+
+Fungal Arborist=Fungaler Baumpfleger
+Plant @1=Pflanze @1
+Plant Black Cap=Schwarze Kappe pflanzen
+Plant Bloodthorn=Blutdorn pflanzen
+Plant Cave Wheat=Höhlenweizen pflanzen
+Plant Dimple Cup=Höhlenmuldenbecher pflanzen
+Plant Fungiwood=Pilzholz pflanzen
+Plant Goblin Cap=Koboldkappe pflanzen
+Plant Pig Tail=Schweineschwanz pflanzen
+Plant Plump Helmet=Kopffüssler pflanzen
+Plant Primordial Fern=Urzeitfarn pflanzen
+Plant Primordial Jungle Mushroom=Urzeit-Dschungelpilz pflanzen
+Plant Primordial Jungle Tree=Urzeit-Dschungelbaum pflanzen
+Plant Primordial Mushroom=Urzeitpilz pflanzen
+Plant Primordial Mycelium=Urzeitmyzel pflanzen
+Plant Quarry Bush=Steinbruchbusch pflanzen
+Plant Spindlestem=Spindelstamm pflanzen
+Plant Spore Tree=Sporenbaum pflanzen
+Plant Sweet Pod=Süsskapsel pflanzen
+Plant Torchspine=Fackelstachel pflanzen
+Plant Tower Cap=Turmkappe pflanzen
+Plant Tunnel Tube=Tunnelröhre pflanzen
+Plant a @1 in a place where it can grow.=Pflanze @1 an einem Ort, an dem es wachsen kann.
+
+Plant one of every kind of 'tree' found in the caverns above the Sunless Sea.=Pflanze von jeder Art 'Baum', die in den Höhlen über der Sonnenlosen See zu finden ist.
+
+Plant one of every kind of 'tree' found in the caverns beneath the surface.=Pflanze von jeder Art 'Baum', die in den Höhlen unter der Oberfläche zu finden ist.
+
+Plant one of every kind of 'tree' from the Primordial caverns.=Pflanze von jeder Art 'Baum' aus den Urzeit-Höhlen.
+
+Plant one of every kind of small farmable plant found in the caverns beneath the surface.=Pflanze von jeder Art kleiner anbaubarer Pflanzen, die in den Höhlen unter der Oberfläche zu finden sind.
+
+Primordial Arborist=Urzeit-Baumpfleger
+Underground Arborist=Unterirdischer Baumpfleger
+Underground Farmer=Unterirdischer Bauer
+
+### food.lua ###
+
+Dwarven Gourmand=Dwarven Feinschmecker
+Eat @1=Essen Sie @1
+Eat Diced Mushroom=Essen Sie gewürfelte Pilze
+Eat a Glowtato=Essen Sie eine Leuchtkartoffel
+Eat a Primordial Fruit=Essen Sie eine Urtümliche Frucht
+
+Eat one of each of the various meals that can be cooked or crafted from underground ingredients.=Essen Sie von jeder der verschiedenen Mahlzeiten, die aus unterirdischen Zutaten gekocht oder hergestellt werden können.
+
+Eat one of the strange fruits found only deep underground in the Primordial caverns.=Essen Sie eine der seltsamen Früchte, die nur tief unter der Erde in den Urzeitgrotten gefunden werden.
+
+It's a basic staple of the underground, but at least it's not Plump Helmet.=Es ist ein grundlegendes Grundnahrungsmittel der Unterwelt, aber zumindest ist es keine Plump-Helmsuppe.
+
+One of the many delights that can be crafted only from fungal growths found deep underground.=Eine der vielen Köstlichkeiten, die nur aus Pilzwachstum tief unter der Erde hergestellt werden können.
+
+Slightly less prestigious than the Primordial Fruit, but still rare and exotic compared to surface world fare.=Etwas weniger angesehen als die Urtümliche Frucht, aber immer noch selten und exotisch im Vergleich zur Nahrung der Oberflächenwelt.
+
+
+### misc.lua ###
+
+Activating a puzzle seal has produced a breach in the slade foundations of the world.=Das Aktivieren eines Rätselsiegels hat eine Öffnung in den Slade-Grundfesten der Welt erzeugt.
+
+Capture an Ice Sprite=Einen Eisschatten einfangen
+Collect All Lore=Sammle alle Überlieferungen
+Decipher the code of the ancients. Do you dare turn the key?=Entschlüssele den Code der Alten. Traust du dich, den Schlüssel umzudrehen?
+Detonate Mine Gas=Minengas detonieren
+Get Attacked by an Underworld Guardian=Von einem Unterwelt-Wächter angegriffen werden
+Loot 100 Ancient Warrior Bones=Beute 100 Knochen der antiken Krieger
+Loot Ancient Warrior Bones=Beute Knochen der antiken Krieger
+Punch Veinstone=Schlag auf Adernstein
+Punch a vein to hear the heartbeat of the stone.=Schlage eine Ader, um den Herzschlag des Steins zu hören.
+Repair 100 Ancient Lanterns=Repariere 100 antike Laternen
+Repair an Ancient Lantern=Repariere eine antike Laterne
+Solve a Puzzle Seal=Löse ein Rätselsiegel
+Trigger a Slade Breacher=Einen Slade-Breacher auslösen
+
+You may not be able to build new ones, but at least you can get the old ones shining brightly again.=Du kannst vielleicht keine neuen bauen, aber zumindest kannst du die alten wieder hell leuchten lassen.
+
+You've captured an ice sprite and placed it in a bottle. It dances and sparkles and sheds light through the frosted glass while making a faint tinkling sound. Pretty.=Du hast einen Eisschatten eingefangen und in eine Flasche gesteckt. Er tanzt und funkelt und wirft Licht durch das gefrostete Glas, während er leise klingelt. Hübsch.
+
+You've discovered something important about those mysterious slade statues in the Underworld.=Du hast etwas Wichtiges über diese geheimnisvollen Slade-Statuen in der Unterwelt entdeckt.
+
+You've searched the world top to bottom for cairns containing lore and your collection is now complete.=Du hast die Welt von oben bis unten nach Steinhaufen durchsucht, die Überlieferungen enthalten, und deine Sammlung ist nun vollständig.
+
+
+### travel.lua ###
+
+Discover @1s=Entdecke @1s
+Discover All Fungal Cavern Types=Entdecke alle Arten von Pilzhöhlen
+Discover All Overworld Cavern Types=Entdecke alle Arten von Oberweltshöhlen
+Discover All Underground Cavern Types=Entdecke alle Arten von Unterweltshöhlen
+Discover Black Caps=Entdecke Schwarzkappen
+Discover Bloodthorns=Entdecke Blutdornen
+Discover Fungiwood=Entdecke Pilzholz
+Discover Goblin Caps=Entdecke Koboldkappen
+Discover Spore Trees=Entdecke Sporenbaum
+Discover Tower Caps=Entdecke Turmkappen
+Discover Tunnel Tubes=Entdecke Tunnelröhren
+Discover a Deep Chasm=Entdecke eine tiefe Schlucht
+Discover a Deep Sinkhole=Entdecke ein tiefes Sinkloch
+Discover a Glowing Pit=Entdecke eine leuchtende Grube
+Discover a cavern containing oil deep underground.=Entdecke eine Höhle, die tief unter der Erde Öl enthält.
+Discover a cavern where @1s grow in the wild.=Entdecke eine Höhle, in der @1s wild wachsen.
+Discover a cavern where Black Caps grow in the wild.=Entdecke eine Höhle, in der Schwarzkappen wild wachsen.
+Discover a cavern where Bloodthorns grow in the wild.=Entdecke eine Höhle, in der Blutdornen wild wachsen.
+Discover a cavern where Fungiwoods grow in the wild.=Entdecke eine Höhle, in der Pilzhölzer wild wachsen.
+Discover a cavern where Goblin Caps grow in the wild.=Entdecke eine Höhle, in der Koboldkappen wild wachsen.
+Discover a cavern where Spore Trees grow in the wild.=Entdecke eine Höhle, in der Sporenbaume wild wachsen.
+Discover a cavern where Tower Caps grow in the wild.=Entdecke eine Höhle, in der Turmkappen wild wachsen.
+Discover a cavern where Tunnel Tubes grow in the wild.=Entdecke eine Höhle, in der Tunnelröhren wild wachsen.
+Discover a deep natural sinkhole.=Entdecke ein tiefes natürliches Sinkloch.
+Discover a gigantic underground natural chasm.=Entdecke eine riesige unterirdische natürliche Schlucht.
+
+Discover a glowing pit in the slade foundations of the world.=Entdecke eine leuchtende Grube in den Schlackenfundamenten der Welt.
+
+Discover all Primordial Cavern Types=Entdecke alle Arten von Urzeit-Höhlen
+Discover all major kinds of giant cavern environment.=Entdecke alle wichtigen Arten von riesigen Höhlenumgebungen.
+
+Discover all of the major types of cavern below the foundations of the world.=Entdecke alle wichtigen Arten von Höhlen unter den Grundfesten der Welt.
+
+Discover all of the major types of cavern environments between the Sunless Sea and the foundations of the world.=Entdecke alle wichtigen Arten von Höhlenumgebungen zwischen der Sonnenlosen See und den Grundfesten der Welt.
+
+Discover examples of all of the fungal cavern biomes.=Entdecke Beispiele für alle pilzreichen Höhlenbiome.
+Discover the Magma Sea=Entdecke das Magmameer
+Discover the Oil Sea=Entdecke das Ölmeer
+Discover the Primordial Fungus=Entdecke den Urzeitpilz
+Discover the Primordial Jungle=Entdecke den Urzeitdschungel
+Discover the Sunless Sea=Entdecke die Sonnenlose See
+Discover the Underworld=Entdecke die Unterwelt
+
+Discover the ancient caverns at the foundations of the world.=Entdecke die antiken Höhlen an den Grundfesten der Welt.
+
+Discover the fungus-ridden caverns below the foundations of the world.=Entdecke die von Pilzen befallenen Höhlen unter den Grundfesten der Welt.
+
+Discover the giant caverns to which all water from the surface ultimately drain.=Entdecke die riesigen Höhlen, in die letztendlich das gesamte Wasser von der Oberfläche abfließt.
+
+Discover the lost jungles below the foundations of the world.=Entdecke die verlorenen Dschungel unter den Grundfesten der Welt.
+
+Discover the sea of magma that volcanoes draw from.=Entdecke das Magmameer, aus dem die Vulkane schöpfen.

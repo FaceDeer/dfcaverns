@@ -31,5 +31,5 @@ View=
 You've already collected the lore hidden in this cairn.=
 You've found a collectible item of lore titled:@n@1=
 
-You've found all of the collectible items contained in cairns like this one=
+You've found all of the collectible items contained in cairns like this one.=
 

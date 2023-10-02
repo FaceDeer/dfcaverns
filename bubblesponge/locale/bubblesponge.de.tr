@@ -1,0 +1,17 @@
+# textdomain: bubblesponge
+
+
+### init.lua ###
+
+A bundle of fronds harvested from a bubblesponge.=Ein Bündel von Wedeln, geerntet von einem Blasenschwamm.
+A frond harvested from a bubblesponge.=Ein Wedel, geerntet von einem Blasenschwamm.
+Bubblesponge Bundle=Blasenschwamm-Bündel
+Bubblesponge Frond=Blasenschwamm-Wedel
+Bubblesponge Trunk=Blasenschwamm-Stamm
+
+If you're underwater and you're running out of breath you can squeeze a lungful of air from a wielded Bubblesponge frond.=Wenn du unter Wasser bist und dir die Luft ausgeht, kannst du einen Lungenzug Luft aus einem geführten Blasenschwamm-Wedel holen.
+
+If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this frond has @1 uses before it becomes empty.=Wenn du unter Wasser bist und dir die Luft ausgeht, führe diesen Gegenstand und verwende ihn, um 5 Blasen in deiner Atemleiste aufzufüllen. Wenn dieser Wedel voll aufgeladen ist, hat er @1 Verwendungen, bevor er leer wird.
+
+The trunk of a massive sponge. Bubblesponges grow deep underwater in caverns and their fronds have uniquely helpful properties for divers.=Der Stamm eines massiven Schwamms. Blasenschwämme wachsen tief unter Wasser in Höhlen, und ihre Wedel haben einzigartige hilfreiche Eigenschaften für Taucher.
+

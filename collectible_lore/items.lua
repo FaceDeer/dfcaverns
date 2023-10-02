@@ -73,7 +73,7 @@ local cairn_loot = function(pos, player)
 		list[player_name] = true
 		set_cairn_looted_by_list(pos, list)
 	else
-		minetest.chat_send_player(player_name, S("You've found all of the collectible items contained in cairns like this one"))
+		minetest.chat_send_player(player_name, S("You've found all of the collectible items contained in cairns like this one."))
 		minetest.show_formspec(player_name, "collectible_lore:cairn_inventory", get_cairn_formspec(pos))
 		return false
 	end

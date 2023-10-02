@@ -86,7 +86,7 @@ Pig tails are a fibrous fungal growth that's most notable for its twisting stalk
 
 Plump helmets are a thick, fleshy mushroom that's edible picked straight from the ground. They form a staple diet for both lost cave explorers and the fauna that preys on them.=
 
-Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are edible with processing.=
+Quarry bush leaves and nodules (called 'rock nuts') can be harvested and are edible with processing. They only grow in sandy soil.=
 
 Quarry bush leaves can be used as an ingredient in foodstuffs.=
 

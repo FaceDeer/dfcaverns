@@ -74,10 +74,10 @@ if minetest.get_modpath("df_primordial_items") then
 		},
 	})
 
--- too mundane compared to the other achievements
+-- eating diced mushroom too mundane compared to the other achievements
 --	awards.register_achievement("dfcaverns_diced_mushroom", {
---		title = S("Eat Diced Mushroom"),
---		description = S(""),
+--		title = ,
+--		description = ,
 --		icon =,
 --		trigger = {
 --			type = "eat",

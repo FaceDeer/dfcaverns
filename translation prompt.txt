@@ -1,0 +1,19 @@
+I used following prompt to getting ChatGPT to translate text for me. Note that ChatGPT can be unreliable sometimes in following all of these instructions, check the output to ensure the @1 substitutions are used correctly and it otherwise follows the correct syntax.
+
+-------------
+
+I've created a mod for Minetest that has a bunch of strings in it that need localization. They've been put into a text file that the game reads from, and I'm wondering if you can process the text file to add translations for me.
+
+Here are the detailed rules of how the file is structured:
+
+The lines that matter for you are all non-empty lines that do not start with "#". These are the translation lines. On the left side of the equals sign, the original text is written. On the right side of the equals sign, the translation has to be written. If there's nothing on the right side of the equals sign please fill that in with the translation of the text on the left of the equals sign. Note that the equals sign itself is not to be included in the translated text, it serves as a delimiter between the original English text and the translated text.
+
+Other lines that start with "#" are comments. Minetest will ignore them but they might contain some information for you that will help give context for translating the lines that follow them. Please preserve these lines unchanged in the output.
+
+In the texts (both original and translated texts), some characters will be replaced in the actual game:
+
+"@1", "@2", ... to "@9" are placeholders. The game will replace it with another text. You MUST include all placeholders in the translation, but the order can be different.
+
+To produce a newline, write "@n".
+
+If these formatting rules make sense, let me know that you're ready and I'll paste the contents of the text file to be translated here. When I paste the text please respond by giving me the text back with the original English text on the left of the = symbol and German translations added to the right of the = symbol.

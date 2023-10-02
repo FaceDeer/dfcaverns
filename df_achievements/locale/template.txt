@@ -14,7 +14,6 @@ Collect Cave Pearls=
 Collect Flawless Mese Crystal Block=
 Collect Giant Red Crystal=
 Collect Giant Webbing=
-Collect Glow Worms=
 Collect Glowing Amethyst=
 Collect Luminous Salt Crystal=
 
@@ -38,12 +37,6 @@ Destroy a Gas Seep=
 
 Plug a crack that mine gas is seeping out of to make the caves just a little bit safer.=
 
-
-### dig.lua ###
-### food.lua ###
-### misc.lua ###
-
-=
 
 ### farming.lua ###
 
@@ -87,7 +80,6 @@ Underground Farmer=
 
 Dwarven Gourmand=
 Eat @1=
-Eat Diced Mushroom=
 Eat a Glowtato=
 Eat a Primordial Fruit=
 
@@ -109,13 +101,9 @@ Activating a puzzle seal has produced a breach in the slade foundations of the w
 Capture an Ice Sprite=
 Collect All Lore=
 Decipher the code of the ancients. Do you dare turn the key?=
-Detonate Mine Gas=
 Get Attacked by an Underworld Guardian=
-Loot 100 Ancient Warrior Bones=
-Loot Ancient Warrior Bones=
 Punch Veinstone=
 Punch a vein to hear the heartbeat of the stone.=
-Repair 100 Ancient Lanterns=
 Repair an Ancient Lantern=
 Solve a Puzzle Seal=
 Trigger a Slade Breacher=

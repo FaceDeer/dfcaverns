@@ -14,7 +14,6 @@ Collect Cave Pearls=Sammle Höhlenperlen
 Collect Flawless Mese Crystal Block=Sammle ein makelloses Mesekristallblock
 Collect Giant Red Crystal=Sammle Riesenroten Kristall
 Collect Giant Webbing=Sammle Riesennetz
-Collect Glow Worms=Sammle Glühwürmer
 Collect Glowing Amethyst=Sammle Leuchtenden Amethyst
 Collect Luminous Salt Crystal=Sammlung von Leuchtendem Salzkristall
 
@@ -38,12 +37,6 @@ Destroy a Gas Seep=Zerstöre eine Gasaustrittsstelle
 
 Plug a crack that mine gas is seeping out of to make the caves just a little bit safer.=Verschließe einen Riss, aus dem Gas austritt, um die Höhlen etwas sicherer zu machen.
 
-
-### dig.lua ###
-### food.lua ###
-### misc.lua ###
-
-=
 
 ### farming.lua ###
 
@@ -87,7 +80,6 @@ Underground Farmer=Unterirdischer Bauer
 
 Dwarven Gourmand=Dwarven Feinschmecker
 Eat @1=Essen Sie @1
-Eat Diced Mushroom=Essen Sie gewürfelte Pilze
 Eat a Glowtato=Essen Sie eine Leuchtkartoffel
 Eat a Primordial Fruit=Essen Sie eine Urtümliche Frucht
 
@@ -109,13 +101,9 @@ Activating a puzzle seal has produced a breach in the slade foundations of the w
 Capture an Ice Sprite=Einen Eisschatten einfangen
 Collect All Lore=Sammle alle Überlieferungen
 Decipher the code of the ancients. Do you dare turn the key?=Entschlüssele den Code der Alten. Traust du dich, den Schlüssel umzudrehen?
-Detonate Mine Gas=Minengas detonieren
 Get Attacked by an Underworld Guardian=Von einem Unterwelt-Wächter angegriffen werden
-Loot 100 Ancient Warrior Bones=Beute 100 Knochen der antiken Krieger
-Loot Ancient Warrior Bones=Beute Knochen der antiken Krieger
 Punch Veinstone=Schlag auf Adernstein
 Punch a vein to hear the heartbeat of the stone.=Schlage eine Ader, um den Herzschlag des Steins zu hören.
-Repair 100 Ancient Lanterns=Repariere 100 antike Laternen
 Repair an Ancient Lantern=Repariere eine antike Laterne
 Solve a Puzzle Seal=Löse ein Rätselsiegel
 Trigger a Slade Breacher=Einen Slade-Breacher auslösen
@@ -183,3 +171,13 @@ Discover the giant caverns to which all water from the surface ultimately drain.
 Discover the lost jungles below the foundations of the world.=Entdecke die verlorenen Dschungel unter den Grundfesten der Welt.
 
 Discover the sea of magma that volcanoes draw from.=Entdecke das Magmameer, aus dem die Vulkane schöpfen.
+
+
+##### not used anymore #####
+
+Collect Glow Worms=Sammle Glühwürmer
+Eat Diced Mushroom=Essen Sie gewürfelte Pilze
+Detonate Mine Gas=Minengas detonieren
+Loot 100 Ancient Warrior Bones=Beute 100 Knochen der antiken Krieger
+Loot Ancient Warrior Bones=Beute Knochen der antiken Krieger
+Repair 100 Ancient Lanterns=Repariere 100 antike Laternen

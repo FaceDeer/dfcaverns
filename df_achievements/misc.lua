@@ -75,8 +75,8 @@ if minetest.get_modpath("df_underworld_items") then
 	})
 
 --	awards.register_achievement("dfcaverns_repaired_100_lanterns", {
---		title = S("Repair 100 Ancient Lanterns"),
---		description = S(""),
+--		title = ,
+--		description = ,
 --		icon =,
 --	})
 
@@ -102,19 +102,19 @@ end
 
 -- can't think of an easy way to detect these
 --awards.register_achievement("dfcaverns_torch_detonated_mine_gas", {
---	title = S("Detonate Mine Gas"),
---	description = S(""),
+--	title = ,
+--	description = ,
 --	icon =,
 --})
 
 --awards.register_achievement("dfcaverns_looted_underworld_bones", {
---	title = S("Loot Ancient Warrior Bones"),
---	description = S(""),
+--	title = ,
+--	description =,
 --	icon =,
 --})
 --
 --awards.register_achievement("dfcaverns_looted_100_underworld_bones", {
---	title = S("Loot 100 Ancient Warrior Bones"),
---	description = S(""),
+--	title = ,
+--	description = ,
 --	icon =,
 --})

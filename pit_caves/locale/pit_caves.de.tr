@@ -1,0 +1,11 @@
+# textdomain: pit_caves
+
+
+### init.lua ###
+
+No pits near @1=Keine Gruben in der Nähe von @1
+Pit at @1, bottom @2=Grube bei @1, unten @2
+You need the server privilege to use this command.=Du benötigst die Serverberechtigung, um diesen Befehl zu verwenden.
+
+find the pits near the player's map region, or in the map region containing pos if provided=Finde die Gruben in der Nähe der Kartenregion des Spielers oder in der Kartenregion, die pos enthält, falls angegeben.
+

@@ -49,8 +49,8 @@ end
 
 -- too common
 --awards.register_achievement("dfcaverns_glow_worms", {
---	title = S("Collect Glow Worms"),
---	description = S(""),
+--	title = ,
+--	description = ,
 --	icon =,
 --	trigger = {
 --		type = "dig",

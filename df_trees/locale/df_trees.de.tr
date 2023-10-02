@@ -5,10 +5,10 @@
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Black Cap=Schwarze Kappe
-Black Cap Gills=
+Black Cap Gills=Schwarze Kap Pilze
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Black Cap Planks=Black Cap Planken
-Black Cap Spawn=
+Black Cap Spawn=Schwarze Kap Setzlinge
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Black Cap Stem=Schwarzer Kappenstiel
 
@@ -16,17 +16,17 @@ Black Cap Stem=Schwarzer Kappenstiel
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Blood Thorn Planks=Blutdornbretter
-Blood Thorn Spike=
+Blood Thorn Spike=Blutdornen Dornen
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Blood Thorn Stem=Blutdornstamm
-Dead Blood Thorn Spike=
-Dead Blood Thorn Stem=
+Dead Blood Thorn Spike=Tote Blutdornen Dornen
+Dead Blood Thorn Stem=Toter Blutdornen Stiel
 
 ### doc.lua ###
 
-@1 have an unusual biochemistry that allows them to somehow subsist on ambient heat, in violation of all known laws of thermodynamics. They grow deep underground in frigid, icy caverns that should by all rights be volcanic.=
+@1 have an unusual biochemistry that allows them to somehow subsist on ambient heat, in violation of all known laws of thermodynamics. They grow deep underground in frigid, icy caverns that should by all rights be volcanic.=@1 haben eine ungewöhnliche Biochemie, die es ihnen auf unerklärliche Weise ermöglicht, von Umgebungswärme zu leben, was allen bekannten Gesetzen der Thermodynamik widerspricht. Sie wachsen tief unter der Erde in eisigen Höhlen, die eigentlich vulkanisch sein sollten.
 
-@1 wood, in addition to being a beautiful blue hue, retains the odd heat-draining ability of living icecaps and is able to quickly freeze nearby water solid.=
+@1 wood, in addition to being a beautiful blue hue, retains the odd heat-draining ability of living icecaps and is able to quickly freeze nearby water solid.=@1 Holz behält neben seiner wunderschönen blauen Farbe die seltsame Fähigkeit, Wärme abzuleiten, die lebende Eiskappen haben, und kann in der Nähe schnell Wasser zu Eis erstarren lassen.
 
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 A torchspine alternates between active and quiescent phases and emits dim light when active. They can be harvested for torches, and their embers sprout into new torchspines when placed on flammable surfaces.=Eine Fackel wechselt zwischen aktiver und ruhender Phase und gibt schwaches Licht ab, wenn sie aktiv ist. Sie können für Fackeln geerntet werden, und ihre Glut sprießt auf brennbaren Oberflächen zu neuen Fackelstacheln.
@@ -137,40 +137,40 @@ When harvested, the central stalk of a blood thorn can be cut into planks and us
 Fungiwood Planks=Fungiwood Planken
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Fungiwood Shelf=Fungiwood Regal
-Fungiwood Spawn=
-Fungiwood Stem=
+Fungiwood Spawn=Fungiwood Setzlinge
+Fungiwood Stem=Fungiwood Stiel
 
 ### goblin_cap.lua ###
 
-Goblin Cap=
-Goblin Cap Gills=
+Goblin Cap=Goblin Kap
+Goblin Cap Gills=Goblin Kap Pilze
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Goblin Cap Planks=Goblin Cap Planken
-Goblin Cap Spawn=
-Goblin Cap Stem=
+Goblin Cap Spawn=Goblin Kap Setzlinge
+Goblin Cap Stem=Goblin Kap Stiel
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Goblin Cap Stem Planks=Goblin Cap Stem Planken
 
 ### nether_cap.lua ###
 
-@1 Gills=
-@1 Planks=
-@1 Spawn=
-@1 Stem=
+@1 Gills=@1 Pilze
+@1 Planks=@1 Planken
+@1 Spawn=@1 Setzlinge
+@1 Stem=@1 Stiel
 
 ### spindlestem.lua ###
 
-@1 Spindlestem Cap=
+@1 Spindlestem Cap=@1 Spindelstamm Kappe
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 @1 Spindlestem Extract=@1 Spindlestem-Extrakt
-Cyan=
-Golden=
+Cyan=Cyan
+Golden=Gold
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Green=Grün
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Red=Rot
-Spindlestem=
-Spindlestem Spawn=
+Spindlestem=Spindelstamm
+Spindlestem Spawn=Spindelstamm Setzlinge
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 White=Weiß
 
@@ -206,7 +206,7 @@ Tower Cap=Turmkappe
 Tower Cap Gills=Tower Cap Kiemen
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Tower Cap Planks=Turmkappenbretter
-Tower Cap Spawn=
+Tower Cap Spawn=Turm Kap Setzlinge
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Tower Cap Stem=Turmkappenstiel
 
@@ -218,7 +218,7 @@ Tunnel Tube=Tunnelrohr
 Tunnel Tube Fruiting Body=Tunnelrohr-Fruchtkörper
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 Tunnel Tube Plies=Tunnelrohrlagen
-Tunnel Tube Spawn=
+Tunnel Tube Spawn=Tunnelrohr Setzlinge
 
 
 ##### not used anymore #####

@@ -11,17 +11,17 @@ Hidden Firefly=Verborgenes Glühwürmchen
 
 ### helper_functions.lua ###
 
-@1 Fence=
-@1 Fence Gate=
-@1 Fence Rail=
-@1 Mese Post Light=
+@1 Fence=@1 Zaun
+@1 Fence Gate=@1 Zauntor
+@1 Fence Rail=@1 Zaunschienen
+@1 Mese Post Light=@1 Mese Pfostenlicht
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 @1 Slab=@1 Platte
 #WARNING: AUTOTRANSLATED BY GOOGLE TRANSLATE
 @1 Stair=@1 Treppe
-Double @1 Slab=
+Double @1 Slab=Doppelte @1 Platte
 
 ### misc.lua ###
 
-Icecap=
-Nethercap=
+Icecap=Eiskappe
+Nethercap=Netherkappe

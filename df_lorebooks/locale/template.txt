@@ -145,7 +145,7 @@ Tunnel Tube Resources=
 
 ### geology_the_great_caverns.lua ###
 
-A Heirarchy of Caverns=
+A Hirearchy of Caverns=
 Cave Pearls=
 
 During my explorations of the underground world, I have come across a truly fascinating form of mineral deposit known as cave pearls. These delicate, glowing formations can be found studding the walls of tunnels in various locations and are characterized by their calcium-rich composition. The source of their faint luminescence is still a mystery to me, but it is possible that some form of phosphorescent microorganisms may be involved in their creation.@n@nAside from their aesthetic appeal, these cave pearls also serve a practical purpose. Their smooth, round shape and solid composition make them excellent handholds when climbing treacherous walls. This has proven to be a lifesaving feature on more than one occasion, as the underground world can often be a treacherous and inhospitable place.@n@nHowever, despite their practicality, it is the origin of these cave pearls that has captured my imagination the most. Whether they are formed purely through geological processes or with the help of some kind of living action, like the more well-known pearls of the surface world, remains a mystery. I plan to continue my research into this fascinating subject and hope to uncover more about these intriguing formations.@n@nSigned,@nDr. Theodore Banks=

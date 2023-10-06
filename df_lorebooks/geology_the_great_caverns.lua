@@ -37,7 +37,7 @@ Dr. Theodore Banks]]),
 
 collectible_lore.register_lorebook({
 	id = "banks cavern types",
-	title = S("A Heirarchy of Caverns"),
+	title = S("A Hirearchy of Caverns"),
 	text = S([[Today, I had the opportunity to delve deeper into the caverns beneath the surface of the world. As I explored, I was struck by the sheer diversity of the caves and tunnels that have been carved out by eons of erosion. There is truly a sort of hierarchy in the form taken by these underground features.
 
 Starting with the smallest, we have the narrow, twisty tunnels that pervade the bedrock. These tunnels can lead for long distances and often provide the only access to more spacious galleries. They are the most ubiquitous type of cave in this subterranean realm.

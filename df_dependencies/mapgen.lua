@@ -213,8 +213,33 @@ if minetest.get_modpath("mcl_init") then -- Mineclone 2
 
 	mcl_vars.mg_overworld_min = lowest_elevation
 	mcl_vars.mg_bedrock_overworld_min = mcl_vars.mg_overworld_min
+	mcl_vars.mg_bedrock_overworld_max = mcl_vars.mg_overworld_min + 4
 	mcl_vars.mg_lava_overworld_max = mcl_vars.mg_overworld_min + 10
 	mcl_vars.mg_end_max = mcl_vars.mg_overworld_min - 2000
+	mcl_vars.mg_realm_barrier_overworld_end_max = mcl_vars.mg_end_max
+	mcl_vars.mg_realm_barrier_overworld_end_min = mcl_vars.mg_end_max - 11
+
+	-- try to detect any variables that should have been modified but weren't
+	local bad_entries = {}
+	for k, v in pairs(mcl_vars) do
+		-- if a value is in this range, it's probably a new value added by MineClone2 that we should be adjusting, add it to the table
+		if type(v) == "number" and v <= old_overworld_min + 10 and v >= mcl_vars.mg_overworld_min + 100 then
+			bad_entries[k] = v
+		end
+	end
+
+	-- mark variables as ignored that we intentionally don't change, like so:
+	-- bad_entries.mg_value_that_shouldnt_be_adjusted = nil
+
+	for k, v in pairs(bad_entries) do
+		local new_value = v + mcl_vars.mg_overworld_min - old_overworld_min
+		minetest.log("error", "dfcaverns: variable wasn't modified or marked as ignored! guessing new value:")
+		minetest.log("error", "mcl_var." .. tostring(k) .. " = " .. tostring(new_value) .. " -- was " .. tostring(v))
+		minetest.log("error", "if it shouldn't be changed, mark it as ignored in df_dependencies/mapgen.lua like so:")
+		minetest.log("error", "bad_entries." .. tostring(k) .. " = nil")
+		minetest.log("error", "This is a bug, please report it to https://github.com/FaceDeer/dfcaverns/issues/new")
+		mcl_vars[k] = new_value
+	end
 
 	-- shouldn't need to worry about the setting, extend_ores checks if the ores
 	-- have already been registered.

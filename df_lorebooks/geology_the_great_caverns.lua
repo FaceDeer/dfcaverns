@@ -158,7 +158,7 @@ As I delve deeper, the heat here was nearly unbearable, and it is a wonder that 
 
 Despite the intense heat and danger, I was driven to explore this area, as it is a source of one of the rarest minerals in the world. I was fortunate enough to come across some glowing crystals, suspended from the ceilings of lava tubes in the hottest regions of the Magma Sea. These crystals are suffused with a strange power, and their radiance is nothing short of breathtaking. It is truly a remarkable sight to behold. There is also obsidian found in abundance here.
 
-However, the dangers in this region are not to be underestimated, as the heat can cause serious damage to one's equipment, and the molten rock could easily trap and consume any unwary traveler. Despite this, the potential rewards of exploring the Magma Sea make it all worth it, as the discovery of these glowing crystals is a major step forward in our understanding of the inner workings of our world.
+However, the dangers in this region are not to be underestimated, as the heat can cause serious damage to one's equipment, and the molten rock could easily trap and consume any unwary traveller. Despite this, the potential rewards of exploring the Magma Sea make it all worth it, as the discovery of these glowing crystals is a major step forward in our understanding of the inner workings of our world.
 
 Signed,
 Dr. Theodore Banks]]),
